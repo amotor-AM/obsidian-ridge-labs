@@ -1,0 +1,59 @@
+# Obsidian Ridge Labs — robots.txt
+# Privacy-first AI apps. We respect crawlers as much as we respect users.
+
+User-agent: *
+Allow: /
+Allow: /apps/
+Allow: /blog/
+Allow: /philosophy
+Allow: /privacy
+Allow: /terms
+
+# Static assets
+Allow: /assets/
+Allow: /og-*.png
+Allow: /logo.png
+Allow: /favicon.svg
+
+# Block non-content paths
+Disallow: /api/
+Disallow: /_internal/
+
+# Sitemaps
+Sitemap: https://obsidianridgelabs.com/sitemap.xml
+
+# AI Crawlers — Welcome
+# We provide llms.txt for AI model training and retrieval
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Crawl-delay for polite bots
+User-agent: *
+Crawl-delay: 1
+
+# LLMs.txt reference
+# https://obsidianridgelabs.com/llms.txt

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://obsidianridgelabs.com/</loc>
+    <lastmod>2024-07-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Download Page -->
+  <url>
+    <loc>https://obsidianridgelabs.com/download</loc>
+    <lastmod>2024-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- App Pages -->
+  <url>
+    <loc>https://obsidianridgelabs.com/apps/vault</loc>
+    <lastmod>2024-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://obsidianridgelabs.com/og-app-vault.png</image:loc>
+      <image:title>Obsidian Ridge Vault - Private AI Finance App</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://obsidianridgelabs.com/apps/mind</loc>
+    <lastmod>2024-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://obsidianridgelabs.com/og-app-mind.png</image:loc>
+      <image:title>Mind Palace - Private AI Journal App</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://obsidianridgelabs.com/apps/echo</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://obsidianridgelabs.com/og-app-echo.png</image:loc>
+      <image:title>Echo Chamber - Offline AI Meeting Transcription</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://obsidianridgelabs.com/apps/nexus</loc>
+    <lastmod>2024-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://obsidianridgelabs.com/og-app-nexus.png</image:loc>
+      <image:title>Decision Nexus - AI Decision Mapping Tool</image:title>
+    </image:image>
+  </url>
+
+  <!-- Philosophy -->
+  <url>
+    <loc>https://obsidianridgelabs.com/philosophy</loc>
+    <lastmod>2024-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Index -->
+  <url>
+    <loc>https://obsidianridgelabs.com/blog</loc>
+    <lastmod>2024-07-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Posts -->
+  <url>
+    <loc>https://obsidianridgelabs.com/blog/apple-ecosystem-privacy</loc>
+    <lastmod>2024-07-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://obsidianridgelabs.com/blog/finance-app-red-flags</loc>
+    <lastmod>2024-06-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://obsidianridgelabs.com/blog/otter-vs-echo</loc>
+    <lastmod>2024-07-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://obsidianridgelabs.com/blog/notion-vs-mindpalace</loc>
+    <lastmod>2024-07-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://obsidianridgelabs.com/blog/offline-ai-revolution</loc>
+    <lastmod>2024-07-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal -->
+  <url>
+    <loc>https://obsidianridgelabs.com/privacy</loc>
+    <lastmod>2024-07-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://obsidianridgelabs.com/terms</loc>
+    <lastmod>2024-07-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

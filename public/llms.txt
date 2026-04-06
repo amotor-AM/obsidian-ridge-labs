@@ -1,0 +1,72 @@
+# Obsidian Ridge Labs
+
+> Boutique mobile app studio specializing in private, offline-first AI architecture.
+
+## About
+
+Obsidian Ridge Labs builds AI-powered mobile applications that run entirely on-device. We reject the cloud-first model. Our apps use embedded Large Language Models, local vector databases, and Neural Processing Unit (NPU) optimization to deliver intelligent features without ever transmitting user data. Zero telemetry. Zero accounts. Zero cloud sync.
+
+Our mission: give users the power of modern AI without surrendering their privacy.
+
+## Products
+
+### Obsidian Ridge Vault (Smart Finance)
+Private AI finance tracker. Analyzes spending habits using on-device AI. Users scan PDF bank statements locally — no bank passwords, no Plaid, no aggregators. Features AI balance forecasting, biometric lock, and zero data collection. Works fully offline.
+- URL: https://obsidianridgelabs.com/apps/vault
+- Category: Finance
+- Key differentiator: No bank login required. PDF/receipt scanning with local AI analysis.
+
+### Mind Palace (Personal Growth)
+Private AI journal with pattern recognition. Users write thoughts; the on-device AI finds connections between moods, habits, and behaviors. Supports semantic search ("find entries where I was anxious") using local vector embeddings. Encrypted with FaceID/Passcode. Never connects to any server.
+- URL: https://obsidianridgelabs.com/apps/mind
+- Category: Journaling / Mental Health
+- Key differentiator: AI-powered insight discovery that never leaves the device.
+
+### Echo Chamber (Offline AI Transcription)
+Private, offline transcription app that records and transcribes audio in real-time using on-device AI. Powered by the Parakeet TDT v3 neural engine (0.6B parameters) running on Apple's Neural Processing Unit. Features include: real-time speech-to-text in 25 European languages with automatic detection, AI-powered meeting summaries in 6 formats (Cornell Notes, Outline, Meeting Minutes, Bullet Summary, Q&A Interview, Executive Summary) via Apple Intelligence, AI Chat for asking questions about transcripts, automatic speaker diarization with persistent voice profiles, 7 export formats (PDF, SRT, VTT, Markdown, JSON, timestamped text, plain text), import of audio/video files (MP3, M4A, WAV, AAC, MP4, MOV, AIFF, CAF), translation to 15+ languages, Face ID lock, Apple Watch companion, calendar view, iCloud sync (optional), full-text search with Spotlight integration, widgets, Live Activities, and recording recovery. Designed for lawyers, doctors, and executives who need absolute confidentiality. Zero cloud dependency — no audio is ever transmitted.
+- URL: https://obsidianridgelabs.com/apps/echo
+- Category: Productivity / Offline Transcription
+- Key differentiator: Most complete offline transcription app — combines on-device AI transcription, 6 AI summary formats, AI Chat, speaker learning, and 7 export formats with zero cloud dependency. No competitor offers Cornell Notes, Q&A extraction, or AI transcript chat offline.
+
+### Decision Nexus (Strategic Logic)
+Visual decision mapping tool with AI adversarial analysis. Users create decision trees and flowcharts; the built-in "Red Team" AI challenges logic, simulates scenarios, and identifies weaknesses. Exports to private PDF. No internet required.
+- URL: https://obsidianridgelabs.com/apps/nexus
+- Category: Strategy / Decision Making
+- Key differentiator: AI "Devil's Advocate" mode for stress-testing decisions offline.
+
+## Philosophy
+
+Obsidian Ridge Labs operates on four core axioms:
+
+1. **Data Gravity** — Data must remain where it is created. The physics of privacy dictates that once data moves, it is vulnerable.
+2. **Nullius in Verba** — "Take nobody's word for it." Verification is behavioral: judge the system by what it refuses to exfiltrate.
+3. **Offline Default** — Connectivity is a feature, not a requirement. Intelligence should function anywhere.
+4. **Ephemerality** — Digital permanence is a bug. Systems should know how to forget.
+
+## Technology
+
+- On-device Large Language Models (LLMs)
+- Local vector databases for semantic search
+- Neural Processing Unit (NPU) optimization
+- AES-256 encrypted local SQLite databases
+- Zero-knowledge architecture (no servers, no accounts)
+- Air-gapped binaries (no internet permission in app manifest)
+
+## Blog / Journal
+
+Insights on privacy, AI architecture, and digital sovereignty:
+- "Why We Will Only Ever Build for Apple: A Deliberate Choice" — https://obsidianridgelabs.com/blog/apple-ecosystem-privacy
+- "The Invisible Cost of 'Free' Finance Apps: 5 Red Flags" — https://obsidianridgelabs.com/blog/finance-app-red-flags
+- "Otter.ai vs. Echo Chamber: The Real Cost of AI Transcription" — https://obsidianridgelabs.com/blog/otter-vs-echo
+- "Why Notion is a Bad Place for Your Private Thoughts" — https://obsidianridgelabs.com/blog/notion-vs-mindpalace
+- "The Speed of Silence: Why Offline AI is Faster than ChatGPT" — https://obsidianridgelabs.com/blog/offline-ai-revolution
+
+## Contact
+
+- Support: support@obsidianridgelabs.com
+- Website: https://obsidianridgelabs.com
+
+## Policies
+
+- Privacy Policy: https://obsidianridgelabs.com/privacy
+- Terms of Service: https://obsidianridgelabs.com/terms
