@@ -162,7 +162,7 @@ const BlogPost: React.FC = () => {
             
             <footer className="mt-32 pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
                <div className="font-bold text-apple-gray text-xl tracking-tight">
-                  End Transmission // Obsidion Labz
+                  End Transmission // Obsidian Ridge Labs
                </div>
                <div className="flex gap-4">
                   {post.tags.map(tag => (
