@@ -141,16 +141,6 @@ const BlogList: React.FC = () => {
           ))}
         </div>
 
-        {/* Subscribe Section */}
-        <div className="mt-40 p-16 apple-card text-center relative overflow-hidden">
-           <h3 className="text-4xl font-bold text-white mb-6 tracking-tight">Stay updated.</h3>
-           <p className="text-apple-gray font-semibold text-sm uppercase tracking-widest mb-12">Follow us on anonymous channels</p>
-           <div className="flex flex-wrap justify-center gap-12 text-xs font-bold text-apple-gray">
-              <span className="hover:text-apple-blue cursor-pointer transition-colors tracking-widest">RSS FEED</span>
-              <span className="hover:text-apple-blue cursor-pointer transition-colors tracking-widest">TOR HIDDEN SERVICE</span>
-              <span className="hover:text-apple-blue cursor-pointer transition-colors tracking-widest">MASTODON</span>
-           </div>
-        </div>
 
       </div>
     </div>
