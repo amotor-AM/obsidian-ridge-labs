@@ -41,7 +41,7 @@ const Services: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {technologies.map((s, i) => (
-            <div key={i} className="glass-panel group">
+            <div key={i} className="glass-panel group p-8">
               <div className="mb-8 p-4 bg-black/20 rounded-none border border-white/5 w-fit group-hover:scale-110 transition-transform duration-500">
                 {s.icon}
               </div>

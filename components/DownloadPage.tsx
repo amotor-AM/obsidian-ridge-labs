@@ -342,7 +342,7 @@ const DownloadPage: React.FC = () => {
                   {/* Screenshot (Echo Chamber only) */}
                   {app.image && (
                     <div className="lg:col-span-2 relative flex items-center justify-center p-8 md:p-12 bg-black/50">
-                      <div className="relative w-[260px] md:w-[300px]">
+                      <div className="relative w-[300px] md:w-[360px]">
                         <img
                           src={app.image}
                           alt={app.imageAlt}

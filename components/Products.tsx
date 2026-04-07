@@ -34,7 +34,7 @@ const Products: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="glass-panel group flex flex-col"
+                className="glass-panel group flex flex-col p-8 md:p-10"
               >
                 <div className="flex justify-between items-start mb-12">
                   <div className="w-16 h-16 bg-black/20 rounded-none border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">

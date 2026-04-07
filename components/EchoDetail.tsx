@@ -143,7 +143,7 @@ const EchoDetail: React.FC = () => {
           <div className="w-full lg:w-1/2 flex justify-center perspective-1000">
             <motion.div
               style={{ rotateY: -10, rotateX: 5, y }}
-              className="relative w-[320px] shadow-[0_0_100px_rgba(0,240,255,0.1)]"
+              className="relative w-[340px] md:w-[380px] shadow-[0_0_100px_rgba(0,240,255,0.1)]"
             >
               <img
                 src="/images/echo/RecordScreen.png"
@@ -390,7 +390,7 @@ const EchoDetail: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* AI Chat Screenshot */}
           <div className="order-2 lg:order-1 flex justify-center">
-            <div className="relative w-[300px] md:w-[340px]">
+            <div className="relative w-[320px] md:w-[380px]">
               <img
                 src="/images/echo/AIChat.png"
                 alt="Echo Chamber AI Chat — ask questions about your transcript and get instant on-device AI answers with key points and action items"

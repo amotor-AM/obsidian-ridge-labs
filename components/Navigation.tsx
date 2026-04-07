@@ -40,7 +40,7 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'glass-panel py-3' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-obsidian-light/80 backdrop-blur-xl border-b border-white/5 py-3' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link to="/" className="text-xl font-semibold tracking-tight text-white flex items-center gap-2 z-50">
             <div className="w-5 h-5 bg-white rounded-md flex items-center justify-center">
@@ -89,16 +89,29 @@ const Navigation: React.FC = () => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="fixed inset-0 bg-black z-[40] flex flex-col items-center justify-center gap-8 pt-20">
-             <Link to="/" onClick={() => setIsOpen(false)} className="text-3xl font-bold text-white hover:text-apple-blue transition-colors">Home</Link>
-             <div className="text-gray-500 text-sm uppercase tracking-widest mt-4">Applications</div>
-             {products.map(p => (
-               <Link key={p.id} to={`/apps/${p.id}`} onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">{p.name}</Link>
-             ))}
-             <Link to="/blog" onClick={() => setIsOpen(false)} className="text-xl text-gray-400 hover:text-white transition-colors">Journal</Link>
-             <Link to="/philosophy" onClick={() => setIsOpen(false)} className="text-xl text-gray-400 hover:text-white transition-colors">Philosophy</Link>
-             <button onClick={() => handleNavClick('technology')} className="text-xl text-gray-400 hover:text-white transition-colors">Technology</button>
-            <div className="mt-8 text-gray-500 text-xs">Obsidian Ridge Labs v2.0</div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="fixed inset-0 bg-black z-[40] flex flex-col items-center justify-center gap-6 pt-20">
+             <Link to="/" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Home</Link>
+
+             {/* Apps dropdown */}
+             <div className="flex flex-col items-center">
+               <button onClick={() => setDropdownOpen(!dropdownOpen)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors flex items-center gap-2">
+                 Apps <ChevronDown size={18} className={`transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
+               </button>
+               <AnimatePresence>
+                 {dropdownOpen && (
+                   <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="flex flex-col items-center gap-3 mt-3 overflow-hidden">
+                     {products.map(p => (
+                       <Link key={p.id} to={`/apps/${p.id}`} onClick={() => setIsOpen(false)} className="text-base text-gray-400 hover:text-white transition-colors">{p.name}</Link>
+                     ))}
+                   </motion.div>
+                 )}
+               </AnimatePresence>
+             </div>
+
+             <Link to="/blog" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Journal</Link>
+             <Link to="/philosophy" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Philosophy</Link>
+             <Link to="/download" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Download</Link>
+            <div className="mt-8 text-gray-500 text-xs">Obsidian Ridge Labs</div>
           </motion.div>
         )}
       </AnimatePresence>
