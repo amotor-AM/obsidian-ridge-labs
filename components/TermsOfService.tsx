@@ -5,7 +5,7 @@ import SEO, { buildBreadcrumbs } from './SEO';
 
 const TermsOfService: React.FC = () => {
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6 md:px-12 max-w-4xl mx-auto">
+    <div className="min-h-screen pt-32 pb-10 md:pb-20 px-6 md:px-12 max-w-4xl mx-auto">
       <SEO
         title="Terms of Service"
         description="Terms of Service for Obsidian Ridge Labs applications. Covers in-app purchases via Apple StoreKit, intellectual property, privacy commitments, and limitation of liability."

@@ -15,7 +15,7 @@ const PhilosophyPage: React.FC = () => {
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 10]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-obsidian text-text-primary pt-32 pb-20 overflow-hidden relative">
+    <div ref={containerRef} className="min-h-screen bg-obsidian text-text-primary pt-32 pb-10 md:pb-20 overflow-hidden relative">
       <SEO
         title="Philosophy — Why We Build Offline-First AI"
         description="The Obsidian Ridge Labs manifesto on privacy, data sovereignty, and offline-first architecture. Learn why we believe the cloud is a surveillance engine and how on-device AI restores digital autonomy."
@@ -52,7 +52,7 @@ const PhilosophyPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Header / Manifesto Declaration */}
-        <section className="min-h-[80vh] flex flex-col justify-center border-b border-white/10 mb-24">
+        <section className="min-h-[80vh] flex flex-col justify-center border-b border-white/10 mb-12 md:mb-24">
            <motion.div 
              initial={{ opacity: 0, y: 50 }}
              animate={{ opacity: 1, y: 0 }}
@@ -80,7 +80,7 @@ const PhilosophyPage: React.FC = () => {
         </section>
 
         {/* The Problem: Redacted Section */}
-        <section className="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <section className="mb-16 md:mb-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
            <div className="lg:col-span-4 sticky top-32">
               <h2 className="text-alert font-mono text-sm tracking-[0.2em] mb-4 uppercase">/// Threat Model</h2>
               <h3 className="text-4xl font-display font-bold text-white mb-6">THE PANOPTICON</h3>
@@ -111,7 +111,7 @@ const PhilosophyPage: React.FC = () => {
         </section>
 
         {/* The Solution: Horizontal Scroll Axioms */}
-        <section className="mb-32 relative">
+        <section className="mb-16 md:mb-32 relative">
            <div className="flex justify-between items-end mb-12">
               <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase">/// Counter-Measures</h2>
               <div className="text-xs font-mono text-gray-500">SCROLL TO DECRYPT -&gt;</div>
@@ -158,7 +158,7 @@ const PhilosophyPage: React.FC = () => {
         </section>
 
         {/* The Architecture */}
-        <section className="mb-32">
+        <section className="mb-16 md:mb-32">
            <div className="border border-white/10 bg-black p-8 md:p-16 relative overflow-hidden">
               <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.01)_10px,rgba(255,255,255,0.01)_20px)]"></div>
               
@@ -198,7 +198,7 @@ const PhilosophyPage: React.FC = () => {
         </section>
 
         {/* Philosophy in Action — Internal Links to Products */}
-        <section className="mb-32">
+        <section className="mb-16 md:mb-32">
           <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase mb-12">/// See the Philosophy in Action</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
@@ -222,7 +222,7 @@ const PhilosophyPage: React.FC = () => {
         </section>
 
         {/* Read More — Blog Links */}
-        <section className="mb-32 border border-white/10 bg-white/[0.02] p-8 md:p-12">
+        <section className="mb-16 md:mb-32 border border-white/10 bg-white/[0.02] p-8 md:p-12">
           <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase mb-8">/// Further Reading</h2>
           <div className="space-y-6">
             <Link to="/blog/apple-ecosystem-privacy" className="group flex justify-between items-center">
@@ -245,7 +245,7 @@ const PhilosophyPage: React.FC = () => {
         </section>
 
         {/* Footer Terminal */}
-        <section className="max-w-3xl mx-auto text-center font-mono py-20">
+        <section className="max-w-3xl mx-auto text-center font-mono py-10 md:py-20">
            <div className="inline-block border border-white/10 bg-black p-8 mb-8">
               <p className="text-gray-500 mb-2 text-xs">root@obsidian-ridge:~/manifesto# ./sign.sh</p>
               <p className="text-white text-lg typewriter">

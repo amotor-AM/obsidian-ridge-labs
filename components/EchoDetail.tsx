@@ -88,7 +88,7 @@ const EchoDetail: React.FC = () => {
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <div ref={containerRef} className="min-h-screen pt-32 pb-20 overflow-x-hidden bg-black">
+    <div ref={containerRef} className="min-h-screen pt-32 pb-10 md:pb-20 overflow-x-hidden bg-black">
       <SEO
         title="Echo Chamber — Private Offline AI Transcription App"
         description={seoDescription}
@@ -99,7 +99,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           HERO — Record. Transcribe. Summarize. Privately.
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-20 relative">
+      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-10 md:mb-20 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -182,7 +182,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           THE PROBLEM — Why Cloud Transcription is Dangerous
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-32 px-6 md:px-12 bg-[#0a0a0a] border-b border-white/5">
+      <section className="py-16 md:py-32 px-6 md:px-12 bg-[#0a0a0a] border-b border-white/5">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-sm font-bold tracking-widest mb-10 uppercase text-neon">The Problem with Cloud Transcription</h2>
           <h3 className="text-4xl md:text-6xl font-bold text-white mb-10 leading-tight tracking-tight">
@@ -247,7 +247,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           HOW IT WORKS — Vertical Flow
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto py-32">
+      <section className="px-6 md:px-12 max-w-7xl mx-auto py-16 md:py-32">
         <div className="flex flex-col md:flex-row gap-20">
           <div className="md:w-1/3">
             <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-neon">How It Works</h2>
@@ -308,9 +308,9 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           AI INTELLIGENCE SUITE — 6 Summary Formats
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0a0a0a] border-y border-white/5 py-32 px-6 md:px-12">
+      <section className="bg-[#0a0a0a] border-y border-white/5 py-16 md:py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-20">
+          <div className="mb-10 md:mb-20">
             <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-neon">AI Intelligence Suite</h2>
             <h3 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
               Six ways to understand your meetings.
@@ -386,7 +386,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           AI CHAT — Ask Your Transcript
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+      <section className="py-16 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* AI Chat Screenshot */}
           <div className="order-2 lg:order-1 flex justify-center">
@@ -433,7 +433,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           SPEAKER INTELLIGENCE — Voice Profiles
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0a0a0a] border-y border-white/5 py-32 px-6 md:px-12">
+      <section className="bg-[#0a0a0a] border-y border-white/5 py-16 md:py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div>
             <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-neon">Speaker Intelligence</h2>
@@ -491,7 +491,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           IMPORT & EXPORT — File Format Support
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+      <section className="py-16 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           {/* Import */}
           <div>
@@ -543,7 +543,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           TRANSLATION — 15+ Languages
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0a0a0a] border-y border-white/5 py-24 px-6 md:px-12">
+      <section className="bg-[#0a0a0a] border-y border-white/5 py-12 md:py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
           <div className="flex-1">
             <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-neon">Translation</h2>
@@ -571,7 +571,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           ECOSYSTEM — Apple Watch, Widgets, Calendar, iCloud
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+      <section className="py-16 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="mb-16">
           <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-neon">Ecosystem</h2>
           <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
@@ -639,7 +639,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           TECHNICAL SPECIFICATIONS
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-32">
+      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-16 md:mb-32">
         <div className="apple-card p-10 md:p-16 relative overflow-hidden">
           <div className="flex flex-col md:flex-row justify-between items-start mb-16">
             <div>
@@ -684,7 +684,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           PRIVACY GUARANTEE
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="border-t border-white/5 bg-[#0a0a0a] pt-32 pb-24 px-6 relative overflow-hidden">
+      <section className="border-t border-white/5 bg-[#0a0a0a] pt-16 md:pt-32 pb-12 md:pb-24 px-6 relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <ShieldCheck className="w-24 h-24 text-neon mx-auto mb-10 opacity-90" />
           <h2 className="text-5xl md:text-7xl font-bold text-white mb-10 tracking-tight">Zero Telemetry Promise.</h2>
@@ -714,7 +714,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           WHO IT'S FOR — Professional Use Cases
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+      <section className="py-16 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-neon">Built For</h2>
         <h3 className="text-4xl md:text-5xl font-bold text-white mb-16 tracking-tight">
           Professionals who can't afford a leak.
@@ -757,7 +757,7 @@ const EchoDetail: React.FC = () => {
           RELATED BLOG POST
           ═══════════════════════════════════════════════════════════════════════ */}
       {relatedPost && (
-        <section className="px-6 md:px-12 max-w-7xl mx-auto pb-20 border-t border-white/5 pt-20">
+        <section className="px-6 md:px-12 max-w-7xl mx-auto pb-10 md:pb-20 border-t border-white/5 pt-10 md:pt-20">
           <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-neon">Related Reading</h2>
           <Link to={`/blog/${relatedPost.id}`} className="group block apple-card p-10 hover:scale-[1.01] transition-transform">
             <span className="text-[11px] font-bold text-apple-gray uppercase tracking-widest">{relatedPost.category} &middot; {relatedPost.readTime}</span>
@@ -770,7 +770,7 @@ const EchoDetail: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           EXPLORE OTHER APPS — Cross-links
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto py-20 border-t border-white/5">
+      <section className="px-6 md:px-12 max-w-7xl mx-auto py-10 md:py-20 border-t border-white/5">
         <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-neon">Explore the Suite</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {otherProducts.map(p => {

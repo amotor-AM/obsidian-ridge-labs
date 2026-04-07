@@ -6,13 +6,13 @@ import { products } from '../data/products';
 
 const Products: React.FC = () => {
   return (
-    <section id="products" className="py-32 px-6 md:px-12 bg-black relative overflow-hidden">
+    <section id="products" className="py-16 md:py-32 px-6 md:px-12 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           className="mb-24 text-center"
+           className="mb-12 md:mb-24 text-center"
         >
           <h2 className="text-neon text-sm font-semibold tracking-tight mb-4 uppercase">App Suite</h2>
           <h3 className="text-5xl md:text-6xl font-bold text-white mb-8 tracking-tight">

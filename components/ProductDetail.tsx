@@ -204,7 +204,7 @@ const ProductDetail: React.FC = () => {
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen pt-32 pb-20 overflow-x-hidden bg-black">
+    <div ref={containerRef} className="min-h-screen pt-32 pb-10 md:pb-20 overflow-x-hidden bg-black">
       <SEO
         title={`${product.name} — ${product.tagline}`}
         description={seoDescriptions[product.id] || product.fullDescription}
@@ -213,7 +213,7 @@ const ProductDetail: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-32 relative">
+      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-16 md:mb-32 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -297,7 +297,7 @@ const ProductDetail: React.FC = () => {
       </section>
 
       {/* Narrative Section: The Mission */}
-      <section className="py-32 px-6 md:px-12 bg-[#0a0a0a] border-y border-white/5 mb-32">
+      <section className="py-16 md:py-32 px-6 md:px-12 bg-[#0a0a0a] border-y border-white/5 mb-16 md:mb-32">
          <div className="max-w-4xl mx-auto">
             <h2 className="text-sm font-bold tracking-widest mb-10 uppercase text-apple-blue">The Mission</h2>
             <h3 className="text-4xl md:text-6xl font-bold text-white mb-10 leading-tight tracking-tight">
@@ -318,7 +318,7 @@ const ProductDetail: React.FC = () => {
       </section>
 
       {/* How It Works: Vertical Timeline */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-40">
+      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-20 md:mb-40">
          <div className="flex flex-col md:flex-row gap-20">
             <div className="md:w-1/3">
                <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-apple-blue">Workflow</h2>
@@ -351,7 +351,7 @@ const ProductDetail: React.FC = () => {
       </section>
 
       {/* Technical Deep Dive (Expanded Specs) */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-40">
+      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-20 md:mb-40">
          <div className="apple-card p-10 md:p-16 relative overflow-hidden">
              <div className="flex flex-col md:flex-row justify-between items-start mb-16">
                <div>
@@ -381,7 +381,7 @@ const ProductDetail: React.FC = () => {
       </section>
 
       {/* Feature Grid (Keep Existing) */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-40">
+      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-20 md:mb-40">
          <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-apple-blue">Capabilities</h2>
          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {product.features.map((feature, i) => (
@@ -399,7 +399,7 @@ const ProductDetail: React.FC = () => {
       </section>
 
       {/* Privacy Guarantee (Refined) */}
-      <section className="border-t border-white/5 bg-[#0a0a0a] pt-40 pb-32 px-6 relative overflow-hidden">
+      <section className="border-t border-white/5 bg-[#0a0a0a] pt-20 md:pt-40 pb-16 md:pb-32 px-6 relative overflow-hidden">
          <div className="max-w-4xl mx-auto text-center relative z-10">
            <ShieldCheck className="w-24 h-24 text-apple-blue mx-auto mb-10 opacity-90" />
            <h2 className="text-5xl md:text-7xl font-bold text-white mb-10 tracking-tight">Zero Telemetry Promise.</h2>
@@ -427,7 +427,7 @@ const ProductDetail: React.FC = () => {
 
       {/* Related Blog Posts — Internal Linking */}
       {relatedPosts.length > 0 && (
-        <section className="px-6 md:px-12 max-w-7xl mx-auto py-20 border-t border-white/5">
+        <section className="px-6 md:px-12 max-w-7xl mx-auto py-10 md:py-20 border-t border-white/5">
           <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-apple-blue">Related Reading</h2>
           {relatedPosts.map(post => (
             <Link key={post.id} to={`/blog/${post.id}`} className="group block apple-card p-10 mb-6 hover:scale-[1.01] transition-transform">
@@ -440,7 +440,7 @@ const ProductDetail: React.FC = () => {
       )}
 
       {/* Explore Other Apps — Cross-linking */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto py-20 border-t border-white/5">
+      <section className="px-6 md:px-12 max-w-7xl mx-auto py-10 md:py-20 border-t border-white/5">
         <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-apple-blue">Explore the Suite</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {otherProducts.map(p => {

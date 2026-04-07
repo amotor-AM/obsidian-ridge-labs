@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Philosophy: React.FC = () => {
   return (
-    <section id="philosophy" className="py-32 px-6 md:px-12 bg-black relative">
+    <section id="philosophy" className="py-16 md:py-32 px-6 md:px-12 bg-black relative">
        <div className="max-w-5xl mx-auto">
          <motion.div
            initial={{ opacity: 0, y: 20 }}

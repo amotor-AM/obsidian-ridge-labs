@@ -40,7 +40,7 @@ const BlogList: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black pt-32 pb-20 px-6 md:px-12 relative overflow-hidden">
+    <div className="min-h-screen bg-black pt-32 pb-10 md:pb-20 px-6 md:px-12 relative overflow-hidden">
       <SEO
         title="Journal — Privacy, AI & Digital Sovereignty"
         description="Explore insights on privacy-first technology, offline AI architecture, and digital sovereignty. Comparisons, guides, and deep analysis from Obsidian Ridge Labs."
@@ -53,7 +53,7 @@ const BlogList: React.FC = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Header Section */}
-        <header className="mb-24 flex flex-col md:flex-row md:items-end justify-between border-b border-white/5 pb-16">
+        <header className="mb-12 md:mb-24 flex flex-col md:flex-row md:items-end justify-between border-b border-white/5 pb-8 md:pb-16">
            <div className="max-w-3xl">
              <div className="flex items-center gap-3 text-apple-blue mb-8">
                 <Sparkles size={20} />
@@ -75,7 +75,7 @@ const BlogList: React.FC = () => {
 
         {/* Featured Post */}
         {blogPosts.length > 0 && (
-          <Link to={`/blog/${blogPosts[0].id}`} className="block mb-24 group relative overflow-hidden apple-card p-10 md:p-20">
+          <Link to={`/blog/${blogPosts[0].id}`} className="block mb-12 md:mb-24 group relative overflow-hidden apple-card p-10 md:p-20">
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
                    <span className="inline-block px-4 py-1.5 bg-apple-blue text-white font-bold text-[11px] uppercase rounded-full mb-8 tracking-wider">Featured</span>

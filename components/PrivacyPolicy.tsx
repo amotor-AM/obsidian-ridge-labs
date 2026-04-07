@@ -5,7 +5,7 @@ import SEO, { buildBreadcrumbs } from './SEO';
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6 md:px-12 max-w-4xl mx-auto">
+    <div className="min-h-screen pt-32 pb-10 md:pb-20 px-6 md:px-12 max-w-4xl mx-auto">
       <SEO
         title="Privacy Policy — Zero Telemetry by Design"
         description="Obsidian Ridge Labs privacy policy. We collect zero data — no analytics, no crash reports, no cloud sync. All AI processing is on-device. Read our full privacy commitments."

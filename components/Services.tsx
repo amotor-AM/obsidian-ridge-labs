@@ -27,7 +27,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="technology" className="py-32 px-6 md:px-12 bg-black relative">
+    <section id="technology" className="py-16 md:py-32 px-6 md:px-12 bg-black relative">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-24 border-b border-white/5 pb-12">
            <div>

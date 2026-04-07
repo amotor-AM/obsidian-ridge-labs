@@ -119,7 +119,7 @@ const BlogPost: React.FC = () => {
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-apple-blue z-50 origin-left" style={{ scaleX: progressScale }} />
 
       {/* Article Hero */}
-      <header className="relative pt-48 pb-24 px-6 md:px-12 border-b border-white/5 bg-[#0a0a0a]">
+      <header className="relative pt-24 md:pt-48 pb-12 md:pb-24 px-6 md:px-12 border-b border-white/5 bg-[#0a0a0a]">
         <div className="max-w-4xl mx-auto relative z-10">
            <Link to="/blog" className="inline-flex items-center gap-3 text-apple-gray hover:text-apple-blue transition-colors font-bold text-[11px] uppercase tracking-widest mb-14">
               <ArrowLeft size={14} /> Back to Journal
@@ -142,7 +142,7 @@ const BlogPost: React.FC = () => {
       </header>
 
       {/* Main Content Area */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-20 py-32">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-20 py-16 md:py-32">
          
          {/* Sidebar Left: Share/Save */}
          <aside className="hidden lg:block lg:col-span-1 sticky top-32 h-fit">
@@ -160,7 +160,7 @@ const BlogPost: React.FC = () => {
          <article className="lg:col-span-8 rich-text">
             {post.blocks.map((block, i) => renderBlock(block, i))}
             
-            <footer className="mt-32 pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
+            <footer className="mt-16 md:mt-32 pt-8 md:pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
                <div className="font-bold text-apple-gray text-xl tracking-tight">
                   End Transmission // Obsidian Ridge Labs
                </div>

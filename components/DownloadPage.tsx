@@ -182,7 +182,7 @@ const DownloadPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black pt-32 pb-20 overflow-hidden relative">
+    <div className="min-h-screen bg-black pt-32 pb-10 md:pb-20 overflow-hidden relative">
       <SEO
         title="Download Obsidian Ridge Labs Apps — Private Offline AI for iPhone"
         description="Download privacy-first, offline AI apps for iPhone, iPad, Mac, and Apple Watch. Echo Chamber for AI transcription, Vault for finance, Mind Palace for journaling, and Decision Nexus for strategy. No cloud, no accounts, no data collection."
@@ -196,7 +196,7 @@ const DownloadPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
 
         {/* Header */}
-        <header className="mb-24">
+        <header className="mb-12 md:mb-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -362,7 +362,7 @@ const DownloadPage: React.FC = () => {
         </div>
 
         {/* Bottom CTA — Blog + Philosophy */}
-        <section className="mt-32 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section className="mt-16 md:mt-32 grid grid-cols-1 md:grid-cols-2 gap-8">
           <Link to="/blog" className="group border border-white/5 bg-white/[0.02] p-10 hover:border-neon/30 transition-colors">
             <span className="text-neon text-xs font-bold uppercase tracking-widest">Journal</span>
             <h3 className="text-2xl font-bold text-white mt-3 group-hover:text-neon transition-colors tracking-tight">
