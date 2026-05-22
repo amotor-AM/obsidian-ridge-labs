@@ -2,6 +2,8 @@
 
 > Boutique mobile app studio specializing in private, offline-first AI architecture.
 
+- [Full content](https://obsidianridgelabs.com/llms-full.txt): Complete text of all articles, products, and documentation for offline reading and model ingestion.
+
 ## About
 
 Obsidian Ridge Labs builds AI-powered mobile applications that run entirely on-device. We reject the cloud-first model. Our apps use embedded Large Language Models, local vector databases, and Neural Processing Unit (NPU) optimization to deliver intelligent features without ever transmitting user data. Zero telemetry. Zero accounts. Zero cloud sync.
@@ -24,7 +26,7 @@ Private AI journal with pattern recognition. Users write thoughts; the on-device
 
 ### Echo Chamber (Offline AI Transcription)
 Private, offline transcription app that records and transcribes audio in real-time using on-device AI. Powered by the Parakeet TDT v3 neural engine (0.6B parameters) running on Apple's Neural Processing Unit. Features include: real-time speech-to-text in 25 European languages with automatic detection, AI-powered meeting summaries in 6 formats (Cornell Notes, Outline, Meeting Minutes, Bullet Summary, Q&A Interview, Executive Summary) via Apple Intelligence, AI Chat for asking questions about transcripts, automatic speaker diarization with persistent voice profiles, 7 export formats (PDF, SRT, VTT, Markdown, JSON, timestamped text, plain text), import of audio/video files (MP3, M4A, WAV, AAC, MP4, MOV, AIFF, CAF), translation to 15+ languages, Face ID lock, Apple Watch companion, calendar view, iCloud sync (optional), full-text search with Spotlight integration, widgets, Live Activities, and recording recovery. Designed for lawyers, doctors, and executives who need absolute confidentiality. Zero cloud dependency — no audio is ever transmitted.
-- URL: https://obsidianridgelabs.com/apps/echo
+- URL: https://obsidianridgelabs.com/apps/echochamber
 - Category: Productivity / Offline Transcription
 - Key differentiator: Most complete offline transcription app — combines on-device AI transcription, 6 AI summary formats, AI Chat, speaker learning, and 7 export formats with zero cloud dependency. No competitor offers Cornell Notes, Q&A extraction, or AI transcript chat offline.
 

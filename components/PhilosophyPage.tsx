@@ -204,7 +204,7 @@ const PhilosophyPage: React.FC = () => {
             {[
               { id: 'vault', name: 'VAULT', desc: 'Private AI finance — no bank passwords, no cloud.', axiom: 'Data Gravity' },
               { id: 'mind', name: 'MIND PALACE', desc: 'AI journal that never leaves your device.', axiom: 'Ephemerality' },
-              { id: 'echo', name: 'ECHO CHAMBER', desc: 'Offline meeting transcription for the paranoid executive.', axiom: 'Offline Default' },
+              { id: 'echochamber', name: 'ECHO CHAMBER', desc: 'Offline meeting transcription for the paranoid executive.', axiom: 'Offline Default' },
               { id: 'nexus', name: 'DECISION NEXUS', desc: 'AI adversarial analysis, zero network access.', axiom: 'Nullius in Verba' },
             ].map(app => (
               <Link key={app.id} to={`/apps/${app.id}`} className="group border border-white/10 bg-white/[0.02] p-8 hover:border-neon transition-colors duration-500">

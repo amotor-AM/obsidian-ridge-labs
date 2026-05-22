@@ -21,6 +21,12 @@ interface SEOProps {
   noindex?: boolean;
 }
 
+let serverSEOContext: any = null;
+
+export const setServerSEOContext = (context: any) => {
+  serverSEOContext = context;
+};
+
 const setMeta = (attr: string, key: string, content: string) => {
   let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
   if (!el) {
@@ -45,6 +51,19 @@ const SEO: React.FC<SEOProps> = ({
   const { pathname } = useLocation();
   const fullTitle = `${title} | ${SITE_NAME}`;
   const canonicalUrl = canonical || `${SITE_URL}${pathname}`;
+
+  // Capture SEO metadata on the server
+  if (typeof window === 'undefined' && serverSEOContext) {
+    serverSEOContext.title = title;
+    serverSEOContext.description = description;
+    serverSEOContext.canonical = canonicalUrl;
+    serverSEOContext.ogType = ogType;
+    serverSEOContext.ogImage = ogImage;
+    serverSEOContext.ogImageAlt = ogImageAlt;
+    serverSEOContext.article = article;
+    serverSEOContext.jsonLd = jsonLd;
+    serverSEOContext.noindex = noindex;
+  }
 
   useEffect(() => {
     document.title = fullTitle;
@@ -246,6 +265,7 @@ function mapCategory(category: string): string {
     'Personal Growth': 'LifestyleApplication',
     'Business Intelligence': 'BusinessApplication',
     'Strategic Logic': 'BusinessApplication',
+    'Offline Transcription': 'BusinessApplication',
   };
   return map[category] || 'MobileApplication';
 }
@@ -254,7 +274,7 @@ function getFeatureList(productId: string): string {
   const features: Record<string, string> = {
     vault: 'On-device AI finance analysis, PDF statement scanning, AI balance forecasting, biometric lock, zero data collection, offline-first',
     mind: 'Private AI journal, pattern recognition, semantic search by feeling, biometric encryption, unlimited entries, never connected to cloud',
-    echo: 'On-device AI transcription (Parakeet TDT v3), real-time speech to text, 25-language support, speaker diarization, voice profiles, 6 AI summary formats (Cornell Notes, Outline, Meeting Minutes, Bullet Points, Q&A, Executive Summary), AI transcript chat, 7 export formats (PDF, SRT, VTT, Markdown, JSON), audio/video import (MP3 M4A WAV AAC MP4 MOV AIFF CAF), translation to 15+ languages, Face ID lock, Apple Watch, calendar view, iCloud sync, full-text search, Spotlight integration, widgets, Live Activities, recording recovery, zero cloud dependency',
+    echochamber: 'On-device AI transcription (Parakeet TDT v3), real-time speech to text, 25-language support, speaker diarization, voice profiles, 6 AI summary formats (Cornell Notes, Outline, Meeting Minutes, Bullet Points, Q&A, Executive Summary), AI transcript chat, 7 export formats (PDF, SRT, VTT, Markdown, JSON), audio/video import (MP3 M4A WAV AAC MP4 MOV AIFF CAF), translation to 15+ languages, Face ID lock, Apple Watch, calendar view, iCloud sync, full-text search, Spotlight integration, widgets, Live Activities, recording recovery, zero cloud dependency',
     nexus: 'Visual decision mapping, AI adversarial thinking, scenario simulation, private PDF export, strategic logic canvas, offline strategy tool',
   };
   return features[productId] || '';

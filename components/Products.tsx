@@ -40,7 +40,7 @@ const Products: React.FC = () => {
                   <div className="w-16 h-16 bg-black/20 rounded-none border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                     <Icon className="w-8 h-8 text-neon" />
                   </div>
-                  {product.id === 'echo' ? (
+                  {product.id === 'echochamber' ? (
                     <span className="text-[11px] font-semibold text-gray-400 bg-white/5 px-3 py-1 rounded-none uppercase tracking-wider">{product.version}</span>
                   ) : (
                     <span className="text-[11px] font-semibold text-amber-400 bg-amber-400/10 border border-amber-400/30 px-3 py-1 rounded-none uppercase tracking-wider">Coming Soon</span>
@@ -66,7 +66,7 @@ const Products: React.FC = () => {
                   </div>
                   
                   <div className="flex gap-4">
-                    {product.id === 'echo' ? (
+                    {product.id === 'echochamber' ? (
                       <Link
                         to={`/apps/${product.id}`}
                         className="bg-neon text-black font-display font-bold uppercase tracking-wider hover:bg-white w-full text-center flex items-center justify-center gap-2 py-3"

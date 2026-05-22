@@ -12,7 +12,7 @@ import {
 import SEO, { buildSoftwareApp, buildBreadcrumbs, buildFAQSchema, SITE_URL } from './SEO';
 
 const EchoDetail: React.FC = () => {
-  const product = products.find(p => p.id === 'echo')!;
+  const product = products.find(p => p.id === 'echochamber')!;
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,7 +20,7 @@ const EchoDetail: React.FC = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
 
-  const otherProducts = products.filter(p => p.id !== 'echo');
+  const otherProducts = products.filter(p => p.id !== 'echochamber');
   const relatedPost = blogPosts.find(p => p.id === 'otter-vs-echo');
   const Icon = product.icon;
 
@@ -39,10 +39,18 @@ const EchoDetail: React.FC = () => {
   const breadcrumbs = buildBreadcrumbs([
     { name: 'Home', url: '/' },
     { name: 'Apps', url: '/' },
-    { name: 'Echo Chamber', url: '/apps/echo' },
+    { name: 'Echo Chamber', url: '/apps/echochamber' },
   ]);
 
   const faqSchema = buildFAQSchema([
+    {
+      question: 'Is there an AI transcription app that works entirely offline?',
+      answer: 'Yes. Echo Chamber is a 100% offline-first AI transcription app. It runs all voice-to-text models directly on your iPhone or iPad, requiring zero internet connection and performing zero remote server uploads.',
+    },
+    {
+      question: 'Can I generate meeting summaries without sending data to OpenAI?',
+      answer: 'Yes. Echo Chamber generates meeting summaries, action items, outlines, and Cornell notes locally on-device. Since it uses on-device LLMs and Apple Intelligence, your data is never sent to OpenAI, Anthropic, or any cloud API.',
+    },
     {
       question: 'Does Echo Chamber send my audio to the cloud?',
       answer: 'Never. Echo Chamber transcribes audio entirely on your device using the Parakeet TDT v3 neural engine running on your phone\'s NPU. No audio data is ever transmitted to any server. The app works fully offline — in airplane mode, in secure facilities, or anywhere without internet.',
@@ -129,10 +137,15 @@ const EchoDetail: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5">
-              <button className="apple-button px-10 py-4 bg-neon text-white font-semibold rounded-full hover:opacity-90 transition-all flex items-center justify-center gap-3">
+              <a
+                href="https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="apple-button px-10 py-4 bg-neon text-black font-semibold rounded-full hover:opacity-90 transition-all flex items-center justify-center gap-3"
+              >
                 <Download size={20} />
                 Download App
-              </button>
+              </a>
               <Link to="/blog/otter-vs-echo" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all text-center">
                 Otter.ai vs Echo Chamber
               </Link>
@@ -146,7 +159,7 @@ const EchoDetail: React.FC = () => {
               className="relative w-[340px] md:w-[380px] shadow-[0_0_100px_rgba(0,240,255,0.1)]"
             >
               <img
-                src="/images/echo/RecordScreen.png"
+                src="/images/echochamber/RecordScreen.png"
                 alt="Echo Chamber recording screen — tap to record with live waveform visualization, on-device AI transcription ready"
                 className="w-full h-auto rounded-[2.5rem]"
                 loading="eager"
@@ -392,7 +405,7 @@ const EchoDetail: React.FC = () => {
           <div className="order-2 lg:order-1 flex justify-center">
             <div className="relative w-[320px] md:w-[380px]">
               <img
-                src="/images/echo/AIChat.png"
+                src="/images/echochamber/AIChat.png"
                 alt="Echo Chamber AI Chat — ask questions about your transcript and get instant on-device AI answers with key points and action items"
                 className="w-full h-auto rounded-[2.5rem] shadow-[0_0_80px_rgba(0,240,255,0.08)]"
                 loading="lazy"

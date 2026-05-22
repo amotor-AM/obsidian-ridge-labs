@@ -43,7 +43,7 @@ const DownloadPage: React.FC = () => {
           '@type': 'SoftwareApplication',
           name: 'Echo Chamber',
           description: 'Private offline AI transcription with 25-language support, 6 AI summary formats, and speaker identification.',
-          url: `${SITE_URL}/apps/echo`,
+          url: `${SITE_URL}/apps/echochamber`,
           applicationCategory: 'BusinessApplication',
           operatingSystem: 'iOS 17+',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -90,14 +90,15 @@ const DownloadPage: React.FC = () => {
 
   const apps = [
     {
-      id: 'echo',
+      id: 'echochamber',
       name: 'ECHO CHAMBER',
       tagline: 'Private AI Transcription. On Your Device.',
       category: 'Offline Transcription',
       description: 'Record, transcribe, and summarize meetings entirely on your iPhone. Powered by the Parakeet TDT v3 neural engine with real-time speech-to-text in 25 languages, 6 AI summary formats including Cornell Notes and Meeting Minutes, AI Chat for asking questions about your transcripts, automatic speaker identification, and 7 export formats. No cloud. No accounts. No audio ever leaves your phone.',
       icon: Mic,
       available: true,
-      image: '/images/echo/TranscriptionDetailsScreen.png',
+      downloadUrl: 'https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060',
+      image: '/images/echochamber/TranscriptionDetailsScreen.png',
       imageAlt: 'Echo Chamber transcription detail screen showing audio playback controls, readable transcript view with speaker labels, and word-level timestamps',
       specs: [
         'Parakeet TDT v3 Engine',
@@ -301,7 +302,9 @@ const DownloadPage: React.FC = () => {
                       {app.available ? (
                         <>
                           <a
-                            href="#"
+                            href={app.downloadUrl || '#'}
+                            target={app.downloadUrl ? '_blank' : undefined}
+                            rel={app.downloadUrl ? 'noopener noreferrer' : undefined}
                             className={`${colors.badge} text-black font-bold uppercase tracking-wider px-10 py-4 flex items-center gap-3 hover:opacity-90 transition-opacity text-sm`}
                           >
                             <Download size={18} />

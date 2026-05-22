@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
               <div className="flex flex-col gap-3">
                 <Link to="/apps/vault" className="text-apple-gray text-sm hover:text-white transition-colors">Vault — AI Finance</Link>
                 <Link to="/apps/mind" className="text-apple-gray text-sm hover:text-white transition-colors">Mind Palace — AI Journal</Link>
-                <Link to="/apps/echo" className="text-apple-gray text-sm hover:text-white transition-colors">Echo Chamber — Transcription</Link>
+                <Link to="/apps/echochamber" className="text-apple-gray text-sm hover:text-white transition-colors">Echo Chamber — Transcription</Link>
                 <Link to="/apps/nexus" className="text-apple-gray text-sm hover:text-white transition-colors">Decision Nexus — Strategy</Link>
               </div>
             </nav>

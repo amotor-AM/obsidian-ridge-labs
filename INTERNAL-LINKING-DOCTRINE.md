@@ -54,7 +54,7 @@ The site follows a hub-and-spoke model where pillar pages link to cluster pages 
 Homepage (Hub)
 ├── /apps/vault ←→ /blog/finance-app-red-flags
 ├── /apps/mind ←→ /blog/notion-vs-mindpalace
-├── /apps/echo ←→ /blog/otter-vs-echo
+├── /apps/echochamber ←→ /blog/otter-vs-echo
 ├── /apps/nexus ←→ /blog/offline-ai-revolution
 ├── /philosophy ←→ All products + All blog posts
 └── /blog (Hub) → All blog posts

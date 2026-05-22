@@ -90,7 +90,7 @@ const TermsOfService: React.FC = () => {
               <Link to="/privacy" className="text-apple-blue hover:underline">Privacy Policy</Link>
               <Link to="/philosophy" className="text-apple-blue hover:underline">Our Philosophy</Link>
               <Link to="/apps/vault" className="text-apple-blue hover:underline">Vault — Private Finance</Link>
-              <Link to="/apps/echo" className="text-apple-blue hover:underline">Echo Chamber — Transcription</Link>
+              <Link to="/apps/echochamber" className="text-apple-blue hover:underline">Echo Chamber — Transcription</Link>
             </div>
           </nav>
         </div>

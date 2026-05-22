@@ -58,7 +58,7 @@ const Home: React.FC = () => {
         '@type': 'ListItem',
         position: 3,
         name: 'Echo Chamber',
-        url: `${SITE_URL}/apps/echo`,
+        url: `${SITE_URL}/apps/echochamber`,
         description: 'Offline real-time meeting transcription for professionals.',
       },
       {

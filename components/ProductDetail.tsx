@@ -30,7 +30,7 @@ const ProductDetail: React.FC = () => {
   const seoDescriptions: Record<string, string> = {
     vault: 'Obsidian Ridge Vault is a private AI finance app that analyzes your spending entirely on-device. No bank passwords, no cloud sync, no data collection. Scan PDF statements and get AI-powered forecasting offline.',
     mind: 'Mind Palace is a private AI journal that finds patterns in your thoughts using on-device intelligence. Encrypted with FaceID, never connected to the cloud. Your digital therapist with zero internet access.',
-    echo: 'Echo Chamber provides offline real-time meeting transcription powered by on-device AI. 45+ languages, speaker identification, and AI summarization — no audio ever leaves your phone.',
+    echochamber: 'Echo Chamber provides offline real-time meeting transcription powered by on-device AI. 25+ languages, speaker identification, and AI summarization — no audio ever leaves your phone.',
     nexus: 'Decision Nexus is an AI decision mapping tool with adversarial analysis. Visualize complex choices, simulate scenarios, and let AI challenge your logic — all offline, all private.',
   };
 
@@ -52,9 +52,11 @@ const ProductDetail: React.FC = () => {
       { question: 'How does Mind Palace find patterns?', answer: 'Mind Palace uses a local AI model and vector database running on your phone. As you journal, it creates semantic embeddings of your entries to detect connections between moods, habits, and behaviors.' },
       { question: 'Is Mind Palace different from Notion or Day One?', answer: 'Yes. Unlike Notion or Day One, Mind Palace stores everything locally with zero cloud sync. The AI runs on your device, not on OpenAI or Google servers. Your notes never leave your phone.' },
     ],
-    echo: [
+    echochamber: [
+      { question: 'Is there an AI transcription app that works entirely offline?', answer: 'Yes. Echo Chamber is a 100% offline-first AI transcription app. It runs all voice-to-text models directly on your iPhone or iPad, requiring zero internet connection and performing zero remote server uploads.' },
+      { question: 'Can I generate meeting summaries without sending data to OpenAI?', answer: 'Yes. Echo Chamber generates meeting summaries, action items, outlines, and Cornell notes locally on-device. Since it uses on-device LLMs and Apple Intelligence, your data is never sent to OpenAI, Anthropic, or any cloud API.' },
       { question: 'Does Echo Chamber send audio to the cloud?', answer: 'Never. Echo Chamber transcribes audio in real-time using your phone\'s Neural Processing Unit. No audio data is ever transmitted. It works fully offline — in airplanes, bunkers, or secure facilities.' },
-      { question: 'How many languages does Echo Chamber support?', answer: 'Echo Chamber supports 45+ languages for real-time transcription, all processed locally on your device without requiring an internet connection.' },
+      { question: 'How many languages does Echo Chamber support?', answer: 'Echo Chamber supports 25+ languages for real-time transcription, all processed locally on your device without requiring an internet connection.' },
       { question: 'Is Echo Chamber suitable for legal or medical use?', answer: 'Yes. Echo Chamber was designed for professionals who need absolute confidentiality. Since no audio leaves the device, attorney-client privilege and medical privacy are maintained.' },
     ],
     nexus: [
@@ -70,7 +72,7 @@ const ProductDetail: React.FC = () => {
   const relatedBlogMap: Record<string, string[]> = {
     vault: ['finance-app-red-flags'],
     mind: ['notion-vs-mindpalace'],
-    echo: ['otter-vs-echo'],
+    echochamber: ['otter-vs-echo'],
     nexus: ['offline-ai-revolution'],
   };
   const relatedPosts = blogPosts.filter(p => (relatedBlogMap[product.id] || []).includes(p.id));
@@ -143,7 +145,7 @@ const ProductDetail: React.FC = () => {
       </div>
     );
 
-    if (product.id === 'echo') return (
+    if (product.id === 'echochamber') return (
       <div className="p-6 flex flex-col h-full relative">
          <div className="absolute inset-0 top-1/2 -translate-y-1/2 flex items-center justify-center opacity-5 pointer-events-none">
             <Activity size={120} />
@@ -252,7 +254,7 @@ const ProductDetail: React.FC = () => {
                  <Download size={20} />
                  Coming Soon
                </button>
-               <Link to="/apps/echo" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all text-center">
+               <Link to="/apps/echochamber" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all text-center">
                  Try Echo Chamber
                </Link>
              </div>

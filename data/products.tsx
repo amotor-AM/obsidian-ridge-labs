@@ -88,7 +88,7 @@ export const products: Product[] = [
     ]
   },
   {
-    id: "echo",
+    id: "echochamber",
     name: "ECHO CHAMBER",
     shortName: "ECHO",
     tagline: "Private AI Transcription. On Your Device.",
