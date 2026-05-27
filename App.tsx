@@ -15,11 +15,18 @@ import NoiseOverlay from './components/NoiseOverlay';
 import Scanline from './components/Scanline';
 import { useEffect } from 'react';
 
-// Scroll to top on route change
+// Scroll to top and track page view on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: pathname,
+      });
+    }
   }, [pathname]);
   return null;
 };
