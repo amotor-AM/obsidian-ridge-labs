@@ -13,7 +13,7 @@ const DownloadPage: React.FC = () => {
   const faq = buildFAQSchema([
     {
       question: 'Are Obsidian Ridge Labs apps free to download?',
-      answer: 'Echo Chamber offers a free tier with monthly usage limits. A Pro subscription unlocks unlimited transcription and all features. Vault, Mind Palace, and Decision Nexus are coming soon — join the waitlist for early access.',
+      answer: 'Echo Chamber offers a free tier with monthly usage limits. A Pro subscription unlocks unlimited transcription and all features. Vault, Mind Palace, and Decision Nexus are coming soon. Join the waitlist for early access.',
     },
     {
       question: 'What devices do Obsidian Ridge apps support?',
@@ -21,7 +21,7 @@ const DownloadPage: React.FC = () => {
     },
     {
       question: 'Do these apps require an internet connection?',
-      answer: 'No. All Obsidian Ridge apps are designed to work 100% offline. AI processing runs on your device\'s Neural Processing Unit. Internet is never required for core functionality — only optionally for iCloud sync.',
+      answer: 'No. All Obsidian Ridge apps are designed to work 100% offline. AI processing runs on your device\'s Neural Processing Unit. Internet is never required for core functionality, only optionally for iCloud sync.',
     },
     {
       question: 'How is my data protected?',
@@ -54,8 +54,8 @@ const DownloadPage: React.FC = () => {
         position: 2,
         item: {
           '@type': 'SoftwareApplication',
-          name: 'Obsidian Ridge Vault',
-          description: 'Private AI finance tracker — no bank passwords, no cloud, on-device spending analysis.',
+          name: 'Vault',
+          description: 'Private AI finance tracker, no bank passwords, no cloud, on-device spending analysis.',
           url: `${SITE_URL}/apps/vault`,
           applicationCategory: 'FinanceApplication',
           operatingSystem: 'iOS',
@@ -116,10 +116,10 @@ const DownloadPage: React.FC = () => {
     },
     {
       id: 'vault',
-      name: 'OBSIDIAN RIDGE VAULT',
+      name: 'VAULT',
       tagline: 'Total Control Over Your Money.',
       category: 'Smart Finance',
-      description: 'Understand your spending and predict your future balance without giving a company your bank password. Vault analyzes your finances using AI that lives entirely on your phone — scan PDF statements, get AI-powered forecasting, and track spending categories. Zero data collection, zero cloud sync.',
+      description: 'Understand your spending and predict your future balance without giving a company your bank password. Vault analyzes your finances using AI that lives entirely on your phone: scan PDF statements, get AI-powered forecasting, and track spending categories. Zero data collection, zero cloud sync.',
       icon: LineChart,
       available: false,
       specs: [
@@ -139,7 +139,7 @@ const DownloadPage: React.FC = () => {
       name: 'MIND PALACE',
       tagline: 'A Journal That Actually Understands You.',
       category: 'Personal Growth',
-      description: 'Write your thoughts and let private AI find patterns in your life. Mind Palace uses on-device intelligence to discover connections between your moods, habits, and behaviors. Search by feeling, not just keywords. Encrypted with FaceID — never connected to the cloud.',
+      description: 'Write your thoughts and let private AI find patterns in your life. Mind Palace uses on-device intelligence to discover connections between your moods, habits, and behaviors. Search by feeling, not just keywords. Encrypted with FaceID, never connected to the cloud.',
       icon: Book,
       available: false,
       specs: [
@@ -159,7 +159,7 @@ const DownloadPage: React.FC = () => {
       name: 'DECISION NEXUS',
       tagline: 'Think Clearer. Act Faster.',
       category: 'Strategic Logic',
-      description: "Map out complex decisions and let AI play devil's advocate to find holes in your plan. Decision Nexus is a visual sandbox for your most important choices — the built-in Red Team AI challenges your logic and simulates counter-moves. Export strategy documents as private PDFs.",
+      description: "Map out complex decisions and let AI play devil's advocate to find holes in your plan. Decision Nexus is a visual sandbox for your most important choices: the built-in Red Team AI challenges your logic and simulates counter-moves. Export strategy documents as private PDFs.",
       icon: GitMerge,
       available: false,
       specs: [
@@ -185,7 +185,7 @@ const DownloadPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-black pt-32 pb-10 md:pb-20 overflow-hidden relative">
       <SEO
-        title="Download Obsidian Ridge Labs Apps — Private Offline AI for iPhone"
+        title="Download Obsidian Ridge Labs Apps - Private Offline AI for iPhone"
         description="Download privacy-first, offline AI apps for iPhone, iPad, Mac, and Apple Watch. Echo Chamber for AI transcription, Vault for finance, Mind Palace for journaling, and Decision Nexus for strategy. No cloud, no accounts, no data collection."
         jsonLd={[breadcrumbs, faq, itemList]}
       />
@@ -232,7 +232,7 @@ const DownloadPage: React.FC = () => {
           </div>
         </header>
 
-        {/* App Cards — Stacked Hero Style */}
+        {/* App Cards - Stacked Hero Style */}
         <div className="space-y-12">
           {apps.map((app, idx) => {
             const Icon = app.icon;
@@ -364,7 +364,7 @@ const DownloadPage: React.FC = () => {
           })}
         </div>
 
-        {/* Bottom CTA — Blog + Philosophy */}
+        {/* Bottom CTA - Blog + Philosophy */}
         <section className="mt-16 md:mt-32 grid grid-cols-1 md:grid-cols-2 gap-8">
           <Link to="/blog" className="group border border-white/5 bg-white/[0.02] p-10 hover:border-neon/30 transition-colors">
             <span className="text-neon text-xs font-bold uppercase tracking-widest">Journal</span>

@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Eye, ShieldCheck, Server, ShieldAlert, FileDigit, Database, Zap, ArrowRight } from 'lucide-react';
+import { Eye, Server, ShieldAlert, Database, ArrowRight } from 'lucide-react';
 import SEO, { buildBreadcrumbs } from './SEO';
+import AxiomScroller from './AxiomScroller';
 
 const PhilosophyPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,7 +18,7 @@ const PhilosophyPage: React.FC = () => {
   return (
     <div ref={containerRef} className="min-h-screen bg-obsidian text-text-primary pt-32 pb-10 md:pb-20 overflow-hidden relative">
       <SEO
-        title="Philosophy — Why We Build Offline-First AI"
+        title="Philosophy: Why We Build Offline-First AI"
         description="The Obsidian Ridge Labs manifesto on privacy, data sovereignty, and offline-first architecture. Learn why we believe the cloud is a surveillance engine and how on-device AI restores digital autonomy."
         jsonLd={[
           buildBreadcrumbs([
@@ -110,52 +111,8 @@ const PhilosophyPage: React.FC = () => {
            </div>
         </section>
 
-        {/* The Solution: Horizontal Scroll Axioms */}
-        <section className="mb-16 md:mb-32 relative">
-           <div className="flex justify-between items-end mb-12">
-              <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase">/// Counter-Measures</h2>
-              <div className="text-xs font-mono text-gray-500">SCROLL TO DECRYPT -&gt;</div>
-           </div>
-
-           <div className="overflow-x-auto pb-8 -mx-6 px-6 md:-mx-12 md:px-12 hide-scrollbar flex gap-8">
-              {[
-                { 
-                   icon: <Server />, 
-                   title: "DATA GRAVITY", 
-                   desc: "Data must remain where it is created. The physics of privacy dictates that once data moves, it is vulnerable. We build heavy apps that keep mass on-device." 
-                },
-                { 
-                   icon: <ShieldCheck />, 
-                   title: "NULLIUS IN VERBA", 
-                   desc: "'Take nobody's word for it.' We do not publish our source code; our IP stays protected. Verification is behavioral: intelligence runs on-device, egress is minimal by design, and telemetry is absent by architecture. Judge the system by what it refuses to exfiltrate, not by a public repository." 
-                },
-                { 
-                   icon: <Zap />, 
-                   title: "OFFLINE DEFAULT", 
-                   desc: "Connectivity is a feature, not a requirement. Intelligence should function in a submarine, a bunker, or a mountaintop." 
-                },
-                { 
-                   icon: <FileDigit />, 
-                   title: "EPHEMERALITY", 
-                   desc: "Digital permanence is a bug. We design systems that know how to forget. Auto-deletion and secure overwrites are core primitives." 
-                }
-              ].map((item, i) => (
-                <div key={i} className="min-w-[350px] md:min-w-[450px] bg-obsidian-light border border-white/10 p-8 md:p-12 flex flex-col justify-between group hover:border-neon transition-colors duration-500">
-                   <div className="mb-8 opacity-50 group-hover:opacity-100 transition-opacity group-hover:text-neon">
-                      {React.cloneElement(item.icon as React.ReactElement, { size: 48 })}
-                   </div>
-                   <div>
-                      <h4 className="text-3xl font-display font-bold text-white mb-4">{item.title}</h4>
-                      <p className="font-mono text-sm text-gray-400 leading-relaxed">{item.desc}</p>
-                   </div>
-                   <div className="mt-8 pt-8 border-t border-white/5 flex justify-between items-center text-xs font-mono text-gray-600">
-                      <span>AXIOM_0{i+1}</span>
-                      <span className="group-hover:text-neon">ACTIVE</span>
-                   </div>
-                </div>
-              ))}
-           </div>
-        </section>
+        {/* The Solution: Counter-Measures - GSAP pinned horizontal scroll */}
+        <AxiomScroller />
 
         {/* The Architecture */}
         <section className="mb-16 md:mb-32">
@@ -197,12 +154,12 @@ const PhilosophyPage: React.FC = () => {
            </div>
         </section>
 
-        {/* Philosophy in Action — Internal Links to Products */}
+        {/* Philosophy in Action - Internal Links to Products */}
         <section className="mb-16 md:mb-32">
           <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase mb-12">/// See the Philosophy in Action</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { id: 'vault', name: 'VAULT', desc: 'Private AI finance — no bank passwords, no cloud.', axiom: 'Data Gravity' },
+              { id: 'vault', name: 'VAULT', desc: 'Private AI finance. No bank passwords, no cloud.', axiom: 'Data Gravity' },
               { id: 'mind', name: 'MIND PALACE', desc: 'AI journal that never leaves your device.', axiom: 'Ephemerality' },
               { id: 'echochamber', name: 'ECHO CHAMBER', desc: 'Offline meeting transcription for the paranoid executive.', axiom: 'Offline Default' },
               { id: 'nexus', name: 'DECISION NEXUS', desc: 'AI adversarial analysis, zero network access.', axiom: 'Nullius in Verba' },
@@ -221,7 +178,7 @@ const PhilosophyPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Read More — Blog Links */}
+        {/* Read More - Blog Links */}
         <section className="mb-16 md:mb-32 border border-white/10 bg-white/[0.02] p-8 md:p-12">
           <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase mb-8">/// Further Reading</h2>
           <div className="space-y-6">

@@ -28,10 +28,10 @@ const ProductDetail: React.FC = () => {
 
   // SEO data
   const seoDescriptions: Record<string, string> = {
-    vault: 'Obsidian Ridge Vault is a private AI finance app that analyzes your spending entirely on-device. No bank passwords, no cloud sync, no data collection. Scan PDF statements and get AI-powered forecasting offline.',
+    vault: 'Vault is a private AI finance app with a coach that runs entirely on your iPhone. Track by hand for free, or link a bank through Plaid. Your bank password never touches Vault. AI forecasting and categorization, on-device.',
     mind: 'Mind Palace is a private AI journal that finds patterns in your thoughts using on-device intelligence. Encrypted with FaceID, never connected to the cloud. Your digital therapist with zero internet access.',
-    echochamber: 'Echo Chamber provides offline real-time meeting transcription powered by on-device AI. 25+ languages, speaker identification, and AI summarization — no audio ever leaves your phone.',
-    nexus: 'Decision Nexus is an AI decision mapping tool with adversarial analysis. Visualize complex choices, simulate scenarios, and let AI challenge your logic — all offline, all private.',
+    echochamber: 'Echo Chamber provides offline real-time meeting transcription powered by on-device AI. 25+ languages, speaker identification, and AI summarization. No audio ever leaves your phone.',
+    nexus: 'Decision Nexus is an AI decision mapping tool with adversarial analysis. Visualize complex choices, simulate scenarios, and let AI challenge your logic, all offline, all private.',
   };
 
   const softwareApp = buildSoftwareApp(product);
@@ -43,9 +43,9 @@ const ProductDetail: React.FC = () => {
 
   const productFaqs: Record<string, { question: string; answer: string }[]> = {
     vault: [
-      { question: 'Does Vault require my bank password?', answer: 'No. Vault works by scanning PDF bank statements and receipts locally on your phone. You never need to enter bank credentials or connect to any aggregator like Plaid.' },
-      { question: 'Can Vault work without internet?', answer: 'Yes. Vault runs entirely offline using on-device AI. All spending analysis, categorization, and forecasting happens on your phone\'s Neural Processing Unit.' },
-      { question: 'Is my financial data secure in Vault?', answer: 'Absolutely. Your data is encrypted with AES-256 and stored only on your device. There are no servers, no cloud sync, and no way for anyone — including us — to access your financial information.' },
+      { question: 'Does Vault ever see my bank password?', answer: 'Never. Manual tracking and statement scanning are free and run entirely on your phone. If you want transactions to update automatically, you can optionally link a bank through Plaid: you log in on Plaid\'s own secure screen, and Vault never sees or stores those credentials.' },
+      { question: 'Can Vault work without internet?', answer: 'Yes. The core of Vault (tracking, budgets, forecasting, and the AI coach) runs offline on your phone\'s Neural Processing Unit. The only thing that needs a connection is the optional Plaid bank sync, if you choose to turn it on.' },
+      { question: 'Is my financial data secure in Vault?', answer: 'Your spending, budgets, and the AI coach are encrypted and stay on your device, so we can\'t see them. The only data that leaves is the optional Plaid bank sync you choose to enable, and even then your bank password never touches us.' },
     ],
     mind: [
       { question: 'Can Mind Palace read my journal entries?', answer: 'No. Mind Palace uses on-device AI that never connects to the internet. Your entries are encrypted with your biometric data (FaceID/TouchID). Not even Obsidian Ridge Labs can read your thoughts.' },
@@ -55,13 +55,13 @@ const ProductDetail: React.FC = () => {
     echochamber: [
       { question: 'Is there an AI transcription app that works entirely offline?', answer: 'Yes. Echo Chamber is a 100% offline-first AI transcription app. It runs all voice-to-text models directly on your iPhone or iPad, requiring zero internet connection and performing zero remote server uploads.' },
       { question: 'Can I generate meeting summaries without sending data to OpenAI?', answer: 'Yes. Echo Chamber generates meeting summaries, action items, outlines, and Cornell notes locally on-device. Since it uses on-device LLMs and Apple Intelligence, your data is never sent to OpenAI, Anthropic, or any cloud API.' },
-      { question: 'Does Echo Chamber send audio to the cloud?', answer: 'Never. Echo Chamber transcribes audio in real-time using your phone\'s Neural Processing Unit. No audio data is ever transmitted. It works fully offline — in airplanes, bunkers, or secure facilities.' },
+      { question: 'Does Echo Chamber send audio to the cloud?', answer: 'Never. Echo Chamber transcribes audio in real-time using your phone\'s Neural Processing Unit. No audio data is ever transmitted. It works fully offline, in airplanes, bunkers, or secure facilities.' },
       { question: 'How many languages does Echo Chamber support?', answer: 'Echo Chamber supports 25+ languages for real-time transcription, all processed locally on your device without requiring an internet connection.' },
       { question: 'Is Echo Chamber suitable for legal or medical use?', answer: 'Yes. Echo Chamber was designed for professionals who need absolute confidentiality. Since no audio leaves the device, attorney-client privilege and medical privacy are maintained.' },
     ],
     nexus: [
-      { question: 'What is the Devil\'s Advocate mode in Decision Nexus?', answer: 'The Devil\'s Advocate mode is an AI feature that challenges your decision logic by identifying weaknesses, suggesting counter-arguments, and simulating adversarial scenarios — all powered by on-device AI.' },
-      { question: 'Can I export decisions from Decision Nexus?', answer: 'Yes. Decision Nexus exports your decision maps and strategy documents as private PDFs. The export is local — no data touches any server.' },
+      { question: 'What is the Devil\'s Advocate mode in Decision Nexus?', answer: 'The Devil\'s Advocate mode is an AI feature that challenges your decision logic by identifying weaknesses, suggesting counter-arguments, and simulating adversarial scenarios, all powered by on-device AI.' },
+      { question: 'Can I export decisions from Decision Nexus?', answer: 'Yes. Decision Nexus exports your decision maps and strategy documents as private PDFs. The export is local. No data touches any server.' },
       { question: 'Does Decision Nexus require an internet connection?', answer: 'No. All AI processing, scenario simulation, and adversarial analysis runs entirely on your device. Decision Nexus works offline in any environment.' },
     ],
   };
@@ -203,12 +203,47 @@ const ProductDetail: React.FC = () => {
         </div>
       </div>
     );
+
+    if (product.id === 'molehill') return (
+      <div className="p-6 flex flex-col h-full">
+        <div className="text-[10px] text-emerald-400 uppercase font-bold tracking-widest mb-1">The Mountain</div>
+        <div className="text-white/50 text-sm font-medium mb-6 line-through decoration-white/20">Finish the quarterly report</div>
+
+        <div className="text-[10px] text-emerald-400 uppercase font-bold tracking-widest mb-2">Your Next Step</div>
+        <div className="border border-emerald-400/30 bg-emerald-400/[0.06] rounded-2xl p-5 mb-7 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-emerald-400 to-transparent" />
+          <div className="text-white text-lg font-bold leading-snug">Open the doc and write one sentence.</div>
+          <div className="mt-5 flex items-center justify-between">
+            <span className="text-[11px] text-white/40 font-mono uppercase tracking-wider">Step 1 of 6</span>
+            <div className="w-9 h-9 rounded-full border-2 border-emerald-400/60 flex items-center justify-center text-emerald-400">
+              <CheckCircle2 size={18} />
+            </div>
+          </div>
+        </div>
+
+        <div className="text-[10px] text-white/30 uppercase font-bold tracking-widest mb-3">Then</div>
+        <div className="space-y-4 opacity-50">
+          {['Outline three bullet points', 'Fill in the first section', 'Drop in last quarter’s numbers'].map((s, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <div className="w-5 h-5 rounded-full border border-white/20 flex-shrink-0" />
+              <div className="text-white/70 text-[13px] font-medium">{s}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-auto flex items-center gap-2 text-[10px] text-white/30 font-mono uppercase tracking-wider border-t border-white/5 pt-4">
+          <span className="text-emerald-400">No streaks</span>
+          <span>•</span>
+          <span>No shame</span>
+        </div>
+      </div>
+    );
   };
 
   return (
     <div ref={containerRef} className="min-h-screen pt-32 pb-10 md:pb-20 overflow-x-hidden bg-black">
       <SEO
-        title={`${product.name} — ${product.tagline}`}
+        title={`${product.name}: ${product.tagline}`}
         description={seoDescriptions[product.id] || product.fullDescription}
         ogType="product"
         jsonLd={[softwareApp, breadcrumbs, faqSchema]}
@@ -307,7 +342,7 @@ const ProductDetail: React.FC = () => {
             </h3>
             <div className="space-y-8 text-apple-gray text-xl leading-relaxed font-medium">
                <p>
-                  In an age of surveillance capitalism, your most intimate data—your finances, your thoughts, your conversations—is mined, packaged, and sold by the very tools you trust to manage it.
+                  In an age of surveillance capitalism, your most intimate data (your finances, your thoughts, your conversations) is mined, packaged, and sold by the very tools you trust to manage it.
                </p>
                <p>
                   <strong className="text-white">{product.name}</strong> was engineered to reverse this dynamic. By running advanced AI models locally on your device's NPU, we provide the intelligence of the cloud with the privacy of a vault.
@@ -427,7 +462,7 @@ const ProductDetail: React.FC = () => {
          </div>
       </section>
 
-      {/* Related Blog Posts — Internal Linking */}
+      {/* Related Blog Posts - Internal Linking */}
       {relatedPosts.length > 0 && (
         <section className="px-6 md:px-12 max-w-7xl mx-auto py-10 md:py-20 border-t border-white/5">
           <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-apple-blue">Related Reading</h2>
@@ -441,7 +476,7 @@ const ProductDetail: React.FC = () => {
         </section>
       )}
 
-      {/* Explore Other Apps — Cross-linking */}
+      {/* Explore Other Apps - Cross-linking */}
       <section className="px-6 md:px-12 max-w-7xl mx-auto py-10 md:py-20 border-t border-white/5">
         <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-apple-blue">Explore the Suite</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

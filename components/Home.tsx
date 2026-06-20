@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   const faq = buildFAQSchema([
     {
       question: 'What is Obsidian Ridge Labs?',
-      answer: 'Obsidian Ridge Labs is a boutique mobile app studio that builds privacy-first, offline AI applications. All AI processing runs entirely on your device — no cloud, no accounts, no data collection.',
+      answer: 'Obsidian Ridge Labs is a boutique mobile app studio that builds privacy-first, offline AI applications. All AI processing runs entirely on your device, no cloud, no accounts, no data collection.',
     },
     {
       question: 'Do Obsidian Ridge apps require an internet connection?',
@@ -43,7 +43,7 @@ const Home: React.FC = () => {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Obsidian Ridge Vault',
+        name: 'Vault',
         url: `${SITE_URL}/apps/vault`,
         description: 'Private AI finance tracker with zero cloud dependency.',
       },
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
     <>
       <SEO
         title="Privacy-First Offline AI Apps"
-        description="Obsidian Ridge Labs builds AI apps that run entirely on your device. Finance tracking, journaling, meeting transcription, and decision mapping — no cloud, no accounts, no leaks. Experience private AI intelligence on iPhone and Android."
+        description="Obsidian Ridge Labs builds AI apps that run entirely on your device. Finance tracking, journaling, meeting transcription, and decision mapping, no cloud, no accounts, no leaks. Experience private AI intelligence on Apple devices."
         canonical="https://obsidianridgelabs.com/"
         jsonLd={[breadcrumbs, faq, itemList]}
       />

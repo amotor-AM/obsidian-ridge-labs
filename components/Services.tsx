@@ -51,7 +51,7 @@ const Services: React.FC = () => {
           ))}
         </div>
 
-        {/* Internal Links — Contextual CTAs */}
+        {/* Internal Links - Contextual CTAs */}
         <div className="mt-24 pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-gray-400 text-lg font-medium max-w-lg">
             Want to understand the principles behind our architecture?

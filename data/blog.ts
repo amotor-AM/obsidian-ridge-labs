@@ -8,7 +8,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "11 MIN READ",
     category: "MANIFESTO",
     tags: ["#APPLE", "#PRIVACY", "#ARCHITECTURE"],
-    excerpt: "We are often asked why Obsidian Ridge Labs doesn't ship Android apps. The answer isn't market strategy—it's architectural integrity. Apple is the only platform where privacy is enforced at the silicon level.",
+    excerpt: "We are often asked why Obsidian Ridge Labs doesn't ship Android apps. The answer isn't market strategy. It's architectural integrity. Apple is the only platform where privacy is enforced at the silicon level.",
     blocks: [
       {
         type: "paragraph",
@@ -16,7 +16,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "To understand why, you need to understand that privacy is not a feature you can bolt onto a platform after the fact. It is either baked into the silicon, the operating system, the app review process, and the business model—or it is theater. Apple is the only major technology company where all four of those layers align."
+        content: "To understand why, you need to understand that privacy is not a feature you can bolt onto a platform after the fact. It is either baked into the silicon, the operating system, the app review process, and the business model, or it is theater. Apple is the only major technology company where all four of those layers align."
       },
       {
         type: "h2",
@@ -24,7 +24,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "Every modern Apple device contains a dedicated security chip called the Secure Enclave. This is a physically isolated processor with its own encrypted memory that handles Face ID, Touch ID, and encryption keys. When Echo Chamber locks your recordings with Face ID, the biometric data never leaves this chip—not even Apple's own operating system can read it. No Android manufacturer offers a universally mandated equivalent. Some have TrustZone implementations, but the fragmentation across hundreds of OEMs means there is no single security model you can build against with confidence."
+        content: "Every modern Apple device contains a dedicated security chip called the Secure Enclave. This is a physically isolated processor with its own encrypted memory that handles Face ID, Touch ID, and encryption keys. When Echo Chamber locks your recordings with Face ID, the biometric data never leaves this chip. Not even Apple's own operating system can read it. No Android manufacturer offers a universally mandated equivalent. Some have TrustZone implementations, but the fragmentation across hundreds of OEMs means there is no single security model you can build against with confidence."
       },
       {
         type: "h2",
@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "Apple's Neural Engine is a dedicated machine learning accelerator built into every A-series and M-series chip. When Echo Chamber transcribes your meetings using the Parakeet TDT v3 model, it runs on this Neural Processing Unit—not the CPU, not the GPU, and certainly not a server. Apple has invested billions into making on-device AI not just possible, but fast and battery-efficient. The A17 Pro chip can perform 35 trillion operations per second on its Neural Engine alone."
+        content: "Apple's Neural Engine is a dedicated machine learning accelerator built into every A-series and M-series chip. When Echo Chamber transcribes your meetings using the Parakeet TDT v3 model, it runs on this Neural Processing Unit, not the CPU, not the GPU, and certainly not a server. Apple has invested billions into making on-device AI not just possible, but fast and battery-efficient. The A17 Pro chip can perform 35 trillion operations per second on its Neural Engine alone."
       },
       {
         type: "paragraph",
@@ -48,11 +48,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "This is the uncomfortable truth that no amount of 'privacy settings' can fix. Google's primary business is advertising. Android exists to serve that business. Every 'free' Google service—Gmail, Maps, Photos, Assistant—is a data collection pipeline that feeds the advertising engine. When Google offers 'on-device processing,' it does so selectively, and the incentive structure always pulls toward the cloud."
+        content: "This is the uncomfortable truth that no amount of 'privacy settings' can fix. Google's primary business is advertising. Android exists to serve that business. Every 'free' Google service (Gmail, Maps, Photos, Assistant) is a data collection pipeline that feeds the advertising engine. When Google offers 'on-device processing,' it does so selectively, and the incentive structure always pulls toward the cloud."
       },
       {
         type: "paragraph",
-        content: "Apple makes money selling hardware and services. They have no advertising business that requires your data. When Tim Cook says 'privacy is a fundamental human right,' he is not being altruistic—he is describing a competitive advantage that Apple has deliberately engineered into its business model. Their incentive is to protect your data because it differentiates their hardware. That alignment between profit motive and user privacy is rare, and it is why we trust it."
+        content: "Apple makes money selling hardware and services. They have no advertising business that requires your data. When Tim Cook says 'privacy is a fundamental human right,' he is not being altruistic. He is describing a competitive advantage that Apple has deliberately engineered into its business model. Their incentive is to protect your data because it differentiates their hardware. That alignment between profit motive and user privacy is rare, and it is why we trust it."
       },
       {
         type: "h2",
@@ -64,7 +64,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "Google Play has no equivalent enforcement. Android apps can request broad permissions, run background services that harvest data, and operate with minimal oversight. The sideloading culture on Android—while offering freedom—also means there is no single authority preventing an app from doing exactly what it wants with your microphone, contacts, or location."
+        content: "Google Play has no equivalent enforcement. Android apps can request broad permissions, run background services that harvest data, and operate with minimal oversight. The sideloading culture on Android (while offering freedom) also means there is no single authority preventing an app from doing exactly what it wants with your microphone, contacts, or location."
       },
       {
         type: "list",
@@ -74,7 +74,7 @@ export const blogPosts: BlogPost[] = [
           "APP TRACKING TRANSPARENCY: Users must explicitly opt in before any app can track them across other apps.",
           "PRIVACY NUTRITION LABELS: Every app must disclose its data practices before download.",
           "ON-DEVICE SIRI & APPLE INTELLIGENCE: Language models that process queries locally without server round-trips.",
-          "LOCKDOWN MODE: An extreme security option for users facing targeted threats—no Android equivalent exists."
+          "LOCKDOWN MODE: An extreme security option for users facing targeted threats. No Android equivalent exists."
         ]
       },
       {
@@ -83,7 +83,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "Building exclusively for Apple means we can make guarantees that would be impossible on Android. When we say Echo Chamber never connects to the internet, we can enforce that in the app manifest and Apple will verify it during review. When we say your journal in Mind Palace is encrypted with your biometrics, we can rely on the Secure Enclave to make that mathematically true. When we say Vault never sees your bank password, we can build on a platform where the filesystem sandbox is enforced at the kernel level."
+        content: "Building exclusively for Apple means we can make guarantees that would be impossible on Android. When we say Echo Chamber never uploads your audio (recording and transcription run entirely offline on your device), we can build on frameworks Apple verifies during review. When we say your journal in Mind Palace is encrypted with your biometrics, we can rely on the Secure Enclave to make that mathematically true. When we say Vault never sees your bank password, we can build on a platform where the filesystem sandbox is enforced at the kernel level."
       },
       {
         type: "paragraph",
@@ -91,7 +91,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "cta",
-        content: "Echo Chamber uses every layer of Apple's privacy stack—Secure Enclave for Face ID lock, Neural Engine for real-time transcription, and Apple Intelligence for AI summaries. All on your device. All private.",
+        content: "Echo Chamber uses every layer of Apple's privacy stack: Secure Enclave for Face ID lock, Neural Engine for real-time transcription, and Apple Intelligence for AI summaries. All on your device. All private.",
         ctaAppId: "echo"
       },
       {
@@ -104,7 +104,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "If Google fundamentally restructures Android's privacy model at the hardware level, separates its advertising business from its platform business, and enforces App Store-level review standards—we would reconsider. Until then, Apple is the only home for apps that take privacy as seriously as we do."
+        content: "If Google fundamentally restructures Android's privacy model at the hardware level, separates its advertising business from its platform business, and enforces App Store-level review standards, we would reconsider. Until then, Apple is the only home for apps that take privacy as seriously as we do."
       },
       {
         type: "h2",
@@ -112,7 +112,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "We will continue to build for iPhone, iPad, Mac, and Apple Watch. We will continue to leverage every privacy feature Apple ships. And we will continue to refuse any architecture that requires your data to leave your device. This is not a limitation. It is our entire product philosophy, and it is why professionals who handle sensitive information—lawyers, doctors, executives—trust Obsidian Ridge Labs with their most confidential work."
+        content: "We will continue to build for iPhone, iPad, Mac, and Apple Watch. We will continue to leverage every privacy feature Apple ships. And we will continue to refuse any architecture that requires your data to leave your device. This is not a limitation. It is our entire product philosophy, and it is why professionals who handle sensitive information (lawyers, doctors, executives) trust Obsidian Ridge Labs with their most confidential work."
       },
       {
         type: "paragraph",
@@ -147,11 +147,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "h2",
-        content: "Red Flag #1: The Aggregator Dependency"
+        content: "Red Flag #1: The Password Grab"
       },
       {
         type: "paragraph",
-        content: "Apps that rely on middlemen like Plaid or Yodlee are inherently risky. These aggregators act as a central hub for millions of bank credentials. They don't just facilitate a one-time transfer; they maintain ongoing access to your accounts. If an aggregator is compromised, every app connected to it—and every user password stored within it—is at risk."
+        content: "The real danger isn't a connection. It's an app that demands your actual bank password, then stores it. The moment you type your credentials into someone else's text field, you've handed them the keys to your entire financial life, and a single breach exposes every account you own. Worse are the apps that bury this grab inside an always-on cloud connection: a permanent, unbreakable tether that exists for one reason, to mine your data and sell it. A connection layer like Plaid actually solves the password problem, you log in on Plaid's own screen, so your password never touches the app at all. That's why Vault uses Plaid purely as an optional sync. The thing to run from isn't the plumbing; it's the app that wants your password and an always-on pipe into your spending."
       },
       {
         type: "quote",
@@ -163,11 +163,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "Does your app suggest you switch car insurance or apply for a specific credit card? This isn't helpful advice—it's the monetization of your spending habits. To make these suggestions, the app has to know exactly how much you pay for your current insurance and what your creditworthiness looks like. They are selling 'leads' to banks based on your private data."
+        content: "Does your app suggest you switch car insurance or apply for a specific credit card? This isn't helpful advice. It's the monetization of your spending habits. To make these suggestions, the app has to know exactly how much you pay for your current insurance and what your creditworthiness looks like. They are selling 'leads' to banks based on your private data."
       },
       {
         type: "cta",
-        content: "Obsidian Ridge Vault rejects this entire model. We don't want your bank passwords. We don't have a server to store them on. Vault uses on-device AI to analyze your PDF statements locally. Total smarts, zero exposure.",
+        content: "Vault rejects this entire model. By default it's manual and on-device: scan receipts, track expenses, and let an on-device AI coach analyze your spending locally. Your data never leaves your phone. Want automatic bank sync? It's an opt-in extra powered by Plaid, where your login happens on Plaid's own secure screen and your password never touches us. Total smarts, you stay in control.",
         ctaAppId: "vault"
       },
       {
@@ -178,7 +178,7 @@ export const blogPosts: BlogPost[] = [
         type: "list",
         content: [
           "THEM: Data resides on AWS/GCP servers. Accessible via subpoenas or rogue employees.",
-          "US: Data resides on your iPhone/Android. Encrypted with keys only you hold.",
+          "US: Data resides on your iPhone. Encrypted with keys only you hold.",
           "THEM: Constant internet connection required to 'sync' and display your own data.",
           "US: Works in airplane mode. Instant response because there's no round-trip to a server.",
           "THEM: Business model relies on affiliate commissions and data resale.",
@@ -187,7 +187,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "Reclaiming your privacy doesn't mean going back to spreadsheets and manual entry. It means choosing tools that use local intelligence. With Obsidian Ridge Vault, you get the forecasting, the categorization, and the insights, but the data never leaves your palm. That is the new standard for financial freedom."
+        content: "Reclaiming your privacy doesn't mean going back to spreadsheets and manual entry. It means choosing tools that use local intelligence. With Vault, you get the forecasting, the categorization, and the insights, but the data never leaves your palm. That is the new standard for financial freedom."
       }
     ]
   },
@@ -239,7 +239,7 @@ export const blogPosts: BlogPost[] = [
           "LATENCY: Otter has a 1-2 second lag while audio buffers to the cloud. Echo is real-time.",
           "PRIVACY: Otter staff can 'review' recordings for trust and safety. Echo Chamber has zero server-side access.",
           "OFFLINE: Otter fails without WiFi. Echo Chamber works in bunkers, SCIFs, and airplanes.",
-          "SUMMARIZATION: Otter sends text to OpenAI/Anthropic. Echo Chamber uses a local Llama model."
+          "SUMMARIZATION: Otter sends text to OpenAI/Anthropic. Echo Chamber summarizes on-device. Your transcript never leaves your phone."
         ]
       },
       {
@@ -284,7 +284,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        content: "When we designed Mind Palace, we started with a different premise. We wanted an app that *couldn't* read your notes even if we were forced to. By using biometric encryption and local-only storage, your 'Mind Palace' is truly yours."
+        content: "When we designed Mind Palace, we started with a different premise. We wanted an app that *couldn't* read your notes even if we were forced to. With biometric (Face ID) encryption and local-only storage, your 'Mind Palace' will be truly yours. It's still in development: built right, not rushed."
       },
       {
         type: "quote",
@@ -298,7 +298,7 @@ export const blogPosts: BlogPost[] = [
         type: "list",
         content: [
           "SEARCH: Notion matches text. Mind Palace matches MEANING using local AI.",
-          "SECURITY: Notion has your keys. Mind Palace uses your FaceID/TouchID as the key.",
+          "SECURITY: Notion has your keys. Mind Palace uses your Face ID as the key.",
           "SPEED: Notion requires sync. Mind Palace opens instantly, every time.",
           "AI: Notion AI sends your notes to OpenAI. Mind Palace AI never leaves your phone.",
           "OWNERSHIP: Notion owns the database. You own the encrypted SQLite file on your phone."
@@ -306,7 +306,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "cta",
-        content: "Move your private life out of the cloud. Experience the speed and peace of mind that comes with a truly private AI journal. Get Mind Palace.",
+        content: "Move your private life out of the cloud. Mind Palace (a truly private AI journal that reads your mind, never the other way around) is on the way. See what's coming.",
         ctaAppId: "mind"
       },
       {
@@ -326,7 +326,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "8 MIN READ",
     category: "EDUCATION",
     tags: ["#TECH", "#AI", "#SPEED"],
-    excerpt: "Ever wonder why you have to wait for ChatGPT to 'type' its response? The answer isn't processing power—it's distance. We explain the 'Local First' speed advantage.",
+    excerpt: "Ever wonder why you have to wait for ChatGPT to 'type' its response? The answer isn't processing power. It's distance. We explain the 'Local First' speed advantage.",
     blocks: [
       {
         type: "paragraph",
@@ -367,7 +367,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "cta",
-        content: "Tired of the 'waiting' animation? Our entire suite of apps is built on this local-first architecture. Experience the future of instant intelligence with Decision Nexus.",
+        content: "Tired of the 'waiting' animation? Our apps are built on this local-first architecture. Decision Nexus (an on-device 'red team' AI that pressure-tests your decisions) is coming soon. Get a first look.",
         ctaAppId: "nexus"
       },
       {

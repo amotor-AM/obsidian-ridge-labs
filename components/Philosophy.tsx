@@ -21,7 +21,7 @@ const Philosophy: React.FC = () => {
          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/5 pt-16">
            {[
              { title: "Total Ownership", desc: "Your data stays on your device. We don't have accounts, so we can't see, share, or sell your life history." },
-             { title: "Lightning Speed", desc: "No waiting for a server. Since the AI lives in your phone, it works instantly—even without signal." },
+             { title: "Lightning Speed", desc: "No waiting for a server. Since the AI lives in your phone, it works instantly, even without signal." },
              { title: "Always Ready", desc: "Our apps work in the air, in the subway, and off the grid. Reliability isn't a feature; it's a right." }
            ].map((item, idx) => (
              <motion.div 

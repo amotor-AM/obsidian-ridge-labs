@@ -8,7 +8,9 @@
   --color-text-primary: #e0e0e0;
   --color-text-secondary: #888888;
   --color-alert: #ff2a6d;
-  
+  --color-apple-blue: #00f0ff;
+  --color-apple-gray: #9ca3af;
+
   --font-display: "Rajdhani", sans-serif;
   --font-mono: "Share Tech Mono", monospace;
   
@@ -54,3 +56,48 @@ body {
 .text-glow {
   text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
 }
+
+/* Card + button primitives used across the detail pages. */
+.apple-card {
+  background: rgba(12, 12, 14, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.apple-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  background: #00f0ff;
+  color: #050505;
+  font-weight: 700;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+.apple-button:hover { background: #ffffff; }
+.rounded-apple-sm { border-radius: 0.5rem; }
+.rounded-apple-lg { border-radius: 1.25rem; }
+.perspective-1000 { perspective: 1000px; }
+
+/* Scroll-reveal base. Only hides content once JS is active (html.js),
+   so server-rendered pages stay visible if scripts fail to load. */
+.js .reveal { opacity: 0; transform: translateY(26px); }
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* Knowledge-base scroll areas hide their scrollbar. */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* In-app embed mode (?embed=1): hide site chrome for knowledge-base deep links. */
+html[data-embed="1"] .site-chrome { display: none !important; }
+html[data-embed="1"] .help-shell { padding-top: 1.5rem; }

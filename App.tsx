@@ -10,6 +10,8 @@ import BlogList from './components/BlogList';
 import BlogPost from './components/BlogPost';
 import TermsOfService from './components/TermsOfService';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import HelpHome from './components/help/HelpHome';
+import HelpArticle from './components/help/HelpArticle';
 import Footer from './components/Footer';
 import NoiseOverlay from './components/NoiseOverlay';
 import Scanline from './components/Scanline';
@@ -48,6 +50,9 @@ const App: React.FC = () => {
           <Route path="/apps/echochamber" element={<EchoDetail />} />
           <Route path="/apps/:id" element={<ProductDetail />} />
           <Route path="/philosophy" element={<PhilosophyPage />} />
+          <Route path="/help" element={<HelpHome />} />
+          <Route path="/help/:appId" element={<HelpArticle />} />
+          <Route path="/help/:appId/:articleId" element={<HelpArticle />} />
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/terms" element={<TermsOfService />} />

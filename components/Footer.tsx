@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black py-12 md:py-24 border-t border-white/5">
+    <footer className="site-chrome bg-black py-12 md:py-24 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
           <div className="flex flex-col gap-4">
@@ -19,10 +19,10 @@ const Footer: React.FC = () => {
             <nav aria-label="Applications">
               <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-3">Apps</h4>
               <div className="flex flex-col gap-3">
-                <Link to="/apps/vault" className="text-apple-gray text-sm hover:text-white transition-colors">Vault — AI Finance</Link>
-                <Link to="/apps/mind" className="text-apple-gray text-sm hover:text-white transition-colors">Mind Palace — AI Journal</Link>
-                <Link to="/apps/echochamber" className="text-apple-gray text-sm hover:text-white transition-colors">Echo Chamber — Transcription</Link>
-                <Link to="/apps/nexus" className="text-apple-gray text-sm hover:text-white transition-colors">Decision Nexus — Strategy</Link>
+                <Link to="/apps/vault" className="text-apple-gray text-sm hover:text-white transition-colors">Vault - AI Finance</Link>
+                <Link to="/apps/mind" className="text-apple-gray text-sm hover:text-white transition-colors">Mind Palace - AI Journal</Link>
+                <Link to="/apps/echochamber" className="text-apple-gray text-sm hover:text-white transition-colors">Echo Chamber - Transcription</Link>
+                <Link to="/apps/nexus" className="text-apple-gray text-sm hover:text-white transition-colors">Decision Nexus - Strategy</Link>
               </div>
             </nav>
             <nav aria-label="Journal">
@@ -40,6 +40,7 @@ const Footer: React.FC = () => {
               <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-3">Company</h4>
               <div className="flex flex-col gap-3">
                 <Link to="/download" className="text-apple-gray text-sm hover:text-white transition-colors">Download Apps</Link>
+                <Link to="/help" className="text-apple-gray text-sm hover:text-white transition-colors">Help Center</Link>
                 <Link to="/philosophy" className="text-apple-gray text-sm hover:text-white transition-colors">Philosophy</Link>
                 <Link to="/blog" className="text-apple-gray text-sm hover:text-white transition-colors">Journal</Link>
                 <Link to="/privacy" className="text-apple-gray text-sm hover:text-white transition-colors">Privacy Policy</Link>

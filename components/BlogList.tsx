@@ -42,7 +42,7 @@ const BlogList: React.FC = () => {
   return (
     <div className="min-h-screen bg-black pt-32 pb-10 md:pb-20 px-6 md:px-12 relative overflow-hidden">
       <SEO
-        title="Journal — Privacy, AI & Digital Sovereignty"
+        title="Journal: Privacy, AI & Digital Sovereignty"
         description="Explore insights on privacy-first technology, offline AI architecture, and digital sovereignty. Comparisons, guides, and deep analysis from Obsidian Ridge Labs."
         jsonLd={[breadcrumbs, collectionPage, blogSchema]}
       />

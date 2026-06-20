@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Smartphone, ShieldCheck, Zap, Lock } from 'lucide-react';
+import ClientOnly from './ClientOnly';
+
+const HeroBackdrop = lazy(() => import('./HeroBackdrop'));
 
 const Hero: React.FC = () => {
   const [glitchText, setGlitchText] = useState("PURE PRIVACY");
@@ -36,7 +39,14 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 overflow-hidden border-b border-white/5">
-      
+
+      {/* Subtle Three.js ridge field + GSAP scroll parallax (client-only, code-split) */}
+      <ClientOnly>
+        <Suspense fallback={null}>
+          <HeroBackdrop />
+        </Suspense>
+      </ClientOnly>
+
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-neon-dim to-transparent opacity-20" />
       <div className="absolute bottom-20 left-20 w-64 h-64 bg-neon blur-[120px] opacity-10 rounded-full" />
@@ -60,7 +70,7 @@ const Hero: React.FC = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-text-secondary max-w-lg mb-10 font-light border-l-2 border-neon pl-6">
-            We build apps for people who refuse to trade their privacy for convenience. 
+            We build apps for people who refuse to trade their privacy for convenience.
             Powerful AI that lives <span className="text-white font-medium">strictly on your device</span>. No cloud. No accounts. No leaks.
           </p>
 

@@ -40,7 +40,7 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-obsidian-light/80 backdrop-blur-xl border-b border-white/5 py-3' : 'bg-transparent py-6'}`}>
+      <nav className={`site-chrome fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-obsidian-light/80 backdrop-blur-xl border-b border-white/5 py-3' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link to="/" className="text-xl font-semibold tracking-tight text-white flex items-center gap-2 z-50">
             <div className="w-5 h-5 bg-white rounded-md flex items-center justify-center">
@@ -74,6 +74,7 @@ const Navigation: React.FC = () => {
              </div>
 
              <Link to="/blog" className="text-[13px] font-medium text-gray-400 hover:text-white transition-colors">Journal</Link>
+             <Link to="/help" className="text-[13px] font-medium text-gray-400 hover:text-white transition-colors">Help</Link>
              <Link to="/philosophy" className="text-[13px] font-medium text-gray-400 hover:text-white transition-colors">Philosophy</Link>
              
              <button onClick={() => handleNavClick('technology')} className="text-[13px] font-medium text-gray-400 hover:text-white transition-colors">Tech</button>
@@ -109,6 +110,7 @@ const Navigation: React.FC = () => {
              </div>
 
              <Link to="/blog" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Journal</Link>
+             <Link to="/help" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Help</Link>
              <Link to="/philosophy" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Philosophy</Link>
              <Link to="/download" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Download</Link>
             <div className="mt-8 text-gray-500 text-xs">Obsidian Ridge Labs</div>

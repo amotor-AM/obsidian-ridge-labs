@@ -7,8 +7,8 @@ const PrivacyPolicy: React.FC = () => {
   return (
     <div className="min-h-screen pt-32 pb-10 md:pb-20 px-6 md:px-12 max-w-4xl mx-auto">
       <SEO
-        title="Privacy Policy — Zero Telemetry by Design"
-        description="Obsidian Ridge Labs privacy policy. We collect zero data — no analytics, no crash reports, no cloud sync. All AI processing is on-device. Read our full privacy commitments."
+        title="Privacy Policy: Zero Telemetry by Design"
+        description="Obsidian Ridge Labs privacy policy. We collect zero data. No analytics, no crash reports, no cloud sync. All AI processing is on-device. Read our full privacy commitments."
         noindex={false}
         jsonLd={[
           buildBreadcrumbs([
@@ -96,7 +96,7 @@ const PrivacyPolicy: React.FC = () => {
               <Link to="/philosophy" className="text-apple-blue hover:underline">Our Philosophy</Link>
               <Link to="/terms" className="text-apple-blue hover:underline">Terms of Service</Link>
               <Link to="/blog/finance-app-red-flags" className="text-apple-blue hover:underline">The Cost of Free Finance Apps</Link>
-              <Link to="/apps/vault" className="text-apple-blue hover:underline">Vault — Private Finance</Link>
+              <Link to="/apps/vault" className="text-apple-blue hover:underline">Vault - Private Finance</Link>
             </div>
           </nav>
         </div>

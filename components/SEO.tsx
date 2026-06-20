@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const SITE_NAME = 'Obsidian Ridge Labs';
@@ -12,8 +12,10 @@ interface SEOProps {
   ogType?: string;
   ogImage?: string;
   ogImageAlt?: string;
+  keywords?: string[];
   article?: {
     publishedTime: string;
+    modifiedTime?: string;
     tags: string[];
     section: string;
   };
@@ -44,6 +46,7 @@ const SEO: React.FC<SEOProps> = ({
   ogType = 'website',
   ogImage = DEFAULT_OG_IMAGE,
   ogImageAlt,
+  keywords,
   article,
   jsonLd,
   noindex = false,
@@ -60,6 +63,7 @@ const SEO: React.FC<SEOProps> = ({
     serverSEOContext.ogType = ogType;
     serverSEOContext.ogImage = ogImage;
     serverSEOContext.ogImageAlt = ogImageAlt;
+    serverSEOContext.keywords = keywords;
     serverSEOContext.article = article;
     serverSEOContext.jsonLd = jsonLd;
     serverSEOContext.noindex = noindex;
@@ -70,6 +74,7 @@ const SEO: React.FC<SEOProps> = ({
 
     // Basic meta
     setMeta('name', 'description', description);
+    if (keywords && keywords.length) setMeta('name', 'keywords', keywords.join(', '));
     setMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1');
 
     // Open Graph
@@ -92,6 +97,7 @@ const SEO: React.FC<SEOProps> = ({
     // Article-specific OG
     if (article) {
       setMeta('property', 'article:published_time', article.publishedTime);
+      if (article.modifiedTime) setMeta('property', 'article:modified_time', article.modifiedTime);
       setMeta('property', 'article:section', article.section);
       setMeta('property', 'article:author', SITE_NAME);
     }
@@ -121,7 +127,7 @@ const SEO: React.FC<SEOProps> = ({
     return () => {
       document.querySelectorAll('script[data-seo-jsonld]').forEach(s => s.remove());
     };
-  }, [fullTitle, description, canonicalUrl, ogType, ogImage, ogImageAlt, article, jsonLd, noindex, title]);
+  }, [fullTitle, description, canonicalUrl, ogType, ogImage, ogImageAlt, keywords, article, jsonLd, noindex, title]);
 
   return null;
 };
@@ -145,8 +151,11 @@ export const buildSoftwareApp = (product: {
   description: string;
   fullDescription: string;
   category: string;
-  version: string;
-  releaseDate: string;
+  version?: string;
+  releaseDate?: string;
+  platforms?: string[];
+  minOS?: string;
+  appStoreUrl?: string;
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -154,29 +163,97 @@ export const buildSoftwareApp = (product: {
   url: `${SITE_URL}/apps/${product.id}`,
   description: product.fullDescription,
   applicationCategory: mapCategory(product.category),
-  operatingSystem: 'iOS, Android',
+  operatingSystem: product.minOS
+    ? `${product.minOS} or later`
+    : (product.platforms && product.platforms.length ? product.platforms.join(', ') : 'iOS'),
   offers: {
+    // Every app is free to download; paid features are in-app purchases.
     '@type': 'Offer',
     price: '0',
     priceCurrency: 'USD',
     availability: 'https://schema.org/InStock',
+    ...(product.appStoreUrl ? { url: product.appStoreUrl } : {}),
   },
-  softwareVersion: product.version.replace('v', ''),
-  datePublished: formatSchemaDate(product.releaseDate),
+  ...(product.version ? { softwareVersion: product.version.replace('v', '') } : {}),
+  ...(product.releaseDate ? { datePublished: formatSchemaDate(product.releaseDate) } : {}),
   author: {
     '@type': 'Organization',
     name: SITE_NAME,
     url: SITE_URL,
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    ratingCount: '120',
-    bestRating: '5',
-    worstRating: '1',
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
   },
+  inLanguage: 'en-US',
   featureList: getFeatureList(product.id),
-  permissions: 'no-internet-required',
+  ...(product.appStoreUrl ? { downloadUrl: product.appStoreUrl, installUrl: product.appStoreUrl } : {}),
+});
+
+/** Article / TechArticle schema for a help-centre guide. */
+export const buildTechArticle = (a: {
+  title: string;
+  description: string;
+  appId: string;
+  appName: string;
+  articleId: string;
+  updated?: string;
+  keywords?: string[];
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: a.title,
+  description: a.description,
+  url: `${SITE_URL}/help/${a.appId}/${a.articleId}`,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}/help/${a.appId}/${a.articleId}`,
+  },
+  ...(a.updated ? { dateModified: formatSchemaDate(a.updated), datePublished: formatSchemaDate(a.updated) } : {}),
+  ...(a.keywords && a.keywords.length ? { keywords: a.keywords.join(', ') } : {}),
+  about: {
+    '@type': 'SoftwareApplication',
+    name: a.appName,
+    url: `${SITE_URL}/apps/${a.appId}`,
+    applicationCategory: 'MobileApplication',
+    operatingSystem: 'iOS',
+  },
+  author: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon.svg` },
+  },
+  image: `${SITE_URL}/og-default.png`,
+  inLanguage: 'en-US',
+});
+
+/** HowTo schema built from an ordered list of {title, description} steps. */
+export const buildHowTo = (howTo: {
+  name: string;
+  description: string;
+  url: string;
+  steps: { title: string; description: string }[];
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: howTo.name,
+  description: howTo.description,
+  url: howTo.url,
+  inLanguage: 'en-US',
+  step: howTo.steps.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: s.title,
+    text: s.description,
+    url: `${howTo.url}#step-${i + 1}`,
+  })),
 });
 
 export const buildBlogPosting = (post: {
@@ -206,7 +283,7 @@ export const buildBlogPosting = (post: {
     url: SITE_URL,
     logo: {
       '@type': 'ImageObject',
-      url: `${SITE_URL}/logo.png`,
+      url: `${SITE_URL}/favicon.svg`,
     },
   },
   mainEntityOfPage: {
@@ -216,7 +293,7 @@ export const buildBlogPosting = (post: {
   articleSection: post.category,
   keywords: post.tags.map(t => t.replace('#', '')).join(', '),
   wordCount: estimateWordCount(post.readTime),
-  image: `${SITE_URL}/og-blog-${post.id}.png`,
+  image: `${SITE_URL}/og-default.png`,
   inLanguage: 'en-US',
 });
 
@@ -266,6 +343,11 @@ function mapCategory(category: string): string {
     'Business Intelligence': 'BusinessApplication',
     'Strategic Logic': 'BusinessApplication',
     'Offline Transcription': 'BusinessApplication',
+    'Personal finance': 'FinanceApplication',
+    'Voice transcription': 'BusinessApplication',
+    'Focus & tasks': 'ProductivityApplication',
+    'Private journal': 'LifestyleApplication',
+    'Clearer decisions': 'BusinessApplication',
   };
   return map[category] || 'MobileApplication';
 }
@@ -274,7 +356,7 @@ function getFeatureList(productId: string): string {
   const features: Record<string, string> = {
     vault: 'On-device AI finance analysis, PDF statement scanning, AI balance forecasting, biometric lock, zero data collection, offline-first',
     mind: 'Private AI journal, pattern recognition, semantic search by feeling, biometric encryption, unlimited entries, never connected to cloud',
-    echochamber: 'On-device AI transcription (Parakeet TDT v3), real-time speech to text, 25-language support, speaker diarization, voice profiles, 6 AI summary formats (Cornell Notes, Outline, Meeting Minutes, Bullet Points, Q&A, Executive Summary), AI transcript chat, 7 export formats (PDF, SRT, VTT, Markdown, JSON), audio/video import (MP3 M4A WAV AAC MP4 MOV AIFF CAF), translation to 15+ languages, Face ID lock, Apple Watch, calendar view, iCloud sync, full-text search, Spotlight integration, widgets, Live Activities, recording recovery, zero cloud dependency',
+    echochamber: 'On-device AI transcription (Parakeet TDT v3), real-time speech to text, 25-language support, speaker diarization, voice profiles, 6 AI summary formats (Cornell Notes, Outline, Meeting Minutes, Bullet Points, Q&A, Executive Summary), AI transcript chat, 7 export formats (PDF, SRT, VTT, Markdown, JSON), audio/video import (MP3 M4A WAV AAC MP4 MOV AIFF CAF), translation to 15+ languages, Face ID lock, Apple Watch, calendar view, iCloud sync, full-text search, Spotlight integration, widgets, Live Activities, recording recovery, optional encrypted iCloud sync',
     nexus: 'Visual decision mapping, AI adversarial thinking, scenario simulation, private PDF export, strategic logic canvas, offline strategy tool',
   };
   return features[productId] || '';

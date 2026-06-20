@@ -205,13 +205,13 @@ const BlogPost: React.FC = () => {
                   </Link>
                   <Link to="/apps/vault" className="group block">
                      <h5 className="text-lg font-bold text-white group-hover:text-apple-blue transition-colors leading-tight tracking-tight">
-                        Vault — AI Finance
+                        Vault - AI Finance
                      </h5>
                      <p className="text-[12px] text-apple-gray mt-1">Private spending analysis, zero bank passwords.</p>
                   </Link>
                   <Link to="/apps/echochamber" className="group block">
                      <h5 className="text-lg font-bold text-white group-hover:text-apple-blue transition-colors leading-tight tracking-tight">
-                        Echo Chamber — Transcription
+                        Echo Chamber - Transcription
                      </h5>
                      <p className="text-[12px] text-apple-gray mt-1">Offline meeting transcription for professionals.</p>
                   </Link>

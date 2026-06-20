@@ -53,11 +53,11 @@ const EchoDetail: React.FC = () => {
     },
     {
       question: 'Does Echo Chamber send my audio to the cloud?',
-      answer: 'Never. Echo Chamber transcribes audio entirely on your device using the Parakeet TDT v3 neural engine running on your phone\'s NPU. No audio data is ever transmitted to any server. The app works fully offline — in airplane mode, in secure facilities, or anywhere without internet.',
+      answer: 'Never. Echo Chamber transcribes audio entirely on your device using the Parakeet TDT v3 neural engine running on your phone\'s NPU. No audio data is ever transmitted to any server. The app works fully offline, in airplane mode, in secure facilities, or anywhere without internet.',
     },
     {
       question: 'Can Echo Chamber work without internet?',
-      answer: 'Yes. Every feature in Echo Chamber works 100% offline — recording, transcription, AI summaries, speaker identification, translation, search, and export. Internet is only needed optionally for iCloud sync between devices.',
+      answer: 'Yes. Every feature in Echo Chamber works 100% offline: recording, transcription, AI summaries, speaker identification, translation, search, and export. Internet is only needed optionally for iCloud sync between devices.',
     },
     {
       question: 'How many languages does Echo Chamber support?',
@@ -65,7 +65,7 @@ const EchoDetail: React.FC = () => {
     },
     {
       question: 'What AI summary formats does Echo Chamber offer?',
-      answer: 'Echo Chamber generates 6 AI-powered summary formats — all processed on-device: Cornell Notes (two-column study format), Outline (hierarchical), Meeting Minutes (formal with action items), Bullet Summary, Q&A Interview (extracted question-answer pairs), and Executive Summary.',
+      answer: 'Echo Chamber generates 6 AI-powered summary formats, all processed on-device: Cornell Notes (two-column study format), Outline (hierarchical), Meeting Minutes (formal with action items), Bullet Summary, Q&A Interview (extracted question-answer pairs), and Executive Summary.',
     },
     {
       question: 'Is Echo Chamber suitable for lawyers and legal professionals?',
@@ -85,11 +85,11 @@ const EchoDetail: React.FC = () => {
     },
     {
       question: 'Does Echo Chamber have speaker identification?',
-      answer: 'Yes. Echo Chamber includes automatic speaker diarization that identifies and labels different speakers in a recording. It also supports persistent voice profiles — the AI learns to recognize speakers over time using voice embedding technology.',
+      answer: 'Yes. Echo Chamber includes automatic speaker diarization that identifies and labels different speakers in a recording. It also supports persistent voice profiles. The AI learns to recognize speakers over time using voice embedding technology.',
     },
     {
       question: 'Can I ask questions about my transcript in Echo Chamber?',
-      answer: 'Yes. The AI Chat feature lets you ask questions about any transcript using on-device AI. You can ask things like "What were the action items?" or "What did Speaker A say about the budget?" and get instant answers — all processed locally on your phone.',
+      answer: 'Yes. The AI Chat feature lets you ask questions about any transcript using on-device AI. You can ask things like "What were the action items?" or "What did Speaker A say about the budget?" and get instant answers, all processed locally on your phone.',
     },
   ]);
 
@@ -98,14 +98,14 @@ const EchoDetail: React.FC = () => {
   return (
     <div ref={containerRef} className="min-h-screen pt-32 pb-10 md:pb-20 overflow-x-hidden bg-black">
       <SEO
-        title="Echo Chamber — Private Offline AI Transcription App"
+        title="Echo Chamber: Private Offline AI Transcription App"
         description={seoDescription}
         ogType="product"
         jsonLd={[softwareApp, breadcrumbs, faqSchema]}
       />
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          HERO — Record. Transcribe. Summarize. Privately.
+          HERO: Record. Transcribe. Summarize. Privately.
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="px-6 md:px-12 max-w-7xl mx-auto mb-10 md:mb-20 relative">
         <motion.div
@@ -131,7 +131,7 @@ const EchoDetail: React.FC = () => {
               Private AI transcription that lives on your device.
             </p>
             <p className="text-apple-gray text-lg leading-relaxed max-w-xl mb-12 font-medium">
-              Record meetings, transcribe in real-time, and generate AI summaries — all without
+              Record meetings, transcribe in real-time, and generate AI summaries, all without
               an internet connection. Powered by on-device neural processing. No cloud. No accounts.
               No audio ever leaves your phone.
             </p>
@@ -152,7 +152,7 @@ const EchoDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* Phone Screenshot — Record Screen */}
+          {/* Phone Screenshot: Record Screen */}
           <div className="w-full lg:w-1/2 flex justify-center perspective-1000">
             <motion.div
               style={{ rotateY: -10, rotateX: 5, y }}
@@ -160,7 +160,7 @@ const EchoDetail: React.FC = () => {
             >
               <img
                 src="/images/echochamber/RecordScreen.png"
-                alt="Echo Chamber recording screen — tap to record with live waveform visualization, on-device AI transcription ready"
+                alt="Echo Chamber recording screen, tap to record with live waveform visualization, on-device AI transcription ready"
                 className="w-full h-auto rounded-[2.5rem]"
                 loading="eager"
                 width={2160}
@@ -173,7 +173,7 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          TRUST BAR — Key Numbers
+          TRUST BAR: Key Numbers
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="border-y border-white/5 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -193,7 +193,7 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          THE PROBLEM — Why Cloud Transcription is Dangerous
+          THE PROBLEM: Why Cloud Transcription is Dangerous
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-32 px-6 md:px-12 bg-[#0a0a0a] border-b border-white/5">
         <div className="max-w-4xl mx-auto">
@@ -211,7 +211,7 @@ const EchoDetail: React.FC = () => {
             <p>
               Echo Chamber eliminates this risk entirely. There are no servers to breach, no cloud recordings
               to subpoena, and no third-party employees who can access your audio. The transcription engine runs
-              on your phone's Neural Processing Unit — the same chip that powers Face ID.
+              on your phone's Neural Processing Unit, the same chip that powers Face ID.
             </p>
           </div>
 
@@ -240,8 +240,8 @@ const EchoDetail: React.FC = () => {
               <ul className="space-y-3 text-apple-gray text-sm">
                 {[
                   'Audio processed on your device\'s NPU',
-                  'Zero server-side access — we can\'t hear you',
-                  'Nothing to subpoena — no cloud exists',
+                  'Zero server-side access, we can\'t hear you',
+                  'Nothing to subpoena, no cloud exists',
                   'AI model ships with the app, never phones home',
                   'Works offline, in airplane mode, anywhere',
                   'Your recordings, your device, your control',
@@ -258,14 +258,14 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          HOW IT WORKS — Vertical Flow
+          HOW IT WORKS: Vertical Flow
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="px-6 md:px-12 max-w-7xl mx-auto py-16 md:py-32">
         <div className="flex flex-col md:flex-row gap-20">
           <div className="md:w-1/3">
             <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-neon">How It Works</h2>
             <h3 className="text-5xl font-bold text-white mb-8 tracking-tight">Record. Transcribe. Understand.</h3>
-            <p className="text-apple-gray text-lg font-medium">From live audio to AI-powered insights — entirely on your iPhone.</p>
+            <p className="text-apple-gray text-lg font-medium">From live audio to AI-powered insights, entirely on your iPhone.</p>
           </div>
 
           <div className="md:w-2/3 relative">
@@ -275,13 +275,13 @@ const EchoDetail: React.FC = () => {
                 {
                   step: '01',
                   title: 'Record or Import',
-                  desc: 'Tap the microphone to record live conversations, meetings, lectures, or interviews. Or import existing audio and video files — MP3, M4A, WAV, AAC, MP4, MOV, AIFF, and CAF are all supported.',
+                  desc: 'Tap the microphone to record live conversations, meetings, lectures, or interviews. Or import existing audio and video files: MP3, M4A, WAV, AAC, MP4, MOV, AIFF, and CAF are all supported.',
                   icon: <Mic size={20} className="text-neon" />,
                 },
                 {
                   step: '02',
                   title: 'On-Device Transcription',
-                  desc: 'The Parakeet TDT v3 engine — a 0.6 billion parameter neural model — transcribes speech to text in real-time on your phone\'s Neural Processing Unit. 25 languages supported with automatic detection.',
+                  desc: 'The Parakeet TDT v3 engine (a 0.6 billion parameter neural model) transcribes speech to text in real-time on your phone\'s Neural Processing Unit. 25 languages supported with automatic detection.',
                   icon: <Cpu size={20} className="text-neon" />,
                 },
                 {
@@ -293,7 +293,7 @@ const EchoDetail: React.FC = () => {
                 {
                   step: '04',
                   title: 'Ask, Export, or Translate',
-                  desc: 'Chat with your transcript using AI to extract insights. Export as PDF, SRT subtitles, Markdown, JSON, or plain text. Translate to 15+ languages — Spanish, French, German, Chinese, Japanese, Korean, and more.',
+                  desc: 'Chat with your transcript using AI to extract insights. Export as PDF, SRT subtitles, Markdown, JSON, or plain text. Translate to 15+ languages: Spanish, French, German, Chinese, Japanese, Korean, and more.',
                   icon: <FileDown size={20} className="text-neon" />,
                 },
               ].map((step, idx) => (
@@ -319,7 +319,7 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          AI INTELLIGENCE SUITE — 6 Summary Formats
+          AI INTELLIGENCE SUITE: 6 Summary Formats
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="bg-[#0a0a0a] border-y border-white/5 py-16 md:py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
@@ -329,12 +329,12 @@ const EchoDetail: React.FC = () => {
               Six ways to understand your meetings.
             </h3>
             <p className="text-apple-gray text-xl max-w-2xl font-medium">
-              Echo Chamber generates structured AI summaries in 6 professional formats — all processed on-device by Apple Intelligence.
+              Echo Chamber generates structured AI summaries in 6 professional formats, all processed on-device by Apple Intelligence.
               No transcript data ever leaves your phone.
             </p>
           </div>
 
-          {/* Summary Format Grid — Staggered 3-column */}
+          {/* Summary Format Grid: Staggered 3-column */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
@@ -397,7 +397,7 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          AI CHAT — Ask Your Transcript
+          AI CHAT: Ask Your Transcript
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -406,7 +406,7 @@ const EchoDetail: React.FC = () => {
             <div className="relative w-[320px] md:w-[380px]">
               <img
                 src="/images/echochamber/AIChat.png"
-                alt="Echo Chamber AI Chat — ask questions about your transcript and get instant on-device AI answers with key points and action items"
+                alt="Echo Chamber AI Chat, ask questions about your transcript and get instant on-device AI answers with key points and action items"
                 className="w-full h-auto rounded-[2.5rem] shadow-[0_0_80px_rgba(0,240,255,0.08)]"
                 loading="lazy"
                 width={2160}
@@ -429,7 +429,7 @@ const EchoDetail: React.FC = () => {
             <ul className="space-y-4">
               {[
                 'Instant answers from any transcript',
-                'Conversation history — ask follow-up questions',
+                'Conversation history, ask follow-up questions',
                 'Context-aware across long recordings',
                 'Processed entirely on-device',
               ].map((item, i) => (
@@ -444,7 +444,7 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SPEAKER INTELLIGENCE — Voice Profiles
+          SPEAKER INTELLIGENCE: Voice Profiles
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="bg-[#0a0a0a] border-y border-white/5 py-16 md:py-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -459,7 +459,7 @@ const EchoDetail: React.FC = () => {
             </p>
             <div className="space-y-6">
               {[
-                { title: 'Automatic Diarization', desc: 'AI detects speaker changes and labels segments automatically — no manual tagging needed.' },
+                { title: 'Automatic Diarization', desc: 'AI detects speaker changes and labels segments automatically, no manual tagging needed.' },
                 { title: 'Voice Profile Learning', desc: 'Save voice fingerprints using cosine similarity matching. Accuracy improves with every recording.' },
                 { title: 'Custom Vocabulary', desc: 'Add domain-specific terms per speaker to improve transcription accuracy for technical language.' },
               ].map((item, i) => (
@@ -502,7 +502,7 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          IMPORT & EXPORT — File Format Support
+          IMPORT & EXPORT: File Format Support
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
@@ -522,7 +522,7 @@ const EchoDetail: React.FC = () => {
               ))}
             </div>
             <p className="text-apple-gray text-sm font-medium">
-              Drag and drop on iPad and Mac. All transcription happens locally — imported files never leave your device.
+              Drag and drop on iPad and Mac. All transcription happens locally, imported files never leave your device.
             </p>
           </div>
 
@@ -531,7 +531,7 @@ const EchoDetail: React.FC = () => {
             <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-neon">Export</h2>
             <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">Seven professional export formats.</h3>
             <p className="text-apple-gray text-lg font-medium mb-8">
-              Share transcripts in the format your workflow demands — from simple text to structured data.
+              Share transcripts in the format your workflow demands, from simple text to structured data.
             </p>
             <div className="space-y-3">
               {[
@@ -554,7 +554,7 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          TRANSLATION — 15+ Languages
+          TRANSLATION: 15+ Languages
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="bg-[#0a0a0a] border-y border-white/5 py-12 md:py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
@@ -582,7 +582,7 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          ECOSYSTEM — Apple Watch, Widgets, Calendar, iCloud
+          ECOSYSTEM: Apple Watch, Widgets, Calendar, iCloud
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="mb-16">
@@ -725,7 +725,7 @@ const EchoDetail: React.FC = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          WHO IT'S FOR — Professional Use Cases
+          WHO IT'S FOR: Professional Use Cases
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-neon">Built For</h2>
@@ -747,7 +747,7 @@ const EchoDetail: React.FC = () => {
             },
             {
               title: 'Executives & Board Members',
-              desc: 'Capture board meetings, strategy sessions, and M&A discussions. Generate Meeting Minutes with action items. No meeting bot joins your call — just tap record on your phone.',
+              desc: 'Capture board meetings, strategy sessions, and M&A discussions. Generate Meeting Minutes with action items. No meeting bot joins your call, just tap record on your phone.',
               keywords: 'board meetings, M&A, executive meeting notes',
             },
           ].map((persona, i) => (
@@ -781,7 +781,7 @@ const EchoDetail: React.FC = () => {
       )}
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          EXPLORE OTHER APPS — Cross-links
+          EXPLORE OTHER APPS: Cross-links
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="px-6 md:px-12 max-w-7xl mx-auto py-10 md:py-20 border-t border-white/5">
         <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-neon">Explore the Suite</h2>
