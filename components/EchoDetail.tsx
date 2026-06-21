@@ -488,10 +488,10 @@ const EchoDetail: React.FC = () => {
             <div className="border border-white/10 bg-black p-8 w-full max-w-md space-y-4">
               <div className="text-xs text-neon font-bold uppercase tracking-widest mb-6">Transcript Segments</div>
               {[
-                { speaker: 'Speaker A', text: 'We need to finalize the acquisition timeline before Q4.', time: '02:34', color: 'text-blue-400 bg-blue-400/10' },
-                { speaker: 'Speaker B', text: 'Legal has flagged two compliance issues with the target.', time: '02:48', color: 'text-purple-400 bg-purple-400/10' },
-                { speaker: 'Speaker A', text: 'Can we resolve those before the board meeting Friday?', time: '03:12', color: 'text-blue-400 bg-blue-400/10' },
-                { speaker: 'Speaker C', text: 'I\'ll have the due diligence report ready by Thursday.', time: '03:24', color: 'text-amber-400 bg-amber-400/10' },
+                { speaker: 'Alex', text: 'We need to finalize the acquisition timeline before Q4.', time: '02:34', color: 'text-blue-400 bg-blue-400/10' },
+                { speaker: 'Brittany', text: 'Legal has flagged two compliance issues with the target.', time: '02:48', color: 'text-purple-400 bg-purple-400/10' },
+                { speaker: 'Alex', text: 'Can we resolve those before the board meeting Friday?', time: '03:12', color: 'text-blue-400 bg-blue-400/10' },
+                { speaker: 'Unidentified', text: 'I\'ll have the due diligence report ready by Thursday.', time: '03:24', color: 'text-apple-gray bg-white/5' },
               ].map((seg, i) => (
                 <motion.div
                   key={i}
