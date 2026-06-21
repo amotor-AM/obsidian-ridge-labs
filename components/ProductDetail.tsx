@@ -285,11 +285,11 @@ const ProductDetail: React.FC = () => {
              </p>
 
              <div className="flex flex-col sm:flex-row gap-5">
-               <button disabled className="px-10 py-4 bg-white/10 text-white/50 font-semibold rounded-full cursor-not-allowed flex items-center justify-center gap-3 border border-white/5">
+               <button disabled className="px-10 py-4 bg-white/10 text-white/50 font-semibold rounded-full cursor-not-allowed flex items-center justify-center gap-3 border border-white/5 whitespace-nowrap">
                  <Download size={20} />
                  Coming Soon
                </button>
-               <Link to="/apps/echochamber" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all text-center">
+               <Link to="/apps/echochamber" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all flex items-center justify-center whitespace-nowrap">
                  Try Echo Chamber
                </Link>
                {product.githubUrl && (
@@ -299,9 +299,10 @@ const ProductDetail: React.FC = () => {
                    rel="noopener noreferrer"
                    aria-label={`${product.name} on GitHub`}
                    title={`${product.name} on GitHub`}
-                   className="w-14 h-14 flex-shrink-0 border border-white/10 bg-transparent text-white rounded-full hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center"
+                   className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
                  >
-                   <Github size={22} />
+                   <Github size={20} />
+                   GitHub
                  </a>
                )}
              </div>

@@ -141,13 +141,13 @@ const EchoDetail: React.FC = () => {
                 href="https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="apple-button px-10 py-4 bg-neon text-black font-semibold rounded-full hover:opacity-90 transition-all flex items-center justify-center gap-3"
+                className="apple-button px-10 py-4 bg-neon text-black font-semibold rounded-full hover:opacity-90 transition-all flex items-center justify-center gap-3 whitespace-nowrap"
               >
                 <Download size={20} />
                 Download App
               </a>
-              <Link to="/blog/otter-vs-echo" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all text-center">
-                Otter.ai vs Echo Chamber
+              <Link to="/help/echochamber" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all flex items-center justify-center whitespace-nowrap">
+                Help &amp; Guides
               </Link>
               {product.githubUrl && (
                 <a
@@ -156,9 +156,10 @@ const EchoDetail: React.FC = () => {
                   rel="noopener noreferrer"
                   aria-label="Echo Chamber on GitHub"
                   title="Echo Chamber on GitHub"
-                  className="w-14 h-14 flex-shrink-0 border border-white/10 bg-transparent text-white rounded-full hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center"
+                  className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
                 >
-                  <Github size={22} />
+                  <Github size={20} />
+                  GitHub
                 </a>
               )}
             </div>
