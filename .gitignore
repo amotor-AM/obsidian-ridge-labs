@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Public per-app SEO repos are maintained separately in ~/Developer/obsidian-ridge-public
+# (their own repos: obsidian-ridge-labs/vault, /echo-chamber, /molehill). Never track them here.
+/obsidian-ridge-public/
+/vault/
+/echo-chamber/
+/molehill/
