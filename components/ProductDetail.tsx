@@ -3,7 +3,7 @@ import { useParams, Navigate, Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { blogPosts } from '../data/blog';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Download, ShieldCheck, Terminal, CheckCircle2, ChevronDown, Cpu, Activity, List, MessageSquare, Network, ArrowRight } from 'lucide-react';
+import { Download, ShieldCheck, Terminal, CheckCircle2, ChevronDown, Cpu, Activity, List, MessageSquare, Network, ArrowRight, Github } from 'lucide-react';
 import SEO, { buildSoftwareApp, buildBreadcrumbs, buildFAQSchema } from './SEO';
 
 const ProductDetail: React.FC = () => {
@@ -292,6 +292,18 @@ const ProductDetail: React.FC = () => {
                <Link to="/apps/echochamber" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all text-center">
                  Try Echo Chamber
                </Link>
+               {product.githubUrl && (
+                 <a
+                   href={product.githubUrl}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label={`${product.name} on GitHub`}
+                   title={`${product.name} on GitHub`}
+                   className="w-14 h-14 flex-shrink-0 border border-white/10 bg-transparent text-white rounded-full hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center"
+                 >
+                   <Github size={22} />
+                 </a>
+               )}
              </div>
           </div>
 

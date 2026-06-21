@@ -31,6 +31,8 @@ export interface Product {
   accent?: string;
   /** Real App Store URL when the app is listed; empty string otherwise. */
   appStoreUrl?: string;
+  /** Public GitHub repo for the app (README + changelog), used for the icon link and schema sameAs. */
+  githubUrl?: string;
   /** Whether a help knowledge base exists for deep-linking from inside the app. */
   hasKnowledgeBase?: boolean;
   /** Apple platforms the app runs on. */

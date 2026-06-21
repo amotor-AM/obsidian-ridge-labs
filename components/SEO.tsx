@@ -156,6 +156,7 @@ export const buildSoftwareApp = (product: {
   platforms?: string[];
   minOS?: string;
   appStoreUrl?: string;
+  githubUrl?: string;
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -189,6 +190,10 @@ export const buildSoftwareApp = (product: {
   inLanguage: 'en-US',
   featureList: getFeatureList(product.id),
   ...(product.appStoreUrl ? { downloadUrl: product.appStoreUrl, installUrl: product.appStoreUrl } : {}),
+  ...(() => {
+    const links = [product.appStoreUrl, product.githubUrl].filter(Boolean) as string[];
+    return links.length ? { sameAs: links } : {};
+  })(),
 });
 
 /** Article / TechArticle schema for a help-centre guide. */

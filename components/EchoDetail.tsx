@@ -7,7 +7,7 @@ import {
   Download, ShieldCheck, Terminal, CheckCircle2, Mic, Wifi, WifiOff, Shield,
   Activity, ArrowRight, FileText, Clock, Globe, Upload, MessageSquare,
   Users, Calendar, Watch, Lock, Search, Languages, Cpu, Zap, BookOpen,
-  FileDown, ChevronRight,
+  FileDown, ChevronRight, Github,
 } from 'lucide-react';
 import SEO, { buildSoftwareApp, buildBreadcrumbs, buildFAQSchema, SITE_URL } from './SEO';
 
@@ -149,6 +149,18 @@ const EchoDetail: React.FC = () => {
               <Link to="/blog/otter-vs-echo" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all text-center">
                 Otter.ai vs Echo Chamber
               </Link>
+              {product.githubUrl && (
+                <a
+                  href={product.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Echo Chamber on GitHub"
+                  title="Echo Chamber on GitHub"
+                  className="w-14 h-14 flex-shrink-0 border border-white/10 bg-transparent text-white rounded-full hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center"
+                >
+                  <Github size={22} />
+                </a>
+              )}
             </div>
           </div>
 
