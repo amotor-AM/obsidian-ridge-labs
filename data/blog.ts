@@ -4,7 +4,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "apple-ecosystem-privacy",
     title: "Why We Will Only Ever Build for Apple: A Deliberate Choice",
-    date: "2026.06.24",
+    date: "2026.06.25",
     readTime: "11 MIN READ",
     category: "MANIFESTO",
     tags: ["#APPLE", "#PRIVACY", "#ARCHITECTURE"],
@@ -123,7 +123,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "finance-app-red-flags",
     title: "The Invisible Cost of 'Free' Finance Apps: 5 Red Flags",
-    date: "2026.06.24",
+    date: "2026.06.25",
     readTime: "12 MIN READ",
     category: "GUIDE",
     tags: ["#FINANCE", "#SECURITY", "#PRIVACY"],
@@ -194,7 +194,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "otter-vs-echo",
     title: "Otter.ai vs. Echo Chamber: The Real Cost of AI Transcription",
-    date: "2026.06.24",
+    date: "2026.06.25",
     readTime: "9 MIN READ",
     category: "COMPARISON",
     tags: ["#PRODUCTIVITY", "#BUSINESS", "#AI"],
@@ -260,7 +260,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "notion-vs-mindpalace",
     title: "Why Notion is a Bad Place for Your Private Thoughts",
-    date: "2026.06.24",
+    date: "2026.06.25",
     readTime: "10 MIN READ",
     category: "ANALYSIS",
     tags: ["#PRODUCTIVITY", "#NOTES", "#SECURITY"],
@@ -322,7 +322,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "offline-ai-revolution",
     title: "The Speed of Silence: Why Offline AI is Faster than ChatGPT",
-    date: "2026.06.24",
+    date: "2026.06.25",
     readTime: "8 MIN READ",
     category: "EDUCATION",
     tags: ["#TECH", "#AI", "#SPEED"],
