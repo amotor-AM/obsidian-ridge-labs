@@ -6,7 +6,7 @@
 
 ## About
 
-Obsidian Ridge Labs builds AI-powered mobile apps that run their intelligence entirely on-device. We reject the cloud-first model. Our apps use on-device language models, Apple's Neural Engine, and local storage so features work without shipping your data to a server. No telemetry. No accounts. No required cloud sync.
+Obsidian Ridge Labs builds AI-powered mobile apps whose core intelligence runs on-device. We reject the cloud-first model. Our apps use on-device language models, Apple's Neural Engine, and local storage so useful work does not need to be shipped to an AI server. No advertising layer. No required Obsidian Ridge account. Optional connections are disclosed and controlled by the user.
 
 Our mission: give people the power of modern AI without surrendering their privacy.
 
@@ -21,13 +21,13 @@ Private AI finance tracker for iPhone and iPad. Analyzes spending with AI that r
 - Key differentiator: On-device AI analysis with no mandatory cloud. Bank linking is optional and credentials never reach the app.
 
 ### Echo Chamber (Offline AI Transcription) — Live
-Private, offline transcription app for iPhone, iPad, Mac, and Apple Watch that records, transcribes, and summarizes audio entirely on-device. Powered by the Parakeet TDT v3 neural engine on Apple's Neural Engine, with a WhisperKit fallback on lighter hardware and Apple's system speech on iOS 26+. Real-time speech-to-text in 25 European languages with automatic detection. AI meeting summaries in 6 formats (Cornell Notes, Outline, Meeting Minutes, Bullet Summary, Q&A Interview, Executive Summary) generated on-device via Apple Intelligence or the bundled Cedar model. AI Chat over your transcript, automatic speaker diarization with learning voice profiles, 8 export formats (plain text, timestamped text, SRT, VTT, Markdown, JSON, PDF, DOCX), audio/video import, Face ID lock, full-text search, Spotlight, widgets, and Live Activities. Optional encrypted iCloud sync (off by default; audio is AES-256-GCM encrypted at rest). Built for lawyers, doctors, and executives who need confidentiality. Requires iOS 18 or later.
+Private, on-device voice transcription for meetings, lectures, and dictation. Echo Chamber records audio, shows a live transcript as you speak, bookmarks important moments, creates AI-polished notes and summaries, and searches every word locally. Export to TXT, Markdown, PDF, or DOCX. Core speech and AI processing use Apple on-device frameworks and packaged models, so audio is not uploaded to Obsidian Ridge Labs. Audio is encrypted at rest with AES-256-GCM. Requires iOS 18 or later on iPhone, iPadOS 18 or later on iPad, or macOS 15 or later on an Apple-silicon Mac.
 - URL: https://obsidianridgelabs.com/apps/echochamber
 - Help: https://obsidianridgelabs.com/help/echochamber
 - App Store: https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060
 - Category: Productivity / Offline Transcription
-- Pricing: Free; Pro from $4.99/mo, $39.99/yr, or $79.99 lifetime
-- Key differentiator: A complete offline transcription stack — on-device AI transcription, 6 AI summary formats, AI chat, and speaker learning with zero cloud dependency.
+- Pricing: Free; Pro $2.99/mo or $29.99/yr in the US App Store
+- Key differentiator: Live transcription, AI-polished notes, search, and export with core voice processing on the Apple device.
 
 ### Molehill (Focus & Tasks) — Coming soon
 On-device AI focus app for iPhone that turns overwhelming tasks into the one small step that comes next. Built for ADHD and anyone who freezes at a long to-do list. Brain-dump capture sorts into six life areas; Apple's on-device Foundation Models break a task into concrete, verb-first steps at your chosen granularity (Big Picture, Balanced, or Every Tiny Step), with a deterministic heuristic fallback when Apple Intelligence isn't available. Full-screen Focus mode shows just the next step with an optional gentle timer (5/10/15/25 min), a Next Step Lock Screen and Home Screen widget, a Dynamic Island Live Activity, Siri/Shortcuts intents, and a Share Extension for quick capture. No streaks, no shame. Every bit of AI runs on the device — no account, no servers, works in airplane mode. Requires iOS 26.
@@ -60,10 +60,10 @@ Obsidian Ridge Labs operates on four core axioms:
 
 - On-device language models (Apple Foundation Models on supported hardware; bundled Cedar / llama.cpp models elsewhere)
 - Apple Neural Engine for local inference
-- On-device transcription via Parakeet TDT v3 and WhisperKit (Echo Chamber)
+- On-device speech frameworks and packaged local models for Echo Chamber transcription
 - Local-first storage (SwiftData / Core Data), encrypted at rest by the operating system; Echo Chamber audio is AES-256-GCM encrypted
-- No analytics SDKs, no crash-reporting SDKs, no advertising identifiers
-- The only network calls are optional and user-initiated: Plaid bank sync (Vault) and personal iCloud sync (Echo Chamber)
+- No third-party behavioral analytics SDKs or advertising identifiers; any first-party diagnostics are opt-in and off by default
+- Network use is feature-specific and disclosed: model downloads, App Store verification, optional Plaid bank sync (Vault), optional personal iCloud sync (Echo Chamber), and support requests initiated by the user
 
 ## Help Center
 

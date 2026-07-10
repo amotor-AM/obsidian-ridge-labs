@@ -1,12 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Server, ShieldCheck, Zap, FileDigit } from 'lucide-react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 
-/* The four "Counter-Measures" axioms. On desktop, GSAP ScrollTrigger pins the
-   section and pans the cards horizontally as you scroll, replacing the old
-   manual horizontal scrollbar. On mobile (or reduced-motion) the cards simply
-   stack. GSAP is imported dynamically inside the effect so it never lands in
-   the main bundle and never runs during SSR; the cards themselves render on the
-   server for SEO and no-JS readers. */
+/* The four "Counter-Measures" axioms. Framer Motion maps page progress to a
+   horizontal desktop journey; mobile and reduced-motion users get a normal
+   vertical reading order. The content stays present in server-rendered HTML. */
 
 const AXIOMS = [
   {
@@ -34,80 +32,69 @@ const AXIOMS = [
 const AxiomScroller: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const [distance, setDistance] = useState(0);
+  const [desktop, setDesktop] = useState(false);
+  const reducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
+  const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
 
   useEffect(() => {
     const section = sectionRef.current;
     const track = trackRef.current;
     if (!section || !track) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let cancelled = false;
-    let cleanup = () => {};
-
-    (async () => {
-      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-      ]);
-      if (cancelled) return;
-      gsap.registerPlugin(ScrollTrigger);
-
-      const mm = gsap.matchMedia();
-      mm.add('(min-width: 1024px)', () => {
-        const distance = () => Math.max(0, track.scrollWidth - section.clientWidth);
-        const tween = gsap.to(track, {
-          x: () => -distance(),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: () => `+=${distance()}`,
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-        return () => tween.kill();
-      });
-      cleanup = () => mm.revert();
-    })();
-
+    const query = window.matchMedia('(min-width: 1024px)');
+    const measure = () => {
+      setDesktop(query.matches);
+      setDistance(query.matches ? Math.max(0, track.scrollWidth - section.clientWidth + 96) : 0);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(track);
+    query.addEventListener('change', measure);
     return () => {
-      cancelled = true;
-      cleanup();
+      observer.disconnect();
+      query.removeEventListener('change', measure);
     };
   }, []);
+
+  const horizontal = desktop && !reducedMotion;
 
   return (
     <section
       ref={sectionRef}
-      className="relative mb-16 md:mb-32 lg:mb-0 lg:overflow-hidden lg:min-h-screen lg:flex lg:flex-col lg:justify-center"
+      style={horizontal ? { height: `calc(100vh + ${distance}px)` } : undefined}
+      className="relative mb-16 md:mb-32 lg:mb-0"
     >
-      <div className="flex justify-between items-end mb-10">
-        <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase">/// Counter-Measures</h2>
-        <div className="hidden lg:block text-xs font-mono text-gray-500">SCROLL TO DECRYPT &darr;</div>
-      </div>
+      <div className={horizontal ? 'sticky top-0 min-h-screen overflow-hidden flex flex-col justify-center' : ''}>
+        <div className="flex justify-between items-end mb-10">
+          <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase">/// Counter-Measures</h2>
+          <div className="hidden lg:block text-xs font-mono text-gray-500">SCROLL TO EXPLORE &darr;</div>
+        </div>
 
-      <div ref={trackRef} className="flex flex-col lg:flex-row gap-8 lg:pr-[12vw] will-change-transform">
-        {AXIOMS.map((axiom, i) => {
-          const Icon = axiom.icon;
-          return (
-            <div
-              key={axiom.title}
-              className="w-full lg:w-[460px] lg:flex-shrink-0 bg-obsidian-light border border-white/10 p-8 md:p-12 flex flex-col justify-between group hover:border-neon transition-colors duration-500"
-            >
-              <Icon size={48} className="mb-8 text-gray-500 group-hover:text-neon transition-colors duration-500" />
-              <div>
-                <h4 className="text-3xl font-display font-bold text-white mb-4">{axiom.title}</h4>
-                <p className="font-mono text-sm text-gray-400 leading-relaxed">{axiom.desc}</p>
+        <motion.div ref={trackRef} style={horizontal ? { x } : undefined} className="flex flex-col lg:flex-row gap-8 lg:pr-[12vw] will-change-transform">
+          {AXIOMS.map((axiom, i) => {
+            const Icon = axiom.icon;
+            return (
+              <div
+                key={axiom.title}
+                className="w-full lg:w-[460px] lg:flex-shrink-0 bg-obsidian-light border border-white/10 p-8 md:p-12 flex flex-col justify-between group hover:border-neon transition-colors duration-500"
+              >
+                <Icon size={48} className="mb-8 text-gray-500 group-hover:text-neon transition-colors duration-500" />
+                <div>
+                  <h4 className="text-3xl font-display font-bold text-white mb-4">{axiom.title}</h4>
+                  <p className="font-mono text-sm text-gray-400 leading-relaxed">{axiom.desc}</p>
+                </div>
+                <div className="mt-8 pt-8 border-t border-white/5 flex justify-between items-center text-xs font-mono text-gray-600">
+                  <span>AXIOM_0{i + 1}</span>
+                  <span className="group-hover:text-neon transition-colors">ACTIVE</span>
+                </div>
               </div>
-              <div className="mt-8 pt-8 border-t border-white/5 flex justify-between items-center text-xs font-mono text-gray-600">
-                <span>AXIOM_0{i + 1}</span>
-                <span className="group-hover:text-neon transition-colors">ACTIVE</span>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

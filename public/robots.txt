@@ -12,6 +12,7 @@ Allow: /terms
 # Static assets
 Allow: /assets/
 Allow: /og-*.png
+Allow: /og.png
 Allow: /logo.png
 Allow: /favicon.svg
 

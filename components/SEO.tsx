@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 const SITE_NAME = 'Obsidian Ridge Labs';
 const SITE_URL = 'https://obsidianridgelabs.com';
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.png`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og.png`;
 
 interface SEOProps {
   title: string;
@@ -157,6 +157,8 @@ export const buildSoftwareApp = (product: {
   minOS?: string;
   appStoreUrl?: string;
   githubUrl?: string;
+  status?: 'live' | 'coming-soon';
+  price?: string;
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -167,14 +169,16 @@ export const buildSoftwareApp = (product: {
   operatingSystem: product.minOS
     ? `${product.minOS} or later`
     : (product.platforms && product.platforms.length ? product.platforms.join(', ') : 'iOS'),
-  offers: {
-    // Every app is free to download; paid features are in-app purchases.
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-    availability: 'https://schema.org/InStock',
-    ...(product.appStoreUrl ? { url: product.appStoreUrl } : {}),
-  },
+  ...(product.status !== 'coming-soon' ? {
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      ...(product.price ? { description: product.price } : {}),
+      ...(product.appStoreUrl ? { url: product.appStoreUrl } : {}),
+    },
+  } : {}),
   ...(product.version ? { softwareVersion: product.version.replace('v', '') } : {}),
   ...(product.releaseDate ? { datePublished: formatSchemaDate(product.releaseDate) } : {}),
   author: {
@@ -235,7 +239,7 @@ export const buildTechArticle = (a: {
     url: SITE_URL,
     logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon.svg` },
   },
-  image: `${SITE_URL}/og-default.png`,
+  image: `${SITE_URL}/og.png`,
   inLanguage: 'en-US',
 });
 
@@ -298,7 +302,7 @@ export const buildBlogPosting = (post: {
   articleSection: post.category,
   keywords: post.tags.map(t => t.replace('#', '')).join(', '),
   wordCount: estimateWordCount(post.readTime),
-  image: `${SITE_URL}/og-default.png`,
+  image: `${SITE_URL}/og.png`,
   inLanguage: 'en-US',
 });
 
@@ -361,7 +365,7 @@ function getFeatureList(productId: string): string {
   const features: Record<string, string> = {
     vault: 'On-device AI finance analysis, PDF statement scanning, AI balance forecasting, biometric lock, zero data collection, offline-first',
     mind: 'Private AI journal, pattern recognition, semantic search by feeling, biometric encryption, unlimited entries, never connected to cloud',
-    echochamber: 'On-device AI transcription (Parakeet TDT v3), real-time speech to text, 25-language support, speaker diarization, voice profiles, 6 AI summary formats (Cornell Notes, Outline, Meeting Minutes, Bullet Points, Q&A, Executive Summary), AI transcript chat, 7 export formats (PDF, SRT, VTT, Markdown, JSON), audio/video import (MP3 M4A WAV AAC MP4 MOV AIFF CAF), translation to 15+ languages, Face ID lock, Apple Watch, calendar view, iCloud sync, full-text search, Spotlight integration, widgets, Live Activities, recording recovery, optional encrypted iCloud sync',
+    echochamber: 'On-device live transcription, AI-polished readable transcripts, local AI notes and summaries, automatic pause and speaker detection, bookmarks, full-text recording search, TXT Markdown PDF and DOCX export, audio and video import with Pro, Face ID access control, AES-256-GCM audio encryption at rest, optional encrypted iCloud sync',
     nexus: 'Visual decision mapping, AI adversarial thinking, scenario simulation, private PDF export, strategic logic canvas, offline strategy tool',
   };
   return features[productId] || '';

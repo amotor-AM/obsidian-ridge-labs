@@ -77,12 +77,12 @@ for (const route of routes) {
   <meta property="og:description" content="${description}" />
   <meta property="og:type" content="${context.ogType || 'website'}" />
   <meta property="og:url" content="${canonicalUrl}" />
-  <meta property="og:image" content="${context.ogImage || 'https://obsidianridgelabs.com/og-default.png'}" />
+  <meta property="og:image" content="${context.ogImage || 'https://obsidianridgelabs.com/og.png'}" />
   <meta property="og:image:alt" content="${context.ogImageAlt || context.title || 'Obsidian Ridge Labs'}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${context.title || 'Obsidian Ridge Labs'}" />
   <meta name="twitter:description" content="${description}" />
-  <meta name="twitter:image" content="${context.ogImage || 'https://obsidianridgelabs.com/og-default.png'}" />
+  <meta name="twitter:image" content="${context.ogImage || 'https://obsidianridgelabs.com/og.png'}" />
   <meta name="twitter:image:alt" content="${context.ogImageAlt || context.title || 'Obsidian Ridge Labs'}" />
   `;
 
@@ -128,29 +128,61 @@ for (const route of routes) {
 console.log('Prerendering routes completed!');
 
 // Generate sitemap.xml from the prerendered routes so it is always in sync.
+// Only emit lastmod when the underlying content has an explicit editorial date.
+// A build timestamp is not a content modification date and creates false freshness
+// signals for search engines.
 console.log('Generating sitemap.xml...');
 const SITE_ORIGIN = 'https://obsidianridgelabs.com';
-const lastmod = new Date().toISOString().slice(0, 10);
-const priorityFor = (r) => {
-  if (r === '/') return '1.0';
-  if (r.startsWith('/apps/') || r === '/help') return '0.8';
-  if (r.startsWith('/help/') || r.startsWith('/blog/')) return '0.6';
-  return '0.7';
+
+const normalizeSitemapDate = (value) => {
+  if (typeof value !== 'string') return null;
+  const normalized = value.trim().replace(/\./g, '-');
+  return /^\d{4}-\d{2}-\d{2}$/.test(normalized) ? normalized : null;
 };
+
+const latestDate = (values) => {
+  const validDates = values.map(normalizeSitemapDate).filter(Boolean).sort();
+  return validDates.length ? validDates[validDates.length - 1] : null;
+};
+
+const lastmodByRoute = new Map();
+
+for (const post of blogPosts) {
+  const publishedDate = normalizeSitemapDate(post.date);
+  if (publishedDate) lastmodByRoute.set(`/blog/${post.id}`, publishedDate);
+}
+
+const latestBlogDate = latestDate(blogPosts.map((post) => post.date));
+if (latestBlogDate) lastmodByRoute.set('/blog', latestBlogDate);
+
+for (const kb of knowledgeBases) {
+  for (const article of kb.articles) {
+    const updatedDate = normalizeSitemapDate(article.updated);
+    if (updatedDate) {
+      lastmodByRoute.set(`/help/${kb.appId}/${article.id}`, updatedDate);
+    }
+  }
+
+  const latestKbDate = latestDate(kb.articles.map((article) => article.updated));
+  if (latestKbDate) lastmodByRoute.set(`/help/${kb.appId}`, latestKbDate);
+}
+
+const latestHelpDate = latestDate(
+  knowledgeBases.flatMap((kb) => kb.articles.map((article) => article.updated)),
+);
+if (latestHelpDate) lastmodByRoute.set('/help', latestHelpDate);
+
 const sitemapUrls = routes
-  .map((r) => {
-    const loc = r === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${r}`;
-    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${priorityFor(r)}</priority>\n  </url>`;
+  .map((route) => {
+    const loc = route === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${route}`;
+    const lastmod = lastmodByRoute.get(route);
+    const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : '';
+    return `  <url>\n    <loc>${loc}</loc>${lastmodTag}\n  </url>`;
   })
   .join('\n');
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls}\n</urlset>\n`;
 fs.writeFileSync(path.join(clientDist, 'sitemap.xml'), sitemapXml, 'utf8');
-try {
-  fs.writeFileSync(path.resolve(__dirname, './public/sitemap.xml'), sitemapXml, 'utf8');
-} catch (err) {
-  console.warn('Warning: could not update public/sitemap.xml:', err.message);
-}
-console.log(`sitemap.xml generated: ${routes.length} urls`);
+console.log(`sitemap.xml generated: ${routes.length} urls, ${lastmodByRoute.size} with source-backed lastmod dates`);
 
 // Generate llms-full.txt
 console.log('Generating llms-full.txt...');

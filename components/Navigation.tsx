@@ -1,119 +1,193 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useScroll } from 'framer-motion';
+import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
 
 const Navigation: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [appsOpen, setAppsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const openButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
-    setDropdownOpen(false);
-    setIsOpen(false);
-  }, [location]);
+    setMenuOpen(false);
+    setAppsOpen(false);
+  }, [location.pathname]);
 
-  const handleNavClick = (sectionId: string) => {
-    setIsOpen(false);
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) element.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const element = document.getElementById(sectionId);
-      if (element) element.scrollIntoView({ behavior: 'smooth' });
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+      if (event.key === 'Tab' && menuRef.current) {
+        const candidates = Array.from(
+          menuRef.current.querySelectorAll('a[href], button:not([disabled])'),
+        ) as HTMLElement[];
+        const focusable = candidates.filter((element) => element.offsetParent !== null);
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+      openButtonRef.current?.focus({ preventScroll: true });
+    };
+  }, [menuOpen]);
+
+  const goToSection = (sectionId: string) => {
+    setMenuOpen(false);
+    setAppsOpen(false);
+    if (location.pathname === '/') {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      return;
     }
+    navigate(`/#${sectionId}`);
+    window.setTimeout(() => document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' }), 100);
   };
 
   return (
     <>
-      <nav className={`site-chrome fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-obsidian-light/80 backdrop-blur-xl border-b border-white/5 py-3' : 'bg-transparent py-6'}`}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-          <Link to="/" className="text-xl font-semibold tracking-tight text-white flex items-center gap-2 z-50">
-            <div className="w-5 h-5 bg-white rounded-md flex items-center justify-center">
-              <div className="w-2 h-2 bg-black rounded-full"></div>
-            </div>
-            Obsidian Ridge Labs
+      <motion.div className="site-progress" style={{ scaleX: scrollYProgress }} aria-hidden="true" />
+      <nav className={`site-nav site-chrome ${scrolled ? 'site-nav--scrolled' : ''}`} aria-label="Primary navigation">
+        <div className="site-nav__inner">
+          <Link to="/" className="site-wordmark" aria-label="Obsidian Ridge Labs home">
+            <span className="site-wordmark__mark" aria-hidden="true"><i /><i /><i /></span>
+            <span>Obsidian Ridge <b>Labs</b></span>
           </Link>
 
-          <div className="hidden md:flex gap-8 items-center">
-             <Link to="/" className="text-[13px] font-medium text-gray-400 hover:text-white transition-colors">Home</Link>
-
-             <div className="relative group h-full flex items-center" onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)}>
-                <button className="flex items-center gap-1 text-[13px] font-medium text-gray-400 hover:text-white transition-colors py-2">
-                   Apps <ChevronDown size={12} className={`transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-
-                <AnimatePresence>
-                  {dropdownOpen && (
-                    <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 5 }} transition={{ duration: 0.2 }} className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-64">
-                      <div className="glass-panel rounded-apple-sm p-2 shadow-2xl">
-                        {products.map((p) => (
-                          <Link key={p.id} to={`/apps/${p.id}`} className="block p-3 hover:bg-white/10 rounded-lg group/item transition-all">
-                            <div className="text-white font-semibold text-sm">{p.name}</div>
-                            <div className="text-[11px] text-gray-400 mt-0.5">{p.shortName} • Offline AI</div>
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-             </div>
-
-             <Link to="/blog" className="text-[13px] font-medium text-gray-400 hover:text-white transition-colors">Journal</Link>
-             <Link to="/help" className="text-[13px] font-medium text-gray-400 hover:text-white transition-colors">Help</Link>
-             <Link to="/philosophy" className="text-[13px] font-medium text-gray-400 hover:text-white transition-colors">Philosophy</Link>
-             
-             <button onClick={() => handleNavClick('technology')} className="text-[13px] font-medium text-gray-400 hover:text-white transition-colors">Tech</button>
-
-            <Link to="/download" className="apple-button text-[13px]">Download</Link>
+          <div className="site-nav__desktop">
+            <div className="site-nav__apps" onMouseLeave={() => setAppsOpen(false)}>
+              <button
+                type="button"
+                onClick={() => setAppsOpen((open) => !open)}
+                onMouseEnter={() => setAppsOpen(true)}
+                aria-expanded={appsOpen}
+                aria-controls="desktop-app-menu"
+              >
+                Apps <ChevronDown size={13} className={appsOpen ? 'rotate-180' : ''} />
+              </button>
+              <AnimatePresence>
+                {appsOpen && (
+                  <motion.div
+                    id="desktop-app-menu"
+                    className="app-menu"
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="app-menu__head"><span>The collection</span><span>Apple platforms</span></div>
+                    {products.map((product, index) => (
+                      <Link key={product.id} to={`/apps/${product.id}`}>
+                        <span>0{index + 1}</span>
+                        <div><strong>{product.name}</strong><small>{product.category}</small></div>
+                        <i className={product.status === 'live' ? 'is-live' : ''}>{product.status === 'live' ? 'Available' : 'In the lab'}</i>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+            <button type="button" onClick={() => goToSection('architecture')}>Why local</button>
+            <Link to="/blog" aria-current={location.pathname.startsWith('/blog') ? 'page' : undefined}>Journal</Link>
+            <Link to="/help" aria-current={location.pathname.startsWith('/help') ? 'page' : undefined}>Help</Link>
           </div>
 
-          <button className="md:hidden text-white z-50" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
-            {isOpen ? <X /> : <Menu />}
-          </button>
+          <div className="site-nav__actions">
+            <a
+              href="https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060"
+              target="_blank"
+              rel="noreferrer"
+              className="site-nav__cta"
+            >
+              Get Echo Chamber <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+            <button
+              ref={openButtonRef}
+              type="button"
+              className="site-nav__menu-button"
+              onClick={() => setMenuOpen(true)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-label="Open menu"
+            >
+              <Menu size={21} />
+            </button>
+          </div>
         </div>
       </nav>
 
       <AnimatePresence>
-        {isOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="fixed inset-0 bg-black z-[40] flex flex-col items-center justify-center gap-6 pt-20">
-             <Link to="/" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Home</Link>
+        {menuOpen && (
+          <motion.div
+            ref={menuRef}
+            id="mobile-menu"
+            className="mobile-menu site-chrome"
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+          >
+            <div className="mobile-menu__top">
+              <Link to="/" className="site-wordmark" onClick={() => setMenuOpen(false)}>
+                <span className="site-wordmark__mark" aria-hidden="true"><i /><i /><i /></span>
+                <span>Obsidian Ridge <b>Labs</b></span>
+              </Link>
+              <button ref={closeButtonRef} type="button" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X /></button>
+            </div>
 
-             {/* Apps dropdown */}
-             <div className="flex flex-col items-center">
-               <button onClick={() => setDropdownOpen(!dropdownOpen)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors flex items-center gap-2">
-                 Apps <ChevronDown size={18} className={`transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
-               </button>
-               <AnimatePresence>
-                 {dropdownOpen && (
-                   <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="flex flex-col items-center gap-3 mt-3 overflow-hidden">
-                     {products.map(p => (
-                       <Link key={p.id} to={`/apps/${p.id}`} onClick={() => setIsOpen(false)} className="text-base text-gray-400 hover:text-white transition-colors">{p.name}</Link>
-                     ))}
-                   </motion.div>
-                 )}
-               </AnimatePresence>
-             </div>
+            <div className="mobile-menu__body">
+              <nav aria-label="Mobile navigation">
+                <button type="button" onClick={() => goToSection('products')}><span>01</span>Apps <ArrowRight /></button>
+                <button type="button" onClick={() => goToSection('architecture')}><span>02</span>Why local <ArrowRight /></button>
+                <Link to="/blog"><span>03</span>Journal <ArrowRight /></Link>
+                <Link to="/help"><span>04</span>Help <ArrowRight /></Link>
+                <Link to="/philosophy"><span>05</span>Philosophy <ArrowRight /></Link>
+              </nav>
+              <div className="mobile-menu__apps">
+                <p>Explore the apps</p>
+                {products.map((product) => (
+                  <Link key={product.id} to={`/apps/${product.id}`}>
+                    <span style={{ background: product.accent }} />
+                    {product.name}
+                    <small>{product.status === 'live' ? 'Available' : 'In the lab'}</small>
+                  </Link>
+                ))}
+              </div>
+            </div>
 
-             <Link to="/blog" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Journal</Link>
-             <Link to="/help" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Help</Link>
-             <Link to="/philosophy" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Philosophy</Link>
-             <Link to="/download" onClick={() => setIsOpen(false)} className="text-2xl font-bold text-white hover:text-apple-blue transition-colors">Download</Link>
-            <div className="mt-8 text-gray-500 text-xs">Obsidian Ridge Labs</div>
+            <div className="mobile-menu__footer">
+              <span>Private AI for Apple devices</span>
+              <a href="mailto:support@obsidianridgelabs.com">support@obsidianridgelabs.com</a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

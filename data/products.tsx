@@ -9,7 +9,7 @@ export const products: Product[] = [
     tagline: "Total Control Over Your Money.",
     category: "Smart Finance",
     status: "live",
-    accent: "#00f0ff",
+    accent: "#c7ff3e",
     appStoreUrl: "",
     githubUrl: "https://github.com/obsidian-ridge-labs/Vault",
     hasKnowledgeBase: true,
@@ -17,7 +17,7 @@ export const products: Product[] = [
     minOS: "iOS 17",
     price: "Free · optional bank sync",
     description: "Understand your spending and predict your future balance without giving a company your bank password.",
-    fullDescription: "Most finance apps sell your data to banks and advertisers. Vault changes the game. It analyzes your spending with AI that lives entirely on your phone, so no cloud is required to use it. Track everything by hand and it never leaves your device, or link a bank through Plaid when you want automatic updates, where your login happens on Plaid's secure screen and your password never touches Vault. Secure, fast, and yours.",
+    fullDescription: "Vault analyzes spending with AI that lives on your phone, so its core budgeting, categorization, forecasting, and coaching workflows can stay local. Track manually for the most private setup, import statements and receipts on-device, or enable Plaid bank sync when automatic updates are worth the connection. Bank credentials are entered through Plaid and never handled by Vault.",
     icon: LineChart,
     specs: [
       { label: "Processing", value: "On-Device AI" },
@@ -62,7 +62,7 @@ export const products: Product[] = [
     accent: "#a855f7",
     hasKnowledgeBase: false,
     description: "Write your thoughts and let our AI help you find patterns in your life. Private, secure, and purely yours.",
-    fullDescription: "Notion and Evernote keep your notes on their servers. Mind Palace keeps your thoughts where they belong: in your pocket. As you journal, our built-in AI learns your patterns and helps you find connections between your moods and your habits. It's like having a digital therapist that has zero access to the internet.",
+    fullDescription: "Mind Palace is an in-development journal concept designed to keep reflection private. Its local intelligence will help surface patterns across entries, connect moods with habits, and make past thoughts easier to recall without treating personal writing as cloud training data.",
     icon: Book,
     specs: [
       { label: "Brain", value: "Private AI Core" },
@@ -104,30 +104,28 @@ export const products: Product[] = [
     tagline: "Private AI Transcription. On Your Device.",
     category: "Offline Transcription",
     status: "live",
-    accent: "#00f0ff",
+    accent: "#c7ff3e",
     appStoreUrl: "https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060",
     githubUrl: "https://github.com/obsidian-ridge-labs/Echo-Chamber",
     hasKnowledgeBase: true,
-    platforms: ["iOS", "iPadOS", "macOS", "watchOS"],
+    platforms: ["iOS", "iPadOS", "macOS", "visionOS"],
     minOS: "iOS 18",
-    price: "Free · Pro from $4.99/mo",
-    description: "Record, transcribe, and summarize meetings entirely on your iPhone. No cloud, no internet, no data collection. AI-powered speaker identification, 6 summary formats, and 25-language support.",
-    fullDescription: "Echo Chamber is a private, offline transcription app that records and transcribes audio in real-time using on-device AI. Powered by the Parakeet TDT v3 neural engine, it delivers instant speech-to-text in 25 languages without ever connecting to the internet. Generate AI meeting summaries in 6 formats (including Cornell Notes and Meeting Minutes), ask your transcript questions with AI Chat, and export to 7 formats including PDF and SRT subtitles. Built for lawyers, doctors, and executives who need absolute confidentiality.",
+    price: "Free · Pro from $2.99/mo",
+    description: "Record audio, follow a live transcript, polish it with AI, search every word, and export to TXT, Markdown, PDF, or DOCX. Core speech and AI processing happen on your Apple device.",
+    fullDescription: "Echo Chamber is an on-device voice transcription app for meetings, lectures, and dictation. Record audio, see a live transcript as you speak, bookmark important moments, create AI-polished notes and summaries, search across recordings, and export to TXT, Markdown, PDF, or DOCX. Audio is processed locally using Apple on-device speech frameworks and packaged models rather than being uploaded to Obsidian Ridge Labs.",
     icon: Mic,
     specs: [
-      { label: "Engine", value: "Parakeet TDT v3" },
-      { label: "Languages", value: "25 Supported" },
+      { label: "Processing", value: "On-Device" },
+      { label: "Transcript", value: "Live" },
       { label: "Internet", value: "Not Required" },
-      { label: "Export", value: "7 Formats" }
+      { label: "Export", value: "4 Formats" }
     ],
-    version: "v1.0.0",
-    releaseDate: "2024.05.15",
     primaryColor: "text-neon",
     workflow: [
         { title: "Record or Import", description: "Tap to record live audio or import MP3, WAV, M4A, MP4, and more. Works in airplane mode." },
-        { title: "Transcribe On-Device", description: "The Parakeet TDT v3 engine transcribes speech to text in real-time on your phone's Neural Processing Unit." },
-        { title: "Summarize with AI", description: "Generate Cornell Notes, Meeting Minutes, Bullet Points, Outlines, Q&A, or Executive Summaries, processed on-device." },
-        { title: "Export or Ask AI", description: "Export to PDF, SRT, VTT, Markdown, JSON, or plain text. Or ask AI questions about your transcript." }
+        { title: "Transcribe On-Device", description: "On-device speech processing turns your recording into a live transcript as you speak." },
+        { title: "Polish with AI", description: "Turn the raw verbatim transcript into clear notes and summaries using local intelligence." },
+        { title: "Search or Export", description: "Search every word, then export the result to TXT, Markdown, PDF, or DOCX." }
     ],
     features: [
       {
@@ -136,13 +134,13 @@ export const products: Product[] = [
         icon: <Mic className="w-5 h-5 text-neon" />
       },
       {
-        title: "100% Offline",
-        description: "Every feature works without WiFi or cellular. Transcribe on planes, in secure facilities, or off the grid.",
+        title: "Offline-Ready",
+        description: "After any required model setup, core recording, transcription, notes, and search work without Wi-Fi or cellular service.",
         icon: <Wifi className="w-5 h-5 text-neon" />
       },
       {
         title: "Zero Cloud Exposure",
-        description: "No audio is ever uploaded. No servers, no accounts, no data collection. Face ID lock keeps recordings secure.",
+        description: "Audio is processed on-device rather than uploaded to Obsidian Ridge Labs. Face ID can add another layer of local access control.",
         icon: <Shield className="w-5 h-5 text-neon" />
       }
     ]

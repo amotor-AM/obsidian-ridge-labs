@@ -27,7 +27,7 @@ const TermsOfService: React.FC = () => {
         </h1>
         
         <div className="text-gray-400 leading-relaxed space-y-8">
-          <p className="text-gray-400 text-sm mb-8">Last Updated: {new Date().toLocaleDateString()}</p>
+          <p className="text-gray-400 text-sm mb-8">Last Updated: June 20, 2026</p>
           
           <section className="mb-12">
             <h2 className="text-2xl font-semibold text-white mb-4">1. Acceptance of Terms</h2>

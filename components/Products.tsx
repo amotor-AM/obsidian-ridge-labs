@@ -1,97 +1,123 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Download, ArrowRight } from 'lucide-react';
 import { products } from '../data/products';
+import MotionReveal from './home/MotionReveal';
+import ProductVisual from './home/ProductVisual';
 
-const Products: React.FC = () => {
+const productOrder = ['echochamber', 'vault', 'molehill', 'mind', 'nexus'];
+
+const homepageCopy: Record<string, { eyebrow: string; headline: string; body: string; facts: string[] }> = {
+  echochamber: {
+    eyebrow: 'Private transcription',
+    headline: 'Every word captured. Nothing sent to us.',
+    body: 'Record audio, follow a live transcript, polish it with AI, search every word, and export the result—all on your Apple device. No required cloud processing. No audio uploaded to Obsidian Ridge Labs.',
+    facts: ['Live transcription', 'AI notes & summaries', 'iPhone · iPad · Mac'],
+  },
+  vault: {
+    eyebrow: 'Personal finance',
+    headline: 'Understand your money without becoming the product.',
+    body: 'Vault categorizes spending, forecasts cash flow, and offers private financial guidance on-device. Track manually and stay fully local, or enable Plaid bank sync when automatic updates are worth the connection.',
+    facts: ['On-device forecasts', 'Biometric lock', 'Optional bank sync'],
+  },
+  molehill: {
+    eyebrow: 'Focus & momentum',
+    headline: 'Make the next step smaller.',
+    body: 'Turn an overwhelming brain dump into one clear, doable action. On-device AI breaks work down without streaks, shame, or behavioral tracking.',
+    facts: ['One step at a time', 'Works offline', 'No behavior tracking'],
+  },
+  mind: {
+    eyebrow: 'Private reflection',
+    headline: 'A journal that connects the dots—privately.',
+    body: 'A private AI journal concept designed to surface patterns across your writing locally and under biometric protection.',
+    facts: ['Local pattern finding', 'Semantic recall', 'Biometric protection'],
+  },
+  nexus: {
+    eyebrow: 'Strategic thinking',
+    headline: 'Put important decisions under pressure.',
+    body: 'A visual decision workspace concept with local red-team intelligence that challenges assumptions before the stakes are real.',
+    facts: ['Decision mapping', 'Red-team analysis', 'Local simulation'],
+  },
+};
+
+const ProductCard: React.FC<{ productId: string; featured?: boolean; index: number }> = ({ productId, featured = false, index }) => {
+  const product = products.find((item) => item.id === productId);
+  if (!product) return null;
+  const copy = homepageCopy[product.id];
+  const style = { '--product-accent': product.accent || '#c7ff3e' } as React.CSSProperties;
+  const status = product.status === 'live' ? 'Available now' : 'Inside the lab';
+
   return (
-    <section id="products" className="py-16 md:py-32 px-6 md:px-12 bg-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           className="mb-12 md:mb-24 text-center"
-        >
-          <h2 className="text-neon text-sm font-semibold tracking-tight mb-4 uppercase">App Suite</h2>
-          <h3 className="text-5xl md:text-6xl font-bold text-white mb-8 tracking-tight">
-            Offline Tools.
-          </h3>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium leading-relaxed">
-            A collection of specialized tools designed for the modern professional. 
-            Privacy by design. Performance by default.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {products.map((product, idx) => {
-            const Icon = product.icon;
-            return (
-              <motion.div 
-                key={product.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="glass-panel group flex flex-col p-8 md:p-10"
-              >
-                <div className="flex justify-between items-start mb-12">
-                  <div className="w-16 h-16 bg-black/20 rounded-none border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                    <Icon className="w-8 h-8 text-neon" />
-                  </div>
-                  {product.id === 'echochamber' ? (
-                    <span className="text-[11px] font-semibold text-gray-400 bg-white/5 px-3 py-1 rounded-none uppercase tracking-wider">{product.version}</span>
-                  ) : (
-                    <span className="text-[11px] font-semibold text-amber-400 bg-amber-400/10 border border-amber-400/30 px-3 py-1 rounded-none uppercase tracking-wider">Coming Soon</span>
-                  )}
-                </div>
-
-                <h4 className="text-neon text-xs font-bold mb-2 uppercase tracking-widest">{product.category}</h4>
-                <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">
-                  {product.name}
-                </h3>
-                
-                <p className="text-gray-400 leading-relaxed mb-12 flex-grow text-lg">
-                  {product.description}
-                </p>
-
-                <div className="space-y-6 border-t border-white/5 pt-8 mt-auto">
-                  <div className="flex flex-wrap gap-4">
-                    {product.specs.slice(0, 2).map((spec, i) => (
-                      <div key={i} className="text-[12px] font-medium text-gray-400">
-                        {spec.label}: <span className="text-white">{spec.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="flex gap-4">
-                    {product.id === 'echochamber' ? (
-                      <Link
-                        to={`/apps/${product.id}`}
-                        className="bg-neon text-black font-display font-bold uppercase tracking-wider hover:bg-white w-full text-center flex items-center justify-center gap-2 py-3"
-                      >
-                        Learn More
-                        <ArrowRight size={18} />
-                      </Link>
-                    ) : (
-                      <Link
-                        to={`/apps/${product.id}`}
-                        className="bg-white/10 text-white/60 font-display font-bold uppercase tracking-wider w-full text-center flex items-center justify-center gap-2 py-3 hover:bg-white/15 transition-colors"
-                      >
-                        Coming Soon
-                        <ArrowRight size={18} />
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+    <MotionReveal className={`product-story ${featured ? 'product-story--featured' : ''}`} amount={0.18}>
+      <article style={style}>
+        <div className="product-story__copy">
+          <div className="product-story__meta">
+            <span>0{index + 1}</span>
+            <span>{copy.eyebrow}</span>
+            <span className={product.status === 'live' ? 'is-live' : ''}><i /> {status}</span>
+          </div>
+          <div className="product-story__heading">
+            <p>{product.name}</p>
+            <h3>{copy.headline}</h3>
+          </div>
+          <p className="product-story__body">{copy.body}</p>
+          <ul className="product-story__facts" aria-label={`${product.name} highlights`}>
+            {copy.facts.map((fact) => <li key={fact}>{fact}</li>)}
+          </ul>
+          <div className="product-story__actions">
+            <Link to={`/apps/${product.id}`} className="button button--outline">
+              Explore {product.shortName} <ArrowUpRight size={16} aria-hidden="true" />
+            </Link>
+            {product.appStoreUrl && (
+              <a href={product.appStoreUrl} target="_blank" rel="noreferrer" className="text-link">
+                App Store <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+        <ProductVisual productId={product.id} />
+      </article>
+    </MotionReveal>
   );
 };
+
+const Products: React.FC = () => (
+  <section id="products" className="products-section" aria-labelledby="products-title">
+    <div className="section-frame">
+      <div className="section-index">
+        <span>02 / The collection</span>
+        <span>Five focused instruments</span>
+      </div>
+
+      <div className="products-section__intro">
+        <MotionReveal>
+          <p className="section-kicker">Built for what matters</p>
+          <h2 id="products-title">A private toolkit for modern life.</h2>
+        </MotionReveal>
+        <MotionReveal delay={0.08}>
+          <p>
+            Different jobs. One principle: keep the intelligence close to the data.
+            Available products are shown first; experiments in development live inside the lab.
+          </p>
+        </MotionReveal>
+      </div>
+
+      <div className="products-section__available" aria-label="Available applications">
+        <ProductCard productId={productOrder[0]} featured index={0} />
+        <ProductCard productId={productOrder[1]} featured index={1} />
+      </div>
+
+      <div className="lab-heading">
+        <span>Inside the lab</span>
+        <p>Three ideas in active development, each built around the same local-first standard.</p>
+      </div>
+      <div className="products-section__lab">
+        {productOrder.slice(2).map((productId, index) => (
+          <ProductCard key={productId} productId={productId} index={index + 2} />
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default Products;

@@ -1,25 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNL2K6W19T"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-FNL2K6W19T', {
-        send_page_view: false // We will handle page views manually on route transitions in App.tsx
-      });
-    </script>
-
-    <!-- Progressive enhancement + in-app webview mode. Runs before first paint:
-         - marks <html class="js"> so scroll-reveal content is hidden only when JS can reveal it
-         - ?embed=1 hides site chrome for knowledge-base deep links opened inside the apps -->
+    <!-- In-app webview mode. Runs before first paint so knowledge-base links can
+         hide the public site chrome when opened inside an Obsidian Ridge app. -->
     <script>
       (function () {
         try {
-          document.documentElement.classList.add('js');
           var p = new URLSearchParams(location.search);
           if (p.get('embed') === '1' || p.get('embedded') === '1') {
             document.documentElement.setAttribute('data-embed', '1');
@@ -30,14 +16,14 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Obsidian Ridge Labs | Privacy-First Offline AI Apps</title>
+    <title>Obsidian Ridge Labs — Private AI Apps for Apple</title>
 
     <!-- Primary Meta Tags -->
-    <meta name="description" content="Obsidian Ridge Labs builds privacy-first, offline AI apps for Apple devices. Finance tracking, journaling, meeting transcription, and decision mapping, all powered by on-device AI. No cloud. No accounts. No data collection." />
-    <meta name="keywords" content="offline AI apps, privacy-first apps, on-device AI, private finance app, offline meeting transcription, private journal app, AI decision making, no cloud apps, zero telemetry, Obsidian Ridge Labs" />
+    <meta name="description" content="Private, offline-first AI apps for iPhone, iPad, and Mac. On-device transcription, finance intelligence, focus tools, and more." />
+    <meta name="keywords" content="private AI apps, offline AI apps, on-device AI for Apple, private transcription, Apple Neural Engine apps, Obsidian Ridge Labs" />
     <meta name="author" content="Obsidian Ridge Labs" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#070806" />
     <meta name="color-scheme" content="dark" />
     <meta name="generator" content="Vite" />
 
@@ -47,32 +33,27 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Obsidian Ridge Labs" />
-    <meta property="og:title" content="Obsidian Ridge Labs | Privacy-First Offline AI Apps" />
-    <meta property="og:description" content="We build AI apps that live strictly on your device. Finance tracking, journaling, meeting transcription, and decision mapping. No cloud, no accounts, no leaks." />
+    <meta property="og:title" content="Obsidian Ridge Labs — Private AI Apps for Apple" />
+    <meta property="og:description" content="AI should come to your data. Not the other way around. Private, offline-first intelligence built for Apple devices." />
     <meta property="og:url" content="https://obsidianridgelabs.com/" />
-    <meta property="og:image" content="https://obsidianridgelabs.com/og-default.png" />
+    <meta property="og:image" content="https://obsidianridgelabs.com/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Obsidian Ridge Labs: Privacy-First Offline AI Architecture" />
+    <meta property="og:image:alt" content="Obsidian Ridge Labs — private AI apps built for Apple devices" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Obsidian Ridge Labs | Privacy-First Offline AI Apps" />
-    <meta name="twitter:description" content="AI apps that live on your device. No cloud. No accounts. No data collection." />
-    <meta name="twitter:image" content="https://obsidianridgelabs.com/og-default.png" />
-    <meta name="twitter:image:alt" content="Obsidian Ridge Labs: Privacy-First Offline AI Architecture" />
+    <meta name="twitter:title" content="Obsidian Ridge Labs — Private AI Apps for Apple" />
+    <meta name="twitter:description" content="Private, offline-first AI apps whose core intelligence runs on your Apple device." />
+    <meta name="twitter:image" content="https://obsidianridgelabs.com/og.png" />
+    <meta name="twitter:image:alt" content="Obsidian Ridge Labs — private AI apps built for Apple devices" />
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-    <!-- Preconnect for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 
     <!-- Styles (Tailwind v4 + custom layers) are bundled from index.css at build time. -->
 
@@ -84,7 +65,7 @@
       "name": "Obsidian Ridge Labs",
       "url": "https://obsidianridgelabs.com",
       "logo": "https://obsidianridgelabs.com/favicon.svg",
-      "description": "Boutique mobile app studio specializing in private, offline-first AI architecture. We build AI apps that run entirely on your device with zero cloud dependency.",
+      "description": "Independent Apple software studio building private, offline-first AI apps whose core intelligence runs on-device.",
       "foundingDate": "2024",
       "email": "support@obsidianridgelabs.com",
       "sameAs": [],
@@ -97,29 +78,21 @@
         "Local Large Language Models",
         "Zero-knowledge architecture"
       ],
-      "slogan": "Your AI. Your Phone. Your Business."
+      "slogan": "AI should come to your data. Not the other way around."
     }
     </script>
 
-    <!-- WebSite Schema with SearchAction -->
+    <!-- WebSite Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Obsidian Ridge Labs",
       "url": "https://obsidianridgelabs.com",
-      "description": "Privacy-first, offline AI apps for Apple devices.",
+      "description": "Private, offline-first AI apps for Apple devices.",
       "publisher": {
         "@type": "Organization",
         "name": "Obsidian Ridge Labs"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://obsidianridgelabs.com/blog?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
       }
     }
     </script>

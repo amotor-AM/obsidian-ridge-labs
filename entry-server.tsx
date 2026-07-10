@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
-import App from './App';
+import ServerApp from './ServerApp';
 import { setServerSEOContext } from './components/SEO';
 import { products } from './data/products';
 import { blogPosts } from './data/blog';
@@ -12,7 +12,7 @@ export function render(url: string, context: any) {
   setServerSEOContext(context);
   return ReactDOMServer.renderToString(
     <StaticRouter location={url}>
-      <App />
+      <ServerApp />
     </StaticRouter>
   );
 }

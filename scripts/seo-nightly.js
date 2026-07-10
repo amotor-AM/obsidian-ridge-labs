@@ -4,6 +4,9 @@ import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const SITE_ORIGIN = 'https://obsidianridgelabs.com';
+const SITEMAP_URL = `${SITE_ORIGIN}/sitemap.xml`;
+const LOCAL_SITEMAP_PATH = path.resolve(__dirname, '../public/sitemap.xml');
 
 // 1. Helper function for base64url encoding
 function base64url(str) {
@@ -49,89 +52,84 @@ async function getGscAccessToken(clientEmail, privateKey) {
   return data.access_token;
 }
 
+async function loadSitemap() {
+  try {
+    const response = await fetch(SITEMAP_URL, {
+      headers: { 'User-Agent': 'Obsidian-Ridge-SEO-Monitor/1.0' },
+    });
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    const xml = await response.text();
+    console.log(`Loaded production sitemap: ${SITEMAP_URL}`);
+    return xml;
+  } catch (error) {
+    console.warn(`Could not load the production sitemap (${error.message}); using the checked-in fallback.`);
+    if (!fs.existsSync(LOCAL_SITEMAP_PATH)) {
+      throw new Error(`Sitemap unavailable remotely and no fallback exists at ${LOCAL_SITEMAP_PATH}`);
+    }
+    return fs.readFileSync(LOCAL_SITEMAP_PATH, 'utf8');
+  }
+}
+
+function extractSitemapUrls(xml) {
+  return [...xml.matchAll(/<loc>(https:\/\/obsidianridgelabs\.com\/.*?)<\/loc>/g)].map((match) => match[1]);
+}
+
+function getIndexNowUrls(sitemapUrls) {
+  // IndexNow should announce URLs that actually changed, not every URL every
+  // night. A publishing workflow may provide a comma- or whitespace-delimited
+  // INDEXNOW_URLS value when it has a real change to submit.
+  const requested = (process.env.INDEXNOW_URLS || '')
+    .split(/[\s,]+/)
+    .map((url) => url.trim())
+    .filter(Boolean);
+
+  const sitemapSet = new Set(sitemapUrls);
+  return [...new Set(requested)].filter((url) => sitemapSet.has(url));
+}
+
+async function submitIndexNow(urls) {
+  if (!urls.length) {
+    console.log('No changed URLs supplied via INDEXNOW_URLS; skipping IndexNow submission.');
+    return;
+  }
+
+  const response = await fetch('https://api.indexnow.org/IndexNow', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    body: JSON.stringify({
+      host: 'obsidianridgelabs.com',
+      key: '7c62d08a385f4035a77080f4cecaee5a',
+      keyLocation: `${SITE_ORIGIN}/7c62d08a385f4035a77080f4cecaee5a.txt`,
+      urlList: urls,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`IndexNow failed: ${response.status} ${response.statusText} - ${errorText}`);
+  }
+
+  console.log(`IndexNow accepted ${urls.length} changed URL${urls.length === 1 ? '' : 's'}.`);
+}
+
 // Main execution function
 async function runSeoNightly() {
-  console.log('--- Starting Nightly SEO Service ---');
-  
-  // Format current dates
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const day = String(today.getDate()).padStart(2, '0');
-  
-  const todayTs = `${year}.${month}.${day}`;     // e.g., 2026.05.27
-  const todayXml = `${year}-${month}-${day}`;    // e.g., 2026-05-27
-  
-  console.log(`Setting dates to: TS format="${todayTs}", XML format="${todayXml}"`);
+  console.log('--- Starting Nightly SEO Monitor ---');
+  console.log('Editorial dates are immutable here; this job never rewrites content or sitemap timestamps.');
 
-  // Paths
-  const blogTsPath = path.resolve(__dirname, '../data/blog.ts');
-  const sitemapPath = path.resolve(__dirname, '../public/sitemap.xml');
-
-  // Update data/blog.ts
-  if (fs.existsSync(blogTsPath)) {
-    console.log('Updating blog.ts...');
-    let blogContent = fs.readFileSync(blogTsPath, 'utf8');
-    const blogRegex = /date:\s*"[0-9]{4}\.[0-9]{2}\.[0-9]{2}"/g;
-    blogContent = blogContent.replace(blogRegex, `date: "${todayTs}"`);
-    fs.writeFileSync(blogTsPath, blogContent, 'utf8');
-    console.log('Successfully updated blog.ts timestamps.');
-  } else {
-    console.warn(`Warning: blog.ts not found at ${blogTsPath}`);
+  const sitemapXml = await loadSitemap();
+  const sitemapUrls = extractSitemapUrls(sitemapXml);
+  if (!sitemapUrls.length) {
+    throw new Error('The sitemap contains no valid Obsidian Ridge Labs URLs.');
   }
+  console.log(`Validated ${sitemapUrls.length} sitemap URLs.`);
 
-  // Update public/sitemap.xml
-  let urls = [];
-  if (fs.existsSync(sitemapPath)) {
-    console.log('Updating sitemap.xml...');
-    let sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
-    const sitemapRegex = /<lastmod>[0-9]{4}-[0-9]{2}-[0-9]{2}<\/lastmod>/g;
-    sitemapContent = sitemapContent.replace(sitemapRegex, `<lastmod>${todayXml}</lastmod>`);
-    fs.writeFileSync(sitemapPath, sitemapContent, 'utf8');
-    console.log('Successfully updated sitemap.xml timestamps.');
-
-    // Extract URLs for IndexNow
-    const matches = sitemapContent.matchAll(/<loc>(https:\/\/obsidianridgelabs\.com\/.*?)<\/loc>/g);
-    for (const match of matches) {
-      urls.push(match[1]);
-    }
-    console.log(`Extracted ${urls.length} URLs from sitemap.`);
-  } else {
-    console.warn(`Warning: sitemap.xml not found at ${sitemapPath}`);
-  }
-
-  // Ping Bing Standard Sitemap submission
   try {
-    const bingPingUrl = `https://www.bing.com/ping?sitemap=https://obsidianridgelabs.com/sitemap.xml`;
-    console.log(`Pinging Bing Sitemap submission: ${bingPingUrl}`);
-    const bingRes = await fetch(bingPingUrl);
-    console.log(`Bing Ping Status: ${bingRes.status} (${bingRes.statusText})`);
-  } catch (err) {
-    console.error('Failed to ping Bing Sitemap:', err.message);
-  }
-
-  // IndexNow API Submission
-  if (urls.length > 0) {
-    try {
-      const indexNowUrl = 'https://api.indexnow.org/IndexNow';
-      console.log(`Submitting URLs to IndexNow API...`);
-      const payload = {
-        host: 'obsidianridgelabs.com',
-        key: '7c62d08a385f4035a77080f4cecaee5a',
-        keyLocation: 'https://obsidianridgelabs.com/7c62d08a385f4035a77080f4cecaee5a.txt',
-        urlList: urls
-      };
-      
-      const res = await fetch(indexNowUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        body: JSON.stringify(payload)
-      });
-      
-      console.log(`IndexNow Submission Status: ${res.status} (${res.statusText})`);
-    } catch (err) {
-      console.error('Failed to submit to IndexNow API:', err.message);
-    }
+    await submitIndexNow(getIndexNowUrls(sitemapUrls));
+  } catch (error) {
+    console.error(error.message);
   }
 
   // Google Search Console (GSC) Sitemap Submission
@@ -143,8 +141,8 @@ async function runSeoNightly() {
       console.log('Authenticating with Google Search Console...');
       const token = await getGscAccessToken(gscEmail, gscKey);
       
-      const siteUrlEncoded = encodeURIComponent('https://obsidianridgelabs.com/');
-      const feedPathEncoded = encodeURIComponent('https://obsidianridgelabs.com/sitemap.xml');
+      const siteUrlEncoded = encodeURIComponent(`${SITE_ORIGIN}/`);
+      const feedPathEncoded = encodeURIComponent(SITEMAP_URL);
       const gscApiUrl = `https://www.googleapis.com/webmasters/v3/sites/${siteUrlEncoded}/sitemaps/${feedPathEncoded}`;
       
       console.log(`Submitting sitemap to Google Search Console API...`);
@@ -169,7 +167,7 @@ async function runSeoNightly() {
     console.log('Google Search Console credentials not found in env (GSC_CLIENT_EMAIL, GSC_PRIVATE_KEY). Skipping GSC submission.');
   }
 
-  console.log('--- Nightly SEO Service Completed ---');
+  console.log('--- Nightly SEO Monitor Completed (no files changed) ---');
 }
 
 runSeoNightly().catch(err => {

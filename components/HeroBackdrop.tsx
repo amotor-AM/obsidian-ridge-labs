@@ -1,13 +1,56 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-/* A subtle Three.js layer behind the hero: a field of glowing points laid out
-   as a slowly undulating ridge, a quiet nod to "Obsidian Ridge". Loaded
-   client-only and code-split, so it never runs during SSR/prerender. Respects
-   reduced-motion, pauses when the tab is hidden, and cleans up fully. GSAP adds
-   a gentle scroll parallax as you move past the hero. */
+const vertexShader = `
+  uniform float uTime;
+  uniform float uPointSize;
+  varying float vElevation;
+  varying float vFade;
+
+  float ridge(vec2 p) {
+    float primary = sin(p.x * 0.42 + uTime * 0.48) * 1.15;
+    float secondary = cos(p.y * 0.31 - uTime * 0.28) * 0.72;
+    float detail = sin((p.x + p.y) * 0.23 + uTime * 0.22) * 0.46;
+    float peak = exp(-pow((p.x + 3.5) * 0.15, 2.0)) * 2.4;
+    return primary + secondary + detail + peak;
+  }
+
+  void main() {
+    vec3 pos = position;
+    float elevation = ridge(pos.xy);
+    pos.z += elevation;
+    vElevation = elevation;
+    vFade = 1.0 - smoothstep(8.0, 25.0, length(pos.xy));
+    vec4 modelPosition = modelMatrix * vec4(pos, 1.0);
+    vec4 viewPosition = viewMatrix * modelPosition;
+    gl_Position = projectionMatrix * viewPosition;
+    gl_PointSize = uPointSize * (30.0 / max(1.0, -viewPosition.z));
+  }
+`;
+
+const lineFragmentShader = `
+  uniform vec3 uColor;
+  varying float vElevation;
+  varying float vFade;
+
+  void main() {
+    float peak = smoothstep(-1.5, 3.4, vElevation);
+    gl_FragColor = vec4(uColor, (0.08 + peak * 0.22) * max(0.1, vFade));
+  }
+`;
+
+const pointFragmentShader = `
+  uniform vec3 uColor;
+  varying float vElevation;
+  varying float vFade;
+
+  void main() {
+    float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
+    if (distanceToCenter > 0.5) discard;
+    float peak = smoothstep(-1.5, 3.5, vElevation);
+    gl_FragColor = vec4(uColor, (0.28 + peak * 0.55) * vFade);
+  }
+`;
 
 const HeroBackdrop: React.FC = () => {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -16,161 +59,146 @@ const HeroBackdrop: React.FC = () => {
     const root = rootRef.current;
     if (!root) return;
 
-    const prefersReduced =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const isCompact = window.matchMedia('(max-width: 760px)').matches;
 
-    let width = root.clientWidth || window.innerWidth;
-    let height = root.clientHeight || 600;
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: false,
+        powerPreference: 'low-power',
+      });
+    } catch {
+      return;
+    }
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power' });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
-    renderer.setSize(width, height);
-    renderer.domElement.style.width = '100%';
-    renderer.domElement.style.height = '100%';
+    renderer.setClearColor(0x000000, 0);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isCompact ? 1.2 : 1.55));
     root.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
-    camera.position.set(0, 7, 16);
-    camera.lookAt(0, 1, -2);
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 80);
+    camera.position.set(isCompact ? 1 : 2.5, isCompact ? 6 : 5.5, isCompact ? 18 : 16);
+    camera.lookAt(2, -1.5, -5);
 
-    // Build a grid of points across an XZ plane; y is animated into ridges.
-    const GX = 74;
-    const GZ = 50;
-    const SPAN_X = 54;
-    const SPAN_Z = 34;
-    const count = GX * GZ;
-    const positions = new Float32Array(count * 3);
-    const baseXZ: { x: number; z: number }[] = [];
-    let p = 0;
-    for (let ix = 0; ix < GX; ix++) {
-      for (let iz = 0; iz < GZ; iz++) {
-        const x = (ix / (GX - 1) - 0.5) * SPAN_X;
-        const z = (iz / (GZ - 1) - 0.5) * SPAN_Z - 6;
-        baseXZ.push({ x, z });
-        positions[p++] = x;
-        positions[p++] = 0;
-        positions[p++] = z;
-      }
-    }
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const geometry = new THREE.PlaneGeometry(
+      isCompact ? 30 : 44,
+      isCompact ? 24 : 32,
+      isCompact ? 34 : 62,
+      isCompact ? 24 : 42,
+    );
 
-    const material = new THREE.PointsMaterial({
-      color: new THREE.Color('#00f0ff'),
-      size: 0.07,
-      sizeAttenuation: true,
+    const uniforms = {
+      uTime: { value: 0.55 },
+      uPointSize: { value: isCompact ? 2.4 : 2.8 },
+      uColor: { value: new THREE.Color('#c7ff3e') },
+    };
+
+    const lineMaterial = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader: lineFragmentShader,
+      uniforms,
+      wireframe: true,
       transparent: true,
-      opacity: 0.5,
-      blending: THREE.AdditiveBlending,
       depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+    const pointMaterial = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader: pointFragmentShader,
+      uniforms,
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
     });
 
-    const points = new THREE.Points(geometry, material);
+    const terrain = new THREE.Mesh(geometry, lineMaterial);
+    terrain.rotation.x = -Math.PI / 2;
+    terrain.rotation.z = -0.08;
+    terrain.position.set(isCompact ? 0 : 5, -4.7, -6);
+    scene.add(terrain);
+
+    const points = new THREE.Points(geometry, pointMaterial);
+    points.rotation.copy(terrain.rotation);
+    points.position.copy(terrain.position);
     scene.add(points);
 
-    const ridge = (x: number, z: number, t: number) =>
-      Math.sin(x * 0.28 + t) * 1.15 +
-      Math.cos(z * 0.34 + t * 0.8) * 0.9 +
-      Math.sin((x + z) * 0.16 + t * 0.5) * 0.6;
-
-    const pos = geometry.attributes.position as THREE.BufferAttribute;
-    const writeRidge = (t: number) => {
-      for (let i = 0; i < count; i++) {
-        const { x, z } = baseXZ[i];
-        positions[i * 3 + 1] = ridge(x, z, t);
-      }
-      pos.needsUpdate = true;
-    };
-
-    // Pointer parallax target
     const pointer = { x: 0, y: 0 };
-    const onPointer = (e: PointerEvent) => {
-      pointer.x = (e.clientX / window.innerWidth - 0.5) * 2;
-      pointer.y = (e.clientY / window.innerHeight - 0.5) * 2;
-    };
-    window.addEventListener('pointermove', onPointer, { passive: true });
-
-    let raf = 0;
-    let running = true;
-    const clock = new THREE.Clock();
-
-    const renderFrame = () => {
-      const t = clock.getElapsedTime() * 0.35;
-      writeRidge(t);
-      points.rotation.y = Math.sin(t * 0.06) * 0.12;
-      camera.position.x += (pointer.x * 2.2 - camera.position.x) * 0.04;
-      camera.position.y += (7 + pointer.y * -1.2 - camera.position.y) * 0.04;
-      camera.lookAt(0, 1, -2);
-      renderer.render(scene, camera);
-    };
-
-    const loop = () => {
-      if (!running) return;
-      renderFrame();
-      raf = requestAnimationFrame(loop);
-    };
-
-    if (prefersReduced) {
-      writeRidge(0.6);
-      renderer.render(scene, camera);
-    } else {
-      loop();
-    }
-
-    const onVisibility = () => {
-      if (document.hidden) {
-        running = false;
-        cancelAnimationFrame(raf);
-      } else if (!prefersReduced && !running) {
-        running = true;
-        clock.start();
-        loop();
-      }
-    };
-    document.addEventListener('visibilitychange', onVisibility);
+    const target = { x: 0, y: 0 };
+    let scrollOffset = 0;
+    let visible = true;
+    let frame = 0;
+    let start = performance.now();
 
     const resize = () => {
-      width = root.clientWidth || window.innerWidth;
-      height = root.clientHeight || 600;
-      renderer.setSize(width, height);
+      const width = Math.max(1, root.clientWidth);
+      const height = Math.max(1, root.clientHeight);
+      renderer.setSize(width, height, false);
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      if (!running) renderer.render(scene, camera);
+      if (reducedMotion) renderer.render(scene, camera);
     };
-    const ro = new ResizeObserver(resize);
-    ro.observe(root);
 
-    // GSAP scroll parallax on the whole layer.
-    let st: ScrollTrigger | undefined;
-    if (!prefersReduced) {
-      gsap.registerPlugin(ScrollTrigger);
-      const section = root.closest('section') || root.parentElement || undefined;
-      const tween = gsap.to(root, {
-        yPercent: 28,
-        ease: 'none',
-        scrollTrigger: { trigger: section as Element, start: 'top top', end: 'bottom top', scrub: true },
-      });
-      st = tween.scrollTrigger;
-    }
+    const onPointerMove = (event: PointerEvent) => {
+      target.x = (event.clientX / window.innerWidth - 0.5) * 2;
+      target.y = (event.clientY / window.innerHeight - 0.5) * 2;
+    };
+
+    const onScroll = () => {
+      scrollOffset = Math.min(1, window.scrollY / Math.max(1, root.clientHeight));
+    };
+
+    const draw = (now: number) => {
+      if (!visible) return;
+      const elapsed = (now - start) / 1000;
+      if (!reducedMotion) uniforms.uTime.value = elapsed;
+      pointer.x += (target.x - pointer.x) * 0.035;
+      pointer.y += (target.y - pointer.y) * 0.035;
+      camera.position.x = (isCompact ? 1 : 2.5) + pointer.x * 0.75;
+      camera.position.y = (isCompact ? 6 : 5.5) - pointer.y * 0.5 + scrollOffset * 1.2;
+      camera.lookAt(2 + pointer.x * 0.25, -1.5, -5);
+      renderer.render(scene, camera);
+      if (!reducedMotion) frame = requestAnimationFrame(draw);
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible && !reducedMotion) {
+        start = performance.now() - uniforms.uTime.value * 1000;
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(draw);
+      } else {
+        cancelAnimationFrame(frame);
+      }
+    }, { rootMargin: '120px' });
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(root);
+    observer.observe(root);
+    if (finePointer) window.addEventListener('pointermove', onPointerMove, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    resize();
+    onScroll();
+    if (reducedMotion) draw(performance.now());
 
     return () => {
-      running = false;
-      cancelAnimationFrame(raf);
-      window.removeEventListener('pointermove', onPointer);
-      document.removeEventListener('visibilitychange', onVisibility);
-      ro.disconnect();
-      st?.kill();
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      resizeObserver.disconnect();
+      if (finePointer) window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('scroll', onScroll);
       geometry.dispose();
-      material.dispose();
+      lineMaterial.dispose();
+      pointMaterial.dispose();
       renderer.dispose();
+      renderer.forceContextLoss();
       if (renderer.domElement.parentNode === root) root.removeChild(renderer.domElement);
     };
   }, []);
 
-  return <div ref={rootRef} aria-hidden="true" className="absolute inset-0 -z-0 pointer-events-none" />;
+  return <div ref={rootRef} className="orl-hero__terrain" aria-hidden="true" />;
 };
 
 export default HeroBackdrop;
