@@ -9,6 +9,9 @@ const errors = [];
 const warnings = [];
 const expectedAppIds = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith'];
 const expectedAppNames = ['ECHO CHAMBER', 'VAULT', 'MOLEHILL', 'COVE', 'WOVE', 'METTLE', 'MEMORA', 'TROVE', 'KITH'];
+const expectedBlogPostCount = 20;
+const schemaGraphsByRoute = new Map();
+const visibleTextByRoute = new Map();
 
 const walk = (directory) => fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
   const fullPath = path.join(directory, entry.name);
@@ -55,6 +58,7 @@ for (const file of htmlFiles) {
   const h1Count = allMatches(html, /<h1(?:\s|>)/gi).length;
   const robots = html.match(/<meta name="robots" content="([^"]*)"\s*\/>/i)?.[1] || '';
   const isNoindex = robots.includes('noindex');
+  visibleTextByRoute.set(route, textValue(html));
 
   if (titles.length !== 1) errors.push(`${route}: expected 1 title, found ${titles.length}`);
   if (descriptions.length !== 1) errors.push(`${route}: expected 1 meta description, found ${descriptions.length}`);
@@ -86,6 +90,7 @@ for (const file of htmlFiles) {
         errors.push(`${route}: JSON-LD must be one schema.org @graph document`);
         continue;
       }
+      schemaGraphsByRoute.set(route, graph);
 
       for (const requiredType of ['Organization', 'WebSite']) {
         if (!graph.some((node) => typesOf(node).includes(requiredType))) errors.push(`${route}: missing ${requiredType} node`);
@@ -139,6 +144,12 @@ for (const appId of expectedAppIds) {
   if (!sitemapRoutes.has(appRoute)) errors.push(`${appRoute}: app page is missing from sitemap`);
 
   const appHtml = fs.readFileSync(appFile, 'utf8');
+  const productArticleLinks = new Set(
+    allMatches(appHtml, /href="(\/blog\/[^"#?]+)"/g).map((match) => match[1]),
+  );
+  if (productArticleLinks.size !== 2) {
+    errors.push(`${appRoute}: expected exactly 2 product-specific journal links, found ${productArticleLinks.size}`);
+  }
   const schemaSource = appHtml.match(/<script type="application\/ld\+json" data-seo-jsonld="true">([\s\S]*?)<\/script>/i)?.[1];
   if (!schemaSource) {
     errors.push(`${appRoute}: JSON-LD graph is missing`);
@@ -154,6 +165,72 @@ for (const appId of expectedAppIds) {
     }
   } catch (error) {
     errors.push(`${appRoute}: could not validate product schema: ${error.message}`);
+  }
+}
+
+const blogArticleRoutes = [...indexableRoutes]
+  .filter((route) => route.startsWith('/blog/'))
+  .sort();
+if (blogArticleRoutes.length !== expectedBlogPostCount) {
+  errors.push(`journal should expose ${expectedBlogPostCount} indexable articles, found ${blogArticleRoutes.length}`);
+}
+
+const clusterGenres = new Map(expectedAppIds.map((appId) => [appId, new Set()]));
+for (const blogRoute of blogArticleRoutes) {
+  const graph = schemaGraphsByRoute.get(blogRoute) || [];
+  const article = graph.find((node) => typesOf(node).includes('BlogPosting'));
+  const faq = graph.find((node) => typesOf(node).includes('FAQPage'));
+  const list = graph.find((node) => typesOf(node).includes('ItemList'));
+  const visibleText = visibleTextByRoute.get(blogRoute) || '';
+
+  if (!article) {
+    errors.push(`${blogRoute}: BlogPosting schema is missing`);
+    continue;
+  }
+  if (!faq || !Array.isArray(faq.mainEntity) || faq.mainEntity.length < 3) {
+    errors.push(`${blogRoute}: visible FAQPage schema should contain at least 3 questions`);
+  }
+  if (!Number.isFinite(article.wordCount) || article.wordCount < 650) {
+    errors.push(`${blogRoute}: article should contain at least 650 substantive schema-counted words; found ${article.wordCount || 0}`);
+  }
+  if (!Array.isArray(article.citation) || article.citation.length < 2) {
+    errors.push(`${blogRoute}: article should cite at least 2 source URLs`);
+  }
+  if (article.image !== `${origin}/blog-og.png`) {
+    errors.push(`${blogRoute}: journal social image is missing from BlogPosting schema`);
+  }
+  for (const visibleSection of ['Question this guide answers', 'Key takeaways', 'Sources and further reading']) {
+    if (!visibleText.includes(visibleSection)) errors.push(`${blogRoute}: missing visible editorial section: ${visibleSection}`);
+  }
+  if (['comparison', 'listicle'].includes(article.genre) && !visibleText.includes('How this guide was built')) {
+    errors.push(`${blogRoute}: comparison/listicle methodology disclosure is missing`);
+  }
+  if (article.genre === 'listicle' && !list) {
+    errors.push(`${blogRoute}: listicle is missing ItemList schema`);
+  }
+
+  const aboutId = article.about?.['@id'];
+  const appId = typeof aboutId === 'string' ? aboutId.match(/\/apps\/([^/#]+)#software$/)?.[1] : null;
+  if (appId && clusterGenres.has(appId)) clusterGenres.get(appId).add(article.genre);
+}
+
+for (const [appId, genres] of clusterGenres) {
+  if (!genres.has('comparison') || !genres.has('listicle') || genres.size !== 2) {
+    errors.push(`/apps/${appId}: journal cluster must contain one comparison and one listicle; found ${[...genres].join(', ') || 'none'}`);
+  }
+}
+
+const rssPath = path.join(dist, 'feed.xml');
+const jsonFeedPath = path.join(dist, 'feed.json');
+if (!fs.existsSync(rssPath) || !fs.existsSync(jsonFeedPath)) {
+  errors.push('journal RSS and JSON feeds must both be generated');
+} else {
+  const rss = fs.readFileSync(rssPath, 'utf8');
+  const feed = JSON.parse(fs.readFileSync(jsonFeedPath, 'utf8'));
+  const rssItems = allMatches(rss, /<item>/g).length;
+  if (rssItems !== expectedBlogPostCount) errors.push(`feed.xml: expected ${expectedBlogPostCount} items, found ${rssItems}`);
+  if (!Array.isArray(feed.items) || feed.items.length !== expectedBlogPostCount) {
+    errors.push(`feed.json: expected ${expectedBlogPostCount} items, found ${feed.items?.length || 0}`);
   }
 }
 

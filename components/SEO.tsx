@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import type { BlogBlock, BlogPost } from '../types';
 
 const SITE_NAME = 'Obsidian Ridge Labs';
 const SITE_URL = 'https://obsidianridgelabs.com';
@@ -437,46 +438,70 @@ export const buildHowTo = (howTo: {
   })),
 });
 
-export const buildBlogPosting = (post: {
-  id: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  modified?: string;
-  readTime: string;
-  category: string;
-  tags: string[];
-  blocks?: Array<{ type: string; content?: string | string[] }>;
-}) => {
-  const citations = extractBlockCitations(post.blocks || []);
+export const buildBlogPosting = (post: BlogPost) => {
+  const citations = extractBlockCitations(post.blocks);
   const readingMinutes = Number.parseInt(post.readTime, 10);
+  const articleUrl = `${SITE_URL}/blog/${post.id}`;
 
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
-    description: post.excerpt,
+    description: post.seoDescription || post.excerpt,
     abstract: post.excerpt,
-    url: `${SITE_URL}/blog/${post.id}`,
+    url: articleUrl,
     datePublished: formatSchemaDate(post.date),
     ...(post.modified ? { dateModified: formatSchemaDate(post.modified) } : {}),
     author: { '@id': ORGANIZATION_ID },
     publisher: { '@id': ORGANIZATION_ID },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE_URL}/blog/${post.id}`,
+      '@id': articleUrl,
     },
+    isPartOf: {
+      '@type': 'Blog',
+      '@id': `${SITE_URL}/blog#blog`,
+      name: 'The Obsidian Ridge Journal',
+      url: `${SITE_URL}/blog`,
+    },
+    ...(post.appId ? {
+      about: {
+        '@type': ['SoftwareApplication', 'MobileApplication'],
+        '@id': `${SITE_URL}/apps/${post.appId}#software`,
+        url: `${SITE_URL}/apps/${post.appId}`,
+      },
+    } : {}),
     articleSection: post.category,
-    genre: 'Practical guide',
+    genre: post.contentType,
     keywords: post.tags.map(t => t.replace('#', '')).join(', '),
-    ...(post.blocks?.length ? { wordCount: countBlockWords(post.blocks) } : {}),
+    wordCount: countBlockWords(post.blocks),
     ...(Number.isFinite(readingMinutes) ? { timeRequired: `PT${readingMinutes}M` } : {}),
     ...(citations.length ? { citation: citations } : {}),
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'People evaluating private, offline-first, or on-device AI software',
+    },
     isAccessibleForFree: true,
-    image: `${SITE_URL}/og.png`,
+    image: `${SITE_URL}/blog-og.png`,
     inLanguage: 'en-US',
   };
 };
+
+export const buildArticleItemList = (post: BlogPost) => post.listItems?.length ? ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${SITE_URL}/blog/${post.id}#item-list`,
+  name: post.title,
+  numberOfItems: post.listItems.length,
+  itemListOrder: 'https://schema.org/ItemListUnordered',
+  itemListElement: post.listItems.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    description: item.description,
+    url: `${SITE_URL}/blog/${post.id}#item-${index + 1}`,
+  })),
+}) : null;
 
 export const buildFAQSchema = (faqs: { question: string; answer: string }[]) => ({
   '@context': 'https://schema.org',
@@ -508,17 +533,39 @@ function formatSchemaDate(date: string): string {
   return date.replace(/\./g, '-');
 }
 
-function countBlockWords(blocks: Array<{ content?: string | string[] }>): number {
+function countBlockWords(blocks: BlogBlock[]): number {
   return blocks.reduce((count, block) => {
-    const text = Array.isArray(block.content) ? block.content.join(' ') : block.content || '';
+    const text = getBlogBlockText(block);
     return count + text.trim().split(/\s+/).filter(Boolean).length;
   }, 0);
 }
 
-function extractBlockCitations(blocks: Array<{ type: string; content?: string | string[] }>): string[] {
+function extractBlockCitations(blocks: BlogBlock[]): string[] {
   return blocks
-    .filter((block) => block.type === 'sources' && Array.isArray(block.content))
-    .flatMap((block) => (block.content as string[]).map((source) => source.split('|')[1]).filter(Boolean));
+    .filter((block): block is Extract<BlogBlock, { type: 'sources' }> => block.type === 'sources')
+    .flatMap((block) => block.content.map((source) => source.split('|')[1]).filter(Boolean));
+}
+
+function getBlogBlockText(block: BlogBlock): string {
+  switch (block.type) {
+    case 'paragraph':
+    case 'h2':
+    case 'quote':
+    case 'code':
+      return block.content;
+    case 'list':
+    case 'sources':
+      return block.content.join(' ');
+    case 'answer':
+    case 'callout':
+      return `${block.title} ${block.content}`;
+    case 'comparison':
+      return `${block.caption} ${block.columns.join(' ')} ${block.rows.map((row) => `${row.label} ${row.cells.join(' ')}`).join(' ')}`;
+    case 'faq':
+      return block.content.map((item) => `${item.question} ${item.answer}`).join(' ');
+    case 'cta':
+      return block.content;
+  }
 }
 
 function mapCategory(category: string): string {

@@ -3,7 +3,6 @@ import { Navigate, Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Github, ShieldCheck } from 'lucide-react';
 import { getProductReleaseLabel, products } from '../data/products';
-import { blogPosts } from '../data/blog';
 import { productFaqs } from '../data/faqs';
 import SEO, { buildBreadcrumbs, buildFAQSchema, buildSoftwareApp } from './SEO';
 import MotionReveal from './home/MotionReveal';
@@ -32,7 +31,7 @@ const editorialCopy: Record<string, { statement: string; thesis: string; boundar
   mettle: {
     statement: 'A serious program should be explainable before it asks for trust.',
     thesis: 'Mettle is built around a strict division of labor: deterministic training logic owns every prescription, while on-device intelligence selects from safe candidates and explains the plan at the lifter’s level.',
-    boundary: 'Core programming, logging, and coaching run locally and retain a deterministic fallback. HealthKit is optional and permission-based. The current app does not ship an enabled iCloud-sync path, and the Watch experience is a remote for an active phone workout—not a standalone trainer.',
+    boundary: 'Core programming and coaching run on-device and retain a deterministic fallback. The source prefers private iCloud when that capability is configured and falls back on-device; the reviewed entitlement currently lacks iCloud, so final sync behavior remains unverified. HealthKit is optional, and the Watch experience is a remote for an active phone workout—not a standalone trainer.',
   },
   memora: {
     statement: 'Generation should reduce the setup—not remove the learner’s judgment.',
@@ -51,15 +50,44 @@ const editorialCopy: Record<string, { statement: string; thesis: string; boundar
   },
 };
 
-const relatedBlogMap: Record<string, string[]> = {
-  vault: ['finance-app-red-flags'],
-  molehill: ['offline-ai-revolution'],
-  cove: ['private-ai-journal-guide'],
-  wove: ['apple-ecosystem-privacy'],
-  mettle: ['offline-ai-revolution'],
-  memora: ['offline-ai-revolution'],
-  trove: ['apple-ecosystem-privacy'],
-  kith: ['apple-ecosystem-privacy'],
+/** Lightweight article index keeps the full editorial corpus out of product-page bundles. */
+const productJournalLinks: Record<string, { id: string; title: string }[]> = {
+  echochamber: [
+    { id: 'otter-vs-echo', title: 'Echo Chamber vs Otter.ai: On-Device and Cloud Transcription Compared' },
+    { id: 'best-offline-transcription-apps', title: '5 Private Transcription Apps Compared: Offline, On-Device, and Cloud Options' },
+  ],
+  vault: [
+    { id: 'finance-app-red-flags', title: '5 Budgeting Apps Compared by What Happens When You Connect a Bank' },
+    { id: 'vault-vs-ynab-monarch-copilot-actual', title: 'Vault vs YNAB, Monarch, Copilot, and Actual Budget: Privacy and Bank Sync Compared' },
+  ],
+  molehill: [
+    { id: 'molehill-vs-goblin-tools-tiimo-structured-todoist', title: 'Molehill vs Goblin Tools, Tiimo, Structured, and Todoist for Task Breakdown' },
+    { id: 'best-ai-task-breakdown-apps', title: '5 Task Breakdown Apps for Overwhelming Projects and Brain Dumps' },
+  ],
+  cove: [
+    { id: 'private-ai-journal-guide', title: '5 Private AI Journal Apps Compared by Where Your Entries and Prompts Go' },
+    { id: 'cove-vs-day-one-rosebud-stoic-mindsera', title: 'Cove vs Day One, Rosebud, Stoic, and Mindsera: AI Journal Privacy Compared' },
+  ],
+  wove: [
+    { id: 'wove-vs-stylebook-whering-indyx-acloset', title: 'Wove vs Stylebook, Whering, Indyx, and Acloset: Digital Wardrobe Apps Compared' },
+    { id: 'best-digital-wardrobe-apps', title: '5 Digital Wardrobe Apps That Help You Wear More of What You Already Own' },
+  ],
+  mettle: [
+    { id: 'mettle-vs-fitbod-alpha-progression-boostcamp-hevy', title: 'Mettle vs Fitbod, Alpha Progression, Boostcamp, and Hevy: Strength Apps Compared' },
+    { id: 'best-progressive-overload-apps', title: '5 Progressive Overload Apps: From Simple Workout Logs to Explainable Adaptive Plans' },
+  ],
+  memora: [
+    { id: 'memora-vs-anki-quizlet-remnote-knowt', title: 'Memora vs Anki, Quizlet, RemNote, and Knowt: Which Flashcard App Fits Your Study Workflow?' },
+    { id: 'best-ai-flashcard-apps-pdf-notes-privacy', title: '5 Best AI Flashcard Apps for PDFs and Notes in 2026: Privacy, FSRS, and Editing Compared' },
+  ],
+  trove: [
+    { id: 'trove-vs-home-inventory-apps', title: 'Trove vs Under My Roof, HomeZada, Itemtopia, NAIC, and Sortly for Home Inventory' },
+    { id: 'best-home-inventory-apps-insurance-privacy', title: '6 Best Home Inventory Apps for Insurance, Receipts, Warranties, and Privacy in 2026' },
+  ],
+  kith: [
+    { id: 'kith-vs-personal-crm-apps', title: 'Kith vs Hippo, Dex, Monica, and Covve: Which Personal CRM Fits Friends and Family?' },
+    { id: 'best-relationship-reminder-apps-friends-family', title: '5 Best Relationship Reminder Apps for Friends and Family in 2026—Without a Sales Pipeline' },
+  ],
 };
 
 const productSeo: Record<string, { title: string; description: string; keywords: string[] }> = {
@@ -116,7 +144,7 @@ const ProductDetail: React.FC = () => {
     thesis: product.fullDescription,
     boundary: 'Product-specific privacy and connection details are published alongside each release.',
   };
-  const relatedPosts = blogPosts.filter((post) => (relatedBlogMap[product.id] || []).includes(post.id));
+  const relatedPosts = productJournalLinks[product.id] || [];
   const otherProducts = products.filter((item) => item.id !== product.id).slice(0, 4);
   const isReleasedToStore = Boolean(product.appStoreUrl);
   const isConcept = product.releaseStatus === 'concept' || product.releaseStatus === 'pre-release';

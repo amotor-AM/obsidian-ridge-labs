@@ -135,21 +135,18 @@ Arrows (◄──►) indicate bidirectional linking.
 3. Add the product to the Navigation dropdown (automatic via data)
 4. Add the product to the Footer (manual — update Footer.tsx)
 5. Add the product to the Philosophy page "See the Philosophy in Action" section
-6. Write a companion blog post comparing it to a competitor
+6. Write one comparison and one best-app guide, both with the product's `appId`
 7. Cross-link: new product → all existing products, and all existing products → new product
-8. Update `sitemap.xml` with the new URL
-9. Update `llms.txt` with the new product description
+8. Run the production build; routes, sitemap entries, feeds, and AI discovery files are generated from the shared data
 
 ### Adding a New Blog Post
 
-1. Create the blog post in `data/blog.ts`
-2. Include at least 1 CTA block linking to a relevant product
-3. The BlogPost component automatically renders "Related Entries" in the sidebar
-4. Add a link to the new post in the Footer journal section
-5. If the post is a product comparison, add it to the relevant product page's "Related Reading" section (update `relatedBlogMap` in ProductDetail.tsx)
-6. Consider adding a contextual link from the Philosophy page's "Further Reading" section
-7. Update `sitemap.xml` with the new URL
-8. Update `llms.txt` with the new post title and URL
+1. Create the post in the relevant `data/blog/cluster-*.ts` file and export it through `data/blog.ts`.
+2. Set `appId` for product-specific coverage so the Journal cluster and article schema link it automatically.
+3. Include a direct-answer block, key takeaways, at least three visible FAQs, primary sources, and a relevant product CTA.
+4. Add deliberate `relatedIds` for the strongest contextual next steps, then add the lightweight title and slug to `productJournalLinks` in `ProductDetail.tsx`.
+5. For listicles, include `listItems`; the visible shortlist and ItemList schema are generated from the same data.
+6. Run the production build and SEO validator. Routes, sitemap entries, RSS/JSON feeds, and `llms-full.txt` are generated from the post data automatically.
 
 ### Adding a New Static Page
 

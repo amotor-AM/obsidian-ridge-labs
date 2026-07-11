@@ -239,7 +239,7 @@ export const productFaqs: Record<string, FAQItem[]> = {
     },
     {
       question: 'Does Mettle upload my workouts or bodyweight?',
-      answer: 'The current build stores training locally and has no Obsidian Ridge Labs account, analytics SDK, or developer workout server. HealthKit access is optional and permission-based: it can read the latest bodyweight and write completed workouts when the user allows it. Enabled iCloud sync should not be claimed for the current build.',
+      answer: 'Mettle has no Obsidian Ridge Labs account, analytics SDK, or developer workout server. Its persistence source prefers the user’s private iCloud when that capability is configured and falls back to an on-device store; the reviewed entitlement currently lacks iCloud, so final sync behavior is not yet a release promise. HealthKit access is optional and permission-based.',
     },
     {
       question: 'Can I control a Mettle workout from Apple Watch?',
@@ -247,7 +247,7 @@ export const productFaqs: Record<string, FAQItem[]> = {
     },
     {
       question: 'Can I export my Mettle training history?',
-      answer: 'Yes. The current implementation can export completed-set history as CSV. That user-initiated export leaves Mettle’s local store, so its privacy depends on the destination the user chooses.',
+      answer: 'Yes. The current implementation can export completed-set history as CSV. That user-initiated export leaves Mettle’s managed data store, so its privacy depends on the destination the user chooses.',
     },
   ],
   memora: [

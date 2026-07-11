@@ -1,33 +1,89 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Navigate, Link, useParams } from 'react-router-dom';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Bookmark,
+  Calendar,
+  Check,
+  Clock,
+  Download,
+  ExternalLink,
+  ListChecks,
+  Share2,
+  ShieldCheck,
+  Sparkles,
+} from 'lucide-react';
 import { blogPosts } from '../data/blog';
 import { getProductReleaseLabel, products } from '../data/products';
-import { ArrowLeft, ArrowRight, Clock, Calendar, Share2, Download, Bookmark, Sparkles } from 'lucide-react';
-import SEO, { buildBlogPosting, buildBreadcrumbs } from './SEO';
+import type { BlogBlock } from '../types';
+import SEO, {
+  buildArticleItemList,
+  buildBlogPosting,
+  buildBreadcrumbs,
+  buildFAQSchema,
+} from './SEO';
 
-const BlogPost: React.FC = () => {
+const formatDate = (value: string) => {
+  const [year, month, day] = value.split('.').map(Number);
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+};
+
+const blockFaqs = (blocks: BlogBlock[]) => blocks.flatMap((block) => (
+  block.type === 'faq' ? block.content : []
+));
+
+const BlogPostPage: React.FC = () => {
   const { id } = useParams();
-  const post = blogPosts.find(p => p.id === id);
+  const post = blogPosts.find((candidate) => candidate.id === id);
   const [bookmarked, setBookmarked] = useState(false);
   const [shareStatus, setShareStatus] = useState('');
-  const { scrollYProgress } = useScroll();
-  const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   useEffect(() => {
-     window.scrollTo(0, 0);
-     setBookmarked(window.localStorage.getItem(`orl:bookmark:${id}`) === 'true');
-     setShareStatus('');
+    window.scrollTo(0, 0);
+    setBookmarked(window.localStorage.getItem(`orl:bookmark:${id}`) === 'true');
+    setShareStatus('');
   }, [id]);
+
+  const relatedPosts = useMemo(() => {
+    if (!post) return [];
+    const explicit = (post.relatedIds || [])
+      .map((relatedId) => blogPosts.find((candidate) => candidate.id === relatedId))
+      .filter((candidate): candidate is NonNullable<typeof candidate> => Boolean(candidate));
+    const contextual = blogPosts.filter((candidate) => (
+      candidate.id !== post.id
+      && !explicit.some((related) => related.id === candidate.id)
+      && (
+        (post.appId && candidate.appId === post.appId)
+        || candidate.tags.some((tag) => post.tags.includes(tag))
+      )
+    ));
+    return [...explicit, ...contextual].slice(0, 4);
+  }, [post]);
 
   if (!post) return <Navigate to="/blog" replace />;
 
-  const blogPosting = buildBlogPosting(post);
-  const breadcrumbs = buildBreadcrumbs([
-    { name: 'Home', url: '/' },
-    { name: 'Journal', url: '/blog' },
-    { name: post.title, url: `/blog/${post.id}` },
-  ]);
+  const product = post.appId ? products.find((item) => item.id === post.appId) : undefined;
+  const faqs = blockFaqs(post.blocks);
+  const itemList = buildArticleItemList(post);
+  const tableOfContents = post.blocks.flatMap((block, index) => (
+    block.type === 'h2' ? [{ label: block.content, id: `section-${index}` }] : []
+  ));
+  const structuredData = [
+    buildBlogPosting(post),
+    buildBreadcrumbs([
+      { name: 'Home', url: '/' },
+      { name: 'Journal', url: '/blog' },
+      { name: post.title, url: `/blog/${post.id}` },
+    ]),
+    ...(faqs.length ? [buildFAQSchema(faqs)] : []),
+    ...(itemList ? [itemList] : []),
+  ];
 
   const toggleBookmark = () => {
     const next = !bookmarked;
@@ -50,245 +106,282 @@ const BlogPost: React.FC = () => {
     }
   };
 
-  const renderBlock = (block: any, idx: number) => {
+  const renderBlock = (block: BlogBlock, index: number) => {
+    const sectionId = `section-${index}`;
     switch (block.type) {
       case 'paragraph':
-        return <p key={idx} className="mb-10 text-xl text-apple-gray font-medium leading-relaxed">{block.content}</p>;
+        return <p key={index} className="journal-prose__paragraph">{block.content}</p>;
       case 'h2':
+        return <h2 key={index} id={sectionId} className="journal-prose__heading">{block.content}</h2>;
+      case 'answer':
         return (
-          <h2 key={idx} className="text-4xl md:text-5xl font-bold text-white mt-20 mb-10 leading-tight tracking-tight">
-            {block.content}
-          </h2>
+          <section key={index} className="journal-answer" aria-labelledby={`answer-${index}`}>
+            <span className="journal-answer__label"><Sparkles size={15} aria-hidden="true" /> Direct answer</span>
+            <h2 id={`answer-${index}`}>{block.title}</h2>
+            <p>{block.content}</p>
+          </section>
         );
+      case 'callout': {
+        const Icon = block.variant === 'privacy' ? ShieldCheck : ListChecks;
+        return (
+          <aside key={index} className={`journal-callout journal-callout--${block.variant || 'note'}`}>
+            <Icon size={22} aria-hidden="true" />
+            <div>
+              <h3>{block.title}</h3>
+              <p>{block.content}</p>
+            </div>
+          </aside>
+        );
+      }
       case 'quote':
-        return (
-          <div key={idx} className="relative my-16 px-12 py-10 border-l-4 border-apple-blue bg-white/[0.02] rounded-r-3xl">
-             <blockquote className="text-3xl font-bold text-white italic leading-tight tracking-tight">
-               {block.content}
-             </blockquote>
-          </div>
-        );
+        return <blockquote key={index} className="journal-quote">{block.content}</blockquote>;
       case 'code':
-        return (
-          <div key={idx} className="bg-[#0c0c0c] border border-white/5 p-10 rounded-3xl my-14 font-mono text-sm leading-relaxed text-apple-gray group relative">
-            <div className="absolute top-0 right-0 p-3 text-[9px] font-bold uppercase text-apple-gray/40 bg-white/5 rounded-bl-2xl rounded-tr-3xl">Raw Context</div>
-            <pre className="whitespace-pre-wrap">{block.content}</pre>
-          </div>
-        );
+        return <pre key={index} className="journal-code"><code>{block.content}</code></pre>;
       case 'list':
         return (
-          <ul key={idx} className="space-y-8 my-14">
-            {block.content.map((item: string, i: number) => (
-              <li key={i} className="flex gap-5 items-start group">
-                 <div className="mt-2.5 w-2 h-2 bg-apple-blue rounded-full group-hover:scale-125 transition-transform flex-shrink-0"></div>
-                 <span className="text-xl text-apple-gray font-medium leading-relaxed group-hover:text-white transition-colors">{item}</span>
-              </li>
+          <ul key={index} className="journal-list">
+            {block.content.map((item) => (
+              <li key={item}><Check size={18} aria-hidden="true" /><span>{item}</span></li>
             ))}
           </ul>
         );
-      case 'sources': {
-        const sources = (block.content as string[]).map((entry) => {
-          const [label, url] = entry.split('|');
-          return { label, url };
-        });
+      case 'comparison':
         return (
-          <section key={idx} className="my-16 border-y border-white/10 py-8" aria-labelledby={`article-sources-${idx}`}>
-            <h2 id={`article-sources-${idx}`} className="mb-5 text-xl font-bold text-white">Sources &amp; further reading</h2>
-            <ul className="space-y-4">
-              {sources.map(({ label, url }) => (
-                <li key={url}>
-                  <a href={url} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center text-lg text-apple-blue underline decoration-white/20 underline-offset-4 hover:decoration-apple-blue">
-                    {label}
-                  </a>
-                </li>
+          <figure key={index} className="journal-table-wrap">
+            <div className="journal-table-scroll" tabIndex={0} role="region" aria-label={block.caption}>
+              <table className="journal-table">
+                <caption>{block.caption}</caption>
+                <thead>
+                  <tr>{block.columns.map((column) => <th key={column} scope="col">{column}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {block.rows.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row">{row.label}</th>
+                      {row.cells.map((cell, cellIndex) => <td key={`${row.label}-${cellIndex}`}>{cell}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="journal-table-hint">Scroll horizontally to read the complete comparison on smaller screens.</p>
+          </figure>
+        );
+      case 'faq':
+        return (
+          <section key={index} className="journal-faq" aria-labelledby={`faq-heading-${index}`}>
+            <div className="journal-faq__intro">
+              <span>People also ask</span>
+              <h2 id={`faq-heading-${index}`}>Questions, answered plainly</h2>
+            </div>
+            <div>
+              {block.content.map((item, itemIndex) => (
+                <details key={item.question} className="journal-faq__item" open={itemIndex === 0}>
+                  <summary>{item.question}<span aria-hidden="true">+</span></summary>
+                  <p>{item.answer}</p>
+                </details>
               ))}
-            </ul>
+            </div>
+          </section>
+        );
+      case 'sources':
+        return (
+          <section key={index} className="journal-sources" aria-labelledby={`sources-${index}`}>
+            <div>
+              <span>Source ledger</span>
+              <h2 id={`sources-${index}`}>Sources and further reading</h2>
+              <p>Primary documentation is preferred. Product features and prices can change; verify details before deciding.</p>
+            </div>
+            <ol>
+              {block.content.map((entry) => {
+                const separator = entry.indexOf('|');
+                const label = separator >= 0 ? entry.slice(0, separator) : entry;
+                const url = separator >= 0 ? entry.slice(separator + 1) : entry;
+                return (
+                  <li key={url}>
+                    <a href={url} target="_blank" rel="noreferrer">
+                      <span>{label}</span><ExternalLink size={15} aria-hidden="true" />
+                    </a>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+        );
+      case 'cta': {
+        const ctaProduct = products.find((item) => item.id === block.ctaAppId);
+        if (!ctaProduct) return null;
+        const isAvailable = ctaProduct.releaseStatus === 'app-store' && Boolean(ctaProduct.appStoreUrl);
+        return (
+          <section key={index} className="journal-cta">
+            <div className="journal-cta__icon">
+              {React.createElement(ctaProduct.icon, { size: 32, 'aria-hidden': true })}
+            </div>
+            <div className="journal-cta__copy">
+              <span>{getProductReleaseLabel(ctaProduct)}</span>
+              <h2>Meet {ctaProduct.name}</h2>
+              <p>{block.content}</p>
+            </div>
+            {isAvailable ? (
+              <a href={ctaProduct.appStoreUrl} target="_blank" rel="noreferrer" className="button button--primary">
+                <Download size={17} aria-hidden="true" /> App Store
+              </a>
+            ) : (
+              <Link to={`/apps/${ctaProduct.id}`} className="button button--primary">
+                Explore the app <ArrowRight size={17} aria-hidden="true" />
+              </Link>
+            )}
           </section>
         );
       }
-      case 'cta':
-        const product = products.find(p => p.id === block.ctaAppId);
-        if (!product) return null;
-        const isAvailable = product.releaseStatus === 'app-store' && Boolean(product.appStoreUrl);
-        const releaseLabel = getProductReleaseLabel(product);
-        return (
-          <motion.div 
-            key={idx}
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="my-24 relative"
-          >
-             <div className="apple-card p-10 md:p-16 flex flex-col md:flex-row items-center gap-12">
-                <div className="p-10 bg-white/[0.03] border border-white/5 rounded-3xl">
-                   {React.createElement(product.icon, { className: `w-16 h-16 text-apple-blue` })}
-                </div>
-                
-                <div className="flex-1 text-center md:text-left">
-                   <div className="flex items-center gap-2.5 mb-4 text-sm font-bold text-apple-blue tracking-widest uppercase">
-                      <Sparkles size={14} />
-                      {releaseLabel}
-                   </div>
-                   <h4 className="text-4xl font-bold text-white mb-6 tracking-tight">{product.name}</h4>
-                   <p className="text-apple-gray text-xl mb-10 font-medium max-w-xl leading-relaxed">{block.content}</p>
-                   <div className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start">
-                     {isAvailable ? (
-                       <a href={product.appStoreUrl} target="_blank" rel="noreferrer" className="apple-button px-10 py-4 bg-apple-blue text-black font-bold rounded-full hover:opacity-90 transition-all flex items-center justify-center gap-3">
-                         <Download size={20} /> Get on the App Store
-                       </a>
-                     ) : (
-                       <Link to={`/apps/${product.id}`} className="apple-button px-10 py-4 bg-apple-blue text-black font-bold rounded-full hover:opacity-90 transition-all flex items-center justify-center gap-3">
-                         <ArrowRight size={20} /> Explore the product
-                       </Link>
-                     )}
-                     <Link to="/download" className="px-10 py-4 border border-white/10 text-white font-bold rounded-full hover:bg-white/5 transition-all text-center">
-                       View the collection
-                     </Link>
-                   </div>
-                </div>
-             </div>
-          </motion.div>
-        );
       default:
         return null;
     }
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="journal-article">
       <SEO
-        title={post.title}
-        description={post.excerpt}
+        title={post.seoTitle || post.title}
+        description={post.seoDescription || post.excerpt}
         ogType="article"
+        ogImage="https://obsidianridgelabs.com/blog-og.png"
+        ogImageAlt="Obsidian Ridge Labs Journal — evidence-led guides to private, on-device AI"
+        keywords={post.tags.map((tag) => tag.replace('#', '').replaceAll('-', ' '))}
         article={{
           publishedTime: post.date.replace(/\./g, '-'),
           modifiedTime: post.modified?.replace(/\./g, '-'),
-          tags: post.tags.map(t => t.replace('#', '')),
+          tags: post.tags.map((tag) => tag.replace('#', '')),
           section: post.category,
         }}
-        jsonLd={[blogPosting, breadcrumbs]}
+        jsonLd={structuredData}
       />
 
-      {/* Progress Line */}
-      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-apple-blue z-50 origin-left" style={{ scaleX: progressScale }} />
-
-      {/* Article Hero */}
-      <header className="relative pt-24 md:pt-48 pb-12 md:pb-24 px-6 md:px-12 border-b border-white/5 bg-[#0a0a0a]">
-        <div className="max-w-4xl mx-auto relative z-10">
-           <Link to="/blog" className="inline-flex items-center gap-3 text-apple-gray hover:text-apple-blue transition-colors font-bold text-[11px] uppercase tracking-widest mb-14">
-              <ArrowLeft size={14} /> Back to Journal
-           </Link>
-
-           <div className="flex flex-wrap gap-8 mb-12 text-[11px] font-bold text-apple-gray uppercase tracking-widest">
-              <span className="flex items-center gap-2.5 bg-white/[0.03] px-4 py-1.5 rounded-full border border-white/5"><Calendar size={14} /> {post.date}</span>
-              {post.modified && <span className="flex items-center gap-2.5 bg-white/[0.03] px-4 py-1.5 rounded-full border border-white/5">Updated {post.modified}</span>}
-              <span className="flex items-center gap-2.5 bg-white/[0.03] px-4 py-1.5 rounded-full border border-white/5"><Clock size={14} /> {post.readTime}</span>
-              <span className="text-apple-blue bg-apple-blue/10 px-4 py-1.5 rounded-full border border-apple-blue/20">{post.category}</span>
-           </div>
-
-           <h1 className="text-6xl md:text-8xl font-bold text-white mb-12 leading-tight tracking-tight">
-              {post.title}
-           </h1>
-
-           <p className="text-2xl md:text-3xl text-apple-gray font-medium leading-relaxed border-l-4 border-apple-blue pl-10 max-w-3xl">
-              {post.excerpt}
-           </p>
+      <header className="journal-hero">
+        <div className="journal-hero__glow" aria-hidden="true" />
+        <div className="section-frame journal-hero__inner">
+          <Link to="/blog" className="journal-back"><ArrowLeft size={16} aria-hidden="true" /> Journal index</Link>
+          <div className="journal-hero__eyebrow">
+            <span>{post.contentType}</span>
+            {product && <Link to={`/apps/${product.id}`}>{product.name}</Link>}
+            <span>{post.readTime.replace(' READ', '').toLowerCase()}</span>
+          </div>
+          <h1>{post.title}</h1>
+          <p className="journal-hero__dek">{post.excerpt}</p>
+          <div className="journal-hero__meta">
+            <span><Calendar size={16} aria-hidden="true" /> Published {formatDate(post.date)}</span>
+            {post.modified && <span><Clock size={16} aria-hidden="true" /> Reviewed {formatDate(post.modified)}</span>}
+            <span>By Obsidian Ridge Labs Editorial</span>
+          </div>
+          <div className="journal-query">
+            <span>Question this guide answers</span>
+            <p>{post.searchIntent}</p>
+          </div>
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-20 py-16 md:py-32">
-         
-         {/* Sidebar Left: Share/Save */}
-         <aside className="hidden lg:block lg:col-span-1 sticky top-32 h-fit">
-            <div className="flex flex-col gap-10">
-               <button
-                 type="button"
-                 onClick={toggleBookmark}
-                 className={`p-5 border rounded-2xl transition-all ${bookmarked ? 'border-apple-blue/50 bg-apple-blue/10 text-apple-blue' : 'border-white/10 text-apple-gray hover:text-apple-blue hover:border-apple-blue/30'}`}
-                 aria-label={bookmarked ? 'Remove bookmark' : 'Bookmark this article'}
-                 aria-pressed={bookmarked}
-               >
-                  <Bookmark size={24} />
-               </button>
-               <button
-                 type="button"
-                 onClick={sharePost}
-                 className="p-5 border border-white/10 rounded-2xl text-apple-gray hover:text-apple-blue hover:border-apple-blue/30 transition-all"
-                 aria-label="Share this article"
-               >
-                  <Share2 size={24} />
-               </button>
-               <span className="text-xs leading-snug text-apple-gray" aria-live="polite">{shareStatus}</span>
-            </div>
-         </aside>
+      <div className="section-frame journal-layout">
+        <aside className="journal-rail journal-rail--left" aria-label="Article controls and contents">
+          <div className="journal-actions">
+            <button type="button" onClick={toggleBookmark} aria-label={bookmarked ? 'Remove bookmark' : 'Bookmark this article'} aria-pressed={bookmarked}>
+              <Bookmark size={19} fill={bookmarked ? 'currentColor' : 'none'} aria-hidden="true" />
+            </button>
+            <button type="button" onClick={sharePost} aria-label="Share this article"><Share2 size={19} aria-hidden="true" /></button>
+            <span aria-live="polite">{shareStatus}</span>
+          </div>
+          {tableOfContents.length > 1 && (
+            <nav className="journal-toc" aria-label="On this page">
+              <span>On this page</span>
+              {tableOfContents.map((item) => <a key={item.id} href={`#${item.id}`}>{item.label}</a>)}
+            </nav>
+          )}
+        </aside>
 
-         {/* Content Body */}
-         <article className="lg:col-span-8 rich-text">
-            {post.blocks.map((block, i) => renderBlock(block, i))}
-            
-            <footer className="mt-16 md:mt-32 pt-8 md:pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
-               <div className="font-bold text-apple-gray text-xl tracking-tight">
-                  End Transmission // Obsidian Ridge Labs
-               </div>
-               <div className="flex gap-4">
-                  {post.tags.map(tag => (
-                     <span key={tag} className="text-[10px] font-bold bg-white/[0.03] border border-white/5 px-4 py-1.5 text-apple-gray rounded-full uppercase tracking-widest">
-                        {tag}
-                     </span>
+        <main>
+          <article className="journal-prose">
+            <section className="journal-takeaways" aria-labelledby="takeaways-heading">
+              <div>
+                <span>Read this first</span>
+                <h2 id="takeaways-heading">Key takeaways</h2>
+              </div>
+              <ul>
+                {post.keyTakeaways.map((takeaway) => <li key={takeaway}><Check size={17} aria-hidden="true" />{takeaway}</li>)}
+              </ul>
+            </section>
+
+            {(post.contentType === 'comparison' || post.contentType === 'listicle') && (
+              <aside className="journal-method">
+                <strong>How this guide was built</strong>
+                <p>We compared current official product pages, documentation, privacy policies, and pricing pages against the implementation facts available for our own product. This is an editorial comparison, not paid placement or a claim of independent hands-on testing. Numbering is for navigation, not a test score. Recheck linked sources because products change.</p>
+              </aside>
+            )}
+
+            {post.listItems?.length ? (
+              <nav className="journal-shortlist" aria-label="Products in this guide">
+                <span>The shortlist</span>
+                <ol>
+                  {post.listItems.map((item, index) => (
+                    <li key={item.name} id={`item-${index + 1}`}>
+                      <b>{String(index + 1).padStart(2, '0')}</b>
+                      <div><strong>{item.name}</strong><p>{item.description}</p></div>
+                    </li>
                   ))}
-               </div>
+                </ol>
+              </nav>
+            ) : null}
+
+            {post.blocks.map(renderBlock)}
+
+            <footer className="journal-byline">
+              <div className="site-wordmark__mark" aria-hidden="true"><i /><i /><i /></div>
+              <div>
+                <strong>Obsidian Ridge Labs Editorial</strong>
+                <p>We write from product documentation, implementation evidence, and clearly labeled limitations. No rankings are purchased.</p>
+              </div>
             </footer>
-         </article>
+          </article>
+        </main>
 
-         {/* Sidebar Right: Context/Related */}
-         <aside className="lg:col-span-3 space-y-16">
-            <div>
-               <h4 className="text-[11px] font-bold text-apple-blue uppercase tracking-widest mb-8 border-b border-apple-blue/20 pb-3">Related Entries</h4>
-               <div className="space-y-10">
-                  {blogPosts.filter(p => p.id !== post.id).slice(0, 3).map(p => (
-                     <Link key={p.id} to={`/blog/${p.id}`} className="group block">
-                        <span className="block text-[10px] font-bold text-apple-gray mb-2 tracking-widest uppercase">{p.date}</span>
-                        <h5 className="text-xl font-bold text-white group-hover:text-apple-blue transition-colors leading-tight tracking-tight">
-                           {p.title}
-                        </h5>
-                     </Link>
-                  ))}
-               </div>
+        <aside className="journal-rail journal-rail--right">
+          <section>
+            <span className="journal-rail__label">Continue researching</span>
+            <div className="journal-related">
+              {relatedPosts.map((related) => (
+                <Link key={related.id} to={`/blog/${related.id}`}>
+                  <span>{related.contentType}</span>
+                  <h2>{related.title}</h2>
+                  <ArrowRight size={17} aria-hidden="true" />
+                </Link>
+              ))}
             </div>
-
-            <div className="p-8 apple-card font-medium text-[12px] leading-relaxed text-apple-gray">
-               This document is locally generated. No external scripts or tracking metrics were loaded during the rendering of this transmission.
-            </div>
-
-            <div>
-               <h4 className="text-[11px] font-bold text-apple-blue uppercase tracking-widest mb-8 border-b border-apple-blue/20 pb-3">Explore</h4>
-               <div className="space-y-6">
-                  <Link to="/philosophy" className="group block">
-                     <h5 className="text-lg font-bold text-white group-hover:text-apple-blue transition-colors leading-tight tracking-tight">
-                        Our Privacy Philosophy
-                     </h5>
-                     <p className="text-[12px] text-apple-gray mt-1">Why we reject the cloud-first model.</p>
-                  </Link>
-                  <Link to="/apps/vault" className="group block">
-                     <h5 className="text-lg font-bold text-white group-hover:text-apple-blue transition-colors leading-tight tracking-tight">
-                        Vault - AI Finance
-                     </h5>
-                     <p className="text-[12px] text-apple-gray mt-1">Private spending analysis, zero bank passwords.</p>
-                  </Link>
-                  <Link to="/apps/echochamber" className="group block">
-                     <h5 className="text-lg font-bold text-white group-hover:text-apple-blue transition-colors leading-tight tracking-tight">
-                        Echo Chamber - Transcription
-                     </h5>
-                     <p className="text-[12px] text-apple-gray mt-1">Offline meeting transcription for professionals.</p>
-                  </Link>
-               </div>
-            </div>
-         </aside>
+          </section>
+          {product && (
+            <Link className="journal-product-link" to={`/apps/${product.id}`}>
+              <span>Product profile</span>
+              <strong>{product.name}</strong>
+              <p>{product.tagline}</p>
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          )}
+        </aside>
       </div>
 
+      <section className="section-frame journal-next" aria-labelledby="related-reading-heading">
+        <div className="section-index"><span>Related reading</span><span>{relatedPosts.length} next steps</span></div>
+        <h2 id="related-reading-heading">Keep the question open.</h2>
+        <div className="journal-next__grid">
+          {relatedPosts.slice(0, 3).map((related, index) => (
+            <Link key={related.id} to={`/blog/${related.id}`}>
+              <span>{String(index + 1).padStart(2, '0')} / {related.contentType}</span>
+              <h3>{related.title}</h3>
+              <p>{related.excerpt}</p>
+              <span className="text-link">Read the guide <ArrowRight size={15} aria-hidden="true" /></span>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
 
-export default BlogPost;
+export default BlogPostPage;

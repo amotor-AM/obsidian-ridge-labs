@@ -88,6 +88,7 @@ for (const route of routes) {
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
+  <link rel="alternate" type="application/rss+xml" title="The Obsidian Ridge Journal" href="https://obsidianridgelabs.com/feed.xml" />
   <meta name="robots" content="${robots}" />
   <meta property="og:site_name" content="Obsidian Ridge Labs" />
   <meta property="og:locale" content="en_US" />
@@ -204,6 +205,65 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http:
 fs.writeFileSync(path.join(clientDist, 'sitemap.xml'), sitemapXml, 'utf8');
 console.log(`sitemap.xml generated: ${indexableRoutes.size} indexable urls, ${lastmodByRoute.size} routes with source-backed dates`);
 
+// Publish a lightweight standards-based feed for readers, feed clients, and
+// discovery systems. The feed uses editorial dates rather than build time.
+console.log('Generating journal feeds...');
+const escapeXml = (value) => String(value ?? '')
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&apos;');
+const toRssDate = (value) => {
+  const normalized = normalizeSitemapDate(value);
+  return normalized ? new Date(`${normalized}T00:00:00.000Z`).toUTCString() : '';
+};
+const feedPosts = [...blogPosts].sort((left, right) => (
+  (normalizeSitemapDate(right.date) || '').localeCompare(normalizeSitemapDate(left.date) || '')
+));
+const feedItems = feedPosts.map((post) => `  <item>
+    <title>${escapeXml(post.title)}</title>
+    <link>${SITE_ORIGIN}/blog/${post.id}</link>
+    <guid isPermaLink="true">${SITE_ORIGIN}/blog/${post.id}</guid>
+    <pubDate>${toRssDate(post.date)}</pubDate>
+    <category>${escapeXml(post.category)}</category>
+    <description>${escapeXml(post.seoDescription || post.excerpt)}</description>
+  </item>`).join('\n');
+const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>The Obsidian Ridge Journal</title>
+  <link>${SITE_ORIGIN}/blog</link>
+  <description>Source-backed comparisons and practical guides to private, offline, and on-device AI apps.</description>
+  <language>en-us</language>
+  <lastBuildDate>${toRssDate(latestBlogDate)}</lastBuildDate>
+${feedItems}
+</channel>
+</rss>
+`;
+fs.writeFileSync(path.join(clientDist, 'feed.xml'), rssXml, 'utf8');
+
+const jsonFeed = {
+  version: 'https://jsonfeed.org/version/1.1',
+  title: 'The Obsidian Ridge Journal',
+  home_page_url: `${SITE_ORIGIN}/blog`,
+  feed_url: `${SITE_ORIGIN}/feed.json`,
+  description: 'Source-backed comparisons and practical guides to private, offline, and on-device AI apps.',
+  language: 'en-US',
+  authors: [{ name: 'Obsidian Ridge Labs', url: `${SITE_ORIGIN}/` }],
+  items: feedPosts.map((post) => ({
+    id: `${SITE_ORIGIN}/blog/${post.id}`,
+    url: `${SITE_ORIGIN}/blog/${post.id}`,
+    title: post.title,
+    summary: post.seoDescription || post.excerpt,
+    date_published: `${normalizeSitemapDate(post.date)}T00:00:00.000Z`,
+    ...(post.modified ? { date_modified: `${normalizeSitemapDate(post.modified)}T00:00:00.000Z` } : {}),
+    tags: post.tags.map((tag) => tag.replace(/^#/, '')),
+  })),
+};
+fs.writeFileSync(path.join(clientDist, 'feed.json'), `${JSON.stringify(jsonFeed, null, 2)}\n`, 'utf8');
+console.log(`journal feeds generated: ${blogPosts.length} entries`);
+
 // Generate llms-full.txt
 console.log('Generating llms-full.txt...');
 
@@ -293,12 +353,20 @@ llmsContent += `
 
 for (const post of blogPosts) {
   llmsContent += `### ${post.title}
+- **URL**: ${SITE_ORIGIN}/blog/${post.id}
 - **Date**: ${post.date}
 ${post.modified ? `- **Updated**: ${post.modified}\n` : ''}- **Read Time**: ${post.readTime}
 - **Category**: ${post.category}
+- **Content Type**: ${post.contentType}
+- **Primary Question**: ${post.searchIntent}
 - **Tags**: ${post.tags.join(', ')}
 - **Excerpt**: ${post.excerpt}
 
+#### Key Takeaways
+
+${post.keyTakeaways.map((takeaway) => `- ${takeaway}`).join('\n')}
+
+${post.listItems?.length ? `#### Items Compared\n\n${post.listItems.map((item, index) => `${index + 1}. **${item.name}** — ${item.description}`).join('\n')}\n\n` : ''}
 #### Full Article Content
 
 `;
@@ -315,6 +383,24 @@ ${post.modified ? `- **Updated**: ${post.modified}\n` : ''}- **Read Time**: ${po
         llmsContent += `- ${item}\n`;
       }
       llmsContent += `\n`;
+    } else if (block.type === 'answer') {
+      llmsContent += `#### ${block.title}\n\n${block.content}\n\n`;
+    } else if (block.type === 'callout') {
+      llmsContent += `> **${block.title}**: ${block.content}\n\n`;
+    } else if (block.type === 'comparison') {
+      llmsContent += `#### ${block.caption}\n\n`;
+      llmsContent += `| ${block.columns.join(' | ')} |\n`;
+      llmsContent += `| ${block.columns.map(() => '---').join(' | ')} |\n`;
+      for (const row of block.rows) {
+        const cells = [row.label, ...row.cells].slice(0, block.columns.length);
+        llmsContent += `| ${cells.join(' | ')} |\n`;
+      }
+      llmsContent += `\n`;
+    } else if (block.type === 'faq') {
+      llmsContent += `#### Frequently Asked Questions\n\n`;
+      for (const item of block.content) {
+        llmsContent += `**Q: ${item.question}**\n\n${item.answer}\n\n`;
+      }
     } else if (block.type === 'sources') {
       llmsContent += `#### Sources & Further Reading\n\n`;
       for (const source of block.content) {

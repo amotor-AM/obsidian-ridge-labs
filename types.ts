@@ -56,23 +56,47 @@ export interface AiResponse {
   recommendation: string;
 }
 
-export type BlogBlockType = 'paragraph' | 'h2' | 'quote' | 'code' | 'list' | 'sources' | 'cta';
+export type BlogContentType = 'guide' | 'comparison' | 'listicle' | 'analysis';
 
-export interface BlogBlock {
-  type: BlogBlockType;
-  content: string | string[]; // string for text, array for lists
-  ctaAppId?: string; // Optional: Link a specific app to this block for conversion
-}
+export type BlogBlock =
+  | { type: 'paragraph'; content: string }
+  | { type: 'h2'; content: string }
+  | { type: 'quote'; content: string }
+  | { type: 'code'; content: string }
+  | { type: 'list'; content: string[] }
+  | { type: 'answer'; title: string; content: string }
+  | { type: 'callout'; title: string; content: string; variant?: 'note' | 'warning' | 'privacy' }
+  | {
+      type: 'comparison';
+      caption: string;
+      columns: string[];
+      rows: { label: string; cells: string[] }[];
+    }
+  | { type: 'faq'; content: { question: string; answer: string }[] }
+  | { type: 'sources'; content: string[] }
+  | { type: 'cta'; content: string; ctaAppId: string };
 
 export interface BlogPost {
   id: string;
   title: string;
+  /** Optional search-result title when the editorial headline is intentionally longer. */
+  seoTitle?: string;
   date: string;
   modified?: string;
   readTime: string;
   category: string;
   tags: string[];
   excerpt: string;
+  /** Optional search/social description; falls back to the visible excerpt. */
+  seoDescription?: string;
+  contentType: BlogContentType;
+  /** Product cluster for internal linking and SoftwareApplication relationships. */
+  appId?: string;
+  /** Primary conversational query the article answers. */
+  searchIntent: string;
+  keyTakeaways: string[];
+  relatedIds?: string[];
+  listItems?: { name: string; description: string }[];
   blocks: BlogBlock[];
 }
 

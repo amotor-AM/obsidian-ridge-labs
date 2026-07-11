@@ -266,7 +266,7 @@ export const products: Product[] = [
     platforms: ['iOS', 'watchOS'],
     minOS: 'iOS 26.1',
     description: 'An in-development private strength coach that builds adaptive programs on iPhone and shows the deterministic reason behind every prescription.',
-    fullDescription: 'Mettle is an in-development strength coach for beginners and experienced lifters. It starts with goal, experience, equipment, schedule, and optional bodyweight, then builds a program locally. Apple’s on-device model can choose and explain exercises only from curated candidates; a deterministic engine owns sets, reps, rest, load progression, and deloads. Logged training changes future prescriptions and coaching depth. The current build stores training locally, with optional permission-based HealthKit integration and an Apple Watch remote for an active phone workout.',
+    fullDescription: 'Mettle is an in-development strength coach for beginners and experienced lifters. It starts with goal, experience, equipment, schedule, and optional bodyweight, then builds a program on-device. Apple’s local model can choose and explain exercises only from curated candidates; a deterministic engine owns sets, reps, rest, load progression, and deloads. Logged reps and loads change future prescriptions, while RPE can inform coaching depth. The persistence source prefers private iCloud when configured and falls back on-device, but the reviewed entitlement currently lacks iCloud, so final sync behavior remains unverified.',
     icon: Dumbbell,
     specs: [
       { label: 'Product stage', value: 'In Development' },
