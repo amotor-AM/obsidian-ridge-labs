@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
           variants={reveal}
         >
           <span>Private intelligence for Apple devices</span>
-          <span>Independent studio · California</span>
+          <span>Independent studio · Las Vegas, Nevada</span>
         </motion.div>
 
         <div className="orl-hero__composition">

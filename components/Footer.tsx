@@ -60,7 +60,7 @@ const Footer: React.FC = () => (
       <div className="site-footer__bottom">
         <span>© {new Date().getFullYear()} Obsidian Ridge Labs</span>
         <span className="site-footer__status"><i /> Local intelligence, thoughtfully made</span>
-        <span>California · Apple platforms</span>
+        <span>Las Vegas, Nevada · Apple platforms</span>
       </div>
     </div>
   </footer>

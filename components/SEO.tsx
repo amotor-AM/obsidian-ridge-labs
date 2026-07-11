@@ -34,6 +34,12 @@ const buildOrganizationNode = () => ({
   foundingDate: '2024',
   slogan: 'AI without the audience.',
   email: 'support@obsidianridgelabs.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Las Vegas',
+    addressRegion: 'NV',
+    addressCountry: 'US',
+  },
   logo: {
     '@type': 'ImageObject',
     '@id': `${SITE_URL}/#logo`,

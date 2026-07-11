@@ -95,6 +95,14 @@ for (const file of htmlFiles) {
       for (const requiredType of ['Organization', 'WebSite']) {
         if (!graph.some((node) => typesOf(node).includes(requiredType))) errors.push(`${route}: missing ${requiredType} node`);
       }
+      const organization = graph.find((node) => typesOf(node).includes('Organization'));
+      if (
+        organization?.address?.addressLocality !== 'Las Vegas'
+        || organization?.address?.addressRegion !== 'NV'
+        || organization?.address?.addressCountry !== 'US'
+      ) {
+        errors.push(`${route}: Organization headquarters address must identify Las Vegas, Nevada, US`);
+      }
       const pageNode = graph.find((node) => typesOf(node).some((type) => pageTypes.has(type)) && node['@id'] === `${canonical}#webpage`);
       if (!pageNode) errors.push(`${route}: missing canonical #webpage node`);
 
@@ -243,6 +251,11 @@ for (const retiredRoute of ['/apps/mind', '/apps/nexus', '/blog/notion-vs-mindpa
 const echoHtml = fs.readFileSync(path.join(dist, 'apps', 'echochamber', 'index.html'), 'utf8');
 for (const expected of ['upload an existing audio or video file', 'approximately 3% WER', '6.32% average English WER', '7.44% for OpenAI Whisper large-v3']) {
   if (!textValue(echoHtml).toLowerCase().includes(expected.toLowerCase())) errors.push(`/apps/echochamber: missing required product fact: ${expected}`);
+}
+
+const homeText = visibleTextByRoute.get('/') || '';
+if (!homeText.includes('Independent studio · Las Vegas, Nevada')) {
+  errors.push('/: homepage must identify the studio as based in Las Vegas, Nevada');
 }
 
 const philosophyHtml = fs.readFileSync(path.join(dist, 'philosophy', 'index.html'), 'utf8');
