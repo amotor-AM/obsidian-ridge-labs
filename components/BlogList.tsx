@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blog';
 import { ArrowRight, Sparkles, BookOpen } from 'lucide-react';
-import SEO, { buildBreadcrumbs, buildCollectionPage, SITE_URL } from './SEO';
+import SEO, { buildBreadcrumbs, buildCollectionPage, ORGANIZATION_ID, SITE_URL } from './SEO';
 
 const BlogList: React.FC = () => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -26,9 +26,7 @@ const BlogList: React.FC = () => {
     description: 'Insights on privacy, offline AI, and digital sovereignty.',
     url: `${SITE_URL}/blog`,
     publisher: {
-      '@type': 'Organization',
-      name: 'Obsidian Ridge Labs',
-      url: SITE_URL,
+      '@id': ORGANIZATION_ID,
     },
     blogPost: blogPosts.map(post => ({
       '@type': 'BlogPosting',
@@ -36,14 +34,15 @@ const BlogList: React.FC = () => {
       description: post.excerpt,
       url: `${SITE_URL}/blog/${post.id}`,
       datePublished: post.date.replace(/\./g, '-'),
+      ...(post.modified ? { dateModified: post.modified.replace(/\./g, '-') } : {}),
     })),
   };
 
   return (
     <div className="min-h-screen bg-black pt-32 pb-10 md:pb-20 px-6 md:px-12 relative overflow-hidden">
       <SEO
-        title="Journal: Privacy, AI & Digital Sovereignty"
-        description="Explore insights on privacy-first technology, offline AI architecture, and digital sovereignty. Comparisons, guides, and deep analysis from Obsidian Ridge Labs."
+        title="Journal: Private AI & On-Device Design"
+        description="Practical, source-aware guides to on-device AI, private transcription, offline software, financial data boundaries, and local-first product design."
         jsonLd={[breadcrumbs, collectionPage, blogSchema]}
       />
 
@@ -60,16 +59,16 @@ const BlogList: React.FC = () => {
                 <span className="font-bold text-xs tracking-widest uppercase">The Obsidian Ridge Journal</span>
              </div>
              <h1 className="text-6xl md:text-8xl font-bold text-white tracking-tight leading-tight">
-               Insights & <br/> <span className="text-apple-gray">Ideology.</span>
+               Useful answers. <br/> <span className="text-apple-gray">Honest limits.</span>
              </h1>
              <p className="mt-10 text-2xl text-apple-gray font-medium max-w-2xl leading-relaxed">
-                Exploring the intersection of advanced intelligence and personal sovereignty. No tracking. No noise. Just the future.
+                Clear guides to private AI, offline software, transcription accuracy, and the data paths people should understand before choosing an app.
              </p>
            </div>
            <div className="mt-12 md:mt-0 flex flex-col items-end text-right font-semibold text-[11px] text-apple-gray space-y-2 tracking-wider">
-              <span>ESTABLISHED 2024</span>
-              <span>VERSION: PUBLIC FEED V2</span>
-              <span>LATENCY: 0MS LOCAL</span>
+              <span>UPDATED FOR 2026</span>
+              <span>{blogPosts.length} EDITORIAL GUIDES</span>
+              <span>CLAIMS WITH BOUNDARIES</span>
            </div>
         </header>
 
@@ -78,7 +77,7 @@ const BlogList: React.FC = () => {
           <Link to={`/blog/${blogPosts[0].id}`} className="block mb-12 md:mb-24 group relative overflow-hidden apple-card p-10 md:p-20">
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                   <span className="inline-block px-4 py-1.5 bg-apple-blue text-white font-bold text-[11px] uppercase rounded-full mb-8 tracking-wider">Featured</span>
+                   <span className="inline-block px-4 py-1.5 bg-apple-blue text-black font-bold text-xs uppercase rounded-full mb-8 tracking-wider">Featured</span>
                    <h2 className="text-4xl md:text-6xl font-bold text-white group-hover:text-apple-blue transition-colors duration-500 mb-8 leading-tight tracking-tight">
                       {blogPosts[0].title}
                    </h2>

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { getKb, getArticle } from '../../data/kb';
+import { getProduct } from '../../data/products';
 import { KnowledgeBase, KBArticle } from '../../types';
 import { Icon } from '../../lib/icons';
 import HelpSidebar from './HelpSidebar';
@@ -112,9 +113,45 @@ const HelpArticle: React.FC = () => {
   const { appId, articleId } = useParams();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const openButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileOpen(false);
+      if (event.key === 'Tab' && drawerRef.current) {
+        const focusable = Array.from(
+          drawerRef.current.querySelectorAll('a[href], button:not([disabled]), input:not([disabled])'),
+        ) as HTMLElement[];
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+      openButtonRef.current?.focus({ preventScroll: true });
+    };
+  }, [mobileOpen]);
 
   const kb = appId ? getKb(appId) : undefined;
   if (!kb) return <Navigate to="/help" replace />;
+  const product = getProduct(kb.appId);
+  const isPreviewDocs = Boolean(product && ['pre-release', 'concept'].includes(product.releaseStatus));
   const article = articleId ? getArticle(appId!, articleId) : undefined;
   if (articleId && !article) return <Navigate to={`/help/${appId}`} replace />;
 
@@ -131,7 +168,7 @@ const HelpArticle: React.FC = () => {
         .flatMap((b) => b.items.map((i) => ({ question: i.q, answer: i.a })))
     : [];
 
-  // The first `steps` block in a guide becomes a HowTo rich result.
+  // Preserve machine-readable steps for semantics and assistive retrieval.
   const howToSteps = article
     ? (article.blocks.find((b) => b.type === 'steps') as Extract<KBArticle['blocks'][number], { type: 'steps' }> | undefined)?.items
     : undefined;
@@ -147,6 +184,7 @@ const HelpArticle: React.FC = () => {
         articleId: article.id,
         updated: article.updated,
         keywords: article.keywords,
+        releaseStatus: product?.releaseStatus,
       }),
     );
     if (howToSteps && howToSteps.length > 1) {
@@ -166,7 +204,7 @@ const HelpArticle: React.FC = () => {
   return (
     <div className="help-shell min-h-screen bg-obsidian pt-24 md:pt-28 pb-16 md:pb-24">
       <SEO
-        title={article ? `${article.title} · ${kb.appName} help` : `${kb.appName}: help & guides`}
+        title={article ? `${article.title} · ${kb.appName}` : `${kb.appName}: Help & Guides`}
         description={article?.description || kb.intro}
         keywords={article?.keywords}
         canonical={`https://obsidianridgelabs.com/help/${kb.appId}${article ? '/' + article.id : ''}`}
@@ -183,7 +221,7 @@ const HelpArticle: React.FC = () => {
           )}
 
           {/* Content */}
-          <main className="flex-1 min-w-0 lg:py-2">
+          <div className="flex-1 min-w-0 lg:py-2">
             <div className="hidden lg:flex items-center gap-4 mb-8">
               <button
                 onClick={() => setCollapsed((c) => !c)}
@@ -194,13 +232,21 @@ const HelpArticle: React.FC = () => {
               </button>
             </div>
 
-            <div className="max-w-3xl">{article ? <ArticleView kb={kb} article={article} /> : <LandingView kb={kb} />}</div>
-          </main>
+            <div className="max-w-3xl">
+              {isPreviewDocs && (
+                <p className="mb-8 border border-amber-300/25 bg-amber-300/[0.06] px-5 py-4 text-base leading-relaxed text-amber-100">
+                  Preview documentation for a product in development. Features, compatibility, and exact steps may change before release.
+                </p>
+              )}
+              {article ? <ArticleView kb={kb} article={article} /> : <LandingView kb={kb} />}
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Mobile contents button (FAB) */}
       <button
+        ref={openButtonRef}
         onClick={() => setMobileOpen(true)}
         className="lg:hidden fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 bg-neon text-black font-display font-bold uppercase tracking-wider text-sm px-5 py-3 rounded-full shadow-[0_0_30px_rgba(0,240,255,0.35)]"
         aria-label="Open help contents"
@@ -210,12 +256,19 @@ const HelpArticle: React.FC = () => {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+        <div
+          ref={drawerRef}
+          className="lg:hidden fixed inset-0 z-50"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Help contents"
+        >
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} aria-hidden="true" />
           <div className="absolute left-0 top-0 bottom-0 w-[86%] max-w-xs bg-obsidian-light border-r border-white/10 p-6 pt-5 overflow-hidden flex flex-col">
             <button
+              ref={closeButtonRef}
               onClick={() => setMobileOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+              className="absolute top-2 right-2 grid w-11 h-11 place-items-center text-gray-400 hover:text-white"
               aria-label="Close contents"
             >
               <Icon name="x" size={20} />

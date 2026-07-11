@@ -1,123 +1,130 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
+import { getProductReleaseLabel, products } from '../data/products';
 import MotionReveal from './home/MotionReveal';
-import ProductVisual from './home/ProductVisual';
 
-const productOrder = ['echochamber', 'vault', 'molehill', 'mind', 'nexus'];
+const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith'];
 
-const homepageCopy: Record<string, { eyebrow: string; headline: string; body: string; facts: string[] }> = {
+const homepageCopy: Record<string, { proposition: string; detail: string; platforms: string }> = {
   echochamber: {
-    eyebrow: 'Private transcription',
-    headline: 'Every word captured. Nothing sent to us.',
-    body: 'Record audio, follow a live transcript, polish it with AI, search every word, and export the result—all on your Apple device. No required cloud processing. No audio uploaded to Obsidian Ridge Labs.',
-    facts: ['Live transcription', 'AI notes & summaries', 'iPhone · iPad · Mac'],
+    proposition: 'Private transcription that stays on your device.',
+    detail: 'Record live or upload audio and video, then transcribe with Parakeet TDT, search, summarize, and export locally.',
+    platforms: 'iPhone · iPad · Mac',
   },
   vault: {
-    eyebrow: 'Personal finance',
-    headline: 'Understand your money without becoming the product.',
-    body: 'Vault categorizes spending, forecasts cash flow, and offers private financial guidance on-device. Track manually and stay fully local, or enable Plaid bank sync when automatic updates are worth the connection.',
-    facts: ['On-device forecasts', 'Biometric lock', 'Optional bank sync'],
+    proposition: 'Understand your money without surrendering it.',
+    detail: 'An in-development local-first finance tool with a planned manual path and clearly disclosed optional bank sync.',
+    platforms: 'iPhone · iPad',
   },
   molehill: {
-    eyebrow: 'Focus & momentum',
-    headline: 'Make the next step smaller.',
-    body: 'Turn an overwhelming brain dump into one clear, doable action. On-device AI breaks work down without streaks, shame, or behavioral tracking.',
-    facts: ['One step at a time', 'Works offline', 'No behavior tracking'],
+    proposition: 'Break overwhelming work into one doable next step.',
+    detail: 'A gentle focus tool designed around on-device task breakdown, without streaks or shame.',
+    platforms: 'iPhone',
   },
-  mind: {
-    eyebrow: 'Private reflection',
-    headline: 'A journal that connects the dots—privately.',
-    body: 'A private AI journal concept designed to surface patterns across your writing locally and under biometric protection.',
-    facts: ['Local pattern finding', 'Semantic recall', 'Biometric protection'],
+  cove: {
+    proposition: 'Reflect on your life without uploading it.',
+    detail: 'A private journal with local reflection, mood and theme patterns, grounded recall, and a clear non-clinical boundary.',
+    platforms: 'iPhone',
   },
-  nexus: {
-    eyebrow: 'Strategic thinking',
-    headline: 'Put important decisions under pressure.',
-    body: 'A visual decision workspace concept with local red-team intelligence that challenges assumptions before the stakes are real.',
-    facts: ['Decision mapping', 'Red-team analysis', 'Local simulation'],
+  wove: {
+    proposition: 'Turn the closet you own into looks you will wear.',
+    detail: 'Local garment capture, weather-aware outfits, capsules, packing, and insights shaped by real wear history.',
+    platforms: 'iPhone · iPad',
+  },
+  mettle: {
+    proposition: 'Follow the program—and understand every prescription.',
+    detail: 'A private strength coach where deterministic progression owns the numbers and on-device AI explains the plan.',
+    platforms: 'iPhone · Apple Watch',
+  },
+  memora: {
+    proposition: 'Turn your material into cards. Review before you forget.',
+    detail: 'Local flashcard drafts from notes, text-layer PDFs, and selected photos, paired with FSRS scheduling.',
+    platforms: 'iPhone',
+  },
+  trove: {
+    proposition: 'Document what you own before you need the record.',
+    detail: 'A private home inventory for belongings, receipts, serials, values, warranties, and insurance-ready evidence.',
+    platforms: 'iPhone · iPad',
+  },
+  kith: {
+    proposition: 'Stay close without turning relationships into a CRM cloud.',
+    detail: 'Gentle reach-out cadences, private context, and on-device helpers for the people who matter.',
+    platforms: 'iPhone',
   },
 };
 
-const ProductCard: React.FC<{ productId: string; featured?: boolean; index: number }> = ({ productId, featured = false, index }) => {
-  const product = products.find((item) => item.id === productId);
-  if (!product) return null;
-  const copy = homepageCopy[product.id];
-  const style = { '--product-accent': product.accent || '#c7ff3e' } as React.CSSProperties;
-  const status = product.status === 'live' ? 'Available now' : 'Inside the lab';
+const getStatus = (product: (typeof products)[number]) => {
+  const label = getProductReleaseLabel(product);
+  return label === 'Available on the App Store' ? 'Available now' : label;
+};
+
+const Products: React.FC = () => {
+  const orderedProducts = productOrder
+    .map((id) => products.find((product) => product.id === id))
+    .filter((product): product is (typeof products)[number] => Boolean(product));
 
   return (
-    <MotionReveal className={`product-story ${featured ? 'product-story--featured' : ''}`} amount={0.18}>
-      <article style={style}>
-        <div className="product-story__copy">
-          <div className="product-story__meta">
-            <span>0{index + 1}</span>
-            <span>{copy.eyebrow}</span>
-            <span className={product.status === 'live' ? 'is-live' : ''}><i /> {status}</span>
-          </div>
-          <div className="product-story__heading">
-            <p>{product.name}</p>
-            <h3>{copy.headline}</h3>
-          </div>
-          <p className="product-story__body">{copy.body}</p>
-          <ul className="product-story__facts" aria-label={`${product.name} highlights`}>
-            {copy.facts.map((fact) => <li key={fact}>{fact}</li>)}
-          </ul>
-          <div className="product-story__actions">
-            <Link to={`/apps/${product.id}`} className="button button--outline">
-              Explore {product.shortName} <ArrowUpRight size={16} aria-hidden="true" />
-            </Link>
-            {product.appStoreUrl && (
-              <a href={product.appStoreUrl} target="_blank" rel="noreferrer" className="text-link">
-                App Store <ArrowUpRight size={16} aria-hidden="true" />
-              </a>
-            )}
-          </div>
+    <section id="products" className="products-section" aria-labelledby="products-title">
+      <div className="section-frame">
+        <div className="section-index">
+          <span>02 / The collection</span>
+          <span>{products.length} focused instruments</span>
         </div>
-        <ProductVisual productId={product.id} />
-      </article>
-    </MotionReveal>
+
+        <div className="products-section__intro">
+          <MotionReveal>
+            <p className="section-kicker">The work</p>
+            <h2 id="products-title">Different tools.<br /><em>One clear boundary.</em></h2>
+          </MotionReveal>
+          <MotionReveal delay={0.08}>
+            <p>
+              Each product solves a specific problem. Every one is designed to keep core
+              intelligence close to its source and disclose the connections it does make.
+            </p>
+          </MotionReveal>
+        </div>
+
+        <div className="product-ledger" role="list">
+          {orderedProducts.map((product, index) => {
+            const copy = homepageCopy[product.id];
+            return (
+              <MotionReveal key={product.id} className="product-ledger__reveal" delay={index * 0.04} amount={0.18}>
+                <Link to={`/apps/${product.id}`} className="product-ledger__row" role="listitem">
+                  <div className="product-ledger__number">{String(index + 1).padStart(2, '0')}</div>
+                  <div className="product-ledger__name">
+                    <span>{product.category}</span>
+                    <h3>{product.name}</h3>
+                  </div>
+                  <div className="product-ledger__copy">
+                    <strong>{copy.proposition}</strong>
+                    <p>{copy.detail}</p>
+                  </div>
+                  <div className="product-ledger__meta">
+                    <span className={product.appStoreUrl ? 'is-live' : ''}>{getStatus(product)}</span>
+                    <small>{copy.platforms}</small>
+                  </div>
+                  <div className="product-ledger__arrow" aria-hidden="true">
+                    <ArrowUpRight size={24} />
+                  </div>
+                </Link>
+              </MotionReveal>
+            );
+          })}
+        </div>
+
+        <MotionReveal className="product-ledger__foot">
+          <p>
+            Products in development are presented as direction, not promise. Final capabilities,
+            compatibility, and network behavior are published before release.
+          </p>
+          <Link to="/download" className="text-link">
+            Compare every app <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+        </MotionReveal>
+      </div>
+    </section>
   );
 };
-
-const Products: React.FC = () => (
-  <section id="products" className="products-section" aria-labelledby="products-title">
-    <div className="section-frame">
-      <div className="section-index">
-        <span>02 / The collection</span>
-        <span>Five focused instruments</span>
-      </div>
-
-      <div className="products-section__intro">
-        <MotionReveal>
-          <p className="section-kicker">Built for what matters</p>
-          <h2 id="products-title">A private toolkit for modern life.</h2>
-        </MotionReveal>
-        <MotionReveal delay={0.08}>
-          <p>
-            Different jobs. One principle: keep the intelligence close to the data.
-            Available products are shown first; experiments in development live inside the lab.
-          </p>
-        </MotionReveal>
-      </div>
-
-      <div className="products-section__available" aria-label="Available applications">
-        <ProductCard productId={productOrder[0]} featured index={0} />
-        <ProductCard productId={productOrder[1]} featured index={1} />
-      </div>
-
-      <div className="lab-heading">
-        <span>Inside the lab</span>
-        <p>Three ideas in active development, each built around the same local-first standard.</p>
-      </div>
-      <div className="products-section__lab">
-        {productOrder.slice(2).map((productId, index) => (
-          <ProductCard key={productId} productId={productId} index={index + 2} />
-        ))}
-      </div>
-    </div>
-  </section>
-);
 
 export default Products;

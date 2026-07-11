@@ -6,7 +6,7 @@ export const vaultKb: KnowledgeBase = {
   accent: "#74e0ae",
   status: "ready",
   intro:
-    "Welcome to Vault. Whether you track every coffee by hand or link a bank for automatic updates, these guides help you get set up, understand your numbers, and keep your money private and on your terms.",
+    "Learn how Vault is designed to handle setup, budgets, transactions, forecasts, privacy, optional bank connections, exports, and plans.",
   categories: [
     {
       id: "getting-started",
@@ -1084,7 +1084,7 @@ export const vaultKb: KnowledgeBase = {
       id: "export-your-data",
       title: "Export your data (CSV)",
       description:
-        "Your data is yours. Export it to CSV any time.",
+        "Learn how the planned Vault export flow creates a portable CSV copy of your financial records for backup or analysis.",
       category: "privacy",
       keywords: ["export", "csv", "backup", "download data", "spreadsheet", "reports", "pdf"],
       updated: "2026-06-14",

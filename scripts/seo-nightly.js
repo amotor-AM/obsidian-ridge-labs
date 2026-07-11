@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SITE_ORIGIN = 'https://obsidianridgelabs.com';
 const SITEMAP_URL = `${SITE_ORIGIN}/sitemap.xml`;
-const LOCAL_SITEMAP_PATH = path.resolve(__dirname, '../public/sitemap.xml');
+const LOCAL_SITEMAP_PATH = path.resolve(__dirname, '../dist/sitemap.xml');
 
 // 1. Helper function for base64url encoding
 function base64url(str) {
@@ -64,7 +64,7 @@ async function loadSitemap() {
     console.log(`Loaded production sitemap: ${SITEMAP_URL}`);
     return xml;
   } catch (error) {
-    console.warn(`Could not load the production sitemap (${error.message}); using the checked-in fallback.`);
+    console.warn(`Could not load the production sitemap (${error.message}); using the latest generated build artifact.`);
     if (!fs.existsSync(LOCAL_SITEMAP_PATH)) {
       throw new Error(`Sitemap unavailable remotely and no fallback exists at ${LOCAL_SITEMAP_PATH}`);
     }

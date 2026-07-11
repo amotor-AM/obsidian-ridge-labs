@@ -55,9 +55,10 @@ const SiteFrame: React.FC<SiteFrameProps> = ({ children }) => {
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen bg-obsidian font-sans text-text-primary selection:bg-neon selection:text-black">
         <ScrollAndRouteFocus />
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <Navigation />
 
-        <main id="main-content" tabIndex={-1} className="outline-none">
+        <main id="main-content" tabIndex={-1}>
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={location.pathname}

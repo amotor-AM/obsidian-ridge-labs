@@ -18,7 +18,7 @@ const HelpHome: React.FC = () => {
     <div className="min-h-screen bg-obsidian pt-32 pb-20 px-6 md:px-12">
       <SEO
         title="Help Center"
-        description="Guides and answers for Obsidian Ridge apps: Vault, Echo Chamber, and Molehill. Set things up, get the most from every feature, and understand exactly where your data lives."
+        description="Setup, privacy, troubleshooting, and feature guides for Echo Chamber, plus clearly labeled preview documentation for apps still in development."
         canonical="https://obsidianridgelabs.com/help"
         jsonLd={jsonLd}
       />
@@ -60,7 +60,7 @@ const HelpHome: React.FC = () => {
                     </h2>
                     <div className="text-gray-500 text-[11px] font-mono uppercase tracking-widest">
                       {kb.articles.length} guides
-                      {product && product.status !== 'live' ? ' · coming soon' : ''}
+                      {product && ['pre-release', 'concept'].includes(product.releaseStatus) ? ' · in development' : ''}
                     </div>
                   </div>
                 </div>

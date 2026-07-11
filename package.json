@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --ssr entry-server.tsx --outDir dist-server && node prerender.js && node scripts/copy-sites-worker.js",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "validate": "npm run validate:seo && npm run validate:worker",
+    "validate:seo": "node scripts/validate-seo.js",
+    "validate:worker": "node scripts/validate-worker.js"
   },
   "dependencies": {
     "@google/genai": "^1.41.0",

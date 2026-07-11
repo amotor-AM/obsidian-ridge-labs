@@ -1,16 +1,21 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
+import { getProductReleaseLabel, products } from '../data/products';
+
+const productStatus = (product: (typeof products)[number]) => {
+  const label = getProductReleaseLabel(product);
+  return label === 'Available on the App Store' ? 'Available' : label;
+};
 
 const Footer: React.FC = () => (
   <footer className="site-footer site-chrome">
     <div className="section-frame">
       <div className="site-footer__top">
         <div>
-          <Link to="/" className="site-wordmark">
-            <span className="site-wordmark__mark" aria-hidden="true"><i /><i /><i /></span>
-            <span>Obsidian Ridge <b>Labs</b></span>
+          <Link to="/" className="site-wordmark" aria-label="Obsidian Ridge Labs home">
+            <span className="site-wordmark__name">OBSIDIAN<span aria-hidden="true">/</span>RIDGE</span>
+            <span className="site-wordmark__labs">LABS</span>
           </Link>
           <p>
             Independent Apple software studio building private, offline-first AI apps.
@@ -27,7 +32,7 @@ const Footer: React.FC = () => (
           <p>Applications</p>
           {products.map((product) => (
             <Link key={product.id} to={`/apps/${product.id}`}>
-              {product.name}<span>{product.status === 'live' ? 'Available' : 'In the lab'}</span>
+              {product.name}<span>{productStatus(product)}</span>
             </Link>
           ))}
         </nav>
@@ -42,7 +47,7 @@ const Footer: React.FC = () => (
           <p>Company</p>
           <Link to="/privacy">Privacy model</Link>
           <Link to="/terms">Terms of service</Link>
-          <a href="https://github.com/obsidian-ridge-labs" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={13} /></a>
+          <a href="https://github.com/amotor-AM/obsidian-ridge-labs" target="_blank" rel="noreferrer">Website source <ArrowUpRight size={13} /></a>
           <a href="mailto:support@obsidianridgelabs.com">Email us <ArrowUpRight size={13} /></a>
         </nav>
       </div>

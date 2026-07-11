@@ -11,7 +11,7 @@ export interface WorkflowStep {
   description: string;
 }
 
-export type AppStatus = 'live' | 'coming-soon';
+export type ReleaseStatus = 'app-store' | 'source-only' | 'pre-release' | 'concept';
 
 export interface Product {
   id: string;
@@ -25,8 +25,8 @@ export interface Product {
   specs: { label: string; value: string }[];
   features: ProductFeature[];
   workflow: WorkflowStep[];
-  /** Whether the app is live on the App Store or still on the way. */
-  status: AppStatus;
+  /** Canonical distribution state used by UI, schema, sitemaps, and AI-readable exports. */
+  releaseStatus: ReleaseStatus;
   /** Per-app accent (hex) used for subtle theming. */
   accent?: string;
   /** Real App Store URL when the app is listed; empty string otherwise. */
@@ -56,7 +56,7 @@ export interface AiResponse {
   recommendation: string;
 }
 
-export type BlogBlockType = 'paragraph' | 'h2' | 'quote' | 'code' | 'list' | 'cta';
+export type BlogBlockType = 'paragraph' | 'h2' | 'quote' | 'code' | 'list' | 'sources' | 'cta';
 
 export interface BlogBlock {
   type: BlogBlockType;
@@ -68,6 +68,7 @@ export interface BlogPost {
   id: string;
   title: string;
   date: string;
+  modified?: string;
   readTime: string;
   category: string;
   tags: string[];

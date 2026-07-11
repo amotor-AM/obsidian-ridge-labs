@@ -1,34 +1,12 @@
 import React from 'react';
-import { ArrowRight, ArrowUpRight, Check, Download, Github, Lock, Mic, Search, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, Download, FileUp, Lock, Mic, Search, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { products } from '../data/products';
+import { echoFaqs } from '../data/faqs';
 import SEO, { buildBreadcrumbs, buildFAQSchema, buildSoftwareApp } from './SEO';
 import MotionReveal from './home/MotionReveal';
 
 const appStoreUrl = 'https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060';
-
-const faqs = [
-  {
-    question: 'Does Echo Chamber upload my audio for transcription?',
-    answer: 'No. Echo Chamber processes recording and transcription on your supported Apple device. Audio is not uploaded to Obsidian Ridge Labs for speech recognition or AI processing.',
-  },
-  {
-    question: 'Can Echo Chamber work without an internet connection?',
-    answer: 'Yes. After any required model setup, core recording, live transcription, AI notes, search, and export workflows are designed to work offline. App Store purchases, model downloads, and optional iCloud sync require a connection.',
-  },
-  {
-    question: 'Which formats can I export?',
-    answer: 'The current App Store release exports TXT, Markdown, PDF, and DOCX, so transcripts can move into simple notes, publishing workflows, or polished documents.',
-  },
-  {
-    question: 'Which devices are supported?',
-    answer: 'Echo Chamber requires iOS 18 or later on iPhone, iPadOS 18 or later on iPad, or macOS 15 or later on an Apple-silicon Mac. The App Store also lists Apple Vision compatibility.',
-  },
-  {
-    question: 'What does Echo Chamber Pro include?',
-    answer: 'Pro unlocks unlimited recording length, the complete set of AI features, audio and video upload, batch enhancement, and priority support. Current US pricing is shown on the App Store before purchase.',
-  },
-];
 
 const capabilities = [
   {
@@ -50,8 +28,14 @@ const capabilities = [
     copy: 'Tag recordings, bookmark important moments, and search every word across your library without giving a cloud workspace your archive.',
   },
   {
-    icon: Lock,
+    icon: FileUp,
     number: '04',
+    title: 'Audio and video upload',
+    copy: 'Already have the recording? Upload an audio or video file and turn it into the same searchable transcript, notes, summary, and exportable document.',
+  },
+  {
+    icon: Lock,
+    number: '05',
     title: 'Private by default',
     copy: 'Audio is encrypted at rest, core processing happens locally, and the app contains no third-party SDKs that profile what you record.',
   },
@@ -71,8 +55,14 @@ const EchoDetail: React.FC = () => {
       'Word-level recording search',
       'Recording bookmarks',
       'TXT, Markdown, PDF, and DOCX export',
-      'Audio and video import with Pro',
+      'Audio and video file upload with Pro',
+      'Parakeet TDT 0.6B v3 speech recognition with approximately 3% observed WER in Echo Chamber testing',
       'AES-256-GCM audio encryption at rest',
+    ],
+    citation: [
+      'https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3',
+      'https://huggingface.co/openai/whisper-large-v3',
+      'https://huggingface.co/spaces/hf-audio/open_asr_leaderboard',
     ],
   };
   const breadcrumbs = buildBreadcrumbs([
@@ -85,10 +75,10 @@ const EchoDetail: React.FC = () => {
     <div className="echo-page">
       <SEO
         title="Echo Chamber: Private On-Device Transcription"
-        description="Record, transcribe, polish, search, and export conversations with AI that runs on your Apple device. Your voice is not uploaded to Obsidian Ridge Labs."
+        description="Record live or upload audio and video for private on-device transcription with Parakeet TDT, searchable notes, summaries, and flexible export."
         ogType="product"
-        keywords={['private transcription app', 'offline transcription for iPhone', 'on-device voice transcription', 'local AI meeting notes']}
-        jsonLd={[softwareApp, breadcrumbs, buildFAQSchema(faqs)]}
+        keywords={['private transcription app', 'offline transcription for iPhone', 'upload audio for transcription', 'transcribe video on iPhone', 'Parakeet TDT transcription', 'Whisper alternative', 'local AI meeting notes']}
+        jsonLd={[softwareApp, breadcrumbs, buildFAQSchema(echoFaqs)]}
       />
 
       <header className="echo-hero">
@@ -104,8 +94,8 @@ const EchoDetail: React.FC = () => {
               <p className="section-kicker">Echo Chamber / Private transcription</p>
               <h1>Your voice.<br /><em>Still yours.</em></h1>
               <p>
-                Record audio, follow a live transcript, polish it with AI, search every word,
-                and export the result—all without sending your voice to Obsidian Ridge Labs.
+                Record live—or upload an existing audio or video file—then transcribe, polish,
+                search, summarize, and export without sending your voice to Obsidian Ridge Labs.
               </p>
               <div className="echo-hero__actions">
                 <a href={appStoreUrl} target="_blank" rel="noreferrer" className="button button--primary">
@@ -116,7 +106,6 @@ const EchoDetail: React.FC = () => {
             </div>
 
             <div className="echo-hero__visual">
-              <div className="echo-hero__halo" aria-hidden="true" />
               <picture>
                 <source srcSet="/images/echochamber/record-screen-480.webp 480w, /images/echochamber/record-screen-960.webp 960w" type="image/webp" />
                 <img
@@ -126,13 +115,12 @@ const EchoDetail: React.FC = () => {
                   height="1707"
                 />
               </picture>
-              <div className="echo-hero__status"><i /> ON-DEVICE PROCESSING</div>
-              <div className="echo-hero__note"><span>00:38:12</span><strong>Live transcript active</strong></div>
+              <p>Authentic interface · Live recording</p>
             </div>
           </div>
 
           <dl className="echo-hero__facts">
-            <div><dt>Processing</dt><dd>On-device</dd></div>
+            <div><dt>Input</dt><dd>Live · audio · video</dd></div>
             <div><dt>Transcript</dt><dd>Live as you speak</dd></div>
             <div><dt>Export</dt><dd>TXT · MD · PDF · DOCX</dd></div>
             <div><dt>Account</dt><dd>Not required</dd></div>
@@ -140,7 +128,7 @@ const EchoDetail: React.FC = () => {
         </div>
       </header>
 
-      <main>
+      <div className="echo-content">
         <section className="echo-thesis" aria-labelledby="echo-thesis-title">
           <div className="section-frame">
             <div className="section-index section-index--dark"><span>01 / The difference</span><span>Voice data stays close</span></div>
@@ -185,7 +173,7 @@ const EchoDetail: React.FC = () => {
 
         <section className="echo-capabilities" aria-labelledby="echo-capabilities-title">
           <div className="section-frame">
-            <div className="section-index"><span>02 / The instrument</span><span>Four core capabilities</span></div>
+            <div className="section-index"><span>02 / The instrument</span><span>Five core capabilities</span></div>
             <div className="echo-capabilities__intro">
               <p className="section-kicker">Built for real conversations</p>
               <h2 id="echo-capabilities-title">Everything needed to turn speech into something useful.</h2>
@@ -199,6 +187,41 @@ const EchoDetail: React.FC = () => {
                   <p>{copy}</p>
                 </MotionReveal>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="echo-model" aria-labelledby="echo-model-title">
+          <div className="section-frame">
+            <div className="section-index section-index--dark"><span>03 / The model</span><span>Accuracy, with the benchmark attached</span></div>
+            <div className="echo-model__grid">
+              <MotionReveal>
+                <p className="section-kicker section-kicker--dark">Why Parakeet TDT</p>
+                <p className="echo-model__stat" aria-label="Approximately 3 percent observed word error rate">≈3<small>%</small></p>
+                <h2 id="echo-model-title">Observed in Echo Chamber. Benchmarked in public.</h2>
+              </MotionReveal>
+              <MotionReveal delay={0.08}>
+                <p className="echo-model__answer">
+                  Echo Chamber uses NVIDIA Parakeet TDT 0.6B v3 and has observed approximately 3% WER
+                  in Echo Chamber testing. For separate, apples-to-apples public context, the current
+                  Hugging Face Open ASR evaluation reports 6.32% average English WER for Parakeet and
+                  7.44% for OpenAI Whisper large-v3—about 15% fewer word errors for Parakeet on that benchmark.
+                </p>
+                <dl className="echo-model__comparison">
+                  <div><dt>Echo Chamber testing</dt><dd>≈3% observed WER</dd></div>
+                  <div><dt>Parakeet · public benchmark</dt><dd>6.32% WER</dd></div>
+                  <div><dt>Whisper large-v3 · same benchmark</dt><dd>7.44% WER</dd></div>
+                </dl>
+                <p className="echo-model__caveat">
+                  The ≈3% figure is an internal product observation, not the public benchmark above or a guarantee.
+                  Lower is better. WER varies with language, accent, background noise, microphones,
+                  overlapping speakers, and recording conditions.
+                </p>
+                <div className="echo-model__sources" aria-label="Benchmark sources">
+                  <a href="https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3" target="_blank" rel="noreferrer">NVIDIA model card <ArrowUpRight size={15} /></a>
+                  <a href="https://huggingface.co/openai/whisper-large-v3" target="_blank" rel="noreferrer">Whisper evaluation <ArrowUpRight size={15} /></a>
+                </div>
+              </MotionReveal>
             </div>
           </div>
         </section>
@@ -253,16 +276,16 @@ const EchoDetail: React.FC = () => {
 
         <section className="echo-faq" aria-labelledby="echo-faq-title">
           <div className="section-frame">
-            <div className="section-index"><span>03 / Questions</span><span>Product facts</span></div>
+            <div className="section-index"><span>04 / Questions</span><span>Product facts</span></div>
             <div className="echo-faq__layout">
               <div>
                 <p className="section-kicker">Before you install</p>
-                <h2 id="echo-faq-title">A few straight answers.</h2>
+                <h2 id="echo-faq-title">Straight answers, before you install.</h2>
               </div>
               <div className="echo-faq__list">
-                {faqs.map((faq, index) => (
+                {echoFaqs.map((faq, index) => (
                   <details key={faq.question} open={index === 0}>
-                    <summary><span>0{index + 1}</span>{faq.question}<i /></summary>
+                    <summary><span>{String(index + 1).padStart(2, '0')}</span>{faq.question}<i /></summary>
                     <p>{faq.answer}</p>
                   </details>
                 ))}
@@ -277,11 +300,10 @@ const EchoDetail: React.FC = () => {
             <h2 id="echo-close-title">Keep the conversation.<br /><em>Lose the cloud dependency.</em></h2>
             <div className="echo-close__actions">
               <a href={appStoreUrl} target="_blank" rel="noreferrer" className="button button--dark">Download Echo Chamber <ArrowUpRight size={17} /></a>
-              {product.githubUrl && <a href={product.githubUrl} target="_blank" rel="noreferrer" className="text-link text-link--dark"><Github size={16} /> Review the source</a>}
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 };

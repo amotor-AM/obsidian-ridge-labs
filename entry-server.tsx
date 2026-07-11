@@ -6,6 +6,7 @@ import { setServerSEOContext } from './components/SEO';
 import { products } from './data/products';
 import { blogPosts } from './data/blog';
 import { knowledgeBases } from './data/kb';
+import { collectionFaqs, echoFaqs, homeFaqs, philosophyFaqs, productFaqs } from './data/faqs';
 
 // Render function called by prerender.js
 export function render(url: string, context: any) {
@@ -26,10 +27,11 @@ export const routes = [
   '/blog',
   '/terms',
   '/privacy',
+  '/404',
   ...products.map(p => `/apps/${p.id}`),
   ...blogPosts.map(post => `/blog/${post.id}`),
   ...knowledgeBases.map(kb => `/help/${kb.appId}`),
   ...knowledgeBases.flatMap(kb => kb.articles.map(a => `/help/${kb.appId}/${a.id}`)),
 ];
 
-export { products, blogPosts, knowledgeBases };
+export { products, blogPosts, knowledgeBases, collectionFaqs, echoFaqs, homeFaqs, philosophyFaqs, productFaqs };

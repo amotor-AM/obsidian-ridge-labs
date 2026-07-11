@@ -53,9 +53,14 @@ The site follows a hub-and-spoke model where pillar pages link to cluster pages 
 ```
 Homepage (Hub)
 ├── /apps/vault ←→ /blog/finance-app-red-flags
-├── /apps/mind ←→ /blog/notion-vs-mindpalace
 ├── /apps/echochamber ←→ /blog/otter-vs-echo
-├── /apps/nexus ←→ /blog/offline-ai-revolution
+├── /apps/molehill ←→ /blog/offline-ai-revolution
+├── /apps/cove ←→ /blog/private-ai-journal-guide
+├── /apps/wove ←→ /blog/apple-ecosystem-privacy
+├── /apps/mettle ←→ /blog/offline-ai-revolution
+├── /apps/memora ←→ /blog/offline-ai-revolution
+├── /apps/trove ←→ /blog/apple-ecosystem-privacy
+├── /apps/kith ←→ /blog/apple-ecosystem-privacy
 ├── /philosophy ←→ All products + All blog posts
 └── /blog (Hub) → All blog posts
 ```
@@ -247,14 +252,15 @@ All major AI crawlers (GPTBot, ClaudeBot, PerplexityBot, etc.) are explicitly al
 
 | Source Page | Links To |
 |---|---|
-| **Homepage** | All 4 products, philosophy, blog (via nav), privacy, terms (via footer), all blog posts (via footer) |
-| **Vault** | Mind, Echo, Nexus (cross-link), finance blog post, philosophy, blog index (via footer) |
-| **Mind Palace** | Vault, Echo, Nexus (cross-link), notion blog post, philosophy, blog index (via footer) |
-| **Echo Chamber** | Vault, Mind, Nexus (cross-link), otter blog post, philosophy, blog index (via footer) |
-| **Decision Nexus** | Vault, Mind, Echo (cross-link), offline AI blog post, philosophy, blog index (via footer) |
-| **Philosophy** | All 4 products, 2 blog posts, blog index, all via footer |
+| **Homepage** | All 9 products, philosophy, blog (via nav), privacy, terms (via footer), all blog posts (via footer) |
+| **Vault** | Other apps, finance blog post, philosophy, blog index (via footer) |
+| **Echo Chamber** | Other apps, transcription comparison, philosophy, blog index (via footer) |
+| **Molehill** | Other apps, offline AI article, philosophy, blog index (via footer) |
+| **Cove** | Other apps, private journal guide, philosophy, blog index (via footer) |
+| **Wove, Mettle, Memora, Trove, Kith** | Other apps, relevant journal article, philosophy, blog index (via footer) |
+| **Philosophy** | All 9 products, key blog posts, blog index, all via footer |
 | **Blog Index** | All 4 blog posts, featured post product |
 | **Blog Posts** | Related product (CTA), 3 related posts (sidebar), philosophy, vault, echo (sidebar explore) |
 | **Privacy Policy** | Philosophy, terms, finance blog post, vault |
 | **Terms of Service** | Privacy, philosophy, vault, echo |
-| **Footer (all pages)** | All 4 products, all 4 blog posts, blog index, philosophy, privacy, terms |
+| **Footer (all pages)** | All 9 products, blog index, philosophy, help, privacy, terms |

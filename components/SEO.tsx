@@ -4,6 +4,162 @@ import { useLocation } from 'react-router-dom';
 const SITE_NAME = 'Obsidian Ridge Labs';
 const SITE_URL = 'https://obsidianridgelabs.com';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og.png`;
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+const getDocumentTitle = (title: string) => {
+  const branded = `${title} | ${SITE_NAME}`;
+  return branded.length <= 68 ? branded : title;
+};
+
+const PAGE_TYPES = new Set(['AboutPage', 'CollectionPage', 'ContactPage', 'ProfilePage', 'SearchResultsPage']);
+
+const getTypes = (node: Record<string, unknown>) => {
+  const value = node['@type'];
+  return Array.isArray(value) ? value.map(String) : value ? [String(value)] : [];
+};
+
+const stripContext = (node: Record<string, unknown>) => {
+  const { ['@context']: _context, ...rest } = node;
+  return rest;
+};
+
+const buildOrganizationNode = () => ({
+  '@type': 'Organization',
+  '@id': ORGANIZATION_ID,
+  name: SITE_NAME,
+  legalName: SITE_NAME,
+  url: `${SITE_URL}/`,
+  description: 'Independent Apple software studio building private, offline-first AI apps whose core intelligence runs on-device.',
+  foundingDate: '2024',
+  slogan: 'AI without the audience.',
+  email: 'support@obsidianridgelabs.com',
+  logo: {
+    '@type': 'ImageObject',
+    '@id': `${SITE_URL}/#logo`,
+    url: `${SITE_URL}/apple-touch-icon.png`,
+    contentUrl: `${SITE_URL}/apple-touch-icon.png`,
+    width: 180,
+    height: 180,
+    caption: SITE_NAME,
+  },
+  sameAs: ['https://github.com/amotor-AM/obsidian-ridge-labs'],
+  knowsAbout: [
+    'On-device artificial intelligence',
+    'Offline-first software',
+    'Privacy-preserving machine learning',
+    'Apple Neural Engine applications',
+    'Private voice transcription',
+    'Local-first mobile applications',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'support@obsidianridgelabs.com',
+    availableLanguage: ['English'],
+  },
+});
+
+const buildWebsiteNode = () => ({
+  '@type': 'WebSite',
+  '@id': WEBSITE_ID,
+  url: `${SITE_URL}/`,
+  name: SITE_NAME,
+  alternateName: 'Obsidian Ridge',
+  description: 'Private, offline-first AI apps for iPhone, iPad, and Mac.',
+  inLanguage: 'en-US',
+  publisher: { '@id': ORGANIZATION_ID },
+});
+
+const buildSchemaGraph = ({
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+  keywords,
+  article,
+  jsonLd,
+}: {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  ogImage: string;
+  keywords?: string[];
+  article?: SEOProps['article'];
+  jsonLd?: SEOProps['jsonLd'];
+}) => {
+  const supplied = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const normalized = supplied.map(stripContext);
+  const breadcrumbIndex = normalized.findIndex((node) => getTypes(node).includes('BreadcrumbList'));
+  const primaryIndex = normalized.findIndex((node) => getTypes(node).some((type) => PAGE_TYPES.has(type)));
+  const breadcrumb = breadcrumbIndex >= 0
+    ? { ...normalized[breadcrumbIndex], '@id': `${canonicalUrl}#breadcrumb` }
+    : null;
+  const suppliedPrimary = primaryIndex >= 0 ? normalized[primaryIndex] : null;
+  const pageId = `${canonicalUrl}#webpage`;
+  const pageNode: Record<string, unknown> = {
+    '@type': suppliedPrimary?.['@type'] || 'WebPage',
+    '@id': pageId,
+    url: canonicalUrl,
+    name: title,
+    description,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': WEBSITE_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      '@id': `${canonicalUrl}#primaryimage`,
+      url: ogImage,
+      contentUrl: ogImage,
+      width: 1200,
+      height: 630,
+    },
+    ...(breadcrumb ? { breadcrumb: { '@id': `${canonicalUrl}#breadcrumb` } } : {}),
+    ...(keywords?.length ? { keywords: keywords.join(', ') } : {}),
+    ...(article ? {
+      datePublished: article.publishedTime,
+      ...(article.modifiedTime ? { dateModified: article.modifiedTime } : {}),
+    } : {}),
+    ...(suppliedPrimary || {}),
+  };
+
+  const extras = normalized
+    .filter((_node, index) => index !== breadcrumbIndex && index !== primaryIndex)
+    .map((node, index) => {
+      const types = getTypes(node);
+      if (types.includes('FAQPage')) {
+        return { ...node, '@id': node['@id'] || `${canonicalUrl}#faq`, isPartOf: { '@id': pageId } };
+      }
+      if (types.includes('SoftwareApplication') || types.includes('MobileApplication')) {
+        return { ...node, '@id': node['@id'] || `${canonicalUrl}#software`, mainEntityOfPage: { '@id': pageId } };
+      }
+      if (types.includes('BlogPosting') || types.includes('TechArticle') || types.includes('Article')) {
+        return { ...node, '@id': node['@id'] || `${canonicalUrl}#article`, mainEntityOfPage: { '@id': pageId } };
+      }
+      if (types.includes('ItemList')) {
+        return { ...node, '@id': node['@id'] || `${canonicalUrl}#list-${index + 1}` };
+      }
+      if (types.includes('Blog')) {
+        return {
+          ...node,
+          '@id': node['@id'] || `${canonicalUrl}#blog`,
+          isPartOf: { '@id': WEBSITE_ID },
+          publisher: { '@id': ORGANIZATION_ID },
+        };
+      }
+      return node;
+    });
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      buildOrganizationNode(),
+      buildWebsiteNode(),
+      pageNode,
+      ...(breadcrumb ? [breadcrumb] : []),
+      ...extras,
+    ],
+  };
+};
 
 interface SEOProps {
   title: string;
@@ -52,8 +208,10 @@ const SEO: React.FC<SEOProps> = ({
   noindex = false,
 }) => {
   const { pathname } = useLocation();
-  const fullTitle = `${title} | ${SITE_NAME}`;
+  const fullTitle = getDocumentTitle(title);
   const canonicalUrl = canonical || `${SITE_URL}${pathname}`;
+  const structuredData = buildSchemaGraph({ title, description, canonicalUrl, ogImage, keywords, article, jsonLd });
+  const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 
   // Capture SEO metadata on the server
   if (typeof window === 'undefined' && serverSEOContext) {
@@ -65,7 +223,7 @@ const SEO: React.FC<SEOProps> = ({
     serverSEOContext.ogImageAlt = ogImageAlt;
     serverSEOContext.keywords = keywords;
     serverSEOContext.article = article;
-    serverSEOContext.jsonLd = jsonLd;
+    serverSEOContext.jsonLd = structuredData;
     serverSEOContext.noindex = noindex;
   }
 
@@ -74,8 +232,8 @@ const SEO: React.FC<SEOProps> = ({
 
     // Basic meta
     setMeta('name', 'description', description);
-    if (keywords && keywords.length) setMeta('name', 'keywords', keywords.join(', '));
-    setMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1');
+    document.querySelector('meta[name="keywords"]')?.remove();
+    setMeta('name', 'robots', noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
 
     // Open Graph
     setMeta('property', 'og:title', title);
@@ -84,6 +242,8 @@ const SEO: React.FC<SEOProps> = ({
     setMeta('property', 'og:url', canonicalUrl);
     setMeta('property', 'og:image', ogImage);
     setMeta('property', 'og:image:alt', ogImageAlt || title);
+    setMeta('property', 'og:image:width', '1200');
+    setMeta('property', 'og:image:height', '630');
     setMeta('property', 'og:site_name', SITE_NAME);
     setMeta('property', 'og:locale', 'en_US');
 
@@ -95,11 +255,18 @@ const SEO: React.FC<SEOProps> = ({
     setMeta('name', 'twitter:image:alt', ogImageAlt || title);
 
     // Article-specific OG
+    document.querySelectorAll('meta[property^="article:"]').forEach((element) => element.remove());
     if (article) {
       setMeta('property', 'article:published_time', article.publishedTime);
       if (article.modifiedTime) setMeta('property', 'article:modified_time', article.modifiedTime);
       setMeta('property', 'article:section', article.section);
       setMeta('property', 'article:author', SITE_NAME);
+      article.tags.forEach((tag) => {
+        const meta = document.createElement('meta');
+        meta.setAttribute('property', 'article:tag');
+        meta.content = tag;
+        document.head.appendChild(meta);
+      });
     }
 
     // Canonical link
@@ -113,21 +280,16 @@ const SEO: React.FC<SEOProps> = ({
 
     // JSON-LD structured data
     document.querySelectorAll('script[data-seo-jsonld]').forEach(s => s.remove());
-    if (jsonLd) {
-      const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
-      schemas.forEach(schema => {
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.dataset.seoJsonld = 'true';
-        script.textContent = JSON.stringify(schema);
-        document.head.appendChild(script);
-      });
-    }
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.dataset.seoJsonld = 'true';
+    script.textContent = structuredDataJson;
+    document.head.appendChild(script);
 
     return () => {
       document.querySelectorAll('script[data-seo-jsonld]').forEach(s => s.remove());
     };
-  }, [fullTitle, description, canonicalUrl, ogType, ogImage, ogImageAlt, keywords, article, jsonLd, noindex, title]);
+  }, [fullTitle, description, canonicalUrl, ogType, ogImage, ogImageAlt, article, noindex, title, structuredDataJson]);
 
   return null;
 };
@@ -157,48 +319,65 @@ export const buildSoftwareApp = (product: {
   minOS?: string;
   appStoreUrl?: string;
   githubUrl?: string;
-  status?: 'live' | 'coming-soon';
+  hasKnowledgeBase?: boolean;
+  releaseStatus: 'app-store' | 'source-only' | 'pre-release' | 'concept';
   price?: string;
-}) => ({
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: product.name,
-  url: `${SITE_URL}/apps/${product.id}`,
-  description: product.fullDescription,
-  applicationCategory: mapCategory(product.category),
-  operatingSystem: product.minOS
-    ? `${product.minOS} or later`
-    : (product.platforms && product.platforms.length ? product.platforms.join(', ') : 'iOS'),
-  ...(product.status !== 'coming-soon' ? {
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-      ...(product.price ? { description: product.price } : {}),
-      ...(product.appStoreUrl ? { url: product.appStoreUrl } : {}),
-    },
-  } : {}),
-  ...(product.version ? { softwareVersion: product.version.replace('v', '') } : {}),
-  ...(product.releaseDate ? { datePublished: formatSchemaDate(product.releaseDate) } : {}),
-  author: {
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-  },
-  inLanguage: 'en-US',
-  featureList: getFeatureList(product.id),
-  ...(product.appStoreUrl ? { downloadUrl: product.appStoreUrl, installUrl: product.appStoreUrl } : {}),
-  ...(() => {
-    const links = [product.appStoreUrl, product.githubUrl].filter(Boolean) as string[];
-    return links.length ? { sameAs: links } : {};
-  })(),
-});
+}) => {
+  const appUrl = `${SITE_URL}/apps/${product.id}`;
+  const released = product.releaseStatus === 'app-store' && Boolean(product.appStoreUrl);
+  const featureList = getFeatureList(product.id);
+  const operatingSystem = product.minOS
+    ? `${product.minOS} or later${product.platforms?.length ? `; ${product.platforms.join(', ')}` : ''}`
+    : product.platforms?.length
+      ? product.platforms.join(', ')
+      : undefined;
+  const links = [product.appStoreUrl, product.githubUrl].filter(Boolean) as string[];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['SoftwareApplication', 'MobileApplication'],
+    '@id': `${appUrl}#software`,
+    name: product.name,
+    url: appUrl,
+    mainEntityOfPage: appUrl,
+    description: product.fullDescription,
+    applicationCategory: mapCategory(product.category),
+    creativeWorkStatus: product.releaseStatus === 'app-store'
+      ? 'Released'
+      : product.releaseStatus === 'source-only'
+        ? 'Source available'
+        : 'In development',
+    ...(operatingSystem ? { operatingSystem } : {}),
+    ...(released ? {
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+        url: product.appStoreUrl,
+        ...(product.price ? { description: product.price } : {}),
+      },
+      isAccessibleForFree: true,
+      downloadUrl: product.appStoreUrl,
+      installUrl: product.appStoreUrl,
+      ...(product.version ? { softwareVersion: product.version.replace(/^v/, '') } : {}),
+      ...(product.releaseDate ? { datePublished: formatSchemaDate(product.releaseDate) } : {}),
+    } : {}),
+    author: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    inLanguage: 'en-US',
+    ...(featureList ? { featureList } : {}),
+    ...(product.hasKnowledgeBase ? { softwareHelp: `${SITE_URL}/help/${product.id}` } : {}),
+    ...(product.id === 'echochamber' ? {
+      screenshot: [
+        `${SITE_URL}/images/echochamber/record-screen-960.webp`,
+        `${SITE_URL}/images/echochamber/transcription-details-960.webp`,
+        `${SITE_URL}/images/echochamber/ai-chat-960.webp`,
+      ],
+    } : {}),
+    ...(links.length ? { sameAs: links } : {}),
+  };
+};
 
 /** Article / TechArticle schema for a help-centre guide. */
 export const buildTechArticle = (a: {
@@ -209,6 +388,7 @@ export const buildTechArticle = (a: {
   articleId: string;
   updated?: string;
   keywords?: string[];
+  releaseStatus?: 'app-store' | 'source-only' | 'pre-release' | 'concept';
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
@@ -219,26 +399,18 @@ export const buildTechArticle = (a: {
     '@type': 'WebPage',
     '@id': `${SITE_URL}/help/${a.appId}/${a.articleId}`,
   },
-  ...(a.updated ? { dateModified: formatSchemaDate(a.updated), datePublished: formatSchemaDate(a.updated) } : {}),
+  ...(a.updated ? { dateModified: formatSchemaDate(a.updated) } : {}),
   ...(a.keywords && a.keywords.length ? { keywords: a.keywords.join(', ') } : {}),
+  creativeWorkStatus: a.releaseStatus === 'app-store' || a.releaseStatus === 'source-only' ? 'Published' : 'Preview',
+  isAccessibleForFree: true,
   about: {
     '@type': 'SoftwareApplication',
+    '@id': `${SITE_URL}/apps/${a.appId}#software`,
     name: a.appName,
     url: `${SITE_URL}/apps/${a.appId}`,
-    applicationCategory: 'MobileApplication',
-    operatingSystem: 'iOS',
   },
-  author: {
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-    logo: { '@type': 'ImageObject', url: `${SITE_URL}/favicon.svg` },
-  },
+  author: { '@id': ORGANIZATION_ID },
+  publisher: { '@id': ORGANIZATION_ID },
   image: `${SITE_URL}/og.png`,
   inLanguage: 'en-US',
 });
@@ -270,41 +442,41 @@ export const buildBlogPosting = (post: {
   title: string;
   excerpt: string;
   date: string;
+  modified?: string;
   readTime: string;
   category: string;
   tags: string[];
-}) => ({
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  headline: post.title,
-  description: post.excerpt,
-  url: `${SITE_URL}/blog/${post.id}`,
-  datePublished: formatSchemaDate(post.date),
-  dateModified: formatSchemaDate(post.date),
-  author: {
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-    logo: {
-      '@type': 'ImageObject',
-      url: `${SITE_URL}/favicon.svg`,
+  blocks?: Array<{ type: string; content?: string | string[] }>;
+}) => {
+  const citations = extractBlockCitations(post.blocks || []);
+  const readingMinutes = Number.parseInt(post.readTime, 10);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    abstract: post.excerpt,
+    url: `${SITE_URL}/blog/${post.id}`,
+    datePublished: formatSchemaDate(post.date),
+    ...(post.modified ? { dateModified: formatSchemaDate(post.modified) } : {}),
+    author: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}/blog/${post.id}`,
     },
-  },
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': `${SITE_URL}/blog/${post.id}`,
-  },
-  articleSection: post.category,
-  keywords: post.tags.map(t => t.replace('#', '')).join(', '),
-  wordCount: estimateWordCount(post.readTime),
-  image: `${SITE_URL}/og.png`,
-  inLanguage: 'en-US',
-});
+    articleSection: post.category,
+    genre: 'Practical guide',
+    keywords: post.tags.map(t => t.replace('#', '')).join(', '),
+    ...(post.blocks?.length ? { wordCount: countBlockWords(post.blocks) } : {}),
+    ...(Number.isFinite(readingMinutes) ? { timeRequired: `PT${readingMinutes}M` } : {}),
+    ...(citations.length ? { citation: citations } : {}),
+    isAccessibleForFree: true,
+    image: `${SITE_URL}/og.png`,
+    inLanguage: 'en-US',
+  };
+};
 
 export const buildFAQSchema = (faqs: { question: string; answer: string }[]) => ({
   '@context': 'https://schema.org',
@@ -325,11 +497,7 @@ export const buildCollectionPage = (name: string, description: string, url: stri
   name,
   description,
   url: `${SITE_URL}${url}`,
-  publisher: {
-    '@type': 'Organization',
-    name: SITE_NAME,
-    url: SITE_URL,
-  },
+  publisher: { '@id': ORGANIZATION_ID },
   inLanguage: 'en-US',
 });
 
@@ -340,9 +508,17 @@ function formatSchemaDate(date: string): string {
   return date.replace(/\./g, '-');
 }
 
-function estimateWordCount(readTime: string): number {
-  const minutes = parseInt(readTime) || 8;
-  return minutes * 250;
+function countBlockWords(blocks: Array<{ content?: string | string[] }>): number {
+  return blocks.reduce((count, block) => {
+    const text = Array.isArray(block.content) ? block.content.join(' ') : block.content || '';
+    return count + text.trim().split(/\s+/).filter(Boolean).length;
+  }, 0);
+}
+
+function extractBlockCitations(blocks: Array<{ type: string; content?: string | string[] }>): string[] {
+  return blocks
+    .filter((block) => block.type === 'sources' && Array.isArray(block.content))
+    .flatMap((block) => (block.content as string[]).map((source) => source.split('|')[1]).filter(Boolean));
 }
 
 function mapCategory(category: string): string {
@@ -354,7 +530,14 @@ function mapCategory(category: string): string {
     'Offline Transcription': 'BusinessApplication',
     'Personal finance': 'FinanceApplication',
     'Voice transcription': 'BusinessApplication',
-    'Focus & tasks': 'ProductivityApplication',
+    'Focus & tasks': 'LifestyleApplication',
+    'Focus & Tasks': 'LifestyleApplication',
+    'Private Journaling': 'LifestyleApplication',
+    'Private Wardrobe': 'LifestyleApplication',
+    'Strength Coaching': 'HealthApplication',
+    'Private Learning': 'EducationalApplication',
+    'Home Inventory': 'LifestyleApplication',
+    'Relationships': 'LifestyleApplication',
     'Private journal': 'LifestyleApplication',
     'Clearer decisions': 'BusinessApplication',
   };
@@ -363,13 +546,18 @@ function mapCategory(category: string): string {
 
 function getFeatureList(productId: string): string {
   const features: Record<string, string> = {
-    vault: 'On-device AI finance analysis, PDF statement scanning, AI balance forecasting, biometric lock, zero data collection, offline-first',
-    mind: 'Private AI journal, pattern recognition, semantic search by feeling, biometric encryption, unlimited entries, never connected to cloud',
-    echochamber: 'On-device live transcription, AI-polished readable transcripts, local AI notes and summaries, automatic pause and speaker detection, bookmarks, full-text recording search, TXT Markdown PDF and DOCX export, audio and video import with Pro, Face ID access control, AES-256-GCM audio encryption at rest, optional encrypted iCloud sync',
-    nexus: 'Visual decision mapping, AI adversarial thinking, scenario simulation, private PDF export, strategic logic canvas, offline strategy tool',
+    vault: 'On-device financial analysis, PDF statement import, local forecasting, biometric access control, offline-first workflow',
+    echochamber: 'On-device live transcription with NVIDIA Parakeet TDT 0.6B v3, approximately 3% observed WER in Echo Chamber testing, 6.32% average English WER versus 7.44% for Whisper large-v3 on the current Hugging Face Open ASR evaluation, AI-polished readable transcripts, local AI notes and summaries, speaker detection, bookmarks, full-text recording search, audio and video file upload with Pro, TXT Markdown PDF and DOCX export, Face ID access control, AES-256-GCM audio encryption at rest, optional encrypted iCloud sync',
+    molehill: 'In-development on-device task breakdown, editable brain-dump organization, one-step focus, deterministic fallback, no streak mechanics, and a non-clinical productivity boundary',
+    cove: 'In-development local journaling, on-device reflection with NaturalLanguage fallback, mood and theme patterns, semantic search, grounded journal questions, app lock, and Markdown or JSON export',
+    wove: 'In-development local garment cut-out and tagging, daily and occasion-based outfit planning, deterministic styling fallback, wear history, capsules, packing lists, shopping context, and optional WeatherKit forecasts',
+    mettle: 'In-development adaptive strength programming, deterministic sets reps loads and deloads, explainable prescriptions, on-device coaching fallback, live workout logging, Apple Watch remote, optional HealthKit, and CSV export',
+    memora: 'In-development local flashcard drafts from notes embedded PDF text and selected-photo OCR, human review before saving, NaturalLanguage fallback, FSRS scheduling, cloze and image-occlusion cards, and local deck sharing',
+    trove: 'In-development local home inventory, Vision OCR and barcode capture, reviewable structured item extraction, warranty and value context, local search, Ask Trove, and planned insurance-ready CSV or PDF export',
+    kith: 'In-development private relationship manager with closeness circles, adjustable reach-out cadences, Warmth Ring planning, important dates, on-device message and memory helpers, widgets, Siri, Shortcuts, and local reminders',
   };
   return features[productId] || '';
 }
 
-export { SITE_URL, SITE_NAME };
+export { SITE_URL, SITE_NAME, ORGANIZATION_ID, WEBSITE_ID };
 export default SEO;

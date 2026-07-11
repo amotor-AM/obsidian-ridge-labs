@@ -3,12 +3,11 @@ import Hero from './Hero';
 import Philosophy from './Philosophy';
 import Products from './Products';
 import Services from './Services';
-import SEO, { buildBreadcrumbs, SITE_URL } from './SEO';
+import SEO, { buildFAQSchema, SITE_URL } from './SEO';
 import { products } from '../data/products';
+import { homeFaqs } from '../data/faqs';
 
 const Home: React.FC = () => {
-  const breadcrumbs = buildBreadcrumbs([{ name: 'Home', url: '/' }]);
-
   const itemList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -18,28 +17,14 @@ const Home: React.FC = () => {
     itemListElement: products.map((product, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      name: product.name,
-      url: `${SITE_URL}/apps/${product.id}`,
-      description: product.description,
+      item: {
+        '@type': 'SoftwareApplication',
+        '@id': `${SITE_URL}/apps/${product.id}#software`,
+        name: product.name,
+        url: `${SITE_URL}/apps/${product.id}`,
+        description: product.description,
+      },
     })),
-  };
-
-  const organization = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': `${SITE_URL}/#organization`,
-    name: 'Obsidian Ridge Labs',
-    url: SITE_URL,
-    logo: `${SITE_URL}/favicon.svg`,
-    description: 'Independent Apple software studio building private, offline-first AI apps whose core intelligence runs on-device.',
-    slogan: 'AI should come to your data. Not the other way around.',
-    knowsAbout: [
-      'On-device AI',
-      'Offline-first software',
-      'Apple Neural Engine',
-      'Private AI transcription',
-      'Local-first mobile applications',
-    ],
   };
 
   return (
@@ -57,7 +42,7 @@ const Home: React.FC = () => {
           'private transcription app',
           'Apple Neural Engine apps',
         ]}
-        jsonLd={[breadcrumbs, organization, itemList]}
+        jsonLd={[itemList, buildFAQSchema(homeFaqs)]}
       />
       <Hero />
       <Philosophy />

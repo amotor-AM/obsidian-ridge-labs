@@ -8,9 +8,9 @@ const vertexShader = `
   varying float vFade;
 
   float ridge(vec2 p) {
-    float primary = sin(p.x * 0.42 + uTime * 0.48) * 1.15;
-    float secondary = cos(p.y * 0.31 - uTime * 0.28) * 0.72;
-    float detail = sin((p.x + p.y) * 0.23 + uTime * 0.22) * 0.46;
+    float primary = sin(p.x * 0.42 + uTime * 0.16) * 1.15;
+    float secondary = cos(p.y * 0.31 - uTime * 0.1) * 0.72;
+    float detail = sin((p.x + p.y) * 0.23 + uTime * 0.08) * 0.46;
     float peak = exp(-pow((p.x + 3.5) * 0.15, 2.0)) * 2.4;
     return primary + secondary + detail + peak;
   }
@@ -93,7 +93,7 @@ const HeroBackdrop: React.FC = () => {
     const uniforms = {
       uTime: { value: 0.55 },
       uPointSize: { value: isCompact ? 2.4 : 2.8 },
-      uColor: { value: new THREE.Color('#c7ff3e') },
+      uColor: { value: new THREE.Color('#a8c89a') },
     };
 
     const lineMaterial = new THREE.ShaderMaterial({
@@ -156,9 +156,9 @@ const HeroBackdrop: React.FC = () => {
       if (!reducedMotion) uniforms.uTime.value = elapsed;
       pointer.x += (target.x - pointer.x) * 0.035;
       pointer.y += (target.y - pointer.y) * 0.035;
-      camera.position.x = (isCompact ? 1 : 2.5) + pointer.x * 0.75;
-      camera.position.y = (isCompact ? 6 : 5.5) - pointer.y * 0.5 + scrollOffset * 1.2;
-      camera.lookAt(2 + pointer.x * 0.25, -1.5, -5);
+      camera.position.x = (isCompact ? 1 : 2.5) + pointer.x * 0.14;
+      camera.position.y = (isCompact ? 6 : 5.5) - pointer.y * 0.1 + scrollOffset * 0.35;
+      camera.lookAt(2 + pointer.x * 0.05, -1.5, -5);
       renderer.render(scene, camera);
       if (!reducedMotion) frame = requestAnimationFrame(draw);
     };

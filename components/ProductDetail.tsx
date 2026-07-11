@@ -1,519 +1,326 @@
-import React, { useRef } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
-import { products } from '../data/products';
+import React from 'react';
+import { Navigate, Link, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowRight, ArrowUpRight, Github, ShieldCheck } from 'lucide-react';
+import { getProductReleaseLabel, products } from '../data/products';
 import { blogPosts } from '../data/blog';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Download, ShieldCheck, Terminal, CheckCircle2, ChevronDown, Cpu, Activity, List, MessageSquare, Network, ArrowRight, Github } from 'lucide-react';
-import SEO, { buildSoftwareApp, buildBreadcrumbs, buildFAQSchema } from './SEO';
+import { productFaqs } from '../data/faqs';
+import SEO, { buildBreadcrumbs, buildFAQSchema, buildSoftwareApp } from './SEO';
+import MotionReveal from './home/MotionReveal';
+
+const editorialCopy: Record<string, { statement: string; thesis: string; boundary: string }> = {
+  vault: {
+    statement: 'Financial context, without a surveillance business model.',
+    thesis: 'Vault is designed to make your own financial history useful to you. Track manually and stay local, or choose a clearly disclosed Plaid connection when automatic updates are worth it.',
+    boundary: 'Core budgeting, forecasting, categorization, and coaching are being designed around local processing. The planned Plaid path is optional and routes bank authentication through Plaid; final connection behavior will be documented before release.',
+  },
+  molehill: {
+    statement: 'Less pressure. One useful next step.',
+    thesis: 'Molehill is an in-development focus tool for the moment a large task becomes hard to start. The product direction is calm, local, and free from streak mechanics.',
+    boundary: 'The intended core task-breakdown path is on-device. Final capabilities, system requirements, and any network behavior will be documented before release.',
+  },
+  cove: {
+    statement: 'A journal should help you look inward—not send your inner life outward.',
+    thesis: 'Cove pairs the quiet ritual of journaling with restrained, on-device reflection. It is designed to make themes and memories easier to revisit while leaving interpretation and judgment with the writer.',
+    boundary: 'The current build stores entries locally and runs reflection on-device, with a NaturalLanguage fallback when Apple Intelligence is unavailable. Optional Health access requires permission. CloudKit sync is not enabled in the current production configuration.',
+  },
+  wove: {
+    statement: 'The most useful wardrobe is the one you already own.',
+    thesis: 'Wove turns a private closet into daily and occasion-based looks, packing plans, capsule ideas, and evidence about what actually gets worn. The goal is less catalog maintenance and more useful context at the moment of choice.',
+    boundary: 'Garment analysis, styling, wear history, and image storage are local in the current build. Optional weather context sends a coarse one-shot location to Apple WeatherKit. Cross-device garment-photo sync is not being promised before release.',
+  },
+  mettle: {
+    statement: 'A serious program should be explainable before it asks for trust.',
+    thesis: 'Mettle is built around a strict division of labor: deterministic training logic owns every prescription, while on-device intelligence selects from safe candidates and explains the plan at the lifter’s level.',
+    boundary: 'Core programming, logging, and coaching run locally and retain a deterministic fallback. HealthKit is optional and permission-based. The current app does not ship an enabled iCloud-sync path, and the Watch experience is a remote for an active phone workout—not a standalone trainer.',
+  },
+  memora: {
+    statement: 'Generation should reduce the setup—not remove the learner’s judgment.',
+    thesis: 'Memora converts material you provide into draft cards, puts every draft through a review gate, and then uses FSRS to decide when recall is most useful. The source stays visible, the schedule stays understandable, and every rating can be corrected.',
+    boundary: 'Core card generation, PDF text extraction, selected-photo OCR, storage, and scheduling happen locally. PDFs need embedded text, scanned PDFs are not OCR’d as documents, and the current build does not offer iCloud sync. Similar-card generation and the tutor require Apple Intelligence.',
+  },
+  trove: {
+    statement: 'The record matters most after the moment to create it has passed.',
+    thesis: 'Trove makes a home inventory practical enough to build before a claim, move, warranty issue, or replacement decision. Capture evidence once, review the extracted details, then search the catalog when the information matters.',
+    boundary: 'The current catalog and its core intelligence are local. Items, receipts, serials, values, and warranties are user-maintained records—not appraisals or insurance coverage guarantees. Private iCloud sync and insurance-ready export are planned Plus capabilities, not release promises.',
+  },
+  kith: {
+    statement: 'Relationships need attention, not optimization theater.',
+    thesis: 'Kith uses circles, an adjustable cadence, and a gently cooling Warmth Ring to make staying close feel humane. Optional local helpers can organize a memory or help begin a message without turning friendship into a sales pipeline.',
+    boundary: 'Relationship records and Foundation Models assistance are designed around the device, with no Obsidian Ridge Labs account or AI server. The app remains useful when Apple Intelligence is unavailable; any private iCloud behavior will be documented precisely before release.',
+  },
+};
+
+const relatedBlogMap: Record<string, string[]> = {
+  vault: ['finance-app-red-flags'],
+  molehill: ['offline-ai-revolution'],
+  cove: ['private-ai-journal-guide'],
+  wove: ['apple-ecosystem-privacy'],
+  mettle: ['offline-ai-revolution'],
+  memora: ['offline-ai-revolution'],
+  trove: ['apple-ecosystem-privacy'],
+  kith: ['apple-ecosystem-privacy'],
+};
+
+const productSeo: Record<string, { title: string; description: string; keywords: string[] }> = {
+  vault: {
+    title: 'Vault: Private AI Budgeting for iPhone',
+    description: 'An in-development local-first budgeting app for iPhone, designed for manual tracking, cash-flow forecasting, private AI coaching, and optional Plaid sync.',
+    keywords: ['private budgeting app for iPhone', 'on-device AI finance app', 'budget app without bank connection', 'optional Plaid sync'],
+  },
+  molehill: {
+    title: 'Molehill: Private AI Task Breakdown for iPhone',
+    description: 'An in-development focus app that turns overwhelming work into one next step with a local-first design and no streaks, shame, or ad tracking.',
+    keywords: ['AI task breakdown app', 'ADHD focus app for iPhone', 'private productivity app', 'on-device task planning'],
+  },
+  cove: {
+    title: 'Cove: Private On-Device AI Journal for iPhone',
+    description: 'Explore Cove, an in-development private journal with on-device reflection, mood and theme patterns, semantic search, grounded questions, app lock, and export.',
+    keywords: ['private AI journal for iPhone', 'on-device journaling app', 'journal app without cloud AI', 'private mood journal'],
+  },
+  wove: {
+    title: 'Wove: Private AI Wardrobe Stylist for iPhone and iPad',
+    description: 'Explore Wove, an in-development digital closet with local garment cut-out, weather-aware outfits, wear tracking, capsules, packing, and wardrobe insights.',
+    keywords: ['private AI wardrobe app', 'on-device outfit planner', 'digital closet for iPhone', 'weather aware outfit app'],
+  },
+  mettle: {
+    title: 'Mettle: Private Explainable AI Strength Coach',
+    description: 'Explore Mettle, an in-development iPhone strength coach with deterministic sets and loads, adaptive programming, explainable progression, and an Apple Watch remote.',
+    keywords: ['AI strength training app', 'private workout planner for iPhone', 'adaptive lifting program app', 'explainable AI fitness coach'],
+  },
+  memora: {
+    title: 'Memora: Private AI Flashcards with FSRS',
+    description: 'Explore Memora, a private iPhone study app that drafts flashcards from notes, text-layer PDFs, and selected photos, then schedules recall with FSRS.',
+    keywords: ['AI flashcard generator on device', 'private study app for iPhone', 'FSRS flashcard app', 'turn PDF into flashcards privately'],
+  },
+  trove: {
+    title: 'Trove: Private AI Home Inventory for Apple Devices',
+    description: 'Explore Trove, an in-development home inventory for belongings, receipts, serial numbers, warranties, values, search, and planned insurance-ready exports.',
+    keywords: ['private home inventory app', 'home inventory for insurance', 'warranty tracker app', 'on-device AI inventory app'],
+  },
+  kith: {
+    title: 'Kith: Private Relationship Reminder App for iPhone',
+    description: 'Explore Kith, an in-development private relationship manager with gentle reach-out cadences, important dates, saved context, and on-device message helpers.',
+    keywords: ['private personal CRM for iPhone', 'relationship reminder app', 'keep in touch app without cloud AI', 'on-device personal relationship manager'],
+  },
+};
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
-  const product = products.find(p => p.id === id);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  const product = products.find((item) => item.id === id);
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  if (!product) return <Navigate to="/" replace />;
 
-  if (!product) {
-    return <Navigate to="/" replace />;
-  }
-
-  const accentColorClass = 'text-apple-blue';
-  const borderColorClass = 'border-apple-blue';
-  const bgColorClass = 'bg-apple-blue';
-  const Icon = product.icon;
-
-  // SEO data
-  const seoDescriptions: Record<string, string> = {
-    vault: 'Vault is a private AI finance app with a coach that runs entirely on your iPhone. Track by hand for free, or link a bank through Plaid. Your bank password never touches Vault. AI forecasting and categorization, on-device.',
-    mind: 'Mind Palace is a private AI journal that finds patterns in your thoughts using on-device intelligence. Encrypted with FaceID, never connected to the cloud. Your digital therapist with zero internet access.',
-    echochamber: 'Echo Chamber provides offline real-time meeting transcription powered by on-device AI. 25+ languages, speaker identification, and AI summarization. No audio ever leaves your phone.',
-    nexus: 'Decision Nexus is an AI decision mapping tool with adversarial analysis. Visualize complex choices, simulate scenarios, and let AI challenge your logic, all offline, all private.',
+  const copy = editorialCopy[product.id] ?? {
+    statement: product.tagline,
+    thesis: product.fullDescription,
+    boundary: 'Product-specific privacy and connection details are published alongside each release.',
   };
+  const relatedPosts = blogPosts.filter((post) => (relatedBlogMap[product.id] || []).includes(post.id));
+  const otherProducts = products.filter((item) => item.id !== product.id).slice(0, 4);
+  const isReleasedToStore = Boolean(product.appStoreUrl);
+  const isConcept = product.releaseStatus === 'concept' || product.releaseStatus === 'pre-release';
+  const statusLabel = getProductReleaseLabel(product);
+  const statusDescription = isReleasedToStore
+    ? 'Download details are current on the App Store.'
+    : isConcept
+      ? 'A product direction in active development, not a finished release.'
+      : 'The public repository is available; current access details are published separately.';
+
+  const faqItems = productFaqs[product.id] ?? [
+    {
+      question: `What is the current release status of ${product.name}?`,
+      answer: statusDescription,
+    },
+  ];
 
   const softwareApp = buildSoftwareApp(product);
+  const seo = productSeo[product.id] ?? {
+    title: `${product.name}: ${product.tagline}`,
+    description: product.description,
+    keywords: [product.category, 'private AI app', 'on-device AI'],
+  };
+  const productPlatforms = product.platforms?.join(' · ') || 'Apple platforms';
   const breadcrumbs = buildBreadcrumbs([
     { name: 'Home', url: '/' },
-    { name: 'Apps', url: '/' },
+    { name: 'Apps', url: '/download' },
     { name: product.name, url: `/apps/${product.id}` },
   ]);
 
-  const productFaqs: Record<string, { question: string; answer: string }[]> = {
-    vault: [
-      { question: 'Does Vault ever see my bank password?', answer: 'Never. Manual tracking and statement scanning are free and run entirely on your phone. If you want transactions to update automatically, you can optionally link a bank through Plaid: you log in on Plaid\'s own secure screen, and Vault never sees or stores those credentials.' },
-      { question: 'Can Vault work without internet?', answer: 'Yes. The core of Vault (tracking, budgets, forecasting, and the AI coach) runs offline on your phone\'s Neural Processing Unit. The only thing that needs a connection is the optional Plaid bank sync, if you choose to turn it on.' },
-      { question: 'Is my financial data secure in Vault?', answer: 'Your spending, budgets, and the AI coach are encrypted and stay on your device, so we can\'t see them. The only data that leaves is the optional Plaid bank sync you choose to enable, and even then your bank password never touches us.' },
-    ],
-    mind: [
-      { question: 'Can Mind Palace read my journal entries?', answer: 'No. Mind Palace uses on-device AI that never connects to the internet. Your entries are encrypted with your biometric data (FaceID/TouchID). Not even Obsidian Ridge Labs can read your thoughts.' },
-      { question: 'How does Mind Palace find patterns?', answer: 'Mind Palace uses a local AI model and vector database running on your phone. As you journal, it creates semantic embeddings of your entries to detect connections between moods, habits, and behaviors.' },
-      { question: 'Is Mind Palace different from Notion or Day One?', answer: 'Yes. Unlike Notion or Day One, Mind Palace stores everything locally with zero cloud sync. The AI runs on your device, not on OpenAI or Google servers. Your notes never leave your phone.' },
-    ],
-    echochamber: [
-      { question: 'Is there an AI transcription app that works entirely offline?', answer: 'Yes. Echo Chamber is a 100% offline-first AI transcription app. It runs all voice-to-text models directly on your iPhone or iPad, requiring zero internet connection and performing zero remote server uploads.' },
-      { question: 'Can I generate meeting summaries without sending data to OpenAI?', answer: 'Yes. Echo Chamber generates meeting summaries, action items, outlines, and Cornell notes locally on-device. Since it uses on-device LLMs and Apple Intelligence, your data is never sent to OpenAI, Anthropic, or any cloud API.' },
-      { question: 'Does Echo Chamber send audio to the cloud?', answer: 'Never. Echo Chamber transcribes audio in real-time using your phone\'s Neural Processing Unit. No audio data is ever transmitted. It works fully offline, in airplanes, bunkers, or secure facilities.' },
-      { question: 'How many languages does Echo Chamber support?', answer: 'Echo Chamber supports 25+ languages for real-time transcription, all processed locally on your device without requiring an internet connection.' },
-      { question: 'Is Echo Chamber suitable for legal or medical use?', answer: 'Yes. Echo Chamber was designed for professionals who need absolute confidentiality. Since no audio leaves the device, attorney-client privilege and medical privacy are maintained.' },
-    ],
-    nexus: [
-      { question: 'What is the Devil\'s Advocate mode in Decision Nexus?', answer: 'The Devil\'s Advocate mode is an AI feature that challenges your decision logic by identifying weaknesses, suggesting counter-arguments, and simulating adversarial scenarios, all powered by on-device AI.' },
-      { question: 'Can I export decisions from Decision Nexus?', answer: 'Yes. Decision Nexus exports your decision maps and strategy documents as private PDFs. The export is local. No data touches any server.' },
-      { question: 'Does Decision Nexus require an internet connection?', answer: 'No. All AI processing, scenario simulation, and adversarial analysis runs entirely on your device. Decision Nexus works offline in any environment.' },
-    ],
-  };
-
-  const faqSchema = buildFAQSchema(productFaqs[product.id] || []);
-
-  // Related blog posts for this product
-  const relatedBlogMap: Record<string, string[]> = {
-    vault: ['finance-app-red-flags'],
-    mind: ['notion-vs-mindpalace'],
-    echochamber: ['otter-vs-echo'],
-    nexus: ['offline-ai-revolution'],
-  };
-  const relatedPosts = blogPosts.filter(p => (relatedBlogMap[product.id] || []).includes(p.id));
-
-  // Other products for cross-linking
-  const otherProducts = products.filter(p => p.id !== product.id);
-
-  // Phone Screen Content Generators
-  const renderPhoneContent = () => {
-    if (product.id === 'vault') return (
-      <div className="p-6 space-y-6">
-        <div className="flex justify-between items-end border-b border-white/5 pb-6">
-          <div>
-            <div className="text-[11px] text-apple-gray uppercase font-medium tracking-wider">Current Balance</div>
-            <div className="text-3xl font-semibold text-white mt-1">$24,592.00</div>
-          </div>
-          <div className="text-sm font-medium text-green-400">+12%</div>
-        </div>
-        <div className="space-y-3">
-           <div className="h-32 w-full bg-white/[0.03] rounded-2xl relative overflow-hidden flex items-end gap-1.5 p-3">
-              {[40, 60, 35, 70, 50, 80, 65, 90, 45, 60].map((h, i) => (
-                <div key={i} style={{height: `${h}%`}} className="flex-1 bg-apple-blue rounded-t-sm opacity-60"></div>
-              ))}
-           </div>
-        </div>
-        <div className="space-y-3 pt-4">
-           {[1,2,3].map(i => (
-             <div key={i} className="flex justify-between items-center p-4 bg-white/[0.03] rounded-2xl">
-                <div className="flex gap-4">
-                   <div className="w-10 h-10 rounded-full bg-apple-blue/10 flex items-center justify-center">
-                      <div className="w-4 h-4 rounded-full bg-apple-blue/40"></div>
-                   </div>
-                   <div className="flex flex-col justify-center">
-                      <div className="h-2.5 w-24 bg-white/10 rounded-full mb-2"></div>
-                      <div className="h-2 w-16 bg-white/5 rounded-full"></div>
-                   </div>
-                </div>
-                <div className="h-5 w-14 bg-white/10 rounded-full"></div>
-             </div>
-           ))}
-        </div>
-      </div>
-    );
-
-    if (product.id === 'mind') return (
-      <div className="p-6 flex flex-col h-full">
-         <div className="flex-1 space-y-5">
-            <div className="flex gap-3">
-               <div className="p-4 bg-white/[0.05] rounded-2xl rounded-tl-none max-w-[85%] text-[13px] text-apple-gray leading-relaxed">
-                  Analyzing previous entries... Pattern detected: High anxiety correlates with Sunday evenings.
-               </div>
-            </div>
-            <div className="flex gap-3 flex-row-reverse">
-               <div className="p-4 bg-apple-blue rounded-2xl rounded-tr-none max-w-[85%] text-[13px] text-white leading-relaxed">
-                  That makes sense. I usually worry about the upcoming week.
-               </div>
-            </div>
-            <div className="flex gap-3">
-               <div className="p-4 bg-white/[0.05] rounded-2xl rounded-tl-none max-w-[85%] text-[13px] text-apple-gray leading-relaxed">
-                  Suggestion: Would you like to review your successful strategies from last month?
-               </div>
-            </div>
-         </div>
-         <div className="mt-6 border-t border-white/5 pt-6">
-            <div className="h-12 w-full bg-white/[0.05] rounded-full flex items-center px-5">
-               <div className="h-5 w-5 rounded-full border-2 border-white/10"></div>
-               <div className="ml-3 h-1.5 w-24 bg-white/10 rounded-full"></div>
-            </div>
-         </div>
-      </div>
-    );
-
-    if (product.id === 'echochamber') return (
-      <div className="p-6 flex flex-col h-full relative">
-         <div className="absolute inset-0 top-1/2 -translate-y-1/2 flex items-center justify-center opacity-5 pointer-events-none">
-            <Activity size={120} />
-         </div>
-         <div className="space-y-8 relative z-10">
-            {[
-              { spk: 'SPEAKER A', text: 'We need to confirm the merger timeline.', color: 'text-apple-gray' },
-              { spk: 'SPEAKER B', text: 'The assets are currently frozen.', color: 'text-apple-blue' },
-              { spk: 'SPEAKER A', text: 'Is that strictly legal?', color: 'text-apple-gray' },
-              { spk: 'SPEAKER B', text: 'It is a grey area.', color: 'text-apple-blue' }
-            ].map((msg, i) => (
-              <div key={i}>
-                <div className={`text-[10px] font-semibold mb-1.5 tracking-wider ${msg.color}`}>{msg.spk}</div>
-                <div className="text-[15px] text-white/90 leading-relaxed font-medium">{msg.text}</div>
-              </div>
-            ))}
-         </div>
-         <div className="mt-auto">
-            <div className="w-full h-16 bg-apple-blue/5 border border-apple-blue/20 rounded-2xl flex items-center justify-center gap-1.5">
-               {[...Array(12)].map((_, i) => (
-                  <motion.div 
-                    key={i}
-                    className="w-1.5 bg-apple-blue rounded-full"
-                    animate={{ height: [12, 32, 12] }}
-                    transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.08 }}
-                  />
-               ))}
-            </div>
-         </div>
-      </div>
-    );
-
-    if (product.id === 'nexus') return (
-      <div className="p-6 h-full relative overflow-hidden">
-        <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-6 opacity-10">
-           {[...Array(36)].map((_, i) => <div key={i} className="bg-white/10 rounded-full w-1 h-1 m-auto"></div>)}
-        </div>
-        <div className="relative z-10 h-full flex items-center justify-center">
-           <div className="relative w-full h-64">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-20 border border-apple-blue/30 bg-black/40 backdrop-blur-md flex items-center justify-center rounded-2xl">
-                 <Network size={32} className="text-apple-blue" />
-              </div>
-              <div className="absolute top-1/2 left-4 w-14 h-14 border border-white/10 bg-black/40 backdrop-blur-md flex items-center justify-center rounded-2xl">
-              </div>
-              <div className="absolute top-1/2 right-4 w-14 h-14 border border-white/10 bg-black/40 backdrop-blur-md flex items-center justify-center rounded-2xl">
-              </div>
-              <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                 <line x1="50%" y1="15%" x2="15%" y2="50%" stroke="white" strokeOpacity="0.1" strokeWidth="1.5" />
-                 <line x1="50%" y1="15%" x2="85%" y2="50%" stroke="white" strokeOpacity="0.1" strokeWidth="1.5" />
-              </svg>
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-apple-blue/10 border border-apple-blue/20 px-4 py-1.5 rounded-full text-[11px] font-semibold text-apple-blue">
-                 PROBABILITY: 87%
-              </div>
-           </div>
-        </div>
-      </div>
-    );
-
-    if (product.id === 'molehill') return (
-      <div className="p-6 flex flex-col h-full">
-        <div className="text-[10px] text-emerald-400 uppercase font-bold tracking-widest mb-1">The Mountain</div>
-        <div className="text-white/50 text-sm font-medium mb-6 line-through decoration-white/20">Finish the quarterly report</div>
-
-        <div className="text-[10px] text-emerald-400 uppercase font-bold tracking-widest mb-2">Your Next Step</div>
-        <div className="border border-emerald-400/30 bg-emerald-400/[0.06] rounded-2xl p-5 mb-7 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-emerald-400 to-transparent" />
-          <div className="text-white text-lg font-bold leading-snug">Open the doc and write one sentence.</div>
-          <div className="mt-5 flex items-center justify-between">
-            <span className="text-[11px] text-white/40 font-mono uppercase tracking-wider">Step 1 of 6</span>
-            <div className="w-9 h-9 rounded-full border-2 border-emerald-400/60 flex items-center justify-center text-emerald-400">
-              <CheckCircle2 size={18} />
-            </div>
-          </div>
-        </div>
-
-        <div className="text-[10px] text-white/30 uppercase font-bold tracking-widest mb-3">Then</div>
-        <div className="space-y-4 opacity-50">
-          {['Outline three bullet points', 'Fill in the first section', 'Drop in last quarter’s numbers'].map((s, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <div className="w-5 h-5 rounded-full border border-white/20 flex-shrink-0" />
-              <div className="text-white/70 text-[13px] font-medium">{s}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-auto flex items-center gap-2 text-[10px] text-white/30 font-mono uppercase tracking-wider border-t border-white/5 pt-4">
-          <span className="text-emerald-400">No streaks</span>
-          <span>•</span>
-          <span>No shame</span>
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <div ref={containerRef} className="min-h-screen pt-32 pb-10 md:pb-20 overflow-x-hidden bg-black">
+    <div className="product-page">
       <SEO
-        title={`${product.name}: ${product.tagline}`}
-        description={seoDescriptions[product.id] || product.fullDescription}
+        title={seo.title}
+        description={seo.description}
+        keywords={seo.keywords}
         ogType="product"
-        jsonLd={[softwareApp, breadcrumbs, faqSchema]}
+        jsonLd={[softwareApp, breadcrumbs, buildFAQSchema(faqItems)]}
       />
 
-      {/* Hero Section */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-16 md:mb-32 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col lg:flex-row gap-20 items-center"
-        >
-          {/* Text Content */}
-          <div className="flex-1 relative z-10">
-             <div className="flex items-center gap-5 mb-10">
-                <div className="p-4 bg-white/[0.03] border border-white/5 rounded-2xl">
-                  <Icon className="w-8 h-8 text-apple-blue" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-semibold text-apple-gray uppercase tracking-widest">{product.category}</span>
-                  <span className="text-[11px] font-medium text-apple-blue mt-1">{product.version}</span>
-                </div>
-             </div>
-
-             {/* Coming Soon Badge */}
-             <div className="inline-flex items-center gap-2.5 px-5 py-2 bg-amber-400/10 border border-amber-400/30 rounded-full text-sm text-amber-400 font-bold mb-8">
-               <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-               Coming Soon
-             </div>
-
-             <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
-               {product.name}
-             </h1>
-             <p className="text-2xl md:text-3xl font-medium mb-10 max-w-2xl text-apple-gray">
-               {product.tagline}
-             </p>
-             <p className="text-apple-gray text-lg leading-relaxed max-w-xl mb-12 font-medium">
-               {product.fullDescription}
-             </p>
-
-             <div className="flex flex-col sm:flex-row gap-5">
-               <button disabled className="px-10 py-4 bg-white/10 text-white/50 font-semibold rounded-full cursor-not-allowed flex items-center justify-center gap-3 border border-white/5 whitespace-nowrap">
-                 <Download size={20} />
-                 Coming Soon
-               </button>
-               <Link to="/apps/echochamber" className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 transition-all flex items-center justify-center whitespace-nowrap">
-                 Try Echo Chamber
-               </Link>
-               {product.githubUrl && (
-                 <a
-                   href={product.githubUrl}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label={`${product.name} on GitHub`}
-                   title={`${product.name} on GitHub`}
-                   className="px-10 py-4 border border-white/10 bg-transparent text-white font-semibold rounded-full hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
-                 >
-                   <Github size={20} />
-                   GitHub
-                 </a>
-               )}
-             </div>
+      <header className="product-page__hero">
+        <div className="section-frame">
+          <div className="product-page__meta">
+            <span>{statusLabel}</span>
+            <span>{product.category} · {productPlatforms}</span>
           </div>
 
-          {/* Holographic Phone Visualizer */}
-          <div className="w-full lg:w-1/2 flex justify-center perspective-1000">
-             <motion.div 
-               style={{ rotateY: -10, rotateX: 5, y }}
-               className="relative w-[320px] h-[650px] bg-[#0a0a0a] border-[8px] border-[#1a1a1a] rounded-[3.5rem] shadow-[0_0_100px_rgba(0,113,227,0.1)] overflow-hidden"
-             >
-                {/* Phone Notch/Island */}
-                <div className="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-full z-20"></div>
-                
-                {/* Screen Content */}
-                <div className="absolute inset-0 bg-black rounded-[2.8rem] overflow-hidden z-10 flex flex-col">
-                  {/* Status Bar */}
-                  <div className="h-12 w-full flex justify-between items-center px-8 pt-4">
-                     <div className="text-[12px] text-white font-semibold">{new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-                     <div className="flex gap-1.5 items-center">
-                        <div className="w-4 h-2 border border-white/30 rounded-[2px]"></div>
-                        <div className="w-1 h-1 bg-white/30 rounded-full"></div>
-                     </div>
-                  </div>
-                  
-                  {/* App UI */}
-                  <div className="flex-1 relative">
-                    {renderPhoneContent()}
-                  </div>
-                  
-                  {/* Bottom Bar */}
-                  <div className="h-14 w-full flex justify-center items-center pb-4">
-                     <div className="w-36 h-1.5 bg-white/20 rounded-full"></div>
-                  </div>
-                </div>
+          <div className="product-page__hero-grid">
+            <motion.div
+              className="product-page__hero-copy"
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="section-kicker">{product.category}</p>
+              <h1>{product.name}</h1>
+              <p className="product-page__tagline">{copy.statement}</p>
+              <p className="product-page__description">{product.fullDescription}</p>
+              <div className="product-page__actions">
+                {product.appStoreUrl ? (
+                  <a href={product.appStoreUrl} target="_blank" rel="noreferrer" className="button button--primary">
+                    View on the App Store <ArrowUpRight size={18} />
+                  </a>
+                ) : product.githubUrl ? (
+                  <a href={product.githubUrl} target="_blank" rel="noreferrer" className="button button--primary">
+                    <Github size={18} /> View the source
+                  </a>
+                ) : (
+                  <span className="product-page__status-chip">In active development</span>
+                )}
+                <Link to="/download" className="button button--quiet">Compare the collection <ArrowRight size={18} /></Link>
+              </div>
+            </motion.div>
 
-                {/* Glare Effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.03] to-transparent pointer-events-none z-30 rounded-[3.5rem]"></div>
-             </motion.div>
+            <motion.aside
+              className="product-profile"
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              aria-label={`${product.name} product profile`}
+            >
+              <div className="product-profile__top">
+                <span>Product profile</span>
+                <strong>{String(products.findIndex((item) => item.id === product.id) + 1).padStart(2, '0')}</strong>
+              </div>
+              <dl>
+                {product.specs.map((spec) => (
+                  <div key={spec.label}><dt>{spec.label}</dt><dd>{spec.value}</dd></div>
+                ))}
+              </dl>
+              <div className="product-profile__bottom">
+                <span>{statusLabel}</span>
+                <p>{statusDescription}</p>
+              </div>
+            </motion.aside>
           </div>
-        </motion.div>
-      </section>
-
-      {/* Narrative Section: The Mission */}
-      <section className="py-16 md:py-32 px-6 md:px-12 bg-[#0a0a0a] border-y border-white/5 mb-16 md:mb-32">
-         <div className="max-w-4xl mx-auto">
-            <h2 className="text-sm font-bold tracking-widest mb-10 uppercase text-apple-blue">The Mission</h2>
-            <h3 className="text-4xl md:text-6xl font-bold text-white mb-10 leading-tight tracking-tight">
-               Privacy by design. <br/><span className="text-apple-gray">Built for the future.</span>
-            </h3>
-            <div className="space-y-8 text-apple-gray text-xl leading-relaxed font-medium">
-               <p>
-                  In an age of surveillance capitalism, your most intimate data (your finances, your thoughts, your conversations) is mined, packaged, and sold by the very tools you trust to manage it.
-               </p>
-               <p>
-                  <strong className="text-white">{product.name}</strong> was engineered to reverse this dynamic. By running advanced AI models locally on your device's NPU, we provide the intelligence of the cloud with the privacy of a vault.
-               </p>
-               <p>
-                  No servers. No accounts. No subscriptions. Just a powerful application that belongs to you.
-               </p>
-            </div>
-         </div>
-      </section>
-
-      {/* How It Works: Vertical Timeline */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-20 md:mb-40">
-         <div className="flex flex-col md:flex-row gap-20">
-            <div className="md:w-1/3">
-               <h2 className="text-sm font-bold tracking-widest mb-6 uppercase text-apple-blue">Workflow</h2>
-               <h3 className="text-5xl font-bold text-white mb-8 tracking-tight">How it works.</h3>
-               <p className="text-apple-gray text-lg font-medium">A simplified view of the local-first processing pipeline executing on your device.</p>
-            </div>
-            
-            <div className="md:w-2/3 relative">
-               <div className="absolute left-6 top-0 bottom-0 w-px bg-white/5"></div>
-               <div className="space-y-16">
-                  {product.workflow.map((step, idx) => (
-                     <motion.div 
-                        key={idx}
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 }}
-                        className="relative pl-20"
-                     >
-                        <div className="absolute left-0 top-0 w-12 h-12 bg-white/[0.03] border border-white/5 flex items-center justify-center text-lg font-bold text-white z-10 rounded-full">
-                           {idx + 1}
-                        </div>
-                        <h4 className="text-2xl font-bold text-white mb-3 tracking-tight">{step.title}</h4>
-                        <p className="text-apple-gray text-base leading-relaxed max-w-md font-medium">{step.description}</p>
-                     </motion.div>
-                  ))}
-               </div>
-            </div>
-         </div>
-      </section>
-
-      {/* Technical Deep Dive (Expanded Specs) */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-20 md:mb-40">
-         <div className="apple-card p-10 md:p-16 relative overflow-hidden">
-             <div className="flex flex-col md:flex-row justify-between items-start mb-16">
-               <div>
-                  <h3 className="text-3xl font-bold text-white mb-3 flex items-center gap-4 tracking-tight">
-                     <Terminal size={32} className="text-apple-blue" />
-                     Technical Specifications
-                  </h3>
-                  <p className="text-apple-gray font-semibold text-xs uppercase tracking-widest">System Requirements & Performance</p>
-               </div>
-               <div className="mt-6 md:mt-0">
-                  <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/[0.03] border border-white/5 rounded-full text-xs text-green-400 font-bold">
-                     <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                     Stable Build
-                  </div>
-               </div>
-             </div>
-
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                 {product.specs.map((spec, i) => (
-                   <div key={i} className="border-l border-white/5 pl-8">
-                      <span className="block text-apple-gray text-xs font-bold uppercase mb-3 tracking-wider">{spec.label}</span>
-                      <span className="block text-white text-xl font-semibold tracking-tight">{spec.value}</span>
-                   </div>
-                 ))}
-             </div>
-         </div>
-      </section>
-
-      {/* Feature Grid (Keep Existing) */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto mb-20 md:mb-40">
-         <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-apple-blue">Capabilities</h2>
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {product.features.map((feature, i) => (
-               <div key={i} className="apple-card p-10 group">
-                  <div className="mb-6 p-4 bg-white/[0.03] border border-white/5 w-fit rounded-2xl group-hover:scale-110 transition-transform duration-500">
-                    {React.cloneElement(feature.icon as React.ReactElement, { className: 'text-apple-blue' })}
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{feature.title}</h3>
-                  <p className="text-apple-gray text-base leading-relaxed font-medium">
-                    {feature.description}
-                  </p>
-               </div>
-            ))}
-         </div>
-      </section>
-
-      {/* Privacy Guarantee (Refined) */}
-      <section className="border-t border-white/5 bg-[#0a0a0a] pt-20 md:pt-40 pb-16 md:pb-32 px-6 relative overflow-hidden">
-         <div className="max-w-4xl mx-auto text-center relative z-10">
-           <ShieldCheck className="w-24 h-24 text-apple-blue mx-auto mb-10 opacity-90" />
-           <h2 className="text-5xl md:text-7xl font-bold text-white mb-10 tracking-tight">Zero Telemetry Promise.</h2>
-           <p className="text-apple-gray text-xl mb-16 leading-relaxed max-w-2xl mx-auto font-medium">
-             This application contains no analytics SDKs, no crash reporting uplinks, and no user accounts.
-             Network permissions are stripped from the binary manifest.{' '}
-             <Link to="/philosophy" className="text-apple-blue hover:underline">Read our full privacy philosophy</Link>.
-           </p>
-
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-              {[
-                { title: "Air-Gapped", desc: "No internet permission in manifest." },
-                { title: "Auditable", desc: "Source code available for inspection." },
-                { title: "Local DB", desc: "SQLite database stored in app sandbox." }
-              ].map((item, i) => (
-                <div key={i} className="apple-card p-8 flex flex-col items-center text-center">
-                   <CheckCircle2 className="text-apple-blue mb-5" size={32} />
-                   <h4 className="text-white text-lg font-bold mb-3 tracking-tight">{item.title}</h4>
-                   <p className="text-apple-gray text-sm font-medium">{item.desc}</p>
-                </div>
-              ))}
-           </div>
-         </div>
-      </section>
-
-      {/* Related Blog Posts - Internal Linking */}
-      {relatedPosts.length > 0 && (
-        <section className="px-6 md:px-12 max-w-7xl mx-auto py-10 md:py-20 border-t border-white/5">
-          <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-apple-blue">Related Reading</h2>
-          {relatedPosts.map(post => (
-            <Link key={post.id} to={`/blog/${post.id}`} className="group block apple-card p-10 mb-6 hover:scale-[1.01] transition-transform">
-              <span className="text-[11px] font-bold text-apple-gray uppercase tracking-widest">{post.category} &middot; {post.readTime}</span>
-              <h3 className="text-3xl font-bold text-white group-hover:text-apple-blue transition-colors mt-3 tracking-tight">{post.title}</h3>
-              <p className="text-apple-gray text-lg mt-3 font-medium">{post.excerpt}</p>
-            </Link>
-          ))}
-        </section>
-      )}
-
-      {/* Explore Other Apps - Cross-linking */}
-      <section className="px-6 md:px-12 max-w-7xl mx-auto py-10 md:py-20 border-t border-white/5">
-        <h2 className="text-sm font-bold tracking-widest mb-12 uppercase text-apple-blue">Explore the Suite</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {otherProducts.map(p => {
-            const OtherIcon = p.icon;
-            return (
-              <Link key={p.id} to={`/apps/${p.id}`} className="group apple-card p-8 hover:scale-[1.02] transition-transform">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 bg-white/[0.03] border border-white/5 rounded-2xl">
-                    <OtherIcon className="w-6 h-6 text-apple-blue" />
-                  </div>
-                  <span className="text-xs font-bold text-apple-gray uppercase tracking-widest">{p.category}</span>
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-apple-blue transition-colors tracking-tight">{p.name}</h3>
-                <p className="text-apple-gray text-sm mt-2 font-medium">{p.tagline}</p>
-                <div className="flex items-center gap-2 mt-4 text-apple-blue text-xs font-bold uppercase tracking-widest">
-                  Learn More <ArrowRight size={14} />
-                </div>
-              </Link>
-            );
-          })}
         </div>
-      </section>
+      </header>
 
+      <div className="product-page__content">
+        <section className="product-thesis" aria-labelledby="product-thesis-title">
+          <div className="section-frame product-thesis__grid">
+            <MotionReveal>
+              <p className="section-kicker section-kicker--dark">The idea</p>
+              <h2 id="product-thesis-title">{copy.statement}</h2>
+            </MotionReveal>
+            <MotionReveal delay={0.08}>
+              <p>{copy.thesis}</p>
+            </MotionReveal>
+          </div>
+        </section>
+
+        <section className="product-workflow" aria-labelledby="product-workflow-title">
+          <div className="section-frame">
+            <div className="section-index"><span>01 / Workflow</span><span>From input to useful result</span></div>
+            <div className="product-workflow__intro">
+              <p className="section-kicker">A clear core path</p>
+              <h2 id="product-workflow-title">How the product is designed to work.</h2>
+            </div>
+            <ol className="product-workflow__list">
+              {product.workflow.map((step, index) => (
+                <motion.li
+                  key={step.title}
+                  initial={false}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </motion.li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="product-capabilities" aria-labelledby="product-capabilities-title">
+          <div className="section-frame">
+            <div className="product-capabilities__intro">
+              <p className="section-kicker section-kicker--dark">Capabilities</p>
+              <h2 id="product-capabilities-title">Focused by design.</h2>
+            </div>
+            <div className="product-capabilities__grid">
+              {product.features.map((feature, index) => (
+                <MotionReveal key={feature.title} className="product-capability" delay={index * 0.06}>
+                  <div className="product-capability__icon" aria-hidden="true">{feature.icon}</div>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </MotionReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="product-boundary" aria-labelledby="product-boundary-title">
+          <div className="section-frame product-boundary__grid">
+            <MotionReveal>
+              <ShieldCheck size={38} aria-hidden="true" />
+              <p className="section-kicker">The boundary</p>
+              <h2 id="product-boundary-title">Specific claims.<br />No privacy theater.</h2>
+            </MotionReveal>
+            <MotionReveal delay={0.08}>
+              <p>{copy.boundary}</p>
+              <Link to="/privacy" className="text-link">Read the full privacy model <ArrowUpRight size={18} /></Link>
+            </MotionReveal>
+          </div>
+        </section>
+
+        <section className="product-faq" aria-labelledby="product-faq-title">
+          <div className="section-frame product-faq__grid">
+            <div>
+              <p className="section-kicker">Before release or install</p>
+              <h2 id="product-faq-title">Straight answers.</h2>
+            </div>
+            <div className="product-faq__list">
+              {faqItems.map((item, index) => (
+                <details key={item.question} open={index === 0}>
+                  <summary><span>{String(index + 1).padStart(2, '0')}</span>{item.question}<i /></summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {(relatedPosts.length > 0 || otherProducts.length > 0) && (
+          <section className="product-more" aria-labelledby="product-more-title">
+            <div className="section-frame">
+              <div className="section-index section-index--dark"><span>Continue exploring</span><span>Journal and collection</span></div>
+              <h2 id="product-more-title">More from the ridge.</h2>
+              <div className="product-more__grid">
+                {relatedPosts.map((post) => (
+                  <Link key={post.id} to={`/blog/${post.id}`}><span>Journal</span><strong>{post.title}</strong><ArrowUpRight /></Link>
+                ))}
+                {otherProducts.slice(0, Math.max(1, 3 - relatedPosts.length)).map((item) => (
+                  <Link key={item.id} to={`/apps/${item.id}`}><span>App</span><strong>{item.name}</strong><ArrowUpRight /></Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+      </div>
     </div>
   );
 };

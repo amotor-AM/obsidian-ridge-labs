@@ -6,7 +6,7 @@ export const molehillKb: KnowledgeBase = {
   accent: "#9be08a",
   status: "ready",
   intro:
-    "Welcome to Molehill. If a task feels like a mountain right now, you are in exactly the right place. These guides will help you turn it into a molehill, one small step at a time.",
+    "Learn how Molehill turns an overwhelming task into one manageable next step, with guides for focus, privacy, AI, integrations, and plans.",
   categories: [
     {
       id: "getting-started",
@@ -821,7 +821,7 @@ export const molehillKb: KnowledgeBase = {
     {
       id: "do-tasks-leave-my-phone",
       title: "Do my tasks ever leave my phone?",
-      description: "The short answer is no. Here is the full picture.",
+      description: "Learn where Molehill stores tasks, how on-device processing works, and which user-chosen actions can create an external copy.",
       category: "privacy",
       keywords: ["privacy", "data", "cloud", "server", "tracking", "offline", "leave phone", "storage"],
       updated: "2026-06-14",

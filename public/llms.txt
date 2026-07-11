@@ -1,92 +1,33 @@
 # Obsidian Ridge Labs
 
-> Boutique mobile app studio specializing in private, offline-first AI architecture for Apple devices.
+> Independent Apple software studio building private, offline-first AI apps whose core intelligence runs on-device.
 
-- [Full content](https://obsidianridgelabs.com/llms-full.txt): Complete text of all products, help guides, and articles for retrieval and model ingestion.
-
-## About
-
-Obsidian Ridge Labs builds AI-powered mobile apps whose core intelligence runs on-device. We reject the cloud-first model. Our apps use on-device language models, Apple's Neural Engine, and local storage so useful work does not need to be shipped to an AI server. No advertising layer. No required Obsidian Ridge account. Optional connections are disclosed and controlled by the user.
-
-Our mission: give people the power of modern AI without surrendering their privacy.
+- [Full content directory](https://obsidianridgelabs.com/llms-full.txt): Complete product facts, conversational answers, articles, and help documentation.
+- [App collection](https://obsidianridgelabs.com/download): Current availability, compatibility, pricing, and connection disclosures.
+- [Local-first philosophy](https://obsidianridgelabs.com/philosophy): The principles behind on-device processing and offline-ready software.
+- [Privacy model](https://obsidianridgelabs.com/privacy): Product-specific local processing and optional network connections.
+- [Help center](https://obsidianridgelabs.com/help): Setup, privacy, troubleshooting, and feature guides.
 
 ## Products
 
-### Vault (Smart Finance) — Live
-Private AI finance tracker for iPhone and iPad. Analyzes spending with AI that runs on your device, so no cloud is required to use it. Track everything by hand and it never leaves the device, or optionally link a bank through Plaid for automatic updates — your bank login happens on Plaid's secure screen and your password never touches Vault. Features on-device transaction categorization that learns from your corrections, safe-to-spend guidance, budgets, goals, debt and net-worth tracking, cash-flow forecasting, a conversational AI coach, receipt scanning, and PDF/CSV statement import. Biometric (Face ID) lock. Requires iOS 17 or later.
-- URL: https://obsidianridgelabs.com/apps/vault
-- Help: https://obsidianridgelabs.com/help/vault
-- Category: Finance
-- Pricing: Free; optional paid bank sync via Plaid
-- Key differentiator: On-device AI analysis with no mandatory cloud. Bank linking is optional and credentials never reach the app.
+- [Echo Chamber](https://obsidianridgelabs.com/apps/echochamber) — Available on the App Store. Private on-device transcription, searchable recordings, AI notes, and export for supported Apple devices.
+- [Vault](https://obsidianridgelabs.com/apps/vault) — In development. Local-first spending intelligence with manual tracking and optional Plaid bank sync.
+- [Molehill](https://obsidianridgelabs.com/apps/molehill) — In development. A gentle focus tool designed to turn an overwhelming task into one next step.
+- [Cove](https://obsidianridgelabs.com/apps/cove) — In development. A private iPhone journal with local reflection, patterns, grounded recall, app lock, and export.
+- [Wove](https://obsidianridgelabs.com/apps/wove) — In development. A private iPhone and iPad wardrobe with local garment capture, styling, wear history, capsules, and packing.
+- [Mettle](https://obsidianridgelabs.com/apps/mettle) — In development. An explainable iPhone strength coach with deterministic prescriptions and an Apple Watch remote.
+- [Memora](https://obsidianridgelabs.com/apps/memora) — In development. A private flashcard and FSRS study app for notes, text-layer PDFs, and selected photos.
+- [Trove](https://obsidianridgelabs.com/apps/trove) — In development. A private home inventory for belongings, warranties, values, and insurance-ready records.
+- [Kith](https://obsidianridgelabs.com/apps/kith) — In development. A private relationship manager with gentle reach-out cadences and on-device helpers.
 
-### Echo Chamber (Offline AI Transcription) — Live
-Private, on-device voice transcription for meetings, lectures, and dictation. Echo Chamber records audio, shows a live transcript as you speak, bookmarks important moments, creates AI-polished notes and summaries, and searches every word locally. Export to TXT, Markdown, PDF, or DOCX. Core speech and AI processing use Apple on-device frameworks and packaged models, so audio is not uploaded to Obsidian Ridge Labs. Audio is encrypted at rest with AES-256-GCM. Requires iOS 18 or later on iPhone, iPadOS 18 or later on iPad, or macOS 15 or later on an Apple-silicon Mac.
-- URL: https://obsidianridgelabs.com/apps/echochamber
-- Help: https://obsidianridgelabs.com/help/echochamber
-- App Store: https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060
-- Category: Productivity / Offline Transcription
-- Pricing: Free; Pro $2.99/mo or $29.99/yr in the US App Store
-- Key differentiator: Live transcription, AI-polished notes, search, and export with core voice processing on the Apple device.
+## Frequently asked
 
-### Molehill (Focus & Tasks) — Coming soon
-On-device AI focus app for iPhone that turns overwhelming tasks into the one small step that comes next. Built for ADHD and anyone who freezes at a long to-do list. Brain-dump capture sorts into six life areas; Apple's on-device Foundation Models break a task into concrete, verb-first steps at your chosen granularity (Big Picture, Balanced, or Every Tiny Step), with a deterministic heuristic fallback when Apple Intelligence isn't available. Full-screen Focus mode shows just the next step with an optional gentle timer (5/10/15/25 min), a Next Step Lock Screen and Home Screen widget, a Dynamic Island Live Activity, Siri/Shortcuts intents, and a Share Extension for quick capture. No streaks, no shame. Every bit of AI runs on the device — no account, no servers, works in airplane mode. Requires iOS 26.
-- URL: https://obsidianridgelabs.com/apps/molehill
-- Help: https://obsidianridgelabs.com/help/molehill
-- Category: Productivity / Focus
-- Pricing: Free (3 AI actions/day); Pro from $2.99/mo, $19.99/yr, or $39.99 lifetime
-- Key differentiator: On-device executive-function support that shows one step at a time, with no tracking and no guilt mechanics.
-
-### Mind Palace (Personal Growth) — In development
-Concept for a private AI journal that finds patterns across your entries on-device. Not yet released.
-- URL: https://obsidianridgelabs.com/apps/mind
-- Category: Journaling / Mental Health
-
-### Decision Nexus (Strategic Logic) — In development
-Concept for a visual decision-mapping tool with an on-device "Red Team" AI that stress-tests your plans. Not yet released.
-- URL: https://obsidianridgelabs.com/apps/nexus
-- Category: Strategy / Decision Making
-
-## Philosophy
-
-Obsidian Ridge Labs operates on four core axioms:
-
-1. **Data Gravity** — Data must remain where it is created. Once data moves, it is vulnerable.
-2. **Nullius in Verba** — "Take nobody's word for it." Verification is behavioral: judge a system by what it refuses to exfiltrate.
-3. **Offline Default** — Connectivity is a feature, not a requirement. Intelligence should function anywhere.
-4. **Ephemerality** — Digital permanence is a bug. Systems should know how to forget.
-
-## Technology
-
-- On-device language models (Apple Foundation Models on supported hardware; bundled Cedar / llama.cpp models elsewhere)
-- Apple Neural Engine for local inference
-- On-device speech frameworks and packaged local models for Echo Chamber transcription
-- Local-first storage (SwiftData / Core Data), encrypted at rest by the operating system; Echo Chamber audio is AES-256-GCM encrypted
-- No third-party behavioral analytics SDKs or advertising identifiers; any first-party diagnostics are opt-in and off by default
-- Network use is feature-specific and disclosed: model downloads, App Store verification, optional Plaid bank sync (Vault), optional personal iCloud sync (Echo Chamber), and support requests initiated by the user
-
-## Help Center
-
-Full setup and feature guides for every app:
-- Vault: https://obsidianridgelabs.com/help/vault
-- Echo Chamber: https://obsidianridgelabs.com/help/echochamber
-- Molehill: https://obsidianridgelabs.com/help/molehill
-
-## Blog / Journal
-
-Insights on privacy, AI architecture, and digital sovereignty:
-- "Why We Will Only Ever Build for Apple: A Deliberate Choice" — https://obsidianridgelabs.com/blog/apple-ecosystem-privacy
-- "The Invisible Cost of 'Free' Finance Apps: 5 Red Flags" — https://obsidianridgelabs.com/blog/finance-app-red-flags
-- "Otter.ai vs. Echo Chamber: The Real Cost of AI Transcription" — https://obsidianridgelabs.com/blog/otter-vs-echo
-- "Why Notion is a Bad Place for Your Private Thoughts" — https://obsidianridgelabs.com/blog/notion-vs-mindpalace
-- "The Speed of Silence: Why Offline AI is Faster than ChatGPT" — https://obsidianridgelabs.com/blog/offline-ai-revolution
+- **What is on-device AI?** AI that runs a model on the phone, tablet, or computer in front of you instead of requiring a remote AI service for the core processing path.
+- **Can private AI work without uploading my data?** Yes. Supported apps can use packaged models or Apple frameworks so transcription, analysis, search, and summarization happen on the device.
+- **Does on-device mean an app never connects?** Not necessarily. Model downloads, purchase verification, optional iCloud or Plaid sync, and support can require a connection. Each product documents those moments.
+- **How can I verify an AI app is private?** Look for specific answers about inference, uploads, accounts, SDKs, optional sync, retention, deletion, and offline behavior.
 
 ## Contact
 
 - Support: support@obsidianridgelabs.com
-- Website: https://obsidianridgelabs.com
-
-## Policies
-
-- Privacy Policy: https://obsidianridgelabs.com/privacy
-- Terms of Service: https://obsidianridgelabs.com/terms
+- Website source: https://github.com/amotor-AM/obsidian-ridge-labs

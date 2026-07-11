@@ -8,7 +8,7 @@ const TermsOfService: React.FC = () => {
     <div className="min-h-screen pt-32 pb-10 md:pb-20 px-6 md:px-12 max-w-4xl mx-auto">
       <SEO
         title="Terms of Service"
-        description="Terms of Service for Obsidian Ridge Labs applications. Covers in-app purchases via Apple StoreKit, intellectual property, privacy commitments, and limitation of liability."
+        description="Terms for Obsidian Ridge Labs apps, including Apple StoreKit purchases, subscriptions, privacy disclosures, intellectual property, and liability."
         noindex={false}
         jsonLd={[
           buildBreadcrumbs([
@@ -18,7 +18,7 @@ const TermsOfService: React.FC = () => {
         ]}
       />
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
@@ -52,7 +52,7 @@ const TermsOfService: React.FC = () => {
           <section className="mb-12">
             <h2 className="text-2xl font-semibold text-white mb-4">3. Privacy and Data Security</h2>
             <p className="text-gray-400 leading-relaxed">
-              Obsidian Ridge Labs is built on a foundation of absolute privacy. We do not track, collect, or store any of your personal data on our servers. All processing, including AI inference, occurs locally on your device. For more details, please refer to our Privacy Policy.
+              Obsidian Ridge Labs designs core AI processing to run locally on supported devices. Some optional or operational features—including purchases, model downloads, iCloud, Plaid, or support—may use third-party services when applicable. Product-specific data flows and choices are described in our Privacy Policy and product documentation.
             </p>
           </section>
 

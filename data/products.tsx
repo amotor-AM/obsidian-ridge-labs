@@ -1,244 +1,447 @@
-import { LineChart, Book, Mic, GitMerge, Mountain, Shield, Cpu, Wifi, Eye, ListChecks, Sparkles, Heart } from 'lucide-react';
+import {
+  Archive,
+  Bell,
+  BookOpen,
+  Boxes,
+  Brain,
+  CalendarClock,
+  Camera,
+  CloudSun,
+  Dumbbell,
+  Eye,
+  FileCheck2,
+  FileText,
+  Gauge,
+  Heart,
+  LineChart,
+  ListChecks,
+  MessageCircle,
+  Mic,
+  ScanLine,
+  Search,
+  Shield,
+  Shirt,
+  Sparkles,
+  UsersRound,
+  Watch,
+  Wifi,
+} from 'lucide-react';
 import { Product } from '../types';
 
 export const products: Product[] = [
   {
-    id: "vault",
-    name: "VAULT",
-    shortName: "VAULT",
-    tagline: "Total Control Over Your Money.",
-    category: "Smart Finance",
-    status: "live",
-    accent: "#c7ff3e",
-    appStoreUrl: "",
-    githubUrl: "https://github.com/obsidian-ridge-labs/Vault",
+    id: 'echochamber',
+    name: 'ECHO CHAMBER',
+    shortName: 'ECHO',
+    tagline: 'Private AI Transcription. On Your Device.',
+    category: 'Offline Transcription',
+    releaseStatus: 'app-store',
+    accent: '#c7ff3e',
+    appStoreUrl: 'https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060',
     hasKnowledgeBase: true,
-    platforms: ["iOS", "iPadOS"],
-    minOS: "iOS 17",
-    price: "Free · optional bank sync",
-    description: "Understand your spending and predict your future balance without giving a company your bank password.",
-    fullDescription: "Vault analyzes spending with AI that lives on your phone, so its core budgeting, categorization, forecasting, and coaching workflows can stay local. Track manually for the most private setup, import statements and receipts on-device, or enable Plaid bank sync when automatic updates are worth the connection. Bank credentials are entered through Plaid and never handled by Vault.",
-    icon: LineChart,
-    specs: [
-      { label: "Processing", value: "On-Device AI" },
-      { label: "Sync", value: "No Cloud Required" },
-      { label: "Security", value: "Biometric Lock" },
-      { label: "Privacy", value: "On-Device First" }
-    ],
-    version: "v2.1.0",
-    releaseDate: "2024.04.12",
-    primaryColor: "text-neon",
-    workflow: [
-        { title: "Import", description: "Upload a PDF statement or scan a receipt. The app reads it locally." },
-        { title: "Analyze", description: "Our private AI categorizes your spending automatically." },
-        { title: "Forecast", description: "See exactly how much money you'll have in 30 days based on your habits." },
-        { title: "Secure", description: "Your data is locked on your phone and disappears if you delete the app." }
-    ],
-    features: [
-      {
-        title: "Your Password, Never Ours",
-        description: "Track by hand for free, or link a bank through Plaid. Either way, your bank login happens on Plaid's screen, never inside Vault.",
-        icon: <Shield className="w-5 h-5 text-neon" />
-      },
-      {
-        title: "Predict the Future",
-        description: "Know if you can afford that next big purchase with AI balance forecasting.",
-        icon: <LineChart className="w-5 h-5 text-neon" />
-      },
-      {
-        title: "Yours by Default",
-        description: "Your spending, budgets, and AI coach live on your iPhone, not on our servers. Link a bank only if you want automatic sync.",
-        icon: <Eye className="w-5 h-5 text-neon" />
-      }
-    ]
-  },
-  {
-    id: "mind",
-    name: "MIND PALACE",
-    shortName: "MIND",
-    tagline: "A Journal That Actually Understands You.",
-    category: "Personal Growth",
-    status: "coming-soon",
-    accent: "#a855f7",
-    hasKnowledgeBase: false,
-    description: "Write your thoughts and let our AI help you find patterns in your life. Private, secure, and purely yours.",
-    fullDescription: "Mind Palace is an in-development journal concept designed to keep reflection private. Its local intelligence will help surface patterns across entries, connect moods with habits, and make past thoughts easier to recall without treating personal writing as cloud training data.",
-    icon: Book,
-    specs: [
-      { label: "Brain", value: "Private AI Core" },
-      { label: "Memory", value: "Unlimited Entries" },
-      { label: "Lock", value: "Passcode + FaceID" },
-      { label: "Cloud", value: "Never Connected" }
-    ],
-    version: "v1.4.2",
-    releaseDate: "2024.01.20",
-    primaryColor: "text-purple-400",
-    workflow: [
-        { title: "Write", description: "Journal your thoughts as they come. No formatting needed." },
-        { title: "Connect", description: "AI finds patterns in your writing you might have missed." },
-        { title: "Chat", description: "Ask your journal: 'Why have I been feeling tired lately?' and get real answers." },
-        { title: "Own", description: "Every word is encrypted. If you lose your phone, nobody can read your mind." }
-    ],
-    features: [
-      {
-        title: "Pattern Recognition",
-        description: "The AI notices if you're happier when you exercise or stressed before meetings.",
-        icon: <Cpu className="w-5 h-5 text-purple-400" />
-      },
-      {
-        title: "Smart Recall",
-        description: "Search by feeling, not just keywords. Find 'that time I was excited about the new job.'",
-        icon: <Book className="w-5 h-5 text-purple-400" />
-      },
-      {
-        title: "Ultimate Trust",
-        description: "Your journal is encrypted. We don't have the keys. You are the only owner.",
-        icon: <Shield className="w-5 h-5 text-purple-400" />
-      }
-    ]
-  },
-  {
-    id: "echochamber",
-    name: "ECHO CHAMBER",
-    shortName: "ECHO",
-    tagline: "Private AI Transcription. On Your Device.",
-    category: "Offline Transcription",
-    status: "live",
-    accent: "#c7ff3e",
-    appStoreUrl: "https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060",
-    githubUrl: "https://github.com/obsidian-ridge-labs/Echo-Chamber",
-    hasKnowledgeBase: true,
-    platforms: ["iOS", "iPadOS", "macOS", "visionOS"],
-    minOS: "iOS 18",
-    price: "Free · Pro from $2.99/mo",
-    description: "Record audio, follow a live transcript, polish it with AI, search every word, and export to TXT, Markdown, PDF, or DOCX. Core speech and AI processing happen on your Apple device.",
-    fullDescription: "Echo Chamber is an on-device voice transcription app for meetings, lectures, and dictation. Record audio, see a live transcript as you speak, bookmark important moments, create AI-polished notes and summaries, search across recordings, and export to TXT, Markdown, PDF, or DOCX. Audio is processed locally using Apple on-device speech frameworks and packaged models rather than being uploaded to Obsidian Ridge Labs.",
+    platforms: ['iOS', 'iPadOS', 'macOS', 'visionOS'],
+    minOS: 'iOS 18',
+    price: 'Free · Pro from $2.99/mo',
+    description: 'Record live or upload audio and video, transcribe with Parakeet TDT on your Apple device, search every word, create local AI notes, and export the result.',
+    fullDescription: 'Echo Chamber is a private transcription app for meetings, lectures, interviews, and dictation. Record live audio or upload an existing audio or video file, then create a searchable transcript, AI-polished reading copy, notes, and summaries on supported Apple hardware. Echo Chamber uses NVIDIA Parakeet TDT 0.6B v3 and has observed approximately 3% word error rate in Echo Chamber testing. For separate public context, the current Hugging Face Open ASR evaluation reports 6.32% average English WER for Parakeet versus 7.44% for Whisper large-v3. Recordings are processed locally rather than uploaded to Obsidian Ridge Labs.',
     icon: Mic,
     specs: [
-      { label: "Processing", value: "On-Device" },
-      { label: "Transcript", value: "Live" },
-      { label: "Internet", value: "Not Required" },
-      { label: "Export", value: "4 Formats" }
+      { label: 'Speech model', value: 'Parakeet TDT v3' },
+      { label: 'Transcript', value: 'Live' },
+      { label: 'File input', value: 'Audio + Video' },
+      { label: 'Observed WER', value: 'Approximately 3%' },
     ],
-    primaryColor: "text-neon",
+    primaryColor: 'text-neon',
     workflow: [
-        { title: "Record or Import", description: "Tap to record live audio or import MP3, WAV, M4A, MP4, and more. Works in airplane mode." },
-        { title: "Transcribe On-Device", description: "On-device speech processing turns your recording into a live transcript as you speak." },
-        { title: "Polish with AI", description: "Turn the raw verbatim transcript into clear notes and summaries using local intelligence." },
-        { title: "Search or Export", description: "Search every word, then export the result to TXT, Markdown, PDF, or DOCX." }
+      { title: 'Record or Upload', description: 'Record live audio or upload an existing MP3, WAV, M4A, MP4, or another supported audio or video file.' },
+      { title: 'Transcribe On-Device', description: 'Parakeet TDT speech recognition turns the recording into a timestamped transcript on supported Apple hardware.' },
+      { title: 'Polish with AI', description: 'Turn the raw verbatim transcript into clear notes and summaries using local intelligence.' },
+      { title: 'Search or Export', description: 'Search every word, then export the result to TXT, Markdown, PDF, or DOCX.' },
     ],
     features: [
       {
-        title: "Speaker Identification",
-        description: "Automatic speaker diarization labels who said what. Voice profiles learn and recognize speakers over time.",
-        icon: <Mic className="w-5 h-5 text-neon" />
+        title: 'Speaker Identification',
+        description: 'Automatic speaker diarization helps label who said what, with voice profiles that can improve recognition of familiar speakers over time.',
+        icon: <Mic className="w-5 h-5 text-neon" />,
       },
       {
-        title: "Offline-Ready",
-        description: "After any required model setup, core recording, transcription, notes, and search work without Wi-Fi or cellular service.",
-        icon: <Wifi className="w-5 h-5 text-neon" />
+        title: 'Offline-Ready',
+        description: 'After any required model setup, core recording, transcription, notes, and search work without Wi-Fi or cellular service.',
+        icon: <Wifi className="w-5 h-5 text-neon" />,
       },
       {
-        title: "Zero Cloud Exposure",
-        description: "Audio is processed on-device rather than uploaded to Obsidian Ridge Labs. Face ID can add another layer of local access control.",
-        icon: <Shield className="w-5 h-5 text-neon" />
-      }
-    ]
+        title: 'Local Voice Processing',
+        description: 'Audio is processed on-device rather than uploaded to Obsidian Ridge Labs. Face ID can add another layer of local access control.',
+        icon: <Shield className="w-5 h-5 text-neon" />,
+      },
+    ],
   },
   {
-    id: "nexus",
-    name: "DECISION NEXUS",
-    shortName: "NEXUS",
-    tagline: "Think Clearer. Act Faster.",
-    category: "Strategic Logic",
-    status: "coming-soon",
-    accent: "#fbbf24",
-    hasKnowledgeBase: false,
-    description: "Map out complex decisions and let AI play 'devil's advocate' to find holes in your plan.",
-    fullDescription: "Decision Nexus is a visual sandbox for your most important choices. Whether you're planning a business move or a legal strategy, Nexus helps you see every possible outcome. Our built-in 'Red Team' AI challenges your logic and suggests counter-moves, helping you prepare for anything.",
-    icon: GitMerge,
-    specs: [
-      { label: "Type", value: "Logic Canvas" },
-      { label: "AI Mode", value: "Adversarial Thinking" },
-      { label: "Export", value: "Private PDF" },
-      { label: "Focus", value: "Deep Strategy" }
-    ],
-    version: "v1.1.0",
-    releaseDate: "2024.03.10",
-    primaryColor: "text-amber-400",
-    workflow: [
-        { title: "Map", description: "Drag and drop your ideas and see how they connect." },
-        { title: "Simulate", description: "AI runs hundreds of scenarios to see what's likely to happen." },
-        { title: "Challenge", description: "The 'Devil's Advocate' mode finds weaknesses in your plan." },
-        { title: "Export", description: "Save your strategy as a secure document for your eyes only." }
-    ],
-    features: [
-      {
-        title: "Strategic AI",
-        description: "An AI partner that helps you brainstorm and stress-test your big ideas.",
-        icon: <Cpu className="w-5 h-5 text-amber-400" />
-      },
-      {
-        title: "Visual Clarity",
-        description: "Turn complex problems into easy-to-read flowcharts and maps.",
-        icon: <GitMerge className="w-5 h-5 text-amber-400" />
-      },
-      {
-        title: "Enterprise Ready",
-        description: "The gold standard for corporate strategy that needs to stay in-house.",
-        icon: <Shield className="w-5 h-5 text-amber-400" />
-      }
-    ]
-  },
-  {
-    id: "molehill",
-    name: "MOLEHILL",
-    shortName: "MOLEHILL",
-    tagline: "Make the Mountain a Molehill.",
-    category: "Focus & Tasks",
-    status: "coming-soon",
-    accent: "#34d399",
-    githubUrl: "https://github.com/obsidian-ridge-labs/Molehill",
+    id: 'vault',
+    name: 'VAULT',
+    shortName: 'VAULT',
+    tagline: 'Your Finances. Your Device.',
+    category: 'Smart Finance',
+    releaseStatus: 'pre-release',
+    accent: '#c7ff3e',
+    appStoreUrl: '',
     hasKnowledgeBase: true,
-    platforms: ["iOS"],
-    minOS: "iOS 26",
-    price: "Free · Pro from $2.99/mo",
-    description: "Overwhelmed by your to-do list? On-device AI breaks any task down into the one small step that comes next. No streaks. No shame.",
-    fullDescription: "Big tasks freeze big brains. Molehill turns the mountain into a molehill, one doable step at a time. Built for ADHD and anyone who's ever stared at a to-do list and shut down, it uses on-device AI to do the executive-function heavy lifting: dump your brain, break it down, and see only the next step. Private, encouraging, and always on your side.",
-    icon: Mountain,
+    platforms: ['iOS', 'iPadOS'],
+    minOS: 'iOS 17',
+    description: 'An in-development, local-first finance app for understanding spending and forecasting cash flow without handing bank credentials to Obsidian Ridge Labs.',
+    fullDescription: 'Vault is an in-development personal finance app designed around a local core: budgeting, categorization, forecasting, and coaching on the device. The planned workflow supports manual tracking and on-device statement or receipt import, with optional Plaid bank sync for people who choose automatic updates. When Plaid is enabled, bank authentication happens in Plaid rather than inside Vault.',
+    icon: LineChart,
     specs: [
-      { label: "Intelligence", value: "On-Device" },
-      { label: "Works Offline", value: "Always" },
-      { label: "Tracking", value: "None" },
-      { label: "Made For", value: "ADHD & Focus" }
+      { label: 'Product stage', value: 'In Development' },
+      { label: 'Core design', value: 'Local-First' },
+      { label: 'Bank sync', value: 'Optional via Plaid' },
+      { label: 'Requirements', value: 'Provisional' },
     ],
-    primaryColor: "text-emerald-400",
+    primaryColor: 'text-neon',
     workflow: [
-        { title: "Dump It", description: "Type the thing stressing you out, or pour out everything on your mind at once." },
-        { title: "Break It Down", description: "On-device AI turns it into small, concrete steps you can actually start." },
-        { title: "Do One Step", description: "Focus mode and the Lock Screen widget show just the next step. Begin there." },
-        { title: "Keep Moving", description: "Finish a step, advance to the next. No streaks to break, no guilt if you pause." }
+      { title: 'Import', description: 'The planned local workflow reads a PDF statement or scanned receipt on the device.' },
+      { title: 'Organize', description: 'On-device intelligence is being designed to help categorize spending with review and correction controls.' },
+      { title: 'Forecast', description: 'Projected balances will be presented as estimates based on the data and assumptions you provide.' },
+      { title: 'Choose', description: 'Manual tracking remains the private default; optional Plaid sync is a separate connected path.' },
     ],
     features: [
       {
-        title: "One Step at a Time",
-        description: "See the next step, not the whole intimidating list. Less overwhelm, more momentum.",
-        icon: <ListChecks className="w-5 h-5 text-emerald-400" />
+        title: 'Your Password, Never Ours',
+        description: 'The design keeps manual tracking available and routes optional bank authentication through Plaid rather than an Obsidian Ridge Labs login form.',
+        icon: <Shield className="w-5 h-5 text-neon" />,
       },
       {
-        title: "Brain Dump, Sorted",
-        description: "Pour everything out of your head; on-device AI organizes it into clear, doable tasks.",
-        icon: <Sparkles className="w-5 h-5 text-emerald-400" />
+        title: 'Plan with a Forecast',
+        description: 'The product direction turns recurring income, bills, and spending history into a clearly labeled estimate—not a financial guarantee.',
+        icon: <LineChart className="w-5 h-5 text-neon" />,
       },
       {
-        title: "No Streaks, No Shame",
-        description: "A focus app that's gentle by design, built to work with how your brain actually works.",
-        icon: <Heart className="w-5 h-5 text-emerald-400" />
-      }
-    ]
-  }
+        title: 'Yours by Default',
+        description: 'The core product is being designed for local storage and processing, with a connected bank-data path only when a person chooses it.',
+        icon: <Eye className="w-5 h-5 text-neon" />,
+      },
+    ],
+  },
+  {
+    id: 'molehill',
+    name: 'MOLEHILL',
+    shortName: 'MOLEHILL',
+    tagline: 'Make the Mountain a Molehill.',
+    category: 'Focus & Tasks',
+    releaseStatus: 'pre-release',
+    accent: '#34d399',
+    hasKnowledgeBase: true,
+    platforms: ['iOS'],
+    minOS: 'iOS 26',
+    description: 'An in-development focus app designed to break an overwhelming task into one smaller next step with local intelligence and no streak pressure.',
+    fullDescription: 'Molehill is an in-development task-breakdown app for people who feel stuck when work is too large or vague, including people with ADHD. The intended workflow turns a brain dump into smaller, concrete steps and keeps attention on the next action. It is a productivity tool, not medical treatment, and final compatibility, features, and pricing will be confirmed before release.',
+    icon: ListChecks,
+    specs: [
+      { label: 'Product stage', value: 'In Development' },
+      { label: 'AI direction', value: 'On-Device' },
+      { label: 'Design', value: 'No Streaks' },
+      { label: 'Requirements', value: 'Provisional' },
+    ],
+    primaryColor: 'text-emerald-400',
+    workflow: [
+      { title: 'Dump It', description: 'The planned flow begins with the task, project, or brain dump that feels difficult to start.' },
+      { title: 'Break It Down', description: 'On-device intelligence is being designed to suggest smaller, editable actions.' },
+      { title: 'Do One Step', description: 'A focused view is intended to show the next action without hiding the user’s control over the plan.' },
+      { title: 'Keep Moving', description: 'The design avoids streaks and guilt when someone pauses or changes direction.' },
+    ],
+    features: [
+      {
+        title: 'One Step at a Time',
+        description: 'The product direction emphasizes one manageable action at a time while keeping the full plan available when needed.',
+        icon: <ListChecks className="w-5 h-5 text-emerald-400" />,
+      },
+      {
+        title: 'Brain Dump, Sorted',
+        description: 'The planned local model suggests an editable structure for a brain dump instead of treating it as a final answer.',
+        icon: <Sparkles className="w-5 h-5 text-emerald-400" />,
+      },
+      {
+        title: 'No Streaks, No Shame',
+        description: 'A gentle interaction model without streak pressure, clinical claims, or punishment for taking a break.',
+        icon: <Heart className="w-5 h-5 text-emerald-400" />,
+      },
+    ],
+  },
+  {
+    id: 'cove',
+    name: 'COVE',
+    shortName: 'COVE',
+    tagline: 'A Private Place to Reflect.',
+    category: 'Private Journaling',
+    releaseStatus: 'pre-release',
+    accent: '#8b9cf6',
+    platforms: ['iOS'],
+    minOS: 'iOS 26',
+    description: 'An in-development private journal for writing, memories, and gentle on-device reflection—without a Cove login, analytics profile, or remote AI service.',
+    fullDescription: 'Cove is an in-development journal for iPhone that pairs writing, selected photos, and voice memos with private reflection. Apple’s on-device Foundation Models can identify tone and themes, synthesize a weekly reflection, and answer questions grounded in retrieved journal excerpts; NaturalLanguage embeddings power semantic search and provide a basic insight fallback when Apple Intelligence is unavailable. The current development build stores the journal locally; optional Health data access is permission-based, and no cloud-sync promise is being made before release.',
+    icon: BookOpen,
+    specs: [
+      { label: 'Product stage', value: 'In Development' },
+      { label: 'Platform', value: 'iPhone · iOS 26' },
+      { label: 'Intelligence', value: 'On-Device + Fallback' },
+      { label: 'Current storage', value: 'Local SwiftData' },
+    ],
+    primaryColor: 'text-indigo-300',
+    workflow: [
+      { title: 'Capture the Moment', description: 'Write an entry and, where useful, attach a selected photo or a voice memo to preserve more of the moment.' },
+      { title: 'Reflect Locally', description: 'On-device intelligence produces a restrained tone, theme, and reflection, with a NaturalLanguage fallback when Apple Intelligence is unavailable.' },
+      { title: 'Find the Thread', description: 'Semantic search, mood-to-theme patterns, and Ask Your Journal help resurface relevant entries without replacing the original words.' },
+      { title: 'Keep Control', description: 'App lock and export controls support a private archive; the current product build stores journal data locally.' },
+    ],
+    features: [
+      {
+        title: 'Reflection, Not Diagnosis',
+        description: 'Cove surfaces themes and questions for the writer to interpret. It is a journal, not a therapist, medical device, or authority on someone’s mental health.',
+        icon: <Sparkles className="w-5 h-5 text-indigo-300" />,
+      },
+      {
+        title: 'Ask Your Own Journal',
+        description: 'Meaning-based search and journal-grounded questions are designed to find relevant moments while keeping source entries in view.',
+        icon: <Search className="w-5 h-5 text-indigo-300" />,
+      },
+      {
+        title: 'A Local Private Archive',
+        description: 'The current SwiftData store and AI processing are local. Cove does not require a Cove account or an analytics identity.',
+        icon: <Shield className="w-5 h-5 text-indigo-300" />,
+      },
+    ],
+  },
+  {
+    id: 'wove',
+    name: 'WOVE',
+    shortName: 'WOVE',
+    tagline: 'Your Closet, Thoughtfully Composed.',
+    category: 'Private Wardrobe',
+    releaseStatus: 'pre-release',
+    accent: '#f0a97a',
+    platforms: ['iOS', 'iPadOS'],
+    minOS: 'iOS 26',
+    description: 'An in-development private wardrobe stylist that cuts garments out of photos, organizes the closet, and composes useful outfits with on-device intelligence.',
+    fullDescription: 'Wove is an in-development wardrobe app for iPhone and iPad. Apple Vision lifts a garment from its background and assists classification; deterministic category logic supplies default season tags, and every field remains editable. An on-device styling engine then works with the closet to suggest daily and occasion-based outfits, capsules, packing lists, and shopping context, with deterministic color, formality, and weather rules as fallback and validation. Wove is local-first; optional private iCloud can mirror SwiftData closet metadata, but garment images remain separate local files, so complete cross-device photo sync is not being promised. WeatherKit uses a coarse, one-shot location for forecasts.',
+    icon: Shirt,
+    specs: [
+      { label: 'Product stage', value: 'In Development' },
+      { label: 'Platforms', value: 'iPhone + iPad' },
+      { label: 'Vision', value: 'Local Garment Cut-Out' },
+      { label: 'Weather', value: 'Optional WeatherKit' },
+    ],
+    primaryColor: 'text-orange-300',
+    workflow: [
+      { title: 'Photograph a Garment', description: 'Add a clothing photo; Apple Vision lifts the subject and derives editable color, type, and season tags on the device.' },
+      { title: 'Build the Closet', description: 'Search and filter garments, record what was worn, and develop a useful local history of combinations and cost per wear.' },
+      { title: 'Compose a Look', description: 'Generate a daily or occasion-based outfit, capsule, or packing list from relevant pieces in the closet.' },
+      { title: 'Refine with Reality', description: 'Wear logs, weather, occasion, and the combinations someone actually chooses help improve future suggestions.' },
+    ],
+    features: [
+      {
+        title: 'Garment Capture without Busywork',
+        description: 'On-device subject lift, color analysis, and category tagging reduce repetitive cropping and catalog entry while keeping every tag editable.',
+        icon: <ScanLine className="w-5 h-5 text-orange-300" />,
+      },
+      {
+        title: 'A Stylist with Guardrails',
+        description: 'Foundation Models proposes combinations from a retrieved closet shortlist; deterministic rules check color, formality, and weather compatibility.',
+        icon: <Sparkles className="w-5 h-5 text-orange-300" />,
+      },
+      {
+        title: 'Context, Not Surveillance',
+        description: 'Optional WeatherKit context uses coarse location for a forecast. Wove has no developer account, ad profile, or remote wardrobe-analysis server.',
+        icon: <CloudSun className="w-5 h-5 text-orange-300" />,
+      },
+    ],
+  },
+  {
+    id: 'mettle',
+    name: 'METTLE',
+    shortName: 'METTLE',
+    tagline: 'Adapts to You. Explains Why.',
+    category: 'Strength Coaching',
+    releaseStatus: 'pre-release',
+    accent: '#ef8354',
+    platforms: ['iOS', 'watchOS'],
+    minOS: 'iOS 26.1',
+    description: 'An in-development private strength coach that builds adaptive programs on iPhone and shows the deterministic reason behind every prescription.',
+    fullDescription: 'Mettle is an in-development strength coach for beginners and experienced lifters. It starts with goal, experience, equipment, schedule, and optional bodyweight, then builds a program locally. Apple’s on-device model can choose and explain exercises only from curated candidates; a deterministic engine owns sets, reps, rest, load progression, and deloads. Logged training changes future prescriptions and coaching depth. The current build stores training locally, with optional permission-based HealthKit integration and an Apple Watch remote for an active phone workout.',
+    icon: Dumbbell,
+    specs: [
+      { label: 'Product stage', value: 'In Development' },
+      { label: 'Platform', value: 'iPhone · iOS 26.1' },
+      { label: 'Watch', value: 'Workout Remote' },
+      { label: 'Prescription logic', value: 'Deterministic' },
+    ],
+    primaryColor: 'text-orange-300',
+    workflow: [
+      { title: 'Define the Training Context', description: 'Choose the goal, experience, equipment, training days, session length, units, and optional bodyweight.' },
+      { title: 'Generate a Safe Program', description: 'On-device AI selects from curated exercise candidates while deterministic composition still produces a complete plan if the model is unavailable.' },
+      { title: 'Run the Session', description: 'See the last performance and exact “Why this?” rationale, log sets, use the planned rest timer, and optionally control the phone session from Apple Watch.' },
+      { title: 'Adapt the Next Prescription', description: 'Logged sets drive the next progression, the program calendar schedules deloads, and completed training, RPE history, and note language can inform competence and coaching depth.' },
+    ],
+    features: [
+      {
+        title: 'Every Number Has a Reason',
+        description: 'Double progression and scheduled deload logic produce the sets, reps, loads, and evidence behind “Why this?”—not an unconstrained language model.',
+        icon: <Gauge className="w-5 h-5 text-orange-300" />,
+      },
+      {
+        title: 'Coaching that Changes Altitude',
+        description: 'The same sound program can be explained gently to a new lifter or with more training detail to someone experienced, without hiding control.',
+        icon: <Dumbbell className="w-5 h-5 text-orange-300" />,
+      },
+      {
+        title: 'Workout Continuity',
+        description: 'Live Activity, a resumable session, optional HealthKit, a Watch remote, custom exercises, and CSV export keep the training record useful.',
+        icon: <Watch className="w-5 h-5 text-orange-300" />,
+      },
+    ],
+  },
+  {
+    id: 'memora',
+    name: 'MEMORA',
+    shortName: 'MEMORA',
+    tagline: 'Make the Cards. Keep the Memory.',
+    category: 'Private Learning',
+    releaseStatus: 'pre-release',
+    accent: '#6fa8ff',
+    platforms: ['iOS'],
+    minOS: 'iOS 26',
+    description: 'An in-development study companion that turns your own notes, text-layer PDFs, and selected photos into editable flashcards, then schedules recall with FSRS.',
+    fullDescription: 'Memora is an in-development iPhone study companion for turning user-supplied material into flashcard drafts. Paste notes, import a PDF with embedded text, or choose a photo for local Vision OCR; Apple Foundation Models creates source-grounded cards, with a NaturalLanguage fallback when Apple Intelligence is unavailable. Nothing is saved until the learner reviews, edits, and selects the drafts. FSRS then schedules due cards through an Again, Hard, Good, and Easy loop with visible next intervals, relearning, and undo. The current build stores decks locally and does not claim iCloud sync.',
+    icon: Brain,
+    specs: [
+      { label: 'Product stage', value: 'In Development' },
+      { label: 'Platform', value: 'iPhone · iOS 26' },
+      { label: 'Scheduling', value: 'FSRS' },
+      { label: 'Current storage', value: 'Local SwiftData' },
+    ],
+    primaryColor: 'text-blue-300',
+    workflow: [
+      { title: 'Bring Your Material', description: 'Paste notes, import a text-layer PDF, or choose a photo whose text can be extracted locally with Vision.' },
+      { title: 'Generate Draft Cards', description: 'Apple Foundation Models creates source-grounded drafts; a local text-analysis fallback keeps standard generation useful without Apple Intelligence.' },
+      { title: 'Review before Saving', description: 'Edit, include, or discard each proposed card so generated material never bypasses the learner’s judgment.' },
+      { title: 'Review at the Right Time', description: 'Rate recall as Again, Hard, Good, or Easy and let FSRS update memory strength and the next due interval.' },
+    ],
+    features: [
+      {
+        title: 'Private Source-to-Card',
+        description: 'Notes, embedded PDF text, and selected-photo OCR are transformed locally, with a human review gate before any generated card enters a deck.',
+        icon: <FileText className="w-5 h-5 text-blue-300" />,
+      },
+      {
+        title: 'Memory, Made Visible',
+        description: 'FSRS powers four-grade review, next-interval previews, intra-session relearning, one-step undo, and a visible memory-strength model.',
+        icon: <CalendarClock className="w-5 h-5 text-blue-300" />,
+      },
+      {
+        title: 'More Ways to Retrieve',
+        description: 'Basic, cloze, and image-occlusion cards extend into Match, Listen, practice tests, sharing, and an Apple-Intelligence-only tutor grounded in the current deck.',
+        icon: <Brain className="w-5 h-5 text-blue-300" />,
+      },
+    ],
+  },
+  {
+    id: 'trove',
+    name: 'TROVE',
+    shortName: 'TROVE',
+    tagline: 'Know What You Own. Keep It Yours.',
+    category: 'Home Inventory',
+    releaseStatus: 'pre-release',
+    accent: '#d9a441',
+    platforms: ['iOS', 'iPadOS'],
+    minOS: 'iOS 26',
+    description: 'An in-development private home inventory for documenting belongings, warranties, values, and insurance-ready records with on-device intelligence.',
+    fullDescription: 'Trove is an in-development home inventory for iPhone and iPad, built for insurance preparation, moves, warranties, and everyday recall. Photograph an item or receipt; Apple Vision can read text and barcodes, while Apple Foundation Models can propose brand, model, serial, category, and value details for review. Items, rooms, values, photos, receipts, and warranty dates live in a local SwiftData catalog. Ask Trove answers questions from that inventory. CSV export is implemented in the development build; PDF reporting, multi-home organization, and private iCloud sync remain planned Plus capabilities. A deterministic fallback keeps the catalog useful when Apple Intelligence is unavailable.',
+    icon: Boxes,
+    specs: [
+      { label: 'Product stage', value: 'In Development' },
+      { label: 'Platforms', value: 'iPhone + iPad' },
+      { label: 'Core storage', value: 'Local SwiftData' },
+      { label: 'Capture', value: 'Vision + Barcode' },
+    ],
+    primaryColor: 'text-amber-300',
+    workflow: [
+      { title: 'Capture an Item', description: 'Photograph a belonging, serial label, barcode, or receipt and keep the original evidence with the record.' },
+      { title: 'Review the Details', description: 'On-device extraction proposes brand, model, serial, category, and value information for confirmation or correction.' },
+      { title: 'Track What Matters', description: 'Organize by room or category, record warranty dates, and see value and coverage context in the dashboard.' },
+      { title: 'Find or Export', description: 'Ask questions of the local inventory, search system-wide, or create a portable CSV; a formatted PDF report remains planned.' },
+    ],
+    features: [
+      {
+        title: 'Faster, Reviewable Capture',
+        description: 'Vision OCR, barcode reading, receipt structure, and on-device extraction reduce data entry while keeping every proposed field editable.',
+        icon: <Camera className="w-5 h-5 text-amber-300" />,
+      },
+      {
+        title: 'Warranty and Value Context',
+        description: 'A dashboard brings due warranties, total recorded value, rooms, and categories together without pretending estimates are appraisals.',
+        icon: <FileCheck2 className="w-5 h-5 text-amber-300" />,
+      },
+      {
+        title: 'Evidence You Can Take With You',
+        description: 'Receipts, serials, search, and planned insurance-ready exports are designed to make the catalog useful beyond the app.',
+        icon: <Archive className="w-5 h-5 text-amber-300" />,
+      },
+    ],
+  },
+  {
+    id: 'kith',
+    name: 'KITH',
+    shortName: 'KITH',
+    tagline: 'The Private Way to Stay Close.',
+    category: 'Relationships',
+    releaseStatus: 'pre-release',
+    accent: '#f07f78',
+    platforms: ['iOS'],
+    minOS: 'iOS 26',
+    description: 'An in-development private relationship manager with gentle reach-out cadences and on-device helpers for remembering what matters.',
+    fullDescription: 'Kith is an in-development personal relationship manager for iPhone. People sit in Inner, Close, or Wider circles with an adjustable reach-out cadence, while a Warmth Ring gently cools as time passes. A Today view surfaces who may be worth contacting and which dates are coming up. On supported devices, Apple Foundation Models can structure a brain dump, draft a message, suggest thoughtful gift directions, create talking points, and recap what is known—without sending private relationship notes to a developer server. The current build is local-first and remains useful without Apple Intelligence.',
+    icon: UsersRound,
+    specs: [
+      { label: 'Product stage', value: 'In Development' },
+      { label: 'Platform', value: 'iPhone · iOS 26' },
+      { label: 'Core storage', value: 'Local SwiftData' },
+      { label: 'AI', value: 'On-Device + Optional' },
+    ],
+    primaryColor: 'text-rose-300',
+    workflow: [
+      { title: 'Choose Your Circle', description: 'Add someone manually or through the system picker, place them in a closeness circle, and adjust the suggested cadence.' },
+      { title: 'Remember the Human Detail', description: 'Keep interactions, important dates, and discrete facts attached to the person rather than building a general diary.' },
+      { title: 'See Who Might Need a Hello', description: 'The Today view uses cadence, warmth, pinned people, and snoozes for a gentle reach-out plan, while birthdays and other dates appear separately in Coming Up.' },
+      { title: 'Reach Out Thoughtfully', description: 'On supported iPhones, private AI can help draft a warm, casual, or brief message, surface a caring question, or suggest a gift direction from saved context.' },
+    ],
+    features: [
+      {
+        title: 'Warmth without Guilt',
+        description: 'A cooling ring and adjustable cadence create a humane invitation to reconnect, without streaks, alarm-red overdue states, or relationship scoring.',
+        icon: <Heart className="w-5 h-5 text-rose-300" />,
+      },
+      {
+        title: 'Private Helpers for Real Moments',
+        description: 'Draft a message, structure a note, find a talking point, or explore gift directions using Apple’s on-device model and saved context.',
+        icon: <MessageCircle className="w-5 h-5 text-rose-300" />,
+      },
+      {
+        title: 'Low-Friction Follow-Through',
+        description: 'Widgets, Siri, Shortcuts, Control Center, Spotlight, and local date reminders reduce the effort of logging and remembering.',
+        icon: <Bell className="w-5 h-5 text-rose-300" />,
+      },
+    ],
+  },
 ];
 
-export const getProduct = (id: string) => products.find((p) => p.id === id);
-export const liveProducts = products.filter((p) => p.status === 'live');
-export const comingSoonProducts = products.filter((p) => p.status === 'coming-soon');
+export const getProduct = (id: string) => products.find((product) => product.id === id);
+export const releasedProducts = products.filter((product) => product.releaseStatus === 'app-store');
+export const developmentProducts = products.filter((product) => ['pre-release', 'concept'].includes(product.releaseStatus));
+
+export const getProductReleaseLabel = (product: Product) => {
+  switch (product.releaseStatus) {
+    case 'app-store': return 'Available on the App Store';
+    case 'source-only': return 'Source available';
+    case 'pre-release': return 'In development';
+    case 'concept': return 'Concept in development';
+  }
+};

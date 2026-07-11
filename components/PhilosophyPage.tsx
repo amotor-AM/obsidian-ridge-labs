@@ -1,25 +1,60 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { ArrowDownRight, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Eye, Server, ShieldAlert, Database, ArrowRight } from 'lucide-react';
-import SEO, { buildBreadcrumbs } from './SEO';
+import { getProductReleaseLabel, products } from '../data/products';
+import { philosophyFaqs } from '../data/faqs';
+import SEO, { buildBreadcrumbs, buildFAQSchema, SITE_URL } from './SEO';
 import AxiomScroller from './AxiomScroller';
+import MotionReveal from './home/MotionReveal';
+
+const philosophyProductCopy: Record<string, string> = {
+  echochamber: 'Turn conversations into searchable notes without uploading audio to Obsidian Ridge Labs.',
+  vault: 'Make financial history useful locally, with optional Plaid sync when you choose it.',
+  molehill: 'Designed around private, on-device task breakdown that turns overwhelming work into one next step.',
+  cove: 'Reflect on writing and moods through a local journal whose current production store stays on the iPhone.',
+  wove: 'Catalog clothes and compose outfits locally, with optional WeatherKit context stated plainly.',
+  mettle: 'Build and adapt strength programs with engine-owned prescriptions and on-device explanations.',
+  memora: 'Turn personal study material into reviewed flashcards and schedule recall without a developer server.',
+  trove: 'Document belongings, warranties, and evidence in a private inventory designed around local capture.',
+  kith: 'Remember and reach out with a gentle cadence model that keeps relationship context close.',
+};
+
+const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith'];
+
+const getStatus = (product: (typeof products)[number]) => {
+  const label = getProductReleaseLabel(product);
+  return label === 'Available on the App Store' ? 'Available' : label;
+};
 
 const PhilosophyPage: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  const orderedProducts = productOrder
+    .map((id) => products.find((product) => product.id === id))
+    .filter((product): product is (typeof products)[number] => Boolean(product));
 
-  const xMove = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 10]);
+  const principleList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${SITE_URL}/philosophy#principles`,
+    name: 'Obsidian Ridge Labs local-first software principles',
+    numberOfItems: 4,
+    itemListElement: [
+      ['Data has gravity', 'Core processing should happen where private data is created whenever the hardware can do the work.'],
+      ['Trust should be inspectable', 'Data flows should be documented, permissions should appear in context, and source should be available where practical.'],
+      ['Offline should be excellent', 'Important work should continue without the network after required setup.'],
+      ['Memory should be deliberate', 'Retention and deletion should be understandable and under user control.'],
+    ].map(([name, description], index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: { '@type': 'DefinedTerm', name, description },
+    })),
+  };
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-obsidian text-text-primary pt-32 pb-10 md:pb-20 overflow-hidden relative">
+    <div className="philosophy-page">
       <SEO
-        title="Philosophy: Why We Build Offline-First AI"
-        description="The Obsidian Ridge Labs manifesto on privacy, data sovereignty, and offline-first architecture. Learn why we believe the cloud is a surveillance engine and how on-device AI restores digital autonomy."
+        title="Our Philosophy: Local-First AI by Design"
+        description="Why we build private, offline-first AI apps whose core intelligence runs on Apple devices, with every optional connection explained before use."
+        keywords={['on-device AI privacy', 'local-first AI', 'offline AI apps', 'private AI for iPhone', 'cloud AI privacy']}
         jsonLd={[
           buildBreadcrumbs([
             { name: 'Home', url: '/' },
@@ -28,199 +63,235 @@ const PhilosophyPage: React.FC = () => {
           {
             '@context': 'https://schema.org',
             '@type': 'AboutPage',
-            name: 'Obsidian Ridge Labs Philosophy',
-            description: 'Our manifesto on privacy, offline-first AI, and digital sovereignty.',
-            url: 'https://obsidianridgelabs.com/philosophy',
-            mainEntity: {
-              '@type': 'Organization',
-              name: 'Obsidian Ridge Labs',
-              url: 'https://obsidianridgelabs.com',
-              knowsAbout: ['Privacy', 'Offline AI', 'On-device machine learning', 'Zero-knowledge architecture', 'Data sovereignty'],
-            },
+            '@id': `${SITE_URL}/philosophy#webpage`,
+            name: 'Our Philosophy: Local-First AI by Design',
+            description: 'Why Obsidian Ridge Labs minimizes data movement, makes core workflows offline-ready, and documents optional connections.',
+            url: `${SITE_URL}/philosophy`,
+            mainEntity: { '@id': `${SITE_URL}/#organization` },
           },
+          principleList,
+          buildFAQSchema(philosophyFaqs),
         ]}
       />
 
-      {/* Background Kinetic Typography */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-[0.03] overflow-hidden flex flex-col justify-between z-0">
-        {[...Array(20)].map((_, i) => (
-           <div key={i} className="text-[10vw] leading-[0.8] font-display font-bold whitespace-nowrap text-white select-none" style={{ marginLeft: `${i % 2 === 0 ? -20 : 0}vw` }}>
-              SILENCE THE CLOUD SILENCE THE CLOUD SILENCE THE CLOUD
-           </div>
-        ))}
-      </div>
+      <header className="philosophy-hero">
+        <div className="philosophy-hero__echo" aria-hidden="true">
+          <span>SILENCE THE CLOUD · SILENCE THE CLOUD ·</span>
+          <span>SILENCE THE CLOUD · SILENCE THE CLOUD ·</span>
+        </div>
+        <div className="philosophy-hero__ridge" aria-hidden="true"><i /><i /><i /><i /><i /></div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
-        {/* Header / Manifesto Declaration */}
-        <section className="min-h-[80vh] flex flex-col justify-center border-b border-white/10 mb-12 md:mb-24">
-           <motion.div 
-             initial={{ opacity: 0, y: 50 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.8 }}
-           >
-             <div className="flex items-center gap-4 mb-8">
-               <span className="bg-alert text-black px-2 py-1 font-mono text-xs font-bold uppercase">Classified</span>
-               <span className="text-gray-500 font-mono text-xs uppercase tracking-widest">Protocol Omega // v.2024</span>
-             </div>
+        <div className="section-frame philosophy-hero__frame">
+          <div className="philosophy-hero__meta">
+            <span>A manifesto for local intelligence</span>
+            <span>Obsidian Ridge Labs · 2026</span>
+          </div>
 
-             <h1 className="text-7xl md:text-9xl font-display font-bold text-white mb-12 tracking-tighter leading-[0.85]">
-               THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon to-white">GLASS</span><br/>
-               HOUSE IS <br/>
-               <span className="italic text-gray-700">BURNING.</span>
-             </h1>
-
-             <div className="max-w-2xl text-xl md:text-2xl font-light leading-relaxed border-l-4 border-alert pl-8 text-gray-300">
-               <p>
-                 We are living in the greatest surveillance engine ever constructed. 
-                 Convenience was the bait. Your digital soul was the catch.
-                 <span className="text-white font-bold block mt-4">It is time to go dark.</span>
-               </p>
-             </div>
-           </motion.div>
-        </section>
-
-        {/* The Problem: Redacted Section */}
-        <section className="mb-16 md:mb-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-           <div className="lg:col-span-4 sticky top-32">
-              <h2 className="text-alert font-mono text-sm tracking-[0.2em] mb-4 uppercase">/// Threat Model</h2>
-              <h3 className="text-4xl font-display font-bold text-white mb-6">THE PANOPTICON</h3>
-              <div className="w-full aspect-square border border-white/10 bg-black relative overflow-hidden flex items-center justify-center">
-                 <div className="absolute inset-0 bg-alert/5 animate-pulse"></div>
-                 <Eye size={120} className="text-alert opacity-80" />
-                 <div className="absolute inset-0 bg-[linear-gradient(transparent_2px,black_3px)] bg-[size:100%_4px]"></div>
-              </div>
-           </div>
-
-           <div className="lg:col-span-8 space-y-12 font-mono text-lg text-gray-400">
-              <p className="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-colors relative group">
-                <span className="absolute top-0 right-0 bg-white/10 text-[10px] px-2 py-1 text-white">FIG 1.0</span>
-                Every tap, swipe, and voice command you issue is <span className="bg-white/10 text-transparent group-hover:bg-transparent group-hover:text-neon transition-all duration-500 cursor-help select-none">logged, indexed, and sold</span> to the highest bidder. The "Cloud" is simply someone else's computer, and you do not have the root password.
+          <div className="philosophy-hero__copy">
+            <h1><span>Silence</span><span>the <em>cloud.</em></span></h1>
+            <div className="philosophy-hero__lead">
+              <p>
+                The cloud made software everywhere. It also made private life travel farther
+                than it should. We believe personal AI should move less data, explain every
+                connection, and remain useful when the network disappears.
               </p>
+              <a href="#principles" className="text-link">
+                Read the four principles <ArrowDownRight size={18} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
 
-              <p className="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-colors relative group">
-                <span className="absolute top-0 right-0 bg-white/10 text-[10px] px-2 py-1 text-white">FIG 1.1</span>
-                Your financial history determines your credit. Your location history determines your insurance. Your search history determines your <span className="bg-white/10 text-transparent group-hover:bg-transparent group-hover:text-alert transition-all duration-500 cursor-help select-none">employability and freedom</span>.
+          <p className="philosophy-hero__coda">
+            That belief shapes every app we make.
+          </p>
+        </div>
+      </header>
+
+      <section className="philosophy-premise" aria-labelledby="philosophy-premise-title">
+        <div className="section-frame">
+          <div className="section-index section-index--dark"><span>01 / The premise</span><span>A shorter path to trust</span></div>
+          <div className="philosophy-premise__intro">
+            <MotionReveal>
+              <p className="section-kicker section-kicker--dark">The actual problem</p>
+              <h2 id="philosophy-premise-title">When intelligence is remote, privacy becomes a promise.</h2>
+            </MotionReveal>
+            <MotionReveal delay={0.08}>
+              <p>
+                Cloud AI can be useful. But for personal work, every upload adds another copy,
+                another dependency, and another system to trust. Local processing changes the
+                default: the data can stay where it began.
               </p>
+            </MotionReveal>
+          </div>
 
-              <div className="p-12 border border-alert/30 bg-alert/5 text-white font-display text-3xl font-bold uppercase leading-tight tracking-wide">
-                 "If you think you have<br/>
-                 nothing to hide, you are<br/>
-                 not looking closely enough."
-              </div>
-           </div>
-        </section>
+          <div className="processing-paths">
+            <MotionReveal className="processing-path processing-path--cloud">
+              <div><span>Cloud-first path</span><small>More systems must be trusted</small></div>
+              <ol aria-label="Cloud-first processing path">
+                <li>Your input</li><li>Network</li><li>Remote infrastructure</li><li>Result</li>
+              </ol>
+            </MotionReveal>
+            <MotionReveal className="processing-path processing-path--local" delay={0.08}>
+              <div><span>Local-first path</span><small>A boundary you can understand</small></div>
+              <ol aria-label="Local-first processing path">
+                <li>Your input</li><li>Apple silicon</li><li>Result</li>
+              </ol>
+            </MotionReveal>
+          </div>
+          <p className="processing-paths__caption">Fewer transfers. Fewer dependencies. A clearer boundary.</p>
+        </div>
+      </section>
 
-        {/* The Solution: Counter-Measures - GSAP pinned horizontal scroll */}
-        <AxiomScroller />
+      <AxiomScroller />
 
-        {/* The Architecture */}
-        <section className="mb-16 md:mb-32">
-           <div className="border border-white/10 bg-black p-8 md:p-16 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.01)_10px,rgba(255,255,255,0.01)_20px)]"></div>
-              
-              <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                 <div>
-                    <h2 className="text-5xl md:text-7xl font-display font-bold text-white mb-6">THE BLACK BOX</h2>
-                    <p className="text-xl text-gray-400 mb-8 font-light">
-                       We don't build "Users". We build "Owners".
-                    </p>
-                    <p className="text-gray-500 font-mono text-sm leading-relaxed mb-8">
-                       Traditional apps are thin clients for a massive server brain. Obsidian Ridge apps are the brain. We stuff Gigabytes of neural weights into the install package. The app <em>is</em> the intelligence.
-                    </p>
-                    <ul className="space-y-4 font-mono text-sm text-neon">
-                       <li className="flex items-center gap-2">
-                          <Database size={16} /> LOCAL VECTOR STORES
-                       </li>
-                       <li className="flex items-center gap-2">
-                          <ShieldAlert size={16} /> MILITARY-GRADE ENCRYPTION
-                       </li>
-                       <li className="flex items-center gap-2">
-                          <Server size={16} /> ZERO-KNOWLEDGE ARCHITECTURE
-                       </li>
-                    </ul>
-                 </div>
-                 
-                 <div className="h-full min-h-[300px] border border-white/20 relative flex items-center justify-center bg-obsidian-light">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                       <div className="w-48 h-48 border-2 border-neon rotate-45 opacity-20 animate-pulse"></div>
-                       <div className="w-48 h-48 border-2 border-white rotate-12 opacity-10 absolute"></div>
-                    </div>
-                    <div className="font-display font-bold text-6xl text-white z-10 mix-blend-difference">
-                       YOUR<br/>DATA
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </section>
+      <section className="philosophy-path" aria-labelledby="philosophy-path-title">
+        <div className="section-frame">
+          <div className="section-index"><span>03 / The shorter path</span><span>Useful intelligence, close to the source</span></div>
+          <div className="philosophy-path__intro">
+            <MotionReveal>
+              <p className="section-kicker">Local, where it matters</p>
+              <h2 id="philosophy-path-title">Your input.<br />Apple silicon.<br /><em>Your result.</em></h2>
+            </MotionReveal>
+            <MotionReveal delay={0.08}>
+              <p>
+                For supported features, app-bundled models and Apple frameworks do the work on
+                the device in your hands. That can mean lower latency, offline resilience, and
+                less data movement.
+              </p>
+            </MotionReveal>
+          </div>
+          <div className="philosophy-path__flow" aria-label="Local processing path">
+            <div><span>01</span><strong>Private input</strong><small>Audio · writing · records</small></div>
+            <i aria-hidden="true" />
+            <div><span>02</span><strong>Local intelligence</strong><small>Apple silicon</small></div>
+            <i aria-hidden="true" />
+            <div><span>03</span><strong>Useful result</strong><small>Ready where you are</small></div>
+          </div>
+          <dl className="philosophy-path__facts">
+            <div><dt>Core processing</dt><dd>Designed for the device</dd></div>
+            <div><dt>Core experience</dt><dd>Offline-ready after setup</dd></div>
+            <div><dt>Advertising profiles</dt><dd>None</dd></div>
+          </dl>
+        </div>
+      </section>
 
-        {/* Philosophy in Action - Internal Links to Products */}
-        <section className="mb-16 md:mb-32">
-          <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase mb-12">/// See the Philosophy in Action</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              { id: 'vault', name: 'VAULT', desc: 'Private AI finance. No bank passwords, no cloud.', axiom: 'Data Gravity' },
-              { id: 'mind', name: 'MIND PALACE', desc: 'AI journal that never leaves your device.', axiom: 'Ephemerality' },
-              { id: 'echochamber', name: 'ECHO CHAMBER', desc: 'Offline meeting transcription for the paranoid executive.', axiom: 'Offline Default' },
-              { id: 'nexus', name: 'DECISION NEXUS', desc: 'AI adversarial analysis, zero network access.', axiom: 'Nullius in Verba' },
-            ].map(app => (
-              <Link key={app.id} to={`/apps/${app.id}`} className="group border border-white/10 bg-white/[0.02] p-8 hover:border-neon transition-colors duration-500">
-                <div className="flex justify-between items-start mb-4">
-                  <h4 className="text-2xl font-display font-bold text-white group-hover:text-neon transition-colors">{app.name}</h4>
-                  <span className="text-[10px] font-mono text-gray-600 uppercase">{app.axiom}</span>
-                </div>
-                <p className="text-gray-400 font-mono text-sm mb-6">{app.desc}</p>
-                <div className="flex items-center gap-2 text-neon text-xs font-mono uppercase tracking-widest">
-                  Explore <ArrowRight size={14} />
-                </div>
-              </Link>
+      <section className="honest-boundaries" aria-labelledby="honest-boundaries-title">
+        <div className="section-frame">
+          <div className="section-index section-index--dark"><span>04 / Honest boundaries</span><span>No purity theater</span></div>
+          <div className="honest-boundaries__intro">
+            <MotionReveal>
+              <p className="section-kicker section-kicker--dark">No vague promises</p>
+              <h2 id="honest-boundaries-title">Local-first is a boundary we explain—not a purity claim.</h2>
+            </MotionReveal>
+            <MotionReveal delay={0.08}>
+              <p>
+                Some optional features need a connection: model downloads, App Store purchase
+                verification, encrypted iCloud sync, or Plaid bank sync when you choose it. We
+                identify those moments before they happen and document what changes.
+              </p>
+              <Link to="/privacy" className="text-link text-link--dark">Read the privacy model <ArrowUpRight size={18} /></Link>
+            </MotionReveal>
+          </div>
+          <dl className="honest-boundaries__rows">
+            <div><dt>Core processing</dt><dd>Designed to remain on-device</dd><dd className="honest-boundaries__status">Default</dd></div>
+            <div><dt>Optional services</dt><dd>Activated by your choice</dd><dd className="honest-boundaries__status">Disclosed</dd></div>
+            <div><dt>Diagnostics</dt><dd>Where offered, opt-in and off by default</dd><dd className="honest-boundaries__status">Controlled</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section className="philosophy-proof" aria-labelledby="philosophy-proof-title">
+        <div className="section-frame">
+          <div className="section-index"><span>05 / Proof</span><span>Trust, made inspectable</span></div>
+          <div className="philosophy-proof__intro">
+            <MotionReveal>
+              <p className="section-kicker">Proof, not posture</p>
+              <h2 id="philosophy-proof-title">Trust should survive inspection.</h2>
+            </MotionReveal>
+            <MotionReveal delay={0.08}>
+              <p>Read the policy. Browse the product documentation. Review public source where it is available.</p>
+            </MotionReveal>
+          </div>
+          <div className="philosophy-proof__links">
+            <Link to="/privacy"><span>01</span><strong>Privacy model</strong><small>Read the boundary <ArrowUpRight /></small></Link>
+            <Link to="/help"><span>02</span><strong>Product documentation</strong><small>Browse the guides <ArrowUpRight /></small></Link>
+            <a href="https://github.com/amotor-AM/obsidian-ridge-labs" target="_blank" rel="noreferrer"><span>03</span><strong>Website source</strong><small>Inspect this project <ArrowUpRight /></small></a>
+          </div>
+        </div>
+      </section>
+
+      <section className="philosophy-products" aria-labelledby="philosophy-products-title">
+        <div className="section-frame">
+          <div className="section-index"><span>06 / In practice</span><span>One constraint, {products.length} tools</span></div>
+          <div className="philosophy-products__intro">
+            <p className="section-kicker">Philosophy in action</p>
+            <h2 id="philosophy-products-title">Different tools.<br /><em>The same design constraint.</em></h2>
+          </div>
+          <div className="philosophy-products__list">
+            {orderedProducts.map((product, index) => (
+              <MotionReveal key={product.id} amount={0.2}>
+                <Link to={`/apps/${product.id}`}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <div><h3>{product.name}</h3><p>{philosophyProductCopy[product.id]}</p></div>
+                  <small>{getStatus(product)}</small>
+                  <ArrowUpRight aria-hidden="true" />
+                </Link>
+              </MotionReveal>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Read More - Blog Links */}
-        <section className="mb-16 md:mb-32 border border-white/10 bg-white/[0.02] p-8 md:p-12">
-          <h2 className="text-neon font-mono text-sm tracking-[0.2em] uppercase mb-8">/// Further Reading</h2>
-          <div className="space-y-6">
-            <Link to="/blog/apple-ecosystem-privacy" className="group flex justify-between items-center">
-              <span className="text-white font-display text-xl group-hover:text-neon transition-colors">Why We Will Only Ever Build for Apple</span>
-              <ArrowRight size={16} className="text-gray-600 group-hover:text-neon transition-colors" />
-            </Link>
-            <Link to="/blog/finance-app-red-flags" className="group flex justify-between items-center">
-              <span className="text-white font-display text-xl group-hover:text-neon transition-colors">The Invisible Cost of 'Free' Finance Apps</span>
-              <ArrowRight size={16} className="text-gray-600 group-hover:text-neon transition-colors" />
-            </Link>
-            <Link to="/blog/offline-ai-revolution" className="group flex justify-between items-center">
-              <span className="text-white font-display text-xl group-hover:text-neon transition-colors">Why Offline AI is Faster than ChatGPT</span>
-              <ArrowRight size={16} className="text-gray-600 group-hover:text-neon transition-colors" />
-            </Link>
-            <Link to="/blog" className="group flex justify-between items-center">
-              <span className="text-white font-display text-xl group-hover:text-neon transition-colors">All Journal Entries</span>
-              <ArrowRight size={16} className="text-gray-600 group-hover:text-neon transition-colors" />
-            </Link>
-          </div>
-        </section>
-
-        {/* Footer Terminal */}
-        <section className="max-w-3xl mx-auto text-center font-mono py-10 md:py-20">
-           <div className="inline-block border border-white/10 bg-black p-8 mb-8">
-              <p className="text-gray-500 mb-2 text-xs">root@obsidian-ridge:~/manifesto# ./sign.sh</p>
-              <p className="text-white text-lg typewriter">
-                 Are you ready to unplug?
-                 <span className="inline-block w-3 h-6 bg-neon ml-2 animate-pulse align-middle"></span>
+      <section className="philosophy-faq" aria-labelledby="philosophy-faq-title">
+        <div className="section-frame">
+          <div className="section-index"><span>07 / Straight answers</span><span>Where the boundary actually sits</span></div>
+          <div className="philosophy-faq__grid">
+            <div>
+              <p className="section-kicker">Questions people ask about private AI</p>
+              <h2 id="philosophy-faq-title">The nuanced answers matter.</h2>
+              <p>
+                “On-device” and “private” are useful only when the boundary is specific. These are
+                the questions we think every AI product should answer clearly.
               </p>
-           </div>
+            </div>
+            <div className="philosophy-faq__list">
+              {philosophyFaqs.map((faq, index) => (
+                <details key={faq.question} open={index === 0}>
+                  <summary><span>{String(index + 1).padStart(2, '0')}</span>{faq.question}<i /></summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
+              <a className="philosophy-faq__source" href="https://www.apple.com/privacy/features/" target="_blank" rel="noreferrer">
+                Platform reference: Apple Privacy <ArrowUpRight size={17} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-           <div className="flex justify-center gap-6 text-sm uppercase tracking-widest text-gray-500">
-              <span>Encrypted</span>
-              <span>•</span>
-              <span>Anonymous</span>
-              <span>•</span>
-              <span>Sovereign</span>
-           </div>
-        </section>
+      <section className="philosophy-reading" aria-labelledby="philosophy-reading-title">
+        <div className="section-frame">
+          <div className="section-index"><span>08 / Further reading</span><span>The thinking behind the work</span></div>
+          <h2 id="philosophy-reading-title">Go deeper.</h2>
+          <div className="philosophy-reading__links">
+            <Link to="/blog/apple-ecosystem-privacy"><span>Apple craft</span><strong>Why we build exclusively for Apple</strong><ArrowRight /></Link>
+            <Link to="/blog/finance-app-red-flags"><span>Personal finance</span><strong>The invisible cost of free finance apps</strong><ArrowRight /></Link>
+            <Link to="/blog/offline-ai-revolution"><span>Local intelligence</span><strong>Why offline AI changes the speed equation</strong><ArrowRight /></Link>
+          </div>
+        </div>
+      </section>
 
-      </div>
+      <section className="philosophy-close" aria-labelledby="philosophy-close-title">
+        <div className="section-frame">
+          <p className="section-kicker section-kicker--dark">Our standard</p>
+          <h2 id="philosophy-close-title">Move less data.<br />Explain every connection.<br /><em>Make offline excellent.</em></h2>
+          <p>That is how privacy becomes a property of the product instead of a promise around it.</p>
+          <div>
+            <Link to="/download" className="button button--dark">Explore the apps <ArrowRight size={18} /></Link>
+            <Link to="/privacy" className="text-link text-link--dark">Read the privacy model <ArrowUpRight size={18} /></Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

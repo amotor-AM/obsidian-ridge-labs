@@ -2,7 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useScroll } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { products } from '../data/products';
+import { getProductReleaseLabel, products } from '../data/products';
+
+const APP_MENU_CLOSE_DELAY_MS = 220;
+
+const productStatus = (product: (typeof products)[number]) => {
+  const label = getProductReleaseLabel(product);
+  return label === 'Available on the App Store' ? 'Available' : label;
+};
 
 const Navigation: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,9 +18,49 @@ const Navigation: React.FC = () => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const openButtonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const appsContainerRef = useRef<HTMLDivElement>(null);
+  const appsButtonRef = useRef<HTMLButtonElement>(null);
+  const appsMenuRef = useRef<HTMLDivElement>(null);
+  const appsCloseTimerRef = useRef<number | null>(null);
+  const focusFirstAppRef = useRef(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
+
+  const cancelAppsClose = () => {
+    if (appsCloseTimerRef.current === null) return;
+    window.clearTimeout(appsCloseTimerRef.current);
+    appsCloseTimerRef.current = null;
+  };
+
+  const closeApps = (restoreFocus = false) => {
+    cancelAppsClose();
+    focusFirstAppRef.current = false;
+    setAppsOpen(false);
+
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => {
+        if (appsButtonRef.current?.offsetParent !== null) {
+          appsButtonRef.current?.focus({ preventScroll: true });
+        }
+      });
+    }
+  };
+
+  const openApps = () => {
+    cancelAppsClose();
+    setAppsOpen(true);
+  };
+
+  const scheduleAppsClose = () => {
+    cancelAppsClose();
+    appsCloseTimerRef.current = window.setTimeout(() => {
+      appsCloseTimerRef.current = null;
+      if (!appsContainerRef.current?.contains(document.activeElement)) {
+        setAppsOpen(false);
+      }
+    }, APP_MENU_CLOSE_DELAY_MS);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -23,9 +70,42 @@ const Navigation: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    cancelAppsClose();
+    focusFirstAppRef.current = false;
     setMenuOpen(false);
     setAppsOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => () => cancelAppsClose(), []);
+
+  useEffect(() => {
+    if (!appsOpen || !focusFirstAppRef.current) return;
+    focusFirstAppRef.current = false;
+    const frame = window.requestAnimationFrame(() => {
+      appsMenuRef.current?.querySelector<HTMLAnchorElement>('a[href]')?.focus();
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [appsOpen]);
+
+  useEffect(() => {
+    if (!appsOpen) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (!appsContainerRef.current?.contains(event.target as Node)) closeApps();
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      closeApps(true);
+    };
+
+    document.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [appsOpen]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -62,12 +142,13 @@ const Navigation: React.FC = () => {
   const goToSection = (sectionId: string) => {
     setMenuOpen(false);
     setAppsOpen(false);
+    const behavior: ScrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
     if (location.pathname === '/') {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById(sectionId)?.scrollIntoView({ behavior });
       return;
     }
     navigate(`/#${sectionId}`);
-    window.setTimeout(() => document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' }), 100);
+    window.setTimeout(() => document.getElementById(sectionId)?.scrollIntoView({ behavior }), 100);
   };
 
   return (
@@ -76,42 +157,78 @@ const Navigation: React.FC = () => {
       <nav className={`site-nav site-chrome ${scrolled ? 'site-nav--scrolled' : ''}`} aria-label="Primary navigation">
         <div className="site-nav__inner">
           <Link to="/" className="site-wordmark" aria-label="Obsidian Ridge Labs home">
-            <span className="site-wordmark__mark" aria-hidden="true"><i /><i /><i /></span>
-            <span>Obsidian Ridge <b>Labs</b></span>
+            <span className="site-wordmark__name">OBSIDIAN<span aria-hidden="true">/</span>RIDGE</span>
+            <span className="site-wordmark__labs">LABS</span>
           </Link>
 
           <div className="site-nav__desktop">
-            <div className="site-nav__apps" onMouseLeave={() => setAppsOpen(false)}>
+            <div
+              ref={appsContainerRef}
+              className="site-nav__apps"
+              onPointerEnter={(event) => {
+                if (event.pointerType === 'mouse') openApps();
+              }}
+              onPointerLeave={(event) => {
+                if (event.pointerType === 'mouse') scheduleAppsClose();
+              }}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeApps();
+              }}
+            >
               <button
+                ref={appsButtonRef}
+                id="desktop-apps-trigger"
                 type="button"
-                onClick={() => setAppsOpen((open) => !open)}
-                onMouseEnter={() => setAppsOpen(true)}
+                onClick={() => {
+                  cancelAppsClose();
+                  focusFirstAppRef.current = false;
+                  setAppsOpen((open) => !open);
+                }}
+                onKeyDown={(event) => {
+                  if (event.key !== 'ArrowDown') return;
+                  event.preventDefault();
+                  cancelAppsClose();
+                  if (appsOpen) {
+                    appsMenuRef.current?.querySelector<HTMLAnchorElement>('a[href]')?.focus();
+                  } else {
+                    focusFirstAppRef.current = true;
+                    setAppsOpen(true);
+                  }
+                }}
                 aria-expanded={appsOpen}
                 aria-controls="desktop-app-menu"
               >
                 Apps <ChevronDown size={13} className={appsOpen ? 'rotate-180' : ''} />
               </button>
-              <AnimatePresence>
-                {appsOpen && (
-                  <motion.div
+              {appsOpen && (
+                <motion.div
+                    ref={appsMenuRef}
                     id="desktop-app-menu"
                     className="app-menu"
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                    transition={{ duration: 0.2 }}
+                    role="group"
+                    aria-labelledby="desktop-apps-trigger"
+                    onPointerEnter={(event) => {
+                      if (event.pointerType === 'mouse') cancelAppsClose();
+                    }}
+                    initial={{ opacity: 0, scale: 0.985 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.16 }}
                   >
                     <div className="app-menu__head"><span>The collection</span><span>Apple platforms</span></div>
                     {products.map((product, index) => (
-                      <Link key={product.id} to={`/apps/${product.id}`}>
+                      <Link
+                        key={product.id}
+                        to={`/apps/${product.id}`}
+                        onClick={() => closeApps()}
+                        aria-current={location.pathname === `/apps/${product.id}` ? 'page' : undefined}
+                      >
                         <span>0{index + 1}</span>
                         <div><strong>{product.name}</strong><small>{product.category}</small></div>
-                        <i className={product.status === 'live' ? 'is-live' : ''}>{product.status === 'live' ? 'Available' : 'In the lab'}</i>
+                        <i className={product.appStoreUrl ? 'is-live' : ''}>{productStatus(product)}</i>
                       </Link>
                     ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                </motion.div>
+              )}
             </div>
             <button type="button" onClick={() => goToSection('architecture')}>Why local</button>
             <Link to="/blog" aria-current={location.pathname.startsWith('/blog') ? 'page' : undefined}>Journal</Link>
@@ -157,16 +274,16 @@ const Navigation: React.FC = () => {
             aria-label="Site menu"
           >
             <div className="mobile-menu__top">
-              <Link to="/" className="site-wordmark" onClick={() => setMenuOpen(false)}>
-                <span className="site-wordmark__mark" aria-hidden="true"><i /><i /><i /></span>
-                <span>Obsidian Ridge <b>Labs</b></span>
+              <Link to="/" className="site-wordmark" onClick={() => setMenuOpen(false)} aria-label="Obsidian Ridge Labs home">
+                <span className="site-wordmark__name">OBSIDIAN<span aria-hidden="true">/</span>RIDGE</span>
+                <span className="site-wordmark__labs">LABS</span>
               </Link>
               <button ref={closeButtonRef} type="button" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X /></button>
             </div>
 
             <div className="mobile-menu__body">
               <nav aria-label="Mobile navigation">
-                <button type="button" onClick={() => goToSection('products')}><span>01</span>Apps <ArrowRight /></button>
+                <Link to="/download"><span>01</span>Apps <ArrowRight /></Link>
                 <button type="button" onClick={() => goToSection('architecture')}><span>02</span>Why local <ArrowRight /></button>
                 <Link to="/blog"><span>03</span>Journal <ArrowRight /></Link>
                 <Link to="/help"><span>04</span>Help <ArrowRight /></Link>
@@ -178,7 +295,7 @@ const Navigation: React.FC = () => {
                   <Link key={product.id} to={`/apps/${product.id}`}>
                     <span style={{ background: product.accent }} />
                     {product.name}
-                    <small>{product.status === 'live' ? 'Available' : 'In the lab'}</small>
+                    <small>{productStatus(product)}</small>
                   </Link>
                 ))}
               </div>
