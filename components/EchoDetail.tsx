@@ -19,7 +19,7 @@ const capabilities = [
     icon: Sparkles,
     number: '02',
     title: 'AI polish and notes',
-    copy: 'Keep the raw verbatim transcript, then turn it into a cleaner reading copy, useful notes, or a focused summary with local intelligence.',
+    copy: 'Keep the raw verbatim transcript, then turn it into a cleaner reading copy, useful notes, or a focused summary with Apple Intelligence or the local Bonsai fallback.',
   },
   {
     icon: Search,
@@ -52,17 +52,29 @@ const EchoDetail: React.FC = () => {
       'On-device live transcription',
       'AI-polished readable transcript',
       'On-device notes and summaries',
+      'Apple Intelligence transcript tools on supported devices',
+      'Bundled Bonsai 1.7B local fallback when Apple Intelligence is unavailable',
       'Word-level recording search',
       'Recording bookmarks',
       'TXT, Markdown, PDF, and DOCX export',
       'Audio and video file upload with Pro',
-      'Parakeet TDT 0.6B v3 speech recognition with approximately 3% observed WER in Echo Chamber testing',
+      'Parakeet TDT 0.6B v3 speech recognition with approximately 4.5% observed WER for the enhanced Echo Chamber pipeline',
+      'Targeted speech enhancement pass before transcription',
       'AES-256-GCM audio encryption at rest',
+    ],
+    softwareRequirements: 'Apple Intelligence is used for transcript intelligence on compatible devices. A bundled Bonsai 1.7B model provides a local fallback on supported Apple hardware without Apple Intelligence.',
+    offers: [
+      { '@type': 'Offer', name: 'Echo Chamber Free', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: appStoreUrl },
+      { '@type': 'Offer', name: 'Echo Chamber Pro Monthly', price: '2.99', priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: appStoreUrl, priceSpecification: { '@type': 'UnitPriceSpecification', price: '2.99', priceCurrency: 'USD', unitText: 'MONTH' } },
+      { '@type': 'Offer', name: 'Echo Chamber Pro Yearly', price: '29.99', priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: appStoreUrl, priceSpecification: { '@type': 'UnitPriceSpecification', price: '29.99', priceCurrency: 'USD', unitText: 'YEAR' } },
+      { '@type': 'Offer', name: 'Echo Chamber Pro Lifetime', price: '79.99', priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: appStoreUrl, description: 'One-time lifetime purchase' },
     ],
     citation: [
       'https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3',
       'https://huggingface.co/openai/whisper-large-v3',
-      'https://huggingface.co/spaces/hf-audio/open_asr_leaderboard',
+      'https://huggingface.co/datasets/hf-audio/open-asr-leaderboard',
+      'https://huggingface.co/prism-ml/Bonsai-1.7B-mlx-1bit',
+      'https://docs.cloud.google.com/speech-to-text/docs/best-practices',
     ],
   };
   const breadcrumbs = buildBreadcrumbs([
@@ -75,10 +87,10 @@ const EchoDetail: React.FC = () => {
     <div className="echo-page">
       <SEO
         title="Echo Chamber: Private On-Device Transcription"
-        description="Record live or upload audio and video for private on-device transcription with Parakeet TDT, searchable notes, summaries, and flexible export."
+        description="Record live or upload audio and video for private on-device transcription with Parakeet TDT, Apple Intelligence, a Bonsai fallback, and lifetime pricing."
         ogType="product"
         keywords={['private transcription app', 'offline transcription for iPhone', 'upload audio for transcription', 'transcribe video on iPhone', 'Parakeet TDT transcription', 'Whisper alternative', 'local AI meeting notes']}
-        jsonLd={[softwareApp, breadcrumbs, buildFAQSchema(echoFaqs)]}
+        jsonLd={[softwareApp, breadcrumbs, buildFAQSchema(echoFaqs, '/apps/echochamber')]}
       />
 
       <header className="echo-hero">
@@ -91,39 +103,38 @@ const EchoDetail: React.FC = () => {
 
           <div className="echo-hero__layout">
             <div className="echo-hero__copy">
-              <p className="section-kicker">Echo Chamber / Private transcription</p>
-              <h1>Your voice.<br /><em>Still yours.</em></h1>
+              <p className="section-kicker">Private AI transcription for Apple devices</p>
+              <h1>Transcribe meetings, audio, and video.<br /><em>Entirely on-device.</em></h1>
               <p>
-                Record live—or upload an existing audio or video file—then transcribe, polish,
-                search, summarize, and export without sending your voice to Obsidian Ridge Labs.
+                Record live or import an existing audio or video file. Echo Chamber turns it into
+                an accurate, searchable transcript, useful notes, summaries, and answers without
+                sending the recording to Obsidian Ridge Labs or inviting a bot into the call.
               </p>
               <div className="echo-hero__actions">
                 <a href={appStoreUrl} target="_blank" rel="noreferrer" className="button button--primary">
-                  <Download size={17} /> Download Echo Chamber
+                  <Download size={17} /> Get Echo Chamber
                 </a>
-                <Link to="/help/echochamber" className="button button--quiet">Read the guides <ArrowRight size={17} /></Link>
+                <a href="#accuracy" className="button button--quiet">See how accuracy works <ArrowRight size={17} /></a>
               </div>
             </div>
 
-            <div className="echo-hero__visual">
-              <picture>
-                <source srcSet="/images/echochamber/record-screen-480.webp 480w, /images/echochamber/record-screen-960.webp 960w" type="image/webp" />
-                <img
-                  src="/images/echochamber/RecordScreen.png"
-                  alt="Echo Chamber recording screen with live waveform and on-device transcription controls"
-                  width="960"
-                  height="1707"
-                />
-              </picture>
-              <p>Authentic interface · Live recording</p>
-            </div>
+            <aside className="echo-hero__proof" aria-label="Echo Chamber local AI architecture">
+              <p>Two local engines. One private workflow.</p>
+              <dl>
+                <div><dt>Speech to text</dt><dd>Parakeet TDT v3</dd></div>
+                <div><dt>Primary transcript AI</dt><dd>Apple Intelligence</dd></div>
+                <div><dt>Local fallback</dt><dd>Bonsai 1.7B</dd></div>
+                <div><dt>Observed pipeline WER</dt><dd>About 4.5%</dd></div>
+              </dl>
+              <span>Apple Intelligence is not required for the complete local workflow.</span>
+            </aside>
           </div>
 
           <dl className="echo-hero__facts">
             <div><dt>Input</dt><dd>Live · audio · video</dd></div>
-            <div><dt>Transcript</dt><dd>Live as you speak</dd></div>
-            <div><dt>Export</dt><dd>TXT · MD · PDF · DOCX</dd></div>
-            <div><dt>Account</dt><dd>Not required</dd></div>
+            <div><dt>Transcription</dt><dd>Parakeet TDT on-device</dd></div>
+            <div><dt>Transcript AI</dt><dd>Apple Intelligence + Bonsai</dd></div>
+            <div><dt>Purchase</dt><dd>Monthly · yearly · lifetime</dd></div>
           </dl>
         </div>
       </header>
@@ -135,14 +146,13 @@ const EchoDetail: React.FC = () => {
             <div className="echo-thesis__layout">
               <MotionReveal>
                 <p className="section-kicker section-kicker--dark">The recorder, reconsidered</p>
-                <h2 id="echo-thesis-title">A useful transcript should not require a second audience.</h2>
+                <h2 id="echo-thesis-title">A useful transcript should not create a second audience.</h2>
               </MotionReveal>
               <MotionReveal delay={0.08}>
                 <p>
-                  Most AI recorders begin by moving the conversation somewhere else. Echo Chamber
-                  begins on the hardware already in your hand. That shorter path makes private
-                  transcription possible in a meeting room, lecture hall, airplane, or anywhere the
-                  network is not invited.
+                  Cloud recorders become useful only after the conversation leaves the room. Echo Chamber
+                  starts on the hardware already in your hand. Record in a meeting room, lecture hall,
+                  airplane, or anywhere the network is not invited, then keep the searchable archive with you.
                 </p>
               </MotionReveal>
             </div>
@@ -188,38 +198,60 @@ const EchoDetail: React.FC = () => {
                 </MotionReveal>
               ))}
             </div>
+            <div className="echo-intelligence" aria-label="Echo Chamber on-device intelligence options">
+              <div>
+                <span>Primary path</span>
+                <h3>Built for Apple Intelligence.</h3>
+                <p>On compatible devices, Apple’s on-device Foundation Models power transcript polish, notes, summaries, and questions.</p>
+              </div>
+              <div>
+                <span>Local fallback</span>
+                <h3>Bonsai 1.7B keeps the workflow local.</h3>
+                <p>When Apple Intelligence is unavailable, Echo Chamber uses a bundled 1-bit Bonsai model for local transcript intelligence on supported Apple hardware.</p>
+                <a href="https://huggingface.co/prism-ml/Bonsai-1.7B-mlx-1bit" target="_blank" rel="noreferrer">Bonsai model card <ArrowUpRight size={15} /></a>
+              </div>
+              <p>Parakeet TDT handles speech recognition on both paths. The original recording never needs a remote AI service.</p>
+            </div>
           </div>
         </section>
 
-        <section className="echo-model" aria-labelledby="echo-model-title">
+        <section id="accuracy" className="echo-model" aria-labelledby="echo-model-title">
           <div className="section-frame">
-            <div className="section-index section-index--dark"><span>03 / The model</span><span>Accuracy, with the benchmark attached</span></div>
+            <div className="section-index section-index--dark"><span>03 / Accuracy</span><span>The complete product pipeline</span></div>
             <div className="echo-model__grid">
               <MotionReveal>
-                <p className="section-kicker section-kicker--dark">Why Parakeet TDT</p>
-                <p className="echo-model__stat" aria-label="Approximately 3 percent observed word error rate">≈3<small>%</small></p>
-                <h2 id="echo-model-title">Observed in Echo Chamber. Benchmarked in public.</h2>
+                <p className="section-kicker section-kicker--dark">Observed in Echo Chamber</p>
+                <p className="echo-model__stat" aria-hidden="true"><span>4.5</span><small>%</small></p>
+                <p className="echo-model__stat-label">Approximate word error rate observed for the enhanced Echo Chamber pipeline</p>
+                <h2 id="echo-model-title">Accuracy starts before Parakeet hears a word.</h2>
               </MotionReveal>
               <MotionReveal delay={0.08}>
                 <p className="echo-model__answer">
-                  Echo Chamber uses NVIDIA Parakeet TDT 0.6B v3 and has observed approximately 3% WER
-                  in Echo Chamber testing. For separate, apples-to-apples public context, the current
-                  Hugging Face Open ASR evaluation reports 6.32% average English WER for Parakeet and
-                  7.44% for OpenAI Whisper large-v3—about 15% fewer word errors for Parakeet on that benchmark.
+                  Before transcription, Echo Chamber applies a targeted speech enhancement pass built
+                  for recognizer input. This is not generic normalization or a cosmetic audio effect. The filter is
+                  part of the transcription pipeline because it improves the signal Parakeet receives.
+                  Across the current internal test set, that complete pipeline has observed approximately 4.5% WER.
+                </p>
+                <p className="echo-model__answer echo-model__answer--secondary">
+                  For separate model context, the cited Hugging Face Open ASR snapshot reports 6.32%
+                  average English WER for Parakeet TDT 0.6B v3 and 7.44% for OpenAI Whisper large-v3. That public
+                  benchmark compares models. The 4.5% figure measures Echo Chamber’s enhanced product pipeline.
                 </p>
                 <dl className="echo-model__comparison">
-                  <div><dt>Echo Chamber testing</dt><dd>≈3% observed WER</dd></div>
+                  <div><dt>Enhanced Echo Chamber pipeline</dt><dd>About 4.5% observed WER</dd></div>
                   <div><dt>Parakeet · public benchmark</dt><dd>6.32% WER</dd></div>
-                  <div><dt>Whisper large-v3 · same benchmark</dt><dd>7.44% WER</dd></div>
+                  <div><dt>OpenAI Whisper large-v3 · same benchmark</dt><dd>7.44% WER</dd></div>
                 </dl>
                 <p className="echo-model__caveat">
-                  The ≈3% figure is an internal product observation, not the public benchmark above or a guarantee.
-                  Lower is better. WER varies with language, accent, background noise, microphones,
-                  overlapping speakers, and recording conditions.
+                  The approximately 4.5% result is an internal product observation, not a guarantee or
+                  a model-only leaderboard score. Lower is better. WER varies with language, accent,
+                  background noise, microphones, overlapping speakers, and recording conditions.
                 </p>
                 <div className="echo-model__sources" aria-label="Benchmark sources">
                   <a href="https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3" target="_blank" rel="noreferrer">NVIDIA model card <ArrowUpRight size={15} /></a>
                   <a href="https://huggingface.co/openai/whisper-large-v3" target="_blank" rel="noreferrer">Whisper evaluation <ArrowUpRight size={15} /></a>
+                  <a href="https://huggingface.co/datasets/hf-audio/open-asr-leaderboard" target="_blank" rel="noreferrer">Open ASR snapshot <ArrowUpRight size={15} /></a>
+                  <a href="https://docs.cloud.google.com/speech-to-text/docs/best-practices#audio_preprocessing" target="_blank" rel="noreferrer">Audio preprocessing context <ArrowUpRight size={15} /></a>
                 </div>
               </MotionReveal>
             </div>
@@ -230,13 +262,13 @@ const EchoDetail: React.FC = () => {
           <div className="section-frame echo-boundary__layout">
             <MotionReveal>
               <p className="section-kicker section-kicker--dark">Privacy, explained plainly</p>
-              <h2 id="echo-boundary-title">What stays local. What may connect.</h2>
+              <h2 id="echo-boundary-title">Core intelligence stays on-device.<br />Every connection is explained.</h2>
             </MotionReveal>
             <div className="echo-boundary__columns">
               <MotionReveal className="echo-boundary__column">
-                <span>STAYS ON YOUR DEVICE</span>
+                <span>ON-DEVICE CORE</span>
                 <ul>
-                  {['Your recordings and transcripts', 'Live speech recognition', 'AI notes and transcript polish', 'Search, bookmarks, and exports'].map((item) => <li key={item}><Check size={15} />{item}</li>)}
+                  {['Recording and transcription', 'AI notes and transcript polish', 'Search and bookmarks', 'Export generation'].map((item) => <li key={item}><Check size={15} />{item}</li>)}
                 </ul>
               </MotionReveal>
               <MotionReveal className="echo-boundary__column" delay={0.08}>
@@ -247,8 +279,10 @@ const EchoDetail: React.FC = () => {
               </MotionReveal>
             </div>
             <p className="echo-boundary__note">
-              Core AI processing does not move to a remote service when optional connections are enabled.
-              Read the <Link to="/privacy">full privacy model</Link> for product-specific detail.
+              With iCloud sync off, recordings and transcripts remain on the device that created them.
+              Turning sync on creates an encrypted copy in your own iCloud account. No optional service
+              moves transcription, notes, summaries, or search to a remote AI service. Read the{' '}
+              <Link to="/privacy">full privacy model</Link> for the exact boundary.
             </p>
           </div>
         </section>
@@ -258,13 +292,16 @@ const EchoDetail: React.FC = () => {
             <div className="echo-pricing__layout">
               <MotionReveal>
                 <p className="section-kicker">Start free</p>
-                <h2 id="echo-pricing-title">Private transcription without an enterprise contract.</h2>
-                <p>Use the free app, then unlock longer recordings and the complete AI toolkit when you need it.</p>
+                <h2 id="echo-pricing-title">Great apps should not require another subscription.</h2>
+                <p>Choose monthly, yearly, or pay once for Lifetime. Every paid option unlocks the same complete Pro toolkit.</p>
               </MotionReveal>
               <MotionReveal className="echo-pricing__card" delay={0.08}>
-                <div><span>Echo Chamber Pro</span><small>Current US App Store pricing</small></div>
-                <p><strong>$2.99</strong><span>/ month</span></p>
-                <p className="echo-pricing__annual">or $29.99 / year</p>
+                <div><span>Echo Chamber Pro</span><small>Choose how you own it</small></div>
+                <div className="echo-pricing__options">
+                  <div><span>Monthly</span><strong>$2.99</strong><small>per month</small></div>
+                  <div><span>Yearly</span><strong>$29.99</strong><small>per year</small></div>
+                  <div className="is-lifetime"><span>Lifetime</span><strong>$79.99</strong><small>one payment</small></div>
+                </div>
                 <ul>
                   {['Unlimited recording length', 'All AI features', 'Audio and video upload', 'Batch enhancement', 'Priority support'].map((item) => <li key={item}><Check size={15} />{item}</li>)}
                 </ul>
@@ -274,7 +311,7 @@ const EchoDetail: React.FC = () => {
           </div>
         </section>
 
-        <section className="echo-faq" aria-labelledby="echo-faq-title">
+        <section id="faq" className="echo-faq" aria-labelledby="echo-faq-title">
           <div className="section-frame">
             <div className="section-index"><span>04 / Questions</span><span>Product facts</span></div>
             <div className="echo-faq__layout">
@@ -284,7 +321,7 @@ const EchoDetail: React.FC = () => {
               </div>
               <div className="echo-faq__list">
                 {echoFaqs.map((faq, index) => (
-                  <details key={faq.question} open={index === 0}>
+                  <details id={`faq-${index + 1}`} key={faq.question} open={index === 0}>
                     <summary><span>{String(index + 1).padStart(2, '0')}</span>{faq.question}<i /></summary>
                     <p>{faq.answer}</p>
                   </details>
@@ -297,7 +334,7 @@ const EchoDetail: React.FC = () => {
         <section className="product-more" aria-labelledby="echo-reading-title">
           <div className="section-frame">
             <div className="section-index section-index--dark"><span>05 / Research</span><span>Compare the boundary</span></div>
-            <h2 id="echo-reading-title">Choose with the data path visible.</h2>
+            <h2 id="echo-reading-title">See why private processing wins.</h2>
             <div className="product-more__grid">
               <Link to="/blog/otter-vs-echo"><span>Comparison</span><strong>Echo Chamber vs Otter.ai: On-Device and Cloud Transcription Compared</strong><ArrowUpRight /></Link>
               <Link to="/blog/best-offline-transcription-apps"><span>Buyer’s guide</span><strong>5 Private Transcription Apps Compared: Offline, On-Device, and Cloud Options</strong><ArrowUpRight /></Link>

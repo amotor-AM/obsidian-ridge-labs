@@ -18,6 +18,18 @@ const walk = (directory) => fs.readdirSync(directory, { withFileTypes: true }).f
   return entry.isDirectory() ? walk(fullPath) : [fullPath];
 });
 
+const sourceContentExtensions = new Set(['.css', '.html', '.js', '.json', '.md', '.svg', '.ts', '.tsx', '.txt', '.xml']);
+const sourceContentFiles = [
+  ...['components', 'data', 'public'].flatMap((directory) => walk(path.join(root, directory))),
+  ...['index.css', 'index.html', 'prerender.js', 'INTERNAL-LINKING-DOCTRINE.md'].map((file) => path.join(root, file)),
+].filter((file) => sourceContentExtensions.has(path.extname(file)));
+
+for (const file of sourceContentFiles) {
+  if (fs.readFileSync(file, 'utf8').includes('\u2014')) {
+    errors.push(`${path.relative(root, file)}: em dash characters are not allowed in public content`);
+  }
+}
+
 const getRoute = (file) => {
   const relative = path.relative(dist, file);
   if (relative === 'index.html') return '/';
@@ -43,10 +55,28 @@ if (!fs.existsSync(dist)) {
   process.exit(1);
 }
 
+const generatedContentExtensions = new Set(['.html', '.json', '.txt', '.xml']);
+for (const file of walk(dist).filter((candidate) => generatedContentExtensions.has(path.extname(candidate)))) {
+  if (fs.readFileSync(file, 'utf8').includes('\u2014')) {
+    errors.push(`${path.relative(dist, file)}: generated public content contains an em dash`);
+  }
+}
+
 const htmlFiles = walk(dist).filter((file) => file.endsWith(`${path.sep}index.html`) || file === path.join(dist, 'index.html'));
 const canonicalRoutes = new Map();
 const noindexRoutes = new Set();
 const indexableRoutes = new Set();
+
+const faviconPath = path.join(dist, 'favicon.svg');
+if (!fs.existsSync(faviconPath)) {
+  errors.push('favicon.svg: missing from the production build');
+} else {
+  const favicon = fs.readFileSync(faviconPath, 'utf8');
+  if (/<text\b|font-family=/i.test(favicon)) errors.push('favicon.svg: favicon must use stable path geometry rather than live text');
+  for (const color of ['#0b0d0c', '#f4f1e8', '#a8c89a']) {
+    if (!favicon.toLowerCase().includes(color)) errors.push(`favicon.svg: missing brand color ${color}`);
+  }
+}
 
 for (const file of htmlFiles) {
   const route = getRoute(file);
@@ -66,6 +96,9 @@ for (const file of htmlFiles) {
   if (jsonLdScripts.length !== 1) errors.push(`${route}: expected 1 JSON-LD graph, found ${jsonLdScripts.length}`);
   if (h1Count !== 1) errors.push(`${route}: expected 1 h1, found ${h1Count}`);
   if (/meta name="keywords"/i.test(html)) errors.push(`${route}: obsolete meta keywords tag is present`);
+  if (!/<link rel="icon" type="image\/svg\+xml" sizes="any" href="\/favicon\.svg\?v=2"\s*\/>/i.test(html)) {
+    errors.push(`${route}: missing the scalable text-free favicon reference`);
+  }
 
   const title = textValue(titles[0]?.[1]);
   const description = textValue(descriptions[0]?.[1]);
@@ -249,7 +282,17 @@ for (const retiredRoute of ['/apps/mind', '/apps/nexus', '/blog/notion-vs-mindpa
 }
 
 const echoHtml = fs.readFileSync(path.join(dist, 'apps', 'echochamber', 'index.html'), 'utf8');
-for (const expected of ['upload an existing audio or video file', 'approximately 3% WER', '6.32% average English WER', '7.44% for OpenAI Whisper large-v3']) {
+for (const expected of [
+  'upload an existing audio or video file',
+  'approximately 4.5% WER',
+  'targeted speech',
+  'not generic normalization',
+  'Apple Intelligence',
+  'Bonsai 1.7B',
+  '$79.99',
+  '6.32% average English WER',
+  '7.44% for OpenAI Whisper large-v3',
+]) {
   if (!textValue(echoHtml).toLowerCase().includes(expected.toLowerCase())) errors.push(`/apps/echochamber: missing required product fact: ${expected}`);
 }
 
@@ -264,14 +307,32 @@ if (philosophyHtml.includes('ResizeObserver')) errors.push('/philosophy: horizon
 
 const llmsFull = fs.readFileSync(path.join(dist, 'llms-full.txt'), 'utf8');
 const llmsIndex = fs.readFileSync(path.join(dist, 'llms.txt'), 'utf8');
-for (const expected of ['approximately 3% word error rate', 'upload an existing audio or video file', 'Preview documentation']) {
+for (const expected of [
+  'approximately 4.5% word error rate',
+  'targeted, speech-focused pre-transcription filter',
+  'bundled on-device Bonsai 1.7B',
+  'upload an existing audio or video file',
+  '2.99 US dollars per month',
+  '29.99 US dollars per year',
+  '79.99 US dollars one time',
+  'TXT, for clean plain text',
+  'Preview documentation',
+]) {
   if (!llmsFull.toLowerCase().includes(expected.toLowerCase())) errors.push(`llms-full.txt: missing ${expected}`);
 }
 for (const appName of expectedAppNames) {
   if (!llmsFull.includes(`### ${appName}`)) errors.push(`llms-full.txt: missing product section for ${appName}`);
   if (!llmsIndex.includes(`[${appName}]`)) errors.push(`llms.txt: missing product link for ${appName}`);
 }
-for (const forbidden of ['Apple is the only platform where privacy', 'no chance of interception', 'Otter training']) {
+for (const forbidden of [
+  'Apple is the only platform where privacy',
+  'no chance of interception',
+  'Otter training',
+  '4.99 dollars per month',
+  '39.99 dollars per year',
+  'Echo Chamber exports to eight formats',
+  'Unlimited local recording and transcription',
+]) {
   if (llmsFull.toLowerCase().includes(forbidden.toLowerCase())) errors.push(`llms-full.txt: contains retired claim: ${forbidden}`);
 }
 for (const retired of ['Mind Palace', 'Decision Nexus', '/apps/mind', '/apps/nexus', 'notion-vs-mindpalace']) {

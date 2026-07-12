@@ -89,7 +89,7 @@ export const echochamberKb: KnowledgeBase = {
             "Get a real-time transcript with speakers labeled automatically.",
             "Generate summaries, ask questions about a recording, and pull out action items.",
             "Search every transcript instantly, and organize with folders and favorites.",
-            "Export to eight formats, and translate a transcript without an internet connection.",
+            "Export to TXT, Markdown, PDF, or DOCX, and translate a transcript without an internet connection.",
           ],
         },
         {
@@ -273,15 +273,20 @@ export const echochamberKb: KnowledgeBase = {
     {
       id: "transcription-speed-accuracy",
       title: "How transcription works, and how fast it is",
-      description: "On-device speech models give you real-time text that works offline.",
+      description: "Parakeet TDT turns speech into private, offline-ready text after targeted pre-transcription enhancement.",
       category: "recording",
-      keywords: ["accuracy", "speed", "real-time", "offline", "models", "whisperkit", "parakeet"],
-      updated: "2026-06-14",
+      keywords: ["accuracy", "word error rate", "speed", "real-time", "offline", "speech enhancement", "parakeet tdt"],
+      updated: "2026-07-11",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Your words become text as you speak. Echo Chamber transcribes on your device using Apple's Speech framework together with bundled open-source speech models, so there is no upload and no waiting on a server.",
+            "Your words become text on your device with NVIDIA Parakeet TDT speech recognition, so the recording does not need to be uploaded to an Obsidian Ridge Labs server for transcription.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Before Parakeet receives the audio, Echo Chamber applies a targeted, speech-focused filter designed for transcription. This is not generic normalization. The complete enhanced Echo Chamber pipeline has produced an internal observed word error rate of approximately 4.5% under tested conditions. Results vary with speakers, accents, acoustics, crosstalk, vocabulary, and source quality.",
         },
         {
           type: "paragraph",
@@ -472,9 +477,9 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "callout",
           variant: "tip",
-          title: "Clean up noisy source audio",
+          title: "Enhancement built for transcription",
           content:
-            "A recording with clear speech produces a cleaner transcript. Audio enhancement, with noise reduction and normalization, can help tame steady background sound in noisier files.",
+            "A recording with clear speech usually produces a cleaner transcript. Echo Chamber applies a targeted, speech-focused pre-transcription filter to prepare the signal for Parakeet TDT. It is not a generic normalization pass, which can erase details a recognizer needs.",
         },
       ],
       related: ["export-formats", "improving-accuracy", "transcription-speed-accuracy"],
@@ -538,14 +543,14 @@ export const echochamberKb: KnowledgeBase = {
           variant: "privacy",
           title: "Summaries run on your device",
           content:
-            "Summaries are generated on-device using Apple Intelligence on supported hardware, with a bundled on-device model as a fallback. Your transcript is not sent to an outside service.",
+            "Summaries are generated on-device using Apple Intelligence on compatible devices, with bundled on-device Bonsai 1.7B as the local fallback on supported hardware without Apple Intelligence. Your transcript is not sent to an outside service.",
         },
         {
           type: "callout",
           variant: "info",
-          title: "On older hardware",
+          title: "Without Apple Intelligence",
           content:
-            "On supported devices, AI summaries are available for free. On older hardware that relies on the bundled on-device model, AI summaries are part of Echo Chamber Pro. Either way, the work happens on your device.",
+            "On compatible devices, Apple Intelligence handles transcript intelligence. Supported hardware without Apple Intelligence uses the bundled on-device Bonsai 1.7B fallback. Either path keeps the work on your device.",
         },
       ],
       related: ["chat-with-transcript", "action-items", "free-vs-pro"],
@@ -754,33 +759,29 @@ export const echochamberKb: KnowledgeBase = {
     },
     {
       id: "export-formats",
-      title: "Export a transcript in any format",
-      description: "Share clean text, subtitles, structured data, a PDF, or a Word document.",
+      title: "Export a transcript in four useful formats",
+      description: "Share clean text, Markdown, a PDF, or a Word document.",
       category: "library",
-      keywords: ["export", "pdf", "word", "docx", "markdown", "srt", "vtt", "json", "subtitles"],
-      updated: "2026-06-14",
+      keywords: ["export", "txt", "pdf", "word", "docx", "markdown"],
+      updated: "2026-07-11",
       blocks: [
         {
           type: "paragraph",
           content:
-            "When a transcript is ready, you decide where it goes and in what shape. Echo Chamber exports to eight formats, so whether you need a quick paste or a polished document, there is a fit.",
+            "When a transcript is ready, you decide where it goes and in what shape. Echo Chamber exports to four formats, from portable plain text to a polished document.",
         },
         {
           type: "heading",
           level: 2,
-          content: "The eight formats",
+          content: "The four formats",
         },
         {
           type: "list",
           items: [
-            "Plain text, for a clean paste anywhere.",
-            "Timestamped text, with the time of each line.",
+            "TXT, for clean plain text that opens almost anywhere.",
             "Markdown, for notes apps and documents.",
-            "SRT, subtitles for most video tools.",
-            "VTT, web video captions.",
-            "JSON, structured data for developers and tools.",
-            "PDF, a shareable document, part of Pro.",
-            "DOCX, a Word document, part of Pro.",
+            "PDF, for a polished shareable document.",
+            "DOCX, for an editable Microsoft Word document.",
           ],
         },
         {
@@ -803,9 +804,9 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "callout",
           variant: "tip",
-          title: "Free covers most needs",
+          title: "Check the export menu",
           content:
-            "Text, Markdown, SRT, VTT, and JSON are all free, and the speaker names you assign come along in the exported file. PDF and Word export are part of Echo Chamber Pro.",
+            "The export menu shows the formats available for the current app version and plan. Speaker names you assign are carried into the exported document.",
         },
       ],
       related: ["translate-transcript", "naming-speakers", "free-vs-pro"],
@@ -1090,7 +1091,7 @@ export const echochamberKb: KnowledgeBase = {
             },
             {
               q: "Are summaries and chat sent somewhere?",
-              a: "No. They are generated on your device using Apple Intelligence on supported hardware, or a bundled on-device model on older hardware.",
+              a: "No. They are generated on your device using Apple Intelligence on compatible devices, or bundled on-device Bonsai 1.7B on supported hardware without Apple Intelligence.",
             },
           ],
         },
@@ -1142,28 +1143,28 @@ export const echochamberKb: KnowledgeBase = {
     {
       id: "free-vs-pro",
       title: "What is free and what Pro adds",
-      description: "A clear breakdown of the free tier and the three Echo Chamber Pro options.",
+      description: "A clear breakdown of the free app and Echo Chamber Pro monthly, yearly, and Lifetime purchase options.",
       category: "billing",
-      keywords: ["pricing", "free", "pro", "subscription", "lifetime", "cost", "upgrade"],
-      updated: "2026-06-14",
+      keywords: ["pricing", "free", "pro", "subscription", "monthly", "yearly", "lifetime", "one-time purchase", "cost", "upgrade"],
+      updated: "2026-07-11",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Echo Chamber is genuinely useful for free, and Pro adds sync, advanced exports, and AI on every device. Here is exactly where the line sits.",
+            "Echo Chamber is free to download and use. Echo Chamber Pro unlocks unlimited recording length, every AI feature, audio and video upload, batch enhancement, and priority support. Choose monthly or yearly access, or buy Lifetime once because a great app should not require another subscription.",
         },
         {
           type: "heading",
           level: 2,
-          content: "Free, with no limits on the essentials",
+          content: "Start free",
         },
         {
           type: "list",
           items: [
-            "Unlimited local recording and transcription.",
+            "Record and transcribe locally within the current free recording-length allowance.",
             "Full-text search, folders, and favorites.",
-            "Speaker labels and AI summaries on supported devices.",
-            "Export to text, Markdown, SRT, VTT, and JSON.",
+            "Speaker labels and the core searchable recording library.",
+            "Export in the formats shown for the current plan.",
           ],
         },
         {
@@ -1174,9 +1175,10 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "list",
           items: [
-            "Unlimited encrypted iCloud sync across your devices.",
-            "AI summaries on older hardware that uses the bundled model.",
-            "PDF and Word (DOCX) export.",
+            "Unlimited recording length.",
+            "All AI features.",
+            "Audio and video file upload.",
+            "Batch enhancement and priority support.",
           ],
         },
         {
@@ -1187,9 +1189,9 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "list",
           items: [
-            "Monthly, 4.99 dollars per month.",
-            "Yearly, 39.99 dollars per year, which saves about a third.",
-            "Lifetime, 79.99 dollars once, with no subscription.",
+            "Monthly, 2.99 US dollars per month.",
+            "Yearly, 29.99 US dollars per year.",
+            "Lifetime, 79.99 US dollars one time.",
           ],
         },
         {
@@ -1235,9 +1237,9 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "callout",
           variant: "info",
-          title: "Subscriptions are managed by Apple",
+          title: "Billing is managed by Apple",
           content:
-            "To change or cancel a subscription, open the App Store, tap your profile, and choose Subscriptions. Lifetime is a one-time purchase, so there is nothing to manage.",
+            "To change or cancel a monthly or yearly subscription, open the App Store, tap your profile, and choose Subscriptions. Lifetime is a one-time purchase and does not renew.",
         },
         {
           type: "faq",
@@ -1258,19 +1260,19 @@ export const echochamberKb: KnowledgeBase = {
       title: "Why a word is wrong, and how to improve accuracy",
       description: "Practical ways to get cleaner transcripts and fix the words that slip through.",
       category: "troubleshooting",
-      keywords: ["accuracy", "wrong word", "mistake", "improve", "noise", "vocabulary", "enhancement"],
-      updated: "2026-06-14",
+      keywords: ["accuracy", "word error rate", "wrong word", "mistake", "improve", "noise", "vocabulary", "speech enhancement", "parakeet tdt"],
+      updated: "2026-07-11",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Speech models are very good, but never flawless. Names, acronyms, crosstalk, accents, and background noise are the usual culprits when a word comes out wrong. The good news is you have several ways to improve things.",
+            "Parakeet TDT is highly capable, but no speech recognizer is flawless. Names, acronyms, crosstalk, accents, and background noise are common reasons a word comes out wrong. Echo Chamber applies a targeted, speech-focused filter before transcription, and the complete enhanced pipeline has produced an internal observed word error rate of approximately 4.5% under tested conditions. Your result can vary with the recording.",
         },
         {
           type: "list",
           items: [
             "Record closer to the speaker and away from noisy machines.",
-            "Use audio enhancement, with noise reduction and normalization, to clean up steady background sound.",
+            "Use Echo Chamber's speech-focused enhancement to prepare the audio for transcription. It is deliberately different from generic normalization.",
             "Add specialized terms to Custom Vocabulary so they transcribe correctly.",
             "Edit any word inline, and the fix stays with the recording and its exports.",
             "For imported files, start with the clearest source audio you have.",

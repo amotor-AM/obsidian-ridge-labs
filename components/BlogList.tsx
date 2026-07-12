@@ -88,9 +88,9 @@ const BlogList: React.FC = () => {
     <div className="journal-index-page">
       <SEO
         title="Private AI App Comparisons & Guides"
-        description="Source-backed comparisons and practical guides to private, offline, and on-device AI apps for Apple devices—complete with limitations and primary sources."
+        description="Source-backed comparisons and practical guides to private, offline, and on-device AI apps for Apple devices, complete with limitations and primary sources."
         ogImage="https://obsidianridgelabs.com/blog-og.png"
-        ogImageAlt="Obsidian Ridge Labs Journal — private AI comparisons and guides"
+        ogImageAlt="Obsidian Ridge Labs Journal: private AI comparisons and guides"
         jsonLd={[breadcrumbs, collectionPage, blogSchema, articleIndex]}
       />
 
@@ -98,20 +98,20 @@ const BlogList: React.FC = () => {
         <div className="journal-index-hero__orb" aria-hidden="true" />
         <div className="section-frame">
           <div className="journal-index-hero__topline">
-            <span><Sparkles size={16} aria-hidden="true" /> Independent product research</span>
+            <span><Sparkles size={16} aria-hidden="true" /> Research for private software decisions</span>
             <span>{blogPosts.length} source-backed guides · updated for 2026</span>
           </div>
           <div className="journal-index-hero__grid">
             <div>
               <p className="section-kicker">The Obsidian Ridge Journal</p>
-              <h1>Better questions.<br /><em>Clearer choices.</em></h1>
+              <h1>Privacy first.<br /><em>Evidence always.</em></h1>
             </div>
             <div className="journal-index-hero__intro">
-              <p>Comparisons that show the data path, not just the feature list. Guides that answer the actual question, cite the source, and name what remains uncertain.</p>
+              <p>See why Obsidian Ridge Labs builds each category around a shorter data path. Every guide compares real capabilities, cites primary sources, and makes the privacy tradeoff explicit.</p>
               <ul>
-                <li><Check size={16} aria-hidden="true" /> Official sources linked</li>
-                <li><Check size={16} aria-hidden="true" /> Unreleased products labeled</li>
-                <li><Check size={16} aria-hidden="true" /> No paid rankings</li>
+                <li><Check size={16} aria-hidden="true" /> Primary sources linked</li>
+                <li><Check size={16} aria-hidden="true" /> Product-first privacy verdicts</li>
+                <li><Check size={16} aria-hidden="true" /> Every release status clear</li>
               </ul>
             </div>
           </div>
@@ -142,9 +142,9 @@ const BlogList: React.FC = () => {
             <div className="journal-library__heading">
               <div>
                 <p className="section-kicker">Research by intent</p>
-                <h2 id="library-heading">Find the guide behind the decision.</h2>
+                <h2 id="library-heading">See where private architecture changes the category.</h2>
               </div>
-              <p>Every app has a direct comparison and a broader best-app guide. Filter by format, or browse the complete product library.</p>
+              <p>Every Obsidian Ridge app has a direct comparison and a broader buyer&apos;s guide built around privacy, capability, and the exact data path.</p>
             </div>
 
             <div className="journal-filters" role="group" aria-label="Filter journal articles">
@@ -205,9 +205,9 @@ const BlogList: React.FC = () => {
         <section className="section-frame journal-standards" aria-labelledby="standards-heading">
           <div className="section-index"><span>Editorial standard</span><span>03 / Evidence</span></div>
           <div className="journal-standards__grid">
-            <h2 id="standards-heading">Useful enough to decide.<br /><em>Honest enough to trust.</em></h2>
+            <h2 id="standards-heading">A strong recommendation<br /><em>should survive inspection.</em></h2>
             <div>
-              <p>We do not sell placement, invent test results, or call an unreleased product reviewed. Comparisons are based on current public documentation and our own implementation evidence, with material limitations visible in the article.</p>
+              <p>We make the case for Obsidian Ridge Labs with architecture, product evidence, and a clear privacy advantage. We do not invent tests or call an unreleased product reviewed. Every recommendation states the release status and the tradeoff behind it.</p>
               <Link to="/philosophy" className="text-link">Read our product philosophy <ArrowRight size={15} aria-hidden="true" /></Link>
             </div>
           </div>

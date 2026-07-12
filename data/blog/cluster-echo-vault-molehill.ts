@@ -16,16 +16,16 @@ export const echoVaultMolehillPosts: BlogPost[] = [
     appId: 'echochamber',
     searchIntent: 'Is Echo Chamber a private Otter.ai alternative for recording meetings or transcribing an existing audio or video file?',
     keyTakeaways: [
-      'Echo Chamber processes its core transcription and AI workflow on supported Apple hardware; Otter is an account-based cloud collaboration service.',
+      'Echo Chamber keeps Parakeet TDT transcription and transcript intelligence on supported Apple hardware, using Apple Intelligence on compatible devices and a bundled local Bonsai 1.7B fallback when Apple Intelligence is unavailable.',
       'Both products accept existing audio and video files, but the data path is different: Echo processes the import locally while Otter uploads it for cloud processing.',
-      'Echo has observed approximately 3% WER in its own product testing; that figure must remain separate from public benchmark snapshots and real-world results.',
+      'Echo has observed about 4.5% WER for its complete targeted speech-enhanced product pipeline; that internal result is separate from public model-only benchmark snapshots and real-world results.',
     ],
     relatedIds: ['best-offline-transcription-apps', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     blocks: [
       {
         type: 'answer',
         title: 'Which should you choose?',
-        content: 'Choose Echo Chamber when the recording should remain on a supported iPhone, iPad, Apple-silicon Mac, or Apple Vision device for transcription, search, notes, summaries, and export. Choose Otter.ai when browser access, shared cloud workspaces, meeting bots, team vocabulary, integrations, and centralized administration are more important than avoiding a remote copy. Both can record live and accept existing audio or video. Neither architecture is universally better: the right answer depends on whether the conversation needs a personal local archive or a collaborative cloud workspace.',
+        content: 'Choose Echo Chamber when the recording itself is sensitive and you want a complete private workflow on supported Apple hardware. It records live or accepts existing audio and video, applies a targeted speech-focused filter, transcribes with Parakeet TDT, and turns the transcript into searchable notes, summaries, answers, and exports without sending the recording to Obsidian Ridge Labs. Apple Intelligence powers transcript intelligence on compatible devices, while a bundled local Bonsai 1.7B model covers supported hardware without Apple Intelligence. Otter.ai is designed for shared browser workspaces, meeting bots, integrations, and centralized administration, but those collaboration features require a cloud data path and a remote copy.',
       },
       {
         type: 'paragraph',
@@ -36,12 +36,12 @@ export const echoVaultMolehillPosts: BlogPost[] = [
         caption: 'Echo Chamber and Otter.ai solve different transcription jobs',
         columns: ['Decision', 'Echo Chamber', 'Otter.ai'],
         rows: [
-          { label: 'Core processing', cells: ['Parakeet TDT speech recognition and supported AI tools run on the Apple device after setup.', 'Otter’s official accuracy FAQ describes the service as entirely cloud-based.'] },
+          { label: 'Core processing', cells: ['Parakeet TDT speech recognition runs locally after setup. Transcript intelligence uses Apple Intelligence on compatible devices or bundled local Bonsai 1.7B on supported hardware without it.', 'Otter’s official accuracy FAQ describes the service as entirely cloud-based.'] },
           { label: 'Live capture', cells: ['Records in the app and produces a searchable local transcript.', 'Records in its apps and can join supported online meetings through its cloud workflow.'] },
           { label: 'Existing files', cells: ['Pro can upload an existing audio or video file, including common MP3, WAV, M4A, and MP4 inputs, for local processing.', 'Imports many audio and video formats; the file is uploaded and processed to create transcripts and AI meeting content.'] },
           { label: 'Collaboration', cells: ['Centered on a private personal archive and user-initiated exports.', 'Built around accounts, workspaces, sharing, AI Chat, meeting templates, and team administration.'] },
-          { label: 'Accuracy evidence', cells: ['Approximately 3% WER observed in Echo product testing, plus separately labeled public Parakeet benchmark context.', 'Otter publishes guidance about factors that affect accuracy but does not provide a directly comparable result for Echo’s internal test set.'] },
-          { label: 'Price model', cells: ['Free to start; current US Pro pricing begins at $2.99 monthly or $29.99 yearly.', 'Free Basic tier; paid Pro, Business, and Enterprise plans with limits and collaboration features that change by plan.'] },
+          { label: 'Accuracy evidence', cells: ['About 4.5% WER observed for Echo’s complete targeted speech-enhanced product pipeline, plus separately labeled public model-only benchmark context.', 'Otter publishes guidance about factors that affect accuracy but does not provide a directly comparable result for Echo’s internal test set.'] },
+          { label: 'Price model', cells: ['Free to start; Pro is $2.99 monthly, $29.99 yearly, or $79.99 for Lifetime access.', 'Free Basic tier; paid Pro, Business, and Enterprise plans with limits and collaboration features that change by plan.'] },
         ],
       },
       {
@@ -50,27 +50,31 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Echo Chamber keeps the named core workflow on supported hardware: audio becomes text through NVIDIA Parakeet TDT 0.6B v3, the transcript becomes searchable, and supported notes or summaries are created without uploading the recording to Obsidian Ridge Labs. The app can encrypt stored audio with AES-256-GCM and add Face ID as a local access control. Those protections do not make the entire device invulnerable, and a user-created export inherits the security of its destination. Model setup, App Store purchases, support links, and anything a person deliberately shares remain separate network paths.',
+        content: 'Echo Chamber keeps the named core workflow on supported hardware: a targeted speech-focused filter prepares the recording for recognition, NVIDIA Parakeet TDT 0.6B v3 creates the transcript, and transcript intelligence uses Apple Intelligence on compatible devices or bundled local Bonsai 1.7B on supported hardware without it. Search, notes, summaries, and answers remain local without uploading the recording to Obsidian Ridge Labs. The app can encrypt stored audio with AES-256-GCM and add Face ID as a local access control. Those protections do not make the entire device invulnerable, and a user-created export inherits the security of its destination. Model setup, App Store purchases, support links, and anything a person deliberately shares remain separate network paths.',
       },
       {
         type: 'paragraph',
-        content: 'Otter makes a different trade. Its official documentation says the speech engine is cloud-based, and its terms explain that audio can be ingested by recording or upload, processed in cloud infrastructure, and delivered back through the service. Otter also documents AWS storage, server-side encryption, sharing controls, two-factor authentication, SOC 2 Type 2 controls, and deletion behavior. Those are meaningful cloud security measures; they are not the same claim as local inference. A team that needs shared access may reasonably prefer them, while a person handling a sensitive interview may reasonably prefer fewer copies.',
+        content: 'Otter makes a different trade. Its official documentation says the speech engine is cloud-based, and its terms explain that audio can be ingested by recording or upload, processed in cloud infrastructure, and delivered back through the service. Otter also documents AWS storage, server-side encryption, sharing controls, two-factor authentication, SOC 2 Type 2 controls, and deletion behavior. Those are meaningful cloud security measures; they are not the same claim as local inference. Echo Chamber minimizes remote exposure by keeping its core workflow on the Apple device, while a cloud workspace accepts additional copies in exchange for shared access.',
       },
       {
         type: 'h2',
-        content: 'Yes—Echo Chamber can upload an audio or video file',
+        content: 'Yes, Echo Chamber can upload an audio or video file',
       },
       {
         type: 'paragraph',
-        content: 'Echo Chamber is not limited to conversations recorded inside the app. Pro accepts existing audio and video, including common MP3, WAV, M4A, and MP4 files, then sends that media through the same local transcription, search, note, summary, and export workflow. Otter also supports a broad list of imported audio and video formats, with file-size and plan limits documented in its help center. The meaningful comparison is therefore not “which one accepts video?”—both do—but whether the file should be uploaded to a service or processed on the device in front of you.',
+        content: 'Echo Chamber is not limited to conversations recorded inside the app. Pro accepts existing audio and video, including common MP3, WAV, M4A, and MP4 files, then sends that media through the same local transcription, search, note, summary, and export workflow. Otter also supports a broad list of imported audio and video formats, with file-size and plan limits documented in its help center. The meaningful comparison is therefore not “which one accepts video?” Both do. The deciding question is whether the file should be uploaded to a service or processed on the device in front of you.',
       },
       {
         type: 'h2',
-        content: 'How to interpret Echo Chamber’s approximately 3% WER',
+        content: 'How to interpret Echo Chamber’s approximately 4.5% WER',
       },
       {
         type: 'paragraph',
-        content: 'Word error rate counts substitutions, deletions, and insertions relative to a reference transcript; lower is better. Echo Chamber has observed approximately 3% WER in its own testing. That is a product measurement, not a promise for every accent, language, room, microphone, or speaker overlap, and it is not methodologically interchangeable with a public leaderboard. The public comparison previously documented for Echo reported 6.32% average English WER for Parakeet and 7.44% for Whisper large-v3 on the same Open ASR evaluation snapshot—about 15% fewer word errors for Parakeet there. Leaderboards can update, so the live model cards and evaluation should be checked when the exact number matters.',
+        content: 'Word error rate counts substitutions, deletions, and insertions relative to a reference transcript; lower is better. Echo Chamber has observed approximately 4.5% WER for its complete product pipeline in internal testing. That pipeline includes a targeted speech-focused filter before Parakeet receives the audio. The filter is designed to improve recognition input, not to apply the kind of generic loudness normalization or automatic gain processing that can erase speech detail. The 4.5% result therefore describes the enhanced Echo workflow, not Parakeet in isolation, and it is not a promise for every accent, language, room, microphone, or speaker overlap.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Keep that internal pipeline result separate from the public model-only comparison previously documented for Echo. On the same Open ASR evaluation snapshot, Parakeet measured 6.32% average English WER and Whisper large-v3 measured 7.44%, which was about 15% fewer word errors for Parakeet on that snapshot. Different audio, preprocessing, reference transcripts, and evaluation rules make the 4.5% Echo result and the public 6.32% and 7.44% figures methodologically distinct. Public leaderboards can also update, so the live model cards and evaluation should be checked when an exact current number matters.',
       },
       {
         type: 'callout',
@@ -80,11 +84,11 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Otter is stronger when the transcript must become a shared workspace',
+        content: 'Cloud collaboration changes the privacy boundary',
       },
       {
         type: 'paragraph',
-        content: 'Otter’s paid plans add capabilities that a local personal archive does not try to reproduce: workspace membership, advanced meeting templates, AI chat across meetings, shared vocabulary, integrations, administrative controls, and meeting bots. Its current Basic plan includes limited transcription minutes and lifetime file imports; Pro and Business change those limits. If colleagues need simultaneous browser access and centralized governance, those features can outweigh the local-processing advantage. Echo is the better architectural fit only when its narrower Apple-device workflow matches the actual job.',
+        content: 'Otter’s paid plans add workspace membership, advanced meeting templates, AI chat across meetings, shared vocabulary, integrations, administrative controls, and meeting bots. Its current Basic plan includes limited transcription minutes and lifetime file imports; Pro and Business change those limits. Those capabilities depend on a collaborative cloud architecture. Echo Chamber makes a different promise: a focused Apple-device workflow that keeps the source recording and core intelligence close. When privacy and control over the archive lead the decision, Echo Chamber has the clearer architectural advantage.',
       },
       {
         type: 'list',
@@ -99,9 +103,11 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'Is Echo Chamber an offline alternative to Otter.ai?', answer: 'For a personal Apple-device workflow, yes: after required model setup, Echo can record or import, transcribe, search, summarize, and export locally. Otter is a cloud service and is the more natural fit when shared workspaces and meeting bots are required.' },
+          { question: 'Is Echo Chamber an offline alternative to Otter.ai?', answer: 'Yes. For a personal Apple-device workflow, Echo Chamber can record or import, transcribe, search, summarize, answer questions, and export locally after required model setup. Parakeet TDT handles transcription, while Apple Intelligence or bundled local Bonsai 1.7B handles transcript intelligence on supported hardware. It is the stronger privacy-first alternative when avoiding a remote recording copy matters.' },
           { question: 'Can Echo Chamber transcribe an MP4 video or an existing audio recording?', answer: 'Yes. Echo Chamber Pro accepts existing audio and video, including common MP3, WAV, M4A, and MP4 files, and processes the speech locally on supported Apple hardware.' },
-          { question: 'Is Parakeet TDT more accurate than Whisper?', answer: 'On the same public evaluation snapshot previously documented by Echo, Parakeet’s average English WER was lower than Whisper large-v3. Echo also observed about 3% WER in separate product testing. Neither number guarantees a result for a different recording, and the live benchmark can change.' },
+          { question: 'Is Parakeet TDT more accurate than Whisper?', answer: 'On the same public evaluation snapshot previously documented by Echo, Parakeet measured 6.32% average English WER and Whisper large-v3 measured 7.44%. Echo separately observed about 4.5% WER for its complete targeted speech-enhanced pipeline. These are different evaluations, neither guarantees a result for a different recording, and the live public benchmark can change.' },
+          { question: 'Does Echo Chamber require Apple Intelligence?', answer: 'No. Echo Chamber is built to use Apple Intelligence for transcript intelligence on compatible devices. Supported hardware without Apple Intelligence can use the bundled local Bonsai 1.7B fallback, while Parakeet TDT continues to handle speech recognition locally.' },
+          { question: 'Can I buy Echo Chamber without another subscription?', answer: 'Yes. Echo Chamber Pro is available for $2.99 monthly, $29.99 yearly, or as a $79.99 Lifetime purchase. Each paid option unlocks the complete Pro toolkit, so the Lifetime option is the straightforward buy-once choice.' },
           { question: 'Does private transcription remove the need for recording consent?', answer: 'No. A local data path can reduce disclosure to a vendor, but it does not change the laws, workplace rules, professional duties, or human expectations that govern recording. Obtain the permission required for the context.' },
         ],
       },
@@ -113,13 +119,16 @@ export const echoVaultMolehillPosts: BlogPost[] = [
           'Otter pricing and plan limits|https://otter.ai/pricing',
           'Otter privacy and security|https://otter.ai/privacy-security',
           'NVIDIA Parakeet TDT 0.6B v3 model card|https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3',
+          'Apple Intelligence device requirements|https://support.apple.com/en-us/121115',
+          'Bonsai 1.7B MLX model card|https://huggingface.co/prism-ml/Bonsai-1.7B-mlx-1bit',
+          'Google Cloud Speech-to-Text audio preprocessing guidance|https://docs.cloud.google.com/speech-to-text/docs/best-practices',
           'OpenAI Whisper large-v3 model card|https://huggingface.co/openai/whisper-large-v3',
           'Hugging Face Open ASR Leaderboard|https://huggingface.co/spaces/hf-audio/open_asr_leaderboard',
         ],
       },
       {
         type: 'cta',
-        content: 'Echo Chamber is available now for supported Apple devices with live recording, audio and video upload, Parakeet TDT transcription, local AI notes, search, and export.',
+        content: 'Choose Echo Chamber for private Apple-device transcription that can record live or import audio and video, improve speech before recognition, transcribe with Parakeet TDT, and turn the result into local notes, summaries, answers, search, and exports. Start free, subscribe from $2.99 monthly, or own Pro with the $79.99 Lifetime option.',
         ctaAppId: 'echochamber',
       },
     ],
@@ -139,13 +148,13 @@ export const echoVaultMolehillPosts: BlogPost[] = [
     appId: 'echochamber',
     searchIntent: 'What is the best private transcription app that works offline or processes audio on my iPhone, iPad, or Mac?',
     keyTakeaways: [
-      'Echo Chamber, MacWhisper, Aiko, and supported Apple Voice Memos workflows can process speech locally; Otter is included as the cloud-collaboration contrast.',
+      'Echo Chamber is the privacy-first recommendation for a complete Apple workflow: local Parakeet transcription, targeted speech enhancement, and transcript intelligence through Apple Intelligence or bundled local Bonsai 1.7B.',
       '“Offline transcription” does not answer whether summaries, translation, sync, integrations, or optional cloud models also remain local.',
-      'Choose from your representative recording, required languages, speaker workflow, export formats, hardware, and collaboration needs—not a generic accuracy label.',
+      'Choose from your representative recording, required languages, speaker workflow, export formats, hardware, and collaboration needs, not a generic accuracy label.',
     ],
     relatedIds: ['otter-vs-echo', 'offline-ai-revolution', 'apple-ecosystem-privacy'],
     listItems: [
-      { name: 'Echo Chamber', description: 'Apple-device transcription with live recording, audio and video import, Parakeet TDT, speaker tools, local AI notes, search, and document export.' },
+      { name: 'Echo Chamber', description: 'Privacy-first Apple-device transcription with live recording, audio and video import, targeted speech enhancement, Parakeet TDT, Apple Intelligence or local Bonsai 1.7B transcript tools, search, and document export.' },
       { name: 'MacWhisper', description: 'A deep Mac transcription workstation with local model choices, broad file support, batch tools, subtitles, automation, and optional cloud services.' },
       { name: 'Aiko', description: 'A focused Apple-platform Whisper app that favors accurate local file transcription and subtitle export over live transcription or speaker detection.' },
       { name: 'Apple Voice Memos', description: 'Built-in live and post-recording transcription on supported iPhones, with copy, search, optional iCloud, and Writing Tools summaries.' },
@@ -155,7 +164,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       {
         type: 'answer',
         title: 'The best private transcription app depends on the boundary you need',
-        content: 'Echo Chamber fits people who want a complete private workflow across supported Apple devices, including live recording and existing audio or video. MacWhisper fits Mac users who need the deepest file, model, subtitle, batch, and automation toolkit. Aiko fits a simpler local Whisper workflow across Apple platforms. Voice Memos fits quick built-in recording and transcript copy on supported iPhones. Otter fits teams that need a shared cloud workspace. This list is organized by use case, not a laboratory ranking.',
+        content: 'Under this guide’s privacy-first Apple criteria, Echo Chamber is the strongest overall fit. It combines live recording, existing audio and video import, targeted speech enhancement, Parakeet TDT, speaker-aware organization, local notes, summaries and answers, search, and document export across supported Apple hardware. Transcript intelligence uses Apple Intelligence on compatible devices and bundled local Bonsai 1.7B on supported hardware without it. The other tools isolate narrower jobs or introduce optional and required cloud paths. This is an evidence-led architectural verdict, not a claim that every recording or workflow is identical.',
       },
       {
         type: 'paragraph',
@@ -166,7 +175,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
         caption: 'Five transcription tools by practical fit and data path',
         columns: ['App', 'Core fit and processing', 'Boundary to verify'],
         rows: [
-          { label: 'Echo Chamber', cells: ['Live or imported audio/video on supported Apple hardware; Parakeet TDT, local search, notes, summaries, speaker diarization, and export.', 'Approximately 3% WER is an internal observation, not a universal guarantee; Pro gates file import and the complete AI toolkit.'] },
+          { label: 'Echo Chamber', cells: ['Live or imported audio/video on supported Apple hardware; targeted speech enhancement, Parakeet TDT, Apple Intelligence or local Bonsai 1.7B transcript tools, speaker diarization, search, and export.', 'Approximately 4.5% WER is an internal observation for the complete enhanced pipeline, not a universal guarantee; Pro gates file import and the complete AI toolkit.'] },
           { label: 'MacWhisper', cells: ['Mac-centered local transcription with Whisper, Parakeet, Apple speech, batch processing, subtitles, speaker tools, dictation, CLI, and automation.', 'Optional cloud transcription, remote AI prompts, translation, and webhooks intentionally send selected data outside the local path.'] },
           { label: 'Aiko', cells: ['Focused local Whisper file transcription across iPhone, iPad, Mac, and Vision, with many languages and subtitle export.', 'The official listing says it favors accuracy over speed, does not transcribe live while recording, and lacks speaker detection.'] },
           { label: 'Voice Memos', cells: ['Built-in recording, live or later transcription, transcript search and copy on supported iPhones.', 'Language, device, and region availability apply; optional iCloud creates synced copies and advanced summaries require supported Apple Intelligence.'] },
@@ -179,19 +188,23 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Echo Chamber records meetings, lectures, interviews, and dictation or accepts an existing audio or video file in Pro. NVIDIA Parakeet TDT 0.6B v3 creates a timestamped transcript on supported Apple hardware; speaker diarization, saved voice profiles, full-text search, local notes and summaries, and TXT, Markdown, PDF, or DOCX export turn that transcript into an archive. Echo observed approximately 3% WER in its own testing. A separate public evaluation snapshot previously documented by Echo showed 6.32% average English WER for Parakeet and 7.44% for Whisper large-v3. Both figures need their test context and can change.',
+        content: 'Echo Chamber records meetings, lectures, interviews, and dictation or accepts an existing audio or video file in Pro. Before recognition, it applies a targeted speech-focused filter designed to improve the input Parakeet receives, rather than a generic normalization pass that can remove useful speech detail. NVIDIA Parakeet TDT 0.6B v3 then creates a timestamped transcript on supported Apple hardware. Speaker diarization, saved voice profiles, full-text search, and TXT, Markdown, PDF, or DOCX export turn that transcript into an archive. Transcript intelligence uses Apple Intelligence on compatible devices and bundled local Bonsai 1.7B on supported hardware without it.',
       },
       {
         type: 'paragraph',
-        content: 'The current US App Store offers a free starting point, while Pro is listed at $2.99 monthly or $29.99 yearly and adds unlimited recording length, the complete AI toolkit, audio/video import, and batch enhancement. Echo’s advantage under this list’s criteria is the combination of live capture, file import, speaker-aware organization, local intelligence, and broad Apple-device support. Someone who needs Windows, a browser workspace, or simultaneous team editing should choose a product built for those requirements.',
+        content: 'Echo observed approximately 4.5% WER for that complete targeted speech-enhanced product pipeline in internal testing. This is not a model-only result. A separate public evaluation snapshot previously documented by Echo showed 6.32% average English WER for Parakeet and 7.44% for Whisper large-v3. The internal 4.5% figure and public 6.32% and 7.44% figures use different pipelines and must not be treated as a direct head-to-head test. Every result still depends on the recording, language, speakers, microphone, and evaluation rules.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Echo Chamber offers a free starting point, while Pro is $2.99 monthly, $29.99 yearly, or $79.99 for Lifetime access. Every paid option unlocks unlimited recording length, the complete AI toolkit, audio and video import, and batch enhancement. The Lifetime option matters because a great personal archive should not require another recurring subscription. Echo’s advantage under this list’s criteria is the combination of live capture, file import, speaker-aware organization, local intelligence, and broad Apple-device support. Windows access, a browser workspace, and simultaneous team editing sit outside Echo Chamber’s focused personal archive and require a different product architecture and data boundary.',
       },
       {
         type: 'h2',
-        content: '2. MacWhisper: the deepest Mac file and automation workstation',
+        content: '2. MacWhisper: a Mac file and automation workstation',
       },
       {
         type: 'paragraph',
-        content: 'MacWhisper transcribes dragged-in audio and video, microphone recordings, meetings, podcasts, URLs, and watch folders. Its official site documents local models, more than 100 languages, speaker recognition, search, editing, batch work, subtitles, many export formats, dictation, a command-line tool, and integrations. The free Mac tier covers core transcription; the official page showed a €64 pay-once Pro license when checked. That makes it a strong fit for a Mac-based researcher, editor, podcaster, or automation workflow.',
+        content: 'MacWhisper transcribes dragged-in audio and video, microphone recordings, meetings, podcasts, URLs, and watch folders. Its official site documents local models, more than 100 languages, speaker recognition, search, editing, batch work, subtitles, many export formats, dictation, a command-line tool, and integrations. The free Mac tier covers core transcription; the official page showed a €64 pay-once Pro license when checked. Its workstation depth is Mac-centered, while Echo Chamber provides a more unified private workflow across supported iPhone, iPad, Apple-silicon Mac, and Apple Vision hardware.',
       },
       {
         type: 'paragraph',
@@ -203,7 +216,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Aiko is a one-time-purchase Apple-platform app built by Sindre Sorhus. Its current US App Store listing describes OpenAI Whisper running locally, no developer data collection, support for many languages, word replacement, and subtitle export. It is intentionally narrower than Echo or MacWhisper. The same listing says Aiko favors accuracy over speed, does not perform live transcription while recording, and does not currently detect speakers. That focus can be a virtue when the job is simply to turn an existing file into private text without an account.',
+        content: 'Aiko is a one-time-purchase Apple-platform app built by Sindre Sorhus. Its current US App Store listing describes OpenAI Whisper running locally, no developer data collection, support for many languages, word replacement, and subtitle export. It is intentionally narrower than Echo or MacWhisper. The same listing says Aiko favors accuracy over speed, does not perform live transcription while recording, and does not currently detect speakers. Echo Chamber extends the private file workflow with live transcription, speaker tools, Parakeet TDT, local notes and summaries, search, and a broader document archive.',
       },
       {
         type: 'h2',
@@ -211,15 +224,15 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Apple Voice Memos can display a transcript while recording or afterward on supported iPhones, copy part or all of the text, search titles and transcripts, and jump from a selected term to its location in the waveform. Apple documents language, region, and hardware limits. Voice Memos can also sync recordings through iCloud when the user enables it, and supported Apple Intelligence devices can summarize with Writing Tools. It is the lowest-friction choice for basic capture, but it does not replace the richer import, speaker, batch, export, or archive controls of a dedicated transcription product.',
+        content: 'Apple Voice Memos can display a transcript while recording or afterward on supported iPhones, copy part or all of the text, search titles and transcripts, and jump from a selected term to its location in the waveform. Apple documents language, region, and hardware limits. Voice Memos can also sync recordings through iCloud when the user enables it, and supported Apple Intelligence devices can summarize with Writing Tools. It covers basic built-in capture, while Echo Chamber adds existing audio and video import, speaker organization, local AI tools, batch work, richer export, and dedicated archive controls.',
       },
       {
         type: 'h2',
-        content: '5. Otter.ai: the cloud option when collaboration is the requirement',
+        content: '5. Otter.ai: cloud collaboration with a remote copy',
       },
       {
         type: 'paragraph',
-        content: 'Otter belongs in a private-transcription comparison because privacy decisions are often tradeoffs, not purity tests. Its cloud service can import audio and video, join supported meetings, identify speakers, create AI content, share conversations, search across meetings, and give administrators controls that local apps do not reproduce. Official security documentation describes encryption, access controls, retention, and compliance options. The source recording still must reach the service. Choose Otter when the shared workspace is worth that path, not because “cloud” or “local” alone settles the decision.',
+        content: 'Otter belongs in a private-transcription comparison because privacy decisions are architectural tradeoffs. Its cloud service can import audio and video, join supported meetings, identify speakers, create AI content, share conversations, search across meetings, and give administrators centralized controls. Official security documentation describes encryption, access controls, retention, and compliance options. The source recording still must reach the service. Echo Chamber avoids that required remote copy for its core workflow and is the stronger option when private Apple-device processing is the priority.',
       },
       {
         type: 'list',
@@ -234,10 +247,12 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'What transcription app works offline on iPhone?', answer: 'Echo Chamber supports an offline-ready core workflow after model setup on supported Apple devices. Aiko also runs Whisper locally for file transcription, while Voice Memos provides built-in transcription on supported iPhones. Confirm hardware, language, and feature limits.' },
+          { question: 'What transcription app works offline on iPhone?', answer: 'Echo Chamber is the strongest privacy-first choice here for a complete iPhone workflow after model setup. It records or imports audio and video, transcribes with Parakeet TDT, and keeps transcript intelligence local through Apple Intelligence or bundled Bonsai 1.7B on supported hardware. Aiko is a narrower local file-transcription option, while Voice Memos provides built-in transcription on supported iPhones.' },
           { question: 'What private transcription app can upload video?', answer: 'Echo Chamber Pro accepts existing audio and video for local processing. MacWhisper also supports common video formats on Mac. Otter imports video through its cloud service. Aiko’s current listing is centered on audio-file transcription.' },
-          { question: 'Which app is better than Whisper for English transcription?', answer: 'No app is universally better. Echo uses Parakeet TDT and cites a public evaluation snapshot where its average English WER was lower than Whisper large-v3, plus a separate approximately 3% internal observation. Test your own representative audio.' },
-          { question: 'Can a transcription app be private if it offers cloud features?', answer: 'Yes, if the boundary is clear and acceptable for the use case. MacWhisper makes cloud providers optional, Voice Memos sync is optional, and Otter documents a cloud security model. “Private” should specify who receives which content and why.' },
+          { question: 'Which app is better than Whisper for private English transcription?', answer: 'Echo Chamber uses Parakeet TDT, which measured 6.32% average English WER versus 7.44% for Whisper large-v3 on the cited public snapshot. Echo separately observed approximately 4.5% WER for its complete targeted speech-enhanced product pipeline. Those methodologically distinct results make Echo Chamber the evidence-backed privacy-first recommendation here, while representative audio should still be tested.' },
+          { question: 'Does Echo Chamber work without Apple Intelligence?', answer: 'Yes. Compatible devices use Apple Intelligence for transcript intelligence. Supported Apple hardware without Apple Intelligence can use the bundled local Bonsai 1.7B fallback, and Parakeet TDT continues to handle transcription locally.' },
+          { question: 'Can I buy Echo Chamber once instead of subscribing?', answer: 'Yes. Pro costs $2.99 monthly or $29.99 yearly, and Echo Chamber also offers a $79.99 Lifetime option. Every paid option unlocks the complete Pro toolkit.' },
+          { question: 'Can a transcription app be private if it offers cloud features?', answer: 'A privacy claim must name the exact boundary. Echo Chamber keeps its core recording, transcription, search, notes, and summaries on supported Apple hardware. Optional cloud paths in other products may be acceptable for a specific workflow, but they create additional recipients and copies that local processing avoids.' },
         ],
       },
       {
@@ -252,11 +267,14 @@ export const echoVaultMolehillPosts: BlogPost[] = [
           'Otter pricing|https://otter.ai/pricing',
           'Otter privacy and security|https://otter.ai/privacy-security',
           'NVIDIA Parakeet TDT 0.6B v3 model card|https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3',
+          'Apple Intelligence device requirements|https://support.apple.com/en-us/121115',
+          'Bonsai 1.7B MLX model card|https://huggingface.co/prism-ml/Bonsai-1.7B-mlx-1bit',
+          'Google Cloud Speech-to-Text audio preprocessing guidance|https://docs.cloud.google.com/speech-to-text/docs/best-practices',
         ],
       },
       {
         type: 'cta',
-        content: 'Try Echo Chamber’s released local workflow for live recording or an existing audio or video file, then search, summarize, and export the transcript on supported Apple hardware.',
+        content: 'Choose Echo Chamber for the complete privacy-first Apple workflow: record live or import audio and video, improve the speech signal, transcribe with Parakeet TDT, and search, summarize, question, and export the transcript locally. Start free, choose Pro monthly or yearly, or make it yours with the $79.99 Lifetime option.',
         ctaAppId: 'echochamber',
       },
     ],
@@ -270,49 +288,63 @@ export const echoVaultMolehillPosts: BlogPost[] = [
     readTime: '13 MIN READ',
     category: 'BUDGET APP PRIVACY GUIDE',
     tags: ['#BUDGETING-APPS', '#FINANCIAL-PRIVACY', '#BANK-SYNC', '#PLAID'],
-    excerpt: 'Compare Actual Budget, YNAB, Copilot Money, Monarch Money, and pre-release Vault by manual use, bank connections, storage, export, deletion, and business model.',
+    excerpt: 'Compare pre-release Vault with Actual Budget, YNAB, Copilot Money, and Monarch Money by manual use, bank connections, storage, export, deletion, and business model.',
     seoDescription: 'Compare five budgeting apps by manual use, bank connections, storage, export, deletion, pricing, and what financial data reaches each service.',
     contentType: 'listicle',
     appId: 'vault',
     searchIntent: 'Which budgeting app lets me track money without linking a bank, and what financial data is shared if I turn bank sync on?',
     keyTakeaways: [
-      'Actual Budget and YNAB document local or unlinked account paths; Copilot also supports manual accounts, while Monarch emphasizes connected financial aggregation.',
+      'Vault defines the privacy-first direction in this comparison: a local manual core, on-device statement or receipt import, local coaching, and an explicitly optional Plaid path.',
       'A bank connection is a separate permissioned data path involving the app, an aggregator or direct OAuth connection, and the financial institution.',
-      'Vault is an unreleased local-first concept with manual use and optional Plaid in scope; it is not a current recommendation or verified production connection.',
+      'Vault remains pre-release, so final Plaid scopes, production storage, deletion, pricing, compatibility, and connection behavior still require release verification.',
     ],
     relatedIds: ['vault-vs-ynab-monarch-copilot-actual', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     listItems: [
+      { name: 'Vault · pre-release', description: 'Featured privacy-first iPhone/iPad budgeting design with a local manual core, on-device imports and coaching, and a planned optional Plaid path.' },
       { name: 'Actual Budget', description: 'Open-source, local-first envelope budgeting with local accounts, file import, optional self-hosted sync, and optional bank providers.' },
-      { name: 'YNAB', description: 'Mature account-based budgeting with unlinked accounts, manual entry, file import, and optional direct import through supported providers.' },
+      { name: 'YNAB', description: 'Account-based budgeting with unlinked accounts, manual entry, file import, and optional direct import through supported providers.' },
       { name: 'Copilot Money', description: 'US-focused finance tracking across Apple platforms and web, with connected and manual accounts, export, and an account-based cloud service.' },
       { name: 'Monarch Money', description: 'Subscription financial dashboard for connected accounts, budgeting, goals, investments, reports, and household collaboration.' },
-      { name: 'Vault · pre-release', description: 'Upcoming iPhone/iPad budgeting concept with a local manual core, on-device imports and coaching, and a planned optional Plaid path.' },
     ],
     blocks: [
       {
         type: 'answer',
         title: 'Start with the data path, not the lock icon',
-        content: 'Choose Actual Budget if you want open-source local-first control and accept self-hosting complexity for sync. Choose YNAB if an established budgeting method, manual accounts, file import, and optional direct import fit your workflow. Choose Copilot or Monarch when automated aggregation and polished multi-device views are worth an account-based cloud service. Vault is an unreleased option to watch if you want a simple on-device manual core with optional Plaid later. None should be selected from the word “secure” alone; map the exact fields, providers, retention, export, and deletion behavior you accept.',
+        content: 'Vault is the privacy-first design in this comparison. It is being built so manual budgeting, statement or receipt import, categorization, forecasting, and coaching can work through a local core, with Plaid disclosed as a separate optional path rather than a requirement. Vault remains pre-release. Actual shifts sync responsibility toward self-hosting, YNAB remains an account-based service even when banks are unlinked, and Copilot and Monarch center cloud aggregation. The deciding question is which fields, providers, retention, export, and deletion behavior a person is willing to accept.',
       },
       {
         type: 'paragraph',
-        content: 'Budgeting apps handle unusually revealing context: merchants, medical purchases, travel, income, balances, debt, investments, notes, locations, and household relationships. Convenience can be worth sharing some of that information, but the choice should be explicit. A good privacy review separates five actors—the device, app developer, bank-data provider, financial institution, and any analytics or AI processor—and asks which one sees credentials, tokens, transactions, derived categories, questions, and forecasts.',
+        content: 'Budgeting apps handle unusually revealing context: merchants, medical purchases, travel, income, balances, debt, investments, notes, locations, and household relationships. Convenience can be worth sharing some of that information, but the choice should be explicit. A good privacy review separates five actors: the device, app developer, bank-data provider, financial institution, and any analytics or AI processor. It then asks which one sees credentials, tokens, transactions, derived categories, questions, and forecasts.',
       },
       {
         type: 'comparison',
         caption: 'Five budgeting products by manual path and connection model',
         columns: ['App', 'Manual or local path', 'Connected path and important limit'],
         rows: [
+          { label: 'Vault', cells: ['Planned manual tracking, on-device statement or receipt import, budgets, categorization, forecasts, and coaching.', 'Optional Plaid is planned, not released; final scopes, diagnostics, storage, deletion, price, and connection behavior remain provisional.'] },
           { label: 'Actual Budget', cells: ['Local-first database, local accounts, manual entry, and CSV, QIF, OFX, QFX, or CAMT file import.', 'Optional sync server and bank providers require configuration; bank-sync tokens are not covered by Actual’s budget-data end-to-end encryption.'] },
           { label: 'YNAB', cells: ['Unlinked accounts, manual entry, scheduled transactions, reconciliation, and file import without a bank link.', 'Optional Direct Import uses supported providers such as Plaid or MX; YNAB remains an account-based cloud product.'] },
           { label: 'Copilot Money', cells: ['Manual accounts and transactions are available for several account types, with stated limits on historic balances and imports.', 'Connected accounts use aggregators or direct OAuth; Copilot stores service data in cloud infrastructure and documents export and deletion controls.'] },
           { label: 'Monarch Money', cells: ['Manual records may supplement the dashboard, but the product’s central proposition is an aggregated financial home base.', 'Unlimited connected accounts, integrations, household collaboration, and reporting are included in the subscription service.'] },
-          { label: 'Vault', cells: ['Planned manual tracking, on-device statement or receipt import, budgets, categorization, forecasts, and coaching.', 'Optional Plaid is planned, not released; final scopes, diagnostics, storage, deletion, price, and connection behavior remain provisional.'] },
         ],
       },
       {
         type: 'h2',
-        content: '1. Actual Budget: local-first control with self-hosted responsibility',
+        content: '1. Vault: a pre-release local-first path with optional Plaid planned',
+      },
+      {
+        type: 'paragraph',
+        content: 'Vault is being designed for manual expense tracking, budgets, categorization, cash-flow forecasts, and coaching on iPhone and iPad, with on-device statement or receipt import. Optional Plaid is planned for people who decide automatic updates are worth the connected path. In the intended flow, authentication appears in Plaid rather than an Obsidian Ridge Labs password form. Plaid explains that it may use OAuth at supported institutions or collect login data when required by the institution, then share selected financial data with the chosen app. “Vault never sees your password” does not mean “no third party handles authentication.”',
+      },
+      {
+        type: 'callout',
+        title: 'Vault is not available yet',
+        variant: 'warning',
+        content: 'Vault has no announced release date or final price. Plaid scope, token lifecycle, diagnostics, storage, deletion, model requirements, statement support, and production privacy disclosures must be verified before anyone treats it as a shipping budgeting alternative.',
+      },
+      {
+        type: 'h2',
+        content: '2. Actual Budget: local-first control with self-hosted responsibility',
       },
       {
         type: 'paragraph',
@@ -324,11 +356,11 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: '2. YNAB: mature manual budgeting with optional Direct Import',
+        content: '3. YNAB: manual budgeting inside an account service',
       },
       {
         type: 'paragraph',
-        content: 'YNAB supports unlinked accounts, manual transactions, scheduled entries, reconciliation, and file-based import. Its current help center explicitly describes Direct Import as optional and lets a person create an unlinked account instead. File import can bring QFX, OFX, and other supported bank exports into the web app or iPad without maintaining a bank connection. Those options make YNAB useful to someone who values the method and collaboration but does not want continuous aggregation.',
+        content: 'YNAB supports unlinked accounts, manual transactions, scheduled entries, reconciliation, and file-based import. Its current help center explicitly describes Direct Import as optional and lets a person create an unlinked account instead. File import can bring QFX, OFX, and other supported bank exports into the web app or iPad without maintaining a bank connection. Those options avoid continuous aggregation, but the budget records still live inside YNAB’s account-based cloud service.',
       },
       {
         type: 'paragraph',
@@ -336,7 +368,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: '3. Copilot Money: connected intelligence plus newer manual accounts',
+        content: '4. Copilot Money: connected intelligence plus newer manual accounts',
       },
       {
         type: 'paragraph',
@@ -344,29 +376,15 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'For connections, Copilot names Plaid, Mastercard Data Connect, and direct OAuth integrations. Its privacy-and-security page says Copilot does not see or store bank login credentials, uses encryption at rest and in transit, offers transactional-data export, and removes integrated financial information after account deletion subject to stated legal exceptions. It also explains that the service runs on Google Cloud and that the cloud provider’s certifications are not Copilot certifications. This specificity is more useful than a generic “bank-grade” claim.',
+        content: 'For connections, Copilot names Plaid, Mastercard Data Connect, and direct OAuth integrations. Its privacy-and-security page says Copilot does not see or store bank login credentials, uses encryption at rest and in transit, offers transactional-data export, and removes integrated financial information after account deletion subject to stated legal exceptions. It also explains that the service runs on Google Cloud and that the cloud provider’s certifications are not Copilot certifications. Those details reveal the remote service boundary more clearly than a generic “bank-grade” claim.',
       },
       {
         type: 'h2',
-        content: '4. Monarch Money: a paid connected household dashboard',
+        content: '5. Monarch Money: a paid connected household dashboard',
       },
       {
         type: 'paragraph',
         content: 'Monarch’s value proposition is aggregation: unlimited connected accounts, budgets, cash-flow views, goals, investment performance, reports, integrations, and household collaboration across web, mobile, and iPad. Its official pricing page showed $99.99 billed yearly when checked and states that the subscription is ad-free and the company does not resell financial data. Those claims describe a business model and service commitment; they do not turn a connected dashboard into a local app. A household should still review providers, access scopes, collaboration permissions, retention, export, and deletion.',
-      },
-      {
-        type: 'h2',
-        content: '5. Vault: a pre-release local-first path with optional Plaid planned',
-      },
-      {
-        type: 'paragraph',
-        content: 'Vault is being designed for manual expense tracking, budgets, categorization, cash-flow forecasts, and coaching on iPhone and iPad, with on-device statement or receipt import. Optional Plaid is planned for people who decide automatic updates are worth the connected path. In the intended flow, authentication appears in Plaid rather than an Obsidian Ridge Labs password form. Plaid explains that it may use OAuth at supported institutions or collect login data when required by the institution, then share selected financial data with the chosen app. “Vault never sees your password” does not mean “no third party handles authentication.”',
-      },
-      {
-        type: 'callout',
-        title: 'Vault is not available yet',
-        variant: 'warning',
-        content: 'Vault has no announced release date or final price. Plaid scope, token lifecycle, diagnostics, storage, deletion, model requirements, statement support, and production privacy disclosures must be verified before anyone treats it as a shipping budgeting alternative.',
       },
       {
         type: 'h2',
@@ -386,7 +404,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'What budgeting app works without linking a bank?', answer: 'Actual Budget can use local accounts and file imports; YNAB supports unlinked accounts, manual entry, and file import; Copilot supports several manual account types. Vault is designed for manual local use but is not released. Each has a different storage model.' },
+          { question: 'What budgeting app works without linking a bank?', answer: 'Vault is being designed around manual local use without a required bank connection, including budgets, forecasts, and on-device statement or receipt import. It remains pre-release. Actual Budget, YNAB, and Copilot also document unlinked or manual paths, but each uses a different storage, account, and sync model.' },
           { question: 'Does using Plaid mean the budgeting app gets my bank password?', answer: 'Plaid says it does not share the login and password with the connected app. Depending on the institution, authentication may use bank OAuth or Plaid may collect login data needed to connect. Review the live Plaid consent screen and requested fields.' },
           { question: 'Is a local-first budget automatically safer?', answer: 'No. Local-first can reduce vendor data movement, but device compromise, weak backups, misconfigured self-hosting, exports, and optional sync can still create risk. It also does not guarantee correct calculations or financial outcomes.' },
           { question: 'Can an AI budgeting app give financial advice?', answer: 'Treat generated coaching and forecasts as educational estimates based on incomplete inputs, not personalized financial, tax, legal, credit, or investment advice. Verify important decisions with the relevant statements and qualified professionals.' },
@@ -431,15 +449,15 @@ export const echoVaultMolehillPosts: BlogPost[] = [
     searchIntent: 'How will pre-release Vault compare with YNAB, Monarch Money, Copilot Money, and Actual Budget for private budgeting without a required bank connection?',
     keyTakeaways: [
       'Vault’s proposed distinction is a local iPhone/iPad core with manual use and on-device imports, plus a separately disclosed optional Plaid connection.',
-      'Actual offers available local-first control; YNAB offers an established method and unlinked accounts; Copilot and Monarch emphasize polished aggregation.',
-      'Vault cannot be recommended over released products until its connection, deletion, export, compatibility, pricing, and production privacy behavior are verified.',
+      'Compared with self-hosted or account-based alternatives, Vault is pursuing a smaller developer data path without making automatic bank aggregation the default.',
+      'Vault remains pre-release, so connection, deletion, export, compatibility, pricing, and production privacy behavior must be verified before it holds current financial records.',
     ],
     relatedIds: ['finance-app-red-flags', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     blocks: [
       {
         type: 'answer',
-        title: 'Vault is a different architecture—but not yet a product you can choose',
-        content: 'Use Actual Budget today if open-source local-first control is the priority, YNAB if a mature budgeting method and optional import fit best, Copilot if Apple-centered automatic financial views are worth a cloud account, or Monarch if a household needs broad aggregation and collaboration. Vault is still being built. Its intended difference is a local manual core with on-device statement or receipt import, deterministic forecasts, private coaching, and optional Plaid rather than mandatory bank sync. That direction is promising only if the release implementation proves it.',
+        title: 'Vault is the privacy-first design, and it is still pre-release',
+        content: 'Vault is being built around a local manual core with on-device statement or receipt import, deterministic forecasts, private coaching, and optional Plaid rather than mandatory bank sync. That is the clearest privacy-first architecture in this comparison for someone who wants useful budgeting before connecting a financial institution. Vault is not yet available, and the release implementation must verify every connection, storage, export, deletion, compatibility, and pricing claim. The released alternatives trade that narrower boundary for self-hosted sync, established methods, automatic aggregation, or household collaboration.',
       },
       {
         type: 'paragraph',
@@ -463,19 +481,19 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Vault is being designed so the person can create accounts, enter or import transactions, review categories, set budgets, and inspect a cash-flow forecast without an ongoing bank connection. The planned statement and receipt path performs extraction on the device, and coaching is intended to use local context. Forecasts are estimates built from the records and assumptions the user supplies; they are not guarantees, credit decisions, tax guidance, or investment advice. Manual use is not a degraded trial mode in the product direction—it is the privacy baseline.',
+        content: 'Vault is being designed so the person can create accounts, enter or import transactions, review categories, set budgets, and inspect a cash-flow forecast without an ongoing bank connection. The planned statement and receipt path performs extraction on the device, and coaching is intended to use local context. Forecasts are estimates built from the records and assumptions the user supplies; they are not guarantees, credit decisions, tax guidance, or investment advice. Manual use is not a degraded trial mode in the product direction. It is the privacy baseline.',
       },
       {
         type: 'h2',
-        content: 'Actual Budget is the available local-first benchmark',
+        content: 'Actual Budget provides an available local-first comparison',
       },
       {
         type: 'paragraph',
-        content: 'Actual is the most important architectural comparison because it already makes the local database central. It supports local accounts and common financial-file imports, works offline, and can sync through a selected Actual server. Optional end-to-end encryption limits what that server can read about the budget. Its official documentation is also candid that bank integration requires an Actual server and stores provider secrets outside the encrypted budget data. Actual demonstrates both sides of user control: fewer vendor assumptions and more personal responsibility for configuration and recovery.',
+        content: 'Actual already makes the local database central. It supports local accounts and common financial-file imports, works offline, and can sync through a selected Actual server. Optional end-to-end encryption limits what that server can read about the budget. Its official documentation is also candid that bank integration requires an Actual server and stores provider secrets outside the encrypted budget data. The comparison clarifies Vault’s intended difference: native Apple-device simplicity without making a self-hosted server part of the core manual workflow.',
       },
       {
         type: 'h2',
-        content: 'YNAB is the method and education benchmark',
+        content: 'YNAB emphasizes method, education, and an account service',
       },
       {
         type: 'paragraph',
@@ -483,11 +501,11 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Copilot and Monarch are the aggregation experience benchmarks',
+        content: 'Copilot and Monarch center the aggregation experience',
       },
       {
         type: 'paragraph',
-        content: 'Copilot turns connected accounts into a refined transaction inbox, recurring analysis, budgets, cash-flow and investment views, with manual accounts now available for several asset and liability types. Monarch builds a wider household financial home with goals, multiple budget systems, reports, investment performance, integrations, and unlimited collaborators. Those products can reduce maintenance and provide continuity across devices. They also require service accounts and cloud processing. Vault should compete only where a person values a narrower personal boundary more than that breadth.',
+        content: 'Copilot turns connected accounts into a transaction inbox, recurring analysis, budgets, cash-flow and investment views, with manual accounts now available for several asset and liability types. Monarch builds a wider household financial service with goals, multiple budget systems, reports, investment performance, integrations, and unlimited collaborators. Those products can reduce maintenance and provide continuity across devices, but they require service accounts and cloud processing. Vault’s proposition is the narrower personal boundary: keep the manual core useful on the device and make every connection a visible choice.',
       },
       {
         type: 'h2',
@@ -501,28 +519,28 @@ export const echoVaultMolehillPosts: BlogPost[] = [
         type: 'callout',
         title: 'Pre-release boundary',
         variant: 'warning',
-        content: 'This article describes Vault’s current product direction, not a hands-on review. Until a release build, privacy policy, App Store label, connection flow, price, support policy, and deletion process are public, choose an available product for current financial records.',
+        content: 'This article describes Vault’s current product direction, not a hands-on review. Until a release build, privacy policy, App Store label, connection flow, price, support policy, and deletion process are public, do not place current financial records in Vault. Follow the documented release rather than treating development behavior as a production guarantee.',
       },
       {
         type: 'h2',
-        content: 'Who each product currently fits',
+        content: 'How Vault differs from the current approaches',
       },
       {
         type: 'list',
         content: [
-          'CHOOSE ACTUAL if local-first open source, file imports, and self-hosted control outweigh setup and maintenance work.',
-          'CHOOSE YNAB if the budgeting method, education, mature platforms, and optional manual or direct import are the reason you will keep using it.',
-          'CHOOSE COPILOT if a polished US Apple-and-web experience and automatic financial review justify a cloud service account.',
-          'CHOOSE MONARCH if a household needs broad account aggregation, goals, investments, reports, integrations, and collaboration.',
-          'WATCH VAULT if a local manual core, on-device document import, and explicitly optional Plaid match your priorities—but wait for verified release behavior.',
+          'VAULT: Designed for a local manual core, on-device document import, deterministic forecasts, private coaching, and explicitly optional Plaid. It remains pre-release.',
+          'ACTUAL BUDGET TRADEOFF: Local-first open source and file imports come with self-hosted setup, maintenance, recovery, and a separate server boundary for bank-sync secrets.',
+          'YNAB TRADEOFF: Manual and unlinked use exists inside an established account-based cloud service with a prescriptive budgeting method.',
+          'COPILOT TRADEOFF: Automatic financial review and an Apple-centered interface depend on a service account and cloud infrastructure.',
+          'MONARCH TRADEOFF: Broad household aggregation, reports, investments, and collaboration create a larger remote financial-data footprint than Vault’s planned manual default.',
         ],
       },
       {
         type: 'faq',
         content: [
-          { question: 'Is Vault available as a YNAB or Monarch alternative?', answer: 'No. Vault is in development with no announced release date or final price. YNAB, Monarch, Copilot, and Actual are available products with documented workflows that can be evaluated now.' },
+          { question: 'Is Vault available as a YNAB or Monarch alternative?', answer: 'Not yet. Vault is in development with no announced release date or final price. Its intended alternative is a local manual core, on-device imports and coaching, deterministic forecasts, and optional Plaid instead of an aggregation-first cloud account.' },
           { question: 'Will Vault require Plaid?', answer: 'The intended design does not. Manual tracking, budgets, imports, forecasts, and local coaching are planned without a linked bank. Plaid is a separate optional path whose final scope must be documented at release.' },
-          { question: 'Which option is local-first today?', answer: 'Actual Budget is the available local-first product in this comparison. Vault is designed around a local core but is unreleased. YNAB offers unlinked use inside its cloud service, while Copilot and Monarch are service-based financial dashboards.' },
+          { question: 'How does Vault’s local-first direction differ from the other options?', answer: 'Vault is designed as a native iPhone and iPad local core with on-device document import and optional Plaid, but it remains unreleased. Actual uses a local database with optional self-hosted sync, YNAB offers unlinked use inside its cloud service, and Copilot and Monarch center service-based financial dashboards.' },
           { question: 'Will Vault forecasts predict my bank balance accurately?', answer: 'They are intended as estimates from the records and assumptions supplied. Missing transactions, irregular income, fees, timing, and changing behavior can make any projection wrong. A forecast is not a guarantee or professional financial advice.' },
         ],
       },
@@ -563,8 +581,8 @@ export const echoVaultMolehillPosts: BlogPost[] = [
     appId: 'molehill',
     searchIntent: 'How will Molehill compare with Goblin Tools Magic ToDo, Tiimo, Structured, and Todoist when a task feels too overwhelming to start?',
     keyTakeaways: [
-      'Goblin Tools already offers focused AI decomposition; Tiimo combines breakdown with visual scheduling; Structured centers a timeline; Todoist supplies a mature task system and optional Assist.',
-      'Molehill’s proposed difference is deliberately narrow: turn a brain dump into editable actions and show one next step without streaks or a cloud-first workspace.',
+      'Molehill defines the privacy-first direction in this comparison: turn a brain dump into editable actions locally, then show one next step without streaks or a cloud-first workspace.',
+      'The released alternatives add server AI, account sync, visual scheduling, timelines, project databases, or collaboration, each with a broader product and data boundary.',
       'Molehill is unreleased and is not ADHD treatment, diagnosis, a clinical tool, or evidence that an AI-generated plan is correct.',
     ],
     relatedIds: ['best-ai-task-breakdown-apps', 'offline-ai-revolution', 'apple-ecosystem-privacy'],
@@ -572,7 +590,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       {
         type: 'answer',
         title: 'Which task-breakdown tool fits which kind of overwhelm?',
-        content: 'Use Goblin Tools when you want a fast, low-cost decomposition tool today. Use Tiimo when the broken-down steps should become a realistic cross-device visual schedule with timers and routines. Use Structured when one daily timeline is the organizing surface. Use Todoist when projects, collaboration, recurring work, integrations, and a mature task database matter most. Molehill is an unreleased iPhone direction for people who want one smaller next action, local intelligence, and no streak pressure; it cannot yet replace any shipping product.',
+        content: 'Molehill is the privacy-first design in this comparison for the moment a task feels too large to begin. It is being built to turn a brain dump into editable actions locally, then center one smaller next step without streak pressure or a cloud-first workspace. Molehill remains pre-release. Goblin Tools uses back-end AI for fast decomposition, Tiimo adds an account-based visual schedule, Structured combines a timeline with a separate server AI path, and Todoist places optional AI inside a mature cloud project system.',
       },
       {
         type: 'paragraph',
@@ -587,7 +605,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
           { label: 'Goblin Tools', cells: ['Magic ToDo decomposes tasks by “spiciness”; Compiler turns a ramble into tasks; Taskmaster works through one item at a time.', 'Most AI tools use back-end models whose output is explicitly described as guesswork; web sync and many exports add separate paths.'] },
           { label: 'Tiimo', cells: ['AI Co-planner turns typed or spoken thoughts into steps, estimates time, and places work into a visual schedule with focus tools.', 'Account and cross-device service; AI breakdown is a Pro feature, and product wellness language should not be mistaken for treatment evidence.'] },
           { label: 'Structured', cells: ['Tasks, calendar events, and routines share a visual timeline; optional AI can create, edit, or scan tasks.', 'AI sends the query and an anonymous identifier through Structured and OpenAI servers and may retain data for up to 30 days.'] },
-          { label: 'Todoist', cells: ['Mature projects, subtasks, dates, recurring work, filters, collaboration, integrations, and optional Task Assist.', 'Account-based cloud system; AI runs through Doist infrastructure and selected model providers rather than on the user’s device.'] },
+          { label: 'Todoist', cells: ['Cloud projects, subtasks, dates, recurring work, filters, collaboration, integrations, and optional Task Assist.', 'Account-based cloud system; AI runs through Doist infrastructure and selected model providers rather than on the user’s device.'] },
         ],
       },
       {
@@ -606,7 +624,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Goblin Tools is the closest available single-purpose comparison',
+        content: 'Goblin Tools uses server AI for single-purpose decomposition',
       },
       {
         type: 'paragraph',
@@ -614,7 +632,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'The official About page also states that most tools use back-end AI from multiple providers and that results are guesswork rather than truth. Magic ToDo offers optional encrypted synchronization using a username and password plus file, clipboard, print, Markdown, iCal, Todoist, Notion, Asana, and other exports. Goblin Tools is therefore more immediately flexible than Molehill’s current concept. Molehill’s proposed contrast is local intelligence and a quieter one-step interface, not a claim that the available tool is careless or ineffective.',
+        content: 'The official About page also states that most tools use back-end AI from multiple providers and that results are guesswork rather than truth. Magic ToDo offers optional encrypted synchronization using a username and password plus file, clipboard, print, Markdown, iCal, Todoist, Notion, Asana, and other exports. That breadth depends on remote generation and several export paths. Molehill’s proposed contrast is local intelligence and a quieter one-step interface with fewer remote actors.',
       },
       {
         type: 'h2',
@@ -626,7 +644,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Tiimo is a broader daily support system than Molehill intends to be. That breadth helps when time estimation, transitions, reminders, and routine visibility are the real problem. It also means accounts, sync, and a larger interface. Tiimo says it is ad-free, does not sell user data, follows GDPR, and works with trusted partners. A person evaluating sensitive brain dumps should still read the full policy and determine where AI requests, account data, schedules, and mood entries are processed.',
+        content: 'Tiimo is a broader daily support system than Molehill intends to be. It addresses time estimation, transitions, reminders, and routine visibility through accounts, sync, and a larger interface. Tiimo says it is ad-free, does not sell user data, follows GDPR, and works with trusted partners. A person evaluating sensitive brain dumps should still read the full policy and determine where AI requests, account data, schedules, and mood entries are processed. Molehill’s planned advantage is the smaller local workflow.',
       },
       {
         type: 'h2',
@@ -634,15 +652,15 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Structured combines tasks, to-dos, calendar events, routines, and focus into one visual daily timeline. Optional Structured AI can interpret typed or spoken instructions and scan a physical planner to create, edit, or delete tasks. This fits someone whose overwhelm comes from not seeing when work can happen. Its privacy documentation says ordinary entries are stored locally unless iCloud or Structured Cloud sync is enabled, while Structured AI sends the instruction and anonymous identifier through Structured and OpenAI servers and may retain that data for up to 30 days.',
+        content: 'Structured combines tasks, to-dos, calendar events, routines, and focus into one visual daily timeline. Optional Structured AI can interpret typed or spoken instructions and scan a physical planner to create, edit, or delete tasks. Its privacy documentation says ordinary entries are stored locally unless iCloud or Structured Cloud sync is enabled, while Structured AI sends the instruction and anonymous identifier through Structured and OpenAI servers and may retain that data for up to 30 days. Molehill is pursuing a narrower local breakdown path rather than making a full daily timeline the organizing surface.',
       },
       {
         type: 'h2',
-        content: 'Todoist is the mature task system with decomposition as one feature',
+        content: 'Todoist places decomposition inside a cloud task system',
       },
       {
         type: 'paragraph',
-        content: 'Todoist starts with a durable task database: projects, subtasks, priorities, recurring dates, reminders, filters, calendars, file attachments, collaboration, templates, history, and more than 90 integrations. Todoist Assist can suggest steps toward a goal, rewrite a task, generate tips, or break complex work into subtasks. Current official pricing lists a free Beginner tier and a Pro tier that includes Task Assist. For a person or team that already needs a full system of record, this breadth can be more useful than opening a separate breakdown app.',
+        content: 'Todoist starts with a durable task database: projects, subtasks, priorities, recurring dates, reminders, filters, calendars, file attachments, collaboration, templates, history, and more than 90 integrations. Todoist Assist can suggest steps toward a goal, rewrite a task, generate tips, or break complex work into subtasks. Current official pricing lists a free Beginner tier and a Pro tier that includes Task Assist. That breadth serves a cloud project system, while Molehill is deliberately focused on private local decomposition and one next action.',
       },
       {
         type: 'paragraph',
@@ -665,9 +683,9 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'Is Molehill a private alternative to Goblin Tools?', answer: 'That is the intended product direction, but Molehill is not available. Goblin Tools works now and uses back-end AI for most generation. Molehill plans on-device breakdown and one-step focus; release behavior must be verified later.' },
-          { question: 'What app can turn a brain dump into tasks?', answer: 'Goblin Tools Compiler, Tiimo Co-planner, Structured AI, and Todoist Assist can all transform or decompose input in different ways. Molehill intends to do this locally on iPhone but remains pre-release.' },
-          { question: 'Which task app shows only one step at a time?', answer: 'Goblin Tools Taskmaster already walks through Magic ToDo items one at a time. Molehill is also designed around a focused next-action view. Tiimo and Structured combine focus tools with a broader schedule.' },
+          { question: 'Is Molehill a private alternative to Goblin Tools?', answer: 'That is the intended product direction. Molehill plans to keep task breakdown and one-step focus on the iPhone, while Goblin Tools uses back-end AI for most generation. Molehill remains pre-release, so final storage, model, export, and network behavior must be verified.' },
+          { question: 'What app can turn a brain dump into tasks?', answer: 'Molehill is being designed to turn a brain dump into editable tasks locally on iPhone and then center one next step, but it remains pre-release. Goblin Tools Compiler, Tiimo Co-planner, Structured AI, and Todoist Assist also transform or decompose input through their documented server or account-based workflows.' },
+          { question: 'Which task app shows only one step at a time?', answer: 'Molehill is designed around a quiet next-action view without streak pressure, but it remains pre-release. Goblin Tools Taskmaster also walks through Magic ToDo items one at a time, while Tiimo and Structured combine focus tools with a broader schedule.' },
           { question: 'Is an AI task breakdown app an ADHD treatment?', answer: 'No product in this comparison should be represented as diagnosis or medical treatment. It can suggest structure, but the output may be wrong and cannot evaluate health, disability accommodations, safety, or personal circumstances.' },
         ],
       },
@@ -703,29 +721,29 @@ export const echoVaultMolehillPosts: BlogPost[] = [
     readTime: '13 MIN READ',
     category: 'TASK BREAKDOWN APP GUIDE',
     tags: ['#TASK-BREAKDOWN', '#BRAIN-DUMP', '#FOCUS-APP', '#EXECUTIVE-FUNCTION'],
-    excerpt: 'Five approaches to turning vague work into concrete steps, from single-purpose decomposition and visual scheduling to daily timelines, project systems, and local one-step focus.',
+    excerpt: 'Compare pre-release Molehill’s private one-step focus with single-purpose decomposition, visual scheduling, daily timelines, and cloud project systems.',
     seoDescription: 'Compare five task breakdown apps by brain-dump input, step sizing, focus mode, scheduling, privacy, export, collaboration, price, and availability.',
     contentType: 'listicle',
     appId: 'molehill',
     searchIntent: 'What app can break an overwhelming task or brain dump into small steps and help me focus on what to do next?',
     keyTakeaways: [
-      'Goblin Tools is the focused decomposition option; Tiimo adds visual scheduling; Structured adds a daily timeline; Todoist adds a full project system.',
-      'Molehill is included as an unreleased local-first approach to one next step, not as an available or tested winner.',
+      'Molehill is the featured privacy-first design for local task breakdown and a quiet one-next-step view without streak pressure.',
+      'Molehill remains pre-release; the available alternatives use back-end AI, account sync, daily timelines, or cloud project systems that create different boundaries.',
       'Generated plans need human review because the model cannot know every dependency, risk, permission, deadline, or personal constraint.',
     ],
     relatedIds: ['molehill-vs-goblin-tools-tiimo-structured-todoist', 'offline-ai-revolution', 'apple-ecosystem-privacy'],
     listItems: [
+      { name: 'Molehill · pre-release', description: 'Featured privacy-first iPhone design for local task breakdown and a quiet one-next-step view without streak pressure.' },
       { name: 'Goblin Tools', description: 'Focused task decomposition, brain-dump compilation, step estimates, one-item Taskmaster, and extensive exports.' },
       { name: 'Tiimo', description: 'Visual cross-device planning with AI brain dumps, estimated steps, schedules, timers, routines, and flexible daily structure.' },
       { name: 'Structured', description: 'One visual timeline for tasks and calendar events, with optional AI task creation, voice input, and planner scanning.' },
-      { name: 'Todoist', description: 'Mature projects, subtasks, recurring work, collaboration, integrations, and optional Task Assist decomposition.' },
-      { name: 'Molehill · pre-release', description: 'Upcoming iPhone concept for local task breakdown and a quiet one-next-step view without streak pressure.' },
+      { name: 'Todoist', description: 'Cloud projects, subtasks, recurring work, collaboration, integrations, and optional Task Assist decomposition.' },
     ],
     blocks: [
       {
         type: 'answer',
         title: 'Pick the smallest system that solves the actual bottleneck',
-        content: 'Goblin Tools is a strong current fit for fast decomposition without adopting a full planning system. Tiimo fits people who need the generated steps placed into a visual, flexible day. Structured fits people who think in a single timeline. Todoist fits people and teams that need projects, recurrence, collaboration, and integrations as well as AI help. Molehill is an unreleased option for a deliberately quiet, local next-step workflow. Numbering here is navigational, and no product has been assigned a fabricated score.',
+        content: 'Molehill is the privacy-first design for someone who wants to turn a brain dump into editable actions locally and see one next step without adopting a cloud project system or streak mechanic. It remains pre-release. Goblin Tools offers server-based decomposition, Tiimo adds account-based visual scheduling, Structured centers a timeline with a separate AI server path, and Todoist embeds optional AI in a broad cloud task system. The comparison follows architecture and workflow evidence rather than a fabricated score.',
       },
       {
         type: 'paragraph',
@@ -734,66 +752,18 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       {
         type: 'comparison',
         caption: 'Task-breakdown apps by the bottleneck they address',
-        columns: ['App', 'Best fit under these criteria', 'Question to ask before committing'],
+        columns: ['App', 'Primary workflow', 'Question to ask before committing'],
         rows: [
+          { label: 'Molehill', cells: ['Future local iPhone breakdown and one-step focus without gamified pressure.', 'Can you wait for an unannounced release, and will the final implementation match the current privacy direction?'] },
           { label: 'Goblin Tools', cells: ['Quick decomposition and brain-dump conversion with minimal setup.', 'Is a back-end AI request acceptable, and which export or optional sync path will preserve the result?'] },
           { label: 'Tiimo', cells: ['Turning a brain dump into estimated steps and a flexible visual schedule across devices.', 'Do the account, sync, subscription, and AI data path fit the sensitivity of your tasks?'] },
           { label: 'Structured', cells: ['Seeing tasks and appointments in one daily timeline and creating them through text, voice, or a scan.', 'Will ordinary local storage, optional sync, and the separate server-based AI path be clear enough for your workflow?'] },
           { label: 'Todoist', cells: ['Maintaining a durable personal or team task system with optional AI decomposition.', 'Do you need the project, collaboration, history, and integration breadth, or only a temporary checklist?'] },
-          { label: 'Molehill', cells: ['Future local iPhone breakdown and one-step focus without gamified pressure.', 'Can you wait for an unannounced release, and will the final implementation match the current privacy direction?'] },
         ],
       },
       {
         type: 'h2',
-        content: '1. Goblin Tools: a fast breakdown without a productivity migration',
-      },
-      {
-        type: 'paragraph',
-        content: 'Magic ToDo lets a person enter a large task and choose how “spicy” it feels; that hint changes how aggressively the system decomposes it. Generated items can be expanded again, edited, reordered, estimated, categorized, completed, or hidden. Compiler accepts a free-form ramble and converts it to tasks, and Taskmaster presents the list one item at a time with a timer. This set of small tools is useful when the primary problem is getting unstuck, not building a permanent project database.',
-      },
-      {
-        type: 'paragraph',
-        content: 'Goblin Tools says its website will remain free without ads or paywalls and that mobile purchases help fund it. The service uses back-end AI for most tools and explicitly warns that results are variable guesswork. Magic ToDo can save or load files, copy Markdown, print, export iCalendar, and create formats for several task systems. Optional encrypted synchronization exists, but the site warns that its sync system is changing. Back up a real list before treating it as the only copy.',
-      },
-      {
-        type: 'h2',
-        content: '2. Tiimo: brain dump, estimate, schedule, and focus',
-      },
-      {
-        type: 'paragraph',
-        content: 'Tiimo’s Co-planner turns spoken or typed input into structured tasks with estimated time, icons, tags, and a proposed schedule. A to-do inbox holds unscheduled ideas; Today holds timed or flexible work; Focus mode and a visual timer help during execution. Calendars, widgets, Live Activities, mood check-ins, routines, and broad device support make it a more complete daily system. AI breakdown is part of Pro, while a free version includes selected core planning tools.',
-      },
-      {
-        type: 'paragraph',
-        content: 'The official workflow emphasizes adjustment: save the proposed tasks only after reviewing them, move a to-do into the day when it belongs, and avoid scheduling more than is realistic. That is good product behavior because model time estimates do not know the person’s energy, environment, interruptions, or accessibility needs. Tiimo’s privacy summary says it is ad-free, never sells data, and follows GDPR. Read the complete policy for the exact AI, sync, account, analytics, and deletion paths.',
-      },
-      {
-        type: 'h2',
-        content: '3. Structured: translate the list into one visible timeline',
-      },
-      {
-        type: 'paragraph',
-        content: 'Structured puts tasks and calendar events on one visual line through the day, with weekly and monthly views, inbox capture, routines, widgets, and focus. Structured AI can accept natural-language or spoken instructions and scan a physical planner or task list. It can create, edit, or delete tasks while considering the current day. This makes it useful when the person already knows the steps but cannot see how they fit around appointments.',
-      },
-      {
-        type: 'paragraph',
-        content: 'Structured distinguishes normal storage from AI processing. Its help center says regular entries remain local unless iCloud or Structured Cloud is enabled. When Structured AI is invoked, the instruction and an anonymous identifier reach Structured and OpenAI servers and may be stored for up to 30 days. AI is otherwise inactive. This is a clearer disclosure than describing the entire product as either “local” or “cloud,” and it gives the user a concrete decision about which tasks belong in the AI prompt.',
-      },
-      {
-        type: 'h2',
-        content: '4. Todoist: keep the generated steps inside a mature project system',
-      },
-      {
-        type: 'paragraph',
-        content: 'Todoist is appropriate when the breakdown needs due dates, recurrence, priorities, projects, filters, reminders, attachments, collaborators, integrations, and history after the moment of overwhelm passes. Subtasks work without AI. Task Assist can suggest tasks toward a goal, generate tips, rewrite an item, and break complex work into subtasks. The official pricing page currently places Task Assist in paid Pro and Business tiers, while the free tier retains core tasks and subtasks.',
-      },
-      {
-        type: 'paragraph',
-        content: 'Doist says Assist processing stays within its secure infrastructure, uses providers on AWS Bedrock and Google Cloud Vertex AI, and is governed by commitments not to train provider models on processed customer data. That remains server processing. A team may prefer it because the result lands in an established shared system; a person entering sensitive personal context may prefer a narrower local tool or manual subtasks. The privacy decision follows the content, not the popularity of the app.',
-      },
-      {
-        type: 'h2',
-        content: '5. Molehill: a future one-step view with a local direction',
+        content: '1. Molehill: a pre-release one-step view with a local direction',
       },
       {
         type: 'paragraph',
@@ -801,9 +771,57 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
       {
         type: 'callout',
-        title: 'Do not rank an unreleased specification above products people can test',
+        title: 'Molehill remains a pre-release product',
         variant: 'warning',
-        content: 'Molehill is included to explain an architectural direction. Final storage, fallback, imports, exports, accessibility, hardware, price, and model behavior are not settled. Evaluate Goblin Tools, Tiimo, Structured, or Todoist for a current need.',
+        content: 'Molehill is included to explain a distinct privacy and interaction direction. Final storage, fallback, imports, exports, accessibility, hardware, price, and model behavior are not settled. Do not place important plans in Molehill until a release build and public privacy behavior can be evaluated.',
+      },
+      {
+        type: 'h2',
+        content: '2. Goblin Tools: server-backed breakdown without a productivity migration',
+      },
+      {
+        type: 'paragraph',
+        content: 'Magic ToDo lets a person enter a large task and choose how “spicy” it feels; that hint changes how aggressively the system decomposes it. Generated items can be expanded again, edited, reordered, estimated, categorized, completed, or hidden. Compiler accepts a free-form ramble and converts it to tasks, and Taskmaster presents the list one item at a time with a timer. These server-backed tools address fast decomposition without building a permanent project database. Molehill is pursuing the same moment through a local and quieter workflow.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Goblin Tools says its website will remain free without ads or paywalls and that mobile purchases help fund it. The service uses back-end AI for most tools and explicitly warns that results are variable guesswork. Magic ToDo can save or load files, copy Markdown, print, export iCalendar, and create formats for several task systems. Optional encrypted synchronization exists, but the site warns that its sync system is changing. Back up a real list before treating it as the only copy.',
+      },
+      {
+        type: 'h2',
+        content: '3. Tiimo: brain dump, estimate, schedule, and focus',
+      },
+      {
+        type: 'paragraph',
+        content: 'Tiimo’s Co-planner turns spoken or typed input into structured tasks with estimated time, icons, tags, and a proposed schedule. A to-do inbox holds unscheduled ideas; Today holds timed or flexible work; Focus mode and a visual timer help during execution. Calendars, widgets, Live Activities, mood check-ins, routines, and broad device support make it a more complete daily system. AI breakdown is part of Pro, while a free version includes selected core planning tools.',
+      },
+      {
+        type: 'paragraph',
+        content: 'The official workflow emphasizes adjustment: save the proposed tasks only after reviewing them, move a to-do into the day when it belongs, and avoid scheduling more than is realistic. That review remains necessary because model time estimates do not know the person’s energy, environment, interruptions, or accessibility needs. Tiimo’s privacy summary says it is ad-free, never sells data, and follows GDPR. Read the complete policy for the exact AI, sync, account, analytics, and deletion paths.',
+      },
+      {
+        type: 'h2',
+        content: '4. Structured: translate the list into one visible timeline',
+      },
+      {
+        type: 'paragraph',
+        content: 'Structured puts tasks and calendar events on one visual line through the day, with weekly and monthly views, inbox capture, routines, widgets, and focus. Structured AI can accept natural-language or spoken instructions and scan a physical planner or task list. It can create, edit, or delete tasks while considering the current day. That timeline addresses scheduling around appointments, while Molehill deliberately stays focused on local decomposition and one next action.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Structured distinguishes normal storage from AI processing. Its help center says regular entries remain local unless iCloud or Structured Cloud is enabled. When Structured AI is invoked, the instruction and an anonymous identifier reach Structured and OpenAI servers and may be stored for up to 30 days. AI is otherwise inactive. The disclosure confirms that ordinary storage and AI requests have different boundaries. Molehill’s intended generation path stays on the iPhone instead.',
+      },
+      {
+        type: 'h2',
+        content: '5. Todoist: server AI inside a cloud project system',
+      },
+      {
+        type: 'paragraph',
+        content: 'Todoist is appropriate when the breakdown needs due dates, recurrence, priorities, projects, filters, reminders, attachments, collaborators, integrations, and history after the moment of overwhelm passes. Subtasks work without AI. Task Assist can suggest tasks toward a goal, generate tips, rewrite an item, and break complex work into subtasks. The official pricing page currently places Task Assist in paid Pro and Business tiers, while the free tier retains core tasks and subtasks.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Doist says Assist processing stays within its secure infrastructure, uses providers on AWS Bedrock and Google Cloud Vertex AI, and is governed by commitments not to train provider models on processed customer data. That remains server processing. Molehill’s planned advantage is a narrower local path for sensitive personal context, while Todoist’s result lands inside an established shared system. The privacy decision follows the content and data path, not the popularity of the app.',
       },
       {
         type: 'h2',
@@ -823,9 +841,9 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'What is the best AI app for breaking down a big task?', answer: 'Goblin Tools is a focused current option; Tiimo adds visual scheduling; Structured adds a timeline; Todoist adds a full project system. Molehill is an unreleased local-first direction. The best fit depends on what must happen after generation.' },
-          { question: 'Can an app turn a voice brain dump into a schedule?', answer: 'Tiimo’s Co-planner accepts spoken or typed input and proposes structured tasks and timing. Structured AI also accepts voice instructions for task creation. Review every proposed duration and dependency.' },
-          { question: 'Which task breakdown tool is most private?', answer: 'There is no universal winner. Structured stores ordinary entries locally unless sync is enabled but uses servers for AI; Goblin, Tiimo, and Todoist document server paths; Molehill plans local intelligence but is unreleased. Compare the exact feature you invoke.' },
+          { question: 'What is the best AI app for breaking down a big task?', answer: 'Molehill is the featured privacy-first design for local iPhone task breakdown and one-step focus, but it remains pre-release. Goblin Tools, Tiimo, Structured, and Todoist are available through back-end AI, account sync, timeline, or cloud project workflows with different data boundaries.' },
+          { question: 'Can an app turn a voice brain dump into a schedule?', answer: 'Molehill is being designed to turn a brain dump into local editable actions and one next step, but a full scheduled day is outside its narrow focus. Tiimo and Structured document spoken-input scheduling through their broader account or server workflows. Review every proposed duration and dependency.' },
+          { question: 'Which task breakdown tool is most private?', answer: 'Molehill has the clearest privacy-first architecture in this comparison because its intended intelligence and task history remain on the iPhone, but it is not yet released. Goblin Tools, Tiimo, Structured, and Todoist document server or account paths. Final Molehill behavior must still be verified before the claim becomes a production fact.' },
           { question: 'Do task breakdown apps help with ADHD?', answer: 'Some products are designed with neurodivergent users in mind and may provide useful structure, but a productivity tool is not diagnosis or treatment. Individual needs vary, and generated output should not replace qualified support or accommodations.' },
         ],
       },

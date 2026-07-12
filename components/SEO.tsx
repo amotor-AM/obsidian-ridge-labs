@@ -28,11 +28,9 @@ const buildOrganizationNode = () => ({
   '@type': 'Organization',
   '@id': ORGANIZATION_ID,
   name: SITE_NAME,
-  legalName: SITE_NAME,
   url: `${SITE_URL}/`,
-  description: 'Independent Apple software studio building private, offline-first AI apps whose core intelligence runs on-device.',
-  foundingDate: '2024',
-  slogan: 'AI without the audience.',
+  description: 'Independent Las Vegas software studio building private, on-device AI apps for iPhone, iPad, and Mac.',
+  slogan: 'Private intelligence. On your terms.',
   email: 'support@obsidianridgelabs.com',
   address: {
     '@type': 'PostalAddress',
@@ -72,7 +70,7 @@ const buildWebsiteNode = () => ({
   url: `${SITE_URL}/`,
   name: SITE_NAME,
   alternateName: 'Obsidian Ridge',
-  description: 'Private, offline-first AI apps for iPhone, iPad, and Mac.',
+  description: 'Private, on-device AI apps for iPhone, iPad, and Mac from Obsidian Ridge Labs.',
   inLanguage: 'en-US',
   publisher: { '@id': ORGANIZATION_ID },
 });
@@ -509,15 +507,34 @@ export const buildArticleItemList = (post: BlogPost) => post.listItems?.length ?
   })),
 }) : null;
 
-export const buildFAQSchema = (faqs: { question: string; answer: string }[]) => ({
+export const buildFAQSchema = (faqs: {
+  question: string;
+  answer: string;
+  searchIntent?: string;
+  sourceUrls?: string[];
+}[], pagePath?: string) => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faqs.map(faq => ({
+  ...(pagePath ? {
+    '@id': `${SITE_URL}${pagePath}#faq`,
+    url: `${SITE_URL}${pagePath}#faq`,
+  } : {}),
+  inLanguage: 'en-US',
+  publisher: { '@id': ORGANIZATION_ID },
+  mainEntity: faqs.map((faq, index) => ({
     '@type': 'Question',
+    ...(pagePath ? {
+      '@id': `${SITE_URL}${pagePath}#faq-${index + 1}`,
+      url: `${SITE_URL}${pagePath}#faq-${index + 1}`,
+    } : {}),
     name: faq.question,
+    ...(faq.searchIntent ? { keywords: faq.searchIntent } : {}),
+    ...(faq.sourceUrls?.length ? { isBasedOn: faq.sourceUrls } : {}),
     acceptedAnswer: {
       '@type': 'Answer',
       text: faq.answer,
+      inLanguage: 'en-US',
+      author: { '@id': ORGANIZATION_ID },
     },
   })),
 });
@@ -600,7 +617,7 @@ function mapCategory(category: string): string {
 function getFeatureList(productId: string): string {
   const features: Record<string, string> = {
     vault: 'On-device financial analysis, PDF statement import, local forecasting, biometric access control, offline-first workflow',
-    echochamber: 'On-device live transcription with NVIDIA Parakeet TDT 0.6B v3, approximately 3% observed WER in Echo Chamber testing, 6.32% average English WER versus 7.44% for Whisper large-v3 on the current Hugging Face Open ASR evaluation, AI-polished readable transcripts, local AI notes and summaries, speaker detection, bookmarks, full-text recording search, audio and video file upload with Pro, TXT Markdown PDF and DOCX export, Face ID access control, AES-256-GCM audio encryption at rest, optional encrypted iCloud sync',
+    echochamber: 'On-device live transcription with NVIDIA Parakeet TDT 0.6B v3, a targeted speech-focused pre-transcription filter rather than generic normalization, approximately 4.5% internal observed WER for the complete enhanced Echo Chamber pipeline under tested conditions, 6.32% average English WER for Parakeet versus 7.44% for Whisper large-v3 in the cited Hugging Face Open ASR evaluation snapshot, Apple Intelligence for transcript intelligence on compatible devices, bundled on-device Bonsai 1.7B fallback on supported hardware without Apple Intelligence, readable transcripts, local AI notes and summaries, speaker detection, bookmarks, full-text recording search, audio and video file upload with Pro, TXT Markdown PDF and DOCX export, Pro at $2.99 monthly or $29.99 yearly, $79.99 Lifetime one-time purchase, Face ID access control, AES-256-GCM audio encryption at rest, optional encrypted iCloud sync',
     molehill: 'In-development on-device task breakdown, editable brain-dump organization, one-step focus, deterministic fallback, no streak mechanics, and a non-clinical productivity boundary',
     cove: 'In-development local journaling, on-device reflection with NaturalLanguage fallback, mood and theme patterns, semantic search, grounded journal questions, app lock, and Markdown or JSON export',
     wove: 'In-development local garment cut-out and tagging, daily and occasion-based outfit planning, deterministic styling fallback, wear history, capsules, packing lists, shopping context, and optional WeatherKit forecasts',

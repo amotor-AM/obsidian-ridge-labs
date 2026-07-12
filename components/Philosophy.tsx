@@ -13,25 +13,25 @@ const Philosophy: React.FC = () => (
   <section id="philosophy" className="premise-section" aria-labelledby="premise-title">
     <div className="section-frame">
       <div className="section-index section-index--dark">
-        <span>01 / The premise</span>
-        <span>Less movement. More control.</span>
+        <span>01 / The refusal</span>
+        <span>Privacy is the product</span>
       </div>
 
       <div className="premise-section__heading">
         <MotionReveal>
-          <p className="section-kicker section-kicker--dark">A shorter path to intelligence</p>
+          <p className="section-kicker section-kicker--dark">Convenience is not consent</p>
           <h2 id="premise-title">
-            Useful AI does not need a copy of your life <em>in the cloud.</em>
+            Your private life should not be the cost of <em>useful AI.</em>
           </h2>
         </MotionReveal>
 
         <MotionReveal className="premise-section__intro" delay={0.08}>
           <p>
-            Core intelligence runs on the Apple hardware you already own. Optional
-            connections are explicit, and your private work stays under your control.
+            Obsidian Ridge Labs moves the intelligence to your Apple device instead of
+            moving your life to our servers. Optional connections stay visible and under your control.
           </p>
           <a href="#architecture" className="text-link text-link--dark">
-            See the architecture <ArrowDownRight size={18} aria-hidden="true" />
+            Inspect the architecture <ArrowDownRight size={18} aria-hidden="true" />
           </a>
         </MotionReveal>
       </div>

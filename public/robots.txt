@@ -1,4 +1,4 @@
-# Obsidian Ridge Labs — robots.txt
+# Obsidian Ridge Labs: robots.txt
 # Privacy-first AI apps. We respect crawlers as much as we respect users.
 
 User-agent: *

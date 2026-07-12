@@ -52,7 +52,7 @@ const TermsOfService: React.FC = () => {
           <section className="mb-12">
             <h2 className="text-2xl font-semibold text-white mb-4">3. Privacy and Data Security</h2>
             <p className="text-gray-400 leading-relaxed">
-              Obsidian Ridge Labs designs core AI processing to run locally on supported devices. Some optional or operational features—including purchases, model downloads, iCloud, Plaid, or support—may use third-party services when applicable. Product-specific data flows and choices are described in our Privacy Policy and product documentation.
+              Obsidian Ridge Labs designs core AI processing to run locally on supported devices. Some optional or operational features, including purchases, model downloads, iCloud, Plaid, or support, may use third-party services when applicable. Product-specific data flows and choices are described in our Privacy Policy and product documentation.
             </p>
           </section>
 

@@ -5,35 +5,35 @@ import { AnimatePresence, motion, useReducedMotion, useScroll } from 'framer-mot
 const PRINCIPLES = [
   {
     icon: Database,
-    title: 'Data has gravity',
-    origin: 'Data gravity',
-    description: 'Every transfer expands the surface of trust. Core processing should happen where private data is created whenever the hardware can do the work.',
+    title: 'DATA HAS GRAVITY',
+    origin: 'Countermeasure 01',
+    description: 'Every transfer adds a network, processor, log, policy, and failure point. Obsidian Ridge Labs keeps core AI close to private data whenever supported Apple hardware can do the work.',
     practice: 'Core path',
     value: 'On-device',
   },
   {
     icon: ShieldCheck,
-    title: 'Trust should be inspectable',
-    origin: 'Nullius in verba · Take nobody’s word for it',
-    description: 'A privacy policy is not enough. Data flows should be documented, permissions should appear in context, and source should be available where practical.',
-    practice: 'Connections',
-    value: 'Explained first',
+    title: 'THE CLOUD MUST EARN ITS PLACE',
+    origin: 'Countermeasure 02',
+    description: 'A connection should exist only when it delivers a capability the device cannot provide well on its own. Core work stays local. Optional services are named before they are used.',
+    practice: 'Network access',
+    value: 'Purpose-bound',
   },
   {
     icon: WifiOff,
-    title: 'Offline should be excellent',
+    title: 'OFFLINE IS THE TEST',
     origin: 'Offline default',
-    description: 'The network should add optional capability, not grant permission to use the core product. After required setup, important work should continue without it.',
-    practice: 'Network',
-    value: 'Optional for core work',
+    description: 'The network should add a specific capability, not control the core experience. After required setup, important work should continue without Wi-Fi or cellular service.',
+    practice: 'Core workflows',
+    value: 'Offline-ready',
   },
   {
     icon: Archive,
-    title: 'Memory should be deliberate',
-    origin: 'Deliberate retention',
-    description: 'Software should keep only what serves the person using it. Retention and deletion should be understandable, local where possible, and under user control.',
+    title: 'MEMORY BELONGS TO YOU',
+    origin: 'Deliberate memory',
+    description: 'Personal software should not keep more than it needs. Storage, export, retention, and deletion should be clear and controlled by the person who created the data.',
     practice: 'Retention',
-    value: 'User-directed',
+    value: 'User-controlled',
   },
 ];
 
@@ -51,13 +51,13 @@ const AxiomScroller: React.FC = () => {
       <div className="section-frame">
         <div className="section-index">
           <span>02 / Countermeasures</span>
-          <span>Four constraints for private software</span>
+          <span>Four rules for private software</span>
         </div>
 
         <div className="philosophy-principles__intro">
-          <p className="section-kicker">The operating system</p>
-          <h2 id="principles-title">Four principles.<br /><em>One boundary.</em></h2>
-          <p>These are not slogans. They are the constraints we use when deciding what to build and how it should behave.</p>
+          <p className="section-kicker">The counter architecture</p>
+          <h2 id="principles-title">Four refusals.<br /><em>One private standard.</em></h2>
+          <p>These rules decide what belongs on the device, what may connect, and what the user must always control.</p>
         </div>
 
         <div className="countermeasure-sequence">
@@ -77,7 +77,7 @@ const AxiomScroller: React.FC = () => {
               <small>/ 04</small>
             </div>
             <div className="countermeasure-rail__ridge"><i /><i /><i /><i /></div>
-            <div className="countermeasure-rail__progress"><motion.i style={{ scaleY: scrollYProgress }} /></div>
+            <div className="countermeasure-rail__progress"><motion.i style={{ scaleY: reducedMotion ? 1 : scrollYProgress }} /></div>
             <p>{PRINCIPLES[activeIndex].origin}</p>
           </aside>
 

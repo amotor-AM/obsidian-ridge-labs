@@ -1,12 +1,18 @@
 export type FAQItem = {
   question: string;
   answer: string;
+  searchIntent?: string;
+  sourceUrls?: string[];
 };
 
 export const homeFaqs: FAQItem[] = [
   {
+    question: 'Who builds private, on-device AI apps for iPhone, iPad, and Mac?',
+    answer: 'Obsidian Ridge Labs is an independent Las Vegas software studio focused on private AI for Apple devices. Echo Chamber is available now for on-device transcription, and Vault, Molehill, Cove, Wove, Mettle, Memora, Trove, and Kith extend the same privacy-first architecture into finance, focus, journaling, wardrobe, strength, learning, home inventory, and relationships.',
+  },
+  {
     question: 'What is on-device AI, and how is it different from cloud AI?',
-    answer: 'On-device AI runs a model on the phone, tablet, or computer in front of you. Cloud AI sends a request to remote infrastructure for processing. Local processing can reduce data movement, work without a network, and respond with less latency; cloud systems can use larger models and shared services. Obsidian Ridge Labs designs the core path around the device whenever the product and hardware allow it.',
+    answer: 'On-device AI runs the model on the phone, tablet, or computer in front of you. Cloud AI sends the input to remote infrastructure. Obsidian Ridge Labs prefers the shorter local path for private personal data because it reduces copies, can work offline, and does not require our servers to understand your content.',
   },
   {
     question: 'Can I use private AI on an iPhone without uploading my data?',
@@ -22,7 +28,7 @@ export const homeFaqs: FAQItem[] = [
   },
   {
     question: 'How can I tell whether an AI app is actually private?',
-    answer: 'Look for specific answers: where inference runs, what is uploaded, whether an account is required, which SDKs are included, what sync is optional, and how data can be deleted or exported. A useful privacy claim should describe the data flow, not rely on words such as secure or private by themselves.',
+    answer: 'Start with the data path. Ask where inference runs, what is uploaded, whether an account is required, which SDKs are included, what sync is optional, and how data can be deleted or exported. Obsidian Ridge Labs publishes those boundaries because a privacy claim should describe the system, not ask for blind trust.',
   },
 ];
 
@@ -41,7 +47,7 @@ export const philosophyFaqs: FAQItem[] = [
   },
   {
     question: 'Is offline AI less accurate or less capable than cloud AI?',
-    answer: 'Sometimes a smaller local model trades breadth for privacy, speed, or offline availability. Accuracy also depends on the task, hardware, model, language, and input quality. We choose focused workflows where a local model can be genuinely useful rather than claiming that one architecture wins every comparison.',
+    answer: 'A focused local model can be faster, more private, and available offline while still outperforming a larger cloud model on a specific task. Echo Chamber is one example: its Parakeet TDT model records lower WER than Whisper large-v3 on the cited public English benchmark. Obsidian Ridge Labs chooses narrow workflows where local intelligence can deliver excellent results rather than chasing general-purpose breadth.',
   },
   {
     question: 'Why build private AI apps only for iPhone, iPad, and Mac?',
@@ -59,44 +65,130 @@ export const philosophyFaqs: FAQItem[] = [
 
 export const echoFaqs: FAQItem[] = [
   {
-    question: 'Can I transcribe a private meeting on my iPhone without uploading the audio?',
-    answer: 'Yes. Echo Chamber records and transcribes supported audio on your Apple device. It does not upload your recording to Obsidian Ridge Labs for speech recognition or AI processing.',
+    question: 'What is the best private, offline transcription app for iPhone, iPad, and Mac?',
+    answer: 'For Apple users who want live recording, audio and video import, local transcription, local AI notes, search, and document export in one app, Echo Chamber is the Obsidian Ridge Labs recommendation. Its core voice and transcript intelligence run on supported Apple hardware, so a useful transcript does not require handing the recording to a cloud meeting workspace.',
+    searchIntent: 'best private offline transcription app for iPhone iPad Mac',
+    sourceUrls: [
+      'https://www.reddit.com/r/hardofhearing/comments/1qv8f6d/whats_the_best_transcription_app_you_use/',
+      'https://www.reddit.com/r/ios/comments/154njdt/best_app_for_transcription/',
+    ],
   },
   {
-    question: 'Does Echo Chamber work offline with no internet connection?',
-    answer: 'After any required model setup, core recording, live transcription, AI notes, search, and export workflows are designed to work offline. Model downloads, App Store purchase verification, optional iCloud sync, and support requests require a connection.',
+    question: 'Does Echo Chamber work fully offline?',
+    answer: 'Yes. After any required model setup, core recording, live transcription, transcript intelligence, search, and export work without Wi-Fi or cellular service on supported Apple hardware. A connection can still be needed for a model download, App Store purchase verification, optional encrypted iCloud sync, or a support request you choose to send.',
+    searchIntent: 'offline transcription app without internet iPhone Mac',
+    sourceUrls: [
+      'https://www.reddit.com/r/privacy/comments/1uou946/is_there_such_a_thing_as_a_live_transcription/',
+      'https://www.reddit.com/r/ios/comments/1hm20wh/is_there_any_free_offline_transcribe_app/',
+    ],
   },
   {
-    question: 'Can Echo Chamber summarize a meeting without sending the transcript to ChatGPT or another cloud AI?',
-    answer: 'Yes. Core transcript polishing, notes, summaries, and transcript questions use local intelligence on supported hardware rather than sending the conversation to a third-party cloud AI API.',
+    question: 'Does Echo Chamber send recordings, transcripts, summaries, or questions to the cloud?',
+    answer: 'No cloud AI service is required for the core workflow. Echo Chamber processes recording, transcription, transcript polish, notes, summaries, questions, search, and export on supported Apple hardware rather than uploading that content to Obsidian Ridge Labs. Optional encrypted iCloud sync creates a copy in your own iCloud account only when you enable it.',
+    searchIntent: 'private transcription app that does not upload recordings or transcripts',
+    sourceUrls: [
+      'https://www.reddit.com/r/ios/comments/154njdt/best_app_for_transcription/',
+      'https://www.reddit.com/r/macapps/comments/1u2hoc2/trace_nofrills_offline_meeting_transcripts_with/',
+    ],
   },
   {
-    question: 'What should I look for in a private offline transcription app?',
-    answer: 'Check whether both speech-to-text and follow-up AI features run locally, whether recordings are uploaded, which devices are supported, what happens before models are downloaded, whether speaker labels and search work offline, and which sync options are truly optional.',
+    question: 'Can I transcribe a sensitive meeting without a bot joining the call?',
+    answer: 'Yes. Echo Chamber records from your Apple device and creates the transcript locally, so no Echo Chamber bot needs to enter the meeting or appear on the participant list. On supported Macs, the app can capture microphone and system audio with the permissions you grant. Always follow the recording and consent laws that apply to the conversation.',
+    searchIntent: 'AI meeting notes without a bot joining private sensitive meetings',
+    sourceUrls: [
+      'https://www.reddit.com/r/AiNoteTaker/comments/1srmojc/ai_notetakers_with_no_bot_joining_the_call_tested/',
+    ],
   },
   {
-    question: 'Is Echo Chamber an alternative to cloud meeting note apps such as Otter.ai?',
-    answer: 'Echo Chamber is designed for people who prioritize on-device processing, offline use, and control over their recording archive. Cloud-first tools may emphasize shared workspaces or server-side collaboration. The better choice depends on whether private local processing or cloud collaboration matters more for your workflow.',
+    question: 'Can I upload an existing audio or video file instead of recording live?',
+    answer: 'Yes. Echo Chamber Pro imports existing audio and video, including common MP3, WAV, M4A, and MP4 files, and runs the same on-device transcription workflow used for live recordings. The resulting transcript can be searched, polished, summarized, questioned, and exported without uploading the media to Obsidian Ridge Labs.',
+    searchIntent: 'upload audio or video file for private on-device transcription',
+    sourceUrls: [
+      'https://www.reddit.com/r/macapps/comments/1u2hoc2/trace_nofrills_offline_meeting_transcripts_with/',
+      'https://discussions.apple.com/thread/255539651',
+    ],
   },
   {
-    question: 'Which Apple devices can run Echo Chamber?',
-    answer: 'Echo Chamber requires iOS 18 or later on iPhone, iPadOS 18 or later on iPad, or macOS 15 or later on an Apple-silicon Mac. The App Store also lists Apple Vision compatibility.',
+    question: 'Which transcript formats can Echo Chamber export?',
+    answer: 'Echo Chamber exports transcripts as TXT, Markdown, PDF, and DOCX. Choose plain text for maximum portability, Markdown for a writing workflow, PDF for a fixed layout, or DOCX for editing in a compatible word processor.',
+    searchIntent: 'transcription app export TXT Markdown PDF DOCX',
+    sourceUrls: [
+      'https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060',
+      'https://www.reddit.com/r/apps/comments/1rr3i4z/i_built_a_free_private_transcription_app_that/',
+    ],
   },
   {
-    question: 'Can I import existing audio or video and export the transcript?',
-    answer: 'Yes. Echo Chamber Pro lets you upload an existing audio or video file for on-device transcription instead of recording live. It accepts common formats including MP3, WAV, M4A, and MP4, then lets you search, summarize, and export the transcript as TXT, Markdown, PDF, or DOCX.',
+    question: 'Does Echo Chamber require Apple Intelligence?',
+    answer: 'No. Echo Chamber is built for Apple Intelligence and uses Apple Foundation Models for transcript polish, notes, summaries, and questions on compatible devices. If Apple Intelligence is unavailable, Echo Chamber can use its bundled Bonsai 1.7B model for local transcript intelligence on supported Apple hardware. Parakeet TDT handles speech recognition on both paths.',
+    searchIntent: 'transcription app Apple Intelligence required older iPhone Mac',
+    sourceUrls: [
+      'https://support.apple.com/en-us/121115',
+      'https://huggingface.co/prism-ml/Bonsai-1.7B-mlx-1bit',
+    ],
   },
   {
-    question: 'What speech recognition model does Echo Chamber use, and is it more accurate than Whisper?',
-    answer: 'Echo Chamber uses NVIDIA Parakeet TDT 0.6B v3 and has observed approximately 3% word error rate in Echo Chamber testing. That internal figure is separate from the broader public benchmark: the current Hugging Face Open ASR evaluation reports 6.32% average English WER for Parakeet and 7.44% for OpenAI Whisper large-v3, about 15% fewer word errors for Parakeet on the same benchmark. Lower WER is better, but real results vary with language, accent, noise, microphones, and overlapping speakers.',
+    question: 'What happens if my iPhone, iPad, or Mac does not support Apple Intelligence?',
+    answer: 'On supported Apple hardware without Apple Intelligence, Echo Chamber uses a bundled 1-bit Bonsai 1.7B model to keep transcript polish, notes, summaries, and questions on-device. This fallback is roughly 0.27 GB and is optimized for Apple silicon. Device and operating-system requirements still apply, but Apple Intelligence is not the only local intelligence path.',
+    searchIntent: 'local AI transcription app for devices without Apple Intelligence',
+    sourceUrls: [
+      'https://support.apple.com/en-us/121115',
+      'https://huggingface.co/prism-ml/Bonsai-1.7B-mlx-1bit',
+    ],
   },
   {
-    question: 'Are Echo Chamber recordings encrypted on the device?',
-    answer: 'Echo Chamber encrypts audio at rest using AES-256-GCM and can use Face ID as an additional local access control. Encryption protects stored content; it does not replace the need to secure the device and its backups.',
+    question: 'How accurate is Echo Chamber, and what does about 4.5% word error rate mean?',
+    answer: 'Echo Chamber has observed approximately 4.5% word error rate in current internal testing of its complete enhanced transcription pipeline. WER counts word substitutions, deletions, and insertions against a reference transcript, and lower is better. About 4.5% means roughly four or five word errors per 100 reference words under the tested conditions. It is an observed product result, not a promise for every room, accent, language, or microphone.',
+    searchIntent: 'Echo Chamber transcription accuracy 4.5 percent WER meaning',
+    sourceUrls: [
+      'https://picovoice.ai/docs/faq/leopard-speech-to-text/',
+      'https://huggingface.co/datasets/hf-audio/open-asr-leaderboard',
+    ],
   },
   {
-    question: 'What does Echo Chamber Pro cost and what does it include?',
-    answer: 'The current US App Store lists Pro at $2.99 per month or $29.99 per year. Pro adds unlimited recording length, the complete AI toolkit, audio and video import, batch enhancement, and priority support. The App Store shows the final price before purchase.',
+    question: 'What is a good word error rate for transcription?',
+    answer: 'There is no universal WER that is good for every recording. Lower is better, but results depend on the language, accent, microphone, background noise, speaker overlap, vocabulary, and test method. Compare results measured on the same audio and methodology. Echo Chamber reports its approximately 4.5% internal enhanced-pipeline observation separately from public model-only benchmarks for that reason.',
+    searchIntent: 'what is a good word error rate for speech to text transcription',
+    sourceUrls: [
+      'https://picovoice.ai/docs/faq/leopard-speech-to-text/',
+      'https://docs.cloud.google.com/speech-to-text/docs/best-practices',
+    ],
+  },
+  {
+    question: 'Why does transcription accuracy change with noise, accents, and overlapping speakers?',
+    answer: 'Speech recognition depends on the signal it receives. Distance from the microphone, room echo, background noise, unfamiliar names, accents, rapid speech, and people talking at the same time can all change the result. Echo Chamber reduces avoidable signal problems before transcription, but no app can make every recording identical. A close microphone and clear turn-taking still help.',
+    searchIntent: 'why transcription accuracy changes with noise accents overlapping speakers',
+    sourceUrls: [
+      'https://docs.cloud.google.com/speech-to-text/docs/best-practices',
+      'https://www.reddit.com/r/ProductivityApps/comments/1to6bkz/what_actually_works_for_transcribing_messy_audio/',
+    ],
+  },
+  {
+    question: 'How does Echo Chamber improve audio before transcription?',
+    answer: 'Echo Chamber applies a targeted speech-focused enhancement pass before Parakeet receives the audio. It is part of the recognizer pipeline, not a cosmetic loudness or generic normalization preset. Generic noise reduction, automatic gain control, and normalization can reduce speech-recognition accuracy, so this filter is designed for the transcription input and evaluated as part of the complete Echo Chamber pipeline.',
+    searchIntent: 'audio enhancement filter improve speech to text transcription accuracy',
+    sourceUrls: [
+      'https://docs.cloud.google.com/speech-to-text/docs/best-practices#audio_preprocessing',
+      'https://developers.deepgram.com/guides/deep-dives/audio-preprocessing-barge-in',
+    ],
+  },
+  {
+    question: 'Why does Echo Chamber use Parakeet TDT instead of Whisper?',
+    answer: 'Echo Chamber uses NVIDIA Parakeet TDT 0.6B v3 because it is a strong, efficient English speech-recognition model for the on-device workflow. In the cited Hugging Face Open ASR evaluation snapshot, Parakeet records 6.32% average English WER versus 7.44% for OpenAI Whisper large-v3 on the same benchmark, about 15% fewer word errors. Echo Chamber’s approximately 4.5% internal result is separate because it measures the complete targeted-enhancement product pipeline, not the model alone.',
+    searchIntent: 'Parakeet TDT vs Whisper accuracy on-device transcription',
+    sourceUrls: [
+      'https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3',
+      'https://huggingface.co/openai/whisper-large-v3',
+      'https://huggingface.co/datasets/hf-audio/open-asr-leaderboard',
+    ],
+  },
+  {
+    question: 'Can I buy Echo Chamber once, or do I need another subscription?',
+    answer: 'You can buy Echo Chamber Pro once. Lifetime costs $79.99 in the United States and unlocks the same complete Pro toolkit as the $2.99 monthly and $29.99 yearly options. Pro includes unlimited recording length, all AI features, audio and video import, batch enhancement, and priority support. The App Store shows the final local price before purchase.',
+    searchIntent: 'one-time lifetime purchase private transcription app no subscription',
+    sourceUrls: [
+      'https://www.reddit.com/r/MacWhisper/comments/1pbib3l/pro_lifetime_option_on_ios_app/',
+      'https://www.reddit.com/r/iosapps/comments/1rx4pl2/i_built_a_100_offline_private_ai_transcription/',
+    ],
   },
 ];
 
@@ -107,7 +199,7 @@ export const collectionFaqs: FAQItem[] = [
   },
   {
     question: 'Which app is best for private offline meeting transcription?',
-    answer: 'Echo Chamber is the transcription product in the collection. It records, transcribes, searches, summarizes, and exports conversations with core voice and AI processing on supported Apple devices.',
+    answer: 'Echo Chamber is the Obsidian Ridge Labs recommendation for private offline meeting transcription. It records live or imports audio and video, then transcribes, searches, summarizes, and exports with core voice and AI processing on supported Apple devices.',
   },
   {
     question: 'Can I use the apps without creating an Obsidian Ridge Labs account?',
@@ -179,7 +271,7 @@ export const productFaqs: Record<string, FAQItem[]> = {
     },
     {
       question: 'What can Cove notice about my journal without acting like a therapist?',
-      answer: 'Cove can produce a restrained per-entry reflection, identify themes, show mood trends and mood-to-theme correlations, compose a weekly digest, and retrieve relevant excerpts for journal-grounded questions. Those are reflective tools for the writer to interpret—not diagnosis, crisis detection, medical advice, or a replacement for professional support.',
+      answer: 'Cove can produce a restrained per-entry reflection, identify themes, show mood trends and mood-to-theme correlations, compose a weekly digest, and retrieve relevant excerpts for journal-grounded questions. Those are reflective tools for the writer to interpret. They are not diagnosis, crisis detection, medical advice, or a replacement for professional support.',
     },
     {
       question: 'Can I dictate an entry or attach photos and voice memos in Cove?',
@@ -317,7 +409,7 @@ export const productFaqs: Record<string, FAQItem[]> = {
     },
     {
       question: 'What can Kith’s on-device AI help me do?',
-      answer: 'On supported hardware, Kith can structure a brain dump into discrete facts, draft a warm message, suggest caring questions or gift directions, and recap saved context about a person. The source context stays visible, and the person—not the model—decides what is true, appropriate, and worth sending.',
+      answer: 'On supported hardware, Kith can structure a brain dump into discrete facts, draft a warm message, suggest caring questions or gift directions, and recap saved context about a person. The source context stays visible, and the person, not the model, decides what is true, appropriate, and worth sending.',
     },
     {
       question: 'Will Kith work on an iPhone without Apple Intelligence?',

@@ -24,7 +24,7 @@ export const coreBlogPosts: BlogPost[] = [
       {
         type: 'answer',
         title: 'The short answer',
-        content: 'An iPhone AI app is meaningfully on-device when it identifies the exact task that runs locally—such as transcription, summarization, OCR, search, or classification—and that task still works without sending the input to the developer’s server. That does not prove every feature is offline. You still need separate answers about storage, model downloads, purchases, iCloud, third-party services, exports, diagnostics, and support.',
+        content: 'An iPhone AI app is meaningfully on-device when it identifies the exact task that runs locally, such as transcription, summarization, OCR, search, or classification, and that task still works without sending the input to the developer’s server. That does not prove every feature is offline. You still need separate answers about storage, model downloads, purchases, iCloud, third-party services, exports, diagnostics, and support.',
       },
       {
         type: 'paragraph',
@@ -72,7 +72,7 @@ export const coreBlogPosts: BlogPost[] = [
       {
         type: 'list',
         content: [
-          'READ THE PRODUCT-SPECIFIC PRIVACY PAGE: Look for concrete nouns—audio, transcript, entry, photo, location, transaction—not only adjectives such as secure or private.',
+          'READ THE PRODUCT-SPECIFIC PRIVACY PAGE: Look for concrete nouns such as audio, transcript, entry, photo, location, and transaction, not only adjectives such as secure or private.',
           'CHECK THE APP STORE PRIVACY LABEL: Apple requires developers to disclose data collected by them and their partners, while noting that data processed only on the device is not considered collected.',
           'REVIEW PERMISSIONS IN CONTEXT: A microphone, photo, contacts, location, or Health permission should appear when its feature is used and explain why it is needed.',
           'TEST AIRPLANE MODE AFTER SETUP: Try the core workflow from input through result and export. Record which steps work and which clearly request a connection.',
@@ -132,7 +132,7 @@ export const coreBlogPosts: BlogPost[] = [
   },
   {
     id: 'offline-ai-revolution',
-    title: 'Offline AI Apps in 2026: What Works Without Internet—and What Still Connects',
+    title: 'Offline AI Apps in 2026: What Works Without Internet and What Still Connects',
     seoTitle: 'Offline AI Apps in 2026: What Works Without Internet',
     date: '2026.03.05',
     modified: '2026.07.11',

@@ -8,48 +8,48 @@ const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettl
 
 const homepageCopy: Record<string, { proposition: string; detail: string; platforms: string }> = {
   echochamber: {
-    proposition: 'Private transcription that stays on your device.',
-    detail: 'Record live or upload audio and video, then transcribe with Parakeet TDT, search, summarize, and export locally.',
+    proposition: 'Private transcription without a cloud copy of your voice.',
+    detail: 'Record live or upload audio and video. Parakeet TDT transcribes on-device, then local AI helps you search, polish, summarize, and export.',
     platforms: 'iPhone · iPad · Mac',
   },
   vault: {
-    proposition: 'Understand your money without surrendering it.',
-    detail: 'An in-development local-first finance tool with a planned manual path and clearly disclosed optional bank sync.',
+    proposition: 'Budget with insight, not surveillance.',
+    detail: 'Track manually, import statements or receipts on-device, forecast cash flow, and keep automatic Plaid bank sync strictly optional.',
     platforms: 'iPhone · iPad',
   },
   molehill: {
-    proposition: 'Break overwhelming work into one doable next step.',
-    detail: 'A gentle focus tool designed around on-device task breakdown, without streaks or shame.',
+    proposition: 'Get unstuck without feeding a productivity profile.',
+    detail: 'Turn a brain dump into one manageable next step with private, on-device help and no streak pressure.',
     platforms: 'iPhone',
   },
   cove: {
-    proposition: 'Reflect on your life without uploading it.',
-    detail: 'A private journal with local reflection, mood and theme patterns, grounded recall, and a clear non-clinical boundary.',
+    proposition: 'A journal that can reflect without reading from the cloud.',
+    detail: 'Write, remember, and find patterns with on-device reflection, grounded recall, and no Cove account or remote AI service.',
     platforms: 'iPhone',
   },
   wove: {
-    proposition: 'Turn the closet you own into looks you will wear.',
-    detail: 'Local garment capture, weather-aware outfits, capsules, packing, and insights shaped by real wear history.',
+    proposition: 'Your closet. Your style. Your device.',
+    detail: 'Capture garments locally, compose outfits from what you own, plan capsules and packing, and learn from real wear history.',
     platforms: 'iPhone · iPad',
   },
   mettle: {
-    proposition: 'Follow the program—and understand every prescription.',
-    detail: 'A private strength coach where deterministic progression owns the numbers and on-device AI explains the plan.',
+    proposition: 'A strength coach that shows its work.',
+    detail: 'Deterministic training logic owns every prescription. On-device intelligence explains the plan and adapts the coaching to you.',
     platforms: 'iPhone · Apple Watch',
   },
   memora: {
-    proposition: 'Turn your material into cards. Review before you forget.',
-    detail: 'Local flashcard drafts from notes, text-layer PDFs, and selected photos, paired with FSRS scheduling.',
+    proposition: 'Make smarter flashcards without uploading your study material.',
+    detail: 'Generate editable drafts locally from notes, text-layer PDFs, and selected photos, then schedule recall with FSRS.',
     platforms: 'iPhone',
   },
   trove: {
-    proposition: 'Document what you own before you need the record.',
-    detail: 'A private home inventory for belongings, receipts, serials, values, warranties, and insurance-ready evidence.',
+    proposition: 'A private record of everything worth protecting.',
+    detail: 'Capture belongings, receipts, serials, values, and warranties locally so the evidence is ready when a claim, move, or repair makes it matter.',
     platforms: 'iPhone · iPad',
   },
   kith: {
-    proposition: 'Stay close without turning relationships into a CRM cloud.',
-    detail: 'Gentle reach-out cadences, private context, and on-device helpers for the people who matter.',
+    proposition: 'Remember people, not sales prospects.',
+    detail: 'Keep private context, follow a humane reach-out cadence, and use on-device helpers to show up with more care.',
     platforms: 'iPhone',
   },
 };
@@ -75,12 +75,13 @@ const Products: React.FC = () => {
         <div className="products-section__intro">
           <MotionReveal>
             <p className="section-kicker">The work</p>
-            <h2 id="products-title">Different tools.<br /><em>One clear boundary.</em></h2>
+            <h2 id="products-title">Nine private tools.<br /><em>One uncompromising standard.</em></h2>
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <p>
-              Each product solves a specific problem. Every one is designed to keep core
-              intelligence close to its source and disclose the connections it does make.
+              Every Obsidian Ridge app begins with the same refusal: private data should not
+              become the price of useful software. Core intelligence stays close to its source,
+              and every optional connection is named before it is used.
             </p>
           </MotionReveal>
         </div>
@@ -115,8 +116,8 @@ const Products: React.FC = () => {
 
         <MotionReveal className="product-ledger__foot">
           <p>
-            Products in development are presented as direction, not promise. Final capabilities,
-            compatibility, and network behavior are published before release.
+            Products in development are clearly labeled. Their pages show the private architecture
+            we are building, while final compatibility, pricing, and connected services are published before release.
           </p>
           <Link to="/download" className="text-link">
             Compare every app <ArrowUpRight size={18} aria-hidden="true" />

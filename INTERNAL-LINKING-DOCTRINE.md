@@ -1,4 +1,4 @@
-# Internal Linking Doctrine — Obsidian Ridge Labs
+# Internal Linking Doctrine: Obsidian Ridge Labs
 
 ## Purpose
 
@@ -27,7 +27,7 @@ No page should be a dead end. Every page must link to at least 3 other internal 
 Anchor text tells search engines what the linked page is about. Always use keyword-rich, descriptive anchor text that reflects the target page's content.
 
 **Good:**
-- `<Link to="/apps/vault">Obsidian Ridge Vault — private AI finance tracking</Link>`
+- `<Link to="/apps/vault">Obsidian Ridge Vault: private AI finance tracking</Link>`
 - `<Link to="/blog/finance-app-red-flags">The hidden cost of free finance apps</Link>`
 - `<Link to="/philosophy">Our privacy-first philosophy</Link>`
 
@@ -133,7 +133,7 @@ Arrows (◄──►) indicate bidirectional linking.
 1. Create the product page at `/apps/{id}`
 2. Add the product to the homepage Products grid (automatic via data)
 3. Add the product to the Navigation dropdown (automatic via data)
-4. Add the product to the Footer (manual — update Footer.tsx)
+4. Add the product to the Footer (manual: update Footer.tsx)
 5. Add the product to the Philosophy page "See the Philosophy in Action" section
 6. Write one comparison and one best-app guide, both with the product's `appId`
 7. Cross-link: new product → all existing products, and all existing products → new product
@@ -239,7 +239,7 @@ All major AI crawlers (GPTBot, ClaudeBot, PerplexityBot, etc.) are explicitly al
 
 1. **Crawl depth**: No page should be more than 2 clicks from the homepage
 2. **Internal links per page**: Minimum 3, target 5-8
-3. **Orphan pages**: Zero — every page must be linked from at least 2 other pages
+3. **Orphan pages**: Zero. Every page must be linked from at least 2 other pages.
 4. **Link equity distribution**: Product pages should each receive roughly equal internal links
 5. **Rich results**: Monitor Google Search Console for FAQ, SoftwareApplication, and BlogPosting rich results
 

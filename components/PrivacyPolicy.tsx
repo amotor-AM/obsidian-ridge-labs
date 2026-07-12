@@ -125,10 +125,11 @@ const PrivacyPolicy: React.FC = () => {
                 <h3 className="text-lg font-semibold text-white mb-3">Echo Chamber</h3>
                 <p>
                   Recording, transcription, summaries, transcript chat, search, and translation run
-                  on-device. Echo Chamber may connect to download a speech model. If you enable iCloud
-                  sync, the app encrypts audio on your device with AES-256-GCM before it is stored in
-                  your iCloud account; iCloud sync is off by default. Obsidian Ridge Labs does not
-                  operate a recording server for Echo Chamber.
+                  on-device. Audio stored by Echo Chamber is encrypted at rest using AES-256-GCM.
+                  Echo Chamber may connect to download a speech model. If you enable iCloud sync,
+                  audio is encrypted on your device before it is stored in your iCloud account;
+                  iCloud sync is off by default. Obsidian Ridge Labs does not operate a recording
+                  server for Echo Chamber.
                 </p>
               </div>
 

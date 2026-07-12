@@ -7,27 +7,27 @@ import MotionReveal from './home/MotionReveal';
 const architecturePrinciples = [
   {
     number: '01',
-    title: 'On-device intelligence',
-    copy: 'Supported AI features use Apple frameworks or app-bundled models on the hardware in your hands.',
+    title: 'Your data stays close',
+    copy: 'Supported AI features use Apple frameworks or app-bundled models on the hardware already in your hands.',
     note: 'Core path: local',
   },
   {
     number: '02',
-    title: 'Offline-ready workflows',
-    copy: 'After any required model setup, core work continues without Wi-Fi, cellular service, or a server round trip.',
+    title: 'The core survives offline',
+    copy: 'After any required model setup, important work continues without Wi-Fi, cellular service, or permission from our servers.',
     note: 'Network: optional',
   },
   {
     number: '03',
-    title: 'No surveillance layer',
-    copy: 'We do not build advertising profiles into the product experience, and released product disclosures identify any optional diagnostics or connected services.',
+    title: 'No advertising profile',
+    copy: 'Your recordings, finances, journals, tasks, wardrobe, study material, belongings, and relationships do not become an Obsidian Ridge advertising identity.',
     note: 'Profiles: none',
   },
   {
     number: '04',
-    title: 'Honest connections',
-    copy: 'Services such as Plaid or iCloud are described in context before you choose to enable them.',
-    note: 'Control: yours',
+    title: 'Connections need a reason',
+    copy: 'Services such as Plaid, iCloud, WeatherKit, purchases, and model downloads are named in context before setup or use.',
+    note: 'Boundary: visible',
   },
 ];
 
@@ -44,11 +44,11 @@ const Services: React.FC = () => {
           <div className="architecture-section__layout">
             <div className="architecture-section__sticky">
               <MotionReveal>
-                <p className="section-kicker">Local by architecture</p>
-                <h2 id="architecture-title">Privacy is easier when data never has to leave.</h2>
+                <p className="section-kicker">The shorter data path</p>
+                <h2 id="architecture-title">The strongest privacy feature is data that never leaves.</h2>
                 <p>
-                  We design the core path to stay on-device, then document every optional service
-                  that crosses that boundary.
+                  Obsidian Ridge Labs puts core intelligence on supported Apple hardware, then
+                  treats every network connection as a separate choice that deserves an explanation.
                 </p>
               </MotionReveal>
 
@@ -91,7 +91,7 @@ const Services: React.FC = () => {
             <MotionReveal delay={0.08}>
               <p>
                 Focusing on Apple lets us build with native performance, system privacy controls,
-                and on-device intelligence from the first sketch—not as an afterthought.
+                and on-device intelligence from the first sketch, never as an afterthought.
               </p>
               <Link to="/blog/apple-ecosystem-privacy" className="text-link">
                 Why we build for Apple <ArrowUpRight size={18} aria-hidden="true" />
@@ -119,8 +119,8 @@ const Services: React.FC = () => {
             </MotionReveal>
             <MotionReveal delay={0.08}>
               <p>
-                Read the privacy model. Browse the documentation. Inspect this website’s source.
-                We would rather explain the boundary than ask you to take it on faith.
+                Read the privacy model. Browse the documentation. Inspect this website&apos;s source.
+                Do not trust a slogan when you can inspect the system behind it.
               </p>
               <div className="verification-section__actions">
                 <Link to="/privacy" className="button button--outline">Read the privacy model <ArrowUpRight size={17} /></Link>
@@ -144,7 +144,7 @@ const Services: React.FC = () => {
           <div>
             <p className="section-kicker section-kicker--dark">Private AI, explained plainly</p>
             <h2 id="home-faq-title">Questions worth asking before you trust an AI app.</h2>
-            <p>Specific answers are more useful than privacy adjectives. Every product page goes deeper into its own data flow.</p>
+            <p>Before an AI app earns your data, it should answer exactly where processing, storage, sync, and optional services happen.</p>
           </div>
           <div className="home-faq__list">
             {homeFaqs.map((faq, index) => (
@@ -160,9 +160,9 @@ const Services: React.FC = () => {
       <section className="final-cta" aria-labelledby="final-cta-title">
         <div className="final-cta__ridge" aria-hidden="true"><span /><span /><span /><span /></div>
         <div className="section-frame">
-          <p className="section-kicker section-kicker--dark">Private tools for real work</p>
-          <h2 id="final-cta-title">Keep the value.<br /><em>Keep the data.</em></h2>
-          <p>Explore thoughtful AI tools made for the Apple devices already in your hands.</p>
+          <p className="section-kicker section-kicker--dark">The Obsidian standard</p>
+          <h2 id="final-cta-title">Move the intelligence.<br /><em>Not the private life.</em></h2>
+          <p>Choose private AI built for the Apple devices already in your hands.</p>
           <div className="final-cta__actions">
             <Link to="/download" className="button button--dark">Explore every app <ArrowRight size={18} /></Link>
             <a href="https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060" target="_blank" rel="noreferrer" className="text-link text-link--dark">

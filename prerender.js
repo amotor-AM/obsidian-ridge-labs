@@ -315,7 +315,7 @@ llmsContent += `---
 Obsidian Ridge Labs operates on four product constraints:
 
 1. **Data has gravity**. Core processing should happen where private data is created whenever the hardware can do the work.
-2. **Trust should be inspectable**. Data flows should be documented, permissions should appear in context, and source should be available where practical.
+2. **The cloud must earn its place**. Core features should work locally, permissions should appear in context, and optional network connections should be narrow and user-controlled.
 3. **Offline should be excellent**. After required setup, important work should continue without the network.
 4. **Memory should be deliberate**. Retention and deletion should be understandable and under user control.
 
@@ -366,7 +366,7 @@ ${post.modified ? `- **Updated**: ${post.modified}\n` : ''}- **Read Time**: ${po
 
 ${post.keyTakeaways.map((takeaway) => `- ${takeaway}`).join('\n')}
 
-${post.listItems?.length ? `#### Items Compared\n\n${post.listItems.map((item, index) => `${index + 1}. **${item.name}** — ${item.description}`).join('\n')}\n\n` : ''}
+${post.listItems?.length ? `#### Items Compared\n\n${post.listItems.map((item, index) => `${index + 1}. **${item.name}**: ${item.description}`).join('\n')}\n\n` : ''}
 #### Full Article Content
 
 `;
@@ -415,7 +415,7 @@ ${post.listItems?.length ? `#### Items Compared\n\n${post.listItems.map((item, i
   llmsContent += `\n---\n\n`;
 }
 
-// Help center / knowledge base — full article text for AI ingestion.
+// Help center / knowledge base: full article text for AI ingestion.
 llmsContent += `## Help Center & Knowledge Base\n\n`;
 
 const renderKbBlock = (block) => {
@@ -427,7 +427,7 @@ const renderKbBlock = (block) => {
     case 'list':
       return block.items.map((it) => `- ${it}`).join('\n') + '\n\n';
     case 'steps':
-      return block.items.map((s, i) => `${i + 1}. **${s.title}** — ${s.description}`).join('\n') + '\n\n';
+      return block.items.map((s, i) => `${i + 1}. **${s.title}**: ${s.description}`).join('\n') + '\n\n';
     case 'callout':
       return `> ${block.title ? `**${block.title}** ` : ''}${block.content}\n\n`;
     case 'faq':
@@ -442,7 +442,7 @@ for (const kb of knowledgeBases) {
   const previewNotice = kbProduct && ['pre-release', 'concept'].includes(kbProduct.releaseStatus)
     ? '> **Preview documentation:** This product is in development. Features, compatibility, and exact steps may change before release.\n\n'
     : '';
-  llmsContent += `### ${kb.appName} — Help Guides\n\n${kb.intro}\n\n`;
+  llmsContent += `### ${kb.appName}: Help Guides\n\n${kb.intro}\n\n`;
   llmsContent += previewNotice;
   for (const article of kb.articles) {
     const cat = kb.categories.find((c) => c.id === article.category);
@@ -473,7 +473,7 @@ let llmsIndex = `# Obsidian Ridge Labs
 `;
 
 for (const product of products) {
-  llmsIndex += `- [${product.name}](${SITE_ORIGIN}/apps/${product.id}) — ${releaseLabel(product)}. ${product.description}\n`;
+  llmsIndex += `- [${product.name}](${SITE_ORIGIN}/apps/${product.id}): ${releaseLabel(product)}. ${product.description}\n`;
 }
 
 llmsIndex += `

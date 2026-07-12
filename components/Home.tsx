@@ -23,6 +23,7 @@ const Home: React.FC = () => {
         name: product.name,
         url: `${SITE_URL}/apps/${product.id}`,
         description: product.description,
+        creativeWorkStatus: product.appStoreUrl ? 'Released' : 'In development',
       },
     })),
   };
@@ -31,10 +32,10 @@ const Home: React.FC = () => {
     <>
       <SEO
         title="Private AI Apps for Apple"
-        description="Private, offline-first AI apps for iPhone, iPad, and Mac. On-device transcription, finance intelligence, focus tools, and more."
+        description="Obsidian Ridge Labs builds private, on-device AI apps for iPhone, iPad, and Mac, including Echo Chamber transcription and a growing collection of local-first tools."
         canonical={`${SITE_URL}/`}
         ogImage={`${SITE_URL}/og.png`}
-        ogImageAlt="Obsidian Ridge Labs — private AI apps built for Apple devices"
+        ogImageAlt="Obsidian Ridge Labs: private AI apps built for Apple devices"
         keywords={[
           'private AI apps',
           'on-device AI for Apple',

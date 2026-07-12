@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
           custom={0.08}
           variants={reveal}
         >
-          <span>Private intelligence for Apple devices</span>
+          <span>Private AI apps for Apple devices</span>
           <span>Independent studio · Las Vegas, Nevada</span>
         </motion.div>
 
@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
               custom={0.16}
               variants={reveal}
             >
-              On-device by design
+              Your AI. Your phone. Your business.
             </motion.p>
             <motion.h1
               id="home-heading"
@@ -75,8 +75,9 @@ const Hero: React.FC = () => {
               custom={0.23}
               variants={reveal}
             >
-              AI without<br />
-              <em>the audience.</em>
+              <span>Pure privacy.</span>
+              <span>Intelligence on</span>
+              <em>your terms.</em>
             </motion.h1>
             <motion.div
               className="orl-hero__intro"
@@ -86,15 +87,16 @@ const Hero: React.FC = () => {
               variants={reveal}
             >
               <p>
-                Obsidian Ridge Labs builds useful AI for iPhone, iPad, and Mac that
-                works where your private data already lives: on your device.
+                We build apps for people who refuse to trade privacy for convenience.
+                Core intelligence runs on the Apple device in your hands. If a feature
+                connects to a named service, we explain that boundary before you choose it.
               </p>
               <div className="orl-hero__actions">
                 <button type="button" className="button button--primary" onClick={scrollToProducts}>
-                  Explore the apps <ArrowDownRight size={18} aria-hidden="true" />
+                  Explore private apps <ArrowDownRight size={18} aria-hidden="true" />
                 </button>
-                <Link className="button button--quiet" to="/apps/echochamber">
-                  Meet Echo Chamber <ArrowUpRight size={18} aria-hidden="true" />
+                <Link className="button button--quiet" to="/philosophy">
+                  Read the manifesto <ArrowUpRight size={18} aria-hidden="true" />
                 </Link>
               </div>
             </motion.div>
@@ -108,8 +110,8 @@ const Hero: React.FC = () => {
             variants={reveal}
             aria-label="Obsidian Ridge Labs product principles"
           >
-            <span>Our standard</span>
-            <p>Move less data. Explain every connection. Make the offline experience excellent.</p>
+            <span>The refusal</span>
+            <p>Your private life is not raw material for someone else&apos;s cloud.</p>
           </motion.aside>
         </div>
 
@@ -120,9 +122,9 @@ const Hero: React.FC = () => {
           custom={0.52}
           variants={reveal}
         >
-          <span>01 · Local processing</span>
-          <span>02 · No advertising layer</span>
-          <span>03 · Explicit connections</span>
+          <span>01 · Core AI on-device</span>
+          <span>02 · Offline-ready workflows</span>
+          <span>03 · Connections explained first</span>
           <button type="button" onClick={scrollToProducts}>
             View the collection <ArrowDownRight size={17} aria-hidden="true" />
           </button>

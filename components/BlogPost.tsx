@@ -246,7 +246,7 @@ const BlogPostPage: React.FC = () => {
         description={post.seoDescription || post.excerpt}
         ogType="article"
         ogImage="https://obsidianridgelabs.com/blog-og.png"
-        ogImageAlt="Obsidian Ridge Labs Journal — evidence-led guides to private, on-device AI"
+        ogImageAlt="Obsidian Ridge Labs Journal: evidence-led guides to private, on-device AI"
         keywords={post.tags.map((tag) => tag.replace('#', '').replaceAll('-', ' '))}
         article={{
           publishedTime: post.date.replace(/\./g, '-'),

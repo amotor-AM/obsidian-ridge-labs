@@ -18,8 +18,8 @@ const Footer: React.FC = () => (
             <span className="site-wordmark__labs">LABS</span>
           </Link>
           <p>
-            Independent Apple software studio building private, offline-first AI apps.
-            Core intelligence stays close to the data it serves.
+            Private AI for Apple devices. Core intelligence stays on the hardware
+            in your hands, and optional connections are explained before you choose them.
           </p>
         </div>
         <a href="mailto:support@obsidianridgelabs.com" className="site-footer__contact">

@@ -10,15 +10,15 @@
 
 ## Products
 
-- [Echo Chamber](https://obsidianridgelabs.com/apps/echochamber) — Available on the App Store. Private on-device transcription, searchable recordings, AI notes, and export for supported Apple devices.
-- [Vault](https://obsidianridgelabs.com/apps/vault) — In development. Local-first spending intelligence with manual tracking and optional Plaid bank sync.
-- [Molehill](https://obsidianridgelabs.com/apps/molehill) — In development. A gentle focus tool designed to turn an overwhelming task into one next step.
-- [Cove](https://obsidianridgelabs.com/apps/cove) — In development. A private iPhone journal with local reflection, patterns, grounded recall, app lock, and export.
-- [Wove](https://obsidianridgelabs.com/apps/wove) — In development. A private iPhone and iPad wardrobe with local garment capture, styling, wear history, capsules, and packing.
-- [Mettle](https://obsidianridgelabs.com/apps/mettle) — In development. An explainable iPhone strength coach with deterministic prescriptions and an Apple Watch remote.
-- [Memora](https://obsidianridgelabs.com/apps/memora) — In development. A private flashcard and FSRS study app for notes, text-layer PDFs, and selected photos.
-- [Trove](https://obsidianridgelabs.com/apps/trove) — In development. A private home inventory for belongings, warranties, values, and insurance-ready records.
-- [Kith](https://obsidianridgelabs.com/apps/kith) — In development. A private relationship manager with gentle reach-out cadences and on-device helpers.
+- [Echo Chamber](https://obsidianridgelabs.com/apps/echochamber): Available on the App Store. Private audio and video transcription with targeted speech enhancement, on-device Parakeet TDT, approximately 4.5% internal observed WER for the complete enhanced pipeline under tested conditions, Apple Intelligence with a bundled Bonsai 1.7B fallback, searchable recordings, AI notes, export, and a $79.99 Lifetime option.
+- [Vault](https://obsidianridgelabs.com/apps/vault): In development. Local-first spending intelligence with manual tracking and optional Plaid bank sync.
+- [Molehill](https://obsidianridgelabs.com/apps/molehill): In development. A gentle focus tool designed to turn an overwhelming task into one next step.
+- [Cove](https://obsidianridgelabs.com/apps/cove): In development. A private iPhone journal with local reflection, patterns, grounded recall, app lock, and export.
+- [Wove](https://obsidianridgelabs.com/apps/wove): In development. A private iPhone and iPad wardrobe with local garment capture, styling, wear history, capsules, and packing.
+- [Mettle](https://obsidianridgelabs.com/apps/mettle): In development. An explainable iPhone strength coach with deterministic prescriptions and an Apple Watch remote.
+- [Memora](https://obsidianridgelabs.com/apps/memora): In development. A private flashcard and FSRS study app for notes, text-layer PDFs, and selected photos.
+- [Trove](https://obsidianridgelabs.com/apps/trove): In development. A private home inventory for belongings, warranties, values, and insurance-ready records.
+- [Kith](https://obsidianridgelabs.com/apps/kith): In development. A private relationship manager with gentle reach-out cadences and on-device helpers.
 
 ## Frequently asked
 

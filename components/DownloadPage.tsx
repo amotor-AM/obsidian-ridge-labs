@@ -16,41 +16,41 @@ type ProductPresentation = {
 
 const PRODUCT_PRESENTATION: Record<string, ProductPresentation> = {
   echochamber: {
-    description: 'Record live or upload audio and video, then transcribe with Parakeet TDT, summarize, search, and export on your Apple device.',
-    capabilities: ['≈3% observed WER in testing', 'Audio and video upload', 'Local AI notes and summaries', 'Four export formats'],
+    description: 'Private transcription for live recordings, audio, and video with targeted speech enhancement, on-device Parakeet TDT, and local transcript intelligence.',
+    capabilities: ['Approximately 4.5% enhanced pipeline WER', 'Apple Intelligence with Bonsai 1.7B fallback', 'Audio and video upload', '$79.99 Lifetime option'],
     image: '/images/echochamber/transcription-details-960.webp',
     imageAlt: 'Echo Chamber transcript screen with audio controls, speaker labels, and searchable text',
   },
   vault: {
-    description: 'An in-development finance app designed for local spending analysis, statement import, cash-flow forecasts, and clearly disclosed optional Plaid sync.',
+    description: 'Budget with local spending intelligence, on-device document import, cash-flow forecasts, and optional Plaid sync instead of a mandatory bank connection.',
     capabilities: ['In-development product', 'Planned statement import', 'Estimated cash-flow forecasting', 'Optional Plaid direction'],
   },
   molehill: {
-    description: 'An in-development focus app that turns an overwhelming task into one clear next step—without streaks, shame, or behavioral tracking.',
+    description: 'Turn an overwhelming task into one clear next step with private, on-device help and no streaks, shame, or behavioral profile.',
     capabilities: ['On-device task breakdown', 'One-step focus', 'Brain-dump organization', 'No streak mechanics'],
   },
   cove: {
-    description: 'An in-development iPhone journal with local reflections, mood and theme patterns, grounded journal questions, app lock, and export.',
+    description: 'Write, reflect, and rediscover your own words with a local iPhone journal, grounded questions, app lock, and export.',
     capabilities: ['Writing, photos, and voice memos', 'On-device reflection with fallback', 'Semantic search and patterns', 'Local storage in the current build'],
   },
   wove: {
-    description: 'An in-development private wardrobe for local garment capture, daily and occasion styling, real-wear insights, capsules, and packing.',
+    description: 'Turn a local closet into daily looks, capsules, packing plans, and real-wear insights without a remote wardrobe-analysis server.',
     capabilities: ['Vision garment cut-out', 'Deterministic styling fallback', 'Optional WeatherKit context', 'No complete photo-sync claim'],
   },
   mettle: {
-    description: 'An in-development private strength coach with adaptive programming, deterministic prescriptions, explainable progression, and live workout continuity.',
+    description: 'Train with adaptive programming, deterministic prescriptions, explainable progression, and a private reason behind every number.',
     capabilities: ['Engine-owned sets, reps, and loads', 'On-device coaching fallback', 'Apple Watch workout remote', 'CSV training export'],
   },
   memora: {
-    description: 'An in-development private study companion that creates reviewable flashcard drafts from your own material and schedules recall with FSRS.',
+    description: 'Create reviewable flashcard drafts from your own material on-device, then schedule the right memory at the right time with FSRS.',
     capabilities: ['Notes, text-layer PDFs, selected photos', 'Human review before saving', 'FSRS spaced repetition', 'Local decks with no current iCloud sync'],
   },
   trove: {
-    description: 'An in-development home inventory for photographing belongings, organizing evidence, tracking warranties and values, and preparing useful exports.',
+    description: 'Build a private record of belongings, receipts, serials, warranties, and values before a claim, move, or repair makes the evidence urgent.',
     capabilities: ['Vision and barcode capture', 'Local item catalog', 'Warranty and value context', 'Planned insurance-ready export'],
   },
   kith: {
-    description: 'An in-development relationship manager with gentle reach-out cadences, private notes, important dates, and optional on-device helpers.',
+    description: 'Remember people without a sales pipeline through humane reach-out cadences, private context, important dates, and on-device helpers.',
     capabilities: ['Inner, Close, and Wider circles', 'Warmth-based reach-out planning', 'On-device message and memory helpers', 'Widgets, Siri, and local reminders'],
   },
 };
@@ -90,6 +90,8 @@ const DownloadPage: React.FC = () => {
         '@type': ['SoftwareApplication', 'MobileApplication'],
         name: app.name,
         url: `${SITE_URL}/apps/${app.id}`,
+        description: app.description,
+        creativeWorkStatus: app.appStoreUrl ? 'Released' : 'In development',
       },
     })),
   };
@@ -111,11 +113,11 @@ const DownloadPage: React.FC = () => {
         <div className="section-frame">
           <div className="section-index"><span>The app collection</span><span>Obsidian Ridge Labs</span></div>
           <MotionReveal className="collection-hero__copy">
-            <p className="section-kicker">Private tools for Apple</p>
-            <h1>Focused intelligence.<br /><em>Clear boundaries.</em></h1>
+            <p className="section-kicker">Your AI. Your device. Your business.</p>
+            <h1>Private intelligence.<br /><em>On your terms.</em></h1>
             <p>
-              Explore the available software and the products still taking shape in the lab.
-              Release status, compatibility, and optional connections are stated plainly.
+              Download Echo Chamber today and explore eight privacy-first apps in development.
+              Every product solves a different problem. Every one begins with the same private standard.
             </p>
           </MotionReveal>
           <dl className="collection-hero__principles">
@@ -176,7 +178,7 @@ const DownloadPage: React.FC = () => {
                           loading={index === 0 ? 'eager' : 'lazy'}
                         />
                       </div>
-                      <figcaption>Authentic Echo Chamber interface · Transcription detail</figcaption>
+                      <figcaption>Searchable transcript with audio controls and speaker labels</figcaption>
                     </figure>
                   )}
                 </div>
@@ -207,7 +209,7 @@ const DownloadPage: React.FC = () => {
       <section className="collection-close">
         <div className="section-frame">
           <p className="section-kicker section-kicker--dark">The standard behind the software</p>
-          <h2>Understand the boundary<br />before you trust the tool.</h2>
+          <h2>Choose the tool that keeps<br />your data closest.</h2>
           <div>
             <Link to="/privacy" className="button button--dark">Read the privacy model <ArrowRight size={18} /></Link>
             <Link to="/blog" className="text-link text-link--dark">Explore the journal <ArrowUpRight size={18} /></Link>

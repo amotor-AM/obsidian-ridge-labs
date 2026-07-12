@@ -41,21 +41,21 @@ export const products: Product[] = [
     hasKnowledgeBase: true,
     platforms: ['iOS', 'iPadOS', 'macOS', 'visionOS'],
     minOS: 'iOS 18',
-    price: 'Free · Pro from $2.99/mo',
-    description: 'Record live or upload audio and video, transcribe with Parakeet TDT on your Apple device, search every word, create local AI notes, and export the result.',
-    fullDescription: 'Echo Chamber is a private transcription app for meetings, lectures, interviews, and dictation. Record live audio or upload an existing audio or video file, then create a searchable transcript, AI-polished reading copy, notes, and summaries on supported Apple hardware. Echo Chamber uses NVIDIA Parakeet TDT 0.6B v3 and has observed approximately 3% word error rate in Echo Chamber testing. For separate public context, the current Hugging Face Open ASR evaluation reports 6.32% average English WER for Parakeet versus 7.44% for Whisper large-v3. Recordings are processed locally rather than uploaded to Obsidian Ridge Labs.',
+    price: 'Free · Pro $2.99/mo · $29.99/yr · $79.99 lifetime',
+    description: 'Private Apple transcription for live recordings, audio, and video with on-device Parakeet TDT, targeted speech enhancement, local transcript intelligence, and export.',
+    fullDescription: 'Echo Chamber is private transcription for meetings, lectures, interviews, dictation, and files you refuse to hand to a cloud workspace. Record live or upload audio and video, then create a searchable transcript, polished reading copy, notes, and summaries on supported Apple hardware. NVIDIA Parakeet TDT 0.6B v3 performs speech recognition after a targeted, speech-focused pre-transcription filter prepares the audio. The complete enhanced Echo Chamber pipeline has produced an internal observed word error rate of approximately 4.5% under tested conditions. This is not a generic normalization pass, and results vary with speakers, acoustics, accents, crosstalk, and source quality. Apple Intelligence powers transcript intelligence on compatible devices, while bundled on-device Bonsai 1.7B provides a local fallback on supported hardware without Apple Intelligence. Your recordings are processed locally rather than uploaded to Obsidian Ridge Labs. Pro costs $2.99 monthly, $29.99 yearly, or $79.99 once for Lifetime access.',
     icon: Mic,
     specs: [
       { label: 'Speech model', value: 'Parakeet TDT v3' },
       { label: 'Transcript', value: 'Live' },
       { label: 'File input', value: 'Audio + Video' },
-      { label: 'Observed WER', value: 'Approximately 3%' },
+      { label: 'Enhanced pipeline WER', value: 'Approximately 4.5%' },
     ],
     primaryColor: 'text-neon',
     workflow: [
       { title: 'Record or Upload', description: 'Record live audio or upload an existing MP3, WAV, M4A, MP4, or another supported audio or video file.' },
-      { title: 'Transcribe On-Device', description: 'Parakeet TDT speech recognition turns the recording into a timestamped transcript on supported Apple hardware.' },
-      { title: 'Polish with AI', description: 'Turn the raw verbatim transcript into clear notes and summaries using local intelligence.' },
+      { title: 'Enhance and Transcribe On-Device', description: 'A targeted speech-focused filter prepares the audio for Parakeet TDT speech recognition without relying on generic normalization.' },
+      { title: 'Understand with Local AI', description: 'Apple Intelligence creates notes and summaries on compatible devices, with bundled on-device Bonsai 1.7B as the fallback on supported hardware.' },
       { title: 'Search or Export', description: 'Search every word, then export the result to TXT, Markdown, PDF, or DOCX.' },
     ],
     features: [
@@ -71,7 +71,7 @@ export const products: Product[] = [
       },
       {
         title: 'Local Voice Processing',
-        description: 'Audio is processed on-device rather than uploaded to Obsidian Ridge Labs. Face ID can add another layer of local access control.',
+        description: 'Audio enhancement, Parakeet TDT transcription, and transcript intelligence run on-device rather than uploading recordings to Obsidian Ridge Labs. Face ID can add another layer of local access control.',
         icon: <Shield className="w-5 h-5 text-neon" />,
       },
     ],
@@ -88,8 +88,8 @@ export const products: Product[] = [
     hasKnowledgeBase: true,
     platforms: ['iOS', 'iPadOS'],
     minOS: 'iOS 17',
-    description: 'An in-development, local-first finance app for understanding spending and forecasting cash flow without handing bank credentials to Obsidian Ridge Labs.',
-    fullDescription: 'Vault is an in-development personal finance app designed around a local core: budgeting, categorization, forecasting, and coaching on the device. The planned workflow supports manual tracking and on-device statement or receipt import, with optional Plaid bank sync for people who choose automatic updates. When Plaid is enabled, bank authentication happens in Plaid rather than inside Vault.',
+    description: 'Private budgeting, on-device document import, cash-flow forecasting, and local coaching with an optional Plaid connection instead of mandatory bank sync.',
+    fullDescription: 'Vault is the private finance app for people who want answers without making a cloud account the price of admission. Track spending manually, import statements and receipts on-device, forecast cash flow, and use local coaching. Automatic bank updates are planned through a clearly optional Plaid connection, with bank authentication handled by Plaid rather than an Obsidian Ridge Labs login form. Vault is in active development.',
     icon: LineChart,
     specs: [
       { label: 'Product stage', value: 'In Development' },
@@ -112,7 +112,7 @@ export const products: Product[] = [
       },
       {
         title: 'Plan with a Forecast',
-        description: 'The product direction turns recurring income, bills, and spending history into a clearly labeled estimate—not a financial guarantee.',
+        description: 'Recurring income, bills, and spending history become a clearly labeled estimate, not a financial guarantee.',
         icon: <LineChart className="w-5 h-5 text-neon" />,
       },
       {
@@ -133,8 +133,8 @@ export const products: Product[] = [
     hasKnowledgeBase: true,
     platforms: ['iOS'],
     minOS: 'iOS 26',
-    description: 'An in-development focus app designed to break an overwhelming task into one smaller next step with local intelligence and no streak pressure.',
-    fullDescription: 'Molehill is an in-development task-breakdown app for people who feel stuck when work is too large or vague, including people with ADHD. The intended workflow turns a brain dump into smaller, concrete steps and keeps attention on the next action. It is a productivity tool, not medical treatment, and final compatibility, features, and pricing will be confirmed before release.',
+    description: 'Private task breakdown that turns an overwhelming project or brain dump into one manageable next step without streak pressure or a cloud workspace.',
+    fullDescription: 'Molehill is built for the moment “I need to do this” turns into “I cannot start.” Private, on-device intelligence turns a project or brain dump into smaller editable actions, then brings one manageable next step into focus. There is no streak to defend and no productivity profile to feed. Molehill is a productivity tool rather than medical treatment, and it remains in active development.',
     icon: ListChecks,
     specs: [
       { label: 'Product stage', value: 'In Development' },
@@ -177,8 +177,8 @@ export const products: Product[] = [
     accent: '#8b9cf6',
     platforms: ['iOS'],
     minOS: 'iOS 26',
-    description: 'An in-development private journal for writing, memories, and gentle on-device reflection—without a Cove login, analytics profile, or remote AI service.',
-    fullDescription: 'Cove is an in-development journal for iPhone that pairs writing, selected photos, and voice memos with private reflection. Apple’s on-device Foundation Models can identify tone and themes, synthesize a weekly reflection, and answer questions grounded in retrieved journal excerpts; NaturalLanguage embeddings power semantic search and provide a basic insight fallback when Apple Intelligence is unavailable. The current development build stores the journal locally; optional Health data access is permission-based, and no cloud-sync promise is being made before release.',
+    description: 'A private iPhone journal with on-device reflection, semantic recall, and no Cove account, analytics identity, or remote AI service.',
+    fullDescription: 'Cove gives thoughts a private place to become useful. Write, add selected photos or voice memos, notice themes, revisit memories, and ask questions grounded in your own journal. Apple Foundation Models handles richer reflection on-device, while NaturalLanguage provides semantic search and a local fallback when Apple Intelligence is unavailable. The current build stores the journal on the iPhone, optional Health access is permission-based, and Cove remains in active development without a cloud-sync promise.',
     icon: BookOpen,
     specs: [
       { label: 'Product stage', value: 'In Development' },
@@ -221,8 +221,8 @@ export const products: Product[] = [
     accent: '#f0a97a',
     platforms: ['iOS', 'iPadOS'],
     minOS: 'iOS 26',
-    description: 'An in-development private wardrobe stylist that cuts garments out of photos, organizes the closet, and composes useful outfits with on-device intelligence.',
-    fullDescription: 'Wove is an in-development wardrobe app for iPhone and iPad. Apple Vision lifts a garment from its background and assists classification; deterministic category logic supplies default season tags, and every field remains editable. An on-device styling engine then works with the closet to suggest daily and occasion-based outfits, capsules, packing lists, and shopping context, with deterministic color, formality, and weather rules as fallback and validation. Wove is local-first; optional private iCloud can mirror SwiftData closet metadata, but garment images remain separate local files, so complete cross-device photo sync is not being promised. WeatherKit uses a coarse, one-shot location for forecasts.',
+    description: 'A private wardrobe for local garment capture, on-device outfit composition, capsules, packing, and insights shaped by what you actually wear.',
+    fullDescription: 'Wove turns the clothes you already own into a private, useful wardrobe. Apple Vision lifts garments from photos and proposes editable details. On-device styling composes daily looks, occasion outfits, capsules, and packing lists, while deterministic rules check color, formality, and weather. Garment images stay local. Optional private iCloud may mirror closet metadata, and optional WeatherKit uses coarse one-shot location for forecasts. Complete cross-device photo sync is not yet promised because Wove remains in active development.',
     icon: Shirt,
     specs: [
       { label: 'Product stage', value: 'In Development' },
@@ -265,8 +265,8 @@ export const products: Product[] = [
     accent: '#ef8354',
     platforms: ['iOS', 'watchOS'],
     minOS: 'iOS 26.1',
-    description: 'An in-development private strength coach that builds adaptive programs on iPhone and shows the deterministic reason behind every prescription.',
-    fullDescription: 'Mettle is an in-development strength coach for beginners and experienced lifters. It starts with goal, experience, equipment, schedule, and optional bodyweight, then builds a program on-device. Apple’s local model can choose and explain exercises only from curated candidates; a deterministic engine owns sets, reps, rest, load progression, and deloads. Logged reps and loads change future prescriptions, while RPE can inform coaching depth. The persistence source prefers private iCloud when configured and falls back on-device, but the reviewed entitlement currently lacks iCloud, so final sync behavior remains unverified.',
+    description: 'A private strength coach with adaptive programming, deterministic prescriptions, on-device explanations, and a reason behind every set.',
+    fullDescription: 'Mettle is a strength coach that shows its work. Goals, experience, equipment, schedule, and training history shape an adaptive program on iPhone. Deterministic logic owns sets, reps, rest, load progression, and deloads. Apple’s on-device model can select and explain exercises only from curated candidates. Logged reps and loads drive the next prescription, while RPE can shape coaching depth. Mettle remains in active development, and final private iCloud behavior is not yet verified.',
     icon: Dumbbell,
     specs: [
       { label: 'Product stage', value: 'In Development' },
@@ -277,19 +277,19 @@ export const products: Product[] = [
     primaryColor: 'text-orange-300',
     workflow: [
       { title: 'Define the Training Context', description: 'Choose the goal, experience, equipment, training days, session length, units, and optional bodyweight.' },
-      { title: 'Generate a Safe Program', description: 'On-device AI selects from curated exercise candidates while deterministic composition still produces a complete plan if the model is unavailable.' },
+      { title: 'Generate a Structured Program', description: 'On-device AI selects from curated exercise candidates while deterministic composition still produces a complete plan if the model is unavailable.' },
       { title: 'Run the Session', description: 'See the last performance and exact “Why this?” rationale, log sets, use the planned rest timer, and optionally control the phone session from Apple Watch.' },
       { title: 'Adapt the Next Prescription', description: 'Logged sets drive the next progression, the program calendar schedules deloads, and completed training, RPE history, and note language can inform competence and coaching depth.' },
     ],
     features: [
       {
         title: 'Every Number Has a Reason',
-        description: 'Double progression and scheduled deload logic produce the sets, reps, loads, and evidence behind “Why this?”—not an unconstrained language model.',
+        description: 'Double progression and scheduled deload logic produce the sets, reps, loads, and evidence behind “Why this?”, not an unconstrained language model.',
         icon: <Gauge className="w-5 h-5 text-orange-300" />,
       },
       {
         title: 'Coaching that Changes Altitude',
-        description: 'The same sound program can be explained gently to a new lifter or with more training detail to someone experienced, without hiding control.',
+        description: 'The same deterministic program can be explained gently to a new lifter or with more training detail to someone experienced, without hiding control.',
         icon: <Dumbbell className="w-5 h-5 text-orange-300" />,
       },
       {
@@ -309,8 +309,8 @@ export const products: Product[] = [
     accent: '#6fa8ff',
     platforms: ['iOS'],
     minOS: 'iOS 26',
-    description: 'An in-development study companion that turns your own notes, text-layer PDFs, and selected photos into editable flashcards, then schedules recall with FSRS.',
-    fullDescription: 'Memora is an in-development iPhone study companion for turning user-supplied material into flashcard drafts. Paste notes, import a PDF with embedded text, or choose a photo for local Vision OCR; Apple Foundation Models creates source-grounded cards, with a NaturalLanguage fallback when Apple Intelligence is unavailable. Nothing is saved until the learner reviews, edits, and selects the drafts. FSRS then schedules due cards through an Again, Hard, Good, and Easy loop with visible next intervals, relearning, and undo. The current build stores decks locally and does not claim iCloud sync.',
+    description: 'Private, source-grounded flashcard generation from notes, text-layer PDFs, and selected photos, followed by human review and FSRS scheduling.',
+    fullDescription: 'Memora helps you make better cards without uploading the material you are trying to learn. Paste notes, import a text-layer PDF, or choose a photo for local Vision OCR. Apple Foundation Models creates source-grounded drafts on-device, with a NaturalLanguage fallback when Apple Intelligence is unavailable. Nothing enters a deck until you review and edit it. FSRS then schedules recall with visible intervals, relearning, and undo. Memora remains in active development, stores decks locally, and does not currently claim iCloud sync.',
     icon: Brain,
     specs: [
       { label: 'Product stage', value: 'In Development' },
@@ -353,8 +353,8 @@ export const products: Product[] = [
     accent: '#d9a441',
     platforms: ['iOS', 'iPadOS'],
     minOS: 'iOS 26',
-    description: 'An in-development private home inventory for documenting belongings, warranties, values, and insurance-ready records with on-device intelligence.',
-    fullDescription: 'Trove is an in-development home inventory for iPhone and iPad, built for insurance preparation, moves, warranties, and everyday recall. Photograph an item or receipt; Apple Vision can read text and barcodes, while Apple Foundation Models can propose brand, model, serial, category, and value details for review. Items, rooms, values, photos, receipts, and warranty dates live in a local SwiftData catalog. Ask Trove answers questions from that inventory. CSV export is implemented in the development build; PDF reporting, multi-home organization, and private iCloud sync remain planned Plus capabilities. A deterministic fallback keeps the catalog useful when Apple Intelligence is unavailable.',
+    description: 'A private home inventory for belongings, receipts, serials, warranties, values, search, and portable evidence you can keep under your control.',
+    fullDescription: 'Trove creates the private record you will wish you had before a claim, move, warranty issue, or replacement decision. Photograph an item or receipt, let Apple Vision read text and barcodes, and review details proposed by on-device intelligence. Items, rooms, values, photos, receipts, and warranty dates stay in a local catalog that Ask Trove can search. CSV export works in the current development build. PDF reporting, multi-home organization, and private iCloud sync remain planned as Trove moves toward release.',
     icon: Boxes,
     specs: [
       { label: 'Product stage', value: 'In Development' },
@@ -397,8 +397,8 @@ export const products: Product[] = [
     accent: '#f07f78',
     platforms: ['iOS'],
     minOS: 'iOS 26',
-    description: 'An in-development private relationship manager with gentle reach-out cadences and on-device helpers for remembering what matters.',
-    fullDescription: 'Kith is an in-development personal relationship manager for iPhone. People sit in Inner, Close, or Wider circles with an adjustable reach-out cadence, while a Warmth Ring gently cools as time passes. A Today view surfaces who may be worth contacting and which dates are coming up. On supported devices, Apple Foundation Models can structure a brain dump, draft a message, suggest thoughtful gift directions, create talking points, and recap what is known—without sending private relationship notes to a developer server. The current build is local-first and remains useful without Apple Intelligence.',
+    description: 'A private relationship manager with humane reach-out cadences, local context, and on-device help for remembering what matters.',
+    fullDescription: 'Kith helps you remember people without turning them into a sales pipeline. Inner, Close, and Wider circles create an adjustable reach-out rhythm, while the Warmth Ring cools gently without guilt or scoring. Today surfaces who may appreciate a hello and keeps important dates separate. On supported iPhones, local intelligence can structure a memory, begin a message, suggest a caring question, or explore a gift direction without sending relationship notes to a developer server. Kith remains useful without Apple Intelligence and is in active development.',
     icon: UsersRound,
     specs: [
       { label: 'Product stage', value: 'In Development' },

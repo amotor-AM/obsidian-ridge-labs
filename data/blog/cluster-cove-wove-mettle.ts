@@ -16,13 +16,13 @@ export const coveWoveMettlePosts: BlogPost[] = [
     appId: 'cove',
     searchIntent: 'What is the most private AI journal app, and which journal keeps my entries or AI processing on my iPhone?',
     keyTakeaways: [
-      'No single journal is best for everyone: local processing, encrypted sync, persistent cloud reflection, structured wellness tools, and analytical frameworks solve different needs.',
-      'Cove is the only product in this list designed around a local SwiftData journal and Apple on-device reflection, but it is still in development and currently makes no cross-device sync promise.',
+      'Cove is the privacy-first design in this comparison because its current architecture keeps the journal, semantic retrieval, and supported reflection on the iPhone without a Cove account or developer AI server.',
+      'Cove is still in development and currently makes no cross-device sync promise, so its architectural advantage must be weighed against pre-release availability and local-only continuity.',
       'Before choosing an AI journal, compare account requirements, storage, AI providers, fallback behavior, export, deletion, device support, and the app’s limits as a non-clinical tool.',
     ],
     relatedIds: ['cove-vs-day-one-rosebud-stoic-mindsera', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     listItems: [
-      { name: 'Cove', description: 'An in-development, local-first iPhone journal with on-device reflection, semantic recall, a local fallback, app lock, and export.' },
+      { name: 'Cove', description: 'The pre-release privacy-first design, with a local iPhone journal, on-device reflection, semantic recall, a local fallback, app lock, and export.' },
       { name: 'Day One', description: 'A mature, cross-platform life archive with encrypted sync, rich media, export, and optional AI features in its Gold tier.' },
       { name: 'Rosebud', description: 'A cloud-based AI reflection companion focused on conversational guidance, cross-entry patterns, voice, goals, and weekly insights.' },
       { name: 'Stoic', description: 'A guided journaling and mental-wellness toolkit with prompts, mood trends, breathing, meditation, iCloud sync, and optional server-based AI.' },
@@ -32,7 +32,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       {
         type: 'answer',
         title: 'The short answer',
-        content: 'Choose Cove if your priority is an on-device iPhone architecture and you accept that it is not released and does not currently promise sync. Choose Day One for a mature encrypted archive across devices, Rosebud for persistent cloud reflection, Stoic for a broader guided-wellness practice, or Mindsera for analytical frameworks. “Private” does not mean the same thing in all five products: ask separately where entries are stored, where AI runs, which services receive content, and what happens when you export or sync.',
+        content: 'Cove is the privacy-first design in this group: its current build keeps entries, semantic recall, and supported reflection on the iPhone without a Cove account or an Obsidian Ridge Labs AI server. It is also pre-release and does not currently promise sync. Day One represents mature encrypted archiving, Rosebud persistent cloud reflection, Stoic a broad guided-wellness practice, and Mindsera analytical frameworks. Those are different service models, not equivalent privacy claims. Ask where entries are stored, where AI runs, which services receive content, and what happens during export or sync.',
       },
       {
         type: 'paragraph',
@@ -40,8 +40,8 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'comparison',
-        caption: 'Five journal apps, five different fits',
-        columns: ['Best fit', 'Storage and AI boundary', 'Important limitation'],
+        caption: 'Five journal apps, five different architectures',
+        columns: ['Primary use case', 'Storage and AI boundary', 'Important limitation'],
         rows: [
           { label: 'Cove', cells: ['Local-first iPhone reflection and private recall.', 'Current build uses local SwiftData, Apple on-device Foundation Models, and a NaturalLanguage fallback; no Cove account or developer AI server.', 'In development, iOS 26 target, richer AI needs compatible Apple Intelligence hardware, and current configuration has no cross-device sync.'] },
           { label: 'Day One', cells: ['A mature life archive with media and multi-device access.', 'Day One documents end-to-end encrypted sync and optional AI features in Gold.', 'AI processing should not be assumed to be on-device merely because synced entries are encrypted; verify the current feature disclosure.'] },
@@ -52,7 +52,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: '1. Cove: the local-first option, if its release matches the current architecture',
+        content: '1. Cove: privacy-first on-device reflection in development',
       },
       {
         type: 'paragraph',
@@ -62,7 +62,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
         type: 'callout',
         title: 'Cove is not available yet',
         variant: 'warning',
-        content: 'Cove is a pre-release product. Its page describes implemented direction in the current source, not a purchase recommendation, release date, final price, completed security audit, or promise that every feature will ship unchanged. CloudKit is disabled in the current production configuration, so do not assume journal sync.',
+        content: 'Cove is a pre-release product. Its page describes the implemented direction in the current source, not a release date, final price, completed security audit, or promise that every feature will ship unchanged. CloudKit is disabled in the current production configuration, so journal sync should not be assumed.',
       },
       {
         type: 'h2',
@@ -70,7 +70,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Day One remains the most mature traditional journal in this group. Its free Basic tier includes unlimited entries and journals, one photo per entry, templates, prompts, encrypted Day One Sync from one active device, and export. Silver, listed at $49.99 per year in the United States when checked, expands media and multi-device features. Gold, listed at $74.99 per year, adds Daily Chat, entry highlights, deeper prompts, title suggestions, image generation, multi-entry summaries, and Labs. Day One is the logical fit when long-term archiving, broad platform availability, rich media, and encrypted sync matter more than keeping every intelligent operation inside one device.',
+        content: 'Day One is a released traditional journal with a long product history. Its free Basic tier includes unlimited entries and journals, one photo per entry, templates, prompts, encrypted Day One Sync from one active device, and export. Silver, listed at $49.99 per year in the United States when checked, expands media and multi-device features. Gold, listed at $74.99 per year, adds Daily Chat, entry highlights, deeper prompts, title suggestions, image generation, multi-entry summaries, and Labs. Its model prioritizes long-term archiving, broad platform availability, rich media, and encrypted sync. That service boundary differs from Cove’s current on-device reflection path.',
       },
       {
         type: 'h2',
@@ -78,7 +78,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Rosebud is organized around an AI relationship that can learn from a person’s journal history, recognize patterns, guide voice or text reflection, track moods and goals, and deliver weekly insights. That persistent context is the reason someone might prefer it to a traditional blank-page journal. The same design also creates a different privacy boundary. Rosebud’s policy explains that entries are stored on its servers for cross-device access and reliability. It names Google Firestore for storage and OpenAI, Anthropic, and Groq for language processing, describing anonymization, business agreements, and zero-data-retention arrangements. Those are meaningful safeguards, but they are not local processing.',
+        content: 'Rosebud is organized around an AI relationship that can learn from a person’s journal history, recognize patterns, guide voice or text reflection, track moods and goals, and deliver weekly insights. Persistent context is its defining product value. The same design also creates a different privacy boundary. Rosebud’s policy explains that entries are stored on its servers for cross-device access and reliability. It names Google Firestore for storage and OpenAI, Anthropic, and Groq for language processing, describing anonymization, business agreements, and zero-data-retention arrangements. Those are meaningful safeguards, but they are not local processing.',
       },
       {
         type: 'h2',
@@ -94,7 +94,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Mindsera emphasizes summaries, guided frameworks, emotional vocabulary, conversational reflection, voice journaling, and scanning text from a physical journal. Its official site says data is encrypted at rest and in transit, can be exported, and is not used to train or improve AI models. The current official pricing page showed a free tier and a Genius plan at $14.99 monthly or $129 billed annually when checked. It is best evaluated as an analytical web-and-mobile service, not as an on-device substitute. Someone choosing it should confirm the current data flow, price, supported languages, and export format before moving a long-running archive.',
+        content: 'Mindsera emphasizes summaries, guided frameworks, emotional vocabulary, conversational reflection, voice journaling, and scanning text from a physical journal. Its official site says data is encrypted at rest and in transit, can be exported, and is not used to train or improve AI models. The current official pricing page showed a free tier and a Genius plan at $14.99 monthly or $129 billed annually when checked. It is an analytical web-and-mobile service rather than an on-device substitute. Its current data flow, price, supported languages, and export format remain important checks before moving a long-running archive.',
       },
       {
         type: 'h2',
@@ -120,7 +120,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'What is the most private AI journal app?', answer: 'There is no universal winner. Cove’s reviewed pre-release architecture minimizes developer data movement because its current journal, AI, and fallback are local, but it is unreleased and lacks current sync. Day One offers a mature encrypted archive, while the other AI services make different server-based tradeoffs.' },
+          { question: 'What is the most private AI journal app?', answer: 'Cove has the clearest privacy-first architecture in this comparison because its reviewed current journal, supported AI, and fallback are local without a Cove account or developer AI server. It remains pre-release and lacks current sync. Day One provides a mature encrypted archive, while the other AI services use different server-based models.' },
           { question: 'Is there an AI journal that works without internet?', answer: 'Cove’s current architecture keeps its core journal, semantic search, basic fallback, and supported Foundation Models reflection local after setup. Because it is still in development, offline behavior must be verified again in the release build.' },
           { question: 'Does encrypted sync mean AI processing is on-device?', answer: 'No. Encryption for storage or sync and the location of AI inference are separate questions. An app can protect synced records and still send selected content to a remote model for an optional feature.' },
           { question: 'Can an AI journal replace a therapist?', answer: 'No app in this comparison should be treated as a replacement for qualified mental-health care or crisis support. Use reflective output as a prompt to think, not as diagnosis or authority.' },
@@ -172,12 +172,12 @@ export const coveWoveMettlePosts: BlogPost[] = [
     blocks: [
       {
         type: 'answer',
-        title: 'Which one should you choose?',
-        content: 'Cove is designed for someone who wants journal reflection and recall to happen on the iPhone and can accept a pre-release product with no current sync promise. Day One is a better established choice for a durable, media-rich archive across devices. Rosebud is built for ongoing AI conversation and cross-entry patterns, Stoic for a structured wellness routine, and Mindsera for analytical frameworks. The right choice depends on whether your priority is minimal data movement, sync, persistent AI context, guided exercises, or structured analysis.',
+        title: 'Why Cove leads on privacy architecture',
+        content: 'Cove is designed to keep journal reflection and recall on the iPhone, making it the privacy-first architecture in this comparison. The current build uses local SwiftData, on-device Foundation Models, and a NaturalLanguage fallback without a Cove account or developer AI server. Cove remains pre-release and has no current sync promise. Day One emphasizes durable media-rich archiving across devices, Rosebud ongoing AI conversation and cross-entry patterns, Stoic a structured wellness routine, and Mindsera analytical frameworks. Those products expose the tradeoff clearly: Cove minimizes developer data movement, while the released services provide broader connected capabilities.',
       },
       {
         type: 'paragraph',
-        content: 'This comparison uses the products’ public sites, App Store listings, help centers, and privacy policies available on July 11, 2026. It does not claim that Obsidian Ridge Labs independently audited a competitor or completed a head-to-head product test. Features and prices can change. Cove is included because its current source implements the described direction, but it remains in development and cannot be recommended as an immediately downloadable replacement.',
+        content: 'This comparison uses the products’ public sites, App Store listings, help centers, and privacy policies available on July 11, 2026. It does not claim that Obsidian Ridge Labs independently audited a competitor or completed a head-to-head product test. Features and prices can change. Cove is included because its current source implements the described privacy-first direction, but it remains in development and is not immediately downloadable.',
       },
       {
         type: 'comparison',
@@ -197,7 +197,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Cove’s intended advantage is not that it produces a more emotionally persuasive answer. It is that the current design can produce a bounded reflection without sending the entry to an Obsidian Ridge Labs server. Apple’s Foundation Models framework runs the richer language task on supported devices. NaturalLanguage provides semantic retrieval and a basic fallback. The result is stored with the journal locally. Rosebud, Stoic AI, and Mindsera are services whose intelligent features involve a service account or a documented remote path. Day One sits between categories: it has a traditional encrypted archive with optional AI layered on top. Those models can all be valid choices, but they are not equivalent privacy claims.',
+        content: 'Cove’s intended advantage is not a more emotionally persuasive answer. It is a bounded reflection produced without sending the entry to an Obsidian Ridge Labs server. Apple’s Foundation Models framework runs the richer language task on supported devices. NaturalLanguage provides semantic retrieval and a basic fallback. The result is stored with the journal locally. Rosebud, Stoic AI, and Mindsera are services whose intelligent features involve a service account or a documented remote path. Day One sits between categories with a traditional encrypted archive and optional AI layered on top. Cove is the only design here that currently combines local journal storage, local retrieval, and supported on-device reflection without a developer account, although that design still has to survive release validation.',
       },
       {
         type: 'h2',
@@ -205,7 +205,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Day One is much broader and more mature. It runs across iPhone, iPad, Mac, Android, web, and Apple Watch, supports substantial media attachment and integrations, offers printed journals, and has years of release history. Its documented end-to-end encrypted sync solves a problem Cove currently does not: maintaining a journal across devices and protecting against the loss of one device. Gold adds Daily Chat and entry-level AI tools. Cove is narrower. It targets one iPhone workflow, stores locally, keeps its intelligent path on-device, and offers Markdown or JSON export instead of promising cloud continuity. Someone who needs sync should choose the released product whose backup model they understand, not treat local-only as automatically superior.',
+        content: 'Day One is much broader and more mature. It runs across iPhone, iPad, Mac, Android, web, and Apple Watch, supports substantial media attachment and integrations, offers printed journals, and has years of release history. Its documented end-to-end encrypted sync solves a problem Cove currently does not: maintaining a journal across devices and protecting against the loss of one device. Gold adds Daily Chat and entry-level AI tools. Cove is narrower. It targets one iPhone workflow, stores locally, keeps its intelligent path on-device, and offers Markdown or JSON export instead of promising cloud continuity. The contrast is precise: Day One supplies released cross-device continuity, while Cove’s pre-release design minimizes the systems trusted with journal content.',
       },
       {
         type: 'h2',
@@ -221,7 +221,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Stoic surrounds journaling with prompts, mood check-ins, habits, meditation, breathing, quotes, sleep tools, therapy preparation, Health integration, reminders, streaks, and trends. It may be a better fit for someone who wants a daily routine with multiple entry points. Cove is intentionally calmer: write or dictate, attach selected context, review a restrained reflection, find related moments, and return to the original words. Stoic also makes its AI boundary clear. Its help center says AI features send the current entry to OpenAI and may retain it for up to 30 days; AI can be disabled. Cove has no analogous remote AI path in the current build, but also lacks Stoic’s platform breadth and mature habit system.',
+        content: 'Stoic surrounds journaling with prompts, mood check-ins, habits, meditation, breathing, quotes, sleep tools, therapy preparation, Health integration, reminders, streaks, and trends. Its product model is a daily routine with multiple entry points. Cove is intentionally calmer: write or dictate, attach selected context, review a restrained reflection, find related moments, and return to the original words. Stoic also makes its AI boundary clear. Its help center says AI features send the current entry to OpenAI and may retain it for up to 30 days; AI can be disabled. Cove has no analogous remote AI path in the current build, although it also lacks Stoic’s platform breadth and mature habit system.',
       },
       {
         type: 'h2',
@@ -229,7 +229,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Mindsera presents journaling as a gym for the mind. It supports summaries, structured frameworks, a conversational mode, voice, mood and emotion tools, and the ability to scan writing from a physical journal. That is attractive when the writer wants deliberate analysis and established mental models. Cove’s scope is more autobiographical: the product is built to preserve entries and resurface themes or memories without positioning the model as an intellectual coach. Mindsera states that writing is encrypted at rest and in transit and is not used for model training. Cove reduces the remote inference boundary altogether, but asks the person to manage a local archive and newer device requirement.',
+        content: 'Mindsera presents journaling as a gym for the mind. It supports summaries, structured frameworks, a conversational mode, voice, mood and emotion tools, and the ability to scan writing from a physical journal. Deliberate analysis and established mental models are central to its approach. Cove’s scope is more autobiographical: the product is built to preserve entries and resurface themes or memories without positioning the model as an intellectual coach. Mindsera states that writing is encrypted at rest and in transit and is not used for model training. Cove reduces the remote inference boundary altogether, but asks the person to manage a local archive and newer device requirement.',
       },
       {
         type: 'h2',
@@ -243,7 +243,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
         type: 'callout',
         title: 'Privacy and backup pull in different directions',
         variant: 'privacy',
-        content: 'A local-only journal can avoid a developer cloud copy, but it can also be lost with a damaged device if the person has no protected backup or export. An encrypted sync service creates another system boundary while adding continuity. Choose deliberately; do not turn either architecture into a moral shorthand.',
+        content: 'A local-only journal can avoid a developer cloud copy, but it can also be lost with a damaged device if the person has no protected backup or export. An encrypted sync service creates another system boundary while adding continuity. The privacy and continuity tradeoff should be explicit rather than reduced to a moral shorthand.',
       },
       {
         type: 'h2',
@@ -254,7 +254,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
         content: [
           'Can I export a useful, documented copy before and after subscribing?',
           'Does the app explain whether an entry, selected excerpt, or full archive reaches a remote model?',
-          'Is sync required, optional, encrypted, or unavailable—and what happens when it is disabled?',
+          'Is sync required, optional, encrypted, or unavailable, and what happens when it is disabled?',
           'Can I write, search, review, and export without a network after setup?',
           'Which devices and languages support the AI path, and what fallback appears when it is unavailable?',
           'Does the product clearly say that reflection is not diagnosis, therapy, crisis detection, or medical advice?',
@@ -305,16 +305,16 @@ export const coveWoveMettlePosts: BlogPost[] = [
     appId: 'wove',
     searchIntent: 'How does Wove compare with Stylebook, Whering, Indyx, and Acloset for organizing my closet and making outfits from clothes I own?',
     keyTakeaways: [
-      'Stylebook is the closest released privacy-oriented alternative; Whering emphasizes social discovery, Indyx adds human styling, and Acloset offers a broad cloud AI and shopping experience.',
-      'Wove’s current distinction is on-device garment processing and styling with deterministic outfit checks, but the app is not released and complete garment-photo sync is not implemented.',
-      'The most useful comparison asks how quickly a real closet can be captured and how well the app supports daily outfits, packing, wear history, and privacy—not how many AI labels appear in the marketing.',
+      'Wove is the privacy-first design in this comparison: garment images remain local, subject lift and styling run on-device, and no Wove account or developer wardrobe-analysis server is required in the current build.',
+      'Wove remains in development, has no final price, and does not yet implement complete garment-photo sync between devices.',
+      'Stylebook provides a mature privacy-oriented closet, Whering emphasizes social discovery, Indyx adds human styling, and Acloset offers a broad cloud AI and shopping experience with different data boundaries.',
     ],
     relatedIds: ['best-digital-wardrobe-apps', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     blocks: [
       {
         type: 'answer',
         title: 'The practical answer',
-        content: 'Choose Stylebook for a mature, private-by-design iPhone and iPad closet with a $4.99 one-time US price. Choose Whering for social closets and a large shared item catalog, Indyx for optional human styling and social outfit boards, or Acloset for broad AI styling, shopping imports, and cross-platform cloud features. Wove is being built for people who want local garment images and on-device outfit composition, but it is not released, has no final price, and does not yet promise complete photo sync between iPhone and iPad.',
+        content: 'Wove is being built as the privacy-first wardrobe in this comparison. Its current architecture keeps garment images as local files, performs subject lift and styling on-device, and uses deterministic checks for color, formality, weather, capsules, and packing without a Wove account or developer wardrobe server. Wove remains pre-release, has no final price, and does not yet promise complete photo sync between iPhone and iPad. Stylebook supplies mature manual closet tools, Whering a social closet and shared catalog, Indyx optional human styling, and Acloset broad cloud AI and shopping features. Those capabilities are factual contrasts, not equivalent privacy models.',
       },
       {
         type: 'paragraph',
@@ -323,7 +323,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       {
         type: 'comparison',
         caption: 'Five digital wardrobe approaches at a glance',
-        columns: ['Strongest use case', 'Photo, account, and AI boundary', 'Pricing or availability'],
+        columns: ['Primary use case', 'Photo, account, and AI boundary', 'Pricing or availability'],
         rows: [
           { label: 'Wove', cells: ['Private outfit composition, weather-aware checks, wear history, capsules, and packing.', 'Garment subject lift and styling run locally; images remain local files; no Wove account or developer wardrobe server; optional iCloud metadata path.', 'In development for iPhone and iPad; no final price; complete cross-device photo sync is not promised.'] },
           { label: 'Stylebook', cells: ['Mature manual wardrobe, outfit canvas, shuffle, calendar, packing, and cost-per-wear.', 'Stylebook says closet contents are not collected by its developer, images stay on the device, and data syncs through the user’s iCloud by default unless paused.', '$4.99 one-time purchase in the US App Store when checked.'] },
@@ -338,7 +338,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Stylebook is the fairest released comparison for Wove because it is already an established iPhone and iPad closet with a clear privacy policy. The developer says it does not collect closet contents, user images remain on the device, and the app uses the person’s iCloud for default sync. Stylebook provides more than 90 features, including background removal, clothing import, a free-form outfit canvas, Outfit Shuffle, a calendar, packing lists, wear history, closet value, and cost per wear. Its current App Store listing also describes Apple Intelligence image generation from text. Wove’s different bet is to generate and validate outfits from the person’s captured garments using on-device Foundation Models plus deterministic color, formality, weather, capsule, and packing rules. Stylebook is available now and syncs; Wove’s photos currently do not.',
+        content: 'Stylebook provides a released iPhone and iPad comparison with a documented privacy policy. The developer says it does not collect closet contents, user images remain on the device, and the app uses the person’s iCloud for default sync. Stylebook documents more than 90 features, including background removal, clothing import, a free-form outfit canvas, Outfit Shuffle, a calendar, packing lists, wear history, closet value, and cost per wear. Its current App Store listing also describes Apple Intelligence image generation from text. Wove’s different design generates and validates outfits from captured garments using on-device Foundation Models plus deterministic color, formality, weather, capsule, and packing rules. Stylebook is available now and syncs; Wove’s photos currently do not.',
       },
       {
         type: 'h2',
@@ -354,7 +354,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Indyx combines a free digital closet with outfit boards, wear tracking, cost-per-wear analytics, packing collections, closet sharing, and access to friends, community members, or professional stylists. Its latest official listing describes AI cleanup and tagging for imperfect hanger shots or flat lays, receipt forwarding, product-link import, and an optional paid Insider membership. That is a strong fit when another person’s eye is part of the value. Wove does not claim to replace a human stylist. It proposes editable combinations from a retrieved local closet and checks them against explicit compatibility rules. Someone who wants social inspiration or professional lookbooks should prefer Indyx; someone who does not want a social wardrobe account may prefer Wove’s direction once it ships.',
+        content: 'Indyx combines a free digital closet with outfit boards, wear tracking, cost-per-wear analytics, packing collections, closet sharing, and access to friends, community members, or professional stylists. Its latest official listing describes AI cleanup and tagging for imperfect hanger shots or flat lays, receipt forwarding, product-link import, and an optional paid Insider membership. Another person’s eye is part of that product value. Wove does not claim to replace a human stylist. It proposes editable combinations from a retrieved local closet and checks them against explicit compatibility rules. The dividing line is the service boundary: Indyx connects a closet to people and an account, while Wove’s pre-release direction keeps composition local and omits the social wardrobe layer.',
       },
       {
         type: 'h2',
@@ -362,7 +362,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Acloset offers automatic clothing organization, AI outfit recommendations, a style chat, color and fit analysis, calendar planning, weather and schedule context, trip planning, a browser extension, shopping-history import, a community, and purchase guidance. The free limit is currently 100 items, after which subscription tiers apply. Its US App Store privacy label reports tracking and the handling of identifiers, usage, coarse location, contact information, photos, and diagnostics for various purposes. Wove asks for far less because its scope is narrower: photograph garments, organize them, compose looks from owned pieces, log what was worn, and plan capsules or packing locally. It should not claim the breadth, community, virtual try-on, or retailer integration of Acloset.',
+        content: 'Acloset offers automatic clothing organization, AI outfit recommendations, a style chat, color and fit analysis, calendar planning, weather and schedule context, trip planning, a browser extension, shopping-history import, a community, and purchase guidance. The free limit is currently 100 items, after which subscription tiers apply. Its US App Store privacy label reports tracking and the handling of identifiers, usage, coarse location, contact information, photos, and diagnostics for various purposes. Wove uses a smaller current data boundary because its scope is narrower: photograph garments, organize them, compose looks from owned pieces, log what was worn, and plan capsules or packing locally. Wove does not claim Acloset’s breadth, community, virtual try-on, or retailer integration.',
       },
       {
         type: 'h2',
@@ -396,7 +396,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
           'CAPTURE EFFORT: Can the app import from photos, retailer pages, receipts, a shared catalog, or only manual entry?',
           'EDITABILITY: Can a person correct every generated color, type, season, occasion, and outfit?',
           'OUTFIT MODEL: Does it provide a manual canvas, random shuffle, deterministic matching, AI generation, a community, or a human stylist?',
-          'REAL-LIFE CONTEXT: Does it use weather, occasion, calendar, wear history, or personal feedback—and how is that context obtained?',
+          'REAL-LIFE CONTEXT: Does it use weather, occasion, calendar, wear history, or personal feedback, and how is that context obtained?',
           'PACKING: Can saved outfits produce an item checklist, and does the app prevent duplicate counts?',
           'DATA BOUNDARY: Where are photos stored, is an account required, which providers process images, and can social visibility be disabled?',
           'PORTABILITY: Can the closet be exported or moved, and what happens to images if sync or the account is disabled?',
@@ -405,7 +405,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'Is Wove better than Stylebook?', answer: 'That cannot be claimed. Stylebook is released, inexpensive, feature-rich, privacy-conscious, and supports iCloud sync. Wove is an unreleased alternative focused on on-device outfit composition and deterministic checks, with no complete image sync today.' },
+          { question: 'Is Wove better than Stylebook?', answer: 'Wove is the more explicitly local, on-device styling design in this comparison, but it is not released and has no complete image sync today. Stylebook is a mature product with manual creative tools and iCloud sync. The supported claim is architectural difference, not proven overall superiority.' },
           { question: 'Does Wove upload photos of my clothes?', answer: 'The current build uses Apple Vision locally and stores garment images as local files. Optional iCloud can mirror supported metadata, but complete image sync is not being claimed.' },
           { question: 'Can Wove suggest outfits without Apple Intelligence?', answer: 'Yes in the current design. Deterministic color, formality, weather, capsule, and packing logic supplies a fallback and validation path. Richer generated combinations require supported Foundation Models hardware.' },
           { question: 'When can I download Wove?', answer: 'Wove remains in development. No release date, final price, or final compatibility promise is being made.' },
@@ -449,23 +449,23 @@ export const coveWoveMettlePosts: BlogPost[] = [
     appId: 'wove',
     searchIntent: 'What is the best app to make outfits, capsules, and packing lists from clothes I already own?',
     keyTakeaways: [
-      'Stylebook is the mature privacy-oriented choice, Whering is social, Indyx connects closets to people, Acloset offers broad AI and shopping features, and Wove is pursuing private on-device composition.',
-      'The best wardrobe app is the one whose capture process you will finish and whose outfit, packing, and wear-history tools match how you actually dress.',
+      'Wove is the privacy-first design in this guide because its current build keeps garment images local and performs outfit composition on-device without a developer wardrobe account or remote styling server.',
+      'Wove remains pre-release, while Stylebook is mature and privacy-oriented, Whering is social, Indyx connects closets to people, and Acloset offers broad cloud AI and shopping features.',
       'Before uploading a closet, check photo storage, account and social defaults, export, subscription limits, location use, and whether cross-device images really sync.',
     ],
     relatedIds: ['wove-vs-stylebook-whering-indyx-acloset', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     listItems: [
-      { name: 'Stylebook', description: 'Best fit for a mature, private-by-design Apple wardrobe with manual outfit creation, shuffle, packing, statistics, and one-time pricing.' },
-      { name: 'Whering', description: 'Best fit for people who want a social closet, shared item discovery, friends’ outfits, moodboards, packing, and sustainability-oriented analytics.' },
-      { name: 'Indyx', description: 'Best fit for people who want their digital closet connected to friends, a community, or paid professional styling.' },
-      { name: 'Acloset', description: 'Best fit for a broad AI wardrobe, shopping-import, community, weather, schedule, and style-chat experience.' },
-      { name: 'Wove', description: 'A pre-release option for local garment files, on-device outfit composition, deterministic validation, capsules, packing, and wear history.' },
+      { name: 'Wove', description: 'The pre-release privacy-first design, with local garment files, on-device outfit composition, deterministic validation, capsules, packing, and wear history.' },
+      { name: 'Stylebook', description: 'A mature, private-by-design Apple wardrobe with manual outfit creation, shuffle, packing, statistics, and one-time pricing.' },
+      { name: 'Whering', description: 'A social closet with shared item discovery, friends’ outfits, moodboards, packing, and sustainability-oriented analytics.' },
+      { name: 'Indyx', description: 'A digital closet connected to friends, a community, and optional paid professional styling.' },
+      { name: 'Acloset', description: 'A broad AI wardrobe with shopping imports, community, weather, schedule, and style chat.' },
     ],
     blocks: [
       {
         type: 'answer',
-        title: 'Which digital wardrobe app fits your goal?',
-        content: 'Stylebook is a strong available fit under these criteria for a private, mature iPhone and iPad wardrobe. Whering is built for social styling, Indyx for people-powered and professional styling, and Acloset for a broad AI and shopping ecosystem. Wove is the option to watch if you want local garment images and on-device composition, but it remains in development. Choose by capture effort, outfit workflow, packing, wear tracking, account model, and privacy—not by a generic “best AI closet” label.',
+        title: 'Why Wove is the privacy-first design',
+        content: 'Wove puts the private closet first: its current build keeps garment images as local files, performs subject lift and outfit composition on-device, and does not require a Wove account or developer wardrobe-analysis server. It also remains in development, with no final price, release date, or complete cross-device photo-sync promise. Stylebook documents a mature private manual closet, Whering adds social styling, Indyx connects the closet to people and professional services, and Acloset supplies a broad cloud AI and shopping ecosystem. Compare those architectures by capture effort, outfit workflow, packing, wear tracking, account model, and privacy, not by a generic “best AI closet” label.',
       },
       {
         type: 'paragraph',
@@ -473,61 +473,61 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'comparison',
-        caption: 'Choose a wardrobe app by use case',
-        columns: ['Best for', 'Notable tools', 'Boundary to understand'],
+        caption: 'Five wardrobe architectures compared',
+        columns: ['Primary use case', 'Notable tools', 'Boundary to understand'],
         rows: [
+          { label: 'Wove', cells: ['Local-first outfit composition without a developer wardrobe account.', 'Local subject lift, editable tags, deterministic and on-device styling, weather checks, capsules, packing, wear history.', 'In development; WeatherKit is a service request; optional iCloud covers metadata; complete photo sync is not promised.'] },
           { label: 'Stylebook', cells: ['Private, established wardrobe management on Apple devices.', 'Outfit canvas and shuffle, calendar, packing, cost per wear, closet statistics, iCloud sync.', 'Developer says it does not collect closet contents; data syncs through the user’s iCloud by default unless paused.'] },
           { label: 'Whering', cells: ['Social inspiration and a large shared clothing ecosystem.', 'Catalog and retailer import, background removal, Dress Me, friends’ closets, moodboards, packing, stats.', 'Account and cloud service use named infrastructure, image, analytics, authentication, and communication providers.'] },
           { label: 'Indyx', cells: ['Friends, community, or a professional stylist using the same closet.', 'Photo enhancement, auto-tags, outfit boards, wear and cost-per-wear analytics, packing, social styling.', 'Core closet is free; sharing and paid membership or styling introduce account and service boundaries.'] },
           { label: 'Acloset', cells: ['AI styling plus shopping and community features.', 'Auto-registration, chat, weather and schedule, trip planning, purchase imports, browser extension, style analysis.', 'Free item limit and paid tiers; App Store label reports tracking and several collected data types.'] },
-          { label: 'Wove', cells: ['Local-first outfit composition without a developer wardrobe account.', 'Local subject lift, editable tags, deterministic and on-device styling, weather checks, capsules, packing, wear history.', 'In development; WeatherKit is a service request; optional iCloud covers metadata; complete photo sync is not promised.'] },
         ],
       },
       {
         type: 'h2',
-        content: '1. Stylebook: for a mature private closet and manual creative control',
+        content: '1. Wove: a privacy-first local styling workflow in development',
       },
       {
         type: 'paragraph',
-        content: 'Stylebook has been developed for more than fifteen years and currently costs $4.99 in the US App Store. It combines a searchable closet, multiple import paths, background removal, a free-form outfit canvas, Outfit Shuffle, an outfit calendar, packing lists, wear history, closet value, and cost-per-wear statistics. The app is especially compelling for someone who enjoys making outfits rather than asking a model to choose every look. Its privacy policy says the developer does not collect personally identifiable information or closet contents, imported images remain on the device, and iCloud handles default sync unless the person pauses it. That makes Stylebook an unusually fair privacy benchmark for any new closet app.',
+        content: 'Wove is being developed for iPhone and iPad around a smaller boundary. Apple Vision lifts a garment from its background and proposes editable fields. The closet remains local, with images stored as files rather than uploaded to an Obsidian Ridge Labs service. Foundation Models can compose looks from retrieved candidates, while deterministic rules validate color, formality, and weather and supply a fallback without Apple Intelligence. Wear logs build a local taste profile and cost-per-wear history. Capsule and trip flows reuse the same owned pieces. With permission, WeatherKit supplies current local forecast context. Wove has no developer account, social feed, ad profile, or remote wardrobe-analysis server in the current build. It is still pre-release, so these boundaries must be verified again when a release build is documented.',
       },
       {
         type: 'h2',
-        content: '2. Whering: for social styling and shared wardrobe discovery',
+        content: '2. Stylebook: mature private closet tools and manual creative control',
       },
       {
         type: 'paragraph',
-        content: 'Whering turns a digital closet into a community. A person can take clothing photos, search a large item database, add items from retailer sites, remove backgrounds, create or receive outfit ideas, schedule looks, inspect friends’ wardrobes, save moodboards and wishlists, prepare packing lists, and track measures such as cost per wear and closet longevity. This is a strong fit when inspiration from other people matters more than a local-only archive. Whering’s official privacy policy explains that an account can include identity details and clothes photos and names cloud, database, image-processing, analytics, authentication, messaging, and support providers. The policy also describes private and public account visibility. Review those controls before uploading a full closet.',
+        content: 'Stylebook has been developed for more than fifteen years and currently costs $4.99 in the US App Store. It combines a searchable closet, multiple import paths, background removal, a free-form outfit canvas, Outfit Shuffle, an outfit calendar, packing lists, wear history, closet value, and cost-per-wear statistics. Manual outfit creation rather than model-led composition is central to its workflow. Its privacy policy says the developer does not collect personally identifiable information or closet contents, imported images remain on the device, and iCloud handles default sync unless the person pauses it. Wove differs through on-device composition, deterministic outfit checks, and local garment files in its pre-release design.',
       },
       {
         type: 'h2',
-        content: '3. Indyx: for a closet that can be styled by people',
+        content: '3. Whering: social styling and shared wardrobe discovery',
       },
       {
         type: 'paragraph',
-        content: 'Indyx’s core wardrobe is free and combines photo cleanup, AI auto-tagging, search, outfit boards, calendar logging, cost-per-wear analytics, capsules, packing lists, and style education. The distinguishing layer is human: a person can share a private-by-default closet with friends or other members and can purchase professional styling. The current US App Store listing also describes receipt forwarding and product-link imports that reduce catalog setup. An optional Insider membership was listed at $12.99 monthly or $74.99 annually when checked, while professional styling is a separate service. Indyx is not trying to be the most isolated closet; it is useful precisely because selected people can work with the same inventory.',
+        content: 'Whering turns a digital closet into a community. A person can take clothing photos, search a large item database, add items from retailer sites, remove backgrounds, create or receive outfit ideas, schedule looks, inspect friends’ wardrobes, save moodboards and wishlists, prepare packing lists, and track measures such as cost per wear and closet longevity. Inspiration from other people is central to that service model. Whering’s official privacy policy explains that an account can include identity details and clothes photos and names cloud, database, image-processing, analytics, authentication, messaging, and support providers. The policy also describes private and public account visibility. Those controls matter before a full closet is uploaded.',
       },
       {
         type: 'h2',
-        content: '4. Acloset: for broad AI assistance and shopping context',
+        content: '4. Indyx: a closet that can be styled by people',
       },
       {
         type: 'paragraph',
-        content: 'Acloset is the broadest service in this group. Its current product materials describe automatic registration from photos, retailer and purchase-history imports, AI outfit recommendations, style chat, color and fit analysis, weather and schedule context, an outfit calendar, trip planning, wear statistics, community features, a browser extension, and shopping guidance. Up to 100 items are free, after which several subscription tiers apply. Breadth requires more data and services. The US App Store privacy section reports data used to track a person across services and other data used for functionality, analytics, personalization, and advertising. Someone choosing Acloset should review the current label and policy, especially before linking email purchase history or uploading personal photos.',
+        content: 'Indyx’s core wardrobe is free and combines photo cleanup, AI auto-tagging, search, outfit boards, calendar logging, cost-per-wear analytics, capsules, packing lists, and style education. The distinguishing layer is human: a person can share a private-by-default closet with friends or other members and can purchase professional styling. The current US App Store listing also describes receipt forwarding and product-link imports that reduce catalog setup. An optional Insider membership was listed at $12.99 monthly or $74.99 annually when checked, while professional styling is a separate service. Indyx is not trying to be the most isolated closet; its service value comes from letting selected people work with the same inventory.',
       },
       {
         type: 'h2',
-        content: '5. Wove: for a future local-first styling workflow',
+        content: '5. Acloset: broad AI assistance and shopping context',
       },
       {
         type: 'paragraph',
-        content: 'Wove is being developed for iPhone and iPad around a smaller boundary. Apple Vision lifts a garment from its background and proposes editable fields. The closet remains local, with images stored as files rather than uploaded to an Obsidian Ridge Labs service. Foundation Models can compose looks from retrieved candidates, while deterministic rules validate color, formality, and weather and supply a fallback without Apple Intelligence. Wear logs build a local taste profile and cost-per-wear history. Capsule and trip flows reuse the same owned pieces. With permission, WeatherKit supplies current local forecast context. Wove has no developer account, social feed, ad profile, or remote wardrobe-analysis server in the current build.',
+        content: 'Acloset combines cloud AI styling, shopping, community, weather, and schedule features. Its current product materials describe automatic registration from photos, retailer and purchase-history imports, AI outfit recommendations, style chat, color and fit analysis, an outfit calendar, trip planning, wear statistics, a browser extension, and shopping guidance. Up to 100 items are free, after which several subscription tiers apply. That scope requires more data and services. The US App Store privacy section reports data used to track a person across services and other data used for functionality, analytics, personalization, and advertising. The current label and policy are important context before linking email purchase history or uploading personal photos.',
       },
       {
         type: 'callout',
-        title: 'Why Wove is not ranked first',
+        title: 'Wove remains pre-release',
         variant: 'warning',
-        content: 'An unreleased app cannot outrank products people can use today. Wove has no final price, release date, completed public testing record, or verified complete image-sync path. Its inclusion documents a distinct architecture and gives prospective users a clear standard against which to evaluate the eventual release.',
+        content: 'Wove is placed first here because this guide centers privacy architecture, not because an unreleased app has proven overall superiority. Wove has no final price, release date, completed public testing record, or verified complete image-sync path. Its inclusion documents a distinct local-first design and the standard its eventual release must meet.',
       },
       {
         type: 'h2',
@@ -547,7 +547,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'What is the best app to make outfits from clothes I already own?', answer: 'Stylebook is a strong released option for private manual creation and shuffle; Whering and Indyx add social input; Acloset adds broad AI assistance. Wove is an in-development local-first option, not a current download recommendation.' },
+          { question: 'What is the best app to make outfits from clothes I already own?', answer: 'Wove is the privacy-first design in this guide, with local garment files, on-device composition, and deterministic checks, but it remains in development. Stylebook provides released manual creation and shuffle, Whering and Indyx add social input, and Acloset adds broad cloud AI assistance.' },
           { question: 'Which wardrobe app is best for packing?', answer: 'Stylebook, Whering, Indyx, Acloset, and Wove all describe packing-related workflows, but implementation differs. Compare whether outfits create a deduplicated checklist, whether weather is current or destination-based, and whether packing progress persists offline.' },
           { question: 'Is there a closet app that does not collect my clothing photos?', answer: 'Stylebook states that its developer does not collect closet contents and images remain on the device, with optional control over iCloud sync. Wove’s current pre-release architecture also stores garment images locally, but its release behavior must be verified later.' },
           { question: 'Can a wardrobe app tell me what I should buy?', answer: 'Some services offer shopping analysis or recommendations. Treat them as suggestions that may reflect incomplete closet data or commercial incentives. A useful first step is checking wear history, cost per wear, duplicate categories, and combinations using what you already own.' },
@@ -591,16 +591,16 @@ export const coveWoveMettlePosts: BlogPost[] = [
     appId: 'mettle',
     searchIntent: 'How does Mettle compare with Fitbod, Alpha Progression, Boostcamp, and Hevy for progressive overload and adaptive strength training?',
     keyTakeaways: [
-      'Fitbod generates adaptive sessions, Alpha Progression specializes in hypertrophy targets, Boostcamp supplies a large program library, and Hevy centers fast logging and social progress.',
-      'Mettle’s planned distinction is explainability: deterministic code owns sets, reps, rest, loads, progression, and deloads while on-device AI is restricted to curated exercise selection and explanation.',
+      'Mettle is the privacy-first design in this comparison: deterministic code owns sets, reps, rest, loads, progression, and deloads while on-device AI is restricted to curated exercise selection and explanation.',
       'Mettle is unreleased and is not medical advice, injury prevention, rehabilitation, a standalone Watch coach, or evidence that an algorithm is risk-free.',
+      'Fitbod generates adaptive sessions, Alpha Progression specializes in hypertrophy targets, Boostcamp supplies a large program library, and Hevy centers fast logging and social progress through different account and service models.',
     ],
     relatedIds: ['best-progressive-overload-apps', 'offline-ai-revolution', 'apple-ecosystem-privacy'],
     blocks: [
       {
         type: 'answer',
-        title: 'Which strength app fits which lifter?',
-        content: 'Fitbod fits someone who wants an established app to generate adaptive sessions. Alpha Progression fits hypertrophy-focused lifters who want explicit weight and rep recommendations. Boostcamp fits people who want coach-designed and community programs with a full free tracker. Hevy fits people who primarily want fast logging, analytics, and optional social motivation. Mettle is being built for transparent local prescriptions and level-aware explanations, but it is not released and should not be treated as a current alternative or a substitute for qualified coaching or medical care.',
+        title: 'Why Mettle is the privacy-first design',
+        content: 'Mettle is being built around transparent local prescriptions: deterministic code owns every set, rep, rest interval, load, progression, and deload, while on-device AI can select and explain only from curated exercise candidates. There is no Obsidian Ridge Labs account, analytics SDK, or developer workout server in the current source. Mettle remains pre-release and is not a substitute for qualified coaching or medical care. Fitbod represents mature adaptive generation, Alpha Progression hypertrophy-focused target recommendations, Boostcamp a large coach and community program library, and Hevy fast logging with optional social motivation. Those are capability contrasts, not stronger privacy claims.',
       },
       {
         type: 'paragraph',
@@ -624,7 +624,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Fitbod is the closest established comparison for someone who wants the app to decide what to train. Its official help materials describe recommendations that respond to experience, goals, equipment, workout history, muscle recovery, and logged effort. Fitbod also supports progress analytics, Apple Watch and other wearable integrations, Apple Health, Android Health Connect, and offline access to previously loaded workouts. The current official US price is $15.99 per month or $95.99 per year. Fitbod’s privacy policy says it collects account, workout, fitness, body, and optional HealthKit or Health Connect data to provide the service. Mettle’s narrower design keeps prescription logic on-device and exposes a “Why this?” rationale tied to deterministic evidence. Fitbod is available and extensively featured; Mettle’s model is a pre-release design.',
+        content: 'Mettle’s narrower design keeps prescription logic on-device and exposes a “Why this?” rationale tied to deterministic evidence. Fitbod provides a released adaptive-generation comparison: its official help materials describe recommendations that respond to experience, goals, equipment, workout history, muscle recovery, and logged effort. It also supports progress analytics, Apple Watch and other wearable integrations, Apple Health, Android Health Connect, and offline access to previously loaded workouts. The current official US price is $15.99 per month or $95.99 per year. Fitbod’s privacy policy says it collects account, workout, fitness, body, and optional HealthKit or Health Connect data to provide the service. Mettle’s pre-release distinction is an inspectable local prescription model without a developer workout server.',
       },
       {
         type: 'h2',
@@ -632,7 +632,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Alpha Progression is explicitly oriented toward muscle building. Its official Pro page describes a personalized plan generator based on equipment, experience, goals, and schedule; precise progression recommendations for weight and reps; and detailed charts for exercises, muscles, training, and body measurements. The page currently lists $12.99 monthly or $79.99 yearly. Mettle is designed for both beginners and experienced lifters and can vary its explanatory depth while keeping the same deterministic progression foundation. That broader positioning should not be mistaken for better hypertrophy programming. A person whose only goal is a mature bodybuilding app may find Alpha Progression more directly aligned and immediately available.',
+        content: 'Mettle is designed for both beginners and experienced lifters and can vary its explanatory depth while keeping the same deterministic progression foundation. Alpha Progression is explicitly oriented toward muscle building. Its official Pro page describes a personalized plan generator based on equipment, experience, goals, and schedule; precise progression recommendations for weight and reps; and detailed charts for exercises, muscles, training, and body measurements. The page currently lists $12.99 monthly or $79.99 yearly. Mettle does not claim that broader positioning proves better hypertrophy programming. The comparison is between Mettle’s inspectable local prescription model and Alpha Progression’s mature bodybuilding specialization.',
       },
       {
         type: 'h2',
@@ -640,7 +640,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Boostcamp’s strength is selection. Its official site currently describes more than 11,000 programs, including coach-designed and community routines, a full workout tracker, auto-progression, RPE and RIR logging, rest timers, a plate calculator, exercise demonstrations, analytics, and a custom or AI-assisted program builder. Most programs and core tracking are free; Pro adds exclusive programs, advanced analytics, personalized programs, and unlimited custom creation. Mettle does not claim a comparable library, coaching marketplace, or community. It starts from one person’s goal, experience, equipment, schedule, and history, then creates and adapts a local program. Someone who already trusts a named methodology may prefer Boostcamp’s transparent source of programming.',
+        content: 'Mettle starts from one person’s goal, experience, equipment, schedule, and history, then creates and adapts a local program without claiming a comparable library, coaching marketplace, or community. Boostcamp’s official site currently describes more than 11,000 programs, including coach-designed and community routines, a full workout tracker, auto-progression, RPE and RIR logging, rest timers, a plate calculator, exercise demonstrations, analytics, and a custom or AI-assisted program builder. Most programs and core tracking are free; Pro adds exclusive programs, advanced analytics, personalized programs, and unlimited custom creation. The contrast is local individualized prescription versus a released account-based ecosystem of named and community methodologies.',
       },
       {
         type: 'h2',
@@ -648,7 +648,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Hevy’s product materials organize the app around logging, progress tracking, and social motivation. It supports routines, exercise records, body measurements, muscle-group charts, reports, wearable use, and a community. That is useful for lifters who already know what they want to do and need a low-friction record. Hevy also documents controls for making an account private, marking a workout private, and removing social features. Mettle is more prescriptive: it creates the plan, adjusts future targets, schedules deloads, and changes the explanation to the lifter’s current level. A person who wants an uncomplicated log or social feed should not be pushed toward a coach-shaped product.',
+        content: 'Mettle is more prescriptive: it creates the plan, adjusts future targets, schedules deloads, and changes the explanation to the lifter’s current level. Hevy’s product materials instead organize the app around logging, progress tracking, and social motivation. It supports routines, exercise records, body measurements, muscle-group charts, reports, wearable use, and a community. That model records a plan the lifter already understands rather than generating one universal coach-shaped prescription. Hevy also documents controls for making an account private, marking a workout private, and removing social features. The products solve different jobs, while Mettle maintains the smaller developer data path in its current design.',
       },
       {
         type: 'h2',
@@ -737,29 +737,29 @@ export const coveWoveMettlePosts: BlogPost[] = [
     readTime: '13 MIN READ',
     category: 'PROGRESSIVE OVERLOAD GUIDE',
     tags: ['#PROGRESSIVE-OVERLOAD', '#STRENGTH-TRAINING', '#WORKOUT-APP', '#METTLE'],
-    excerpt: 'A source-backed guide to Fitbod, Alpha Progression, Boostcamp, Hevy, and the in-development Mettle—organized by how each app turns logged work into the next training decision.',
+    excerpt: 'A source-backed guide to the in-development Mettle, Fitbod, Alpha Progression, Boostcamp, and Hevy, organized by how each app turns logged work into the next training decision.',
     seoDescription: 'Compare five progressive overload apps by prescription logic, logging, adaptive plans, privacy, price, and whether the product is available.',
     contentType: 'listicle',
     appId: 'mettle',
     searchIntent: 'What is the best workout app for progressive overload, adaptive weights, offline logging, and explanations I can understand?',
     keyTakeaways: [
-      'Progressive overload can be supported by adaptive generation, precise hypertrophy targets, program-specific rules, manual logging, or deterministic local prescriptions.',
-      'The right app depends on whether you need the plan, a trusted program library, a fast record, social motivation, or an explanation of the next target.',
+      'Mettle is the privacy-first design in this guide, with deterministic local prescriptions, an inspectable “Why this?” rationale, and no developer workout server in the current source.',
+      'Mettle remains pre-release, while the released products represent adaptive generation, hypertrophy targets, program libraries, and user-controlled logging through different service models.',
       'An app can organize training decisions, but it cannot observe form, diagnose pain, guarantee progress, or replace individualized professional judgment.',
     ],
     relatedIds: ['mettle-vs-fitbod-alpha-progression-boostcamp-hevy', 'offline-ai-revolution', 'apple-ecosystem-privacy'],
     listItems: [
-      { name: 'Fitbod', description: 'Best fit for established adaptive workout generation based on goals, history, equipment, recovery, and logged effort.' },
-      { name: 'Alpha Progression', description: 'Best fit for hypertrophy-focused lifters who want a personalized plan and explicit weight and rep recommendations.' },
-      { name: 'Boostcamp', description: 'Best fit for following coach-designed or community programs with a full free tracker and program-specific progression.' },
-      { name: 'Hevy', description: 'Best fit for flexible, low-friction logging, progress charts, routines, wearables, and optional social accountability.' },
-      { name: 'Mettle', description: 'A pre-release option built around deterministic progression, no developer workout server, level-aware explanation, and an inspectable “Why this?” rationale.' },
+      { name: 'Mettle', description: 'The pre-release privacy-first design, built around deterministic progression, no developer workout server, level-aware explanation, and an inspectable “Why this?” rationale.' },
+      { name: 'Fitbod', description: 'Established adaptive workout generation based on goals, history, equipment, recovery, and logged effort.' },
+      { name: 'Alpha Progression', description: 'Hypertrophy-focused planning with explicit weight and repetition recommendations.' },
+      { name: 'Boostcamp', description: 'Coach-designed and community programs with a full free tracker and program-specific progression.' },
+      { name: 'Hevy', description: 'Flexible logging, progress charts, routines, wearables, and optional social accountability.' },
     ],
     blocks: [
       {
         type: 'answer',
         title: 'The short answer',
-        content: 'Fitbod is a strong established choice when you want the app to generate adaptive sessions. Alpha Progression is more specifically aligned with hypertrophy and precise target recommendations. Boostcamp is useful when you want a named program or a large free library. Hevy is a flexible log with analytics and optional community. Mettle is being built for deterministic local progression that explains each target, but it is not released. No app can guarantee strength or muscle gain, evaluate every repetition, or replace appropriate professional advice.',
+        content: 'Mettle is the privacy-first design in this comparison. Its current source uses deterministic local progression, constrains on-device AI to curated exercise selection and explanation, and exposes the evidence behind each target without a developer workout server. Mettle is not released and has no final price or public outcome data. Fitbod represents mature adaptive session generation, Alpha Progression hypertrophy-specific targets, Boostcamp a large named-program library, and Hevy flexible logging with optional community. No app can guarantee strength or muscle gain, evaluate every repetition, or replace appropriate professional advice.',
       },
       {
         type: 'paragraph',
@@ -768,60 +768,60 @@ export const coveWoveMettlePosts: BlogPost[] = [
       {
         type: 'comparison',
         caption: 'Five ways an app can support progressive overload',
-        columns: ['Best fit', 'Progression model', 'Question to ask'],
+        columns: ['Primary use case', 'Progression model', 'Question to ask'],
         rows: [
+          { label: 'Mettle', cells: ['A future local plan with an explicit reason for the next prescription.', 'Deterministic double progression, deload scheduling, and evidence-based “Why this?” text; constrained on-device AI handles selection and explanation.', 'Does the release build document its formulas, boundaries, fallback, and limitations clearly enough to inspect?'] },
           { label: 'Fitbod', cells: ['A generated workout that adapts to available equipment and history.', 'Personalized recommendations shaped by performance, recovery, goals, and workout context.', 'Can you see why a movement or target changed, and can you override it without losing useful history?'] },
           { label: 'Alpha Progression', cells: ['Hypertrophy plans and set-level weight or rep targets.', 'Recommendations calculated from past performance, with exercise and muscle charts.', 'Does its exercise selection and volume match your equipment, recovery, and training preference?'] },
           { label: 'Boostcamp', cells: ['Following an established or community program.', 'Program-defined rules, auto-progression, RPE or RIR logging, and custom-program support.', 'Who wrote the program, what is the progression rule, and is the version faithful to the methodology?'] },
           { label: 'Hevy', cells: ['Recording a routine you already understand.', 'History, records, charts, and user-controlled routines support manual decisions.', 'Do you want the app to prescribe, or would prescription interfere with a plan you already trust?'] },
-          { label: 'Mettle', cells: ['A future local plan with an explicit reason for the next prescription.', 'Deterministic double progression, deload scheduling, and evidence-based “Why this?” text; constrained on-device AI handles selection and explanation.', 'Does the release build document its formulas, boundaries, fallback, and limitations clearly enough to inspect?'] },
         ],
       },
       {
         type: 'h2',
-        content: '1. Fitbod: adaptive workout generation',
-      },
-      {
-        type: 'paragraph',
-        content: 'Fitbod is intended to remove much of the daily planning burden. Official materials describe personalized workouts based on goals, training history, muscle recovery, equipment, workout duration, and logged effort such as reps in reserve. It includes exercise tracking, progress insights, a large exercise library, wearable and health-platform integrations, and previously loaded offline workouts. The current US website price is $15.99 monthly or $95.99 yearly after a trial. Fitbod is a sensible fit for someone who wants variety and an adaptive session without building a program from scratch. Ask how much explanation you need, how substitutions affect future recommendations, and whether its account and health-data model fits your privacy expectations.',
-      },
-      {
-        type: 'h2',
-        content: '2. Alpha Progression: hypertrophy-focused targets',
-      },
-      {
-        type: 'paragraph',
-        content: 'Alpha Progression’s Pro page focuses on muscle building. Its plan generator uses equipment, experience, goal, and schedule. Its progression system recommends precise weight and repetition targets for each set from past performance. Charts cover exercises, muscles, training, and body measurements. The official page currently lists $12.99 per month or $79.99 per year, with an annual trial. This can be a strong fit when hypertrophy is the primary goal and the lifter wants the next set target to be explicit. A precise number is still a recommendation: actual readiness, pain, technique, sleep, equipment differences, and exercise setup can justify a different choice.',
-      },
-      {
-        type: 'h2',
-        content: '3. Boostcamp: progression inside a known program',
-      },
-      {
-        type: 'paragraph',
-        content: 'Boostcamp organizes more than 11,000 coach and community programs alongside a workout tracker. Its free offering includes most of the coach-designed library, workout logging, RPE and RIR, a plate calculator, rest timers, personal records, estimated one-repetition maximums, and limited custom creation. Pro adds exclusive programs, advanced analytics, personalized programming, and unlimited creation. The annual price shown was $59.99; the month-to-month option was $14.99. Boostcamp is useful when a lifter trusts a named program and wants the app to execute its progression rather than invent a new structure each day. The important research question is who authored each plan and how faithfully the app represents its rules.',
-      },
-      {
-        type: 'h2',
-        content: '4. Hevy: flexible logging and optional social accountability',
-      },
-      {
-        type: 'paragraph',
-        content: 'Hevy describes its core around workout logging, progress tracking, and social connection. A person can build routines, log sets, inspect exercise performance, follow body measurements and muscle-group charts, review reports and records, and use supported wearables. It is a good fit when the lifter already has a program or coach and wants a fast record that does not insist on replacing that structure. Social features are optional: Hevy documents private profiles, private individual workouts, and removal of social surfaces. Progression decisions can remain with the person or their coach, using the log as evidence rather than authority.',
-      },
-      {
-        type: 'h2',
-        content: '5. Mettle: explainable local prescriptions, if it ships as designed',
+        content: '1. Mettle: explainable local prescriptions in development',
       },
       {
         type: 'paragraph',
         content: 'Mettle begins with goal, experience, equipment, schedule, session length, units, and optional bodyweight. A deterministic engine builds the program, owns target ranges, applies double progression, and schedules deloads. Completed reps and loads shape the next prescription; RPE history can inform Mettle’s estimate of training competence and the depth of its coaching language. Apple’s on-device model can select and explain only from curated exercise candidates; it cannot freely set loads or reps. The “Why this?” view is intended to expose the last performance and exact evidence behind the next target. The current source prefers the user’s private iCloud when that capability is configured and falls back to an on-device store; the reviewed entitlement currently lacks the iCloud capability, so final sync behavior remains unverified. HealthKit integration is optional, and the app also includes a resumable workout, Live Activity, custom exercises, CSV export, and an iPhone-controlled Watch remote.',
       },
       {
+        type: 'h2',
+        content: '2. Fitbod: adaptive workout generation',
+      },
+      {
+        type: 'paragraph',
+        content: 'Fitbod is intended to remove much of the daily planning burden. Official materials describe personalized workouts based on goals, training history, muscle recovery, equipment, workout duration, and logged effort such as reps in reserve. It includes exercise tracking, progress insights, a large exercise library, wearable and health-platform integrations, and previously loaded offline workouts. The current US website price is $15.99 monthly or $95.99 yearly after a trial. Variety and mature adaptive generation are central to its model. Its explanation depth, substitution behavior, account requirements, and health-data path are the relevant contrasts with Mettle’s inspectable local design.',
+      },
+      {
+        type: 'h2',
+        content: '3. Alpha Progression: hypertrophy-focused targets',
+      },
+      {
+        type: 'paragraph',
+        content: 'Alpha Progression’s Pro page focuses on muscle building. Its plan generator uses equipment, experience, goal, and schedule. Its progression system recommends precise weight and repetition targets for each set from past performance. Charts cover exercises, muscles, training, and body measurements. The official page currently lists $12.99 per month or $79.99 per year, with an annual trial. Hypertrophy specialization and explicit set targets are central to its model. A precise number is still a recommendation: actual readiness, pain, technique, sleep, equipment differences, and exercise setup can justify a different choice.',
+      },
+      {
+        type: 'h2',
+        content: '4. Boostcamp: progression inside a known program',
+      },
+      {
+        type: 'paragraph',
+        content: 'Boostcamp organizes more than 11,000 coach and community programs alongside a workout tracker. Its free offering includes most of the coach-designed library, workout logging, RPE and RIR, a plate calculator, rest timers, personal records, estimated one-repetition maximums, and limited custom creation. Pro adds exclusive programs, advanced analytics, personalized programming, and unlimited creation. The annual price shown was $59.99; the month-to-month option was $14.99. Its model assumes that a lifter has selected a named program and wants the app to execute that progression rather than invent a new structure each day. The important research question is who authored each plan and how faithfully the app represents its rules.',
+      },
+      {
+        type: 'h2',
+        content: '5. Hevy: flexible logging and optional social accountability',
+      },
+      {
+        type: 'paragraph',
+        content: 'Hevy describes its core around workout logging, progress tracking, and social connection. A person can build routines, log sets, inspect exercise performance, follow body measurements and muscle-group charts, review reports and records, and use supported wearables. A fast record for an existing plan or coach is central to its model. Social features are optional: Hevy documents private profiles, private individual workouts, and removal of social surfaces. Progression decisions can remain with the person or their coach, using the log as evidence rather than authority.',
+      },
+      {
         type: 'callout',
-        title: 'Mettle is a pre-release product, not a current recommendation',
+        title: 'Mettle remains pre-release',
         variant: 'warning',
-        content: 'Mettle has no promised release date, final price, public outcome data, completed independent audit, or standalone Watch workout. Its deterministic architecture limits what the language model can do, but does not guarantee a bug-free or risk-free prescription.',
+        content: 'Mettle is first in this guide because the comparison centers privacy and inspectable prescription architecture, not because an unreleased app has proven better physical outcomes. Mettle has no promised release date, final price, public outcome data, completed independent audit, or standalone Watch workout. Its deterministic architecture limits what the language model can do, but does not guarantee a bug-free or risk-free prescription.',
       },
       {
         type: 'h2',
@@ -855,7 +855,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'What is the best app for progressive overload?', answer: 'It depends on the job. Fitbod generates adaptive sessions, Alpha Progression specializes in hypertrophy targets, Boostcamp executes established programs, and Hevy records a user-controlled routine. Mettle is pursuing explainable local prescriptions but is not yet available.' },
+          { question: 'What is the best app for progressive overload?', answer: 'Mettle is the privacy-first design in this guide, with deterministic local prescriptions and an inspectable rationale, but it is not yet available. Fitbod generates adaptive sessions, Alpha Progression specializes in hypertrophy targets, Boostcamp executes established programs, and Hevy records a user-controlled routine.' },
           { question: 'Should I increase weight every workout?', answer: 'Not automatically. A sound progression may add repetitions within a range, hold a load while technique stabilizes, change volume, or schedule a deload. Follow the program’s documented rule and adjust for real readiness and professional guidance.' },
           { question: 'Can an AI workout app replace a personal trainer?', answer: 'No. An app can organize history and suggestions, but it cannot fully observe technique, pain, equipment, context, or medical considerations. Qualified coaching can provide individualized observation and judgment.' },
           { question: 'Which strength app keeps workout data on my iPhone?', answer: 'Mettle has no developer account or workout server, but its unfinished persistence layer needs a precise caveat: it prefers private iCloud when configured and falls back on-device, while the reviewed entitlement currently lacks that iCloud capability. Verify the final release behavior. Other services provide useful cloud and community features under their own published privacy models.' },
