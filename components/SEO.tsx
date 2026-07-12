@@ -4,7 +4,7 @@ import type { BlogBlock, BlogPost } from '../types';
 
 const SITE_NAME = 'Obsidian Ridge Labs';
 const SITE_URL = 'https://obsidianridgelabs.com';
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og.png`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-v2.png`;
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 const getDocumentTitle = (title: string) => {
@@ -416,7 +416,7 @@ export const buildTechArticle = (a: {
   },
   author: { '@id': ORGANIZATION_ID },
   publisher: { '@id': ORGANIZATION_ID },
-  image: `${SITE_URL}/og.png`,
+  image: `${SITE_URL}/og-v2.png`,
   inLanguage: 'en-US',
 });
 

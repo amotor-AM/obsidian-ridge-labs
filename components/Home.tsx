@@ -34,8 +34,8 @@ const Home: React.FC = () => {
         title="Private AI Apps for Apple"
         description="Obsidian Ridge Labs builds private, on-device AI apps for iPhone, iPad, and Mac, including Echo Chamber transcription and a growing collection of local-first tools."
         canonical={`${SITE_URL}/`}
-        ogImage={`${SITE_URL}/og.png`}
-        ogImageAlt="Obsidian Ridge Labs: private AI apps built for Apple devices"
+        ogImage={`${SITE_URL}/og-v2.png`}
+        ogImageAlt="Obsidian Ridge Labs: Pure privacy. Intelligence on your terms."
         keywords={[
           'private AI apps',
           'on-device AI for Apple',

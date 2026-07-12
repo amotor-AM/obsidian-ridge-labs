@@ -13,6 +13,7 @@ Allow: /terms
 Allow: /assets/
 Allow: /og-*.png
 Allow: /og.png
+Allow: /og-v2.png
 Allow: /logo.png
 Allow: /favicon.svg
 
