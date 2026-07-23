@@ -9,7 +9,17 @@ const errors = [];
 const warnings = [];
 const expectedAppIds = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith'];
 const expectedAppNames = ['ECHO CHAMBER', 'VAULT', 'MOLEHILL', 'COVE', 'WOVE', 'METTLE', 'MEMORA', 'TROVE', 'KITH'];
-const expectedBlogPostCount = 20;
+const expectedEditorialBlogPostCount = 20;
+const babyLoveGrowthGeneratedPath = path.join(root, 'data', 'babylovegrowth.generated.json');
+const babyLoveGrowthArticles = fs.existsSync(babyLoveGrowthGeneratedPath)
+  ? JSON.parse(fs.readFileSync(babyLoveGrowthGeneratedPath, 'utf8'))
+  : [];
+const babyLoveGrowthSlugs = new Set(
+  (Array.isArray(babyLoveGrowthArticles) ? babyLoveGrowthArticles : [])
+    .map((article) => article?.id)
+    .filter(Boolean),
+);
+const expectedBlogPostCount = expectedEditorialBlogPostCount + babyLoveGrowthSlugs.size;
 const schemaGraphsByRoute = new Map();
 const visibleTextByRoute = new Map();
 
@@ -219,15 +229,21 @@ if (blogArticleRoutes.length !== expectedBlogPostCount) {
 const clusterGenres = new Map(expectedAppIds.map((appId) => [appId, new Set()]));
 for (const blogRoute of blogArticleRoutes) {
   const graph = schemaGraphsByRoute.get(blogRoute) || [];
-  const article = graph.find((node) => typesOf(node).includes('BlogPosting'));
+  const article = graph.find((node) => typesOf(node).includes('BlogPosting') || typesOf(node).includes('Article'));
   const faq = graph.find((node) => typesOf(node).includes('FAQPage'));
   const list = graph.find((node) => typesOf(node).includes('ItemList'));
   const visibleText = visibleTextByRoute.get(blogRoute) || '';
+  const slug = blogRoute.replace(/^\/blog\//, '');
+  const isBabyLoveGrowthArticle = babyLoveGrowthSlugs.has(slug);
 
   if (!article) {
     errors.push(`${blogRoute}: BlogPosting schema is missing`);
     continue;
   }
+
+  // BabyLoveGrowth articles are HTML-synced CMS posts; skip editorial journal contracts.
+  if (isBabyLoveGrowthArticle) continue;
+
   if (!faq || !Array.isArray(faq.mainEntity) || faq.mainEntity.length < 3) {
     errors.push(`${blogRoute}: visible FAQPage schema should contain at least 3 questions`);
   }

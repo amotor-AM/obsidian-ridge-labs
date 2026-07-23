@@ -35,7 +35,12 @@ const PostCard: React.FC<{ post: BlogPost; index?: number }> = ({ post, index })
 const BlogList: React.FC = () => {
   const [filter, setFilter] = useState<Filter>('all');
   const featured = blogPosts.find((post) => post.id === 'apple-ecosystem-privacy') || blogPosts[0];
-  const pillars = blogPosts.filter((post) => !post.appId && post.id !== featured?.id);
+  const growthPosts = blogPosts.filter((post) => post.source === 'babylovegrowth');
+  const pillars = blogPosts.filter((post) => (
+    !post.appId
+    && post.source !== 'babylovegrowth'
+    && post.id !== featured?.id
+  ));
   const filteredPosts = useMemo(() => (
     filter === 'all' ? blogPosts : blogPosts.filter((post) => post.contentType === filter)
   ), [filter]);
@@ -189,6 +194,18 @@ const BlogList: React.FC = () => {
                     </div>
                     <div className="journal-cluster__posts">
                       {pillars.map((post, index) => <PostCard key={post.id} post={post} index={index} />)}
+                    </div>
+                  </section>
+                )}
+                {growthPosts.length > 0 && (
+                  <section className="journal-cluster">
+                    <div className="journal-cluster__head">
+                      <span>11</span>
+                      <div className="journal-cluster__icon"><Sparkles size={24} aria-hidden="true" /></div>
+                      <div><h3>Growth</h3><p>Articles published through BabyLoveGrowth.</p></div>
+                    </div>
+                    <div className="journal-cluster__posts">
+                      {growthPosts.map((post, index) => <PostCard key={post.id} post={post} index={index} />)}
                     </div>
                   </section>
                 )}

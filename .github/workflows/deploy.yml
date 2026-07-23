@@ -18,6 +18,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Server-only BabyLoveGrowth read key. Never use a NEXT_PUBLIC_ prefix.
+      BABYLOVEGROWTH_BLOG_API_KEY: ${{ secrets.BABYLOVEGROWTH_BLOG_API_KEY }}
     steps:
       - uses: actions/checkout@v4
 

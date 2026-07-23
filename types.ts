@@ -98,6 +98,16 @@ export interface BlogPost {
   relatedIds?: string[];
   listItems?: { name: string; description: string }[];
   blocks: BlogBlock[];
+  /** Editorial journal posts vs BabyLoveGrowth-synced articles. */
+  source?: 'editorial' | 'babylovegrowth';
+  /** Pre-rendered HTML body from BabyLoveGrowth (never built from blocks). */
+  htmlContent?: string;
+  /** Optional hero image supplied by BabyLoveGrowth. */
+  heroImageUrl?: string;
+  /** Optional Article JSON-LD payload from BabyLoveGrowth. */
+  jsonLd?: Record<string, unknown> | null;
+  /** Optional FAQ JSON-LD payload from BabyLoveGrowth. */
+  faqJsonLd?: Record<string, unknown> | null;
 }
 
 /* ── Knowledge base ───────────────────────────────────────────────────────────

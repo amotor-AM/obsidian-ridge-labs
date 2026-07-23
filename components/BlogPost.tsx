@@ -14,7 +14,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from 'lucide-react';
-import { blogPosts } from '../data/blog';
+import { blogPosts, isBabyLoveGrowthPost } from '../data/blog';
 import { getProductReleaseLabel, products } from '../data/products';
 import type { BlogBlock } from '../types';
 import SEO, {
@@ -68,6 +68,7 @@ const BlogPostPage: React.FC = () => {
 
   if (!post) return <Navigate to="/blog" replace />;
 
+  const isGrowthPost = isBabyLoveGrowthPost(post);
   const product = post.appId ? products.find((item) => item.id === post.appId) : undefined;
   const faqs = blockFaqs(post.blocks);
   const itemList = buildArticleItemList(post);
@@ -75,13 +76,13 @@ const BlogPostPage: React.FC = () => {
     block.type === 'h2' ? [{ label: block.content, id: `section-${index}` }] : []
   ));
   const structuredData = [
-    buildBlogPosting(post),
+    ...(post.jsonLd ? [post.jsonLd] : [buildBlogPosting(post)]),
     buildBreadcrumbs([
       { name: 'Home', url: '/' },
       { name: 'Journal', url: '/blog' },
       { name: post.title, url: `/blog/${post.id}` },
     ]),
-    ...(faqs.length ? [buildFAQSchema(faqs)] : []),
+    ...(post.faqJsonLd ? [post.faqJsonLd] : faqs.length ? [buildFAQSchema(faqs)] : []),
     ...(itemList ? [itemList] : []),
   ];
 
@@ -245,7 +246,7 @@ const BlogPostPage: React.FC = () => {
         title={post.seoTitle || post.title}
         description={post.seoDescription || post.excerpt}
         ogType="article"
-        ogImage="https://obsidianridgelabs.com/blog-og.png"
+        ogImage={post.heroImageUrl || 'https://obsidianridgelabs.com/blog-og.png'}
         ogImageAlt="Obsidian Ridge Labs Journal: evidence-led guides to private, on-device AI"
         keywords={post.tags.map((tag) => tag.replace('#', '').replaceAll('-', ' '))}
         article={{
@@ -262,7 +263,7 @@ const BlogPostPage: React.FC = () => {
         <div className="section-frame journal-hero__inner">
           <Link to="/blog" className="journal-back"><ArrowLeft size={16} aria-hidden="true" /> Journal index</Link>
           <div className="journal-hero__eyebrow">
-            <span>{post.contentType}</span>
+            <span>{isGrowthPost ? 'growth' : post.contentType}</span>
             {product && <Link to={`/apps/${product.id}`}>{product.name}</Link>}
             <span>{post.readTime.replace(' READ', '').toLowerCase()}</span>
           </div>
@@ -271,12 +272,14 @@ const BlogPostPage: React.FC = () => {
           <div className="journal-hero__meta">
             <span><Calendar size={16} aria-hidden="true" /> Published {formatDate(post.date)}</span>
             {post.modified && <span><Clock size={16} aria-hidden="true" /> Reviewed {formatDate(post.modified)}</span>}
-            <span>By Obsidian Ridge Labs Editorial</span>
+            <span>{isGrowthPost ? 'Published with BabyLoveGrowth' : 'By Obsidian Ridge Labs Editorial'}</span>
           </div>
-          <div className="journal-query">
-            <span>Question this guide answers</span>
-            <p>{post.searchIntent}</p>
-          </div>
+          {post.searchIntent && !isGrowthPost && (
+            <div className="journal-query">
+              <span>Question this guide answers</span>
+              <p>{post.searchIntent}</p>
+            </div>
+          )}
         </div>
       </header>
 
@@ -299,17 +302,19 @@ const BlogPostPage: React.FC = () => {
 
         <main>
           <article className="journal-prose">
-            <section className="journal-takeaways" aria-labelledby="takeaways-heading">
-              <div>
-                <span>Read this first</span>
-                <h2 id="takeaways-heading">Key takeaways</h2>
-              </div>
-              <ul>
-                {post.keyTakeaways.map((takeaway) => <li key={takeaway}><Check size={17} aria-hidden="true" />{takeaway}</li>)}
-              </ul>
-            </section>
+            {post.keyTakeaways.length > 0 && (
+              <section className="journal-takeaways" aria-labelledby="takeaways-heading">
+                <div>
+                  <span>Read this first</span>
+                  <h2 id="takeaways-heading">Key takeaways</h2>
+                </div>
+                <ul>
+                  {post.keyTakeaways.map((takeaway) => <li key={takeaway}><Check size={17} aria-hidden="true" />{takeaway}</li>)}
+                </ul>
+              </section>
+            )}
 
-            {(post.contentType === 'comparison' || post.contentType === 'listicle') && (
+            {!isGrowthPost && (post.contentType === 'comparison' || post.contentType === 'listicle') && (
               <aside className="journal-method">
                 <strong>How this guide was built</strong>
                 <p>We compared current official product pages, documentation, privacy policies, and pricing pages against the implementation facts available for our own product. This is an editorial comparison, not paid placement or a claim of independent hands-on testing. Numbering is for navigation, not a test score. Recheck linked sources because products change.</p>
@@ -330,13 +335,21 @@ const BlogPostPage: React.FC = () => {
               </nav>
             ) : null}
 
-            {post.blocks.map(renderBlock)}
+            {post.htmlContent ? (
+              <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.htmlContent }} />
+            ) : (
+              post.blocks.map(renderBlock)
+            )}
 
             <footer className="journal-byline">
               <div className="site-wordmark__mark" aria-hidden="true"><i /><i /><i /></div>
               <div>
-                <strong>Obsidian Ridge Labs Editorial</strong>
-                <p>We write from product documentation, implementation evidence, and clearly labeled limitations. No rankings are purchased.</p>
+                <strong>{isGrowthPost ? 'BabyLoveGrowth article' : 'Obsidian Ridge Labs Editorial'}</strong>
+                <p>
+                  {isGrowthPost
+                    ? 'This article was published through BabyLoveGrowth and synced onto the Obsidian Ridge Labs journal at build time.'
+                    : 'We write from product documentation, implementation evidence, and clearly labeled limitations. No rankings are purchased.'}
+                </p>
               </div>
             </footer>
           </article>

@@ -446,6 +446,10 @@ export const buildBlogPosting = (post: BlogPost) => {
   const citations = extractBlockCitations(post.blocks);
   const readingMinutes = Number.parseInt(post.readTime, 10);
   const articleUrl = `${SITE_URL}/blog/${post.id}`;
+  const htmlWordCount = post.htmlContent
+    ? post.htmlContent.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length
+    : 0;
+  const wordCount = countBlockWords(post.blocks) + htmlWordCount;
 
   return {
     '@context': 'https://schema.org',
@@ -478,7 +482,7 @@ export const buildBlogPosting = (post: BlogPost) => {
     articleSection: post.category,
     genre: post.contentType,
     keywords: post.tags.map(t => t.replace('#', '')).join(', '),
-    wordCount: countBlockWords(post.blocks),
+    wordCount,
     ...(Number.isFinite(readingMinutes) ? { timeRequired: `PT${readingMinutes}M` } : {}),
     ...(citations.length ? { citation: citations } : {}),
     audience: {
@@ -486,7 +490,7 @@ export const buildBlogPosting = (post: BlogPost) => {
       audienceType: 'People evaluating private, offline-first, or on-device AI software',
     },
     isAccessibleForFree: true,
-    image: `${SITE_URL}/blog-og.png`,
+    image: post.heroImageUrl || `${SITE_URL}/blog-og.png`,
     inLanguage: 'en-US',
   };
 };
