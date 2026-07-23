@@ -445,7 +445,7 @@ export const buildHowTo = (howTo: {
 export const buildBlogPosting = (post: BlogPost) => {
   const citations = extractBlockCitations(post.blocks);
   const readingMinutes = Number.parseInt(post.readTime, 10);
-  const articleUrl = `${SITE_URL}/blog/${post.id}`;
+  const articleUrl = `${SITE_URL}/journal/${post.id}`;
   const htmlWordCount = post.htmlContent
     ? post.htmlContent.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length
     : 0;
@@ -468,9 +468,9 @@ export const buildBlogPosting = (post: BlogPost) => {
     },
     isPartOf: {
       '@type': 'Blog',
-      '@id': `${SITE_URL}/blog#blog`,
+      '@id': `${SITE_URL}/journal#blog`,
       name: 'The Obsidian Ridge Journal',
-      url: `${SITE_URL}/blog`,
+      url: `${SITE_URL}/journal`,
     },
     ...(post.appId ? {
       about: {
@@ -498,7 +498,7 @@ export const buildBlogPosting = (post: BlogPost) => {
 export const buildArticleItemList = (post: BlogPost) => post.listItems?.length ? ({
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  '@id': `${SITE_URL}/blog/${post.id}#item-list`,
+  '@id': `${SITE_URL}/journal/${post.id}#item-list`,
   name: post.title,
   numberOfItems: post.listItems.length,
   itemListOrder: 'https://schema.org/ItemListUnordered',
@@ -507,7 +507,7 @@ export const buildArticleItemList = (post: BlogPost) => post.listItems?.length ?
     position: index + 1,
     name: item.name,
     description: item.description,
-    url: `${SITE_URL}/blog/${post.id}#item-${index + 1}`,
+    url: `${SITE_URL}/journal/${post.id}#item-${index + 1}`,
   })),
 }) : null;
 

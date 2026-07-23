@@ -4,7 +4,7 @@
 User-agent: *
 Allow: /
 Allow: /apps/
-Allow: /blog/
+Allow: /journal/
 Allow: /philosophy
 Allow: /privacy
 Allow: /terms

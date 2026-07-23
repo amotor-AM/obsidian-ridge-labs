@@ -17,7 +17,7 @@ const filters: { id: Filter; label: string }[] = [
 ];
 
 const PostCard: React.FC<{ post: BlogPost; index?: number }> = ({ post, index }) => (
-  <Link to={`/blog/${post.id}`} className="journal-card">
+  <Link to={`/journal/${post.id}`} className="journal-card">
     <div className="journal-card__meta">
       <span>{post.contentType}</span>
       <span>{post.readTime.replace(' READ', '')}</span>
@@ -51,26 +51,26 @@ const BlogList: React.FC = () => {
 
   const breadcrumbs = buildBreadcrumbs([
     { name: 'Home', url: '/' },
-    { name: 'Journal', url: '/blog' },
+    { name: 'Journal', url: '/journal' },
   ]);
   const collectionPage = buildCollectionPage(
     'The Obsidian Ridge Journal',
     'Evidence-led comparisons and practical guides to private AI, offline software, transcription, personal finance, journaling, study, home inventory, fitness, wardrobe, relationships, and focused work.',
-    '/blog',
+    '/journal',
   );
   const blogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    '@id': `${SITE_URL}/blog#blog`,
+    '@id': `${SITE_URL}/journal#blog`,
     name: 'The Obsidian Ridge Journal',
     description: 'Source-backed comparisons and guides to private, on-device AI applications.',
-    url: `${SITE_URL}/blog`,
+    url: `${SITE_URL}/journal`,
     publisher: { '@id': ORGANIZATION_ID },
     blogPost: blogPosts.map((post) => ({
       '@type': 'BlogPosting',
       headline: post.title,
       description: post.excerpt,
-      url: `${SITE_URL}/blog/${post.id}`,
+      url: `${SITE_URL}/journal/${post.id}`,
       datePublished: post.date.replace(/\./g, '-'),
       ...(post.modified ? { dateModified: post.modified.replace(/\./g, '-') } : {}),
     })),
@@ -78,14 +78,14 @@ const BlogList: React.FC = () => {
   const articleIndex = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    '@id': `${SITE_URL}/blog#article-index`,
+    '@id': `${SITE_URL}/journal#article-index`,
     name: 'Obsidian Ridge Labs research and comparison guides',
     numberOfItems: blogPosts.length,
     itemListElement: blogPosts.map((post, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: post.title,
-      url: `${SITE_URL}/blog/${post.id}`,
+      url: `${SITE_URL}/journal/${post.id}`,
     })),
   };
 
@@ -127,7 +127,7 @@ const BlogList: React.FC = () => {
         {featured && (
           <section className="section-frame journal-feature" aria-labelledby="featured-heading">
             <div className="section-index"><span>Start here</span><span>01 / Foundation</span></div>
-            <Link to={`/blog/${featured.id}`} className="journal-feature__card">
+            <Link to={`/journal/${featured.id}`} className="journal-feature__card">
               <div className="journal-feature__signal" aria-hidden="true">
                 <span>LOCAL</span><i /><i /><i />
               </div>

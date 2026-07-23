@@ -212,7 +212,7 @@ const DownloadPage: React.FC = () => {
           <h2>Choose the tool that keeps<br />your data closest.</h2>
           <div>
             <Link to="/privacy" className="button button--dark">Read the privacy model <ArrowRight size={18} /></Link>
-            <Link to="/blog" className="text-link text-link--dark">Explore the journal <ArrowUpRight size={18} /></Link>
+            <Link to="/journal" className="text-link text-link--dark">Explore the journal <ArrowUpRight size={18} /></Link>
           </div>
         </div>
       </section>

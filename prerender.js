@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Paths
 const clientDist = path.resolve(__dirname, './dist');
 const templatePath = path.resolve(clientDist, 'index.html');
+const SITE_ORIGIN = 'https://obsidianridgelabs.com';
 
 console.log('Starting prerendering...');
 
@@ -147,12 +148,43 @@ for (const route of routes) {
 
 console.log('Prerendering routes completed!');
 
+// Static GitHub Pages has no worker redirects, so keep legacy /blog URLs alive
+// with lightweight HTML redirects to /journal.
+const writeLegacyRedirect = (fromPath, toPath) => {
+  const absoluteTarget = `${SITE_ORIGIN}${toPath}`;
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Moved to ${escapeHtml(toPath)}</title>
+  <link rel="canonical" href="${escapeHtml(absoluteTarget)}" />
+  <meta http-equiv="refresh" content="0;url=${escapeHtml(toPath)}" />
+  <meta name="robots" content="noindex, follow" />
+  <script>location.replace(${JSON.stringify(toPath)});</script>
+</head>
+<body>
+  <p>This page has moved to <a href="${escapeHtml(toPath)}">${escapeHtml(toPath)}</a>.</p>
+</body>
+</html>
+`;
+  const routeDir = path.join(clientDist, fromPath.replace(/^\//, ''));
+  fs.mkdirSync(routeDir, { recursive: true });
+  fs.writeFileSync(path.join(routeDir, 'index.html'), html, 'utf8');
+};
+
+writeLegacyRedirect('/blog', '/journal');
+for (const post of blogPosts) {
+  writeLegacyRedirect(`/blog/${post.id}`, `/journal/${post.id}`);
+}
+writeLegacyRedirect('/blog/notion-vs-mindpalace', '/journal/private-ai-journal-guide');
+console.log(`legacy /blog redirects written: ${blogPosts.length + 2}`);
+
+
 // Generate sitemap.xml from the prerendered routes so it is always in sync.
 // Only emit lastmod when the underlying content has an explicit editorial date.
 // A build timestamp is not a content modification date and creates false freshness
 // signals for search engines.
 console.log('Generating sitemap.xml...');
-const SITE_ORIGIN = 'https://obsidianridgelabs.com';
 
 const normalizeSitemapDate = (value) => {
   if (typeof value !== 'string') return null;
@@ -169,11 +201,11 @@ const lastmodByRoute = new Map();
 
 for (const post of blogPosts) {
   const editorialDate = normalizeSitemapDate(post.modified || post.date);
-  if (editorialDate) lastmodByRoute.set(`/blog/${post.id}`, editorialDate);
+  if (editorialDate) lastmodByRoute.set(`/journal/${post.id}`, editorialDate);
 }
 
 const latestBlogDate = latestDate(blogPosts.map((post) => post.modified || post.date));
-if (latestBlogDate) lastmodByRoute.set('/blog', latestBlogDate);
+if (latestBlogDate) lastmodByRoute.set('/journal', latestBlogDate);
 
 for (const kb of knowledgeBases) {
   for (const article of kb.articles) {
@@ -223,8 +255,8 @@ const feedPosts = [...blogPosts].sort((left, right) => (
 ));
 const feedItems = feedPosts.map((post) => `  <item>
     <title>${escapeXml(post.title)}</title>
-    <link>${SITE_ORIGIN}/blog/${post.id}</link>
-    <guid isPermaLink="true">${SITE_ORIGIN}/blog/${post.id}</guid>
+    <link>${SITE_ORIGIN}/journal/${post.id}</link>
+    <guid isPermaLink="true">${SITE_ORIGIN}/journal/${post.id}</guid>
     <pubDate>${toRssDate(post.date)}</pubDate>
     <category>${escapeXml(post.category)}</category>
     <description>${escapeXml(post.seoDescription || post.excerpt)}</description>
@@ -233,7 +265,7 @@ const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
   <title>The Obsidian Ridge Journal</title>
-  <link>${SITE_ORIGIN}/blog</link>
+  <link>${SITE_ORIGIN}/journal</link>
   <description>Source-backed comparisons and practical guides to private, offline, and on-device AI apps.</description>
   <language>en-us</language>
   <lastBuildDate>${toRssDate(latestBlogDate)}</lastBuildDate>
@@ -246,14 +278,14 @@ fs.writeFileSync(path.join(clientDist, 'feed.xml'), rssXml, 'utf8');
 const jsonFeed = {
   version: 'https://jsonfeed.org/version/1.1',
   title: 'The Obsidian Ridge Journal',
-  home_page_url: `${SITE_ORIGIN}/blog`,
+  home_page_url: `${SITE_ORIGIN}/journal`,
   feed_url: `${SITE_ORIGIN}/feed.json`,
   description: 'Source-backed comparisons and practical guides to private, offline, and on-device AI apps.',
   language: 'en-US',
   authors: [{ name: 'Obsidian Ridge Labs', url: `${SITE_ORIGIN}/` }],
   items: feedPosts.map((post) => ({
-    id: `${SITE_ORIGIN}/blog/${post.id}`,
-    url: `${SITE_ORIGIN}/blog/${post.id}`,
+    id: `${SITE_ORIGIN}/journal/${post.id}`,
+    url: `${SITE_ORIGIN}/journal/${post.id}`,
     title: post.title,
     summary: post.seoDescription || post.excerpt,
     date_published: `${normalizeSitemapDate(post.date)}T00:00:00.000Z`,
@@ -353,7 +385,7 @@ llmsContent += `
 
 for (const post of blogPosts) {
   llmsContent += `### ${post.title}
-- **URL**: ${SITE_ORIGIN}/blog/${post.id}
+- **URL**: ${SITE_ORIGIN}/journal/${post.id}
 - **Date**: ${post.date}
 ${post.modified ? `- **Updated**: ${post.modified}\n` : ''}- **Read Time**: ${post.readTime}
 - **Category**: ${post.category}

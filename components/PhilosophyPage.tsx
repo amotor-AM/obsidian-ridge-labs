@@ -291,9 +291,9 @@ const PhilosophyPage: React.FC = () => {
           <div className="section-index"><span>08 / Further reading</span><span>The thinking behind the work</span></div>
           <h2 id="philosophy-reading-title">Go deeper.</h2>
           <div className="philosophy-reading__links">
-            <Link to="/blog/apple-ecosystem-privacy"><span>Apple craft</span><strong>Why we build exclusively for Apple</strong><ArrowRight /></Link>
-            <Link to="/blog/finance-app-red-flags"><span>Personal finance</span><strong>The invisible cost of free finance apps</strong><ArrowRight /></Link>
-            <Link to="/blog/offline-ai-revolution"><span>Local intelligence</span><strong>Why offline AI changes the speed equation</strong><ArrowRight /></Link>
+            <Link to="/journal/apple-ecosystem-privacy"><span>Apple craft</span><strong>Why we build exclusively for Apple</strong><ArrowRight /></Link>
+            <Link to="/journal/finance-app-red-flags"><span>Personal finance</span><strong>The invisible cost of free finance apps</strong><ArrowRight /></Link>
+            <Link to="/journal/offline-ai-revolution"><span>Local intelligence</span><strong>Why offline AI changes the speed equation</strong><ArrowRight /></Link>
           </div>
         </div>
       </section>

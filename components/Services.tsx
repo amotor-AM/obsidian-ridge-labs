@@ -93,7 +93,7 @@ const Services: React.FC = () => {
                 Focusing on Apple lets us build with native performance, system privacy controls,
                 and on-device intelligence from the first sketch, never as an afterthought.
               </p>
-              <Link to="/blog/apple-ecosystem-privacy" className="text-link">
+              <Link to="/journal/apple-ecosystem-privacy" className="text-link">
                 Why we build for Apple <ArrowUpRight size={18} aria-hidden="true" />
               </Link>
             </MotionReveal>

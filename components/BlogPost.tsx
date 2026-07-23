@@ -66,7 +66,7 @@ const BlogPostPage: React.FC = () => {
     return [...explicit, ...contextual].slice(0, 4);
   }, [post]);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post) return <Navigate to="/journal" replace />;
 
   const isGrowthPost = isBabyLoveGrowthPost(post);
   const product = post.appId ? products.find((item) => item.id === post.appId) : undefined;
@@ -79,8 +79,8 @@ const BlogPostPage: React.FC = () => {
     ...(post.jsonLd ? [post.jsonLd] : [buildBlogPosting(post)]),
     buildBreadcrumbs([
       { name: 'Home', url: '/' },
-      { name: 'Journal', url: '/blog' },
-      { name: post.title, url: `/blog/${post.id}` },
+      { name: 'Journal', url: '/journal' },
+      { name: post.title, url: `/journal/${post.id}` },
     ]),
     ...(post.faqJsonLd ? [post.faqJsonLd] : faqs.length ? [buildFAQSchema(faqs)] : []),
     ...(itemList ? [itemList] : []),
@@ -261,7 +261,7 @@ const BlogPostPage: React.FC = () => {
       <header className="journal-hero">
         <div className="journal-hero__glow" aria-hidden="true" />
         <div className="section-frame journal-hero__inner">
-          <Link to="/blog" className="journal-back"><ArrowLeft size={16} aria-hidden="true" /> Journal index</Link>
+          <Link to="/journal" className="journal-back"><ArrowLeft size={16} aria-hidden="true" /> Journal index</Link>
           <div className="journal-hero__eyebrow">
             <span>{isGrowthPost ? 'growth' : post.contentType}</span>
             {product && <Link to={`/apps/${product.id}`}>{product.name}</Link>}
@@ -360,7 +360,7 @@ const BlogPostPage: React.FC = () => {
             <span className="journal-rail__label">Continue researching</span>
             <div className="journal-related">
               {relatedPosts.map((related) => (
-                <Link key={related.id} to={`/blog/${related.id}`}>
+                <Link key={related.id} to={`/journal/${related.id}`}>
                   <span>{related.contentType}</span>
                   <h2>{related.title}</h2>
                   <ArrowRight size={17} aria-hidden="true" />
@@ -384,7 +384,7 @@ const BlogPostPage: React.FC = () => {
         <h2 id="related-reading-heading">Keep the question open.</h2>
         <div className="journal-next__grid">
           {relatedPosts.slice(0, 3).map((related, index) => (
-            <Link key={related.id} to={`/blog/${related.id}`}>
+            <Link key={related.id} to={`/journal/${related.id}`}>
               <span>{String(index + 1).padStart(2, '0')} / {related.contentType}</span>
               <h3>{related.title}</h3>
               <p>{related.excerpt}</p>

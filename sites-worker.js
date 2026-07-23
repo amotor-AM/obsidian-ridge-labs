@@ -21,8 +21,15 @@ const permanentRedirects = new Map([
   ['/apps/echo', '/apps/echochamber'],
   ['/apps/mind', '/apps/cove'],
   ['/apps/nexus', '/download'],
-  ['/blog/notion-vs-mindpalace', '/blog/private-ai-journal-guide']
+  ['/blog/notion-vs-mindpalace', '/journal/private-ai-journal-guide']
 ]);
+
+const rewriteBlogPath = (pathname) => {
+  if (pathname === '/blog' || pathname.startsWith('/blog/')) {
+    return pathname.replace(/^\/blog/, '/journal');
+  }
+  return null;
+};
 
 export default {
   async fetch(request, env) {
@@ -31,7 +38,7 @@ export default {
     }
 
     const requestUrl = new URL(request.url);
-    const permanentTarget = permanentRedirects.get(requestUrl.pathname);
+    const permanentTarget = permanentRedirects.get(requestUrl.pathname) || rewriteBlogPath(requestUrl.pathname);
     if (permanentTarget) {
       requestUrl.pathname = permanentTarget;
       return withSecurityHeaders(Response.redirect(requestUrl.toString(), 301));

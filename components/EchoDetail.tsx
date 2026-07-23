@@ -336,8 +336,8 @@ const EchoDetail: React.FC = () => {
             <div className="section-index section-index--dark"><span>05 / Research</span><span>Compare the boundary</span></div>
             <h2 id="echo-reading-title">See why private processing wins.</h2>
             <div className="product-more__grid">
-              <Link to="/blog/otter-vs-echo"><span>Comparison</span><strong>Echo Chamber vs Otter.ai: On-Device and Cloud Transcription Compared</strong><ArrowUpRight /></Link>
-              <Link to="/blog/best-offline-transcription-apps"><span>Buyer’s guide</span><strong>5 Private Transcription Apps Compared: Offline, On-Device, and Cloud Options</strong><ArrowUpRight /></Link>
+              <Link to="/journal/otter-vs-echo"><span>Comparison</span><strong>Echo Chamber vs Otter.ai: On-Device and Cloud Transcription Compared</strong><ArrowUpRight /></Link>
+              <Link to="/journal/best-offline-transcription-apps"><span>Buyer’s guide</span><strong>5 Private Transcription Apps Compared: Offline, On-Device, and Cloud Options</strong><ArrowUpRight /></Link>
             </div>
           </div>
         </section>

@@ -39,7 +39,7 @@ const Footer: React.FC = () => (
         <nav aria-label="Explore">
           <p>Explore</p>
           <Link to="/philosophy">Philosophy</Link>
-          <Link to="/blog">Journal</Link>
+          <Link to="/journal">Journal</Link>
           <Link to="/help">Help center</Link>
           <Link to="/download">All downloads</Link>
         </nav>

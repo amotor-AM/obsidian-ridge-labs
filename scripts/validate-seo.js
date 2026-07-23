@@ -72,7 +72,14 @@ for (const file of walk(dist).filter((candidate) => generatedContentExtensions.h
   }
 }
 
-const htmlFiles = walk(dist).filter((file) => file.endsWith(`${path.sep}index.html`) || file === path.join(dist, 'index.html'));
+const allHtmlFiles = walk(dist).filter((file) => file.endsWith(`${path.sep}index.html`) || file === path.join(dist, 'index.html'));
+const isLegacyRedirect = (html) => (
+  /http-equiv=["']refresh["']/i.test(html)
+  && /content=["']0;url=/i.test(html)
+  && /name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)
+);
+const redirectHtmlFiles = allHtmlFiles.filter((file) => isLegacyRedirect(fs.readFileSync(file, 'utf8')));
+const htmlFiles = allHtmlFiles.filter((file) => !redirectHtmlFiles.includes(file));
 const canonicalRoutes = new Map();
 const noindexRoutes = new Set();
 const indexableRoutes = new Set();
@@ -196,7 +203,7 @@ for (const appId of expectedAppIds) {
 
   const appHtml = fs.readFileSync(appFile, 'utf8');
   const productArticleLinks = new Set(
-    allMatches(appHtml, /href="(\/blog\/[^"#?]+)"/g).map((match) => match[1]),
+    allMatches(appHtml, /href="(\/journal\/[^"#?]+)"/g).map((match) => match[1]),
   );
   if (productArticleLinks.size !== 2) {
     errors.push(`${appRoute}: expected exactly 2 product-specific journal links, found ${productArticleLinks.size}`);
@@ -220,7 +227,7 @@ for (const appId of expectedAppIds) {
 }
 
 const blogArticleRoutes = [...indexableRoutes]
-  .filter((route) => route.startsWith('/blog/'))
+  .filter((route) => route.startsWith('/journal/'))
   .sort();
 if (blogArticleRoutes.length !== expectedBlogPostCount) {
   errors.push(`journal should expose ${expectedBlogPostCount} indexable articles, found ${blogArticleRoutes.length}`);
@@ -233,7 +240,7 @@ for (const blogRoute of blogArticleRoutes) {
   const faq = graph.find((node) => typesOf(node).includes('FAQPage'));
   const list = graph.find((node) => typesOf(node).includes('ItemList'));
   const visibleText = visibleTextByRoute.get(blogRoute) || '';
-  const slug = blogRoute.replace(/^\/blog\//, '');
+  const slug = blogRoute.replace(/^\/journal\//, '');
   const isBabyLoveGrowthArticle = babyLoveGrowthSlugs.has(slug);
 
   if (!article) {
@@ -294,7 +301,24 @@ if (!fs.existsSync(rssPath) || !fs.existsSync(jsonFeedPath)) {
 for (const retiredRoute of ['/apps/mind', '/apps/nexus', '/blog/notion-vs-mindpalace']) {
   if (sitemapRoutes.has(retiredRoute)) errors.push(`${retiredRoute}: retired route appears in sitemap`);
   const retiredFile = path.join(dist, retiredRoute.replace(/^\//, ''), 'index.html');
+  if (retiredRoute.startsWith('/blog/')) {
+    if (!fs.existsSync(retiredFile) || !isLegacyRedirect(fs.readFileSync(retiredFile, 'utf8'))) {
+      errors.push(`${retiredRoute}: expected a legacy HTML redirect stub to /journal`);
+    }
+    continue;
+  }
   if (fs.existsSync(retiredFile)) errors.push(`${retiredRoute}: retired route was prerendered instead of redirected`);
+}
+
+for (const file of redirectHtmlFiles) {
+  const route = getRoute(file);
+  const html = fs.readFileSync(file, 'utf8');
+  if (sitemapRoutes.has(route)) errors.push(`${route}: legacy redirect appears in sitemap`);
+  if (!route.startsWith('/blog')) errors.push(`${route}: unexpected legacy redirect outside /blog`);
+  const target = html.match(/content=["']0;url=([^"']+)["']/i)?.[1];
+  if (!target || !target.startsWith('/journal')) {
+    errors.push(`${route}: legacy redirect must point at /journal`);
+  }
 }
 
 const echoHtml = fs.readFileSync(path.join(dist, 'apps', 'echochamber', 'index.html'), 'utf8');

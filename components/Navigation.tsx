@@ -231,7 +231,7 @@ const Navigation: React.FC = () => {
               )}
             </div>
             <button type="button" onClick={() => goToSection('architecture')}>Why local</button>
-            <Link to="/blog" aria-current={location.pathname.startsWith('/blog') ? 'page' : undefined}>Journal</Link>
+            <Link to="/journal" aria-current={location.pathname.startsWith('/journal') ? 'page' : undefined}>Journal</Link>
             <Link to="/help" aria-current={location.pathname.startsWith('/help') ? 'page' : undefined}>Help</Link>
           </div>
 
@@ -285,7 +285,7 @@ const Navigation: React.FC = () => {
               <nav aria-label="Mobile navigation">
                 <Link to="/download"><span>01</span>Apps <ArrowRight /></Link>
                 <button type="button" onClick={() => goToSection('architecture')}><span>02</span>Why local <ArrowRight /></button>
-                <Link to="/blog"><span>03</span>Journal <ArrowRight /></Link>
+                <Link to="/journal"><span>03</span>Journal <ArrowRight /></Link>
                 <Link to="/help"><span>04</span>Help <ArrowRight /></Link>
                 <Link to="/philosophy"><span>05</span>Philosophy <ArrowRight /></Link>
               </nav>

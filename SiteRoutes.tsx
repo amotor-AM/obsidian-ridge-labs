@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 export interface SiteRouteComponents {
   Home: React.ElementType;
@@ -15,6 +15,11 @@ export interface SiteRouteComponents {
   HelpArticle: React.ElementType;
   NotFound: React.ElementType;
 }
+
+const BlogSlugRedirect: React.FC = () => {
+  const { id } = useParams();
+  return <Navigate to={id ? `/journal/${id}` : '/journal'} replace />;
+};
 
 /** One route map shared by lazy browser modules and eager prerender modules. */
 const SiteRoutes: React.FC<{ components: SiteRouteComponents }> = ({ components }) => {
@@ -46,9 +51,11 @@ const SiteRoutes: React.FC<{ components: SiteRouteComponents }> = ({ components 
       <Route path="/help" element={<HelpHome />} />
       <Route path="/help/:appId" element={<HelpArticle />} />
       <Route path="/help/:appId/:articleId" element={<HelpArticle />} />
-      <Route path="/blog" element={<BlogList />} />
-      <Route path="/blog/notion-vs-mindpalace" element={<Navigate to="/blog/private-ai-journal-guide" replace />} />
-      <Route path="/blog/:id" element={<BlogPost />} />
+      <Route path="/journal" element={<BlogList />} />
+      <Route path="/journal/:id" element={<BlogPost />} />
+      <Route path="/blog" element={<Navigate to="/journal" replace />} />
+      <Route path="/blog/notion-vs-mindpalace" element={<Navigate to="/journal/private-ai-journal-guide" replace />} />
+      <Route path="/blog/:id" element={<BlogSlugRedirect />} />
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="*" element={<NotFound />} />

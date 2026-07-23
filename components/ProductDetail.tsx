@@ -339,7 +339,7 @@ const ProductDetail: React.FC = () => {
               <h2 id="product-more-title">Why Obsidian Ridge is different.</h2>
               <div className="product-more__grid">
                 {relatedPosts.map((post) => (
-                  <Link key={post.id} to={`/blog/${post.id}`}><span>Journal</span><strong>{post.title}</strong><ArrowUpRight /></Link>
+                  <Link key={post.id} to={`/journal/${post.id}`}><span>Journal</span><strong>{post.title}</strong><ArrowUpRight /></Link>
                 ))}
                 {otherProducts.slice(0, Math.max(1, 3 - relatedPosts.length)).map((item) => (
                   <Link key={item.id} to={`/apps/${item.id}`}><span>App</span><strong>{item.name}</strong><ArrowUpRight /></Link>
