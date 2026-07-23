@@ -12,6 +12,8 @@ permissions:
 jobs:
   update-seo:
     runs-on: ubuntu-latest
+    # Secret lives in the BABYLOVEGROWTH_BLOG_API_KEY GitHub Environment.
+    environment: BABYLOVEGROWTH_BLOG_API_KEY
     env:
       # Server-only BabyLoveGrowth read key used during build-time article sync.
       BABYLOVEGROWTH_BLOG_API_KEY: ${{ secrets.BABYLOVEGROWTH_BLOG_API_KEY }}
