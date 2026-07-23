@@ -175,10 +175,15 @@ const BlogList: React.FC = () => {
                     className="journal-cluster"
                   >
                     <div className="journal-cluster__head">
-                      <span>{String(clusterIndex + 1).padStart(2, '0')}</span>
+                      <div className="journal-cluster__head-bar">
+                        <span>{String(clusterIndex + 1).padStart(2, '0')}</span>
+                        <Link to={`/apps/${product.id}`} aria-label={`Explore ${product.name}`}><ArrowRight size={19} aria-hidden="true" /></Link>
+                      </div>
                       <div className="journal-cluster__icon">{React.createElement(product.icon, { size: 24, 'aria-hidden': true })}</div>
-                      <div><h3>{product.name}</h3><p>{product.tagline}</p></div>
-                      <Link to={`/apps/${product.id}`} aria-label={`Explore ${product.name}`}><ArrowRight size={19} aria-hidden="true" /></Link>
+                      <div className="journal-cluster__copy">
+                        <h3>{product.name}</h3>
+                        <p>{product.tagline}</p>
+                      </div>
                     </div>
                     <div className="journal-cluster__posts">
                       {posts.map((post, index) => <PostCard key={post.id} post={post} index={index} />)}
@@ -188,9 +193,14 @@ const BlogList: React.FC = () => {
                 {pillars.length > 0 && (
                   <section className="journal-cluster journal-cluster--foundation">
                     <div className="journal-cluster__head">
-                      <span>10</span>
+                      <div className="journal-cluster__head-bar">
+                        <span>10</span>
+                      </div>
                       <div className="journal-cluster__icon"><Layers3 size={24} aria-hidden="true" /></div>
-                      <div><h3>Foundations</h3><p>How local AI architecture actually works.</p></div>
+                      <div className="journal-cluster__copy">
+                        <h3>Foundations</h3>
+                        <p>How local AI architecture actually works.</p>
+                      </div>
                     </div>
                     <div className="journal-cluster__posts">
                       {pillars.map((post, index) => <PostCard key={post.id} post={post} index={index} />)}
@@ -200,9 +210,14 @@ const BlogList: React.FC = () => {
                 {growthPosts.length > 0 && (
                   <section className="journal-cluster">
                     <div className="journal-cluster__head">
-                      <span>11</span>
+                      <div className="journal-cluster__head-bar">
+                        <span>11</span>
+                      </div>
                       <div className="journal-cluster__icon"><Sparkles size={24} aria-hidden="true" /></div>
-                      <div><h3>Growth</h3><p>Articles published through BabyLoveGrowth.</p></div>
+                      <div className="journal-cluster__copy">
+                        <h3>Growth</h3>
+                        <p>Articles published through BabyLoveGrowth.</p>
+                      </div>
                     </div>
                     <div className="journal-cluster__posts">
                       {growthPosts.map((post, index) => <PostCard key={post.id} post={post} index={index} />)}
