@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useScroll } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getProductReleaseLabel, products } from '../data/products';
+import { Magnetic } from './ui/magnetic';
 
 const APP_MENU_CLOSE_DELAY_MS = 220;
 
@@ -236,14 +237,16 @@ const Navigation: React.FC = () => {
           </div>
 
           <div className="site-nav__actions">
-            <a
-              href="https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060"
-              target="_blank"
-              rel="noreferrer"
-              className="site-nav__cta"
-            >
-              Get Echo Chamber <ArrowUpRight size={14} aria-hidden="true" />
-            </a>
+            <Magnetic intensity={0.16} range={70}>
+              <a
+                href="https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060"
+                target="_blank"
+                rel="noreferrer"
+                className="site-nav__cta"
+              >
+                Get Echo Chamber <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            </Magnetic>
             <button
               ref={openButtonRef}
               type="button"

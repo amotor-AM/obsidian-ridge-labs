@@ -5,7 +5,7 @@ import SEO, { buildBreadcrumbs } from './SEO';
 
 const TermsOfService: React.FC = () => {
   return (
-    <div className="min-h-screen pt-32 pb-10 md:pb-20 px-6 md:px-12 max-w-4xl mx-auto">
+    <div className="legal-page">
       <SEO
         title="Terms of Service"
         description="Terms for Obsidian Ridge Labs apps, including Apple StoreKit purchases, subscriptions, privacy disclosures, intellectual property, and liability."
@@ -22,8 +22,8 @@ const TermsOfService: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">
-          Terms of <span className="text-apple-gray">Service.</span>
+        <h1>
+          Terms of <em>Service.</em>
         </h1>
         
         <div className="text-gray-400 leading-relaxed space-y-8">

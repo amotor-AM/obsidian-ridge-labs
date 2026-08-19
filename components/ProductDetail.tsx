@@ -6,6 +6,7 @@ import { getProductReleaseLabel, products } from '../data/products';
 import { productFaqs } from '../data/faqs';
 import SEO, { buildBreadcrumbs, buildFAQSchema, buildSoftwareApp } from './SEO';
 import MotionReveal from './home/MotionReveal';
+import SiteFaq from './SiteFaq';
 
 const editorialCopy: Record<string, { statement: string; thesis: string; boundary: string }> = {
   vault: {
@@ -321,14 +322,7 @@ const ProductDetail: React.FC = () => {
               <p className="section-kicker">Before release or install</p>
               <h2 id="product-faq-title">Questions worth asking.</h2>
             </div>
-            <div className="product-faq__list">
-              {faqItems.map((item, index) => (
-                <details key={item.question} open={index === 0}>
-                  <summary><span>{String(index + 1).padStart(2, '0')}</span>{item.question}<i /></summary>
-                  <p>{item.answer}</p>
-                </details>
-              ))}
-            </div>
+            <SiteFaq items={faqItems} tone="dark" />
           </div>
         </section>
 

@@ -3,6 +3,8 @@ import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getProductReleaseLabel, products } from '../data/products';
 import MotionReveal from './home/MotionReveal';
+import { SpotlightCard } from './ui/spotlight-card';
+import { TextMarquee } from './ui/text-marquee';
 
 const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith'];
 
@@ -90,29 +92,36 @@ const Products: React.FC = () => {
           {orderedProducts.map((product, index) => {
             const copy = homepageCopy[product.id];
             return (
-              <MotionReveal key={product.id} className="product-ledger__reveal" delay={index * 0.04} amount={0.18}>
-                <Link to={`/apps/${product.id}`} className="product-ledger__row" role="listitem">
-                  <div className="product-ledger__number">{String(index + 1).padStart(2, '0')}</div>
-                  <div className="product-ledger__name">
-                    <span>{product.category}</span>
-                    <h3>{product.name}</h3>
-                  </div>
-                  <div className="product-ledger__copy">
-                    <strong>{copy.proposition}</strong>
-                    <p>{copy.detail}</p>
-                  </div>
-                  <div className="product-ledger__meta">
-                    <span className={product.appStoreUrl ? 'is-live' : ''}>{getStatus(product)}</span>
-                    <small>{copy.platforms}</small>
-                  </div>
-                  <div className="product-ledger__arrow" aria-hidden="true">
-                    <ArrowUpRight size={24} />
-                  </div>
-                </Link>
+              <MotionReveal key={product.id} className="product-ledger__reveal" delay={index * 0.04} amount={0.18} role="listitem">
+                <SpotlightCard className="product-ledger__spot">
+                  <Link to={`/apps/${product.id}`} className="product-ledger__row">
+                    <div className="product-ledger__number">{String(index + 1).padStart(2, '0')}</div>
+                    <div className="product-ledger__name">
+                      <span>{product.category}</span>
+                      <h3>{product.name}</h3>
+                    </div>
+                    <div className="product-ledger__copy">
+                      <strong>{copy.proposition}</strong>
+                      <p>{copy.detail}</p>
+                    </div>
+                    <div className="product-ledger__meta">
+                      <span className={product.appStoreUrl ? 'is-live' : ''}>{getStatus(product)}</span>
+                      <small>{copy.platforms}</small>
+                    </div>
+                    <div className="product-ledger__arrow" aria-hidden="true">
+                      <ArrowUpRight size={24} />
+                    </div>
+                  </Link>
+                </SpotlightCard>
               </MotionReveal>
             );
           })}
         </div>
+
+        <TextMarquee
+          label="Obsidian Ridge Labs applications"
+          items={orderedProducts.map((product) => product.name)}
+        />
 
         <MotionReveal className="product-ledger__foot">
           <p>

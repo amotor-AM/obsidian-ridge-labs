@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ClientOnly from './ClientOnly';
+import { Magnetic } from './ui/magnetic';
 
 const HeroBackdrop = lazy(() => import('./HeroBackdrop'));
 
@@ -16,15 +17,14 @@ const reveal = {
 };
 
 const Hero: React.FC = () => {
-  const [backdropReady, setBackdropReady] = useState(false);
+  const [showTerrain, setShowTerrain] = useState(false);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const compact = window.matchMedia('(max-width: 720px)').matches;
     const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
     if (reduced || compact || saveData) return;
-    const timer = window.setTimeout(() => setBackdropReady(true), 450);
-    return () => window.clearTimeout(timer);
+    setShowTerrain(true);
   }, []);
 
   const scrollToProducts = () => {
@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
   return (
     <section className="orl-hero" aria-labelledby="home-heading">
       <div className="orl-hero__ridge-fallback" aria-hidden="true"><span /><span /><span /><span /><span /></div>
-      {backdropReady && (
+      {showTerrain && (
         <ClientOnly>
           <Suspense fallback={null}>
             <HeroBackdrop />
@@ -72,12 +72,11 @@ const Hero: React.FC = () => {
               className="orl-hero__title"
               initial="hidden"
               animate="visible"
-              custom={0.23}
+              custom={0.22}
               variants={reveal}
             >
               <span>Pure privacy.</span>
-              <span>Intelligence on</span>
-              <em>your terms.</em>
+              <em>Intelligence on your terms.</em>
             </motion.h1>
             <motion.div
               className="orl-hero__intro"
@@ -92,12 +91,16 @@ const Hero: React.FC = () => {
                 connects to a named service, we explain that boundary before you choose it.
               </p>
               <div className="orl-hero__actions">
-                <button type="button" className="button button--primary" onClick={scrollToProducts}>
-                  Explore private apps <ArrowDownRight size={18} aria-hidden="true" />
-                </button>
-                <Link className="button button--quiet" to="/philosophy">
-                  Read the manifesto <ArrowUpRight size={18} aria-hidden="true" />
-                </Link>
+                <Magnetic>
+                  <button type="button" className="button button--primary" onClick={scrollToProducts}>
+                    Explore private apps <ArrowDownRight size={18} aria-hidden="true" />
+                  </button>
+                </Magnetic>
+                <Magnetic intensity={0.14}>
+                  <Link className="button button--quiet" to="/philosophy">
+                    Read the manifesto <ArrowUpRight size={18} aria-hidden="true" />
+                  </Link>
+                </Magnetic>
               </div>
             </motion.div>
           </div>

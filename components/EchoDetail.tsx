@@ -5,6 +5,7 @@ import { products } from '../data/products';
 import { echoFaqs } from '../data/faqs';
 import SEO, { buildBreadcrumbs, buildFAQSchema, buildSoftwareApp } from './SEO';
 import MotionReveal from './home/MotionReveal';
+import SiteFaq from './SiteFaq';
 
 const appStoreUrl = 'https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060';
 
@@ -262,19 +263,26 @@ const EchoDetail: React.FC = () => {
           <div className="section-frame echo-boundary__layout">
             <MotionReveal>
               <p className="section-kicker section-kicker--dark">Privacy, explained plainly</p>
-              <h2 id="echo-boundary-title">Core intelligence stays on-device.<br />Every connection is explained.</h2>
+              <h2 id="echo-boundary-title">
+                <span>Core intelligence stays <i>on-device.</i></span>
+                <em>Every connection is explained.</em>
+              </h2>
             </MotionReveal>
             <div className="echo-boundary__columns">
               <MotionReveal className="echo-boundary__column">
-                <span>ON-DEVICE CORE</span>
+                <h3>On-device core</h3>
                 <ul>
-                  {['Recording and transcription', 'AI notes and transcript polish', 'Search and bookmarks', 'Export generation'].map((item) => <li key={item}><Check size={15} />{item}</li>)}
+                  {['Recording and transcription', 'AI notes and transcript polish', 'Search and bookmarks', 'Export generation'].map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               </MotionReveal>
-              <MotionReveal className="echo-boundary__column" delay={0.08}>
-                <span>CONNECTS ONLY WHEN NEEDED</span>
+              <MotionReveal className="echo-boundary__column">
+                <h3>Connects only when needed</h3>
                 <ul>
-                  {['App Store purchase verification', 'Any required model download', 'Optional encrypted iCloud sync', 'A support request you choose to send'].map((item) => <li key={item}><ArrowUpRight size={15} />{item}</li>)}
+                  {['App Store purchase verification', 'Any required model download', 'Optional encrypted iCloud sync', 'A support request you choose to send'].map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               </MotionReveal>
             </div>
@@ -319,14 +327,7 @@ const EchoDetail: React.FC = () => {
                 <p className="section-kicker">Before you install</p>
                 <h2 id="echo-faq-title">Straight answers, before you install.</h2>
               </div>
-              <div className="echo-faq__list">
-                {echoFaqs.map((faq, index) => (
-                  <details id={`faq-${index + 1}`} key={faq.question} open={index === 0}>
-                    <summary><span>{String(index + 1).padStart(2, '0')}</span>{faq.question}<i /></summary>
-                    <p>{faq.answer}</p>
-                  </details>
-                ))}
-              </div>
+              <SiteFaq items={echoFaqs} tone="dark" />
             </div>
           </div>
         </section>

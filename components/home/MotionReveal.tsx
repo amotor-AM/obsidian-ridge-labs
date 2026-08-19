@@ -6,6 +6,7 @@ interface MotionRevealProps {
   className?: string;
   delay?: number;
   amount?: number;
+  role?: string;
 }
 
 const MotionReveal: React.FC<MotionRevealProps> = ({
@@ -13,6 +14,7 @@ const MotionReveal: React.FC<MotionRevealProps> = ({
   className,
   delay = 0,
   amount = 0.2,
+  role,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [enhanced, setEnhanced] = useState(false);
@@ -24,6 +26,7 @@ const MotionReveal: React.FC<MotionRevealProps> = ({
     <motion.div
       ref={ref}
       className={className}
+      role={role}
       initial={false}
       animate={!enhanced || inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
       transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}

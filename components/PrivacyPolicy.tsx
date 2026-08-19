@@ -5,7 +5,7 @@ import SEO, { buildBreadcrumbs } from './SEO';
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <div className="min-h-screen pt-32 pb-10 md:pb-20 px-6 md:px-12 max-w-5xl mx-auto">
+    <div className="legal-page">
       <SEO
         title="Privacy Policy: On-Device AI and Optional Connections"
         description="How Obsidian Ridge Labs keeps core AI processing on-device and handles optional Plaid bank sync, encrypted iCloud sync, diagnostics, purchases, and support."
@@ -23,12 +23,11 @@ const PrivacyPolicy: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <header className="border-b border-white/10 pb-12 md:pb-16 mb-12 md:mb-16">
-          <p className="text-neon text-xs font-bold uppercase tracking-[0.2em] mb-6">Privacy Policy</p>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[0.95]">
+        <header className="legal-page__header">
+          <p className="section-kicker">Privacy Policy</p>
+          <h1>
             Clear about what stays local.
-            <br />
-            <span className="text-apple-gray">Precise about what connects.</span>
+            <em>Precise about what connects.</em>
           </h1>
           <p className="text-apple-gray text-lg md:text-xl leading-relaxed max-w-3xl">
             Obsidian Ridge Labs builds its core AI experiences to run on your Apple device. Some

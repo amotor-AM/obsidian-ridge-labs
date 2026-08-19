@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getProductReleaseLabel, products } from '../data/products';
+import { Magnetic } from './ui/magnetic';
 
 const productStatus = (product: (typeof products)[number]) => {
   const label = getProductReleaseLabel(product);
@@ -22,9 +23,11 @@ const Footer: React.FC = () => (
             in your hands, and optional connections are explained before you choose them.
           </p>
         </div>
-        <a href="mailto:support@obsidianridgelabs.com" className="site-footer__contact">
-          Start a conversation <ArrowUpRight size={18} aria-hidden="true" />
-        </a>
+        <Magnetic intensity={0.16} range={80}>
+          <a href="mailto:support@obsidianridgelabs.com" className="site-footer__contact">
+            Start a conversation <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+        </Magnetic>
       </div>
 
       <div className="site-footer__links">

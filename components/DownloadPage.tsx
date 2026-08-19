@@ -6,6 +6,7 @@ import { collectionFaqs } from '../data/faqs';
 import type { Product } from '../types';
 import SEO, { buildBreadcrumbs, buildCollectionPage, buildFAQSchema, SITE_URL } from './SEO';
 import MotionReveal from './home/MotionReveal';
+import SiteFaq from './SiteFaq';
 
 type ProductPresentation = {
   description: string;
@@ -195,14 +196,7 @@ const DownloadPage: React.FC = () => {
             <p className="section-kicker">Before you install</p>
             <h2 id="collection-faq-title">Questions, answered plainly.</h2>
           </div>
-          <div className="collection-faq__list">
-            {faqItems.map((item, index) => (
-              <details key={item.question} open={index === 0}>
-                <summary><span>{String(index + 1).padStart(2, '0')}</span>{item.question}<i /></summary>
-                <p>{item.answer}</p>
-              </details>
-            ))}
-          </div>
+          <SiteFaq items={faqItems} tone="moss" />
         </div>
       </section>
 

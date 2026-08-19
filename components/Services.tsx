@@ -3,6 +3,8 @@ import { ArrowRight, ArrowUpRight, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { homeFaqs } from '../data/faqs';
 import MotionReveal from './home/MotionReveal';
+import SiteFaq from './SiteFaq';
+import { Magnetic } from './ui/magnetic';
 
 const architecturePrinciples = [
   {
@@ -146,14 +148,7 @@ const Services: React.FC = () => {
             <h2 id="home-faq-title">Questions worth asking before you trust an AI app.</h2>
             <p>Before an AI app earns your data, it should answer exactly where processing, storage, sync, and optional services happen.</p>
           </div>
-          <div className="home-faq__list">
-            {homeFaqs.map((faq, index) => (
-              <details key={faq.question} open={index === 0}>
-                <summary><span>{String(index + 1).padStart(2, '0')}</span>{faq.question}<i /></summary>
-                <p>{faq.answer}</p>
-              </details>
-            ))}
-          </div>
+          <SiteFaq items={homeFaqs} tone="paper" />
         </div>
       </section>
 
@@ -164,7 +159,9 @@ const Services: React.FC = () => {
           <h2 id="final-cta-title">Move the intelligence.<br /><em>Not the private life.</em></h2>
           <p>Choose private AI built for the Apple devices already in your hands.</p>
           <div className="final-cta__actions">
-            <Link to="/download" className="button button--dark">Explore every app <ArrowRight size={18} /></Link>
+            <Magnetic>
+              <Link to="/download" className="button button--dark">Explore every app <ArrowRight size={18} /></Link>
+            </Magnetic>
             <a href="https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060" target="_blank" rel="noreferrer" className="text-link text-link--dark">
               Get Echo Chamber <ArrowUpRight size={18} />
             </a>

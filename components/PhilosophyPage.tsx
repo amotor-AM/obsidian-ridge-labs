@@ -6,6 +6,7 @@ import { philosophyFaqs } from '../data/faqs';
 import SEO, { buildBreadcrumbs, buildFAQSchema, SITE_URL } from './SEO';
 import AxiomScroller from './AxiomScroller';
 import MotionReveal from './home/MotionReveal';
+import SiteFaq from './SiteFaq';
 
 const philosophyProductCopy: Record<string, string> = {
   echochamber: 'Record live or upload audio and video. Echo Chamber creates searchable transcripts, polished notes, and summaries on supported Apple hardware without uploading recordings to Obsidian Ridge Labs.',
@@ -272,12 +273,7 @@ const PhilosophyPage: React.FC = () => {
               </p>
             </div>
             <div className="philosophy-faq__list">
-              {philosophyFaqs.map((faq, index) => (
-                <details key={faq.question} open={index === 0}>
-                  <summary><span>{String(index + 1).padStart(2, '0')}</span>{faq.question}<i /></summary>
-                  <p>{faq.answer}</p>
-                </details>
-              ))}
+              <SiteFaq items={philosophyFaqs} tone="moss" />
               <a className="philosophy-faq__source" href="https://www.apple.com/privacy/features/" target="_blank" rel="noreferrer">
                 Platform reference: Apple Privacy <ArrowUpRight size={17} />
               </a>

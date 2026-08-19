@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Check, Clock, Layers3, Sparkles } from 'lucide-react';
+import { ArrowRight, BookOpen, Clock, Layers3 } from 'lucide-react';
 import { blogPosts } from '../data/blog';
 import { products } from '../data/products';
 import type { BlogContentType, BlogPost } from '../types';
@@ -100,26 +100,22 @@ const BlogList: React.FC = () => {
       />
 
       <header className="journal-index-hero">
-        <div className="journal-index-hero__orb" aria-hidden="true" />
         <div className="section-frame">
           <div className="journal-index-hero__topline">
-            <span><Sparkles size={16} aria-hidden="true" /> Research for private software decisions</span>
+            <span>Research for private software decisions</span>
             <span>{blogPosts.length} source-backed guides · updated for 2026</span>
           </div>
-          <div className="journal-index-hero__grid">
-            <div>
-              <p className="section-kicker">The Obsidian Ridge Journal</p>
-              <h1>Privacy first.<br /><em>Evidence always.</em></h1>
-            </div>
-            <div className="journal-index-hero__intro">
-              <p>See why Obsidian Ridge Labs builds each category around a shorter data path. Every guide compares real capabilities, cites primary sources, and makes the privacy tradeoff explicit.</p>
-              <ul>
-                <li><Check size={16} aria-hidden="true" /> Primary sources linked</li>
-                <li><Check size={16} aria-hidden="true" /> Product-first privacy verdicts</li>
-                <li><Check size={16} aria-hidden="true" /> Every release status clear</li>
-              </ul>
-            </div>
-          </div>
+          <p className="section-kicker">The Obsidian Ridge Journal</p>
+          <h1>Privacy first. <em>Evidence always.</em></h1>
+          <p className="journal-index-hero__dek">
+            See why Obsidian Ridge Labs builds each category around a shorter data path. Every guide
+            compares real capabilities, cites primary sources, and makes the privacy tradeoff explicit.
+          </p>
+          <ul className="journal-index-hero__facts">
+            <li>Primary sources linked</li>
+            <li>Product-first privacy verdicts</li>
+            <li>Every release status clear</li>
+          </ul>
         </div>
       </header>
 
@@ -213,7 +209,7 @@ const BlogList: React.FC = () => {
                       <div className="journal-cluster__head-bar">
                         <span>11</span>
                       </div>
-                      <div className="journal-cluster__icon"><Sparkles size={24} aria-hidden="true" /></div>
+                      <div className="journal-cluster__icon"><Layers3 size={24} aria-hidden="true" /></div>
                       <div className="journal-cluster__copy">
                         <h3>Growth</h3>
                         <p>Articles published through BabyLoveGrowth.</p>

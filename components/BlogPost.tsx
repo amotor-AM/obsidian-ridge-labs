@@ -12,7 +12,6 @@ import {
   ListChecks,
   Share2,
   ShieldCheck,
-  Sparkles,
 } from 'lucide-react';
 import { blogPosts, isBabyLoveGrowthPost } from '../data/blog';
 import { getProductReleaseLabel, products } from '../data/products';
@@ -23,6 +22,7 @@ import SEO, {
   buildBreadcrumbs,
   buildFAQSchema,
 } from './SEO';
+import SiteFaq from './SiteFaq';
 
 const formatDate = (value: string) => {
   const [year, month, day] = value.split('.').map(Number);
@@ -117,7 +117,7 @@ const BlogPostPage: React.FC = () => {
       case 'answer':
         return (
           <section key={index} className="journal-answer" aria-labelledby={`answer-${index}`}>
-            <span className="journal-answer__label"><Sparkles size={15} aria-hidden="true" /> Direct answer</span>
+            <span className="journal-answer__label">Direct answer</span>
             <h2 id={`answer-${index}`}>{block.title}</h2>
             <p>{block.content}</p>
           </section>
@@ -175,14 +175,10 @@ const BlogPostPage: React.FC = () => {
               <span>People also ask</span>
               <h2 id={`faq-heading-${index}`}>Questions, answered plainly</h2>
             </div>
-            <div>
-              {block.content.map((item, itemIndex) => (
-                <details key={item.question} className="journal-faq__item" open={itemIndex === 0}>
-                  <summary>{item.question}<span aria-hidden="true">+</span></summary>
-                  <p>{item.answer}</p>
-                </details>
-              ))}
-            </div>
+            <SiteFaq
+              tone="dark"
+              items={block.content.map((item) => ({ question: item.question, answer: item.answer }))}
+            />
           </section>
         );
       case 'sources':
@@ -259,7 +255,6 @@ const BlogPostPage: React.FC = () => {
       />
 
       <header className="journal-hero">
-        <div className="journal-hero__glow" aria-hidden="true" />
         <div className="section-frame journal-hero__inner">
           <Link to="/journal" className="journal-back"><ArrowLeft size={16} aria-hidden="true" /> Journal index</Link>
           <div className="journal-hero__eyebrow">
