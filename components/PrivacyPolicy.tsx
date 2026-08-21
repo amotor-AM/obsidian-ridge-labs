@@ -8,7 +8,7 @@ const PrivacyPolicy: React.FC = () => {
     <div className="legal-page">
       <SEO
         title="Privacy Policy: On-Device AI and Optional Connections"
-        description="How Obsidian Ridge Labs keeps core AI processing on-device and handles optional Plaid bank sync, encrypted iCloud sync, diagnostics, purchases, and support."
+        description="How Obsidian Ridge Labs keeps core AI processing on-device, limits the public website to aggregate traffic measurement, and handles optional Plaid, iCloud, diagnostics, purchases, and support."
         noindex={false}
         jsonLd={[
           buildBreadcrumbs([
@@ -31,10 +31,11 @@ const PrivacyPolicy: React.FC = () => {
           </h1>
           <p className="text-apple-gray text-lg md:text-xl leading-relaxed max-w-3xl">
             Obsidian Ridge Labs builds its core AI experiences to run on your Apple device. Some
-            optional features use services such as Plaid or iCloud, and this policy explains those
-            connections without hiding them behind a blanket claim.
+            optional features use services such as Plaid or iCloud. The public website uses Google
+            Analytics only to measure aggregate traffic. This policy names those connections instead
+            of hiding them behind a blanket claim.
           </p>
-          <p className="text-gray-600 text-sm mt-8">Effective July 9, 2026</p>
+          <p className="text-gray-600 text-sm mt-8">Effective August 21, 2026</p>
         </header>
 
         <section aria-labelledby="privacy-at-a-glance" className="mb-16 md:mb-24">
@@ -163,26 +164,86 @@ const PrivacyPolicy: React.FC = () => {
 
           <section>
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-5 tracking-tight">
-              4. App diagnostics and this website
+              4. App diagnostics
+            </h2>
+            <p>
+              Our applications do not include third-party behavioral analytics SDKs. Where an app
+              offers first-party diagnostics, as Vault does, the control is off by default and the
+              app explains what is included before you enable it. App diagnostics are separate from
+              the public website measurement described in section 5.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-5 tracking-tight">
+              5. Public website traffic measurement
             </h2>
             <div className="space-y-4">
               <p>
-                Our applications do not include third-party behavioral analytics SDKs. Where an app
-                offers first-party diagnostics, as Vault does, the control is off by default and the
-                app explains what is included before you enable it.
+                The public Obsidian Ridge Labs website is not an account product and does not receive
+                content stored in our apps. Recordings, transcripts, finances, journals, tasks, and
+                similar in-app material are not sent to this website or to Google Analytics.
               </p>
               <p>
-                The public Obsidian Ridge Labs website does not load third-party behavioral analytics.
-                Like any website host, our hosting provider may process basic request information needed
-                to deliver pages securely and reliably. That request data does not include content stored
-                inside our apps.
+                To measure how the website itself is used in the aggregate, we load Google Tag Manager
+                (container ID GTM-PGQDN8FM), which loads Google Analytics 4 (measurement ID G-FNL2K6W19T).
+                These services are provided by Google LLC. We use them solely to produce aggregated
+                website statistics, such as approximate counts of visits and page views, which pages
+                are requested, coarse geographic region, referring site or campaign, and general
+                device or browser category.
+              </p>
+              <p>
+                We do not use Google Tag Manager or Google Analytics to identify you by name, email
+                address, or account; to create a marketing, remarketing, or advertising profile; to
+                measure or target ads on other sites or apps; to combine website traffic with app
+                content; or to sell personal information. We do not share website analytics for
+                cross-context behavioral advertising. We do not assign a Google Analytics user ID,
+                do not enable Google Signals or Google&apos;s advertising features for this property,
+                and do not authorize Google to use this property&apos;s Analytics data for Google&apos;s
+                advertising products.
+              </p>
+              <p>
+                Google may process technical information that is necessary to generate those aggregate
+                reports. That information can include the pages requested and related timestamps, a
+                cookie or similar client identifier used to distinguish sessions for counting, the
+                referring URL, user-agent or device characteristics, and Internet Protocol address
+                information that Google uses to estimate approximate location. We review Analytics in
+                aggregated form. We do not attempt to re-identify a visitor from those reports, and
+                we do not collect additional personal information through the website for analytics
+                purposes.
+              </p>
+              <p>
+                Independently of Google Analytics, the service that hosts this website may process
+                ordinary request logs required to deliver pages securely and reliably. Hosting logs
+                do not include content stored inside our apps.
+              </p>
+              <p>
+                You can limit or delete cookies and similar storage in your browser settings. Google
+                also provides a{' '}
+                <a href="https://tools.google.com/dlpage/gaoptout" rel="noreferrer" target="_blank">
+                  Google Analytics opt-out browser add-on
+                </a>
+                . Google&apos;s processing of information is further described in the{' '}
+                <a href="https://policies.google.com/privacy" rel="noreferrer" target="_blank">
+                  Google Privacy Policy
+                </a>
+                ,{' '}
+                <a href="https://policies.google.com/technologies/partner-sites" rel="noreferrer" target="_blank">
+                  how Google uses information from sites that use Google services
+                </a>
+                , and{' '}
+                <a href="https://business.safety.google/privacy/" rel="noreferrer" target="_blank">
+                  Google&apos;s commitments for Google products
+                </a>
+                . Questions about our use of these tools can be sent to the contact address in
+                section 11.
               </p>
             </div>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-5 tracking-tight">
-              5. Purchases
+              6. Purchases
             </h2>
             <p>
               Purchases and subscriptions are processed through Apple's StoreKit and the App Store.
@@ -195,7 +256,7 @@ const PrivacyPolicy: React.FC = () => {
 
           <section>
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-5 tracking-tight">
-              6. Security
+              7. Security
             </h2>
             <div className="space-y-4">
               <p>
@@ -214,13 +275,15 @@ const PrivacyPolicy: React.FC = () => {
 
           <section>
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-5 tracking-tight">
-              7. Your controls and deletion
+              8. Your controls and deletion
             </h2>
             <div className="space-y-4">
               <p>
                 You can delete local content from the app or remove the app from your device. Where
                 offered, you can turn off diagnostics, disable iCloud sync, or disconnect a Plaid-linked
-                bank. Product help guides explain the controls available in each app.
+                bank. Product help guides explain the controls available in each app. Website traffic
+                measurement is described in section 5, including browser cookie controls and Google&apos;s
+                Analytics opt-out add-on.
               </p>
               <p>
                 Removing an app does not automatically delete information already managed by a service
@@ -232,7 +295,7 @@ const PrivacyPolicy: React.FC = () => {
 
           <section>
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-5 tracking-tight">
-              8. Children's privacy
+              9. Children's privacy
             </h2>
             <p>
               Our products are not directed to children under 13, and we do not knowingly request
@@ -243,7 +306,7 @@ const PrivacyPolicy: React.FC = () => {
 
           <section>
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-5 tracking-tight">
-              9. Policy changes
+              10. Policy changes
             </h2>
             <p>
               We may update this policy as products and optional services change. The effective date
@@ -254,7 +317,7 @@ const PrivacyPolicy: React.FC = () => {
 
           <section>
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-5 tracking-tight">
-              10. Contact
+              11. Contact
             </h2>
             <p>
               Questions about this policy or a product's data handling can be sent to{' '}
