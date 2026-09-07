@@ -38,7 +38,7 @@ const fetchSite = (pathname, options = {}) => worker.fetch(
 const cases = [
   { path: '/philosophy', options: { headers: { Accept: 'text/html' } }, status: 200 },
   { path: '/philosophy', options: { method: 'HEAD' }, status: 200 },
-  ...['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith']
+  ...['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith', 'mise']
     .map((appId) => ({ path: `/apps/${appId}`, options: { headers: { Accept: 'text/html' } }, status: 200 })),
   { path: '/apps/echo', status: 301, location: '/apps/echochamber' },
   { path: '/apps/mind', status: 301, location: '/apps/cove' },

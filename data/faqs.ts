@@ -195,7 +195,7 @@ export const echoFaqs: FAQItem[] = [
 export const collectionFaqs: FAQItem[] = [
   {
     question: 'Which Obsidian Ridge Labs app can I download now?',
-    answer: 'Echo Chamber is available directly on the App Store. Vault, Molehill, Cove, Wove, Mettle, Memora, Trove, and Kith are in development. Each product page distinguishes implemented direction from current release availability, and final compatibility or pricing is not presented as settled before launch.',
+    answer: 'Echo Chamber is available directly on the App Store. Vault, Molehill, Cove, Wove, Mettle, Memora, Trove, Kith, and Mise are in development. Each product page distinguishes implemented direction from current release availability, and final compatibility or pricing is not presented as settled before launch.',
   },
   {
     question: 'Which app is best for private offline meeting transcription?',
@@ -267,7 +267,7 @@ export const productFaqs: Record<string, FAQItem[]> = {
   cove: [
     {
       question: 'Is Cove a private AI journal that keeps my entries on my iPhone?',
-      answer: 'That is the current architecture. Cove stores journal entries in local SwiftData and performs reflection with Apple’s on-device Foundation Models or a local NaturalLanguage fallback. It has no Cove account, developer AI server, analytics SDK, or advertising profile. Cove is still in development, and CloudKit sync is disabled in the current production configuration.',
+      answer: 'That is the current architecture. Cove stores journal entries in local SwiftData and performs reflection with Apple’s on-device Foundation Models or a local NaturalLanguage fallback. It has no Cove account, developer AI server, analytics SDK, or advertising profile. Cove is still in development. The store is configured for your own private CloudKit database with an automatic local-only fallback, so a journal is never handed to an Obsidian Ridge Labs server either way.',
     },
     {
       question: 'What can Cove notice about my journal without acting like a therapist?',
@@ -283,11 +283,11 @@ export const productFaqs: Record<string, FAQItem[]> = {
     },
     {
       question: 'Can Cove sync my journal across devices?',
-      answer: 'Not in the current production configuration. The data model has a future CloudKit path, but current journal storage is local-only. Cross-device sync should not be assumed until it is enabled, tested, and documented for release.',
+      answer: 'The current store is configured to use your own private CloudKit database, and it falls back to a local-only store when iCloud is unavailable. That means entries move through your Apple account rather than through Obsidian Ridge Labs. Cove is still in development, so exact sync behavior across devices will be confirmed and documented before release.',
     },
     {
       question: 'Can I lock or export my Cove journal?',
-      answer: 'The current implementation includes optional biometric or device-passcode app lock and journal export in Markdown or JSON. Export creates a copy outside Cove, so the privacy of that copy depends on where the user saves or shares it.',
+      answer: 'The current implementation includes optional biometric or device-passcode app lock, journal export as Markdown, JSON, or a full ZIP archive with photos and audio, a Day One importer, and a complete in-app erase. Export creates a copy outside Cove, so the privacy of that copy depends on where the user saves or shares it.',
     },
   ],
   wove: [
@@ -331,7 +331,7 @@ export const productFaqs: Record<string, FAQItem[]> = {
     },
     {
       question: 'Does Mettle upload my workouts or bodyweight?',
-      answer: 'Mettle has no Obsidian Ridge Labs account, analytics SDK, or developer workout server. Its persistence source prefers the user’s private iCloud when that capability is configured and falls back to an on-device store; the reviewed entitlement currently lacks iCloud, so final sync behavior is not yet a release promise. HealthKit access is optional and permission-based.',
+      answer: 'Mettle has no Obsidian Ridge Labs account, analytics SDK, or developer workout server. Its persistence layer uses the user’s own private iCloud database when that capability is available and falls back to an on-device store when it is not, so training history moves through the user’s Apple account rather than a developer server. HealthKit access is optional and permission-based.',
     },
     {
       question: 'Can I control a Mettle workout from Apple Watch?',
@@ -379,7 +379,7 @@ export const productFaqs: Record<string, FAQItem[]> = {
     },
     {
       question: 'Does Trove upload photos of my belongings or receipts?',
-      answer: 'The current core path stores inventory records and photos locally and performs recognition on the device, with no Trove account, developer AI server, ad network, or analytics SDK. Any future private iCloud option will be described separately rather than folded into a blanket “never connects” claim.',
+      answer: 'The core path stores inventory records and photos locally and performs recognition on the device, with no Trove account, developer AI server, ad network, or analytics SDK. Trove can also use your own private iCloud database when you turn sync on, which routes data through your Apple account rather than ours. That optional path is described separately rather than folded into a blanket “never connects” claim.',
     },
     {
       question: 'Will Trove still work without Apple Intelligence?',
@@ -387,11 +387,11 @@ export const productFaqs: Record<string, FAQItem[]> = {
     },
     {
       question: 'Can Trove track a product warranty and show what may expire soon?',
-      answer: 'The current design stores warranty dates and surfaces warranty context in the inventory dashboard. A local notification scheduler has not been verified in the current build, so proactive expiry alerts should not be promised yet. The original receipt and manufacturer or seller terms remain the source of truth.',
+      answer: 'Yes. The current build stores warranty dates, shows a warranty timeline, and schedules local notifications roughly thirty days before a warranty expires, using data already on the device rather than a push server. The original receipt and the manufacturer or seller terms remain the source of truth for what a warranty actually covers.',
     },
     {
       question: 'Can I export my Trove inventory for an insurance claim?',
-      answer: 'CSV and PDF inventory export are planned Plus capabilities in the unreleased app. They are intended to create a portable evidence package, not guarantee that an insurer will accept a valuation or approve a claim. Final export formats and availability will be confirmed before release.',
+      answer: 'The in-development build can produce a photo-illustrated claim report as a PDF and export the catalog as CSV. Those files are intended to create a portable evidence package. They do not guarantee that an insurer will accept a valuation or approve a claim, and final export formats and tier availability will be confirmed before release.',
     },
   ],
   kith: [
@@ -418,6 +418,36 @@ export const productFaqs: Record<string, FAQItem[]> = {
     {
       question: 'Can I quickly log a call or remember an upcoming birthday in Kith?',
       answer: 'The in-development app includes quick logging in the app, Siri and Shortcuts actions, a Control Center control, widgets, Spotlight, and local important-date reminders. Notifications remain permission-based and can be skipped or disabled.',
+    },
+  ],
+  mise: [
+    {
+      question: 'Can Mise import a recipe from a website without an account?',
+      answer: 'Yes. Share a page from Safari or another app, or paste the text, and Mise builds a structured recipe on the device. Most recipe sites publish machine-readable recipe data, which Mise reads directly with no AI involved. Messier pages are parsed by Apple\u2019s on-device model. The only network request is fetching the page you asked for, made directly to that site.',
+    },
+    {
+      question: 'Does Mise need Apple Intelligence?',
+      answer: 'Yes. On-device AI is the product rather than a garnish, so Mise checks for Apple Intelligence at launch. Hardware that cannot run it gets a full-screen explanation instead of a half-working app, a device with it switched off gets a path to Settings, and a model still downloading resolves itself the next time you open Mise.',
+    },
+    {
+      question: 'Can Mise turn a photo of a cookbook page or a handwritten card into a recipe?',
+      answer: 'That is one of the supported import paths. Apple Vision reads the text on the device, then the on-device model structures it into ingredients, steps, times, and servings. Every field stays editable, because photographs of curling index cards are exactly the input that most deserves a human check.',
+    },
+    {
+      question: 'What can the Mise sous chef actually answer?',
+      answer: 'Ask Mise is grounded in your recipe box, your pantry, and your dietary profile, so it can suggest a substitution mid-recipe, explain a technique, adjust timings, or write a recipe from what you already have. It is a cooking assistant, not a food-safety authority or a nutrition or allergy service, and an allergy question deserves the label on the package rather than a language model.',
+    },
+    {
+      question: 'Does the grocery list know what I already planned for the week?',
+      answer: 'The list is generated from the week you planned or from any single recipe. Duplicate ingredients are consolidated, quantities are added together, items are sorted by supermarket aisle, and regenerating the same week never doubles what is already there. Check items off in the app, from the Home Screen widget, or from Apple Watch.',
+    },
+    {
+      question: 'Where do my recipes live, and can I get them out?',
+      answer: 'Recipes are stored on the device, with optional private iCloud sync through your own Apple account as a Plus feature. There is no Mise account, no recipe server, and no analytics. Settings can export every recipe as JSON, and any single recipe can be shared as an image card.',
+    },
+    {
+      question: 'When will Mise be available?',
+      answer: 'Mise is still in development. The product page and help center describe the current build, and release timing, final compatibility, and final pricing are not being promised yet.',
     },
   ],
 };

@@ -2,9 +2,30 @@ import { KnowledgeBase, KBArticle } from '../../types';
 import { vaultKb } from './vault';
 import { echochamberKb } from './echochamber';
 import { molehillKb } from './molehill';
+import { coveKb } from './cove';
+import { woveKb } from './wove';
+import { mettleKb } from './mettle';
+import { memoraKb } from './memora';
+import { troveKb } from './trove';
+import { kithKb } from './kith';
+import { miseKb } from './mise';
 
-/** Every knowledge base, keyed for lookup by app id. */
-export const knowledgeBases: KnowledgeBase[] = [vaultKb, echochamberKb, molehillKb];
+/**
+ * Every knowledge base, keyed for lookup by app id. Ordered to match the app
+ * collection so the help index reads in the same sequence as /download.
+ */
+export const knowledgeBases: KnowledgeBase[] = [
+  echochamberKb,
+  vaultKb,
+  molehillKb,
+  coveKb,
+  woveKb,
+  mettleKb,
+  memoraKb,
+  troveKb,
+  kithKb,
+  miseKb,
+];
 
 const byAppId: Record<string, KnowledgeBase> = Object.fromEntries(
   knowledgeBases.map((kb) => [kb.appId, kb]),
@@ -20,4 +41,15 @@ export function getArticle(appId: string, articleId: string): KBArticle | undefi
   return getKb(appId)?.articles.find((article) => article.id === articleId);
 }
 
-export { vaultKb, echochamberKb, molehillKb };
+export {
+  vaultKb,
+  echochamberKb,
+  molehillKb,
+  coveKb,
+  woveKb,
+  mettleKb,
+  memoraKb,
+  troveKb,
+  kithKb,
+  miseKb,
+};

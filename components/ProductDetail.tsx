@@ -17,12 +17,12 @@ const editorialCopy: Record<string, { statement: string; thesis: string; boundar
   molehill: {
     statement: 'Momentum without pressure, profiling, or shame.',
     thesis: 'Molehill is for the moment a task feels too large to start. Private intelligence turns a brain dump into editable actions, then brings one manageable next step into focus without a streak to protect.',
-    boundary: 'The intended core task-breakdown path is on-device. Final capabilities, system requirements, and any network behavior will be documented before release.',
+    boundary: 'Task breakdown, step splitting, and brain-dump sorting run on-device, and speech is transcribed locally, so the app works in airplane mode. Tasks are stored on the iPhone with no cloud copy and no cross-device sync today; steps you export to Apple Reminders or Calendar travel through your own iCloud. Final release details will be documented before launch.',
   },
   cove: {
     statement: 'Your journal can think with you without leaving your phone.',
     thesis: 'Cove pairs the quiet ritual of journaling with restrained, on-device reflection. Themes, memories, and grounded questions become easier to revisit while the original words and final judgment stay with the writer.',
-    boundary: 'The current build stores entries locally and runs reflection on-device, with a NaturalLanguage fallback when Apple Intelligence is unavailable. Optional Health access requires permission. CloudKit sync is not enabled in the current production configuration.',
+    boundary: 'Entries are stored on the device and reflection runs on-device, with a NaturalLanguage fallback when Apple Intelligence is unavailable. The store opens through your own private iCloud database when that is available and falls back to local-only when it is not, and Settings names which mode actually opened. Optional Health mood sync requires permission. Cove remains in development, so exact multi-device behavior is confirmed before release.',
   },
   wove: {
     statement: 'A private stylist for the closet you already own.',
@@ -32,22 +32,27 @@ const editorialCopy: Record<string, { statement: string; thesis: string; boundar
   mettle: {
     statement: 'A strength coach that shows the reason behind every number.',
     thesis: 'Mettle gives deterministic training logic control of every prescription. On-device intelligence selects from curated candidates and explains the plan at the lifter’s level, so adaptation never becomes a black box.',
-    boundary: 'Core programming and coaching run on-device and retain a deterministic fallback. The source prefers private iCloud when that capability is configured and falls back on-device; the reviewed entitlement currently lacks iCloud, so final sync behavior remains unverified. HealthKit is optional, and the Watch experience controls an active phone workout rather than acting as a standalone trainer.',
+    boundary: 'Core programming and coaching run on-device and retain a deterministic fallback. Training data is stored on the device and uses the lifter\u2019s own private iCloud database when that is available, with a local store as the fallback, so history moves through an Apple account rather than an Obsidian Ridge Labs server. HealthKit is optional, and the Watch experience controls an active phone workout rather than acting as a standalone trainer.',
   },
   memora: {
     statement: 'AI should help you study, not collect your source material.',
     thesis: 'Memora converts material you provide into editable draft cards, puts every draft through a review gate, and uses FSRS to decide when recall is most useful. The source stays visible, the schedule stays understandable, and every rating can be corrected.',
-    boundary: 'Core card generation, PDF text extraction, selected-photo OCR, storage, and scheduling happen locally. PDFs need embedded text, scanned PDFs are not OCR’d as documents, and the current build does not offer iCloud sync. Similar-card generation and the tutor require Apple Intelligence.',
+    boundary: 'Card generation, PDF text extraction, photo OCR, storage, and scheduling happen locally, and imports from Anki, Quizlet, or CSV are always free. PDFs need an embedded text layer, scanned PDFs are not read as documents, and there is no iCloud deck sync today, which makes the library backup file your real backup. Similar-card generation and the deck tutor require Apple Intelligence.',
   },
   trove: {
     statement: 'The record that matters should belong to you.',
     thesis: 'Trove makes a home inventory practical enough to build before a claim, move, warranty issue, or replacement decision. Capture evidence once, review every extracted detail, then search the private catalog when the information matters.',
-    boundary: 'The current catalog and its core intelligence are local. Items, receipts, serials, values, and warranties are user-maintained records, not appraisals or insurance coverage guarantees. Private iCloud sync and insurance-ready export are planned Plus capabilities, not release promises.',
+    boundary: 'The catalog and its core intelligence are local, and a deterministic engine takes over when Apple Intelligence is unavailable. Items, receipts, serials, values, and warranties are user-maintained records, not appraisals or insurance coverage guarantees, and the coverage gap check is arithmetic against a policy limit you enter. The claim report, CSV export, multiple homes, and private iCloud sync are Plus capabilities in an unreleased app.',
   },
   kith: {
     statement: 'Remember people without turning them into a pipeline.',
     thesis: 'Kith uses circles, an adjustable cadence, and a gently cooling Warmth Ring to make staying close feel humane. Optional local helpers can organize a memory or help begin a message without turning private relationships into cloud CRM data.',
-    boundary: 'Relationship records and Foundation Models assistance are designed around the device, with no Obsidian Ridge Labs account or AI server. The app remains useful when Apple Intelligence is unavailable; any private iCloud behavior will be documented precisely before release.',
+    boundary: 'Relationship records and Foundation Models assistance are designed around the device, with no Obsidian Ridge Labs account or AI server. The current build stores people, notes, and dates in a local database with no cloud copy, and the app remains useful when Apple Intelligence is unavailable.',
+  },
+  mise: {
+    statement: 'A recipe box should not become someone else’s dataset.',
+    thesis: 'Mise keeps the whole cooking loop on the device: import from anywhere, structure the recipe on-device, plan the week, build the grocery list, and cook with a sous chef that already knows your kitchen. There is no Mise account and no recipe server to lose your collection to.',
+    boundary: 'Recipe parsing, the sous chef, pantry generation, and substitutions run on-device and require Apple Intelligence; devices without it are told so at launch instead of silently degrading. The only network requests are fetching a page you asked Mise to import, made directly to that site, and App Store purchase verification. Recipes are stored locally with optional private iCloud sync through your own account.',
   },
 };
 
@@ -88,6 +93,10 @@ const productJournalLinks: Record<string, { id: string; title: string }[]> = {
   kith: [
     { id: 'kith-vs-personal-crm-apps', title: 'Kith vs Hippo, Dex, Monica, and Covve: Which Personal CRM Fits Friends and Family?' },
     { id: 'best-relationship-reminder-apps-friends-family', title: 'Kith guide: 5 Relationship Reminder Apps for Friends and Family' },
+  ],
+  mise: [
+    { id: 'mise-vs-paprika-pestle-mela-anylist', title: 'Mise vs Paprika, Pestle, Mela, and AnyList: Recipe Managers Compared' },
+    { id: 'best-private-recipe-manager-apps', title: 'Mise guide: 5 Recipe Manager Apps for Importing, Planning, and Cooking' },
   ],
 };
 
@@ -131,6 +140,11 @@ const productSeo: Record<string, { title: string; description: string; keywords:
     title: 'Kith: Private Relationship Reminder App',
     description: 'Explore Kith, an in-development private relationship manager with gentle reach-out cadences, important dates, saved context, and on-device message helpers.',
     keywords: ['private personal CRM for iPhone', 'relationship reminder app', 'keep in touch app without cloud AI', 'on-device personal relationship manager'],
+  },
+  mise: {
+    title: 'Mise: Private AI Recipe Box and Meal Planner',
+    description: 'Explore Mise, an in-development private recipe manager with share-sheet and photo import, an on-device sous chef, weekly meal planning, and hands-free cook mode.',
+    keywords: ['private recipe app for iPhone', 'on-device AI recipe manager', 'recipe import without an account', 'meal planner and grocery list app'],
   },
 };
 
@@ -257,6 +271,37 @@ const ProductDetail: React.FC = () => {
             </MotionReveal>
           </div>
         </section>
+
+        {product.screenshots && product.screenshots.length > 0 && (
+          <section className="echo-gallery" aria-label={`${product.name} product screens`}>
+            <div className="section-frame">
+              <div className="echo-gallery__track">
+                {product.screenshots.map((shot, index) => (
+                  <MotionReveal key={shot.file} className="echo-gallery__item" amount={0.15}>
+                    <figure>
+                      <picture>
+                        <img
+                          src={`/images/${product.id}/${shot.file}-960.webp`}
+                          srcSet={`/images/${product.id}/${shot.file}-480.webp 480w, /images/${product.id}/${shot.file}-960.webp 960w`}
+                          sizes="(max-width: 900px) 90vw, 30vw"
+                          alt={`${product.name} ${shot.title.toLowerCase()} screen`}
+                          width="960"
+                          height="2087"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
+                      <figcaption>
+                        <span>{String(index + 1).padStart(2, '0')}</span>
+                        <div><strong>{shot.title}</strong><p>{shot.caption}</p></div>
+                      </figcaption>
+                    </figure>
+                  </MotionReveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="product-workflow" aria-labelledby="product-workflow-title">
           <div className="section-frame">

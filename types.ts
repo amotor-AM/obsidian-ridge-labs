@@ -35,6 +35,11 @@ export interface Product {
   githubUrl?: string;
   /** Whether a help knowledge base exists for deep-linking from inside the app. */
   hasKnowledgeBase?: boolean;
+  /**
+   * Product screens shown in the app-page gallery. `file` is the basename under
+   * `/images/<product id>/`, which must have `-480.webp` and `-960.webp` variants.
+   */
+  screenshots?: { file: string; title: string; caption: string }[];
   /** Apple platforms the app runs on. */
   platforms?: string[];
   minOS?: string;

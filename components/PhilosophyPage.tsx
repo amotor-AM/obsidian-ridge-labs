@@ -18,9 +18,10 @@ const philosophyProductCopy: Record<string, string> = {
   memora: 'Turn notes, text-layer PDFs, and selected photos into editable flashcards on-device, then schedule recall with FSRS.',
   trove: 'Capture belongings, receipts, serials, warranties, and values in a local home inventory built for search, insurance preparation, and export.',
   kith: 'Remember what matters and reach out with more care using local relationship context and on-device writing help.',
+  mise: 'Save recipes from anywhere, plan the week, and cook with an on-device sous chef that reads your recipe box rather than a recipe server.',
 };
 
-const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith'];
+const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith', 'mise'];
 
 const getStatus = (product: (typeof products)[number]) => {
   const label = getProductReleaseLabel(product);

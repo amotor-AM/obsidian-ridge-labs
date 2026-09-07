@@ -3,6 +3,7 @@ import { coreBlogPosts } from './blog/core';
 import { echoVaultMolehillPosts } from './blog/cluster-echo-vault-molehill';
 import { coveWoveMettlePosts } from './blog/cluster-cove-wove-mettle';
 import { memoraTroveKithPosts } from './blog/cluster-memora-trove-kith';
+import { misePosts } from './blog/cluster-mise';
 import { babyLoveGrowthPosts } from './babylovegrowth';
 
 /**
@@ -17,6 +18,7 @@ const editorialBlogPosts: BlogPost[] = [
   ...echoVaultMolehillPosts,
   ...coveWoveMettlePosts,
   ...memoraTroveKithPosts,
+  ...misePosts,
 ].map((post) => ({ ...post, source: post.source || 'editorial' }));
 
 const editorialIds = new Set(editorialBlogPosts.map((post) => post.id));

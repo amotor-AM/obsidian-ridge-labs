@@ -7,9 +7,9 @@ const dist = path.join(root, 'dist');
 const origin = 'https://obsidianridgelabs.com';
 const errors = [];
 const warnings = [];
-const expectedAppIds = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith'];
-const expectedAppNames = ['ECHO CHAMBER', 'VAULT', 'MOLEHILL', 'COVE', 'WOVE', 'METTLE', 'MEMORA', 'TROVE', 'KITH'];
-const expectedEditorialBlogPostCount = 20;
+const expectedAppIds = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith', 'mise'];
+const expectedAppNames = ['ECHO CHAMBER', 'VAULT', 'MOLEHILL', 'COVE', 'WOVE', 'METTLE', 'MEMORA', 'TROVE', 'KITH', 'MISE'];
+const expectedEditorialBlogPostCount = 22;
 const babyLoveGrowthGeneratedPath = path.join(root, 'data', 'babylovegrowth.generated.json');
 const babyLoveGrowthArticles = fs.existsSync(babyLoveGrowthGeneratedPath)
   ? JSON.parse(fs.readFileSync(babyLoveGrowthGeneratedPath, 'utf8'))

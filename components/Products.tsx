@@ -6,7 +6,7 @@ import MotionReveal from './home/MotionReveal';
 import { SpotlightCard } from './ui/spotlight-card';
 import { TextMarquee } from './ui/text-marquee';
 
-const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith'];
+const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith', 'mise'];
 
 const homepageCopy: Record<string, { proposition: string; detail: string; platforms: string }> = {
   echochamber: {
@@ -27,12 +27,12 @@ const homepageCopy: Record<string, { proposition: string; detail: string; platfo
   cove: {
     proposition: 'A journal that can reflect without reading from the cloud.',
     detail: 'Write, remember, and find patterns with on-device reflection, grounded recall, and no Cove account or remote AI service.',
-    platforms: 'iPhone',
+    platforms: 'iPhone · iPad · Watch',
   },
   wove: {
     proposition: 'Your closet. Your style. Your device.',
     detail: 'Capture garments locally, compose outfits from what you own, plan capsules and packing, and learn from real wear history.',
-    platforms: 'iPhone · iPad',
+    platforms: 'iPhone · iPad · Watch',
   },
   mettle: {
     proposition: 'A strength coach that shows its work.',
@@ -53,6 +53,11 @@ const homepageCopy: Record<string, { proposition: string; detail: string; platfo
     proposition: 'Remember people, not sales prospects.',
     detail: 'Keep private context, follow a humane reach-out cadence, and use on-device helpers to show up with more care.',
     platforms: 'iPhone',
+  },
+  mise: {
+    proposition: 'Your recipes, on your device, cooked with you.',
+    detail: 'Save recipes from anywhere, plan the week, build an aisle-sorted grocery list, and ask an on-device sous chef that knows your kitchen.',
+    platforms: 'iPhone · iPad · Watch',
   },
 };
 

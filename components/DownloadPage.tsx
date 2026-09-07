@@ -13,6 +13,9 @@ type ProductPresentation = {
   capabilities: string[];
   image?: string;
   imageAlt?: string;
+  imageCaption?: string;
+  /** Intrinsic height of the 960px-wide asset, so the card reserves the right space. */
+  imageHeight?: number;
 };
 
 const PRODUCT_PRESENTATION: Record<string, ProductPresentation> = {
@@ -21,38 +24,80 @@ const PRODUCT_PRESENTATION: Record<string, ProductPresentation> = {
     capabilities: ['Approximately 4.5% enhanced pipeline WER', 'Apple Intelligence with Bonsai 1.7B fallback', 'Audio and video upload', '$79.99 Lifetime option'],
     image: '/images/echochamber/transcription-details-960.webp',
     imageAlt: 'Echo Chamber transcript screen with audio controls, speaker labels, and searchable text',
+    imageCaption: 'Searchable transcript with audio controls and speaker labels',
+    imageHeight: 1707,
   },
   vault: {
-    description: 'Budget with local spending intelligence, on-device document import, cash-flow forecasts, and optional Plaid sync instead of a mandatory bank connection.',
-    capabilities: ['In-development product', 'Planned statement import', 'Estimated cash-flow forecasting', 'Optional Plaid direction'],
+    description: 'Budget with on-device receipt capture, safe-to-spend planning, cash-flow forecasts, and optional Plaid sync instead of a mandatory bank connection.',
+    capabilities: ['On-device receipt text recognition', 'Safe-to-spend and budget warnings', 'Estimated cash-flow forecasting', 'Optional Plaid, never required'],
+    image: '/images/vault/today-960.webp',
+    imageAlt: 'Vault today screen showing a safe-to-spend figure and a purchase check',
+    imageCaption: 'A safe-to-spend figure and a purchase check before you commit',
+    imageHeight: 2087,
   },
   molehill: {
     description: 'Turn an overwhelming task into one clear next step with private, on-device help and no streaks, shame, or behavioral profile.',
-    capabilities: ['On-device task breakdown', 'One-step focus', 'Brain-dump organization', 'No streak mechanics'],
+    capabilities: ['On-device task breakdown', 'Split a step that is still too big', 'Spoken brain dumps, transcribed locally', 'No streak mechanics'],
+    image: '/images/molehill/today-960.webp',
+    imageAlt: 'Molehill today screen showing a single next step and a start focus button',
+    imageCaption: 'One next step, its time estimate, and a way to start it',
+    imageHeight: 2087,
   },
   cove: {
-    description: 'Write, reflect, and rediscover your own words with a local iPhone journal, grounded questions, app lock, and export.',
-    capabilities: ['Writing, photos, and voice memos', 'On-device reflection with fallback', 'Semantic search and patterns', 'Local storage in the current build'],
+    description: 'Write, reflect, and rediscover your own words with a private journal, grounded questions, app lock, and export you control.',
+    capabilities: ['Writing is never paywalled', 'On-device reflection with fallback', 'Semantic search and weekly reflections', 'Local store, optional private iCloud'],
+    image: '/images/cove/reflection-960.webp',
+    imageAlt: 'Cove entry screen showing an on-device reflection beneath a journal entry',
+    imageCaption: 'A restrained on-device reflection beneath the entry you wrote',
+    imageHeight: 2087,
   },
   wove: {
     description: 'Turn a local closet into daily looks, capsules, packing plans, and real-wear insights without a remote wardrobe-analysis server.',
-    capabilities: ['Vision garment cut-out', 'Deterministic styling fallback', 'Optional WeatherKit context', 'No complete photo-sync claim'],
+    capabilities: ['Several garments from one photo', 'Deterministic styling fallback', 'Optional WeatherKit context', 'A remembered "not this" signal'],
+    image: '/images/wove/closet-960.webp',
+    imageAlt: 'Wove closet grid showing garments lifted from their photo backgrounds',
+    imageCaption: 'Every garment lifted off its background and tagged automatically',
+    imageHeight: 2087,
   },
   mettle: {
     description: 'Train with adaptive programming, deterministic prescriptions, explainable progression, and a private reason behind every number.',
-    capabilities: ['Engine-owned sets, reps, and loads', 'On-device coaching fallback', 'Apple Watch workout remote', 'CSV training export'],
+    capabilities: ['Engine-owned sets, reps, and loads', '"Why this?" on every prescription', 'Apple Watch rep timing and rest', 'CSV training export'],
+    image: '/images/mettle/today-960.webp',
+    imageAlt: 'Mettle today screen showing the next session and a coach insight',
+    imageCaption: 'The next session, its sets, and the reason it looks like this',
+    imageHeight: 2087,
   },
   memora: {
     description: 'Create reviewable flashcard drafts from your own material on-device, then schedule the right memory at the right time with FSRS.',
-    capabilities: ['Notes, text-layer PDFs, selected photos', 'Human review before saving', 'FSRS spaced repetition', 'Local decks with no current iCloud sync'],
+    capabilities: ['Notes, text-layer PDFs, and photos', 'Human review before saving', 'FSRS, never paywalled', 'Anki, Quizlet, and CSV import'],
+    image: '/images/memora/review-960.webp',
+    imageAlt: 'Memora draft review screen showing generated cards awaiting approval',
+    imageCaption: 'Generated cards proposed for review before they enter a deck',
+    imageHeight: 2087,
   },
   trove: {
     description: 'Build a private record of belongings, receipts, serials, warranties, and values before a claim, move, or repair makes the evidence urgent.',
-    capabilities: ['Vision and barcode capture', 'Local item catalog', 'Warranty and value context', 'Planned insurance-ready export'],
+    capabilities: ['Scan a whole room in one photo', 'Local item catalog', 'Warranty reminders and coverage check', 'Claim report and CSV export'],
+    image: '/images/trove/home-960.webp',
+    imageAlt: 'Trove home dashboard showing recorded value, rooms, and documentation progress',
+    imageCaption: 'Recorded value, rooms, and documentation progress in one view',
+    imageHeight: 2087,
   },
   kith: {
     description: 'Remember people without a sales pipeline through humane reach-out cadences, private context, important dates, and on-device helpers.',
-    capabilities: ['Inner, Close, and Wider circles', 'Warmth-based reach-out planning', 'On-device message and memory helpers', 'Widgets, Siri, and local reminders'],
+    capabilities: ['Inner, Close, and Wider circles', 'Warmth Ring and Orbit planning', 'On-device message and memory helpers', 'Widgets, Siri, and local reminders'],
+    image: '/images/kith/orbit-960.webp',
+    imageAlt: 'Kith orbit view showing people arranged around you by closeness',
+    imageCaption: 'People arranged by closeness, cooling gently as time passes',
+    imageHeight: 2087,
+  },
+  mise: {
+    description: 'Keep a private recipe box, plan the week, build an aisle-sorted grocery list, and cook with an on-device sous chef that knows your kitchen.',
+    capabilities: ['Share sheet, paste, and photo import', 'On-device recipe parsing', 'Weekly planner and grocery list', 'Cook mode with live timers'],
+    image: '/images/mise/recipes-960.webp',
+    imageAlt: 'Mise recipe box showing saved recipes and the on-device sous chef',
+    imageCaption: 'The recipe box, with the on-device sous chef at the top',
+    imageHeight: 2087,
   },
 };
 
@@ -175,11 +220,12 @@ const DownloadPage: React.FC = () => {
                           src={presentation.image}
                           alt={presentation.imageAlt}
                           width="960"
-                          height="1707"
+                          height={presentation.imageHeight || 2087}
                           loading={index === 0 ? 'eager' : 'lazy'}
+                          decoding="async"
                         />
                       </div>
-                      <figcaption>Searchable transcript with audio controls and speaker labels</figcaption>
+                      <figcaption>{presentation.imageCaption || presentation.imageAlt}</figcaption>
                     </figure>
                   )}
                 </div>

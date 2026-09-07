@@ -327,6 +327,7 @@ export const buildSoftwareApp = (product: {
   hasKnowledgeBase?: boolean;
   releaseStatus: 'app-store' | 'source-only' | 'pre-release' | 'concept';
   price?: string;
+  screenshots?: { file: string; title: string; caption: string }[];
 }) => {
   const appUrl = `${SITE_URL}/apps/${product.id}`;
   const released = product.releaseStatus === 'app-store' && Boolean(product.appStoreUrl);
@@ -373,12 +374,8 @@ export const buildSoftwareApp = (product: {
     inLanguage: 'en-US',
     ...(featureList ? { featureList } : {}),
     ...(product.hasKnowledgeBase ? { softwareHelp: `${SITE_URL}/help/${product.id}` } : {}),
-    ...(product.id === 'echochamber' ? {
-      screenshot: [
-        `${SITE_URL}/images/echochamber/record-screen-960.webp`,
-        `${SITE_URL}/images/echochamber/transcription-details-960.webp`,
-        `${SITE_URL}/images/echochamber/ai-chat-960.webp`,
-      ],
+    ...(product.screenshots?.length ? {
+      screenshot: product.screenshots.map((shot) => `${SITE_URL}/images/${product.id}/${shot.file}-960.webp`),
     } : {}),
     ...(links.length ? { sameAs: links } : {}),
   };
@@ -612,6 +609,7 @@ function mapCategory(category: string): string {
     'Private Learning': 'EducationalApplication',
     'Home Inventory': 'LifestyleApplication',
     'Relationships': 'LifestyleApplication',
+    'Recipes & Cooking': 'LifestyleApplication',
     'Private journal': 'LifestyleApplication',
     'Clearer decisions': 'BusinessApplication',
   };
@@ -620,15 +618,16 @@ function mapCategory(category: string): string {
 
 function getFeatureList(productId: string): string {
   const features: Record<string, string> = {
-    vault: 'On-device financial analysis, PDF statement import, local forecasting, biometric access control, offline-first workflow',
+    vault: 'In-development private budgeting, on-device receipt and statement text recognition, reviewable categorization, safe-to-spend planning, budgets with overspend warnings, recurring bills and subscription tracking, goals, net worth, a financial health score, local coaching, biometric access control, a local store with no server copy, and optional Plaid bank linking',
     echochamber: 'On-device live transcription with NVIDIA Parakeet TDT 0.6B v3, a targeted speech-focused pre-transcription filter rather than generic normalization, approximately 4.5% internal observed WER for the complete enhanced Echo Chamber pipeline under tested conditions, 6.32% average English WER for Parakeet versus 7.44% for Whisper large-v3 in the cited Hugging Face Open ASR evaluation snapshot, Apple Intelligence for transcript intelligence on compatible devices, bundled on-device Bonsai 1.7B fallback on supported hardware without Apple Intelligence, readable transcripts, local AI notes and summaries, speaker detection, bookmarks, full-text recording search, audio and video file upload with Pro, TXT Markdown PDF and DOCX export, Pro at $2.99 monthly or $29.99 yearly, $79.99 Lifetime one-time purchase, Face ID access control, AES-256-GCM audio encryption at rest, optional encrypted iCloud sync',
-    molehill: 'In-development on-device task breakdown, editable brain-dump organization, one-step focus, deterministic fallback, no streak mechanics, and a non-clinical productivity boundary',
-    cove: 'In-development local journaling, on-device reflection with NaturalLanguage fallback, mood and theme patterns, semantic search, grounded journal questions, app lock, and Markdown or JSON export',
-    wove: 'In-development local garment cut-out and tagging, daily and occasion-based outfit planning, deterministic styling fallback, wear history, capsules, packing lists, shopping context, and optional WeatherKit forecasts',
-    mettle: 'In-development adaptive strength programming, deterministic sets reps loads and deloads, explainable prescriptions, on-device coaching fallback, live workout logging, Apple Watch remote, optional HealthKit, and CSV export',
-    memora: 'In-development local flashcard drafts from notes embedded PDF text and selected-photo OCR, human review before saving, NaturalLanguage fallback, FSRS scheduling, cloze and image-occlusion cards, and local deck sharing',
-    trove: 'In-development local home inventory, Vision OCR and barcode capture, reviewable structured item extraction, warranty and value context, local search, Ask Trove, and planned insurance-ready CSV or PDF export',
-    kith: 'In-development private relationship manager with closeness circles, adjustable reach-out cadences, Warmth Ring planning, important dates, on-device message and memory helpers, widgets, Siri, Shortcuts, and local reminders',
+    molehill: 'In-development on-device task breakdown, step splitting when a step is still too big, on-device speech transcription for spoken brain dumps, editable brain-dump organization, one-step focus with a Live Activity timer, time estimates that roll up, Reminders and Calendar export, deterministic fallback, no streak mechanics, and a non-clinical productivity boundary',
+    cove: 'In-development local journaling that is never paywalled, on-device reflection with NaturalLanguage fallback, voice journaling and photos, mood and theme patterns, multilingual semantic search, On This Day memories, weekly reflections, grounded journal questions with sources, Apple Watch capture, Face ID app lock, optional Health State of Mind sync, Day One import, Markdown JSON and ZIP export, and optional private iCloud sync',
+    wove: 'In-development local garment cut-out and tagging including several garments from one photo, weather-aware daily looks with a stated reason, a remembered not-this signal, deterministic styling fallback, wear history and cost per wear, outfit calendar, capsules, packing lists with a Live Activity, shopping advisor, conversational stylist, Apple Watch and widget wear logging, closet export, and optional private iCloud sync',
+    mettle: 'In-development adaptive strength programming, deterministic sets reps loads and deloads counted from real training weeks, explainable Why this prescriptions, experience inference with level-up prompts, an on-device coach grounded in your own program and history, readiness adjustments, live workout logging with plate math and rest alerts, Apple Watch rep timing and haptics, optional HealthKit, CSV export, and optional private iCloud sync',
+    memora: 'In-development local flashcard drafts from notes embedded PDF text and photo OCR, human review before saving, NaturalLanguage fallback, FSRS scheduling that is never paywalled, four-grade review with next-interval previews and one-tap undo, cloze and image-occlusion cards, hints and post-reveal explanations, Anki apkg Quizlet and CSV import, a single-file library backup, widgets and Live Activity, and local decks with no account',
+    trove: 'In-development local home inventory, single-photo room scanning, Vision OCR and barcode capture, reviewable structured item extraction, warranty reminders, a coverage gap check against a policy limit you enter, value by room and category, local search, Ask Trove with deterministic aggregation, a photo-illustrated claim report, CSV export, multiple homes, and optional private iCloud sync',
+    kith: 'In-development private relationship manager with closeness circles, adjustable reach-out cadences, Warmth Ring and Orbit planning, important dates, on-device message drafting that opens straight into Messages, memory structuring, talking points, gift directions, actionable notifications, optional Face ID lock, widgets, Siri, Shortcuts, local reminders, and a local store with no cloud copy',
+    mise: 'In-development private recipe manager requiring Apple Intelligence, share sheet and paste import, published recipe data read directly from the page, on-device parsing of messy text, photo OCR for cookbook pages and handwritten cards, an on-device sous chef grounded in your recipe box pantry and dietary profile, cook with what I have, weekly meal planning with suggested dinners, aisle-sorted consolidated grocery lists, cook mode with concurrent Live Activity timers, fraction-aware serving scaling with metric and US conversion, Apple Watch companion, widgets, Siri and Shortcuts, share cards, and optional private iCloud sync',
   };
   return features[productId] || '';
 }

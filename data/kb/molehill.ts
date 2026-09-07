@@ -87,15 +87,15 @@ export const molehillKb: KnowledgeBase = {
         {
           type: "heading",
           level: 2,
-          content: "The four screens",
+          content: "The four tabs",
         },
         {
           type: "list",
           items: [
-            "Today: your home base, with a hero card for your single next step.",
-            "Brain Dump: a blank page to empty your mind onto, then let it get sorted.",
+            "Today: your home base, with a hero card for your single next step. Break It Down and Brain Dump both start here.",
             "Library: everything you have ever made, searchable, with nothing lost.",
-            "Settings: the daily nudge, your AI status, restore purchases, and privacy.",
+            "You: your streak, the shape of your week, and quiet proof the small steps add up.",
+            "Settings: themes and app icons, the daily nudge, your AI status, restore purchases, and privacy.",
           ],
         },
         {
@@ -104,7 +104,7 @@ export const molehillKb: KnowledgeBase = {
             "Everything happens on your iPhone. There is no account to make and nothing to sign in to, so you can start in the next thirty seconds.",
         },
       ],
-      related: ["your-first-task", "starting-when-its-hard", "do-tasks-leave-my-phone"],
+      related: ["your-first-task", "starting-when-its-hard", "make-it-smaller"],
     },
     {
       id: "your-first-task",
@@ -305,6 +305,179 @@ export const molehillKb: KnowledgeBase = {
         },
       ],
       related: ["choosing-granularity", "free-ai-actions", "block-calendar-time"],
+    },
+    {
+      id: "make-it-smaller",
+      title: "When a step is still too big",
+      description: "Split one stubborn step into two to four smaller ones, right where you are stuck.",
+      category: "breaking-down",
+      keywords: ["still too big", "split", "smaller", "stuck", "start", "shrink", "sub-steps"],
+      updated: "2026-09-07",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "Sometimes the breakdown is right and you still cannot move. “Call the dentist” is one step, and it is still a wall. That is not a failure of willpower. It is a step that was sized wrong for today.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "So Molehill lets you cut any single step down further. The step you split disappears and two to four smaller ones take its place, in order, right where it was.",
+        },
+        {
+          type: "steps",
+          items: [
+            { title: "Find the step you cannot start", description: "It can be the hero step on Today, the step in front of you in Focus mode, or any step inside a task in the Library." },
+            { title: "Choose Make it smaller", description: "On Today and in Focus it is a button under the step. In Task Detail, swipe the step and pick it from the actions." },
+            { title: "Read the smaller pieces", description: "Molehill proposes two to four concrete replacements with their own time estimates." },
+            { title: "Use them, or try again", description: "Accept the split and it replaces the original step, or ask for another pass if the pieces still feel too large." },
+          ],
+        },
+        {
+          type: "callout",
+          variant: "tip",
+          title: "It offers before you ask",
+          content:
+            "Snooze the same step twice and Molehill will quietly offer to shrink it next time. A step that keeps getting pushed was sized wrong. That is information, not a verdict on you.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Task breakdown tells you what to do. This is the move that gets you started, and it is the one thing most task apps leave out.",
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "It costs one AI action",
+          content:
+            "On the free plan a split counts as one of your 3 daily AI actions. You can always add smaller steps by hand instead, which is free and unlimited.",
+        },
+      ],
+      related: ["choosing-granularity", "editing-steps", "focus-mode"],
+    },
+    {
+      id: "recurring-tasks",
+      title: "Tasks that come back on their own",
+      description: "Daily, weekday, weekly, and monthly tasks that quietly line up the next occurrence.",
+      category: "breaking-down",
+      keywords: ["recurring", "repeat", "daily", "weekly", "monthly", "routine", "habit"],
+      updated: "2026-09-07",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "Some things are not one-off projects. The bins, the meds, the weekly review. Molehill can repeat a task so you do not have to remember to recreate it.",
+        },
+        {
+          type: "list",
+          items: [
+            "Daily: every day.",
+            "Weekdays: Monday to Friday only.",
+            "Weekly: the same day each week.",
+            "Monthly: the same date each month.",
+          ],
+        },
+        {
+          type: "paragraph",
+          content:
+            "Set the repeat on the task, and completing it quietly schedules the next occurrence. No badge, no red count, and no pile of missed instances waiting to shame you if you skip one.",
+        },
+        {
+          type: "callout",
+          variant: "tip",
+          title: "Steps come back too",
+          content:
+            "A recurring task keeps its steps, so a routine you broke down once stays broken down. That is the whole point: you pay the setup cost a single time.",
+        },
+      ],
+      related: ["editing-steps", "snooze-a-step", "the-daily-nudge"],
+    },
+    {
+      id: "snooze-a-step",
+      title: "Snoozing a step without guilt",
+      description: "Park something for later today, tomorrow, or next week, and let it step aside quietly.",
+      category: "breaking-down",
+      keywords: ["snooze", "later", "postpone", "defer", "tomorrow", "next week", "guilt"],
+      updated: "2026-09-07",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "Not now is a legitimate answer. Snooze any step for later today, tomorrow, or next week and it steps out of the way. It does not turn red, it does not accumulate, and nothing counts it against you.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Today simply moves on to the next thing you could actually start, which is usually what an overwhelmed brain needs more than a reminder that it failed.",
+        },
+        {
+          type: "callout",
+          variant: "tip",
+          title: "Two snoozes is a signal",
+          content:
+            "If you snooze the same step twice, Molehill offers to make it smaller. Repeatedly pushing a step is almost always a sizing problem, and shrinking it is usually the fix.",
+        },
+      ],
+      related: ["make-it-smaller", "recurring-tasks", "starting-when-its-hard"],
+    },
+    {
+      id: "your-progress",
+      title: "The You screen",
+      description: "A gentle look at your streak, the shape of your week, and what the small steps added up to.",
+      category: "getting-started",
+      keywords: ["you", "progress", "streak", "week", "insights", "stats", "history"],
+      updated: "2026-09-07",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "The You tab is the one place Molehill keeps score, and it is deliberately quiet about it. You will find your current streak, a small chart of the week, and counts of the steps you finished today, this week, and in total.",
+        },
+        {
+          type: "callout",
+          variant: "tip",
+          title: "The streak cannot be lost",
+          content:
+            "Molehill’s streak celebrates showing up. There is no red warning when it ends, no notification begging you to save it, and no penalty for a quiet week. If it resets, it resets.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Pro adds gentle insights on the same screen: your biggest day, your longest streak, and roughly how much time you have invested. They are there if you find them motivating and easy to ignore if you do not.",
+        },
+      ],
+      related: ["free-vs-pro", "starting-when-its-hard", "find-old-tasks"],
+    },
+    {
+      id: "themes-and-icons",
+      title: "Themes and app icons",
+      description: "Six warm themes, each with a matching app icon and widgets.",
+      category: "getting-started",
+      keywords: ["theme", "colour", "color", "app icon", "appearance", "dark mode", "customise"],
+      updated: "2026-09-07",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "Molehill ships with six warm themes. Each one carries through the whole app, the widgets, and the Home Screen icon, so your phone does not look like it is running two different products.",
+        },
+        {
+          type: "steps",
+          items: [
+            { title: "Open Settings", description: "The fourth tab." },
+            { title: "Choose a theme", description: "Pick the one that feels calmest to look at. Low-stimulation design is not a style choice here; it is the point." },
+            { title: "The icon follows", description: "The Home Screen icon and the widgets change to match. iOS may take a moment to redraw the icon." },
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "What is free",
+          content:
+            "The original theme and its icon are free forever. The other five are part of Pro.",
+        },
+      ],
+      related: ["free-vs-pro", "just-one-step-widget", "your-progress"],
     },
 
     /* ── Brain dump ───────────────────────────────────────────────────── */
