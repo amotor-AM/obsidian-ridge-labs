@@ -300,32 +300,60 @@ export const woveKb: KnowledgeBase = {
           content: "The conversational stylist is part of Wove+.",
         },
       ],
-      related: ["todays-look", "without-apple-intelligence", "compare-free-and-plus"],
+      related: ["todays-look", "apple-intelligence-requirement", "compare-free-and-plus"],
     },
     {
-      id: "without-apple-intelligence",
-      title: "Using Wove without Apple Intelligence",
-      description: "The deterministic stylist, and what it does and does not cover.",
+      id: "apple-intelligence-requirement",
+      title: "Why Wove requires Apple Intelligence",
+      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
       category: "outfits",
-      keywords: ["apple intelligence", "fallback", "heuristic", "older iphone", "offline", "requirements"],
+      keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
       updated: "2026-09-07",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Wove has two stylists. Apple's on-device model proposes combinations, and a deterministic engine built on colour theory, formality rules, and weather logic validates and repairs every one of them.",
+            "Wove checks for Apple Intelligence when it launches. On-device AI is the product here rather than a garnish, so a half-working Wove would be worse than an honest explanation.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you need",
         },
         {
           type: "paragraph",
           content:
-            "When Apple Intelligence is unavailable, that second engine simply takes over. You still get real outfits, capsules, and packing lists. What you lose is the written styling tip and the conversational stylist.",
+            "iPhone 15 Pro or later, or an iPad with M1 or later, running iOS 26 or later, with Apple Intelligence turned on in Settings and the on-device model finished downloading.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you might see",
+        },
+        {
+          type: "list",
+          items: [
+            "Hardware that cannot run Apple Intelligence: a full-screen explanation instead of the app. This one is an honest dead end.",
+            "Apple Intelligence turned off: a screen with a direct path into iOS Settings, which clears itself when you come back.",
+            "The model still downloading: an explanation that resolves on its own the next time you open Wove.",
+          ],
         },
         {
           type: "callout",
           variant: "info",
-          title: "The guardrails always run",
+          title: "Why the check happens at launch",
           content:
-            "Even on Apple Intelligence hardware, the deterministic rules check every suggestion. That is why Wove does not put a linen shirt in a January outfit.",
+            "There is no App Store setting that prevents installation on a device without Apple Intelligence, so the check has to run when the app does. That is why Wove can be downloaded and then tell you it cannot help.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "Why not a lesser version instead",
+        },
+        {
+          type: "paragraph",
+          content:
+            "The deterministic engine has not gone anywhere: colour theory, formality, and weather rules still validate and repair every suggestion the model makes, and they cover a transient failure mid-session. What they do not do is stand in for the model on a device that cannot run it.",
         },
       ],
       related: ["todays-look", "ask-the-stylist", "weather-and-location"],

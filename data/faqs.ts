@@ -207,11 +207,11 @@ export const collectionFaqs: FAQItem[] = [
   },
   {
     question: 'What works offline, and what still needs internet?',
-    answer: 'Core AI workflows are designed to work offline after any required setup. A connection can still be needed for model downloads, purchase verification, optional iCloud sync, optional Plaid bank sync, or a support request you choose to send.',
+    answer: 'Core AI workflows are designed to work offline after any required setup, because the models run on the device rather than on a server. A connection can still be needed for the initial Apple Intelligence model download, purchase verification, optional iCloud sync, optional Plaid bank sync, importing a web page you asked an app to fetch, or a support request you choose to send.',
   },
   {
     question: 'Which iPhone, iPad, or Mac models are supported?',
-    answer: 'Requirements vary by product and local model. Each released app page lists its minimum operating system and platforms. Requirements for products in development are labeled as provisional until release.',
+    answer: 'Requirements vary by product. Echo Chamber runs on iOS 18 and later and does not require Apple Intelligence. Every other app in the collection does require it, which means an iPhone 15 Pro or later, or an iPad with M1 or later, running iOS 26 or later with Apple Intelligence turned on. Each product page lists its own platforms and minimum operating system.',
   },
   {
     question: 'How much do the private AI apps cost?',
@@ -278,8 +278,8 @@ export const productFaqs: Record<string, FAQItem[]> = {
       answer: 'The in-development app supports typed or dictated entries, selected photos, moods, and saved voice memos. Voice recordings you choose to keep become part of the local entry; they should not be treated as transient dictation that is automatically discarded.',
     },
     {
-      question: 'Does Cove still work if Apple Intelligence is unavailable?',
-      answer: 'Yes for the core journal and basic insight path. A local NaturalLanguage engine can provide sentiment, theme extraction, and templated reflection when Foundation Models are unavailable. Richer generated reflections and grounded journal questions depend on supported Apple Intelligence hardware.',
+      question: 'Does Cove need Apple Intelligence?',
+      answer: 'Yes. On-device AI is the product rather than a garnish, so Cove checks for Apple Intelligence at launch. Hardware that cannot run it gets a full-screen explanation instead of a hollowed-out app, a device with it switched off gets a path to Settings, and a model still downloading resolves itself the next time you open Cove. That means iPhone 15 Pro or later, or an iPad with M1 or later, running iOS 26 or later with Apple Intelligence turned on. The reflection engine is the reason Cove exists, so a version without it would be a plain text editor with a paywall.',
     },
     {
       question: 'Can Cove sync my journal across devices?',
@@ -296,8 +296,8 @@ export const productFaqs: Record<string, FAQItem[]> = {
       answer: 'The current Wove build uses Apple Vision locally to lift garments from their backgrounds and propose editable tags. Garment images are local files and Foundation Models styling runs on-device. Optional private iCloud can mirror SwiftData closet metadata, but complete cross-device photo sync is not being claimed. There is no Wove account, ad network, or developer wardrobe-analysis server.',
     },
     {
-      question: 'Will Wove suggest outfits without Apple Intelligence?',
-      answer: 'Yes. Wove has deterministic color, formality, weather, capsule, and packing logic that can create and validate useful combinations when Foundation Models are unavailable. Apple Intelligence adds a richer generation path, but it is not the only styling engine.',
+      question: 'Does Wove need Apple Intelligence?',
+      answer: 'Yes. On-device AI is the product rather than a garnish, so Wove checks for Apple Intelligence at launch. Hardware that cannot run it gets a full-screen explanation instead of a hollowed-out app, a device with it switched off gets a path to Settings, and a model still downloading resolves itself the next time you open Wove. That means iPhone 15 Pro or later, or an iPad with M1 or later, running iOS 26 or later with Apple Intelligence turned on. Deterministic colour, formality, and weather rules still validate and repair every suggestion the model makes, so the guardrails run either way.',
     },
     {
       question: 'How does Wove make weather-aware outfit suggestions?',
@@ -326,8 +326,8 @@ export const productFaqs: Record<string, FAQItem[]> = {
       answer: 'That is the central product design. Goal, experience, equipment, schedule, training history, RPE, and optional bodyweight shape the program, while the coaching language and amount of detail adapt to the lifter’s level. Mettle can suggest a transparent level-up when the logged evidence supports it.',
     },
     {
-      question: 'Does Mettle work offline or without Apple Intelligence?',
-      answer: 'Core program composition, progression, exercise selection, and workout logging have a deterministic local path, so they do not depend on a network or supported Foundation Models hardware. Apple purchase verification and any user-initiated web link still use Apple or web services.',
+      question: 'Does Mettle need Apple Intelligence?',
+      answer: 'Yes. On-device AI is the product rather than a garnish, so Mettle checks for Apple Intelligence at launch. Hardware that cannot run it gets a full-screen explanation instead of a hollowed-out app, a device with it switched off gets a path to Settings, and a model still downloading resolves itself the next time you open Mettle. That means iPhone 15 Pro or later, running iOS 26.1 or later with Apple Intelligence turned on. It does work offline: nothing in Mettle needs a network except App Store purchase verification and optional iCloud sync.',
     },
     {
       question: 'Does Mettle upload my workouts or bodyweight?',
@@ -356,8 +356,8 @@ export const productFaqs: Record<string, FAQItem[]> = {
       answer: 'Memora uses FSRS spaced repetition. After the answer is revealed, the learner rates recall as Again, Hard, Good, or Easy; FSRS updates difficulty and memory stability, previews the next interval, and schedules the next review. A mistaken rating can be undone.',
     },
     {
-      question: 'Does Memora work without Apple Intelligence?',
-      answer: 'Standard card generation falls back to a local NaturalLanguage extractor when Foundation Models are unavailable, and manual cards plus FSRS remain fully useful. Generate Similar and the deck-grounded Tutor require supported Apple Intelligence and do not currently have that fallback.',
+      question: 'Does Memora need Apple Intelligence?',
+      answer: 'Yes. On-device AI is the product rather than a garnish, so Memora checks for Apple Intelligence at launch. Hardware that cannot run it gets a full-screen explanation instead of a hollowed-out app, a device with it switched off gets a path to Settings, and a model still downloading resolves itself the next time you open Memora. That means iPhone 15 Pro or later, running iOS 26 or later with Apple Intelligence turned on. FSRS scheduling and manual cards are never paywalled, but generating cards from your own material is the reason to choose Memora over a paper index box.',
     },
     {
       question: 'Does my study material leave my iPhone or sync to iCloud?',
@@ -382,8 +382,8 @@ export const productFaqs: Record<string, FAQItem[]> = {
       answer: 'The core path stores inventory records and photos locally and performs recognition on the device, with no Trove account, developer AI server, ad network, or analytics SDK. Trove can also use your own private iCloud database when you turn sync on, which routes data through your Apple account rather than ours. That optional path is described separately rather than folded into a blanket “never connects” claim.',
     },
     {
-      question: 'Will Trove still work without Apple Intelligence?',
-      answer: 'Yes. Manual cataloging, local storage, search, warranty tracking, and Vision capture remain useful, and a deterministic heuristic path can assist when Apple Intelligence is unavailable. Richer structured extraction and Ask Trove answers depend on supported Foundation Models hardware.',
+      question: 'Does Trove need Apple Intelligence?',
+      answer: 'Yes. On-device AI is the product rather than a garnish, so Trove checks for Apple Intelligence at launch. Hardware that cannot run it gets a full-screen explanation instead of a hollowed-out app, a device with it switched off gets a path to Settings, and a model still downloading resolves itself the next time you open Trove. That means iPhone 15 Pro or later, or an iPad with M1 or later, running iOS 26 or later with Apple Intelligence turned on. Vision still does the looking for OCR and barcodes, and questions about totals are answered with deterministic arithmetic rather than by a model adding numbers in its head.',
     },
     {
       question: 'Can Trove track a product warranty and show what may expire soon?',
@@ -412,8 +412,8 @@ export const productFaqs: Record<string, FAQItem[]> = {
       answer: 'On supported hardware, Kith can structure a brain dump into discrete facts, draft a warm message, suggest caring questions or gift directions, and recap saved context about a person. The source context stays visible, and the person, not the model, decides what is true, appropriate, and worth sending.',
     },
     {
-      question: 'Will Kith work on an iPhone without Apple Intelligence?',
-      answer: 'Yes. People, circles, cadences, logging, notes, important dates, reminders, widgets, Siri, and Spotlight remain useful without the AI helpers. AI surfaces can hide cleanly when Apple Intelligence is unavailable.',
+      question: 'Does Kith need Apple Intelligence?',
+      answer: 'Yes. On-device AI is the product rather than a garnish, so Kith checks for Apple Intelligence at launch. Hardware that cannot run it gets a full-screen explanation instead of a hollowed-out app, a device with it switched off gets a path to Settings, and a model still downloading resolves itself the next time you open Kith. That means iPhone 15 Pro or later, running iOS 26 or later with Apple Intelligence turned on. Circles, cadences, the Warmth Ring, logging, notes, and reminders are not AI features, but the helpers that make Kith worth opening are.',
     },
     {
       question: 'Can I quickly log a call or remember an upcoming birthday in Kith?',

@@ -174,7 +174,7 @@ export const memoraKb: KnowledgeBase = {
             "Every proposed card is a draft. Nothing enters a deck until you approve it.",
         },
       ],
-      related: ["the-review-gate", "without-apple-intelligence", "card-types"],
+      related: ["the-review-gate", "apple-intelligence-requirement", "card-types"],
     },
     {
       id: "the-review-gate",
@@ -243,32 +243,57 @@ export const memoraKb: KnowledgeBase = {
       related: ["the-review-gate", "organise-decks", "study-session"],
     },
     {
-      id: "without-apple-intelligence",
-      title: "Using Memora without Apple Intelligence",
-      description: "What falls back, what stays identical, and what genuinely needs the model.",
+      id: "apple-intelligence-requirement",
+      title: "Why Memora requires Apple Intelligence",
+      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
       category: "generating",
-      keywords: ["apple intelligence", "fallback", "naturallanguage", "older iphone", "offline", "requirements"],
+      keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
       updated: "2026-09-07",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Standard card generation falls back automatically. When Apple Intelligence is unavailable, an on-device NaturalLanguage generator extracts definitions and builds cloze cards on salient terms, so the feature always produces something.",
+            "Memora checks for Apple Intelligence when it launches. On-device AI is the product here rather than a garnish, so a half-working Memora would be worse than an honest explanation.",
         },
         {
-          type: "callout",
-          variant: "info",
-          title: "The fallback is free and uncapped",
+          type: "heading",
+          level: 2,
+          content: "What you need",
+        },
+        {
+          type: "paragraph",
           content:
-            "Because it is not AI generation, heuristic cards do not count against the monthly AI allowance. Only real on-device model generations do.",
+            "iPhone 15 Pro or later, running iOS 26 or later, with Apple Intelligence turned on in Settings and the on-device model finished downloading.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you might see",
         },
         {
           type: "list",
           items: [
-            "Identical either way: manual cards, all card types, FSRS, study sessions, stats, import, export, and widgets.",
-            "Falls back: standard card generation, and in-session hints, which drop to a first-letters heuristic.",
-            "Needs Apple Intelligence: Generate Similar and the deck tutor.",
+            "Hardware that cannot run Apple Intelligence: a full-screen explanation instead of the app. This one is an honest dead end.",
+            "Apple Intelligence turned off: a screen with a direct path into iOS Settings, which clears itself when you come back.",
+            "The model still downloading: an explanation that resolves on its own the next time you open Memora.",
           ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "Why the check happens at launch",
+          content:
+            "There is no App Store setting that prevents installation on a device without Apple Intelligence, so the check has to run when the app does. That is why Memora can be downloaded and then tell you it cannot help.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "Why not a lesser version instead",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Manual cards and the full FSRS scheduler are free and never paywalled, and a local text-analysis path still covers a transient failure inside a session. But generating cards from your own material is the reason to choose Memora, so the app does not pretend to be itself without it.",
         },
       ],
       related: ["generate-from-notes", "study-hints", "compare-free-and-plus"],
@@ -323,7 +348,7 @@ export const memoraKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Stuck on a card before revealing it? The Hint button writes a nudge that points you at the answer without handing it over. On devices without Apple Intelligence it falls back to a first-letters hint, which is genuinely useful more often than it sounds.",
+            "Stuck on a card before revealing it? The Hint button writes a nudge that points you at the answer without handing it over. If the model cannot complete the request, it falls back to a first-letters hint, which is genuinely useful more often than it sounds.",
         },
         {
           type: "paragraph",
@@ -338,7 +363,7 @@ export const memoraKb: KnowledgeBase = {
             "Hints and explanations are free and entirely on-device. They are the study aids most likely to keep someone from abandoning a hard deck, so they are not behind the paywall.",
         },
       ],
-      related: ["study-session", "without-apple-intelligence", "other-study-modes"],
+      related: ["study-session", "apple-intelligence-requirement", "other-study-modes"],
     },
     {
       id: "practice-ahead",
@@ -393,7 +418,7 @@ export const memoraKb: KnowledgeBase = {
             "Practice tests and the tutor are Plus features, and the tutor also requires Apple Intelligence. The paywall never advertises model-powered perks on a device that cannot run them.",
         },
       ],
-      related: ["study-session", "compare-free-and-plus", "without-apple-intelligence"],
+      related: ["study-session", "compare-free-and-plus", "apple-intelligence-requirement"],
     },
 
     /* ── Scheduling ───────────────────────────────────────────────────── */
@@ -687,7 +712,7 @@ export const memoraKb: KnowledgeBase = {
           items: [
             "Unlimited manual cards, and full FSRS on every card. The algorithm is never paywalled.",
             "Up to three decks.",
-            "Around fifty AI-generated cards a month. Only real on-device model generations count, so heuristic fallback cards are uncapped.",
+            "Around fifty AI-generated cards a month. Only real on-device model generations count against it.",
             "Around ten page scans a month.",
             "In-session hints and Why? explanations.",
             "All imports, CSV export, library backup, the due-count widget, and daily reminders.",
@@ -716,7 +741,7 @@ export const memoraKb: KnowledgeBase = {
             "Memora Plus is seven days free, then $3.99 per month, $24.99 per year, or $49.99 once for lifetime access. Prices in the app always come from the App Store rather than being hard-coded. Memora is still in development, so final pricing is confirmed at release.",
         },
       ],
-      related: ["restore-purchase", "without-apple-intelligence", "other-study-modes"],
+      related: ["restore-purchase", "apple-intelligence-requirement", "other-study-modes"],
     },
     {
       id: "restore-purchase",

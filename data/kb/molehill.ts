@@ -41,7 +41,7 @@ export const molehillKb: KnowledgeBase = {
     {
       id: "ai",
       title: "The on-device AI",
-      description: "How Molehill breaks things down on your iPhone, and how it works even without Apple Intelligence.",
+      description: "How Molehill breaks things down on your iPhone, what it needs to run, and where your words go.",
       icon: "cpu",
     },
     {
@@ -785,45 +785,60 @@ export const molehillKb: KnowledgeBase = {
             "Curious whether Apple Intelligence is active on your device? Open Settings inside Molehill, where the current AI status is shown in plain language.",
         },
       ],
-      related: ["working-without-ai", "do-tasks-leave-my-phone", "free-ai-actions"],
+      related: ["apple-intelligence-requirement", "do-tasks-leave-my-phone", "free-ai-actions"],
     },
     {
-      id: "working-without-ai",
-      title: "Using Molehill without Apple Intelligence",
-      description: "If your device cannot run Apple Intelligence, Molehill still breaks tasks down.",
+      id: "apple-intelligence-requirement",
+      title: "Why Molehill requires Apple Intelligence",
+      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
       category: "ai",
-      keywords: ["no apple intelligence", "fallback", "standard steps", "heuristic", "not available", "older iphone"],
-      updated: "2026-06-14",
+      keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
+      updated: "2026-09-07",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Not every iPhone can run Apple Intelligence, and that is completely fine. Molehill is built so it is never a dead end.",
+            "Molehill checks for Apple Intelligence when it launches. On-device AI is the product here rather than a garnish, so a half-working Molehill would be worse than an honest explanation.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you need",
         },
         {
           type: "paragraph",
           content:
-            "If Apple Intelligence is not available, Molehill quietly switches to its own built-in engine (a smart set of templates and keyword parsing) to break tasks down and sort your brain dumps. Everything still works today.",
+            "iPhone 15 Pro or later, running iOS 26 or later, with Apple Intelligence turned on in Settings and the on-device model finished downloading.",
         },
         {
-          type: "callout",
-          variant: "info",
-          title: "An honest little note",
-          content:
-            "When the standard engine is doing the work, Molehill shows a friendly note like \"Standard steps. Apple Intelligence isn’t available on this device.\" No mystery, no missing features hidden behind a wall.",
+          type: "heading",
+          level: 2,
+          content: "What you might see",
         },
         {
           type: "list",
           items: [
-            "Task breakdown still works, at every granularity.",
-            "Brain-dump sorting still works.",
-            "Your Lock Screen widget, Focus mode, and timers are entirely unaffected.",
+            "Hardware that cannot run Apple Intelligence: a full-screen explanation instead of the app. This one is an honest dead end.",
+            "Apple Intelligence turned off: a screen with a direct path into iOS Settings, which clears itself when you come back.",
+            "The model still downloading: an explanation that resolves on its own the next time you open Molehill.",
           ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "Why the check happens at launch",
+          content:
+            "There is no App Store setting that prevents installation on a device without Apple Intelligence, so the check has to run when the app does. That is why Molehill can be downloaded and then tell you it cannot help.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "Why not a lesser version instead",
         },
         {
           type: "paragraph",
           content:
-            "And if Apple Intelligence is simply turned off or still setting up, Molehill uses the standard engine in the meantime, then lights up the smarter version automatically once it is ready.",
+            "A deterministic engine still backs the app up when a single call fails mid-session, and manual step editing is always free and unlimited. What it cannot do is replace the model on a device that was never eligible.",
         },
       ],
       related: ["on-device-ai", "free-ai-actions", "your-first-task"],
@@ -945,7 +960,7 @@ export const molehillKb: KnowledgeBase = {
             "Want to stop counting altogether? Molehill Pro makes AI actions unlimited.",
         },
       ],
-      related: ["free-vs-pro", "working-without-ai", "choosing-granularity"],
+      related: ["free-vs-pro", "apple-intelligence-requirement", "choosing-granularity"],
     },
     {
       id: "restore-purchases",
@@ -1063,7 +1078,7 @@ export const molehillKb: KnowledgeBase = {
           items: [
             {
               q: "Do I need Apple Intelligence?",
-              a: "No. If your device cannot run it, Molehill automatically uses its own built-in engine so breakdowns and brain-dump sorting still work.",
+              a: "Yes. Molehill needs an iPhone 15 Pro or later on iOS 26 or later with Apple Intelligence turned on. The breakdown engine is the product, so a device that cannot run it gets an explanation at launch rather than a hollowed-out to-do list.",
             },
             {
               q: "Does it work without internet?",

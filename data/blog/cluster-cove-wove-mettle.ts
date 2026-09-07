@@ -43,7 +43,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
         caption: 'Five journal apps, five different architectures',
         columns: ['Primary use case', 'Storage and AI boundary', 'Important limitation'],
         rows: [
-          { label: 'Cove', cells: ['Local-first iPhone reflection and private recall.', 'Current build uses local SwiftData, Apple on-device Foundation Models, and a NaturalLanguage fallback; no Cove account or developer AI server.', 'In development, iOS 26 target, richer AI needs compatible Apple Intelligence hardware, and current configuration has no cross-device sync.'] },
+          { label: 'Cove', cells: ['Local-first iPhone reflection and private recall.', 'Current build uses local SwiftData and Apple on-device Foundation Models; no Cove account or developer AI server.', 'In development. Requires Apple Intelligence, so iPhone 15 Pro or later or iPad M1 or later on iOS 26; a device that cannot run it is told so at launch.'] },
           { label: 'Day One', cells: ['A mature life archive with media and multi-device access.', 'Day One documents end-to-end encrypted sync and optional AI features in Gold.', 'AI processing should not be assumed to be on-device merely because synced entries are encrypted; verify the current feature disclosure.'] },
           { label: 'Rosebud', cells: ['Conversational reflection and patterns across journal history.', 'Rosebud stores data on its servers and names Firestore plus OpenAI, Anthropic, and Groq in its privacy policy, with anonymization and zero-data-retention agreements described for AI providers.', 'It is a cloud service with an account, not a local-only journal. “HIPAA-aligned” is not the same claim as an independently verified medical product.'] },
           { label: 'Stoic', cells: ['Guided routines, mood tracking, mindfulness, and optional AI mentors.', 'Stoic documents iCloud sync for journal data; its AI privacy page says the current journal entry is sent to OpenAI for AI features and may be retained for up to 30 days.', 'The broad wellness toolkit may feel busier than a writing-first journal, and AI has a distinct remote data path.'] },
@@ -56,7 +56,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Cove is being built as a private iPhone journal for typed or dictated writing, selected photos, moods, and voice memos. Apple’s on-device Foundation Models can produce a restrained reflection, identify tone and themes, compose a weekly digest, and answer questions grounded in retrieved excerpts. NaturalLanguage embeddings power semantic search and provide a basic local insight path when Apple Intelligence is unavailable. The current SwiftData store is local; Cove has no account, developer-hosted AI service, advertising profile, or analytics identity. App lock and Markdown or JSON export are implemented in the development build.',
+        content: 'Cove is being built as a private iPhone journal for typed or dictated writing, selected photos, moods, and voice memos. Apple’s on-device Foundation Models can produce a restrained reflection, identify tone and themes, compose a weekly digest, and answer questions grounded in retrieved excerpts. NaturalLanguage embeddings power multilingual semantic search. Cove requires Apple Intelligence rather than shipping a reduced version, because the reflection engine is the reason to choose it. The current SwiftData store is local; Cove has no account, developer-hosted AI service, advertising profile, or analytics identity. App lock and Markdown or JSON export are implemented in the development build.',
       },
       {
         type: 'callout',
@@ -173,7 +173,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
       {
         type: 'answer',
         title: 'Why Cove leads on privacy architecture',
-        content: 'Cove is designed to keep journal reflection and recall on the iPhone, making it the privacy-first architecture in this comparison. The current build uses local SwiftData, on-device Foundation Models, and a NaturalLanguage fallback without a Cove account or developer AI server. Cove remains pre-release and has no current sync promise. Day One emphasizes durable media-rich archiving across devices, Rosebud ongoing AI conversation and cross-entry patterns, Stoic a structured wellness routine, and Mindsera analytical frameworks. Those products expose the tradeoff clearly: Cove minimizes developer data movement, while the released services provide broader connected capabilities.',
+        content: 'Cove is designed to keep journal reflection and recall on the iPhone, making it the privacy-first architecture in this comparison. The current build uses local SwiftData and on-device Foundation Models without a Cove account or developer AI server, and requires Apple Intelligence to run. Cove remains pre-release and has no current sync promise. Day One emphasizes durable media-rich archiving across devices, Rosebud ongoing AI conversation and cross-entry patterns, Stoic a structured wellness routine, and Mindsera analytical frameworks. Those products expose the tradeoff clearly: Cove minimizes developer data movement, while the released services provide broader connected capabilities.',
       },
       {
         type: 'paragraph',
@@ -184,7 +184,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
         caption: 'Cove and four established AI-journal approaches',
         columns: ['Product role', 'AI and data boundary', 'Current availability and price'],
         rows: [
-          { label: 'Cove', cells: ['Private journal with restrained reflection, semantic recall, weekly digest, app lock, and export.', 'Local SwiftData; on-device Foundation Models; NaturalLanguage fallback; no Cove account or remote developer model.', 'In development; no final price or release date; iPhone target is iOS 26.'] },
+          { label: 'Cove', cells: ['Private journal with restrained reflection, semantic recall, weekly digest, app lock, and export.', 'Local SwiftData; on-device Foundation Models; no Cove account or remote developer model.', 'In development; no final price or release date; requires Apple Intelligence on iOS 26.'] },
           { label: 'Day One', cells: ['Traditional life archive with rich media, encrypted sync, export, and optional Gold AI.', 'Day One documents end-to-end encryption for sync. Current public Gold pages describe optional AI but should be checked for the exact processing path.', 'Basic free; Silver $49.99/year and Gold $74.99/year on the US pricing page when checked.'] },
           { label: 'Rosebud', cells: ['Conversational reflection, cross-entry patterns, goals, mood tracking, voice, and weekly insights.', 'Server storage for cross-device use; privacy policy names Firestore and external AI providers with stated safeguards.', 'Shipping on mobile and web; subscriptions and storefront prices vary.'] },
           { label: 'Stoic', cells: ['Morning and evening routines, guided journals, mood trends, breathing, meditation, and AI mentors.', 'Journal sync uses the user’s iCloud; AI documentation says the current entry is sent to OpenAI and may be retained up to 30 days.', 'Free journaling tier plus Premium and Premium AI in-app purchases; storefront pricing varies.'] },
@@ -407,7 +407,7 @@ export const coveWoveMettlePosts: BlogPost[] = [
         content: [
           { question: 'Is Wove better than Stylebook?', answer: 'Wove is the more explicitly local, on-device styling design in this comparison, but it is not released and has no complete image sync today. Stylebook is a mature product with manual creative tools and iCloud sync. The supported claim is architectural difference, not proven overall superiority.' },
           { question: 'Does Wove upload photos of my clothes?', answer: 'The current build uses Apple Vision locally and stores garment images as local files. Optional iCloud can mirror supported metadata, but complete image sync is not being claimed.' },
-          { question: 'Can Wove suggest outfits without Apple Intelligence?', answer: 'Yes in the current design. Deterministic color, formality, weather, capsule, and packing logic supplies a fallback and validation path. Richer generated combinations require supported Foundation Models hardware.' },
+          { question: 'Does Wove require Apple Intelligence?', answer: 'Yes. Wove gates at launch on supported hardware with Apple Intelligence enabled. Deterministic color, formality, weather, capsule, and packing logic still validates and repairs every suggestion the model produces, and covers a generation that fails mid-session, but it is not offered as a substitute product on hardware that was never eligible.' },
           { question: 'When can I download Wove?', answer: 'Wove remains in development. No release date, final price, or final compatibility promise is being made.' },
         ],
       },

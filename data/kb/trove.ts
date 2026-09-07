@@ -450,7 +450,7 @@ export const troveKb: KnowledgeBase = {
           variant: "info",
           title: "Answers say which engine produced them",
           content:
-            "A badge tells you whether an answer came from the on-device model or from the deterministic assist that runs when Apple Intelligence is unavailable. If something fails, you get a Retry rather than a spinner that never ends.",
+            "A badge tells you whether an answer came from the on-device model or from the deterministic assist that covers a call the model could not complete. If something fails, you get a Retry rather than a spinner that never ends.",
         },
         {
           type: "paragraph",
@@ -458,35 +458,60 @@ export const troveKb: KnowledgeBase = {
             "Questions can be scoped to a single room, and the suggestion chips reflect your actual rooms and categories rather than generic examples.",
         },
       ],
-      related: ["without-apple-intelligence", "value-and-insights", "where-the-catalogue-lives"],
+      related: ["apple-intelligence-requirement", "value-and-insights", "where-the-catalogue-lives"],
     },
     {
-      id: "without-apple-intelligence",
-      title: "Using Trove without Apple Intelligence",
-      description: "Vision does the looking either way; the thinking layer swaps out.",
+      id: "apple-intelligence-requirement",
+      title: "Why Trove requires Apple Intelligence",
+      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
       category: "asking",
-      keywords: ["apple intelligence", "fallback", "smart assist", "heuristic", "older iphone", "offline"],
+      keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
       updated: "2026-09-07",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Because Apple's on-device language model is text-only, Trove splits the work: Vision does the looking, and a reasoning layer does the thinking. Only the second half depends on Apple Intelligence.",
+            "Trove checks for Apple Intelligence when it launches. On-device AI is the product here rather than a garnish, so a half-working Trove would be worse than an honest explanation.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you need",
+        },
+        {
+          type: "paragraph",
+          content:
+            "iPhone 15 Pro or later, or an iPad with M1 or later, running iOS 26 or later, with Apple Intelligence turned on in Settings and the on-device model finished downloading.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you might see",
         },
         {
           type: "list",
           items: [
-            "Unchanged: photos, OCR, barcode reading, manual cataloguing, rooms, warranties, reminders, search, insights, and export.",
-            "Swapped: a deterministic rules and lookup engine handles naming, categorising, and questions when the model is unavailable.",
-            "Labelled: the interface is identical, and a small badge tells you which engine produced a given result.",
+            "Hardware that cannot run Apple Intelligence: a full-screen explanation instead of the app. This one is an honest dead end.",
+            "Apple Intelligence turned off: a screen with a direct path into iOS Settings, which clears itself when you come back.",
+            "The model still downloading: an explanation that resolves on its own the next time you open Trove.",
           ],
         },
         {
           type: "callout",
           variant: "info",
-          title: "Everything is offline either way",
+          title: "Why the check happens at launch",
           content:
-            "Neither engine needs a network. Trove works in a basement, in a storage unit, and on a plane.",
+            "There is no App Store setting that prevents installation on a device without Apple Intelligence, so the check has to run when the app does. That is why Trove can be downloaded and then tell you it cannot help.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "Why not a lesser version instead",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Vision still does the looking. OCR, barcode reading, and receipt structure are separate frameworks, and questions about totals are answered by deterministic arithmetic rather than by a model adding numbers in its head. The reasoning layer on top is the part that needs Apple Intelligence.",
         },
       ],
       related: ["ask-trove", "room-scan", "where-the-catalogue-lives"],

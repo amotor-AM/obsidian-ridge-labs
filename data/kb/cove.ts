@@ -311,7 +311,7 @@ export const coveKb: KnowledgeBase = {
             "Cove labels its insights honestly. On Apple Intelligence hardware, Apple's on-device model writes the reflection. Where that is unavailable, a local NaturalLanguage engine produces sentiment and lexical themes instead. It is plainer, and it is still entirely local.",
         },
       ],
-      related: ["without-apple-intelligence", "weekly-reflection", "ask-your-journal"],
+      related: ["apple-intelligence-requirement", "weekly-reflection", "ask-your-journal"],
     },
     {
       id: "weekly-reflection",
@@ -380,32 +380,57 @@ export const coveKb: KnowledgeBase = {
       related: ["search-your-journal", "what-cove-notices", "compare-free-and-plus"],
     },
     {
-      id: "without-apple-intelligence",
-      title: "Using Cove without Apple Intelligence",
-      description: "What still works, what gets plainer, and what needs supported hardware.",
+      id: "apple-intelligence-requirement",
+      title: "Why Cove requires Apple Intelligence",
+      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
       category: "reflection",
-      keywords: ["apple intelligence", "fallback", "older iphone", "naturallanguage", "offline", "requirements"],
+      keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
       updated: "2026-09-07",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Cove degrades rather than breaks. Writing, photos, voice, tags, moods, search, export, and the app lock never depend on Apple Intelligence at all.",
+            "Cove checks for Apple Intelligence when it launches. On-device AI is the product here rather than a garnish, so a half-working Cove would be worse than an honest explanation.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you need",
+        },
+        {
+          type: "paragraph",
+          content:
+            "iPhone 15 Pro or later, or an iPad with M1 or later, running iOS 26 or later, with Apple Intelligence turned on in Settings and the on-device model finished downloading.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you might see",
         },
         {
           type: "list",
           items: [
-            "With Apple Intelligence: generated reflections, richer weekly reflections, and journal-grounded conversations.",
-            "Without it: a local NaturalLanguage engine still gives you sentiment, themes, and a templated reflection for every entry.",
-            "Either way: nothing is uploaded, and everything works in airplane mode.",
+            "Hardware that cannot run Apple Intelligence: a full-screen explanation instead of the app. This one is an honest dead end.",
+            "Apple Intelligence turned off: a screen with a direct path into iOS Settings, which clears itself when you come back.",
+            "The model still downloading: an explanation that resolves on its own the next time you open Cove.",
           ],
         },
         {
           type: "callout",
           variant: "info",
-          title: "The insight tells you which engine wrote it",
+          title: "Why the check happens at launch",
           content:
-            "Cove labels insights by the engine that produced them, so you are never guessing whether you are reading generated prose or a lexical summary.",
+            "There is no App Store setting that prevents installation on a device without Apple Intelligence, so the check has to run when the app does. That is why Cove can be downloaded and then tell you it cannot help.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "Why not a lesser version instead",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Writing, photos, voice, tags, moods, search, export, and the app lock are not AI features, but the reflection engine is the reason Cove exists. A build without it would be a plain text editor with a paywall, so Cove does not ship one.",
         },
       ],
       related: ["what-cove-notices", "where-entries-live", "ask-your-journal"],

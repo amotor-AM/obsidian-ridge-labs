@@ -491,32 +491,60 @@ export const kithKb: KnowledgeBase = {
             "Every cloud personal CRM either uploads your contacts to enrich them or requires a hosted account. Notes about a friend's health or a family conflict are exactly the wrong thing to put on someone else's server.",
         },
       ],
-      related: ["without-apple-intelligence", "draft-a-message", "where-notes-live"],
+      related: ["apple-intelligence-requirement", "draft-a-message", "where-notes-live"],
     },
     {
-      id: "without-apple-intelligence",
-      title: "Using Kith without Apple Intelligence",
-      description: "The helpers hide cleanly and the app stays entirely useful.",
+      id: "apple-intelligence-requirement",
+      title: "Why Kith requires Apple Intelligence",
+      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
       category: "ai",
-      keywords: ["apple intelligence", "fallback", "older iphone", "requirements", "hide", "degrade"],
+      keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
       updated: "2026-09-07",
       blocks: [
         {
           type: "paragraph",
           content:
-            "On a device that cannot run Apple Intelligence, the AI surfaces hide rather than showing you buttons that do not work.",
+            "Kith checks for Apple Intelligence when it launches. On-device AI is the product here rather than a garnish, so a half-working Kith would be worse than an honest explanation.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you need",
         },
         {
           type: "paragraph",
           content:
-            "Everything else stays: people, circles, cadences, the Warmth Ring, the Orbit, logging, notes, important dates, reminders, widgets, Siri, and Spotlight. The core of Kith is not an AI feature.",
+            "iPhone 15 Pro or later, running iOS 26 or later, with Apple Intelligence turned on in Settings and the on-device model finished downloading.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "What you might see",
+        },
+        {
+          type: "list",
+          items: [
+            "Hardware that cannot run Apple Intelligence: a full-screen explanation instead of the app. This one is an honest dead end.",
+            "Apple Intelligence turned off: a screen with a direct path into iOS Settings, which clears itself when you come back.",
+            "The model still downloading: an explanation that resolves on its own the next time you open Kith.",
+          ],
         },
         {
           type: "callout",
           variant: "info",
-          title: "It also works offline",
+          title: "Why the check happens at launch",
           content:
-            "Nothing in Kith needs a network except App Store purchase verification. It is fully functional in airplane mode.",
+            "There is no App Store setting that prevents installation on a device without Apple Intelligence, so the check has to run when the app does. That is why Kith can be downloaded and then tell you it cannot help.",
+        },
+        {
+          type: "heading",
+          level: 2,
+          content: "Why not a lesser version instead",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Circles, cadences, the Warmth Ring, the Orbit, logging, notes, important dates, reminders, widgets, and Spotlight are not AI features. The helpers that make Kith worth opening every day are, so the app gates rather than quietly hiding half of itself.",
         },
       ],
       related: ["on-device-helpers", "welcome-to-kith", "where-notes-live"],

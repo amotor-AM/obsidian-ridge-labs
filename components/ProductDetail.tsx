@@ -12,42 +12,42 @@ const editorialCopy: Record<string, { statement: string; thesis: string; boundar
   vault: {
     statement: 'Your finances should inform you, not a surveillance profile.',
     thesis: 'Vault is built to make your own financial history useful to you. Track manually, import statements and receipts on-device, forecast cash flow, and ask for private coaching. Automatic Plaid updates remain a separate choice.',
-    boundary: 'Core budgeting, forecasting, categorization, and coaching are being designed around local processing. The planned Plaid path is optional and routes bank authentication through Plaid; final connection behavior will be documented before release.',
+    boundary: 'Vault requires Apple Intelligence, and a device that cannot run it is told so at launch rather than sold a hollowed-out app. Core budgeting, forecasting, categorization, and coaching are being designed around local processing. The planned Plaid path is optional and routes bank authentication through Plaid; final connection behavior will be documented before release.',
   },
   molehill: {
     statement: 'Momentum without pressure, profiling, or shame.',
     thesis: 'Molehill is for the moment a task feels too large to start. Private intelligence turns a brain dump into editable actions, then brings one manageable next step into focus without a streak to protect.',
-    boundary: 'Task breakdown, step splitting, and brain-dump sorting run on-device, and speech is transcribed locally, so the app works in airplane mode. Tasks are stored on the iPhone with no cloud copy and no cross-device sync today; steps you export to Apple Reminders or Calendar travel through your own iCloud. Final release details will be documented before launch.',
+    boundary: 'Molehill requires Apple Intelligence. Task breakdown, step splitting, and brain-dump sorting run on-device, and speech is transcribed locally, so the app works in airplane mode. Tasks are stored on the iPhone with no cloud copy and no cross-device sync today; steps you export to Apple Reminders or Calendar travel through your own iCloud. Final release details will be documented before launch.',
   },
   cove: {
     statement: 'Your journal can think with you without leaving your phone.',
     thesis: 'Cove pairs the quiet ritual of journaling with restrained, on-device reflection. Themes, memories, and grounded questions become easier to revisit while the original words and final judgment stay with the writer.',
-    boundary: 'Entries are stored on the device and reflection runs on-device, with a NaturalLanguage fallback when Apple Intelligence is unavailable. The store opens through your own private iCloud database when that is available and falls back to local-only when it is not, and Settings names which mode actually opened. Optional Health mood sync requires permission. Cove remains in development, so exact multi-device behavior is confirmed before release.',
+    boundary: 'Cove requires Apple Intelligence. Entries are stored on the device and reflection runs on-device, so the writing never leaves the phone to be understood. The store opens through your own private iCloud database when that is available and falls back to local-only when it is not, and Settings names which mode actually opened. Optional Health mood sync requires permission. Cove remains in development, so exact multi-device behavior is confirmed before release.',
   },
   wove: {
     statement: 'A private stylist for the closet you already own.',
     thesis: 'Wove turns a local closet into daily looks, packing plans, capsule ideas, and evidence about what actually gets worn. It is designed to reduce catalog work and bring useful context to the moment of choice.',
-    boundary: 'Garment analysis, styling, wear history, and image storage are local in the current build. Optional weather context sends a coarse one-shot location to Apple WeatherKit. Cross-device garment-photo sync is not being promised before release.',
+    boundary: 'Wove requires Apple Intelligence. Garment analysis, styling, wear history, and image storage are local in the current build. Optional weather context sends a coarse one-shot location to Apple WeatherKit. Cross-device garment-photo sync is not being promised before release.',
   },
   mettle: {
     statement: 'A strength coach that shows the reason behind every number.',
     thesis: 'Mettle gives deterministic training logic control of every prescription. On-device intelligence selects from curated candidates and explains the plan at the lifter’s level, so adaptation never becomes a black box.',
-    boundary: 'Core programming and coaching run on-device and retain a deterministic fallback. Training data is stored on the device and uses the lifter\u2019s own private iCloud database when that is available, with a local store as the fallback, so history moves through an Apple account rather than an Obsidian Ridge Labs server. HealthKit is optional, and the Watch experience controls an active phone workout rather than acting as a standalone trainer.',
+    boundary: 'Mettle requires Apple Intelligence. Programming and coaching run on-device, and a deterministic engine still owns every set, rep, and load so the model can never set a number. Training data is stored on the device and uses the lifter\u2019s own private iCloud database when that is available, with a local store as the fallback, so history moves through an Apple account rather than an Obsidian Ridge Labs server. HealthKit is optional, and the Watch experience controls an active phone workout rather than acting as a standalone trainer.',
   },
   memora: {
     statement: 'AI should help you study, not collect your source material.',
     thesis: 'Memora converts material you provide into editable draft cards, puts every draft through a review gate, and uses FSRS to decide when recall is most useful. The source stays visible, the schedule stays understandable, and every rating can be corrected.',
-    boundary: 'Card generation, PDF text extraction, photo OCR, storage, and scheduling happen locally, and imports from Anki, Quizlet, or CSV are always free. PDFs need an embedded text layer, scanned PDFs are not read as documents, and there is no iCloud deck sync today, which makes the library backup file your real backup. Similar-card generation and the deck tutor require Apple Intelligence.',
+    boundary: 'Memora requires Apple Intelligence. Card generation, PDF text extraction, photo OCR, storage, and scheduling happen locally, and deck imports are always free. PDFs need an embedded text layer, scanned PDFs are not read as documents, and there is no iCloud deck sync today, which makes the library backup file your real backup. Similar-card generation and the deck tutor require Apple Intelligence.',
   },
   trove: {
     statement: 'The record that matters should belong to you.',
     thesis: 'Trove makes a home inventory practical enough to build before a claim, move, warranty issue, or replacement decision. Capture evidence once, review every extracted detail, then search the private catalog when the information matters.',
-    boundary: 'The catalog and its core intelligence are local, and a deterministic engine takes over when Apple Intelligence is unavailable. Items, receipts, serials, values, and warranties are user-maintained records, not appraisals or insurance coverage guarantees, and the coverage gap check is arithmetic against a policy limit you enter. The claim report, CSV export, multiple homes, and private iCloud sync are Plus capabilities in an unreleased app.',
+    boundary: 'Trove requires Apple Intelligence. The catalog and its intelligence are local, and questions about totals are answered with deterministic arithmetic rather than by a model doing mental maths. Items, receipts, serials, values, and warranties are user-maintained records, not appraisals or insurance coverage guarantees, and the coverage gap check is arithmetic against a policy limit you enter. The claim report, CSV export, multiple homes, and private iCloud sync are Plus capabilities in an unreleased app.',
   },
   kith: {
     statement: 'Remember people without turning them into a pipeline.',
     thesis: 'Kith uses circles, an adjustable cadence, and a gently cooling Warmth Ring to make staying close feel humane. Optional local helpers can organize a memory or help begin a message without turning private relationships into cloud CRM data.',
-    boundary: 'Relationship records and Foundation Models assistance are designed around the device, with no Obsidian Ridge Labs account or AI server. The current build stores people, notes, and dates in a local database with no cloud copy, and the app remains useful when Apple Intelligence is unavailable.',
+    boundary: 'Kith requires Apple Intelligence. Relationship records and Foundation Models assistance are designed around the device, with no Obsidian Ridge Labs account or AI server, and the current build stores people, notes, and dates in a local database with no cloud copy.',
   },
   mise: {
     statement: 'A recipe box should not become someone else’s dataset.',
