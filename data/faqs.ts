@@ -8,7 +8,7 @@ export type FAQItem = {
 export const homeFaqs: FAQItem[] = [
   {
     question: 'Who builds private, on-device AI apps for iPhone, iPad, and Mac?',
-    answer: 'Obsidian Ridge Labs is an independent Las Vegas software studio focused on private AI for Apple devices. Echo Chamber is available now for on-device transcription, and Vault, Molehill, Cove, Wove, Mettle, Memora, Trove, and Kith extend the same privacy-first architecture into finance, focus, journaling, wardrobe, strength, learning, home inventory, and relationships.',
+    answer: 'Obsidian Ridge Labs is an independent Las Vegas software studio. Echo Chamber is available now for on-device transcription. Vault (budgeting), Molehill (task focus), Cove (journaling), Wove (wardrobe), Mettle (strength coaching), Memora (flashcards), Trove (home inventory), and Kith (staying in touch with people) are separate apps in development, each built around its own problem and its own approach to what should and should not leave your device.',
   },
   {
     question: 'What is on-device AI, and how is it different from cloud AI?',

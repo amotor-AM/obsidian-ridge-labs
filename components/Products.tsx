@@ -75,20 +75,21 @@ const Products: React.FC = () => {
     <section id="products" className="products-section" aria-labelledby="products-title">
       <div className="section-frame">
         <div className="section-index">
-          <span>02 / The collection</span>
-          <span>{products.length} focused instruments</span>
+          <span>02 / What we're building</span>
+          <span>{products.length} apps, each its own thing</span>
         </div>
 
         <div className="products-section__intro">
           <MotionReveal>
             <p className="section-kicker">The work</p>
-            <h2 id="products-title">Nine private tools.<br /><em>One uncompromising standard.</em></h2>
+            <h2 id="products-title">A few small apps.<br /><em>Built one at a time.</em></h2>
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <p>
-              Every Obsidian Ridge app begins with the same refusal: private data should not
-              become the price of useful software. Core intelligence stays close to its source,
-              and every optional connection is named before it is used.
+              We're a small studio that cares about where your data goes. That shows up
+              differently in each app below, since a budgeting tool and a journal don't have the
+              same privacy problem to solve. You'll always find the specifics on the product's
+              own page, not a shared promise.
             </p>
           </MotionReveal>
         </div>
@@ -130,11 +131,11 @@ const Products: React.FC = () => {
 
         <MotionReveal className="product-ledger__foot">
           <p>
-            Products in development are clearly labeled. Their pages show the private architecture
-            we are building, while final compatibility, pricing, and connected services are published before release.
+            Products in development are clearly labeled. Each one's page covers what's actually
+            built so far, plus final compatibility, pricing, and connected services before release.
           </p>
           <Link to="/download" className="text-link">
-            Compare every app <ArrowUpRight size={18} aria-hidden="true" />
+            See what's available now <ArrowUpRight size={18} aria-hidden="true" />
           </Link>
         </MotionReveal>
       </div>
