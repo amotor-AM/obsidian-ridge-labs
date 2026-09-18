@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useScroll } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getProductReleaseLabel, products } from '../data/products';
 import { Magnetic } from './ui/magnetic';
 
@@ -25,7 +25,6 @@ const Navigation: React.FC = () => {
   const appsCloseTimerRef = useRef<number | null>(null);
   const focusFirstAppRef = useRef(false);
   const location = useLocation();
-  const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
 
   const cancelAppsClose = () => {
@@ -140,18 +139,6 @@ const Navigation: React.FC = () => {
     };
   }, [menuOpen]);
 
-  const goToSection = (sectionId: string) => {
-    setMenuOpen(false);
-    setAppsOpen(false);
-    const behavior: ScrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-    if (location.pathname === '/') {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior });
-      return;
-    }
-    navigate(`/#${sectionId}`);
-    window.setTimeout(() => document.getElementById(sectionId)?.scrollIntoView({ behavior }), 100);
-  };
-
   return (
     <>
       <motion.div className="site-progress" style={{ scaleX: scrollYProgress }} aria-hidden="true" />
@@ -231,7 +218,7 @@ const Navigation: React.FC = () => {
                 </motion.div>
               )}
             </div>
-            <button type="button" onClick={() => goToSection('architecture')}>Why local</button>
+            <Link to="/philosophy" aria-current={location.pathname === '/philosophy' ? 'page' : undefined}>Manifesto</Link>
             <Link to="/journal" aria-current={location.pathname.startsWith('/journal') ? 'page' : undefined}>Journal</Link>
             <Link to="/help" aria-current={location.pathname.startsWith('/help') ? 'page' : undefined}>Help</Link>
           </div>
@@ -287,10 +274,9 @@ const Navigation: React.FC = () => {
             <div className="mobile-menu__body">
               <nav aria-label="Mobile navigation">
                 <Link to="/download"><span>01</span>Apps <ArrowRight /></Link>
-                <button type="button" onClick={() => goToSection('architecture')}><span>02</span>Why local <ArrowRight /></button>
+                <Link to="/philosophy"><span>02</span>Manifesto <ArrowRight /></Link>
                 <Link to="/journal"><span>03</span>Journal <ArrowRight /></Link>
                 <Link to="/help"><span>04</span>Help <ArrowRight /></Link>
-                <Link to="/philosophy"><span>05</span>Philosophy <ArrowRight /></Link>
               </nav>
               <div className="mobile-menu__apps">
                 <p>Explore the apps</p>

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "project": {
+    "name": "obsidian-ridge-labs",
+    "productType": "product-studio",
+    "stack": ["react", "tailwind-v4", "vite", "framer-motion"]
+  },
+  "sources": {
+    "tokens": ["index.css"],
+    "components": ["components"],
+    "assets": ["public/images"],
+    "instructions": []
+  },
+  "design": {
+    "colorMode": "dark",
+    "colors": {
+      "ink": "#0b0d0c",
+      "paper": "#f1eee6",
+      "acid": "#a8c89a",
+      "moss": "#35473d",
+      "white": "#f4f1e8"
+    },
+    "typography": {
+      "sans": "Avenir Next / Helvetica Neue",
+      "serif": "Iowan Old Style",
+      "mono": "SFMono-Regular"
+    },
+    "spacing": { "section": "clamp(110px, 12vw, 180px)" },
+    "radius": { "default": "0", "button": "999px" },
+    "shadows": { "default": "none" },
+    "motion": { "ease": "cubic-bezier(0.22, 1, 0.36, 1)" },
+    "density": "editorial"
+  },
+  "components": {
+    "installed": [
+      "preetsuthar17/spotlight-card",
+      "ibelick/magnetic",
+      "danielpetho/vertical-cut-reveal",
+      "ddoemonn/accordion",
+      "7ovr/logo-cloud-3"
+    ],
+    "preferredPrimitives": ["button", "text-link", "section-frame", "site-accordion", "spotlight-card", "magnetic"],
+    "patterns": ["ledger-rows", "paper-ink-alternation", "cut-stone-editorial"]
+  },
+  "constraints": {
+    "must": [
+      "Keep obsidian, paper, moss, and sage acid as the only brand colors",
+      "Use real product copy and release status",
+      "Preserve Apple-only private-AI positioning"
+    ],
+    "avoid": [
+      "Particle heroes, galaxy backgrounds, neon lime, glassmorphism",
+      "Identical card grids, decorative glow orbs, Sparkles icons",
+      "Tailwind SaaS utility chrome on inner routes"
+    ]
+  },
+  "decisions": [
+    {
+      "id": "cut-stone-editorial",
+      "summary": "Unify the site on a cut-stone editorial system: sage acid, hairline ledgers, 21st primitives adapted into project CSS rather than shadcn."
+    }
+  ],
+  "evidence": [
+    { "fact": "project.stack:react", "source": "package.json" },
+    { "fact": "project.stack:tailwind-v4", "source": "package.json" },
+    { "fact": "project.stack:vite", "source": "package.json" }
+  ],
+  "generatedAt": "2026-08-19T01:00:51.367Z"
+}

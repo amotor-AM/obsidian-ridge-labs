@@ -10,53 +10,53 @@ const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettl
 
 const homepageCopy: Record<string, { proposition: string; detail: string; platforms: string }> = {
   echochamber: {
-    proposition: 'Private transcription without a cloud copy of your voice.',
-    detail: 'Record live or upload audio and video. Parakeet TDT transcribes on-device, then local AI helps you search, polish, summarize, and export.',
+    proposition: 'Transcribe anything you hear, on the device you heard it on.',
+    detail: 'Record live or import a file. Get a searchable transcript, notes, and summaries without a server ever hearing a word.',
     platforms: 'iPhone · iPad · Mac',
   },
   vault: {
-    proposition: 'Budget with insight, not surveillance.',
-    detail: 'Track manually, import statements or receipts on-device, forecast cash flow, and keep automatic Plaid bank sync strictly optional.',
+    proposition: 'Your finances, understood on your phone.',
+    detail: 'Photograph receipts, plan spending, forecast cash flow. Every number computed on your device, with bank sync strictly optional.',
     platforms: 'iPhone · iPad',
   },
   molehill: {
-    proposition: 'Get unstuck without feeding a productivity profile.',
-    detail: 'Turn a brain dump into one manageable next step with private, on-device help and no streak pressure.',
+    proposition: 'For the task too big to start.',
+    detail: 'Speak the swirl, get one small next step, and split it smaller when it still is. No streaks, no shame, no profile.',
     platforms: 'iPhone',
   },
   cove: {
-    proposition: 'A journal that can reflect without reading from the cloud.',
-    detail: 'Write, remember, and find patterns with on-device reflection, grounded recall, and no Cove account or remote AI service.',
+    proposition: 'A journal that reflects with you, not about you.',
+    detail: 'Write, look back, notice patterns. Reflection happens on your device, from entries only you can read.',
     platforms: 'iPhone · iPad · Watch',
   },
   wove: {
-    proposition: 'Your closet. Your style. Your device.',
-    detail: 'Capture garments locally, compose outfits from what you own, plan capsules and packing, and learn from real wear history.',
+    proposition: 'A stylist who has seen your whole closet and tells no one.',
+    detail: 'Photograph what you own once, then get weather-aware outfits, capsules, and packing lists composed on your phone.',
     platforms: 'iPhone · iPad · Watch',
   },
   mettle: {
     proposition: 'A strength coach that shows its work.',
-    detail: 'Deterministic training logic owns every prescription. On-device intelligence explains the plan and adapts the coaching to you.',
+    detail: 'Every set, rep, and load comes with a stated reason. Deterministic programming, on-device explanations, your record on your device.',
     platforms: 'iPhone · Apple Watch',
   },
   memora: {
-    proposition: 'Make smarter flashcards without uploading your study material.',
-    detail: 'Generate editable drafts locally from notes, text-layer PDFs, and selected photos, then schedule recall with FSRS.',
+    proposition: 'Turn the notes you already have into the memory you want.',
+    detail: 'Flashcard drafts generated on your phone from your notes, PDFs, and photos. FSRS schedules the reviews.',
     platforms: 'iPhone',
   },
   trove: {
-    proposition: 'A private record of everything worth protecting.',
-    detail: 'Capture belongings, receipts, serials, values, and warranties locally so the evidence is ready when a claim, move, or repair makes it matter.',
+    proposition: 'The record of everything you own, ready before you need it.',
+    detail: 'Scan a room, log warranties and values, and walk into any claim with the evidence in hand.',
     platforms: 'iPhone · iPad',
   },
   kith: {
-    proposition: 'Remember people, not sales prospects.',
-    detail: 'Keep private context, follow a humane reach-out cadence, and use on-device helpers to show up with more care.',
+    proposition: 'Stay close to your people without a pipeline between you.',
+    detail: 'Remember the details that matter, nudge yourself to reach out, and draft messages on your phone, not on a server.',
     platforms: 'iPhone',
   },
   mise: {
-    proposition: 'Your recipes, on your device, cooked with you.',
-    detail: 'Save recipes from anywhere, plan the week, build an aisle-sorted grocery list, and ask an on-device sous chef that knows your kitchen.',
+    proposition: 'Every recipe you have ever saved, cooking with you.',
+    detail: 'Save from anywhere, plan the week, shop by aisle, and ask a sous chef that knows your kitchen.',
     platforms: 'iPhone · iPad · Watch',
   },
 };
@@ -82,15 +82,13 @@ const Products: React.FC = () => {
           <div className="products-section__intro">
           <MotionReveal>
             <p className="section-kicker">The collection</p>
-            <h2 id="products-title">Different problems.<br /><em>Same boundary.</em></h2>
+            <h2 id="products-title">Ten apps. One for every part of<br /><em>life you&apos;d rather keep.</em></h2>
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <p>
-              A budget app and a journal do not have the same privacy problem, so each app
-              draws its own line and tells you exactly where it sits. What they share:
-              intelligence that runs on your device, connections named before you switch
-              them on, and an archive that leaves when you say so. The specifics live on
-              each product&apos;s page. We do not do shared promises.
+              A budget app and a journal do not share the same privacy problem, so each app
+              draws its own boundary and states it on its own page. What they all share: the
+              intelligence runs on your device, and nothing connects in secret.
             </p>
           </MotionReveal>
         </div>
@@ -132,8 +130,8 @@ const Products: React.FC = () => {
 
         <MotionReveal className="product-ledger__foot">
           <p>
-            Development status is on every card. Each product page covers what is actually
-            built so far, plus final compatibility, pricing, and connected services before release.
+            Development status sits on every card. Each product page states exactly what is
+            built today, what connects, and what it costs.
           </p>
           <Link to="/download" className="text-link">
             See what's available now <ArrowUpRight size={18} aria-hidden="true" />

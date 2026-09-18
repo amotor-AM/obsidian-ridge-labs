@@ -46,11 +46,11 @@ const Services: React.FC = () => {
           <div className="architecture-section__layout">
             <div className="architecture-section__sticky">
               <MotionReveal>
-                <p className="section-kicker">The shorter data path</p>
+                <p className="section-kicker">The rules of the house</p>
                 <h2 id="architecture-title">The strongest privacy feature is data that never leaves.</h2>
                 <p>
-                  Core intelligence runs on the hardware in your hands. Every connection
-                  past that boundary is a separate decision, named before you make it.
+                  Four rules govern every app in the collection. We hold ourselves to them
+                  in public, and you can check.
                 </p>
               </MotionReveal>
 
@@ -144,9 +144,9 @@ const Services: React.FC = () => {
       <section className="home-faq" aria-labelledby="home-faq-title">
         <div className="section-frame home-faq__grid">
           <div>
-            <p className="section-kicker section-kicker--dark">The boundary check</p>
-            <h2 id="home-faq-title">Three questions before any app gets your data.</h2>
-            <p>Where does processing happen? Where does storage live? What connects, and when? Every AI app should answer in one breath. Ours answer below.</p>
+            <p className="section-kicker section-kicker--dark">No fine print</p>
+            <h2 id="home-faq-title">Ask us the hard questions.</h2>
+            <p>Every AI app should have to answer for where your data goes. These are our answers.</p>
           </div>
           <SiteFaq items={homeFaqs} tone="paper" />
         </div>
@@ -157,7 +157,7 @@ const Services: React.FC = () => {
         <div className="section-frame">
           <p className="section-kicker section-kicker--dark">The Obsidian standard</p>
           <h2 id="final-cta-title">Move the intelligence.<br /><em>Not the private life.</em></h2>
-          <p>Personal AI is here. It runs on the device in your hand.</p>
+          <p>Echo Chamber is on the App Store today. The rest of the collection is coming.</p>
           <div className="final-cta__actions">
             <Magnetic>
               <Link to="/download" className="button button--dark">Explore every app <ArrowRight size={18} /></Link>

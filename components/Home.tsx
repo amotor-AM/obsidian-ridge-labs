@@ -32,7 +32,7 @@ const Home: React.FC = () => {
     <>
       <SEO
         title="Private AI Apps for Apple"
-        description="Obsidian Ridge Labs builds private, on-device AI apps for iPhone, iPad, and Mac, including Echo Chamber transcription and a growing collection of local-first tools."
+        description="Ten private AI apps for iPhone, iPad, and Mac. The intelligence runs on your device, so your life stays yours. Echo Chamber is on the App Store now."
         canonical={`${SITE_URL}/`}
         ogImage={`${SITE_URL}/og-v2.png`}
         ogImageAlt="Obsidian Ridge Labs: Pure privacy. Intelligence on your terms."

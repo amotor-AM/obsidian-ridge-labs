@@ -130,32 +130,6 @@ const PhilosophyPage: React.FC = () => {
             </MotionReveal>
           </div>
 
-          <div className="processing-paths">
-            <MotionReveal className="processing-path processing-path--cloud">
-              <div className="processing-path__header">
-                <div><span>Cloud-first path</span><strong>Private data takes the long way around.</strong></div>
-                <small>Four trust points</small>
-              </div>
-              <ol aria-label="Cloud-first processing path">
-                <li><span>01</span><div><strong>Your input</strong><small>Created on your device</small></div></li>
-                <li><span>02</span><div><strong>Network transit</strong><small>Sent beyond the device</small></div></li>
-                <li><span>03</span><div><strong>Remote processing</strong><small>Handled on outside infrastructure</small></div></li>
-                <li><span>04</span><div><strong>Result returns</strong><small>Delivered back across the network</small></div></li>
-              </ol>
-            </MotionReveal>
-            <MotionReveal className="processing-path processing-path--local" delay={0.08}>
-              <div className="processing-path__header">
-                <div><span>Local-first path</span><strong>Intelligence moves to the private data.</strong></div>
-                <small>One clear boundary</small>
-              </div>
-              <ol aria-label="Local-first processing path">
-                <li><span>01</span><div><strong>Your input</strong><small>Created on your device</small></div></li>
-                <li><span>02</span><div><strong>On-device intelligence</strong><small>Processed on supported Apple hardware</small></div></li>
-                <li><span>03</span><div><strong>Your result</strong><small>Ready without sending the content to us</small></div></li>
-              </ol>
-            </MotionReveal>
-          </div>
-          <p className="processing-paths__caption">Fewer copies. Fewer unknowns. More control.</p>
           <blockquote className="philosophy-premise__callout">
             If you think you have nothing to hide, you are not looking closely enough.
             <span>Privacy is not secrecy. It is the right to decide who gets to look.</span>

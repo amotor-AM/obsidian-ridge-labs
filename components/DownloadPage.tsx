@@ -250,7 +250,12 @@ const DownloadPage: React.FC = () => {
       <section className="collection-close">
         <div className="section-frame">
           <p className="section-kicker section-kicker--dark">The standard behind the software</p>
-          <h2>Before you install anything,<br /><em>run the boundary check.</em></h2>
+          <h2>One shelf.<br /><em>One standard.</em></h2>
+          <p>
+            Core work on your device. Offline when you need it. Every connection named
+            before you allow it. That is the whole test, and every app on this page
+            passes it.
+          </p>
           <div>
             <Link to="/privacy" className="button button--dark">Read the privacy model <ArrowRight size={18} /></Link>
             <Link to="/journal" className="text-link text-link--dark">Explore the journal <ArrowUpRight size={18} /></Link>

@@ -45,7 +45,7 @@ export const products: Product[] = [
     platforms: ['iOS', 'iPadOS', 'macOS', 'visionOS'],
     minOS: 'iOS 18',
     price: 'Free · Pro $2.99/mo · $29.99/yr · $79.99 lifetime',
-    description: 'Private Apple transcription for live recordings, audio, and video with on-device Parakeet TDT, targeted speech enhancement, local transcript intelligence, and export.',
+    description: 'Transcribe meetings, lectures, and files on your iPhone, iPad, or Mac. Searchable transcripts, notes, and summaries, with nothing sent to a server.',
     fullDescription: 'Echo Chamber is private transcription for meetings, lectures, interviews, dictation, and files you refuse to hand to a cloud workspace. Record live or upload audio and video, then create a searchable transcript, polished reading copy, notes, and summaries on supported Apple hardware. NVIDIA Parakeet TDT 0.6B v3 performs speech recognition after a targeted, speech-focused pre-transcription filter prepares the audio. The complete enhanced Echo Chamber pipeline has produced an internal observed word error rate of approximately 4.5% under tested conditions. This is not a generic normalization pass, and results vary with speakers, acoustics, accents, crosstalk, and source quality. Apple Intelligence powers transcript intelligence on compatible devices, while bundled on-device Bonsai 1.7B provides a local fallback on supported hardware without Apple Intelligence. Your recordings are processed locally rather than uploaded to Obsidian Ridge Labs. Pro costs $2.99 monthly, $29.99 yearly, or $79.99 once for Lifetime access.',
     icon: Mic,
     specs: [
@@ -96,7 +96,7 @@ export const products: Product[] = [
     hasKnowledgeBase: true,
     platforms: ['iOS', 'iPadOS'],
     minOS: 'iOS 17',
-    description: 'Private budgeting with on-device receipt capture, safe-to-spend planning, cash-flow forecasting, and local coaching, with an optional Plaid connection instead of a mandatory bank sync.',
+    description: 'See where your money stands without a bank reading over your shoulder. Receipts, budgets, and forecasts computed on your device.',
     fullDescription: 'Vault is the private finance app for people who want answers without making a cloud account the price of admission. Photograph a receipt and on-device text recognition proposes the merchant, amount, and category for review. Budgets, a safe-to-spend number, recurring bills, goals, net worth, and a financial health score turn that record into decisions rather than another dashboard. A local coach explains what changed and what it means before you spend. Automatic bank updates are planned through a clearly optional Plaid connection, with bank authentication handled by Plaid rather than an Obsidian Ridge Labs login form. The current build stores everything in a local SwiftData database with no server copy, and Vault remains in active development.',
     icon: LineChart,
     specs: [
@@ -152,7 +152,7 @@ export const products: Product[] = [
     platforms: ['iOS'],
     minOS: 'iOS 26',
     price: 'Free · Pro $2.99/mo · $19.99/yr · $39.99 lifetime',
-    description: 'Private task breakdown that turns an overwhelming project or brain dump into one manageable next step, then cuts that step smaller when it is still too big.',
+    description: 'For the task too big to start. Speak it, get one small next step, and split it smaller when it still is.',
     fullDescription: 'Molehill is built for the moment “I need to do this” turns into “I cannot start.” Private, on-device intelligence turns a project or spoken brain dump into smaller editable actions, then brings one manageable next step into focus. When a step is still too big, one tap splits it into two to four smaller ones that take its place. Speech is transcribed on the iPhone, time estimates roll up so the day has a shape, and Focus mode puts a single step on the screen with a calm timer in the Dynamic Island. There is no streak to defend and no productivity profile to feed. Molehill requires Apple Intelligence. It is a productivity tool rather than medical treatment, and it remains in active development.',
     icon: ListChecks,
     specs: [
@@ -208,7 +208,7 @@ export const products: Product[] = [
     platforms: ['iOS', 'iPadOS', 'watchOS'],
     minOS: 'iOS 26',
     price: 'Free · Plus $5.99/mo · $34.99/yr · $89.99 lifetime',
-    description: 'A private journal with on-device reflection, semantic recall, weekly reflections, and no Cove account, analytics identity, or remote AI service.',
+    description: 'A journal that reflects with you, not about you. On-device reflection and recall over entries only you can read.',
     fullDescription: 'Cove gives thoughts a private place to become useful. Write, dictate, add photos or voice memos, notice themes, revisit memories, and ask questions grounded in your own journal. Apple Foundation Models handles per-entry insight, follow-up questions, and the weekly reflection on-device, and NaturalLanguage provides multilingual semantic search. Cove requires Apple Intelligence: on-device reflection is the product rather than a feature, so a device that cannot run it gets a clear explanation at launch instead of a hollowed-out journal. Writing is never paywalled. Face ID lock, Markdown, JSON, and full ZIP export, a Day One importer, and complete in-app erase keep the archive yours, and optional Health State of Mind sync is permission-based. Journal data lives in a local store with optional private iCloud sync through your own account, and Cove remains in active development.',
     icon: BookOpen,
     specs: [
@@ -259,7 +259,7 @@ export const products: Product[] = [
     platforms: ['iOS', 'iPadOS', 'watchOS'],
     minOS: 'iOS 26',
     price: 'Free · Wove+ $3.99/mo · $19.99/yr · $24.99 lifetime',
-    description: 'A private wardrobe for local garment capture, on-device outfit composition, capsules, packing, shopping advice, and insights shaped by what you actually wear.',
+    description: 'A stylist who has seen your whole closet and tells no one. Weather-aware outfits, capsules, and packing lists from your own pieces.',
     fullDescription: 'Wove turns the clothes you already own into a private, useful wardrobe. Apple Vision lifts garments from photos and proposes editable details, and a single photo of a pile can become several catalogued pieces. On-device styling composes weather-aware daily looks, occasion outfits, capsules, and packing lists, while deterministic rules check color, formality, and weather before a suggestion reaches you. Wove requires Apple Intelligence. One tap on “not this” restyles you from a different corner of the closet and is remembered. Garment image files stay on the device; an optional iCloud setting syncs the closet records themselves through your own private database, and optional WeatherKit uses coarse one-shot location for forecasts. Wove remains in active development.',
     icon: Shirt,
     specs: [
@@ -310,7 +310,7 @@ export const products: Product[] = [
     platforms: ['iOS', 'watchOS'],
     minOS: 'iOS 26.1',
     price: 'Free · Plus $4.99/mo · $29.99/yr · $79.99 lifetime',
-    description: 'A private strength coach with adaptive programming, deterministic prescriptions, on-device explanations, and a reason behind every set.',
+    description: 'A strength coach that shows its work. Deterministic programming with a stated reason behind every set, rep, and load.',
     fullDescription: 'Mettle is a strength coach that shows its work. Goals, experience, equipment, schedule, and training history shape an adaptive program on iPhone. Deterministic logic owns sets, reps, rest, load progression, and deloads. Apple’s on-device model can select and explain exercises only from curated candidates, so it can never invent an unsafe movement or fabricate the reasoning. Mettle requires Apple Intelligence. Tap “Why this?” on any prescription to see the engine’s exact rationale at a depth that matches your experience. Logged reps and loads drive the next prescription, a readiness check can make a day shorter or easier without wrecking the plan, and Apple Watch handles rep timing, haptics, and rest from the wrist. Training data stays on the device with optional private iCloud sync through your own account. Mettle remains in active development.',
     icon: Dumbbell,
     specs: [
@@ -361,7 +361,7 @@ export const products: Product[] = [
     platforms: ['iOS'],
     minOS: 'iOS 26',
     price: 'Free · Plus $3.99/mo · $24.99/yr · $49.99 lifetime',
-    description: 'Private, source-grounded flashcard generation from notes, text-layer PDFs, and photos, followed by human review and FSRS scheduling.',
+    description: 'Turn the notes you already have into the memory you want, with flashcards generated on your iPhone and scheduled by FSRS.',
     fullDescription: 'Memora helps you make better cards without uploading the material you are trying to learn. Paste notes, import a text-layer PDF, or choose a photo for local Vision OCR. Apple Foundation Models creates source-grounded drafts on-device, and nothing enters a deck until you review and edit it. Memora requires Apple Intelligence, because on-device generation is the whole reason your study material never has to be uploaded. FSRS then schedules recall with visible intervals, relearning, and one-tap undo, and it is never paywalled. Anki .apkg files, Quizlet exports, and plain CSV import for free, and a single backup file exports the whole library with images. Memora stores decks locally, does not require an account, and remains in active development.',
     icon: Brain,
     specs: [
@@ -412,7 +412,7 @@ export const products: Product[] = [
     platforms: ['iOS', 'iPadOS'],
     minOS: 'iOS 26',
     price: 'Free · Plus $2.99/mo · $19.99/yr · $39.99 lifetime',
-    description: 'A private home inventory for belongings, receipts, serials, warranties, values, room scanning, search, and a claim report you can keep under your control.',
+    description: 'The record of everything you own, ready before you need it. Scan a room, log values and warranties, export the evidence.',
     fullDescription: 'Trove creates the private record you will wish you had before a claim, move, warranty issue, or replacement decision. Photograph a whole room and on-device intelligence proposes every belonging it can identify for confirmation, or photograph one item, label, barcode, or receipt and let Apple Vision read the details. Items, rooms, values, photos, receipts, and warranty dates stay in a local catalog that Ask Trove can search, using deterministic arithmetic for questions about totals. Trove requires Apple Intelligence. Warranty reminders arrive before coverage lapses, a coverage-gap check compares your policy limit against recorded value, and a photo-illustrated claim report and CSV export leave with you. Private iCloud sync, multiple homes, and unlimited items are Plus capabilities. Trove remains in active development.',
     icon: Boxes,
     specs: [
@@ -463,7 +463,7 @@ export const products: Product[] = [
     platforms: ['iOS'],
     minOS: 'iOS 26',
     price: 'Free · Plus $3.99/mo · $24.99/yr · $49.99 lifetime',
-    description: 'A private relationship manager with humane reach-out cadences, local context, and on-device help for remembering what matters.',
+    description: 'Stay close to your people without a pipeline between you. Remember the details, nudge yourself to reach out, keep it all on your phone.',
     fullDescription: 'Kith helps you remember people without turning them into a sales pipeline. Inner, Close, and Wider circles create an adjustable reach-out rhythm, while the Warmth Ring cools gently without guilt or scoring. The Orbit turns the same idea into a living map of who is drifting. Today surfaces who may appreciate a hello and keeps important dates separate. On supported iPhones, local intelligence can structure a memory, begin a message you can send straight into Messages, suggest a caring question, or explore a gift direction without sending relationship notes to a developer server. Notes and contacts stay in a local store with no Kith account, an optional Face ID lock protects the most sensitive pages, and Kith requires Apple Intelligence, because the helpers that make it worth opening are the on-device ones. It is in active development.',
     icon: UsersRound,
     specs: [
@@ -514,7 +514,7 @@ export const products: Product[] = [
     platforms: ['iOS', 'iPadOS', 'watchOS'],
     minOS: 'iOS 18',
     price: 'Free · Plus $2.99/mo · $19.99/yr · $39.99 lifetime',
-    description: 'A private recipe box, meal planner, grocery list, and on-device sous chef that saves recipes from anywhere without an account or a recipe server.',
+    description: 'Every recipe you have ever saved, cooking with you. A recipe box, planner, and on-device sous chef that keeps cooking on your side of the glass.',
     fullDescription: 'Mise is a recipe box that keeps cooking on your side of the glass. Save recipes through the share sheet, by pasting messy text, by photographing a cookbook page or a handwritten card, or by typing one yourself. Structured recipe data is read directly from the page when a site publishes it, and Apple Foundation Models parses the rest on-device. Ask Mise answers real cooking questions grounded in your recipe box, your pantry, and your dietary profile, and can write a recipe from what you already have. A weekly planner fills the week, the grocery list consolidates duplicates and sorts by aisle, and cook mode runs several timers at once in a Live Activity. Mise requires Apple Intelligence, stores recipes locally with optional private iCloud sync, and remains in active development.',
     icon: ChefHat,
     specs: [

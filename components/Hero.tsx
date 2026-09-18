@@ -58,43 +58,33 @@ const Hero: React.FC = () => {
 
         <div className="orl-hero__composition">
           <div className="orl-hero__copy">
-            <motion.p
-              className="section-kicker"
-              initial="hidden"
-              animate="visible"
-              custom={0.16}
-              variants={reveal}
-            >
-              Your AI. Your phone. Your business.
-            </motion.p>
             <motion.h1
               id="home-heading"
               className="orl-hero__title"
               initial="hidden"
               animate="visible"
-              custom={0.22}
+              custom={0.16}
               variants={reveal}
             >
-              <span>AI that knows you.</span>
-              <em>Not one that watches you.</em>
+              <span>Apps that mind</span>
+              <em>their own business.</em>
             </motion.h1>
             <motion.div
               className="orl-hero__intro"
               initial="hidden"
               animate="visible"
-              custom={0.32}
+              custom={0.28}
               variants={reveal}
             >
               <p>
-                Most software asks you to hand over your life to rent intelligence back
-                by the month. We build the opposite: apps that run their intelligence on
-                the Apple device in your hands, so they can know your whole life. Not
-                just the parts you are willing to send to a server.
+                Ten private AI apps for iPhone, iPad, and Mac. The intelligence runs on
+                your device, so the record of your life stays yours. Echo Chamber, our
+                transcription app, is on the App Store today.
               </p>
               <div className="orl-hero__actions">
                 <Magnetic>
                   <button type="button" className="button button--primary" onClick={scrollToProducts}>
-                    See the collection <ArrowDownRight size={18} aria-hidden="true" />
+                    See the ten apps <ArrowDownRight size={18} aria-hidden="true" />
                   </button>
                 </Magnetic>
                 <Magnetic intensity={0.14}>
@@ -110,12 +100,12 @@ const Hero: React.FC = () => {
             className="orl-hero__manifesto"
             initial="hidden"
             animate="visible"
-            custom={0.42}
+            custom={0.38}
             variants={reveal}
-            aria-label="Obsidian Ridge Labs product principles"
+            aria-label="Obsidian Ridge Labs position"
           >
-            <span>The Trade</span>
-            <p>Your private life for someone else&apos;s intelligence. We refuse the deal.</p>
+            <span>The old deal</span>
+            <p>Your life in exchange for their intelligence. We never signed.</p>
           </motion.aside>
         </div>
 
@@ -123,12 +113,12 @@ const Hero: React.FC = () => {
           className="orl-hero__baseline"
           initial="hidden"
           animate="visible"
-          custom={0.52}
+          custom={0.48}
           variants={reveal}
         >
-          <span>01 · Intelligence on-device</span>
+          <span>01 · Runs on your device</span>
           <span>02 · Works offline</span>
-          <span>03 · Every connection named</span>
+          <span>03 · Nothing connects in secret</span>
           <button type="button" onClick={scrollToProducts}>
             View the collection <ArrowDownRight size={17} aria-hidden="true" />
           </button>

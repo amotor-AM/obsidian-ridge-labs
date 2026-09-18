@@ -48,6 +48,7 @@ const SiteRoutes: React.FC<{ components: SiteRouteComponents }> = ({ components 
       <Route path="/apps/echochamber" element={<EchoDetail />} />
       <Route path="/apps/:id" element={<ProductDetail />} />
       <Route path="/philosophy" element={<PhilosophyPage />} />
+      <Route path="/manifesto" element={<Navigate to="/philosophy" replace />} />
       <Route path="/help" element={<HelpHome />} />
       <Route path="/help/:appId" element={<HelpArticle />} />
       <Route path="/help/:appId/:articleId" element={<HelpArticle />} />
