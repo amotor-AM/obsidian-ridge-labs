@@ -75,8 +75,8 @@ const Hero: React.FC = () => {
               custom={0.22}
               variants={reveal}
             >
-              <span>Pure privacy.</span>
-              <em>Intelligence on your terms.</em>
+              <span>AI that knows you.</span>
+              <em>Not one that watches you.</em>
             </motion.h1>
             <motion.div
               className="orl-hero__intro"
@@ -86,14 +86,15 @@ const Hero: React.FC = () => {
               variants={reveal}
             >
               <p>
-                We build apps for people who refuse to trade privacy for convenience.
-                Core intelligence runs on the Apple device in your hands. If a feature
-                connects to a named service, we explain that boundary before you choose it.
+                Most software asks you to hand over your life to rent intelligence back
+                by the month. We build the opposite: apps that run their intelligence on
+                the Apple device in your hands, so they can know your whole life. Not
+                just the parts you are willing to send to a server.
               </p>
               <div className="orl-hero__actions">
                 <Magnetic>
                   <button type="button" className="button button--primary" onClick={scrollToProducts}>
-                    Explore private apps <ArrowDownRight size={18} aria-hidden="true" />
+                    See the collection <ArrowDownRight size={18} aria-hidden="true" />
                   </button>
                 </Magnetic>
                 <Magnetic intensity={0.14}>
@@ -113,8 +114,8 @@ const Hero: React.FC = () => {
             variants={reveal}
             aria-label="Obsidian Ridge Labs product principles"
           >
-            <span>The refusal</span>
-            <p>Your private life is not raw material for someone else&apos;s cloud.</p>
+            <span>The Trade</span>
+            <p>Your private life for someone else&apos;s intelligence. We refuse the deal.</p>
           </motion.aside>
         </div>
 
@@ -125,9 +126,9 @@ const Hero: React.FC = () => {
           custom={0.52}
           variants={reveal}
         >
-          <span>01 · Core AI on-device</span>
-          <span>02 · Offline-ready workflows</span>
-          <span>03 · Connections explained first</span>
+          <span>01 · Intelligence on-device</span>
+          <span>02 · Works offline</span>
+          <span>03 · Every connection named</span>
           <button type="button" onClick={scrollToProducts}>
             View the collection <ArrowDownRight size={17} aria-hidden="true" />
           </button>

@@ -49,8 +49,8 @@ const Services: React.FC = () => {
                 <p className="section-kicker">The shorter data path</p>
                 <h2 id="architecture-title">The strongest privacy feature is data that never leaves.</h2>
                 <p>
-                  Obsidian Ridge Labs puts core intelligence on supported Apple hardware, then
-                  treats every network connection as a separate choice that deserves an explanation.
+                  Core intelligence runs on the hardware in your hands. Every connection
+                  past that boundary is a separate decision, named before you make it.
                 </p>
               </MotionReveal>
 
@@ -116,13 +116,13 @@ const Services: React.FC = () => {
           </div>
           <div className="verification-section__intro">
             <MotionReveal>
-              <p className="section-kicker">Proof, not posture</p>
-              <h2 id="verification-title">Trust should be inspectable.</h2>
+              <p className="section-kicker">Check our work</p>
+              <h2 id="verification-title">Don&apos;t take our word for it.</h2>
             </MotionReveal>
             <MotionReveal delay={0.08}>
               <p>
-                Read the privacy model. Browse the documentation. Inspect this website&apos;s source.
-                Do not trust a slogan when you can inspect the system behind it.
+                Read the privacy model. Browse the documentation. Inspect this website&apos;s
+                source. A boundary you cannot see is not a boundary.
               </p>
               <div className="verification-section__actions">
                 <Link to="/privacy" className="button button--outline">Read the privacy model <ArrowUpRight size={17} /></Link>
@@ -144,9 +144,9 @@ const Services: React.FC = () => {
       <section className="home-faq" aria-labelledby="home-faq-title">
         <div className="section-frame home-faq__grid">
           <div>
-            <p className="section-kicker section-kicker--dark">Private AI, explained plainly</p>
-            <h2 id="home-faq-title">Questions worth asking before you trust an AI app.</h2>
-            <p>Before an AI app earns your data, it should answer exactly where processing, storage, sync, and optional services happen.</p>
+            <p className="section-kicker section-kicker--dark">The boundary check</p>
+            <h2 id="home-faq-title">Three questions before any app gets your data.</h2>
+            <p>Where does processing happen? Where does storage live? What connects, and when? Every AI app should answer in one breath. Ours answer below.</p>
           </div>
           <SiteFaq items={homeFaqs} tone="paper" />
         </div>
@@ -157,7 +157,7 @@ const Services: React.FC = () => {
         <div className="section-frame">
           <p className="section-kicker section-kicker--dark">The Obsidian standard</p>
           <h2 id="final-cta-title">Move the intelligence.<br /><em>Not the private life.</em></h2>
-          <p>Choose private AI built for the Apple devices already in your hands.</p>
+          <p>Personal AI is here. It runs on the device in your hand.</p>
           <div className="final-cta__actions">
             <Magnetic>
               <Link to="/download" className="button button--dark">Explore every app <ArrowRight size={18} /></Link>

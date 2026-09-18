@@ -160,16 +160,17 @@ const DownloadPage: React.FC = () => {
           <div className="section-index"><span>The app collection</span><span>Obsidian Ridge Labs</span></div>
           <MotionReveal className="collection-hero__copy">
             <p className="section-kicker">Your AI. Your device. Your business.</p>
-            <h1>Private intelligence.<br /><em>On your terms.</em></h1>
+            <h1>The collection.<br /><em>Local by design.</em></h1>
             <p>
-              Download Echo Chamber today and explore eight privacy-first apps in development.
-              Every product solves a different problem. Every one begins with the same private standard.
+              Echo Chamber is on the App Store today. Nine more are in development,
+              each a different problem built to the same boundary: intelligence on your
+              device, every connection named.
             </p>
           </MotionReveal>
           <dl className="collection-hero__principles">
             <div><dt>Core intelligence</dt><dd>On-device</dd></div>
             <div><dt>Core workflows</dt><dd>Offline-ready</dd></div>
-            <div><dt>Connections</dt><dd>Explicit</dd></div>
+            <div><dt>Connections</dt><dd>Named first</dd></div>
           </dl>
         </div>
       </header>
@@ -249,7 +250,7 @@ const DownloadPage: React.FC = () => {
       <section className="collection-close">
         <div className="section-frame">
           <p className="section-kicker section-kicker--dark">The standard behind the software</p>
-          <h2>Choose the tool that keeps<br />your data closest.</h2>
+          <h2>Before you install anything,<br /><em>run the boundary check.</em></h2>
           <div>
             <Link to="/privacy" className="button button--dark">Read the privacy model <ArrowRight size={18} /></Link>
             <Link to="/journal" className="text-link text-link--dark">Explore the journal <ArrowUpRight size={18} /></Link>

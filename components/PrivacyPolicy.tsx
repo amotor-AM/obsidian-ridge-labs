@@ -35,7 +35,7 @@ const PrivacyPolicy: React.FC = () => {
             Analytics only to measure aggregate traffic. This policy names those connections instead
             of hiding them behind a blanket claim.
           </p>
-          <p className="text-gray-600 text-sm mt-8">Effective August 21, 2026</p>
+          <p className="text-gray-600 text-sm mt-8">Effective September 14, 2026</p>
         </header>
 
         <section aria-labelledby="privacy-at-a-glance" className="mb-16 md:mb-24">
@@ -123,13 +123,29 @@ const PrivacyPolicy: React.FC = () => {
             <div className="space-y-5">
               <div className="border border-white/10 bg-white/[0.02] p-6 md:p-8">
                 <h3 className="text-lg font-semibold text-white mb-3">Echo Chamber</h3>
-                <p>
+                <p className="mb-4">
                   Recording, transcription, summaries, transcript chat, search, and translation run
                   on-device. Audio stored by Echo Chamber is encrypted at rest using AES-256-GCM.
                   Echo Chamber may connect to download a speech model. If you enable iCloud sync,
                   audio is encrypted on your device before it is stored in your iCloud account;
                   iCloud sync is off by default. Obsidian Ridge Labs does not operate a recording
                   server for Echo Chamber.
+                </p>
+                <p className="mb-4">
+                  On Mac, Echo Chamber can request Screen &amp; System Audio Recording permission to
+                  capture the audio of a meeting running in another app, such as Zoom, Teams, or
+                  Slack. This captures audio only, never screen contents, and it necessarily includes
+                  the voices of other meeting participants, not just the device owner. Separately,
+                  optional Calendar access lets Echo Chamber read event details, including titles,
+                  attendees, and agenda items, to enrich a transcript. Both the audio of other
+                  participants and any calendar attendee information are processed and stored only on
+                  the device running Echo Chamber; neither is sent to Obsidian Ridge Labs or any
+                  third party.
+                </p>
+                <p>
+                  If you record a meeting or call, you are responsible for complying with the laws
+                  that apply to you, including any requirement to notify or obtain consent from other
+                  participants before recording them.
                 </p>
               </div>
 

@@ -105,7 +105,8 @@ const PhilosophyPage: React.FC = () => {
           </div>
 
           <p className="philosophy-hero__coda">
-            Obsidian Ridge Labs is building the exit: powerful Apple apps with core intelligence on your device.
+            Obsidian Ridge Labs is building the exit: powerful Apple apps with core intelligence
+            on your device. Personal AI is not coming. It is already in your hand.
           </p>
         </div>
       </header>
@@ -120,10 +121,11 @@ const PhilosophyPage: React.FC = () => {
             </MotionReveal>
             <MotionReveal delay={0.08}>
               <p>
-                A remote AI workflow can create more copies, more logs, more retention questions,
-                and more companies to trust. That may be a fair trade for some work. It should not
-                be the default price of transcribing a meeting, understanding your finances,
-                writing in a journal, or remembering someone you love.
+                A remote AI workflow creates more copies, more logs, more retention questions,
+                and more companies to trust. This is The Trade: your inner life handed over,
+                intelligence rented back by the month. The industry standardized it. We declined.
+                Transcribing a meeting, understanding your finances, writing in a journal,
+                remembering someone you love: none of it should arrive with a bill attached.
               </p>
             </MotionReveal>
           </div>
@@ -225,10 +227,10 @@ const PhilosophyPage: React.FC = () => {
           <div className="philosophy-proof__intro">
             <MotionReveal>
               <p className="section-kicker">Proof in use</p>
-              <h2 id="philosophy-proof-title">Privacy should be felt in the product.</h2>
+              <h2 id="philosophy-proof-title">Flip on airplane mode. The work continues.</h2>
             </MotionReveal>
             <MotionReveal delay={0.08}>
-              <p>Core work should remain useful when the network disappears. Optional connections should have a clear purpose. Personal content should never become the raw material for an advertising business.</p>
+              <p>Core work keeps going when the network disappears. Optional connections have a name and a reason. Personal content never becomes the raw material for an advertising business. That is the standard, and you can test it yourself.</p>
             </MotionReveal>
           </div>
           <div className="philosophy-proof__links">
@@ -299,7 +301,7 @@ const PhilosophyPage: React.FC = () => {
         <div className="section-frame">
           <p className="section-kicker section-kicker--dark">The Obsidian standard</p>
           <h2 id="philosophy-close-title">Move the intelligence.<br /><em>Not the private life.</em></h2>
-          <p>Obsidian Ridge Labs builds Apple apps that keep core intelligence on the device, keep optional connections visible, and keep control with the person doing the work.</p>
+          <p>We build Apple apps that keep intelligence on the device, name every connection, and leave control with the person doing the work. That is the whole strategy.</p>
           <div>
             <Link to="/download" className="button button--dark">Explore private apps <ArrowRight size={18} /></Link>
             <Link to="/privacy" className="text-link text-link--dark">Read the privacy model <ArrowUpRight size={18} /></Link>

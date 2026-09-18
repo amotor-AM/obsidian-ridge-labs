@@ -19,8 +19,8 @@ const Footer: React.FC = () => (
             <span className="site-wordmark__labs">LABS</span>
           </Link>
           <p>
-            Private AI for Apple devices. Core intelligence stays on the hardware
-            in your hands, and optional connections are explained before you choose them.
+            Private AI for Apple devices. The intelligence stays in your hands and every
+            connection has a name. That is the whole standard.
           </p>
         </div>
         <Magnetic intensity={0.16} range={80}>
@@ -62,7 +62,7 @@ const Footer: React.FC = () => (
 
       <div className="site-footer__bottom">
         <span>© {new Date().getFullYear()} Obsidian Ridge Labs</span>
-        <span className="site-footer__status"><i /> Local intelligence, thoughtfully made</span>
+        <span className="site-footer__status"><i /> Local by design</span>
         <span>Las Vegas, Nevada · Apple platforms</span>
       </div>
     </div>

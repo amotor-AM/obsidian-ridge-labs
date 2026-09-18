@@ -79,17 +79,18 @@ const Products: React.FC = () => {
           <span>{products.length} apps, each its own thing</span>
         </div>
 
-        <div className="products-section__intro">
+          <div className="products-section__intro">
           <MotionReveal>
-            <p className="section-kicker">The work</p>
-            <h2 id="products-title">A few small apps.<br /><em>Built one at a time.</em></h2>
+            <p className="section-kicker">The collection</p>
+            <h2 id="products-title">Different problems.<br /><em>Same boundary.</em></h2>
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <p>
-              We're a small studio that cares about where your data goes. That shows up
-              differently in each app below, since a budgeting tool and a journal don't have the
-              same privacy problem to solve. You'll always find the specifics on the product's
-              own page, not a shared promise.
+              A budget app and a journal do not have the same privacy problem, so each app
+              draws its own line and tells you exactly where it sits. What they share:
+              intelligence that runs on your device, connections named before you switch
+              them on, and an archive that leaves when you say so. The specifics live on
+              each product&apos;s page. We do not do shared promises.
             </p>
           </MotionReveal>
         </div>
@@ -131,7 +132,7 @@ const Products: React.FC = () => {
 
         <MotionReveal className="product-ledger__foot">
           <p>
-            Products in development are clearly labeled. Each one's page covers what's actually
+            Development status is on every card. Each product page covers what is actually
             built so far, plus final compatibility, pricing, and connected services before release.
           </p>
           <Link to="/download" className="text-link">

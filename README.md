@@ -1,6 +1,6 @@
 # Obsidian Ridge Labs
 
-## Pure privacy. Intelligence on your terms.
+## AI that knows you. Not one that watches you.
 
 Obsidian Ridge Labs is an independent Las Vegas software studio building private AI apps for Apple devices. We create focused tools for the parts of life that should not become raw material for someone else’s cloud: conversations, finances, focus, memory, health, learning, belongings, and relationships.
 

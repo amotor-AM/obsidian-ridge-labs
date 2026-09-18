@@ -107,9 +107,10 @@ const EchoDetail: React.FC = () => {
               <p className="section-kicker">Private AI transcription for Apple devices</p>
               <h1>Transcribe meetings, audio, and video.<br /><em>Entirely on-device.</em></h1>
               <p>
-                Record live or import an existing audio or video file. Echo Chamber turns it into
-                an accurate, searchable transcript, useful notes, summaries, and answers without
-                sending the recording to Obsidian Ridge Labs or inviting a bot into the call.
+                Record live or import an existing audio or video file. What comes back is
+                an accurate, searchable transcript, notes, summaries, and answers. No bot
+                joins the call. No server hears the conversation. The recording never
+                leaves your hands.
               </p>
               <div className="echo-hero__actions">
                 <a href={appStoreUrl} target="_blank" rel="noreferrer" className="button button--primary">
@@ -262,7 +263,7 @@ const EchoDetail: React.FC = () => {
         <section className="echo-boundary" aria-labelledby="echo-boundary-title">
           <div className="section-frame echo-boundary__layout">
             <MotionReveal>
-              <p className="section-kicker section-kicker--dark">Privacy, explained plainly</p>
+              <p className="section-kicker section-kicker--dark">The boundary</p>
               <h2 id="echo-boundary-title">
                 <span>Core intelligence stays <i>on-device.</i></span>
                 <em>Every connection is explained.</em>
@@ -300,8 +301,8 @@ const EchoDetail: React.FC = () => {
             <div className="echo-pricing__layout">
               <MotionReveal>
                 <p className="section-kicker">Start free</p>
-                <h2 id="echo-pricing-title">Great apps should not require another subscription.</h2>
-                <p>Choose monthly, yearly, or pay once for Lifetime. Every paid option unlocks the same complete Pro toolkit.</p>
+                <h2 id="echo-pricing-title">Own your transcripts. Choose your term.</h2>
+                <p>Start free. Go Pro monthly, yearly, or once with Lifetime. Every paid option includes the same complete toolkit.</p>
               </MotionReveal>
               <MotionReveal className="echo-pricing__card" delay={0.08}>
                 <div><span>Echo Chamber Pro</span><small>Choose how you own it</small></div>
@@ -346,7 +347,7 @@ const EchoDetail: React.FC = () => {
         <section className="echo-close" aria-labelledby="echo-close-title">
           <div className="section-frame">
             <p className="section-kicker section-kicker--dark">Available now</p>
-            <h2 id="echo-close-title">Keep the conversation.<br /><em>Lose the cloud dependency.</em></h2>
+            <h2 id="echo-close-title">Keep the conversation.<br /><em>Lose the audience.</em></h2>
             <div className="echo-close__actions">
               <a href={appStoreUrl} target="_blank" rel="noreferrer" className="button button--dark">Download Echo Chamber <ArrowUpRight size={17} /></a>
             </div>

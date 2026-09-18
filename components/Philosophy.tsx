@@ -21,14 +21,14 @@ const Philosophy: React.FC = () => (
         <MotionReveal>
           <p className="section-kicker section-kicker--dark">Convenience is not consent</p>
           <h2 id="premise-title">
-            Your private life should not be the cost of <em>useful AI.</em>
+            Your private life is not <em>the price of useful AI.</em>
           </h2>
         </MotionReveal>
 
         <MotionReveal className="premise-section__intro" delay={0.08}>
           <p>
-            Obsidian Ridge Labs moves the intelligence to your Apple device instead of
-            moving your life to our servers. Optional connections stay visible and under your control.
+            We move the intelligence to your Apple device instead of moving your life to
+            our servers. An app can only know you completely when nothing has to leave the room.
           </p>
           <a href="#architecture" className="text-link text-link--dark">
             Inspect the architecture <ArrowDownRight size={18} aria-hidden="true" />
