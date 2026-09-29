@@ -4,22 +4,25 @@ import { ArrowRight, BookOpen, Clock, Layers3 } from 'lucide-react';
 import { blogPosts } from '../data/blog';
 import { products } from '../data/products';
 import type { BlogContentType, BlogPost } from '../types';
+import '../styles/journal-refinement.css';
 import SEO, { buildBreadcrumbs, buildCollectionPage, ORGANIZATION_ID, SITE_URL } from './SEO';
 
 type Filter = 'all' | BlogContentType;
 
 const filters: { id: Filter; label: string }[] = [
-  { id: 'all', label: 'All research' },
-  { id: 'comparison', label: 'Comparisons' },
-  { id: 'listicle', label: 'Best-app guides' },
-  { id: 'guide', label: 'How-to guides' },
-  { id: 'analysis', label: 'Analysis' },
+  { id: 'all', label: 'Everything' },
+  { id: 'comparison', label: 'Head to head' },
+  { id: 'listicle', label: 'Category guides' },
+  { id: 'guide', label: 'How to' },
+  { id: 'analysis', label: 'Explainers' },
 ];
+
+const contentLabels: Record<BlogContentType, string> = { comparison: 'Comparison', listicle: 'App guide', guide: 'Practical guide', analysis: 'Explainer' };
 
 const PostCard: React.FC<{ post: BlogPost; index?: number }> = ({ post, index }) => (
   <Link to={`/journal/${post.id}`} className="journal-card">
     <div className="journal-card__meta">
-      <span>{post.contentType}</span>
+      <span>{contentLabels[post.contentType]}</span>
       <span>{post.readTime.replace(' READ', '')}</span>
     </div>
     {typeof index === 'number' && <span className="journal-card__index">{String(index + 1).padStart(2, '0')}</span>}
@@ -54,16 +57,16 @@ const BlogList: React.FC = () => {
     { name: 'Journal', url: '/journal' },
   ]);
   const collectionPage = buildCollectionPage(
-    'The Obsidian Ridge Journal',
-    'Evidence-led comparisons and practical guides to private AI, offline software, transcription, personal finance, journaling, study, home inventory, fitness, wardrobe, relationships, and focused work.',
+    'The Obsidian Ridge Labs Journal',
+    'App comparisons and practical guides to choosing private software for everyday work.',
     '/journal',
   );
   const blogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     '@id': `${SITE_URL}/journal#blog`,
-    name: 'The Obsidian Ridge Journal',
-    description: 'Source-backed comparisons and guides to private, on-device AI applications.',
+    name: 'The Obsidian Ridge Labs Journal',
+    description: 'App comparisons and practical guides to choosing private software for everyday work.',
     url: `${SITE_URL}/journal`,
     publisher: { '@id': ORGANIZATION_ID },
     blogPost: blogPosts.map((post) => ({
@@ -93,33 +96,34 @@ const BlogList: React.FC = () => {
     <div className="journal-index-page">
       <SEO
         title="Private AI App Comparisons & Guides"
-        description="Source-backed comparisons and practical guides to private, offline, and on-device AI apps for Apple devices, complete with limitations and primary sources."
+        description="Compare apps by the work you need to do: recording, studying, training, planning, and keeping personal records. Practical guides from Obsidian Ridge Labs."
         ogImage="https://obsidianridgelabs.com/blog-og.png"
-        ogImageAlt="Obsidian Ridge Labs Journal: private AI comparisons and guides"
+        ogImageAlt="The Obsidian Ridge Labs Journal: app comparisons and practical guides"
         jsonLd={[breadcrumbs, collectionPage, blogSchema, articleIndex]}
       />
 
       <header className="journal-index-hero">
         <div className="section-frame">
           <div className="journal-index-hero__topline">
-            <span>Research for private software decisions</span>
-            <span>{blogPosts.length} source-backed guides · updated for 2026</span>
+            <span>Obsidian Ridge Labs</span>
+            <span>{blogPosts.length} articles</span>
           </div>
-          <p className="section-kicker">The Obsidian Ridge Journal</p>
-          <h1>Privacy first. <em>Evidence always.</em></h1>
+          <p className="section-kicker">The Obsidian Ridge Labs Journal</p>
+          <h1>Find the app that fits the work.</h1>
           <p className="journal-index-hero__dek">
-            See why Obsidian Ridge Labs builds each category around a shorter data path. Every guide
-            compares real capabilities, cites primary sources, and makes the privacy tradeoff explicit.
+            A better way to keep a recording, study your notes, or plan the next workout.
+            Our guides compare what the apps help you do, where they differ, and what
+            happens to the information you put into them.
           </p>
           <ul className="journal-index-hero__facts">
-            <li>Primary sources linked</li>
-            <li>Product-first privacy verdicts</li>
-            <li>Every release status clear</li>
+            <li>Choosing an app</li>
+            <li>Building for Apple</li>
+            <li>Keeping work on-device</li>
           </ul>
         </div>
       </header>
 
-      <main>
+      <div>
         {featured && (
           <section className="section-frame journal-feature" aria-labelledby="featured-heading">
             <div className="section-index"><span>Start here</span><span>01 / Foundation</span></div>
@@ -128,7 +132,7 @@ const BlogList: React.FC = () => {
                 <span>LOCAL</span><i /><i /><i />
               </div>
               <div className="journal-feature__copy">
-                <span className="journal-feature__label"><BookOpen size={16} aria-hidden="true" /> Essential guide</span>
+                <span className="journal-feature__label"><BookOpen size={16} aria-hidden="true" /> Start here</span>
                 <h2 id="featured-heading">{featured.title}</h2>
                 <p>{featured.excerpt}</p>
                 <div><span><Clock size={15} aria-hidden="true" /> {featured.readTime}</span><span className="text-link">Read the guide <ArrowRight size={15} aria-hidden="true" /></span></div>
@@ -139,13 +143,13 @@ const BlogList: React.FC = () => {
 
         <section className="journal-library" aria-labelledby="library-heading">
           <div className="section-frame">
-            <div className="section-index"><span>Decision library</span><span>02 / Compare</span></div>
+            <div className="section-index"><span>The articles</span><span>02 / Read</span></div>
             <div className="journal-library__heading">
               <div>
-                <p className="section-kicker">Research by intent</p>
-                <h2 id="library-heading">See where private architecture changes the category.</h2>
+                <p className="section-kicker">Browse by app or subject</p>
+                <h2 id="library-heading">Start with what you need to do.</h2>
               </div>
-              <p>Every Obsidian Ridge app has a direct comparison and a broader buyer&apos;s guide built around privacy, capability, and the exact data path.</p>
+              <p>Compare a few options for the same job, or explore how on-device AI works before choosing an app.</p>
             </div>
 
             <div className="journal-filters" role="group" aria-label="Filter journal articles">
@@ -190,12 +194,12 @@ const BlogList: React.FC = () => {
                   <section className="journal-cluster journal-cluster--foundation">
                     <div className="journal-cluster__head">
                       <div className="journal-cluster__head-bar">
-                        <span>10</span>
+                        <span>{String(productClusters.length + 1).padStart(2, '0')}</span>
                       </div>
                       <div className="journal-cluster__icon"><Layers3 size={24} aria-hidden="true" /></div>
                       <div className="journal-cluster__copy">
                         <h3>Foundations</h3>
-                        <p>How local AI architecture actually works.</p>
+                        <p>The models, chips, and storage behind on-device AI.</p>
                       </div>
                     </div>
                     <div className="journal-cluster__posts">
@@ -207,12 +211,12 @@ const BlogList: React.FC = () => {
                   <section className="journal-cluster">
                     <div className="journal-cluster__head">
                       <div className="journal-cluster__head-bar">
-                        <span>11</span>
+                        <span>{String(productClusters.length + (pillars.length ? 2 : 1)).padStart(2, '0')}</span>
                       </div>
                       <div className="journal-cluster__icon"><Layers3 size={24} aria-hidden="true" /></div>
                       <div className="journal-cluster__copy">
-                        <h3>Growth</h3>
-                        <p>Articles published through BabyLoveGrowth.</p>
+                        <h3>More from the journal</h3>
+                        <p>Further reading on private software.</p>
                       </div>
                     </div>
                     <div className="journal-cluster__posts">
@@ -231,16 +235,16 @@ const BlogList: React.FC = () => {
         </section>
 
         <section className="section-frame journal-standards" aria-labelledby="standards-heading">
-          <div className="section-index"><span>Editorial standard</span><span>03 / Evidence</span></div>
+          <div className="section-index"><span>The Obsidian Ridge Labs standard</span><span>03 / Why we build</span></div>
           <div className="journal-standards__grid">
-            <h2 id="standards-heading">A strong recommendation<br /><em>should survive inspection.</em></h2>
+            <h2 id="standards-heading">From the people building the apps.</h2>
             <div>
-              <p>We make the case for Obsidian Ridge Labs with architecture, product evidence, and a clear privacy advantage. We do not invent tests or call an unreleased product reviewed. Every recommendation states the release status and the tradeoff behind it.</p>
-              <Link to="/philosophy" className="text-link">Read our product philosophy <ArrowRight size={15} aria-hidden="true" /></Link>
+              <p>Obsidian Ridge Labs makes the ten apps featured in these comparisons. Echo Chamber is on the App Store; the other nine are in development. We explain their intended fit alongside established alternatives and link to the documentation behind each comparison.</p>
+              <Link to="/philosophy" className="text-link">Read the standard <ArrowRight size={15} aria-hidden="true" /></Link>
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 };

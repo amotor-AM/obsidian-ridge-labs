@@ -2,68 +2,70 @@ import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getProductReleaseLabel, products } from '../data/products';
-import { Magnetic } from './ui/magnetic';
+import { collection } from '../data/collection';
+
+const collectionMidpoint = Math.ceil(collection.length / 2);
 
 const productStatus = (product: (typeof products)[number]) => {
   const label = getProductReleaseLabel(product);
   return label === 'Available on the App Store' ? 'Available' : label;
 };
+const productName = (name: string) => name.toLowerCase().replace(/\b\w/g, letter => letter.toUpperCase());
 
 const Footer: React.FC = () => (
   <footer className="site-footer site-chrome">
+    <div className="site-footer__halo" aria-hidden="true" />
     <div className="section-frame">
       <div className="site-footer__top">
         <div>
           <Link to="/" className="site-wordmark" aria-label="Obsidian Ridge Labs home">
-            <span className="site-wordmark__name">OBSIDIAN<span aria-hidden="true">/</span>RIDGE</span>
-            <span className="site-wordmark__labs">LABS</span>
+            <span className="site-wordmark__cut" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M15.5 4 8.5 20" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" /></svg></span>
+            <span className="site-wordmark__name">Obsidian Ridge Labs</span>
           </Link>
-          <p>
-            Private AI for Apple devices. The intelligence stays in your hands and every
-            connection has a name. That is the whole standard.
-          </p>
-        </div>
-        <Magnetic intensity={0.16} range={80}>
+          <p>Apps that mind their own business.</p>
           <a href="mailto:support@obsidianridgelabs.com" className="site-footer__contact">
-            Start a conversation <ArrowUpRight size={18} aria-hidden="true" />
+            Get in touch <ArrowUpRight size={14} aria-hidden="true" />
           </a>
-        </Magnetic>
+        </div>
       </div>
 
       <div className="site-footer__links">
         <nav aria-label="Applications">
-          <p>Applications</p>
-          {products.map((product) => (
+          <p>Apps</p>
+          {collection.slice(0, collectionMidpoint).map((product) => (
             <Link key={product.id} to={`/apps/${product.id}`}>
-              {product.name}<span>{productStatus(product)}</span>
+              {productName(product.name)}<span>{productStatus(product)}</span>
+            </Link>
+          ))}
+          <Link to="/download" className="site-footer__all-apps">The collection <ArrowUpRight size={13} aria-hidden="true" /></Link>
+        </nav>
+        <nav aria-label="More applications" className="site-footer__lab">
+          <p>More apps</p>
+          {collection.slice(collectionMidpoint).map((product) => (
+            <Link key={product.id} to={`/apps/${product.id}`}>
+              {productName(product.name)}<span>{productStatus(product)}</span>
             </Link>
           ))}
         </nav>
         <nav aria-label="Explore">
-          <p>Explore</p>
-          <Link to="/philosophy">Manifesto</Link>
+          <p>Studio</p>
+          <Link to="/philosophy">The standard</Link>
           <Link to="/journal">Journal</Link>
           <Link to="/help">Help center</Link>
-          <Link to="/download">All downloads</Link>
         </nav>
         <nav aria-label="Company and policies">
-          <p>Company</p>
+          <p>Details</p>
           <Link to="/privacy">Privacy model</Link>
           <Link to="/terms">Terms of service</Link>
-          <a href="https://github.com/amotor-AM/obsidian-ridge-labs" target="_blank" rel="noreferrer">Website source <ArrowUpRight size={13} /></a>
-          <a href="mailto:support@obsidianridgelabs.com">Email us <ArrowUpRight size={13} /></a>
+          <a href="https://github.com/amotor-AM/obsidian-ridge-labs" target="_blank" rel="noreferrer">Website source <ArrowUpRight size={13} aria-hidden="true" /></a>
+          <a href="mailto:support@obsidianridgelabs.com">Support <ArrowUpRight size={13} aria-hidden="true" /></a>
         </nav>
-      </div>
-
-      <div className="site-footer__statement" aria-label="Obsidian Ridge Labs">
-        <span>OBSIDIAN</span>
-        <span>RIDGE</span>
       </div>
 
       <div className="site-footer__bottom">
         <span>© {new Date().getFullYear()} Obsidian Ridge Labs</span>
-        <span className="site-footer__status"><i /> Local by design</span>
-        <span>Las Vegas, Nevada · Apple platforms</span>
+        <span className="site-footer__status"><i aria-hidden="true" />Local by design.</span>
+        <span>Las Vegas, Nevada</span>
       </div>
     </div>
   </footer>

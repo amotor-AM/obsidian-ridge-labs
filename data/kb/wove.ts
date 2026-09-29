@@ -6,7 +6,7 @@ export const woveKb: KnowledgeBase = {
   accent: "#f0a97a",
   status: "ready",
   intro:
-    "Guides for photographing your closet without a weekend of work, getting outfits you would actually wear, and knowing where your garment photos live.",
+    "Learn to capture garments, review outfit suggestions, plan looks, and manage wardrobe records and photos.",
   categories: [
     {
       id: "getting-started",
@@ -70,12 +70,12 @@ export const woveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Wove turns the clothes you already own into something useful: a daily outfit, a capsule, a packing list, and honest evidence about what you actually wear.",
+            "Wove helps you find outfits in the clothes you own and keep a record of what you wear. Plus adds capsules, a shopping advisor, and a separate trip checklist.",
         },
         {
           type: "paragraph",
           content:
-            "Every digital closet dies at the same place, which is cataloguing. So the fastest thing in Wove is getting clothes in. Photograph a pile, and each garment becomes its own catalogued piece with its own cut-out.",
+            "Start with a few pieces you wear often. Wove can capture individual garments or several pieces laid out with space between them. Review the detected items and their cut-outs before adding them to the closet.",
         },
         {
           type: "heading",
@@ -118,7 +118,7 @@ export const woveKb: KnowledgeBase = {
           type: "steps",
           items: [
             { title: "Find a plain surface", description: "A bed, a floor, a table. Wove lifts the garment off its background, so contrast helps and a busy duvet does not." },
-            { title: "Shoot a pile, not one item", description: "Lay several pieces out with a little space between them and take one photo. Wove segments each garment into its own entry." },
+            { title: "Lay out several pieces", description: "Leave space between garments and take one photo. Wove proposes separate entries for detected pieces; overlapping clothes can merge or be missed." },
             { title: "Confirm the tags", description: "Colour, type, and season are proposed on the device. Fix anything wrong now; it takes seconds and improves every later suggestion." },
             { title: "Repeat until bored", description: "Genuinely. Add a batch, use the app, add more when you notice something missing." },
           ],
@@ -232,7 +232,7 @@ export const woveKb: KnowledgeBase = {
           variant: "tip",
           title: "Not this is the important button",
           content:
-            "Every other closet app learns only from what you wore. Rejections carry at least as much information. Wove keeps them, uses them in both the ranking and the model's prompt, and lets them fade after about forty-five days so old moods do not haunt you forever.",
+            "Wove stores rejected combinations locally and uses them in future styling. Their influence fades with a 45-day half-life. This feedback is available free; learning from wear history through the taste profile requires Plus.",
         },
         {
           type: "paragraph",
@@ -273,10 +273,10 @@ export const woveKb: KnowledgeBase = {
     {
       id: "ask-the-stylist",
       title: "Asking the stylist",
-      description: "A real conversation about your own clothes, grounded in what you own.",
+      description: "Ask the stylist questions using context from your saved wardrobe.",
       category: "outfits",
       keywords: ["chat", "stylist", "ask", "question", "advice", "conversation", "pairing"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -305,10 +305,10 @@ export const woveKb: KnowledgeBase = {
     {
       id: "apple-intelligence-requirement",
       title: "Why Wove requires Apple Intelligence",
-      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
+      description: "Check device requirements and what to do when Apple Intelligence is unavailable.",
       category: "outfits",
       keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -353,7 +353,7 @@ export const woveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "The deterministic engine has not gone anywhere: colour theory, formality, and weather rules still validate and repair every suggestion the model makes, and they cover a transient failure mid-session. What they do not do is stand in for the model on a device that cannot run it.",
+            "The outfit resolver checks that proposed garments belong to your closet and that a combination covers the required parts of an outfit. A built-in stylist supplies fallback combinations when generation fails. These checks do not guarantee that every preference, weather condition, or styling rule is satisfied.",
         },
       ],
       related: ["todays-look", "ask-the-stylist", "weather-and-location"],
@@ -371,7 +371,7 @@ export const woveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "A capsule is a deliberately small group of garments chosen because they combine well. Wove builds one from your closet, for a season or a mood, and shows the looks it produces.",
+            "A Plus capsule selects a small group of garments from your closet. Unlike the generic trip checklist, it uses your saved clothing pieces.",
         },
         {
           type: "paragraph",
@@ -391,7 +391,7 @@ export const woveKb: KnowledgeBase = {
     {
       id: "packing-lists",
       title: "Packing for a trip",
-      description: "A checklist built from your closet, with pack progress on the Lock Screen.",
+      description: "A Plus checklist of clothing types and travel essentials, with packing progress.",
       category: "planning",
       keywords: ["packing", "trip", "travel", "suitcase", "list", "live activity", "checklist"],
       updated: "2026-09-07",
@@ -399,7 +399,7 @@ export const woveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Tell Wove the dates and the kind of trip, and it proposes a packing list from garments you actually own, chosen to combine rather than to sit in a suitcase unworn.",
+            "With Plus, enter the trip dates and purpose to create a checklist of clothing types and essentials. The packing flow does not select specific garments from your closet. Review the list and choose the actual pieces yourself.",
         },
         {
           type: "steps",
@@ -422,10 +422,10 @@ export const woveKb: KnowledgeBase = {
     {
       id: "shopping-advisor",
       title: "The shopping advisor",
-      description: "Photograph something in a shop and find out whether you should actually buy it.",
+      description: "Compare a potential purchase with the clothes already saved in your wardrobe.",
       category: "planning",
       keywords: ["shopping", "buy", "store", "duplicate", "cost per wear", "advisor", "skip"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -456,10 +456,10 @@ export const woveKb: KnowledgeBase = {
     {
       id: "wear-tracking",
       title: "Logging what you wore",
-      description: "The quiet input that makes everything else in Wove better.",
+      description: "Record worn outfits and learn how wear history informs wardrobe insights.",
       category: "insights",
       keywords: ["wear", "log", "history", "track", "cost per wear", "worn", "undo"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -469,7 +469,7 @@ export const woveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Each wear is stamped with the weather, so over time Wove learns not just what you wear but what you wear when it is five degrees and raining.",
+            "Wear history records what you chose and can support cost-per-wear estimates. Plus uses wear-derived preferences to personalize future styling. Rejecting a suggestion and adding personal notes are available free.",
         },
         {
           type: "callout",
@@ -572,7 +572,7 @@ export const woveKb: KnowledgeBase = {
     {
       id: "weather-and-location",
       title: "How Wove uses weather and location",
-      description: "A coarse one-shot location, a forecast, and nothing kept about where you are.",
+      description: "Approximate location requests for the local forecast, without a stored location history.",
       category: "devices",
       keywords: ["weather", "location", "weatherkit", "forecast", "permission", "privacy", "gps"],
       updated: "2026-09-07",
@@ -580,7 +580,7 @@ export const woveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "To make an outfit weather-aware, Wove needs to know roughly where you are. With your permission it requests a coarse one-shot location and asks Apple WeatherKit for the local forecast.",
+            "With permission, Wove requests approximate location when refreshing the local forecast through Apple WeatherKit. Each refresh can make another location request. If permission is denied or the service is unavailable, styling can use cached weather or seasonal context.",
         },
         {
           type: "callout",
@@ -728,10 +728,10 @@ export const woveKb: KnowledgeBase = {
     {
       id: "restore-purchase",
       title: "Restoring a purchase",
-      description: "New phone, reinstall, or an entitlement that did not appear.",
+      description: "Restore access to a purchase after reinstalling or moving to a new phone.",
       category: "billing",
       keywords: ["restore", "purchase", "reinstall", "new phone", "missing", "receipt"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -743,7 +743,7 @@ export const woveKb: KnowledgeBase = {
           items: [
             { title: "Check the Apple Account", description: "The device must be signed in with the account you purchased on." },
             { title: "Open Settings in Wove", description: "Tap Restore Purchases." },
-            { title: "Wait a moment", description: "The App Store confirms the entitlement and Wove+ unlocks." },
+            { title: "Wait a moment", description: "The App Store checks your purchase and restores Wove+ access." },
           ],
         },
         {

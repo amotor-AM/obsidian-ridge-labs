@@ -2,13 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SEO, { buildBreadcrumbs } from './SEO';
+import '../styles/help-refinement.css';
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <div className="legal-page">
+    <div className="legal-page legal-page--refined">
       <SEO
         title="Privacy Policy: On-Device AI and Optional Connections"
-        description="How Obsidian Ridge Labs keeps core AI processing on-device, limits the public website to aggregate traffic measurement, and handles optional Plaid, iCloud, diagnostics, purchases, and support."
+        description="Where Obsidian Ridge Labs processing happens, where storage lives, and exactly what connects: Plaid, iCloud, diagnostics, purchases, support, and website analytics."
         noindex={false}
         jsonLd={[
           buildBreadcrumbs([
@@ -26,14 +27,14 @@ const PrivacyPolicy: React.FC = () => {
         <header className="legal-page__header">
           <p className="section-kicker">Privacy Policy</p>
           <h1>
-            Clear about what stays local.
-            <em>Precise about what connects.</em>
+            What stays here.{' '}
+            <em>What connects, and when.</em>
           </h1>
           <p className="text-apple-gray text-lg md:text-xl leading-relaxed max-w-3xl">
-            Obsidian Ridge Labs builds its core AI experiences to run on your Apple device. Some
-            optional features use services such as Plaid or iCloud. The public website uses Google
-            Analytics only to measure aggregate traffic. This policy names those connections instead
-            of hiding them behind a blanket claim.
+            The Boundary Check, answered in full. Core AI runs on your Apple device. Setup, storage,
+            and connected features can use services such as Plaid or iCloud. Their defaults vary by app. The public
+            website uses Google Analytics to measure aggregate traffic. A blanket privacy claim is
+            not a boundary, so here is the specific version.
           </p>
           <p className="text-gray-600 text-sm mt-8">Effective September 14, 2026</p>
         </header>
@@ -43,19 +44,19 @@ const PrivacyPolicy: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5 border border-white/5">
             {[
               {
-                label: 'Core AI',
-                value: 'On-device',
-                detail: 'Product content is processed locally for core AI features.',
+                label: 'Processing',
+                value: 'On your device',
+                detail: 'Core AI features run on your Apple hardware, not on our servers.',
               },
               {
-                label: 'Default storage',
-                value: 'Local-first',
-                detail: 'Your content begins in the app sandbox on your device.',
+                label: 'Storage',
+                value: 'Product-specific',
+                detail: 'Apps store content locally; some also use your private iCloud database. Sync defaults are described below.',
               },
               {
-                label: 'Network features',
-                value: 'Disclosed',
-                detail: 'Optional connections are explained where they are offered.',
+                label: 'Connections',
+                value: 'Setup and features',
+                detail: 'Downloads, purchases, storage services, and connected features have distinct roles and defaults.',
               },
             ].map((item) => (
               <div key={item.label} className="bg-[#080808] p-6 md:p-8">
@@ -80,8 +81,9 @@ const PrivacyPolicy: React.FC = () => {
                 are released.
               </p>
               <p>
-                Our approach is local-first, not network-blind: we reduce data movement wherever the
-                product can work locally and identify the cases where a feature needs a connection.
+                The approach is local-first, not network-blind. Data movement is reduced wherever the
+                product can do the job locally, and the cases where a feature genuinely needs a
+                connection are named rather than buried.
               </p>
             </div>
           </section>
@@ -93,12 +95,13 @@ const PrivacyPolicy: React.FC = () => {
             <div className="space-y-4">
               <p>
                 Core AI features are designed to process your content on supported Apple hardware
-                using Apple on-device frameworks or app-bundled models. We do not send your recordings,
+                using Apple on-device frameworks or local models. We do not send your recordings,
                 transcripts, financial history, journal entries, tasks, or decision content to an
                 external AI API for inference.
               </p>
               <p>
-                App content is stored locally by default inside the operating system's app sandbox.
+                App content is held inside the operating system's app sandbox. Some products also use
+                a private iCloud database, including Mettle and Cove by default when available.
                 Our apps do not require an Obsidian Ridge Labs account, contain advertising, or use
                 advertising identifiers. We do not sell your app content or use it to build advertising
                 profiles.
@@ -116,20 +119,21 @@ const PrivacyPolicy: React.FC = () => {
               3. Optional and product-specific connections
             </h2>
             <p className="mb-8">
-              The following connections are limited to the feature you choose to use. Disabling an
-              optional feature does not move core AI processing to a remote service.
+              Some connections support setup, purchase verification, or a product's default storage;
+              others are features you choose. Disabling an optional feature does not move core AI
+              processing to a remote service. Development-product descriptions below refer to the
+              current implementation; release practices will be confirmed before availability.
             </p>
 
             <div className="space-y-5">
               <div className="border border-white/10 bg-white/[0.02] p-6 md:p-8">
                 <h3 className="text-lg font-semibold text-white mb-3">Echo Chamber</h3>
                 <p className="mb-4">
-                  Recording, transcription, summaries, transcript chat, search, and translation run
-                  on-device. Audio stored by Echo Chamber is encrypted at rest using AES-256-GCM.
-                  Echo Chamber may connect to download a speech model. If you enable iCloud sync,
-                  audio is encrypted on your device before it is stored in your iCloud account;
-                  iCloud sync is off by default. Obsidian Ridge Labs does not operate a recording
-                  server for Echo Chamber.
+                  Recording, transcription, and transcript intelligence run on-device. Recordings and
+                  transcripts are stored locally. Echo Chamber may connect for model setup, purchase
+                  verification, and usage checks. Optional iCloud sync is off by default and uses your
+                  Apple account when enabled. Exporting or sharing creates a copy at the destination
+                  you choose. Obsidian Ridge Labs does not operate a recording server for Echo Chamber.
                 </p>
                 <p className="mb-4">
                   On Mac, Echo Chamber can request Screen &amp; System Audio Recording permission to
@@ -138,9 +142,10 @@ const PrivacyPolicy: React.FC = () => {
                   the voices of other meeting participants, not just the device owner. Separately,
                   optional Calendar access lets Echo Chamber read event details, including titles,
                   attendees, and agenda items, to enrich a transcript. Both the audio of other
-                  participants and any calendar attendee information are processed and stored only on
-                  the device running Echo Chamber; neither is sent to Obsidian Ridge Labs or any
-                  third party.
+                  participants and any calendar attendee information used by the app are processed
+                  locally. Optional iCloud sync and deliberate export or sharing can move associated
+                  records through those destinations; they are not uploads to an Obsidian Ridge Labs
+                  AI service.
                 </p>
                 <p>
                   If you record a meeting or call, you are responsible for complying with the laws
@@ -152,17 +157,52 @@ const PrivacyPolicy: React.FC = () => {
               <div className="border border-white/10 bg-white/[0.02] p-6 md:p-8">
                 <h3 className="text-lg font-semibold text-white mb-3">Vault</h3>
                 <p className="mb-4">
-                  Manual tracking, statement and receipt import, financial categorization, forecasting,
-                  and AI coaching are designed to run locally. If you enable bank sync, you sign in
+                  Vault is in development. Manual tracking, statement and receipt import, local
+                  categorization, forecasting, and core AI coaching run on-device. If you enable bank sync, you sign in
                   through Plaid's interface. Vault does not see or store your bank username or password.
                   Plaid receives the information needed to connect your institution, and transaction
-                  and balance data passes through Plaid and a secure relay to reach your device.
+                  and balance data passes through Plaid and a relay to reach your device. The relay
+                  handles connection tokens needed for this path. Premium connected categorization
+                  can also send merchant information, transaction amount, currency, and a pseudonymous
+                  identifier for Plaid enrichment. That connection is separate from local calculations
+                  and manual tracking.
                 </p>
                 <p>
-                  Vault also offers anonymous diagnostics that are off by default. If you opt in, they
+                  Vault also offers diagnostics that are off by default. If you opt in, they
                   contain limited event-name counts and a hashed identifier, not account balances,
-                  amounts, merchants, categories, or coach conversations. An optional local AI model
-                  download requests model files without including your financial data.
+                  amounts, merchants, categories, or coach conversations. Financial records are stored
+                  locally without automatic iCloud record sync. Exported CSV and password-encrypted
+                  backups follow the destination you choose.
+                </p>
+              </div>
+
+              <div className="border border-white/10 bg-white/[0.02] p-6 md:p-8">
+                <h3 className="text-lg font-semibold text-white mb-3">Mettle and Cove</h3>
+                <p>
+                  Both apps are in development. Coaching in Mettle, and reflection and search in Cove,
+                  run on the device. Their records use your private iCloud database when available,
+                  with a local fallback if that storage cannot be initialized. This is the current
+                  default, not an in-app opt-in sync switch. Optional Health access uses Apple's
+                  permission controls. Cove can index dates, summaries, and themes in Spotlight;
+                  that setting can be disabled.
+                </p>
+              </div>
+
+              <div className="border border-white/10 bg-white/[0.02] p-6 md:p-8">
+                <h3 className="text-lg font-semibold text-white mb-3">Other apps in development</h3>
+                <p className="mb-4">
+                  Mise, Trove, and Wove offer optional Plus private iCloud record sync, off by
+                  default. Trove and Wove store image files locally; complete cross-device photo
+                  sync is not being claimed. Mise recipe import fetches the page you choose and may
+                  fetch its image from a separate host. Wove can request approximate location for
+                  an Apple WeatherKit forecast, with cached or seasonal context when unavailable.
+                </p>
+                <p>
+                  Memora, Molehill, and Kith currently have no app-managed cloud sync. Their local
+                  records can still appear on enabled system surfaces, such as widgets or Spotlight.
+                  Chosen exports, communication handoffs, and operating-system backups have their
+                  own destinations and settings. Model setup and Apple purchases may require a
+                  connection even when an app's core workflow operates offline.
                 </p>
               </div>
 

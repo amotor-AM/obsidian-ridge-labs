@@ -8,7 +8,7 @@ const origin = 'https://obsidianridgelabs.com';
 const errors = [];
 const warnings = [];
 const expectedAppIds = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith', 'mise'];
-const expectedAppNames = ['ECHO CHAMBER', 'VAULT', 'MOLEHILL', 'COVE', 'WOVE', 'METTLE', 'MEMORA', 'TROVE', 'KITH', 'MISE'];
+const expectedAppNames = ['Echo Chamber', 'Vault', 'Molehill', 'Cove', 'Wove', 'Mettle', 'Memora', 'Trove', 'Kith', 'Mise'];
 const expectedEditorialBlogPostCount = 22;
 const babyLoveGrowthGeneratedPath = path.join(root, 'data', 'babylovegrowth.generated.json');
 const babyLoveGrowthArticles = fs.existsSync(babyLoveGrowthGeneratedPath)
@@ -57,6 +57,10 @@ const textValue = (value) => String(value || '')
   .replace(/\s+/g, ' ')
   .trim();
 
+// Exclude metadata/scripts so JSON-LD cannot pass its own visible-content check.
+const pageContent = (html) => textValue((html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1] || '')
+  .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, ''));
+
 const typesOf = (node) => Array.isArray(node?.['@type']) ? node['@type'] : [node?.['@type']].filter(Boolean);
 const pageTypes = new Set(['WebPage', 'AboutPage', 'CollectionPage', 'ContactPage', 'ProfilePage', 'SearchResultsPage']);
 
@@ -103,15 +107,17 @@ for (const file of htmlFiles) {
   const canonicals = allMatches(html, /<link rel="canonical" href="([^"]*)"\s*\/>/gi);
   const jsonLdScripts = allMatches(html, /<script type="application\/ld\+json" data-seo-jsonld="true">([\s\S]*?)<\/script>/gi);
   const h1Count = allMatches(html, /<h1(?:\s|>)/gi).length;
+  const mainCount = allMatches(html, /<main(?:\s|>)/gi).length;
   const robots = html.match(/<meta name="robots" content="([^"]*)"\s*\/>/i)?.[1] || '';
   const isNoindex = robots.includes('noindex');
-  visibleTextByRoute.set(route, textValue(html));
+  visibleTextByRoute.set(route, pageContent(html));
 
   if (titles.length !== 1) errors.push(`${route}: expected 1 title, found ${titles.length}`);
   if (descriptions.length !== 1) errors.push(`${route}: expected 1 meta description, found ${descriptions.length}`);
   if (canonicals.length !== 1) errors.push(`${route}: expected 1 canonical, found ${canonicals.length}`);
   if (jsonLdScripts.length !== 1) errors.push(`${route}: expected 1 JSON-LD graph, found ${jsonLdScripts.length}`);
   if (h1Count !== 1) errors.push(`${route}: expected 1 h1, found ${h1Count}`);
+  if (mainCount !== 1) errors.push(`${route}: expected 1 main landmark, found ${mainCount}`);
   if (/meta name="keywords"/i.test(html)) errors.push(`${route}: obsolete meta keywords tag is present`);
   if (!/<link rel="icon" type="image\/svg\+xml" sizes="any" href="\/favicon\.svg\?v=2"\s*\/>/i.test(html)) {
     errors.push(`${route}: missing the scalable text-free favicon reference`);
@@ -161,9 +167,10 @@ for (const file of htmlFiles) {
 
       const faq = graph.find((node) => typesOf(node).includes('FAQPage'));
       if (faq) {
-        const visibleText = textValue(html);
+        const visibleText = pageContent(html);
         for (const question of faq.mainEntity || []) {
           if (!visibleText.includes(textValue(question.name))) errors.push(`${route}: FAQ schema question is not visible: ${question.name}`);
+          if (!visibleText.includes(textValue(question.acceptedAnswer?.text))) errors.push(`${route}: FAQ schema answer is missing from the page: ${question.name}`);
         }
       }
     } catch (error) {
@@ -202,11 +209,21 @@ for (const appId of expectedAppIds) {
   if (!sitemapRoutes.has(appRoute)) errors.push(`${appRoute}: app page is missing from sitemap`);
 
   const appHtml = fs.readFileSync(appFile, 'utf8');
+  // Related reading is chosen for the product story, not to meet a link count.
+  // Every article that is offered must exist and belong to this app's cluster.
   const productArticleLinks = new Set(
-    allMatches(appHtml, /href="(\/journal\/[^"#?]+)"/g).map((match) => match[1]),
+    allMatches(appHtml, /href="(\/journal\/[^"#?]+)(?:[?#][^"]*)?"/g).map((match) => match[1]),
   );
-  if (productArticleLinks.size !== 2) {
-    errors.push(`${appRoute}: expected exactly 2 product-specific journal links, found ${productArticleLinks.size}`);
+  for (const articleRoute of productArticleLinks) {
+    if (!indexableRoutes.has(articleRoute) || !sitemapRoutes.has(articleRoute)) {
+      errors.push(`${appRoute}: related journal link has no indexable destination: ${articleRoute}`);
+      continue;
+    }
+    const articleGraph = schemaGraphsByRoute.get(articleRoute) || [];
+    const article = articleGraph.find((node) => typesOf(node).includes('BlogPosting') || typesOf(node).includes('Article'));
+    if (article?.about?.['@id'] !== `${origin}${appRoute}#software`) {
+      errors.push(`${appRoute}: related journal article is not associated with this product: ${articleRoute}`);
+    }
   }
   const schemaSource = appHtml.match(/<script type="application\/ld\+json" data-seo-jsonld="true">([\s\S]*?)<\/script>/i)?.[1];
   if (!schemaSource) {
@@ -233,6 +250,10 @@ if (blogArticleRoutes.length !== expectedBlogPostCount) {
   errors.push(`journal should expose ${expectedBlogPostCount} indexable articles, found ${blogArticleRoutes.length}`);
 }
 
+const journalHtml = fs.readFileSync(path.join(dist, 'journal', 'index.html'), 'utf8');
+const journalIndexLinks = new Set(
+  allMatches(journalHtml, /href="(\/journal\/[^"#?]+)(?:[?#][^"]*)?"/g).map((match) => match[1]),
+);
 const clusterGenres = new Map(expectedAppIds.map((appId) => [appId, new Set()]));
 for (const blogRoute of blogArticleRoutes) {
   const graph = schemaGraphsByRoute.get(blogRoute) || [];
@@ -275,7 +296,12 @@ for (const blogRoute of blogArticleRoutes) {
 
   const aboutId = article.about?.['@id'];
   const appId = typeof aboutId === 'string' ? aboutId.match(/\/apps\/([^/#]+)#software$/)?.[1] : null;
-  if (appId && clusterGenres.has(appId)) clusterGenres.get(appId).add(article.genre);
+  if (appId && clusterGenres.has(appId)) {
+    clusterGenres.get(appId).add(article.genre);
+    if (!journalIndexLinks.has(blogRoute)) {
+      errors.push(`/journal: product-specific article is not linked from the index: ${blogRoute}`);
+    }
+  }
 }
 
 for (const [appId, genres] of clusterGenres) {
@@ -322,44 +348,54 @@ for (const file of redirectHtmlFiles) {
 }
 
 const echoHtml = fs.readFileSync(path.join(dist, 'apps', 'echochamber', 'index.html'), 'utf8');
-for (const expected of [
-  'upload an existing audio or video file',
-  'approximately 4.5% WER',
-  'targeted speech',
-  'not generic normalization',
-  'Apple Intelligence',
-  'Bonsai 1.7B',
-  '$79.99',
-  '6.32% average English WER',
-  '7.44% for OpenAI Whisper large-v3',
+for (const [fact, pattern] of [
+  ['recording workflow', /record(?:ing)?/i],
+  ['transcription workflow', /transcri(?:pt|be)/i],
+  ['audio or video import', /(?:audio|video)[^.]{0,100}import|import[^.]{0,100}(?:audio|video)/i],
+  ['on-device processing', /on[ -]device|on your device|locally/i],
+  ['current purchase offer reference', /App Store/],
 ]) {
-  if (!textValue(echoHtml).toLowerCase().includes(expected.toLowerCase())) errors.push(`/apps/echochamber: missing required product fact: ${expected}`);
+  if (!pattern.test(textValue(echoHtml))) errors.push(`/apps/echochamber: missing required product fact: ${fact}`);
+}
+for (const [claim, pattern] of [
+  ['unsupported product accuracy benchmark', /4\.5%|6\.32%|7\.44%/],
+  ['unverified bundled model offer', /Bonsai 1\.7B|bundled[^.]{0,50}Cedar/i],
+  ['unbounded recording duration', /unlimited recording length/i],
+]) {
+  if (pattern.test(textValue(echoHtml))) errors.push(`/apps/echochamber: contains retired claim: ${claim}`);
 }
 
-const homeText = visibleTextByRoute.get('/') || '';
-if (!homeText.includes('Independent studio · Las Vegas, Nevada')) {
-  errors.push('/: homepage must identify the studio as based in Las Vegas, Nevada');
+const homeHtml = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
+const homeFooterText = textValue(homeHtml.match(/<footer\b[^>]*>([\s\S]*?)<\/footer>/i)?.[1]);
+if (!homeFooterText.includes('Obsidian Ridge Labs') || !homeFooterText.includes('Las Vegas, Nevada')) {
+  errors.push('/: shared footer must identify Obsidian Ridge Labs and its Las Vegas, Nevada location');
 }
 
 const philosophyHtml = fs.readFileSync(path.join(dist, 'philosophy', 'index.html'), 'utf8');
-if (!philosophyHtml.includes('countermeasure-sequence')) errors.push('/philosophy: countermeasure sequence is missing');
+for (const anchor of ['principles', 'boundary-check']) {
+  if (!philosophyHtml.includes(`id="${anchor}"`)) errors.push(`/philosophy: missing ${anchor} anchor`);
+}
+for (const principle of ['Data has gravity.', 'The cloud must earn its place.', 'Offline is the test.', 'Your data belongs to you.']) {
+  if (!(visibleTextByRoute.get('/philosophy') || '').includes(principle)) errors.push(`/philosophy: missing refusal: ${principle}`);
+}
 if (philosophyHtml.includes('ResizeObserver')) errors.push('/philosophy: horizontal-scroll implementation leaked into HTML');
 
 const llmsFull = fs.readFileSync(path.join(dist, 'llms-full.txt'), 'utf8');
 const llmsIndex = fs.readFileSync(path.join(dist, 'llms.txt'), 'utf8');
 for (const expected of [
-  'approximately 4.5% word error rate',
-  'targeted, speech-focused pre-transcription filter',
-  'bundled on-device Bonsai 1.7B',
-  'upload an existing audio or video file',
-  '2.99 US dollars per month',
-  '29.99 US dollars per year',
-  '79.99 US dollars one time',
-  'TXT, for clean plain text',
+  'Echo Chamber',
+  'Obsidian Ridge Labs',
+  'The Boundary Check',
   'Preview documentation',
 ]) {
   if (!llmsFull.toLowerCase().includes(expected.toLowerCase())) errors.push(`llms-full.txt: missing ${expected}`);
 }
+for (const [route, text] of visibleTextByRoute) {
+  if (/Move the intelligence\.\s*Not the private life\./i.test(text)) {
+    errors.push(`${route}: contains retired closing slogan`);
+  }
+}
+
 for (const appName of expectedAppNames) {
   if (!llmsFull.includes(`### ${appName}`)) errors.push(`llms-full.txt: missing product section for ${appName}`);
   if (!llmsIndex.includes(`[${appName}]`)) errors.push(`llms.txt: missing product link for ${appName}`);
@@ -372,6 +408,13 @@ for (const forbidden of [
   '39.99 dollars per year',
   'Echo Chamber exports to eight formats',
   'Unlimited local recording and transcription',
+  'approximately 4.5%',
+  'Bonsai 1.7B',
+  'unlimited recording length',
+  'no-streak philosophy',
+  'Move the intelligence. Not the private life.',
+  'The Obsidian standard',
+  'The Obsidian Ridge Journal',
 ]) {
   if (llmsFull.toLowerCase().includes(forbidden.toLowerCase())) errors.push(`llms-full.txt: contains retired claim: ${forbidden}`);
 }

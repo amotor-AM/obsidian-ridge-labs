@@ -1,0 +1,37 @@
+/* Scoped support-page fixes; no changes to shared navigation or product rules. */
+.help-shell.help-shell--refined .help-shell__layout { align-items: start; }
+.help-shell.help-shell--refined .help-shell__layout--collapsed { grid-template-columns: minmax(0, 1fr); }
+.help-shell.help-shell--refined .help-shell__rail[hidden] { display: none; }
+.help-shell.help-shell--refined .help-shell__layout--collapsed .help-shell__content { width: 100%; max-width: 900px; }
+.help-shell.help-shell--refined .help-shell__layout--collapsed .help-prose { max-width: 780px; }
+.help-shell.help-shell--refined .help-drawer { z-index: 120; }
+
+/* Legal titles share a readable scale and wrap as complete sentences. */
+.legal-page.legal-page--refined .legal-page__header h1 {
+  max-width: none;
+  font-size: clamp(42px, 4.8vw, 69px);
+  line-height: 1.17;
+  letter-spacing: -.045em;
+  text-wrap: pretty;
+  overflow-wrap: normal;
+}
+.legal-page.legal-page--refined .legal-page__header h1 em { display: inline; margin: 0; font: inherit; letter-spacing: inherit; }
+.legal-page.legal-page--refined .legal-page__header > p { max-width: 800px; }
+
+/* One inset controls the recovery screen; it no longer adds two top paddings. */
+.not-found.not-found--refined {
+  display: block;
+  min-height: min(78svh, 760px);
+  padding: 155px 0 90px;
+  overflow: visible;
+}
+.not-found.not-found--refined .section-frame { padding-top: 0; padding-bottom: 0; }
+.not-found.not-found--refined h1 { max-width: 1000px; text-wrap: pretty; overflow-wrap: normal; }
+.not-found.not-found--refined h1 em { display: inline; font: inherit; letter-spacing: inherit; }
+.not-found.not-found--refined .section-frame > p:not(.section-kicker) { margin-top: 25px; }
+
+@media (max-width: 600px) {
+  .legal-page.legal-page--refined .legal-page__header h1 { font-size: clamp(32px, 8vw, 42px); line-height: 1.2; }
+  .not-found.not-found--refined { min-height: 65svh; padding-block: 128px 65px; }
+  .not-found.not-found--refined h1 { font-size: clamp(36px, 9.5vw, 50px); line-height: 1.18; }
+}

@@ -3,46 +3,51 @@ import type { BlogPost } from '../../types';
 export const memoraTroveKithPosts: BlogPost[] = [
   {
     id: 'memora-vs-anki-quizlet-remnote-knowt',
-    title: 'Memora vs Anki, Quizlet, RemNote, and Knowt: Which Flashcard App Fits Your Study Workflow?',
-    seoTitle: 'Memora vs Anki, Quizlet, RemNote & Knowt (2026)',
+    title: "Memora vs Anki, Quizlet, RemNote, and Knowt",
+    seoTitle: "Memora vs Anki, Quizlet, RemNote, and Knowt",
     date: '2026.07.11',
-    modified: '2026.07.11',
-    readTime: '12 MIN READ',
+    modified: "2026.09.28",
+    readTime: "7 MIN READ",
     category: 'FLASHCARD APP COMPARISON',
     tags: ['#AI-FLASHCARDS', '#FSRS', '#PRIVATE-STUDY', '#PDF-TO-FLASHCARDS'],
-    excerpt: 'A source-backed comparison of AI card generation, FSRS scheduling, privacy, editing, sync, and platform tradeoffs across Memora, AnkiMobile, Quizlet, RemNote, and Knowt.',
-    seoDescription: 'Compare Memora, Anki, Quizlet, RemNote, and Knowt for PDF-to-flashcard workflows, FSRS, privacy, editing, and availability.',
+    excerpt: "Memora turns your own material into a local review routine. Compare card creation, scheduling, shared sets, and connected notes before choosing a study app.",
+    seoDescription: "Memora turns your own material into a local review routine. Compare card creation, scheduling, shared sets, and connected notes before choosing a study app.",
     contentType: 'comparison',
     appId: 'memora',
     searchIntent: 'Which is better for turning my notes or PDFs into flashcards: Memora, Anki, Quizlet, RemNote, or Knowt?',
     keyTakeaways: [
-      'Memora defines the privacy-first direction in this comparison: local source-to-card generation, mandatory draft review, FSRS, and local study history on iPhone.',
-      'Memora remains pre-release and does not claim a community library or cross-platform sync; the released alternatives use broader account, upload, desktop, or workspace models.',
-      'Compare the exact source format, AI data path, review controls, scheduler, backup model, and platform before comparing feature counts.',
+      "Memora makes cards locally from your own material, lets you select the drafts to keep, and puts saved cards into an FSRS review schedule.",
+      "Choose Anki for deep customization, Quizlet for shared sets, RemNote for linked notes and PDFs, or Knowt for a broader mix of study sources.",
+      "Check the input and export limits: Memora needs selectable PDF text, and its deck exports do not preserve the review history or schedule."
     ],
     relatedIds: ['best-ai-flashcard-apps-pdf-notes-privacy', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     blocks: [
       {
         type: 'answer',
-        title: 'The short answer',
-        content: 'Memora is the privacy-first design in this comparison. It turns user-supplied text, text-layer PDFs, or one selected photo into editable drafts locally, requires approval before a card enters a deck, and schedules recall with FSRS. Memora remains in development, so this is a product specification rather than a downloadable app or hands-on test. AnkiMobile centers a desktop-linked scheduling ecosystem, Quizlet a shared account service, RemNote a connected notes workspace, and Knowt broad cloud-assisted inputs and study modes.',
+        title: "Choose the route from your material to regular review",
+        content: "Memora is being built for a focused iPhone routine: bring in notes, a photo, or a PDF with selectable text; review the proposed cards; add the ones you want; and return when FSRS schedules the next review. Anki offers extensive control, Quizlet shared sets and study activities, RemNote connected notes and cards, and Knowt broader source support. Memora’s appeal is keeping creation and study together on the phone without uploading the source for generation. It is still in development.",
       },
       {
-        type: 'callout',
-        title: 'Pre-release comparison boundary',
-        variant: 'warning',
-        content: 'Memora is not yet released, has no settled public price, and should not be presented as a tested replacement for an established product. Its entries below describe the current implementation and documented limits. Competitor features and US prices were checked against first-party pages on July 11, 2026 and can change.',
+        "type": "callout",
+        "title": "Memora is in development",
+        "content": "Memora is not available yet. Its description reflects the development build; competitor features and US prices below were checked against the linked documentation in July 2026.",
+        "variant": "note"
       },
       {
         type: 'paragraph',
-        content: 'Flashcard comparisons often collapse several different jobs into one score. Creating a deck quickly is not the same as producing accurate cards. A sophisticated scheduler is not the same as a broad set library. Offline review is not the same as local AI generation. The useful comparison follows one real workflow: bring in study material, generate or write cards, inspect them, practice retrieval, schedule the next review, share or back up the deck, and understand where the source and history are stored.',
+        content: "The useful comparison begins with the material you already have. A page of lecture notes, an annotated PDF, and a classmate’s shared deck ask different things of an app. Then comes the longer job: making the cards clear enough to study and returning to them regularly. Choose a workflow that helps with both, rather than stopping at how quickly it generates the first deck.",
       },
       {
         type: 'comparison',
         caption: 'Feature direction verified from official product documentation on July 11, 2026',
-        columns: ['Primary workflow', 'Source-to-card workflow', 'Scheduling and storage'],
+        columns: [
+          "App",
+          "Primary workflow",
+          "Source-to-card workflow",
+          "Scheduling and storage"
+        ],
         rows: [
-          { label: 'Memora · pre-release', cells: ['Privacy-minded iPhone learners willing to review every generated draft.', 'Typed or pasted notes, PDFs with embedded text, and one selected photo with local Vision OCR. Foundation Models generates drafts on the device, and Memora requires Apple Intelligence to run.', 'FSRS with four recall grades and visible intervals, never paywalled. Current records use local SwiftData; no current iCloud-sync claim.'] },
+          { label: 'Memora · pre-release', cells: ['Privacy-minded iPhone learners willing to review every generated draft.', 'Typed or pasted notes, PDFs with embedded text, and one selected photo with local Vision OCR. Foundation Models generates drafts on the device, and Memora requires Apple Intelligence-capable hardware; some features can continue while the model is unavailable.', 'FSRS with four recall grades and visible intervals, never paywalled. Current records use local SwiftData; no current iCloud-sync claim.'] },
           { label: 'AnkiMobile', cells: ['Desktop-linked scheduling, customization, large decks, and the Anki ecosystem.', 'Manual and import workflows. The official iOS listing describes AnkiMobile as a companion and says some note-type editing and image-occlusion creation require desktop.', 'FSRS and SM-2, optional AnkiWeb sync, offline media, and local import/export. Current US App Store price: $24.99 once.'] },
           { label: 'Quizlet', cells: ['Learners who want shared sets, several study modes, and a familiar classroom ecosystem.', 'Official AI tools accept pasted notes, PDFs, slides, Google Drive files, and mobile photos, then let the learner edit the generated set.', 'Adaptive Learn and practice modes rather than an advertised FSRS workflow. Account-based service with user-controlled set visibility.'] },
           { label: 'RemNote', cells: ['Learners who want connected notes, PDF annotation, flashcards, and a study system in one workspace.', 'Its Learn PDF feature creates summaries, AI flashcards, quizzes, and tutor interactions from PDFs.', 'Supports FSRS as an optional beta scheduler. Synced and local knowledge bases are available, with different backup and collaboration tradeoffs.'] },
@@ -51,11 +56,11 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'The biggest difference is not generation speed. It is what happens before a card is trusted',
+        content: "Make cards you will want to review",
       },
       {
         type: 'paragraph',
-        content: 'Quizlet, RemNote, and Knowt all reduce setup by generating study material from uploaded sources. That is useful, but any model can omit context, flatten an exception, or write a question whose wording gives away the answer. Quizlet explicitly presents generated cards as a first draft that can be edited. Memora takes that draft model further in its current design: no generated card enters a deck until the learner includes it, edits it if necessary, or discards it. The source remains the authority, and generated material is not treated as verified merely because it is fluent.',
+        content: "Memora shows the front and back of each generated draft before you add the batch. Deselect cards you do not want, save the rest, and edit saved cards in the deck. That review step lets you discard duplicates or questions that miss the point before they join your routine. It does not include editing draft text in place or a source-document side pane, so keep the original material available when checking facts.",
       },
       {
         type: 'paragraph',
@@ -63,7 +68,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'FSRS narrows the scheduling gap, but it does not make the products interchangeable',
+        content: "Use a schedule that responds to your recall",
       },
       {
         type: 'paragraph',
@@ -71,28 +76,28 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Spacing and retrieval practice are supported by a substantial learning-science literature. A 2022 Nature Reviews Psychology article summarizes evidence for both strategies, while a systematic review of classroom research found retrieval-practice benefits across varied settings. Those findings justify the study method; they do not prove that one commercial app improves grades, reduces reviews, or produces better outcomes for every learner. No such claim should be attached to Memora before product-specific evidence exists.',
+        content: "Spacing and retrieval practice have support in the learning-science literature linked below. They are useful reasons to build a review routine, but they do not settle which app you should use. Card quality, honest recall ratings, and whether the workflow fits your day still matter. Memora combines local card creation with FSRS so that making the deck and returning to it are part of the same app.",
       },
       {
         type: 'h2',
-        content: 'Privacy requires a data-path comparison, not a lock icon',
+        content: "Decide whether you need a shared study system",
       },
       {
         type: 'paragraph',
-        content: 'Memora’s current core path keeps OCR, generation, decks, and review history on the iPhone, with no Obsidian Ridge Labs account, developer AI server, analytics SDK, or current iCloud sync. Apple documents Foundation Models as access to the on-device language model that powers Apple Intelligence. Memora requires Apple Intelligence and says so at launch rather than selling a reduced version; manual cards and the full FSRS scheduler are free and never paywalled within that requirement.',
+        content: "Memora keeps OCR, generation, decks, and review history on the iPhone, with no app-managed cloud sync. It requires Apple Intelligence-capable hardware. If the model is off or unavailable on eligible hardware, the current build can continue after an advisory; manual study and imports remain available, and source-to-card generation has a deterministic fallback. Similar mode and the tutor require the model.",
       },
       {
         type: 'paragraph',
-        content: 'That does not make every competitor careless. AnkiWeb sync is optional. RemNote documents a local knowledge-base mode that keeps the knowledge base off its servers, while also explaining that its AI features can send note snippets to named third-party providers and that server-synced notes are not end-to-end encrypted. Quizlet lets people control set visibility and documents external processing in its privacy policy. Knowt publishes separate privacy and terms pages. A fair article should link those policies and let readers decide whether collaboration, backup, and cross-device access justify a different boundary.',
+        content: "AnkiWeb sync is optional, and RemNote offers local knowledge bases as well as a synced service. Quizlet’s shared sets can be valuable when your class already uses them; Knowt supports a broad range of submitted sources. Each has its own AI and storage disclosures. Memora keeps its current study archive local, which suits personal material but gives up the shared workspace and automatic cross-device continuity of a service.",
       },
       {
         type: 'h2',
-        content: 'How Memora differs from the available approaches',
+        content: "Match the app to your study habits",
       },
       {
         type: 'list',
         content: [
-          'MEMORA: Designed for local iPhone generation, explicit card approval, FSRS, local study history, and useful fallback behavior. It remains pre-release.',
+          'MEMORA: Designed for local iPhone generation, draft selection, FSRS, local study history, and useful fallback behavior. It remains pre-release.',
           'ANKIMOBILE TRADEOFF: Deep customization, large collections, optional sync, and desktop-assisted authoring come with a more complex desktop-linked workflow.',
           'QUIZLET TRADEOFF: Shared sets, classroom activities, and multi-device access use an account-based community and cloud processing model.',
           'REMNOTE TRADEOFF: Notes, PDF annotations, AI study tools, and flashcards can share one workspace, with separate synced-data and external AI boundaries.',
@@ -102,7 +107,10 @@ export const memoraTroveKithPosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'Can Memora replace AnkiMobile?', answer: 'Memora is designed for a different priority: private source-to-card creation, mandatory draft review, and FSRS on iPhone. It remains pre-release. AnkiMobile uses a desktop-linked ecosystem with extensive customization and large-deck support, so the products have different workflow and data boundaries.' },
+          {
+            "question": "Can Memora replace AnkiMobile?",
+            "answer": "Memora is being built for a focused iPhone workflow from your source material to selected cards and FSRS review. Anki offers a larger desktop-linked ecosystem and deeper customization. Memora is not yet released, and its current Anki import is limited to compatible legacy text cards without media."
+          },
           { question: 'Can Memora turn a scanned PDF into flashcards?', answer: 'Not as an entire scanned document in the current implementation. The PDF importer needs embedded text. A learner can select one image for local Vision OCR, but batch scanned-PDF OCR and an in-app document camera are not current claims.' },
           { question: 'Does RemNote have an offline or local option?', answer: 'Yes. RemNote documents local knowledge bases that stay off RemNote’s servers. The tradeoff is that the user becomes responsible for backups and loses server-backed multi-device access for that knowledge base. AI features have their own third-party processing disclosures.' },
           { question: 'Does using FSRS guarantee that I will remember more?', answer: 'No. FSRS estimates when a card should return based on review history and chosen recall grades. Learning also depends on card quality, honest ratings, prior knowledge, feedback, consistency, and the material itself.' },
@@ -130,33 +138,33 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: 'See Memora’s current product boundary, source formats, FSRS workflow, and pre-release status.',
+        content: "Explore Memora’s source-to-card workflow and FSRS review. It is being built for the material you need to learn, with generation and study kept on your iPhone.",
         ctaAppId: 'memora',
       },
     ],
   },
   {
     id: 'best-ai-flashcard-apps-pdf-notes-privacy',
-    title: '5 Best AI Flashcard Apps for PDFs and Notes in 2026: Privacy, FSRS, and Editing Compared',
-    seoTitle: '5 Best AI Flashcard Apps for PDFs & Notes (2026)',
+    title: "Five Flashcard Apps for Turning Notes into a Study Routine",
+    seoTitle: "Five Flashcard Apps for Turning Notes into a Study Routine",
     date: '2026.07.11',
-    modified: '2026.07.11',
-    readTime: '11 MIN READ',
+    modified: "2026.09.28",
+    readTime: "7 MIN READ",
     category: 'AI FLASHCARD LIST',
     tags: ['#AI-STUDY-APPS', '#FLASHCARD-GENERATOR', '#FSRS', '#OFFLINE-STUDY'],
-    excerpt: 'Five distinct flashcard workflows compared by source support, human review, scheduling, privacy, platforms, and current availability, with Memora leading the privacy-first category.',
-    seoDescription: 'Compare five AI flashcard apps for PDFs and notes by source support, draft review, FSRS, privacy, pricing, and current availability.',
+    excerpt: "Compare Memora, Anki, Quizlet, RemNote, and Knowt by the material you start with, the cards you can edit, and the way you want to review.",
+    seoDescription: "Compare Memora, Anki, Quizlet, RemNote, and Knowt by the material you start with, the cards you can edit, and the way you want to review.",
     contentType: 'listicle',
     appId: 'memora',
     searchIntent: 'What is the best AI flashcard app for turning PDFs, notes, or photos into editable cards?',
     keyTakeaways: [
-      'Memora leads this guide for private, review-gated card generation on iPhone, with the important limitation that it remains pre-release.',
-      'Released services accept broader inputs, offer larger ecosystems, or support more platforms, but use different account, upload, and sync boundaries.',
-      'AI-generated cards should be treated as drafts, and learning-science evidence for retrieval practice does not validate every generated question or product claim.',
+      "Memora connects local card generation with an FSRS review schedule. Drafts are selected before adding; saved cards can then be edited.",
+      "Your source format matters. Memora handles selectable-text PDFs and individual photos, rather than whole scanned PDFs or lecture videos.",
+      "Test a deck export before committing. Memora exports card content and images, but a re-import starts a new review schedule."
     ],
     relatedIds: ['memora-vs-anki-quizlet-remnote-knowt', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     listItems: [
-      { name: 'Memora · pre-release', description: 'The privacy-first option for review-gated, on-device flashcard generation and FSRS on iPhone.' },
+      { name: 'Memora · pre-release', description: "Local card generation, draft selection, and FSRS review for your own study material. In development." },
       { name: 'AnkiMobile', description: 'A desktop-linked scheduling ecosystem with FSRS, large decks, and extensive control.' },
       { name: 'Quizlet', description: 'A large shared-set ecosystem with classroom familiarity and varied study activities.' },
       { name: 'RemNote', description: 'A connected workspace for notes, PDFs, linked knowledge, and flashcards.' },
@@ -165,21 +173,26 @@ export const memoraTroveKithPosts: BlogPost[] = [
     blocks: [
       {
         type: 'answer',
-        title: 'Memora leads on privacy and review control',
-        content: 'Memora is the Obsidian Ridge Labs choice for learners who want source-to-card generation, mandatory draft approval, FSRS, and study history to remain on an iPhone. It is still in development, so this is an architectural recommendation rather than a claim about released performance. The available alternatives offer broader ecosystems, shared content, connected workspaces, or more input formats through different data paths.',
+        title: "The deck is only the beginning",
+        content: "Memora is being built to take your notes, photos, and text-based PDFs into a local flashcard routine on iPhone, with draft selection and FSRS scheduling. Anki gives you more control over a long-lived study system; Quizlet makes shared sets central; RemNote joins notes and cards; Knowt accepts a wider range of class and web material. Choose an app you can keep using after the first batch of cards is made.",
       },
       {
-        type: 'callout',
-        title: 'How this list was built',
-        variant: 'note',
-        content: 'The order reflects this site’s privacy-first criteria, not an invented performance score. We compared official source support, the ability to edit generated cards, scheduling, storage and AI disclosures, platform breadth, and current pricing. No fake trial, rating, or hands-on claim is included. Features and US pricing were checked July 11, 2026.',
+        "type": "callout",
+        "title": "About this selection",
+        "content": "This guide compares source support, card review, scheduling, and sharing. Memora is our app and remains in development. The linked competitor documentation and US prices were checked in July 2026.",
+        "variant": "note"
       },
       {
         type: 'comparison',
         caption: 'Five flashcard products for five different priorities',
-        columns: ['Why it makes the list', 'Important tradeoff', 'Availability'],
+        columns: [
+          "App",
+          "Why it makes the list",
+          "Important tradeoff",
+          "Availability"
+        ],
         rows: [
-          { label: 'Memora', cells: ['Local generation from bounded sources, mandatory draft review, FSRS, local history, and no current account or AI server.', 'Text-layer PDFs only, one selected photo at a time, Apple-Intelligence limits, no current iCloud sync, and no production track record.', 'In development for iPhone on iOS 26; pricing and release date are not settled.'] },
+          { label: 'Memora', cells: ['Local generation from bounded sources, draft selection before adding, FSRS, local history, and no current account or AI server.', 'Text-layer PDFs only, one selected photo at a time, Apple-Intelligence limits, no current iCloud sync, and no production track record.', 'In development for iPhone on iOS 26; pricing and release date are not settled.'] },
           { label: 'AnkiMobile', cells: ['FSRS and SM-2, large decks, rich media, search, optional sync, and a mature desktop companion.', 'Steeper setup; the official iOS listing says some authoring and image-occlusion creation still require desktop.', 'Available on the US App Store for $24.99 once as checked July 11, 2026.'] },
           { label: 'Quizlet', cells: ['AI generation from notes, PDFs, slides, Drive, and mobile photos plus shared sets, Learn, tests, and games.', 'Its account-based community and service model is different from a local-only private archive.', 'Available with free access and paid annual tiers advertised from $35.99/year.'] },
           { label: 'RemNote', cells: ['PDF annotation, linked notes, AI cards and quizzes, and optional FSRS in one knowledge system.', 'More workspace complexity; AI and synced-data paths require reading its detailed privacy documentation.', 'Available; current annual plans advertise Free, $96 Pro, and $216 Pro with AI.'] },
@@ -188,15 +201,15 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: '1. Memora: private, review-gated generation on iPhone',
+        content: "1. Memora: your material, followed by a review routine",
       },
       {
         type: 'paragraph',
-        content: 'Memora’s in-development workflow begins with material the learner supplies: pasted or typed notes, a PDF with embedded text, or one photo selected for local Vision OCR. Apple Foundation Models generates source-grounded drafts on supported devices; a local NaturalLanguage extractor can create standard definition and cloze drafts when Apple Intelligence is unavailable. Every proposed card must be included, corrected, or discarded before it enters the deck.',
+        content: "Memora turns a bounded passage of notes, selectable PDF text, or text recognized from a photo into a small batch of card drafts on the iPhone. Review the front and back, deselect what you do not need, and add the rest. You can edit the saved cards afterward. The current generation flow uses up to 4,000 source characters and proposes up to 12 cards at a time, so work through longer material in sections.",
       },
       {
         type: 'paragraph',
-        content: 'Approved cards enter an FSRS review loop with Again, Hard, Good, and Easy grades, visible next intervals, relearning, and undo. Basic, cloze, and image-occlusion cards can extend into Match, Listen, practice tests, a share format that excludes the sender’s review history, and an Apple-Intelligence-only tutor grounded in the current deck. Scanned PDFs are not OCR’d as whole documents, there is no current iCloud sync claim, and no release date or price is final.',
+        content: "Saved cards use FSRS to schedule the next review from your recall grades. Match, Listen, and manual image cards offer other ways to practice; Plus adds Test, Tutor, and automatic image-label detection. Compatible Anki imports bring in legacy text cards, without media or newer .anki21b collections. Exports include deck content and images but exclude scheduling and review history. Memora remains in development.",
       },
       {
         type: 'h2',
@@ -248,7 +261,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'How to choose without overbuying',
+        content: "Try one source and one week of review",
       },
       {
         type: 'list',
@@ -265,7 +278,10 @@ export const memoraTroveKithPosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'What is the best AI flashcard app for a PDF?', answer: 'Memora is the privacy-first design in this guide for text-layer PDFs processed locally on iPhone, with mandatory review before generated cards enter a deck. It remains pre-release. Available account-based products accept broader source types, while a scanned PDF may still require a separate OCR workflow.' },
+          {
+            "question": "Can Memora use the PDF I already have?",
+            "answer": "The current importer needs selectable text inside the PDF. It does not read a whole scanned PDF through OCR. You can select an individual photo for local text recognition, then review the proposed cards before adding them. Memora is still in development."
+          },
           { question: 'Which flashcard apps use FSRS?', answer: 'Anki and RemNote officially document FSRS support. Memora also implements FSRS in its current development build. Verify the default status and available settings in the version you actually use.' },
           { question: 'Should I let AI make all of my flashcards?', answer: 'AI can reduce setup, but generated cards should be reviewed against the source. The learner should correct false premises, vague questions, missing exceptions, and answers that are too broad before studying them.' },
           { question: 'Does offline storage automatically make study data safe?', answer: 'No. Local storage reduces one data-transfer path but still depends on device access, operating-system protections, backups, exports, and deletion. It is not a substitute for a security audit or a backup plan.' },
@@ -294,53 +310,58 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: 'Review Memora’s exact source limits, local processing path, fallback behavior, and pre-release status before deciding whether it belongs in your future study workflow.',
+        content: "Explore Memora’s card creation and study modes. Follow its development if you want to go from your own notes to regular review without uploading the source to an AI service.",
         ctaAppId: 'memora',
       },
     ],
   },
   {
     id: 'trove-vs-home-inventory-apps',
-    title: 'Trove vs Under My Roof, HomeZada, Itemtopia, NAIC, and Sortly for Home Inventory',
-    seoTitle: 'Trove vs Home Inventory Apps for Insurance (2026)',
+    title: "Trove vs Home Inventory Apps: Capture, Find, and Keep the Evidence",
+    seoTitle: "Trove vs Home Inventory Apps: Capture, Find, and Keep the Evidence",
     date: '2026.07.11',
-    modified: '2026.07.11',
-    readTime: '13 MIN READ',
+    modified: "2026.09.28",
+    readTime: "7 MIN READ",
     category: 'HOME INVENTORY COMPARISON',
     tags: ['#HOME-INVENTORY', '#RENTERS-INSURANCE', '#WARRANTY-TRACKER', '#PRIVATE-AI'],
-    excerpt: 'A fair comparison of household inventory scope, capture, privacy, exports, maintenance, insurance context, platforms, and pricing, with Trove clearly labeled pre-release.',
-    seoDescription: 'Compare Trove, Under My Roof, HomeZada, Itemtopia, NAIC, and Sortly for private capture, insurance records, export, backup, and pricing.',
+    excerpt: "Compare Trove with Under My Roof, HomeZada, Itemtopia, NAIC, and Sortly by how you capture belongings, find receipts, and keep a usable backup.",
+    seoDescription: "Compare Trove with Under My Roof, HomeZada, Itemtopia, NAIC, and Sortly by how you capture belongings, find receipts, and keep a usable backup.",
     contentType: 'comparison',
     appId: 'trove',
     searchIntent: 'How does pre-release Trove compare with Under My Roof, HomeZada, Itemtopia, NAIC, and Sortly for private capture, insurance documentation, export, and backup?',
     keyTakeaways: [
-      'Trove defines the privacy-first direction in this comparison through reviewable on-device extraction, local inventory questions, and a narrow household evidence workflow.',
-      'Trove remains pre-release. PDF reporting, private iCloud sync, and multi-home organization are planned rather than available.',
-      'A useful home inventory needs a backup or export strategy before a loss; local-only storage without a second copy is not enough preparation.',
+      "Trove’s capture workflow proposes item details from photos, receipts, and labels, with a review step before you rely on the record.",
+      "Free archive export and restore include available local photos. Plus adds formatted reports, a selected-item claim report, multiple homes, and record sync.",
+      "Choose a broader home-management or business system if maintenance projects, teams, or stock quantities are the main job."
     ],
     relatedIds: ['best-home-inventory-apps-insurance-privacy', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     blocks: [
       {
         type: 'answer',
-        title: 'The short answer',
-        content: 'Trove is the Obsidian Ridge Labs choice for a private iPhone and iPad inventory built around reviewable on-device extraction, local household questions, and portable evidence. It remains pre-release, and its PDF report, multi-home organization, and private iCloud sync are still planned. Released products provide broader home management, cross-platform catalogs, regulator-supported checklists, or business inventory through different storage and service models.',
+        title: "Make the record useful when you need it",
+        content: "Trove is being built to turn photos, receipts, and labels into household records you review, search, and back up with the photos included. That suits someone who wants less typing and an easier way to find an item’s details later. Under My Roof adds extensive Apple home management; HomeZada covers the wider property; Itemtopia supports flexible catalogs; NAIC offers a free starting point; Sortly brings business inventory tools. Trove remains in development.",
       },
       {
-        type: 'callout',
-        title: 'What an inventory can and cannot do',
-        variant: 'warning',
-        content: 'A home inventory can help document possessions, support a coverage conversation, and organize information requested during a claim. It does not determine policy coverage, establish replacement cost, appraise property, or guarantee that an insurer accepts a value or pays a claim. Read the policy and ask the insurer or licensed professional about coverage questions.',
+        "type": "callout",
+        "title": "An inventory supports the record",
+        "content": "Photos, receipts, and serial numbers can help document what you own. An app does not decide coverage, appraise an item, or guarantee a claim payment.",
+        "variant": "note"
       },
       {
         type: 'paragraph',
-        content: 'The Insurance Information Institute recommends recording a description, where an item was purchased, make and model, price, serial number, and other claim-relevant details; it also recommends adding significant purchases while information and receipts are fresh. The National Association of Insurance Commissioners says an accurate inventory gives a carrier information that can help settle claims. Those recommendations explain why photos, receipts, serials, values, rooms, and export matter. They do not endorse any app in this comparison.',
+        content: "Think about the last time you needed a serial number, a receipt, or a warranty date. It may have been in a drawer, an email, and a photo you could not find. A home inventory brings those pieces together. The Insurance Information Institute and NAIC recommend keeping records of belongings; the practical question here is which app makes that habit easier to start and maintain.",
       },
       {
         type: 'comparison',
         caption: 'Home inventory approaches verified from first-party pages on July 11, 2026',
-        columns: ['Primary use', 'Notable scope', 'Storage, price, or boundary'],
+        columns: [
+          "App",
+          "Primary use",
+          "Notable scope",
+          "Storage, price, or boundary"
+        ],
         rows: [
-          { label: 'Trove · pre-release', cells: ['Private Apple-device capture with less manual field entry.', 'Items, rooms, photos, receipts, serials, values, warranty context, local search, Ask Trove, and CSV export.', 'Current catalog is local SwiftData. PDF, private iCloud, and multi-home remain planned. No settled public price.'] },
+          { label: 'Trove · pre-release', cells: ['Private Apple-device capture with less manual field entry.', 'Items, rooms, photos, receipts, serials, values, warranty context, local search, Ask Trove, and CSV export.', 'Local store with optional Plus iCloud record sync; photos are separate files. Free photo-inclusive archive backup; paid reports. No verified public release.'] },
           { label: 'Under My Roof', cells: ['Apple households wanting a mature, detailed home-management database.', 'Belongings, documents, home details, maintenance, renovations, collections, policies, claims, moving, and reports.', 'Developer says data stays on device or optional personal iCloud. $34.99/year or $4.99/month in the US.'] },
           { label: 'HomeZada', cells: ['Homeowners wanting inventory alongside maintenance, projects, finances, and future asset planning.', 'Room-based inventory, documents, reports, AI photo recognition, replacement forecasts, and broader home management.', 'Essentials advertised free; Premium $99/year or $15.95/month. Account-based multi-user service.'] },
           { label: 'Itemtopia', cells: ['People cataloging homes, collections, properties, services, or business assets across platforms.', 'Custom records for items, receipts, warranties, values, documents, maintenance, and sharing.', 'Available on iOS, Android, and Apple-silicon Mac. Free to try; current regional pricing is shown inside the app.'] },
@@ -350,15 +371,15 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Trove’s proposed advantage is reviewable capture, not automatic truth',
+        content: "Trove: capture the evidence while it is in front of you",
       },
       {
         type: 'paragraph',
-        content: 'Trove’s current development flow can photograph an item, receipt, barcode, serial label, or supporting evidence. Apple Vision handles local OCR, barcode reading, and receipt structure. On supported devices, Apple Foundation Models can propose brand, model, serial, category, and value details. Every proposed field remains editable because reflections, damaged labels, partial receipts, product variants, and model output can all be wrong. A deterministic fallback and manual entry keep the catalog useful when Apple Intelligence is unavailable.',
+        content: "In Trove’s development build, photograph an item, receipt, barcode, or serial label and review the details proposed by local recognition. Correct the fields while you still have the item and source image in front of you. Later, search the inventory or ask a question using the saved records. Trove requires Apple Intelligence at launch; its generation fallbacks do not make unsupported devices eligible.",
       },
       {
         type: 'paragraph',
-        content: 'That focus differs from a general business scanner. Sortly can create and print labels, track quantities, integrate team workflows, and generate operational reports. Trove is being designed around household evidence, rooms, warranties, remembered value context, and questions such as “Which electronics in the office have serial numbers?” It should not claim inventory counts, purchasing workflows, or collaboration depth that belong to business systems.',
+        content: "That household workflow differs from an operational inventory system. Sortly’s labels, quantities, and team tools serve stock and equipment tracking. Trove concentrates on the evidence attached to a belonging: where it lives, what it is, the receipt, serial number, photos, and warranty context. Choose the app that matches the record you will actually need.",
       },
       {
         type: 'h2',
@@ -370,7 +391,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Trove’s narrower proposition is a calmer inventory built around on-device extraction and local questions. Its current catalog is local, but private iCloud sync is only planned. That means the development build has a material resilience tradeoff: until the user exports or another backup path exists, loss of the device can also mean loss of the inventory. Privacy and disaster readiness are both design requirements; one should not erase the other.',
+        content: "Trove’s free archive export and restore include the inventory relationships and available local photos, so the backup is more than a list of item names. Plus adds formatted reports, selected-item claim reports, multiple homes, and optional private iCloud record sync. Photos are separate files; keep a photo-inclusive archive rather than assuming record sync has backed up every image.",
       },
       {
         type: 'h2',
@@ -382,7 +403,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Itemtopia positions itself for homes, collections, properties, business assets, services, receipts, and warranties across iOS, Android, and Mac. Its flexibility is useful when the same household record needs custom fields or shared access. The official pricing page intentionally directs people to in-app regional pricing, so a comparison should not copy an old subscription number from a review. It should also avoid asserting a storage or encryption model without linking Itemtopia’s current privacy documentation.',
+        content: "Itemtopia supports homes, collections, properties, business assets, services, receipts, and warranties across iOS, Android, and Mac. It is worth considering when you need flexible fields or shared access, particularly in a household using more than Apple devices. Prices are shown in the regional purchase flow; check the linked privacy and export documentation alongside the features you need.",
       },
       {
         type: 'h2',
@@ -394,7 +415,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'A practical decision checklist',
+        content: "Build one complete record before cataloging a room",
       },
       {
         type: 'list',
@@ -413,8 +434,8 @@ export const memoraTroveKithPosts: BlogPost[] = [
         content: [
           { question: 'What should I include in a home inventory for insurance?', answer: 'Commonly useful details include a photo, description, room, make, model, serial number, purchase location and date, price, receipt, and relevant warranty or supporting documents. Ask the insurer what it expects and keep high-value items and policy limits in view.' },
           { question: 'Can Trove tell me what my belongings are worth?', answer: 'Trove can store user-entered values and propose context for review, but it is not an appraisal service and does not determine replacement cost or policy coverage. Receipts, professional appraisals where appropriate, market evidence, and insurer instructions remain authoritative.' },
-          { question: 'Does Trove send warranty-expiration notifications?', answer: 'Warranty dates and dashboard context are part of the current design, but a local notification scheduler has not been verified. Proactive alerts should not be promised until that implementation is confirmed.' },
-          { question: 'Can I submit a Trove PDF directly to an insurer?', answer: 'PDF reporting is planned rather than currently implemented. Even after release, an export would be supporting documentation, not a guarantee of acceptance or payment. Follow the carrier’s requested claim process and forms.' },
+          { question: 'Does Trove send warranty-expiration notifications?', answer: "The development build can schedule local warranty reminders, usually 30 days before expiry, subject to notification permission and the saved date. Review any date extracted from a receipt before relying on a reminder." },
+          { question: 'Can I submit a Trove PDF directly to an insurer?', answer: "Plus PDF reporting and a selected-item claim report are implemented in the development build. Trove is not yet released, and a report is supporting documentation, not a guarantee of insurer acceptance or payment." },
         ],
       },
       {
@@ -437,33 +458,33 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: 'Explore Trove’s current capture design, local storage boundary, implemented CSV path, and planned export and sync features.',
+        content: "Explore Trove’s capture, search, and photo-inclusive archive. It is being built to keep the details of your belongings within reach when a receipt or serial number suddenly matters.",
         ctaAppId: 'trove',
       },
     ],
   },
   {
     id: 'best-home-inventory-apps-insurance-privacy',
-    title: '6 Best Home Inventory Apps for Insurance, Receipts, Warranties, and Privacy in 2026',
-    seoTitle: '6 Best Home Inventory Apps for Insurance (2026)',
+    title: "Six Home Inventory Apps for Receipts, Records, and Backup",
+    seoTitle: "Six Home Inventory Apps for Receipts, Records, and Backup",
     date: '2026.07.11',
-    modified: '2026.07.11',
-    readTime: '12 MIN READ',
+    modified: "2026.09.28",
+    readTime: "8 MIN READ",
     category: 'HOME INVENTORY LIST',
     tags: ['#HOME-INVENTORY-APP', '#INSURANCE-PREP', '#RECEIPTS', '#HOME-PRIVACY'],
-    excerpt: 'Six home inventory approaches matched to six real needs, from a free insurance baseline and private Apple workflow to whole-home management and business-style inventory.',
-    seoDescription: 'Compare six home inventory apps for insurance records, receipts, warranties, privacy, export, backup, and current availability.',
+    excerpt: "Choose a home inventory by what you need to record and recover. Compare Trove, Under My Roof, NAIC, HomeZada, Itemtopia, and Sortly.",
+    seoDescription: "Choose a home inventory by what you need to record and recover. Compare Trove, Under My Roof, NAIC, HomeZada, Itemtopia, and Sortly.",
     contentType: 'listicle',
     appId: 'trove',
     searchIntent: 'What is the best home inventory app for documenting belongings, receipts, warranties, and insurance records?',
     keyTakeaways: [
-      'Trove leads this guide for privacy-first, reviewable capture and local household inventory questions, with a clear pre-release boundary.',
-      'The best home inventory is one you can keep current, export, and recover after the device or home is lost.',
-      'Released products provide different combinations of Apple privacy, insurance guidance, whole-home management, cross-platform records, and business mechanics.',
+      "Trove reduces manual entry by proposing fields from item photos, receipts, and labels. You review the details before relying on them.",
+      "Its development build includes free photo-inclusive archive export and restore; reports, multiple homes, and record sync are Plus features.",
+      "A complete inventory needs a protected second copy. A report can support an insurance conversation, but it does not determine coverage or claim acceptance."
     ],
     relatedIds: ['trove-vs-home-inventory-apps', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     listItems: [
-      { name: 'Trove · pre-release', description: 'The privacy-first option for reviewable on-device capture and local household inventory questions.' },
+      { name: 'Trove · pre-release', description: "Reviewed item and receipt capture with search and free photo-inclusive archive backup. In development." },
       { name: 'Under My Roof', description: 'A detailed Apple home-management database across iPhone, iPad, and Mac.' },
       { name: 'NAIC Home Inventory', description: 'A free regulator-supported insurance-preparedness checklist and inventory.' },
       { name: 'HomeZada', description: 'Inventory plus maintenance, projects, finances, and long-term home planning.' },
@@ -473,25 +494,30 @@ export const memoraTroveKithPosts: BlogPost[] = [
     blocks: [
       {
         type: 'answer',
-        title: 'The best home inventory app depends on what must survive a loss',
-        content: 'Trove is the privacy-first Obsidian Ridge Labs design in this guide for reviewable on-device capture, local records, and bounded inventory questions. It is still in development and is not claim-ready. Released products offer different combinations of optional iCloud, regulator-supported guidance, whole-home planning, cross-platform catalogs, and business inventory mechanics.',
+        title: "Choose the record you will be able to maintain",
+        content: "Trove is being built for reviewed photo and receipt capture, local inventory questions, and a backup that includes the available photos. Under My Roof is a broader Apple home-management system, NAIC offers a free inventory starting point, HomeZada manages the property as well as its contents, Itemtopia supports flexible records, and Sortly suits stock and equipment. Start with capture and recovery: can you make a useful record, and get it back when you need it?",
       },
       {
-        type: 'callout',
-        title: 'Our ranking method',
-        variant: 'note',
-        content: 'The order reflects this site’s privacy-first criteria and product focus. It is based on official feature, pricing, platform, and privacy pages checked July 11, 2026. We did not invent tests, star ratings, adjuster approvals, or security scores. Insurance guidance comes from NAIC and the Insurance Information Institute.',
+        "type": "callout",
+        "title": "About this selection",
+        "content": "The apps are grouped by their main job, from household records to operational inventory. Trove is our app and is still in development. Competitor details were checked against the linked sources in July 2026.",
+        "variant": "note"
       },
       {
         type: 'paragraph',
-        content: 'A home inventory is useful before a fire, theft, severe weather event, move, warranty problem, estate transition, or coverage review. The difficult part is rarely generating a polished report after the fact. It is remembering every item, proving ownership, locating serial numbers, and reconstructing values when the evidence may have been damaged with the property. That is why capture speed, source photos, receipt attachment, correction, export, and resilient backup matter more than decorative dashboards.',
+        content: "Start with an appliance you bought recently. Can you put its receipt, model, serial number, warranty date, and photo in one place without turning it into a weekend project? Then try exporting that record with its evidence. Those two tasks tell you more about an inventory app than a polished dashboard does. Once the workflow is easy enough to repeat, work through the rest of the room.",
       },
       {
         type: 'comparison',
         caption: 'Six home inventory options by primary job',
-        columns: ['Best for', 'Key evidence workflow', 'Important limitation or question'],
+        columns: [
+          "App",
+          "Best for",
+          "Key evidence workflow",
+          "Important limitation or question"
+        ],
         rows: [
-          { label: 'Trove', cells: ['Upcoming local Apple capture.', 'Reviewable OCR/barcode/receipt extraction, local records, warranty/value context, Ask Trove, and implemented CSV.', 'Unreleased; PDF, iCloud, and multi-home are planned, not current.'] },
+          { label: 'Trove', cells: ['Upcoming local Apple capture.', 'Reviewable OCR/barcode/receipt extraction, local records, warranty/value context, Ask Trove, and implemented CSV.', 'Unreleased; Plus reports, multiple homes, and iCloud record sync are implemented. Photo-inclusive archive export is free.'] },
           { label: 'Under My Roof', cells: ['Private Apple home management.', 'Photos, receipts, documents, serials, warranties, maintenance, claims, reports, multiple homes, and optional personal iCloud.', 'Subscription; broader feature set can be more than a simple inventory needs.'] },
           { label: 'NAIC', cells: ['Free insurance preparedness.', 'Photos, rooms/categories, barcode capture, export, disaster tips, and claim guidance.', 'Narrower than full home-management suites; verify current store compatibility and privacy details.'] },
           { label: 'HomeZada', cells: ['Whole homeowner lifecycle.', 'Inventory plus documents, maintenance, remodels, finances, reports, and AI-assisted home planning.', 'Account-based breadth and paid tiers may be unnecessary for a contents-only list.'] },
@@ -501,15 +527,15 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: '1. Trove: private, reviewable capture for household evidence',
+        content: "1. Trove: capture the details and keep the photos with them",
       },
       {
         type: 'paragraph',
-        content: 'Trove is being built for iPhone and iPad around the friction that causes inventories to remain unfinished. A person photographs an item, receipt, barcode, or serial label; Apple Vision reads local text and structure; Apple Foundation Models can propose structured details on supported devices; and the person corrects every field before it joins a local SwiftData catalog. Ask Trove answers bounded questions from that catalog, while a deterministic fallback preserves manual inventory and simpler assistance without Apple Intelligence.',
+        content: "Trove’s development build reads item photos, receipts, barcodes, and labels locally, then asks you to review the proposed details. The saved record holds the evidence with the item, and Ask Trove can use inventory context to help find what you need. This is useful for the records that are otherwise scattered across camera rolls and paperwork. Apple Intelligence is required on supported iPhone and iPad hardware.",
       },
       {
         type: 'paragraph',
-        content: 'CSV export exists in the development build. A formatted PDF report, private iCloud sync, multi-home organization, and associated Plus packaging remain planned. Warranty dates can be stored and surfaced, but proactive local expiry notifications have not been verified. Until those paths ship, Trove is a promising specification, not an insurance-ready product, released alternative, or safe place for the only copy of a household record.',
+        content: "The free archive can export and restore the inventory with available local photos. Plus adds PDF and CSV reports, a selected-item claim report, multiple homes, and optional private iCloud record sync. Local warranty reminders use the dates you record and require notification permission. Trove is not yet released, and its reports do not guarantee an insurer will accept or pay a claim.",
       },
       {
         type: 'h2',
@@ -557,7 +583,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Itemtopia deliberately keeps current subscription details inside the Apple and Google purchase flow because currencies vary. A trustworthy list should say “free to try; verify in-app pricing” rather than publish an unverified number. Likewise, compare its current privacy, export, collaboration, and deletion documentation directly instead of inferring those details from platform availability.',
+        content: "Itemtopia shows current subscription details inside the Apple and Google purchase flow. Try a record with the fields, attachments, and sharing you need before moving a larger collection. Check what its export includes and how the people sharing the inventory can access it.",
       },
       {
         type: 'h2',
@@ -573,7 +599,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'What to record, whichever app you choose',
+        content: "What makes an item record useful later",
       },
       {
         type: 'list',
@@ -617,52 +643,61 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: 'See what Trove currently implements, what remains planned, and why its extracted fields always stay reviewable.',
+        content: "See how Trove brings photos, receipts, and labels into an item record you can find and back up. The app is in development for iPhone and iPad.",
         ctaAppId: 'trove',
       },
     ],
   },
   {
     id: 'kith-vs-personal-crm-apps',
-    title: 'Kith vs Hippo, Dex, Monica, and Covve: Which Personal CRM Fits Friends and Family?',
-    seoTitle: 'Kith vs Hippo, Dex, Monica & Covve (2026)',
+    title: "Kith vs Hippo, Dex, Monica, and Covve",
+    seoTitle: "Kith vs Hippo, Dex, Monica, and Covve",
     date: '2026.07.11',
-    modified: '2026.07.11',
-    readTime: '12 MIN READ',
+    modified: "2026.09.28",
+    readTime: "7 MIN READ",
     category: 'PERSONAL CRM COMPARISON',
     tags: ['#PERSONAL-CRM', '#RELATIONSHIP-REMINDER', '#FRIENDS-AND-FAMILY', '#PRIVATE-AI'],
-    excerpt: 'Compare a humane pre-release relationship manager with released privacy-first, self-hosted, integrated-networking, and professional personal CRM options.',
+    excerpt: "Compare personal relationship apps by reminders, saved context, message preparation, and connected accounts. Kith focuses on the conversation you want to have next.",
     contentType: 'comparison',
     appId: 'kith',
     searchIntent: 'Which personal CRM is best for staying in touch with friends and family without making relationships feel like sales leads?',
     keyTakeaways: [
-      'Kith defines the privacy-first, friends-and-family direction in this comparison through circles, adjustable cadence, a gently cooling Warmth Ring, and optional on-device helpers.',
-      'Kith remains pre-release. Released products offer Apple sync, self-hosting, connected professional context, or networking analytics through different data paths.',
-      'No reminder app can determine whether a relationship is healthy, reciprocal, safe, or likely to improve; the software can only reduce memory and follow-through friction.',
+      "Kith carries saved context into the next interaction: recaps, talking points, and editable message drafts are generated on-device.",
+      "You choose the cadence and can snooze reminders. Messages are handed to the system app; Kith does not send outreach for you.",
+      "Choose wider Apple coverage, self-hosting, or professional integrations if those matter more than Kith’s focused local workflow."
     ],
     relatedIds: ['best-relationship-reminder-apps-friends-family', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     blocks: [
       {
         type: 'answer',
-        title: 'The short answer',
-        content: 'Kith is the Obsidian Ridge Labs choice for a deliberately non-salesy relationship manager with adjustable cadence, local context, and on-device help beginning a thoughtful message. It remains in development with no settled release date or price. Released products add wider Apple coverage, self-hosting, connected professional context, or networking analytics through different account and storage models.',
+        title: "A reminder is more useful with something to remember",
+        content: "Kith is being built to put the details you saved about someone beside the next call or message. Review a recap, use a talking point or editable draft, reach out through the system app, and log the interaction when you return. Hippo offers an established Apple relationship notebook, Monica adds open-source control, and Dex and Covve emphasize connected professional networks. Kith is still in development for iPhone.",
       },
       {
-        type: 'callout',
-        title: 'A relationship is not a pipeline',
-        variant: 'warning',
-        content: 'A personal CRM can remember a birthday, surface a note, or suggest that it has been a while. It cannot measure care, consent, reciprocity, safety, or the quality of a friendship. None of the products below should be described as therapy, a loneliness treatment, or proof that reminders improve health or relationships.',
+        "type": "callout",
+        "title": "You set the pace",
+        "content": "Kith’s reminders use the cadence you choose. They do not measure the quality of a relationship or decide when another person wants to hear from you.",
+        "variant": "note"
       },
       {
         type: 'paragraph',
-        content: 'People often search for this category without using the term “personal CRM.” They ask for an app that reminds them to call family, helps them remember what a friend was going through, or keeps a birthday and last conversation together. Business CRMs can technically store those facts, but pipelines, lead scores, conversion stages, and automated outreach can feel wrong in a personal context. The comparison therefore weighs emotional design and data boundaries alongside reminders and integrations.',
+        content: "“Call Sam” is a useful reminder. Remembering that Sam was waiting on an interview makes it a more useful conversation. Kith is being built to connect those two moments: the detail you wanted to remember and the point when you reach out. The alternatives below offer different ways to collect that context, from deliberate notes to connected professional accounts.",
       },
       {
         type: 'comparison',
         caption: 'Five approaches to personal relationship memory',
-        columns: ['Primary use', 'How it helps follow-through', 'Data or product boundary'],
+        columns: [
+          "App",
+          "Primary use",
+          "How it helps follow-through",
+          "Data or product boundary"
+        ],
         rows: [
-          { label: 'Kith · pre-release', cells: ['iPhone users seeking gentle, non-salesy planning and optional local AI.', 'Inner, Close, and Wider circles; adjustable cadence; Warmth Ring; Today plan; important dates; notes; drafts; Siri and widgets.', 'Current records are local SwiftData with no developer AI server. Unreleased, iOS 26, no settled price; optional iCloud behavior remains provisional.'] },
+          { label: 'Kith · pre-release', cells: [
+            "Saved context and help preparing a call or message on iPhone.",
+            "Adjustable cadence, important dates, recaps, talking points, and drafts you choose whether to send.",
+            "In development. Requires Apple Intelligence; records are local, with no app-managed cloud sync."
+          ] },
           { label: 'Hippo', cells: ['Apple users who prioritize a released no-account, privacy-first personal CRM.', 'Contact notes, events, reminders, linked relationships, calendar context, and native Apple apps.', 'Developer says data stays on device or optional personal iCloud. $14.99/year or $29.99 lifetime after trial.'] },
           { label: 'Dex', cells: ['Professional networkers who want communication context gathered from connected services.', 'Keep-in-touch reminders, interaction history, email/calendar/social integrations, and AI-assisted context.', 'Account-based cross-platform service. Official 2026 comparison advertises $12/month billed annually for its core plan.'] },
           { label: 'Monica', cells: ['People who want an open-source personal CRM and are comfortable with web or self-hosting.', 'Family links, notes, call reminders, dates, gifts, interactions, journal, import/export, and API.', 'Free self-hosted; hosted plan $9/month or $90/year, with a restricted 10-contact free tier.'] },
@@ -671,15 +706,15 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Kith is designed around cadence and warmth without a punishment loop',
+        content: "Kith: bring the last conversation into the next one",
       },
       {
         type: 'paragraph',
-        content: 'Kith’s current design places people in Inner, Close, or Wider circles, each with a suggested reach-out cadence that the user can change. A Warmth Ring gradually cools as time passes relative to that cadence. The Today view orders due people from cadence and reference date, gives pinned people priority, and respects snoozes; upcoming dates appear in a separate section. It avoids an alarm-red overdue state, streak punishment, completion percentage, and numerical relationship score. The prompt is intended to be an invitation to remember, not a judgment about the friendship.',
+        content: "Kith keeps people in circles with a reach-out cadence you can change. The Today view respects snoozes and prioritizes pinned people, while important dates remain visible separately. Open a person to review saved context and use a recap, talking point, or editable draft before reaching out. After a message handoff, Kith can prompt you to log the interaction when you return.",
       },
       {
         type: 'paragraph',
-        content: 'That does not mean the cadence knows how often two people should talk. A long-standing friendship may thrive with infrequent contact; another person may need space; a family relationship may be unsafe. Kith should make it easy to change, snooze, pause, or remove a cadence. No “warm” visual state should be represented as a measure of relationship quality.',
+        content: "The benefit is a shorter path from remembering someone to doing something with the thought. You still decide whether to reach out, what to say, and when to move a reminder. The Warmth Ring reflects time relative to the cadence you set; it is not a grade for the friendship.",
       },
       {
         type: 'h2',
@@ -691,7 +726,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Kith differs in its circle-and-cadence planning language and planned on-device Foundation Models helpers. Hippo differs by already shipping, supporting Mac and iPad, and offering optional iCloud. Kith should not call on-device storage unique, and it should not imply that generative assistance is inherently more thoughtful than a well-timed manual note.',
+        content: "Kith’s distinction is the link between a reminder, saved context, and on-device help preparing the next interaction. Hippo already offers a released private notebook across more Apple devices, with optional iCloud. If you need that wider coverage today, it deserves a place on the shortlist.",
       },
       {
         type: 'h2',
@@ -727,19 +762,19 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'For close friends and family, analytics and professional prompts may be useful, neutral, or uncomfortable depending on the person. Kith’s design deliberately removes performance scoring and business-pipeline language. That is a product philosophy, not evidence that it produces better relationships. Readers should choose the interaction model that helps them act naturally rather than the one with the longest list of automation.',
+        content: "For a professional network, analytics and connected context can save useful preparation time. For friends and family, you may prefer a smaller record you maintain deliberately. Kith takes the latter approach, with adjustable cadence and local preparation for a call or message. The choice is about how you want to remember and act, not a claim that one app makes you a better friend.",
       },
       {
         type: 'h2',
-        content: 'On-device AI can begin a message, but it should never impersonate care',
+        content: "Prepare the message, then make it yours",
       },
       {
         type: 'paragraph',
-        content: 'On supported iPhones, Kith can use Apple Foundation Models to structure a brain dump into discrete facts, draft a warm, casual, or brief message, suggest a caring question or gift direction, create talking points, and recap saved context. Apple describes Foundation Models as access to its on-device language model. The feature can keep input and output on-device, but a generated message can still be inaccurate, presumptuous, repetitive, or tone-deaf. Kith should always show context and leave the person responsible for what is true and what is sent.',
+        content: "Kith’s on-device helpers can organize a brain dump into facts, recap what you saved, suggest talking points or gift ideas, and draft a message. You review and edit the wording before a system handoff; sending remains your action. The useful part is having context at hand when you sit down to reach out. A draft still needs your voice and your judgment about what is appropriate.",
       },
       {
         type: 'h2',
-        content: 'Which product fits which person?',
+        content: "Choose the kind of relationship record you want",
       },
       {
         type: 'list',
@@ -754,9 +789,12 @@ export const memoraTroveKithPosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'Is Kith a CRM for sales leads?', answer: 'No. Kith is designed as a private relationship manager for friends, family, and other people the user cares about. It has no deal stages, lead value, conversion funnel, bulk outreach, or relationship score in the current design.' },
+          { question: 'Is Kith a CRM for sales leads?', answer: 'No. Kith is designed as a private relationship manager for friends, family, and other people the user cares about. It has no deal stages, lead value, conversion funnel, bulk outreach, or displayed friendship grade in the current design.' },
           { question: 'Does Kith read my texts, email, or social accounts automatically?', answer: 'No such automatic ingestion is part of the current product description. People and context are added deliberately through the app and system-supported pickers or actions. That is less automated than Dex and some professional personal CRMs.' },
-          { question: 'Does Kith require Apple Intelligence?', answer: 'Yes. Kith gates at launch and requires an iPhone 15 Pro or later on iOS 26 with Apple Intelligence enabled. People, circles, cadences, dates, reminders, widgets, Siri, Shortcuts, and Spotlight are not themselves AI features, but the message, recap, talking-point, and gift helpers are, and they are the reason to open the app rather than a contacts list.' },
+          {
+            "question": "Does Kith require Apple Intelligence?",
+            "answer": "Yes. Kith’s current build requires an iPhone 15 Pro or later with iOS 26 and Apple Intelligence enabled. Recaps, talking points, drafts, and other local helpers are part of its core workflow."
+          },
           { question: 'Can a reminder app improve loneliness or mental health?', answer: 'No product-specific evidence supports that claim here. Social connection is important, but a reminder app is not healthcare or therapy and cannot determine relationship quality. Anyone in distress should seek appropriate human or professional support.' },
         ],
       },
@@ -778,32 +816,32 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: 'See how Kith’s circles, Warmth Ring, local context, and optional on-device helpers are intended to work, and which details remain provisional before release.',
+        content: "Explore Kith’s saved context, reminders, and message preparation. It is being built to make the next call or text easier to begin with something that matters to the person.",
         ctaAppId: 'kith',
       },
     ],
   },
   {
     id: 'best-relationship-reminder-apps-friends-family',
-    title: '5 Best Relationship Reminder Apps for Friends and Family in 2026 Without a Sales Pipeline',
-    seoTitle: '5 Best Relationship Reminder Apps (2026)',
+    title: "Five Apps for Remembering Conversations and Keeping in Touch",
+    seoTitle: "Five Apps for Remembering Conversations and Keeping in Touch",
     date: '2026.07.11',
-    modified: '2026.07.11',
-    readTime: '11 MIN READ',
+    modified: "2026.09.28",
+    readTime: "7 MIN READ",
     category: 'RELATIONSHIP APP LIST',
     tags: ['#KEEP-IN-TOUCH', '#RELATIONSHIP-REMINDER', '#PERSONAL-CRM', '#PRIVACY'],
-    excerpt: 'Five different ways to remember birthdays, conversations, and follow-ups without pretending that a friendship is a lead, score, streak, or health intervention.',
+    excerpt: "Compare Kith, Hippo, Monica, Dex, and Covve by the context you want to remember, the reminders you need, and the accounts you are willing to connect.",
     contentType: 'listicle',
     appId: 'kith',
     searchIntent: 'What app can remind me to stay in touch with friends and family and remember important details about them?',
     keyTakeaways: [
-      'Kith leads this guide for private, humane cadence and on-device assistance, with the important limitation that it remains pre-release.',
-      'Released products offer no-account Apple storage, self-hosting, or integration-heavy professional networks through different privacy boundaries.',
-      'The right app should make reaching out easier while preserving consent, context, and the ability to snooze or remove a reminder without guilt.',
+      "Kith connects deliberate notes with the next interaction, using local recaps, talking points, and editable drafts. It remains in development.",
+      "You control Kith’s cadence and snoozes; the app hands off messages for you to send and can prompt a log when you return.",
+      "Decide whether you want a small personal notebook or automated professional context. That choice determines how many services you need to connect."
     ],
     relatedIds: ['kith-vs-personal-crm-apps', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     listItems: [
-      { name: 'Kith · pre-release', description: 'The privacy-first iPhone option for adjustable cadence, a guilt-free Warmth Ring, and on-device helpers.' },
+      { name: 'Kith · pre-release', description: "Saved context, flexible reminders, and local help preparing the next call or message. In development." },
       { name: 'Hippo', description: 'A no-account relationship memory for iPhone, iPad, and Mac with optional iCloud.' },
       { name: 'Monica', description: 'Open-source personal CRM fields, web access, and optional self-hosting.' },
       { name: 'Dex', description: 'Professional relationships connected across email, calendars, LinkedIn, and messaging services.' },
@@ -812,25 +850,34 @@ export const memoraTroveKithPosts: BlogPost[] = [
     blocks: [
       {
         type: 'answer',
-        title: 'The best relationship reminder is the one that feels humane enough to keep using',
-        content: 'Kith is the privacy-first Obsidian Ridge Labs design in this guide for a gentler circle-and-cadence workflow with optional on-device drafting. It remains pre-release and cannot yet be downloaded. Released products provide different combinations of no-account Apple storage, self-hosting, connected professional context, and contact intelligence.',
+        title: "Choose what you want beside the reminder",
+        content: "Kith is being built for a reminder with personal context: what you last saved about someone, a recap or talking point, and an editable draft when you need a start. Hippo offers a released Apple notebook, Monica a detailed open-source record, and Dex and Covve more connected professional tools. A calendar reminder may be enough if all you need is the date. Choose a relationship app when the remembered detail would help you follow through.",
       },
       {
-        type: 'callout',
-        title: 'What “best” means here',
-        variant: 'note',
-        content: 'The order reflects this site’s privacy-first criteria and product focus using first-party documentation checked July 11, 2026. It does not use invented testing, ratings, health outcomes, or claims that one app makes someone a better friend. Current price, privacy, compatibility, and integration details should be rechecked before purchase.',
+        "type": "callout",
+        "title": "About this selection",
+        "content": "These apps offer different kinds of memory and follow-up support. Kith is our app and is not yet available. Competitor features were checked against the linked sources in July 2026.",
+        "variant": "note"
       },
       {
         type: 'paragraph',
-        content: 'The US Surgeon General recommends investing time in consistent, frequent, high-quality engagement and asks technology companies to support positive social connection. That is useful context for designing less distracting tools. It is not evidence that logging a call, receiving a birthday notification, or using AI to draft a text improves health. The app is only an aid to memory and intention; the relationship still depends on people.',
+        content: "A date is easy to put in a calendar. The details around it are easier to lose: a friend’s new job, a difficult move, the book they wanted to tell you about. A relationship app earns its place when it brings those details back at a useful moment. The five options here differ in how you save that context and what they help you do with it.",
       },
       {
         type: 'comparison',
         caption: 'Five relationship tools with different definitions of helpful',
-        columns: ['Best for', 'Reminder and context model', 'Tradeoff'],
+        columns: [
+          "App",
+          "Best for",
+          "Reminder and context model",
+          "Tradeoff"
+        ],
         rows: [
-          { label: 'Kith', cells: ['Upcoming non-salesy iPhone cadence.', 'Circles, cooling Warmth Ring, Today plan, snoozes, important dates, local notes, drafts, widgets, and Siri.', 'Unreleased; Apple Intelligence requirements; current local-only design lacks settled sync and pricing.'] },
+          { label: 'Kith', cells: [
+            "Saved context and help preparing a call or message on iPhone.",
+            "Adjustable cadence, important dates, recaps, talking points, and drafts you choose whether to send.",
+            "In development. Requires Apple Intelligence; records are local, with no app-managed cloud sync."
+          ] },
           { label: 'Hippo', cells: ['Private Apple relationship memory.', 'Notes, events, to-dos, person-to-person links, calendar context, and reminders.', 'Apple-only; optional iCloud rather than broad email or social ingestion.'] },
           { label: 'Monica', cells: ['Open-source depth and self-hosting.', 'Family links, life details, calls, dates, gifts, journal, reminders, and API.', 'Web/server workflow; self-hosters maintain security and backups themselves.'] },
           { label: 'Dex', cells: ['Professional network automation.', 'Connected interaction history, keep-in-touch reminders, AI summaries, and cross-platform access.', 'Requires trusting and managing connected account data; professional orientation.'] },
@@ -839,19 +886,19 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: '1. Kith: private, humane cadence with on-device help',
+        content: "1. Kith: saved context for the next call or message",
       },
       {
         type: 'paragraph',
-        content: 'Kith is being developed for iPhone around Inner, Close, and Wider circles with an adjustable cadence. A Warmth Ring cools gradually as time passes. The Today view orders due people from cadence and reference date, gives pinned people priority, and respects snoozes; upcoming dates appear in a separate section. It avoids streaks, relationship scores, completion percentages, and alarm-red overdue states. Important dates remain separate so a birthday is not reduced to another task in a general queue.',
+        content: "Kith’s current iPhone build organizes people into circles and lets you set the pace of reminders. The Today view respects snoozes, gives pinned people priority, and keeps upcoming dates visible separately. Open a person before reaching out to see the context you saved, then use a recap, talking point, or editable draft if it helps. After a message handoff, a prompt helps you record the interaction.",
       },
       {
         type: 'paragraph',
-        content: 'On supported devices, Apple Foundation Models can structure a brain dump, draft a message in a chosen tone, suggest a caring question or gift direction, create talking points, and recap the facts saved about a person. The current design uses local SwiftData and no Obsidian Ridge Labs AI server, account, analytics SDK, or advertising network. Core logging, cadence, reminders, Siri, Shortcuts, widgets, Control Center, and Spotlight remain useful without Apple Intelligence.',
+        content: "Kith performs its helpers on-device and stores records locally, with no app-managed cloud sync in the current build. It requires Apple Intelligence at launch. JSON export includes record data, but excludes photos and does not restore the complete app archive. Kith remains in development.",
       },
       {
         type: 'paragraph',
-        content: 'Kith is still in development for iOS 26. Its price, release date, final compatibility, and any optional iCloud path are unsettled. Generated text is only a draft and must never be sent automatically or represented as the user’s authentic care. The app also cannot determine whether reaching out is welcome, safe, or appropriate; snooze, pause, and removal must remain legitimate outcomes.',
+        content: "You decide when to reach out and what to send. The Warmth Ring reflects time against your chosen cadence, not how well a relationship is doing. Keep reminders flexible enough to fit the people they are meant to help you remember.",
       },
       {
         type: 'h2',
@@ -903,7 +950,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'How to use a relationship reminder without turning people into records',
+        content: "Start with a few people you already mean to contact",
       },
       {
         type: 'list',
@@ -920,7 +967,10 @@ export const memoraTroveKithPosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'What is the best app to remind me to call friends and family?', answer: 'Kith is the privacy-first design in this guide for humane cadence, local context, and optional on-device help, but it is not yet released. A basic calendar reminder may be enough for people who do not need relationship context. Released personal CRM services use different account, sync, and integration models.' },
+          {
+            "question": "What does Kith add to a calendar reminder?",
+            "answer": "Kith is being built to bring saved context to the reminder: a recap, talking point, or editable draft before the call or message. You choose when and what to send. If a date is all you need, a calendar reminder may be sufficient."
+          },
           { question: 'What is a personal CRM?', answer: 'It is a private contact-and-context system for remembering interactions, important dates, follow-ups, and details about people. Unlike a business CRM, a personal CRM does not need deals, revenue stages, bulk outreach, or lead scoring.' },
           { question: 'Is it ethical to keep notes about friends?', answer: 'It depends on what is stored and how it is used. Keep only context that supports respectful follow-through, protect the device or service, avoid secrets or sensitive judgments, and delete information that would feel invasive if the person saw it.' },
           { question: 'Can AI write a thoughtful message for me?', answer: 'It can suggest a starting draft from supplied context, but it cannot know the full relationship or guarantee an appropriate tone. Verify every fact, remove presumptions, and rewrite the message so it reflects your actual intent.' },
@@ -945,7 +995,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: 'Explore Kith’s current relationship model, local data boundary, optional helpers, and pre-release limitations.',
+        content: "See how Kith carries remembered details into the next conversation. Follow its development if your reminders have the date but not the context.",
         ctaAppId: 'kith',
       },
     ],

@@ -7,6 +7,7 @@ import { Icon } from '../../lib/icons';
 import HelpSidebar from './HelpSidebar';
 import KbBlocks from './KbBlocks';
 import SEO, { buildBreadcrumbs, buildFAQSchema, buildCollectionPage, buildTechArticle, buildHowTo } from '../SEO';
+import '../../styles/help-refinement.css';
 
 const FooterCta: React.FC<{ kb: KnowledgeBase }> = ({ kb }) => (
   <div className="help-cta">
@@ -188,7 +189,7 @@ const HelpArticle: React.FC = () => {
   if (!article) jsonLd.push(buildCollectionPage(`${kb.appName} Help`, kb.intro, `/help/${kb.appId}`));
 
   return (
-    <div className="help-shell">
+    <div className="help-shell help-shell--refined">
       <SEO
         title={article ? `${article.title} · ${kb.appName}` : `${kb.appName}: Help & Guides`}
         description={article?.description || kb.intro}
@@ -197,17 +198,17 @@ const HelpArticle: React.FC = () => {
         jsonLd={jsonLd}
       />
 
-      <div className="section-frame help-shell__layout">
-        {!collapsed && (
-          <aside className="help-shell__rail">
-            <HelpSidebar kb={kb} currentArticleId={article?.id} />
-          </aside>
-        )}
+      <div className={`section-frame help-shell__layout${collapsed ? ' help-shell__layout--collapsed' : ''}`}>
+        <aside className="help-shell__rail" id="help-desktop-contents" hidden={collapsed}>
+          <HelpSidebar kb={kb} currentArticleId={article?.id} />
+        </aside>
 
         <div className="help-shell__content">
           <button
             type="button"
             className="help-shell__toggle"
+            aria-expanded={!collapsed}
+            aria-controls="help-desktop-contents"
             onClick={() => setCollapsed((current) => !current)}
           >
             <Icon name={collapsed ? 'menu' : 'arrow-left'} size={14} />

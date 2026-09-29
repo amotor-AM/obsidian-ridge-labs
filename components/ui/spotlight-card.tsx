@@ -9,7 +9,7 @@ interface SpotlightCardProps {
 
 /**
  * Cursor-following spotlight surface, adapted from 21st.dev
- * @preetsuthar17/spotlight-card for the Obsidian Ridge ledger and cards.
+ * @preetsuthar17/spotlight-card for the Obsidian Ridge Labs ledger and cards.
  */
 export const SpotlightCard: React.FC<SpotlightCardProps> = ({
   children,

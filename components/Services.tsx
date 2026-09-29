@@ -1,175 +1,64 @@
 import React from 'react';
-import { ArrowRight, ArrowUpRight, Github } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Plane } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { homeFaqs } from '../data/faqs';
-import MotionReveal from './home/MotionReveal';
 import SiteFaq from './SiteFaq';
-import { Magnetic } from './ui/magnetic';
 
-const architecturePrinciples = [
-  {
-    number: '01',
-    title: 'Your data stays close',
-    copy: 'Supported AI features use Apple frameworks or app-bundled models on the hardware already in your hands.',
-    note: 'Core path: local',
-  },
-  {
-    number: '02',
-    title: 'The core survives offline',
-    copy: 'After any required model setup, important work continues without Wi-Fi, cellular service, or permission from our servers.',
-    note: 'Network: optional',
-  },
-  {
-    number: '03',
-    title: 'No advertising profile',
-    copy: 'Your recordings, finances, journals, tasks, wardrobe, study material, belongings, and relationships do not become an Obsidian Ridge advertising identity.',
-    note: 'Profiles: none',
-  },
-  {
-    number: '04',
-    title: 'Connections need a reason',
-    copy: 'Services such as Plaid, iCloud, WeatherKit, purchases, and model downloads are named in context before setup or use.',
-    note: 'Boundary: visible',
-  },
+const boundaryCheck = [
+  ['Where does the processing happen?', 'On supported Apple devices. Our apps use local models and Apple frameworks for their core intelligence. Each product page lists the hardware it needs.'],
+  ['Where does the storage live?', 'On your device, with private iCloud storage or sync in apps that offer it. The settings and defaults differ by app. We do not keep a central library of your recordings, journals, or notes.'],
+  ['What connects to the network, and when?', 'Model setup and App Store purchases can need a connection. Other services depend on the app: iCloud sync, recipe imports, weather, or optional bank sync through Plaid. Each app’s boundary lists them.'],
 ];
 
-const Services: React.FC = () => {
-  return (
-    <>
-      <section id="architecture" className="architecture-section" aria-labelledby="architecture-title">
-        <div className="section-frame">
-          <div className="section-index">
-            <span>03 / The architecture</span>
-            <span>Privacy at system level</span>
+const Services: React.FC = () => (
+  <>
+    <section id="architecture" className="home-boundary" aria-labelledby="architecture-title">
+      <div className="section-frame">
+        <div className="section-index"><span>03 / Before you let it in</span><span>The Boundary Check</span></div>
+        <div className="home-boundary__layout">
+          <div className="home-boundary__intro">
+            <p className="section-kicker">Run the Boundary Check.</p>
+            <h2 id="architecture-title">“Private”<br />is the start<br /><em>of a question.</em></h2>
+            <p>Before an app gets your recordings, receipts, or journal, make it answer these three.</p>
+            <Link to="/privacy" className="text-link">Read our privacy model <ArrowUpRight size={17} aria-hidden="true" /></Link>
           </div>
-
-          <div className="architecture-section__layout">
-            <div className="architecture-section__sticky">
-              <MotionReveal>
-                <p className="section-kicker">The rules of the house</p>
-                <h2 id="architecture-title">The strongest privacy feature is data that never leaves.</h2>
-                <p>
-                  Four rules govern every app in the collection. We hold ourselves to them
-                  in public, and you can check.
-                </p>
-              </MotionReveal>
-
-              <MotionReveal className="architecture-path" delay={0.08}>
-                <div><span>Input</span><strong>Your data</strong></div>
-                <i aria-hidden="true" />
-                <div><span>Process</span><strong>Apple silicon</strong></div>
-                <i aria-hidden="true" />
-                <div><span>Result</span><strong>Your insight</strong></div>
-              </MotionReveal>
-            </div>
-
-            <div className="architecture-principles">
-              {architecturePrinciples.map((principle, index) => (
-                <MotionReveal key={principle.title} className="architecture-principle" delay={index * 0.05} amount={0.3}>
-                  <div className="architecture-principle__number">{principle.number}</div>
-                  <div>
-                    <h3>{principle.title}</h3>
-                    <p>{principle.copy}</p>
-                  </div>
-                  <span>{principle.note}</span>
-                </MotionReveal>
-              ))}
-            </div>
+          <div className="home-boundary__answers">
+            {boundaryCheck.map(([question, answer], index) => (
+              <div key={question}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{question}</h3><p>{answer}</p></div></div>
+            ))}
+            <p className="home-boundary__invitation">Run it on us. Then run it on everything else.</p>
           </div>
         </div>
-      </section>
-
-      <section className="apple-craft" aria-labelledby="apple-craft-title">
-        <div className="section-frame">
-          <div className="section-index">
-            <span>04 / Apple craft</span>
-            <span>One ecosystem, considered deeply</span>
-          </div>
-          <div className="apple-craft__intro">
-            <MotionReveal>
-              <p className="section-kicker">Native, all the way down</p>
-              <h2 id="apple-craft-title">Built for one ecosystem, down to the silicon.</h2>
-            </MotionReveal>
-            <MotionReveal delay={0.08}>
-              <p>
-                Focusing on Apple lets us build with native performance, system privacy controls,
-                and on-device intelligence from the first sketch, never as an afterthought.
-              </p>
-              <Link to="/journal/apple-ecosystem-privacy" className="text-link">
-                Why we build for Apple <ArrowUpRight size={18} aria-hidden="true" />
-              </Link>
-            </MotionReveal>
-          </div>
-          <div className="apple-craft__terms" aria-label="Apple platform capabilities">
-            <MotionReveal><span>01</span><strong>Neural Engine</strong><p>Fast local inference built into supported Apple hardware.</p></MotionReveal>
-            <MotionReveal delay={0.06}><span>02</span><strong>Secure Enclave</strong><p>System-level protection and biometric access controls.</p></MotionReveal>
-            <MotionReveal delay={0.12}><span>03</span><strong>Native performance</strong><p>One codebase shaped around Apple platforms, not a lowest common denominator.</p></MotionReveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="verification-section" aria-labelledby="verification-title">
-        <div className="section-frame">
-          <div className="section-index">
-            <span>05 / The proof</span>
-            <span>Trust, made inspectable</span>
-          </div>
-          <div className="verification-section__intro">
-            <MotionReveal>
-              <p className="section-kicker">Check our work</p>
-              <h2 id="verification-title">Don&apos;t take our word for it.</h2>
-            </MotionReveal>
-            <MotionReveal delay={0.08}>
-              <p>
-                Read the privacy model. Browse the documentation. Inspect this website&apos;s
-                source. A boundary you cannot see is not a boundary.
-              </p>
-              <div className="verification-section__actions">
-                <Link to="/privacy" className="button button--outline">Read the privacy model <ArrowUpRight size={17} /></Link>
-                <Link to="/help" className="text-link">Browse documentation <ArrowUpRight size={17} /></Link>
-              </div>
-            </MotionReveal>
-          </div>
-
-          <div className="source-list" aria-label="Public project source">
-            <a href="https://github.com/amotor-AM/obsidian-ridge-labs" target="_blank" rel="noreferrer" className="source-list__row">
-              <span><Github size={19} aria-hidden="true" /> Public repository</span>
-              <strong>This website</strong>
-              <small>Inspect the project <ArrowUpRight size={17} aria-hidden="true" /></small>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="home-faq" aria-labelledby="home-faq-title">
-        <div className="section-frame home-faq__grid">
-          <div>
-            <p className="section-kicker section-kicker--dark">No fine print</p>
-            <h2 id="home-faq-title">Ask us the hard questions.</h2>
-            <p>Every AI app should have to answer for where your data goes. These are our answers.</p>
-          </div>
-          <SiteFaq items={homeFaqs} tone="paper" />
-        </div>
-      </section>
-
-      <section className="final-cta" aria-labelledby="final-cta-title">
-        <div className="final-cta__ridge" aria-hidden="true"><span /><span /><span /><span /></div>
-        <div className="section-frame">
-          <p className="section-kicker section-kicker--dark">The Obsidian standard</p>
-          <h2 id="final-cta-title">Move the intelligence.<br /><em>Not the private life.</em></h2>
-          <p>Echo Chamber is on the App Store today. The rest of the collection is coming.</p>
-          <div className="final-cta__actions">
-            <Magnetic>
-              <Link to="/download" className="button button--dark">Explore every app <ArrowRight size={18} /></Link>
-            </Magnetic>
-            <a href="https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060" target="_blank" rel="noreferrer" className="text-link text-link--dark">
-              Get Echo Chamber <ArrowUpRight size={18} />
-            </a>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-};
+      </div>
+    </section>
+    <section className="home-craft" aria-labelledby="apple-craft-title">
+      <div className="section-frame home-craft__layout">
+        <p className="section-kicker section-kicker--dark">Why Apple</p>
+        <div><h2 id="apple-craft-title">You already own<br /><em>the computer.</em></h2></div>
+        <div><p>Apple silicon puts the CPU, GPU, and Neural Engine in the device holding your words. We build for that hardware, using native frameworks to do the work there.</p><p>Microphone permissions, local models, the files you keep: we work with the operating system to keep those decisions in your hands.</p><Link to="/journal/apple-ecosystem-privacy" className="text-link text-link--dark">Why we chose one platform <ArrowUpRight size={17} aria-hidden="true" /></Link></div>
+      </div>
+    </section>
+    <section className="home-test" aria-labelledby="verification-title">
+      <div className="section-frame home-test__layout">
+        <div className="home-test__switch" aria-hidden="true"><Plane size={34} strokeWidth={1.5} /><span>Airplane mode</span><i /></div>
+        <div className="home-test__copy"><p className="section-kicker">Try it with Echo Chamber</p><h2 id="verification-title">Turn on airplane mode.<br /><em>Whatever still works is yours.</em></h2><p>Finish model setup on a supported device. Turn off Wi-Fi and cellular data. Record a thought, read the transcript, search for a word. The work still happens in your hand.</p><div className="home-test__links"><Link className="text-link" to="/help/echochamber">Open the Echo Chamber guide <ArrowUpRight size={17} aria-hidden="true" /></Link><a className="text-link" href="https://github.com/amotor-AM/obsidian-ridge-labs" target="_blank" rel="noreferrer">Website source <ArrowUpRight size={17} aria-hidden="true" /></a></div></div>
+      </div>
+    </section>
+    <section className="home-faq home-faq--edited" aria-labelledby="home-faq-title">
+      <div className="section-frame home-faq__grid">
+        <div><p className="section-kicker section-kicker--dark">Before you download</p><h2 id="home-faq-title">A few practical things.</h2></div>
+        <SiteFaq items={homeFaqs} tone="paper" />
+      </div>
+    </section>
+    <section className="home-close" aria-labelledby="final-cta-title">
+      <div className="section-frame">
+        <span className="home-close__cut" aria-hidden="true">/</span>
+        <p className="section-kicker">Local by design.</p>
+        <h2 id="final-cta-title">Find the app for<br /><em>what comes next.</em></h2>
+        <div><Link to="/apps/echochamber" className="button button--primary">Start with Echo Chamber <ArrowRight size={18} aria-hidden="true" /></Link><Link to="/download" className="text-link">See the collection <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
+      </div>
+    </section>
+  </>
+);
 
 export default Services;

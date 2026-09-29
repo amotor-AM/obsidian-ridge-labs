@@ -29,8 +29,8 @@ const buildOrganizationNode = () => ({
   '@id': ORGANIZATION_ID,
   name: SITE_NAME,
   url: `${SITE_URL}/`,
-  description: 'Independent Las Vegas software studio building private, on-device AI apps for iPhone, iPad, and Mac.',
-  slogan: 'Private intelligence. On your terms.',
+  description: 'Apps that mind their own business. Obsidian Ridge Labs is an independent Las Vegas studio building private AI apps for Apple devices.',
+  slogan: 'AI that knows you. Not one that watches you.',
   email: 'support@obsidianridgelabs.com',
   address: {
     '@type': 'PostalAddress',
@@ -53,8 +53,10 @@ const buildOrganizationNode = () => ({
     'Offline-first software',
     'Privacy-preserving machine learning',
     'Apple Neural Engine applications',
+    'Apple Intelligence Foundation Models',
     'Private voice transcription',
     'Local-first mobile applications',
+    'Consumer data privacy',
   ],
   contactPoint: {
     '@type': 'ContactPoint',
@@ -69,8 +71,7 @@ const buildWebsiteNode = () => ({
   '@id': WEBSITE_ID,
   url: `${SITE_URL}/`,
   name: SITE_NAME,
-  alternateName: 'Obsidian Ridge',
-  description: 'Private, on-device AI apps for iPhone, iPad, and Mac from Obsidian Ridge Labs.',
+  description: 'Private AI apps for Apple devices, including transcription, strength training, flashcards, and everyday personal work.',
   inLanguage: 'en-US',
   publisher: { '@id': ORGANIZATION_ID },
 });
@@ -327,11 +328,12 @@ export const buildSoftwareApp = (product: {
   hasKnowledgeBase?: boolean;
   releaseStatus: 'app-store' | 'source-only' | 'pre-release' | 'concept';
   price?: string;
+  features?: { title: string; description: string }[];
   screenshots?: { file: string; title: string; caption: string }[];
 }) => {
   const appUrl = `${SITE_URL}/apps/${product.id}`;
   const released = product.releaseStatus === 'app-store' && Boolean(product.appStoreUrl);
-  const featureList = getFeatureList(product.id);
+  const featureList = product.features?.map(feature => `${feature.title}: ${feature.description}`);
   const operatingSystem = product.minOS
     ? `${product.minOS} or later${product.platforms?.length ? `; ${product.platforms.join(', ')}` : ''}`
     : product.platforms?.length
@@ -466,7 +468,7 @@ export const buildBlogPosting = (post: BlogPost) => {
     isPartOf: {
       '@type': 'Blog',
       '@id': `${SITE_URL}/journal#blog`,
-      name: 'The Obsidian Ridge Journal',
+      name: 'The Obsidian Ridge Labs Journal',
       url: `${SITE_URL}/journal`,
     },
     ...(post.appId ? {
@@ -600,13 +602,17 @@ function mapCategory(category: string): string {
     'Strategic Logic': 'BusinessApplication',
     'Offline Transcription': 'BusinessApplication',
     'Personal finance': 'FinanceApplication',
+    'Personal Finance': 'FinanceApplication',
+    'Private Transcription': 'BusinessApplication',
     'Voice transcription': 'BusinessApplication',
     'Focus & tasks': 'LifestyleApplication',
     'Focus & Tasks': 'LifestyleApplication',
     'Private Journaling': 'LifestyleApplication',
     'Private Wardrobe': 'LifestyleApplication',
-    'Strength Coaching': 'HealthApplication',
+    'Personal Wardrobe': 'LifestyleApplication',
+    'Strength Coaching': 'SportsApplication',
     'Private Learning': 'EducationalApplication',
+    'Flashcards & Study': 'EducationalApplication',
     'Home Inventory': 'LifestyleApplication',
     'Relationships': 'LifestyleApplication',
     'Recipes & Cooking': 'LifestyleApplication',
@@ -614,22 +620,6 @@ function mapCategory(category: string): string {
     'Clearer decisions': 'BusinessApplication',
   };
   return map[category] || 'MobileApplication';
-}
-
-function getFeatureList(productId: string): string {
-  const features: Record<string, string> = {
-    vault: 'In-development app requiring Apple Intelligence on iPhone 15 Pro or later or iPad with M1 or later, private budgeting, on-device receipt and statement text recognition, reviewable categorization, safe-to-spend planning, budgets with overspend warnings, recurring bills and subscription tracking, goals, net worth, a financial health score, local coaching, biometric access control, a local store with no server copy, and optional Plaid bank linking',
-    echochamber: 'On-device live transcription with NVIDIA Parakeet TDT 0.6B v3, a targeted speech-focused pre-transcription filter rather than generic normalization, approximately 4.5% internal observed WER for the complete enhanced Echo Chamber pipeline under tested conditions, 6.32% average English WER for Parakeet versus 7.44% for Whisper large-v3 in the cited Hugging Face Open ASR evaluation snapshot, Apple Intelligence for transcript intelligence on compatible devices, bundled on-device Bonsai 1.7B fallback on supported hardware without Apple Intelligence, readable transcripts, local AI notes and summaries, speaker detection, bookmarks, full-text recording search, audio and video file upload with Pro, TXT Markdown PDF and DOCX export, Pro at $2.99 monthly or $29.99 yearly, $79.99 Lifetime one-time purchase, Face ID access control, AES-256-GCM audio encryption at rest, optional encrypted iCloud sync',
-    molehill: 'In-development app requiring Apple Intelligence on iPhone 15 Pro or later or iPad with M1 or later, on-device task breakdown, step splitting when a step is still too big, on-device speech transcription for spoken brain dumps, editable brain-dump organization, one-step focus with a Live Activity timer, time estimates that roll up, Reminders and Calendar export, deterministic fallback, no streak mechanics, and a non-clinical productivity boundary',
-    cove: 'In-development app requiring Apple Intelligence on iPhone 15 Pro or later or iPad with M1 or later, local journaling that is never paywalled, on-device reflection that requires Apple Intelligence, voice journaling and photos, mood and theme patterns, multilingual semantic search, On This Day memories, weekly reflections, grounded journal questions with sources, Apple Watch capture, Face ID app lock, optional Health State of Mind sync, Day One import, Markdown JSON and ZIP export, and optional private iCloud sync',
-    wove: 'In-development app requiring Apple Intelligence on iPhone 15 Pro or later or iPad with M1 or later, local garment cut-out and tagging including several garments from one photo, weather-aware daily looks with a stated reason, a remembered not-this signal, deterministic styling fallback, wear history and cost per wear, outfit calendar, capsules, packing lists with a Live Activity, shopping advisor, conversational stylist, Apple Watch and widget wear logging, closet export, and optional private iCloud sync',
-    mettle: 'In-development app requiring Apple Intelligence on iPhone 15 Pro or later or iPad with M1 or later, adaptive strength programming, deterministic sets reps loads and deloads counted from real training weeks, explainable Why this prescriptions, experience inference with level-up prompts, an on-device coach grounded in your own program and history, readiness adjustments, live workout logging with plate math and rest alerts, Apple Watch rep timing and haptics, optional HealthKit, CSV export, and optional private iCloud sync',
-    memora: 'In-development app requiring Apple Intelligence on iPhone 15 Pro or later or iPad with M1 or later, local flashcard drafts from notes embedded PDF text and photo OCR, human review before saving, FSRS scheduling that is never paywalled, four-grade review with next-interval previews and one-tap undo, cloze and image-occlusion cards, hints and post-reveal explanations, Anki apkg Quizlet and CSV import, a single-file library backup, widgets and Live Activity, and local decks with no account',
-    trove: 'In-development app requiring Apple Intelligence on iPhone 15 Pro or later or iPad with M1 or later, local home inventory, single-photo room scanning, Vision OCR and barcode capture, reviewable structured item extraction, warranty reminders, a coverage gap check against a policy limit you enter, value by room and category, local search, Ask Trove with deterministic aggregation, a photo-illustrated claim report, CSV export, multiple homes, and optional private iCloud sync',
-    kith: 'In-development app requiring Apple Intelligence on iPhone 15 Pro or later or iPad with M1 or later, private relationship manager with closeness circles, adjustable reach-out cadences, Warmth Ring and Orbit planning, important dates, on-device message drafting that opens straight into Messages, memory structuring, talking points, gift directions, actionable notifications, optional Face ID lock, widgets, Siri, Shortcuts, local reminders, and a local store with no cloud copy',
-    mise: 'In-development app requiring Apple Intelligence on iPhone 15 Pro or later or iPad with M1 or later, private recipe manager, share sheet and paste import, published recipe data read directly from the page, on-device parsing of messy text, photo OCR for cookbook pages and handwritten cards, an on-device sous chef grounded in your recipe box pantry and dietary profile, cook with what I have, weekly meal planning with suggested dinners, aisle-sorted consolidated grocery lists, cook mode with concurrent Live Activity timers, fraction-aware serving scaling with metric and US conversion, Apple Watch companion, widgets, Siri and Shortcuts, share cards, and optional private iCloud sync',
-  };
-  return features[productId] || '';
 }
 
 export { SITE_URL, SITE_NAME, ORGANIZATION_ID, WEBSITE_ID };

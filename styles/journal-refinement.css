@@ -1,0 +1,33 @@
+/* Long comparison titles need article typography, rather than campaign scale. */
+.journal-article .journal-hero .journal-hero__inner h1 {
+  max-width: 1160px;
+  font-size: clamp(2rem, 4.2vw, 3.75rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.045em;
+  text-wrap: pretty;
+  overflow-wrap: normal;
+}
+.journal-index-page .journal-index-hero h1 {
+  max-width: 1050px;
+  text-wrap: pretty;
+}
+.journal-index-page .journal-library__heading h2,
+.journal-index-page .journal-standards__grid h2 {
+  max-width: 760px;
+  text-wrap: pretty;
+}
+
+.journal-layout > .journal-main { min-width: 0; }
+/* Get readers from the title into the article without a second empty hero. */
+.journal-article .journal-hero { padding-top: 132px; padding-bottom: 56px; }
+.journal-article .journal-back { margin-bottom: 32px; }
+.journal-article .journal-hero__eyebrow { margin-bottom: 24px; }
+.journal-article .journal-hero__dek { margin-top: 24px; }
+.journal-article .journal-hero__meta { margin-top: 28px; }
+.journal-article .journal-query { margin-top: 32px; padding-block: 22px; }
+.journal-article .journal-layout { padding-top: 64px; }
+@media (max-width: 600px) {
+  .journal-article .journal-hero { padding-top: 110px; }
+  .journal-article .journal-back { margin-bottom: 24px; }
+  .journal-article .journal-layout { padding-top: 42px; }
+}

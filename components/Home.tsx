@@ -1,20 +1,17 @@
 import React from 'react';
-import Hero from './Hero';
-import Philosophy from './Philosophy';
-import Products from './Products';
-import Services from './Services';
+import LuminousHome from './luminous/LuminousHome';
 import SEO, { buildFAQSchema, SITE_URL } from './SEO';
-import { products } from '../data/products';
+import { collection, collectionDescription } from '../data/collection';
 import { homeFaqs } from '../data/faqs';
 
 const Home: React.FC = () => {
   const itemList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Obsidian Ridge Labs private AI app collection',
-    description: 'Private, offline-first AI applications built natively for Apple devices.',
-    numberOfItems: products.length,
-    itemListElement: products.map((product, index) => ({
+    name: 'The Obsidian Ridge Labs collection',
+    description: collectionDescription,
+    numberOfItems: collection.length,
+    itemListElement: collection.map((product, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
@@ -23,7 +20,7 @@ const Home: React.FC = () => {
         name: product.name,
         url: `${SITE_URL}/apps/${product.id}`,
         description: product.description,
-        creativeWorkStatus: product.appStoreUrl ? 'Released' : 'In development',
+        creativeWorkStatus: product.releaseStatus === 'app-store' ? 'Released' : 'In development',
       },
     })),
   };
@@ -32,23 +29,22 @@ const Home: React.FC = () => {
     <>
       <SEO
         title="Private AI Apps for Apple"
-        description="Ten private AI apps for iPhone, iPad, and Mac. The intelligence runs on your device, so your life stays yours. Echo Chamber is on the App Store now."
+        description={collectionDescription}
         canonical={`${SITE_URL}/`}
         ogImage={`${SITE_URL}/og-v2.png`}
-        ogImageAlt="Obsidian Ridge Labs: Pure privacy. Intelligence on your terms."
+        ogImageAlt="Obsidian Ridge Labs: AI that knows you. Not one that watches you."
         keywords={[
           'private AI apps',
           'on-device AI for Apple',
           'offline AI apps',
           'private transcription app',
+          'local-first iPhone apps',
+          'AI apps that work offline',
           'Apple Neural Engine apps',
         ]}
-        jsonLd={[itemList, buildFAQSchema(homeFaqs)]}
+        jsonLd={[itemList, buildFAQSchema(homeFaqs, '/')]}
       />
-      <Hero />
-      <Philosophy />
-      <Products />
-      <Services />
+      <LuminousHome />
     </>
   );
 };

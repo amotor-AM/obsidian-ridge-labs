@@ -1,0 +1,223 @@
+/* Broad reading layouts keep long ideas out of narrow display columns. */
+.philosophy-page.philosophy-page--refined .section-frame {
+  width: min(calc(100% - 80px), 1160px);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+.philosophy-page.philosophy-page--refined :is(h1, h2, h3) {
+  height: auto;
+  min-height: 0;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.philosophy-page.philosophy-page--refined .section-index { align-items: start; flex-wrap: wrap; gap: 12px 24px; }
+
+.philosophy-page.philosophy-page--refined .philosophy-hero__frame {
+  min-height: 0;
+  padding-top: 140px;
+  padding-bottom: 62px;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-hero__copy {
+  display: block;
+  width: 100%;
+  margin-block: 0;
+  padding-block: 54px 42px;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-hero__copy h1 {
+  display: block;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0;
+  font-size: clamp(64px, 7.2vw, 112px);
+  line-height: 1.06;
+  letter-spacing: -.05em;
+  text-wrap: balance;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-hero__copy h1 em {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-hero__lead {
+  grid-template-columns: minmax(0, 740px) minmax(0, 1fr);
+  gap: 36px 56px;
+  align-items: start;
+  margin-top: 42px;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-hero__lead > .text-link {
+  justify-self: start;
+  align-self: start;
+  white-space: normal;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-hero__lead > p,
+.philosophy-page.philosophy-page--refined .philosophy-hero__coda {
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-hero__coda { max-width: 920px; }
+
+.philosophy-page.philosophy-page--refined .philosophy-premise__intro {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 30px;
+  padding-block: 49px 0;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-premise__intro > div {
+  grid-column: auto;
+  min-width: 0;
+  align-self: start;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-premise h2 {
+  max-width: 1120px;
+  font-size: clamp(36px, 4.4vw, 60px);
+  line-height: 1.16;
+  text-wrap: pretty;
+}
+
+.philosophy-page.philosophy-page--refined .philosophy-premise__intro > div:last-child p { max-width: 860px; }
+.philosophy-page.philosophy-page--refined .philosophy-premise__callout { max-width: none; margin-top: 46px; }
+.philosophy-page.philosophy-page--refined .philosophy-premise__callout span { max-width: 850px; font-size: 16px; }
+
+.philosophy-page.philosophy-page--refined :is(.standard-refusals__heading, .standard-cut__heading) {
+  max-width: 1120px;
+  margin: 47px 0 0;
+  font-size: clamp(36px, 4.4vw, 60px);
+  line-height: 1.16;
+  letter-spacing: -.04em;
+  text-wrap: pretty;
+}
+
+.philosophy-page.philosophy-page--refined :is(.standard-refusals__heading, .standard-cut__heading) em { color: #c7ff3e; }
+
+.philosophy-page.philosophy-page--refined .standard-refusals__layout {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+  padding-top: 38px;
+}
+
+.philosophy-page.philosophy-page--refined .standard-refusals__intro { max-width: 1000px; }
+
+.philosophy-page.philosophy-page--refined .standard-refusals__intro p {
+  max-width: none;
+  margin: 0 0 21px;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.philosophy-page.philosophy-page--refined .standard-refusals__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 23px 56px; }
+.philosophy-page.philosophy-page--refined .standard-refusals__list li { grid-template-columns: 26px minmax(0, 1fr); align-items: start; gap: 18px; padding: 26px 0 0; border-top: 1px solid rgba(255,255,255,.12); border-bottom: 0; }
+.philosophy-page.philosophy-page--refined .standard-refusals__list h3 { font-size: clamp(24px, 2.4vw, 31px); line-height: 1.3; }
+.philosophy-page.philosophy-page--refined .standard-refusals__list p { margin-top: 13px; line-height: 1.85; }
+
+.philosophy-page.philosophy-page--refined .standard-cut__layout {
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 52px;
+  align-items: start;
+  padding-top: 37px;
+}
+
+.philosophy-page.philosophy-page--refined .standard-cut__mark {
+  width: 160px;
+  padding: 0;
+  justify-self: start;
+  font-size: 130px;
+}
+
+.philosophy-page.philosophy-page--refined .standard-cut__copy { max-width: 740px; align-self: start; }
+.philosophy-page.philosophy-page--refined .standard-cut__copy p { margin-top: 0; font-size: 16px; line-height: 1.85; }
+.philosophy-page.philosophy-page--refined .standard-cut__copy .standard-cut__signature { margin-top: 23px; }
+
+.philosophy-page.philosophy-page--refined .standard-boundary__intro {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  padding-block: 47px 36px;
+}
+
+.philosophy-page.philosophy-page--refined .standard-boundary__intro h2 {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(36px, 4.4vw, 60px);
+  line-height: 1.16;
+  text-wrap: pretty;
+}
+
+.philosophy-page.philosophy-page--refined .standard-boundary__intro p { max-width: 860px; font-size: 16px; line-height: 1.85; }
+.philosophy-page.philosophy-page--refined .standard-boundary__questions > div { grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); align-items: start; gap: 46px; }
+.philosophy-page.philosophy-page--refined .standard-boundary__questions dt { align-items: start; }
+.philosophy-page.philosophy-page--refined .standard-boundary__questions dd { font-size: 16px; line-height: 1.85; }
+.philosophy-page.philosophy-page--refined .standard-boundary__foot { align-items: start; }
+.philosophy-page.philosophy-page--refined .standard-boundary__website { max-width: 920px; font-size: 13px; }
+
+.philosophy-page.philosophy-page--refined .standard-test__layout {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+  padding-top: 47px;
+}
+
+.philosophy-page.philosophy-page--refined .standard-test__intro > svg { margin-bottom: 23px; }
+.philosophy-page.philosophy-page--refined .standard-test__intro h2 { max-width: 1050px; margin: 0; font-size: clamp(36px, 4.4vw, 60px); line-height: 1.16; text-wrap: pretty; }
+.philosophy-page.philosophy-page--refined .standard-test__intro > p { max-width: 850px; margin-top: 22px; font-size: 16px; line-height: 1.85; }
+.philosophy-page.philosophy-page--refined .standard-test__instructions { padding: 34px; }
+.philosophy-page.philosophy-page--refined .standard-test__instructions ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; padding-left: 20px; }
+.philosophy-page.philosophy-page--refined .standard-test__instructions li { min-width: 0; margin-bottom: 0; padding-left: 6px; }
+.philosophy-page.philosophy-page--refined .standard-test__instructions h3 { font-size: 20px; line-height: 1.4; }
+.philosophy-page.philosophy-page--refined .standard-test__instructions p { line-height: 1.85; }
+.philosophy-page.philosophy-page--refined .standard-test__instructions .standard-test__condition { max-width: 920px; margin-top: 29px; }
+.philosophy-page.philosophy-page--refined .standard-test__instructions > .text-link { white-space: normal; }
+
+.philosophy-page.philosophy-page--refined .standard-close h2 { max-width: 1120px; font-size: clamp(36px, 4.4vw, 60px); line-height: 1.16; text-wrap: pretty; }
+.philosophy-page.philosophy-page--refined .standard-close .section-frame > p:not(.section-kicker) { max-width: 820px; font-size: 16px; line-height: 1.85; }
+.philosophy-page.philosophy-page--refined .standard-close .section-frame > div { align-items: start; }
+
+@media (max-width: 900px) {
+  .philosophy-page.philosophy-page--refined .philosophy-hero__lead { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .philosophy-page.philosophy-page--refined .standard-refusals__layout { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .philosophy-page.philosophy-page--refined .standard-refusals__intro { max-width: 1000px; }
+  .philosophy-page.philosophy-page--refined .standard-refusals__list { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .philosophy-page.philosophy-page--refined .standard-refusals__list li { padding-block: 25px; }
+  .philosophy-page.philosophy-page--refined .standard-cut__layout { grid-template-columns: 120px minmax(0, 1fr); gap: 32px; }
+  .philosophy-page.philosophy-page--refined .standard-cut__mark { width: 120px; font-size: 100px; border-radius: 26px; }
+  .philosophy-page.philosophy-page--refined .standard-boundary__questions > div { grid-template-columns: minmax(0, 1fr); gap: 17px; }
+  .philosophy-page.philosophy-page--refined .standard-test__instructions ol { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+}
+
+@media (max-width: 600px) {
+  .philosophy-page.philosophy-page--refined .section-frame { width: calc(100% - 36px); }
+  .philosophy-page.philosophy-page--refined .philosophy-hero__frame { padding-top: 118px; padding-bottom: 40px; }
+  .philosophy-page.philosophy-page--refined .philosophy-hero__meta { font-size: 11px; line-height: 1.7; letter-spacing: .035em; }
+  .philosophy-page.philosophy-page--refined .philosophy-hero__copy { padding-block: 37px 29px; }
+  .philosophy-page.philosophy-page--refined .philosophy-hero__copy h1 { font-size: clamp(36px, 9.5vw, 56px); line-height: 1.1; letter-spacing: -.045em; text-wrap: pretty; }
+  .philosophy-page.philosophy-page--refined .philosophy-hero__lead { margin-top: 29px; }
+  .philosophy-page.philosophy-page--refined .philosophy-premise__intro { padding-top: 34px; }
+  .philosophy-page.philosophy-page--refined :is(.philosophy-premise h2, .standard-refusals__heading, .standard-cut__heading, .standard-boundary__intro h2, .standard-test__intro h2, .standard-close h2) { font-size: clamp(30px, 7.8vw, 40px); line-height: 1.22; letter-spacing: -.035em; }
+  .philosophy-page.philosophy-page--refined :is(.standard-refusals__heading, .standard-cut__heading) { margin-top: 34px; }
+  .philosophy-page.philosophy-page--refined .philosophy-premise__callout { margin-top: 34px; padding: 24px; font-size: 25px; line-height: 1.3; }
+  .philosophy-page.philosophy-page--refined .standard-refusals__layout { padding-top: 25px; }
+  .philosophy-page.philosophy-page--refined .standard-refusals__list li { grid-template-columns: 21px minmax(0, 1fr); gap: 12px; }
+  .philosophy-page.philosophy-page--refined .standard-refusals__list h3 { font-size: 23px; }
+  .philosophy-page.philosophy-page--refined .standard-cut__layout { grid-template-columns: minmax(0, 1fr); gap: 25px; padding-top: 28px; }
+  .philosophy-page.philosophy-page--refined .standard-cut__mark { width: 92px; font-size: 76px; border-radius: 22px; }
+  .philosophy-page.philosophy-page--refined .standard-boundary__intro { padding-block: 34px 28px; }
+  .philosophy-page.philosophy-page--refined .standard-boundary__questions { padding-inline: 22px; }
+  .philosophy-page.philosophy-page--refined .standard-boundary__questions dt { gap: 13px; font-size: 18px; }
+  .philosophy-page.philosophy-page--refined .standard-boundary__questions dt > span { flex: 0 0 auto; }
+  .philosophy-page.philosophy-page--refined .standard-boundary__foot { flex-direction: column; gap: 12px; }
+  .philosophy-page.philosophy-page--refined .standard-test__layout { padding-top: 34px; gap: 25px; }
+  .philosophy-page.philosophy-page--refined .standard-test__instructions { padding: 25px 23px; }
+  .philosophy-page.philosophy-page--refined .standard-test__instructions > .text-link { font-size: 13px; }
+}

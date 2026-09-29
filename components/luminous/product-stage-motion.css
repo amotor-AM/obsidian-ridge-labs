@@ -1,0 +1,31 @@
+/* Separate wrappers keep scroll, finite drift, and pointer depth independent. */
+.ls-product-stage .ls-device-motion { perspective: 1100px; }
+.ls-device-drift, .ls-device-depth { transform-style: preserve-3d; }
+.ls-device-depth > img { display: block; }
+
+@media (min-width: 760px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .ls-device-drift {
+    animation: ls-device-settle 4.8s ease-in-out both;
+    animation-play-state: paused;
+  }
+  .ls-stage-device--mettle .ls-device-drift { --drift-x: -4px; --drift-y: -12px; --drift-turn: -.7deg; animation-duration: 4.5s; }
+  .ls-stage-device--echo .ls-device-drift { --drift-x: 1px; --drift-y: -8px; --drift-turn: .35deg; }
+  .ls-stage-device--memora .ls-device-drift { --drift-x: 4px; --drift-y: -10px; --drift-turn: .7deg; animation-duration: 4.6s; }
+  .ls-stage-device--mettle .ls-device-depth { --device-depth: .7; }
+  .ls-stage-device--echo .ls-device-depth { --device-depth: 1; }
+  .ls-stage-device--memora .ls-device-depth { --device-depth: .85; }
+  .ls-device-depth {
+    transform: translate3d(calc(var(--stage-pointer-x, 0px) * var(--device-depth)), calc(var(--stage-pointer-y, 0px) * var(--device-depth)), 0)
+      rotateX(calc(var(--stage-tilt-x, 0deg) * var(--device-depth)))
+      rotateY(calc(var(--stage-tilt-y, 0deg) * var(--device-depth)));
+  }
+  .ls-product-stage[data-motion-active='true'] .ls-device-drift { animation-play-state: running; }
+  .ls-product-stage[data-motion-active='true'] .ls-device-depth { transition: transform 420ms cubic-bezier(.2, .65, .3, 1); will-change: transform; }
+}
+
+/* One brief rise and settle, never an endless animation beside reading content. */
+@keyframes ls-device-settle {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateZ(0); }
+  38% { transform: translate3d(var(--drift-x), var(--drift-y), 0) rotateZ(var(--drift-turn)); }
+  72% { transform: translate3d(calc(var(--drift-x) * -.35), calc(var(--drift-y) * .25), 0) rotateZ(calc(var(--drift-turn) * -.3)); }
+}

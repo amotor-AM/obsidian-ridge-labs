@@ -2,13 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SEO, { buildBreadcrumbs } from './SEO';
+import '../styles/help-refinement.css';
 
 const TermsOfService: React.FC = () => {
   return (
-    <div className="legal-page">
+    <div className="legal-page legal-page--refined">
       <SEO
         title="Terms of Service"
-        description="Terms for Obsidian Ridge Labs apps, including Apple StoreKit purchases, subscriptions, privacy disclosures, intellectual property, and liability."
+        description="Terms for Obsidian Ridge Labs apps: Apple StoreKit purchases, subscriptions, privacy disclosures, intellectual property, warranties, and liability."
         noindex={false}
         jsonLd={[
           buildBreadcrumbs([
@@ -22,13 +23,12 @@ const TermsOfService: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1>
-          Terms of <em>Service.</em>
-        </h1>
+        <header className="legal-page__header">
+          <h1>Terms of <em>Service.</em></h1>
+          <p className="text-gray-400 text-sm mt-8">Last Updated: June 20, 2026</p>
+        </header>
         
         <div className="text-gray-400 leading-relaxed space-y-8">
-          <p className="text-gray-400 text-sm mb-8">Last Updated: June 20, 2026</p>
-          
           <section className="mb-12">
             <h2 className="text-2xl font-semibold text-white mb-4">1. Acceptance of Terms</h2>
             <p className="text-gray-400 leading-relaxed">
@@ -37,7 +37,7 @@ const TermsOfService: React.FC = () => {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-white mb-4">2. Apple Store Kit and Purchases</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4">2. Apple StoreKit and Purchases</h2>
             <p className="text-gray-400 leading-relaxed mb-4">
               Our applications may offer in-app purchases or subscriptions. All such transactions are processed securely through Apple's StoreKit framework.
             </p>

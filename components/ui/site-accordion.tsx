@@ -1,5 +1,5 @@
 import React, { useCallback, useId, useMemo, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '../../lib/cn';
 
 export type SiteAccordionItem = {
@@ -18,7 +18,7 @@ interface SiteAccordionProps {
 
 /**
  * Accessible spring accordion, adapted from 21st.dev @ddoemonn/accordion
- * and restyled as an Obsidian Ridge ledger instead of a card stack.
+ * and restyled as an Obsidian Ridge Labs ledger instead of a card stack.
  */
 export const SiteAccordion: React.FC<SiteAccordionProps> = ({
   items,
@@ -89,22 +89,19 @@ export const SiteAccordion: React.FC<SiteAccordionProps> = ({
                 <i aria-hidden="true" className={isOpen ? 'is-open' : ''} />
               </button>
             </h3>
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  id={panelId}
-                  role="region"
-                  aria-labelledby={headerId}
-                  className="site-accordion__panel"
-                  initial={reducedMotion ? false : { height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
-                  transition={{ duration: reducedMotion ? 0 : 0.34, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <div className="site-accordion__content">{item.content}</div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <motion.div
+              id={panelId}
+              role="region"
+              aria-labelledby={headerId}
+              aria-hidden={!isOpen}
+              className="site-accordion__panel"
+              initial={false}
+              animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+              transition={{ duration: reducedMotion ? 0 : 0.34, ease: [0.22, 1, 0.36, 1] }}
+              {...(!isOpen ? { inert: '' } : {})}
+            >
+              <div className="site-accordion__content">{item.content}</div>
+            </motion.div>
           </div>
         );
       })}

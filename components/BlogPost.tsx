@@ -23,6 +23,9 @@ import SEO, {
   buildFAQSchema,
 } from './SEO';
 import SiteFaq from './SiteFaq';
+import '../styles/journal-refinement.css';
+
+const contentLabels = { comparison: 'Comparison', listicle: 'App guide', guide: 'Practical guide', analysis: 'Explainer' };
 
 const formatDate = (value: string) => {
   const [year, month, day] = value.split('.').map(Number);
@@ -172,8 +175,8 @@ const BlogPostPage: React.FC = () => {
         return (
           <section key={index} className="journal-faq" aria-labelledby={`faq-heading-${index}`}>
             <div className="journal-faq__intro">
-              <span>People also ask</span>
-              <h2 id={`faq-heading-${index}`}>Questions, answered plainly</h2>
+              <span>Common questions</span>
+              <h2 id={`faq-heading-${index}`}>Before you choose</h2>
             </div>
             <SiteFaq
               tone="dark"
@@ -185,9 +188,9 @@ const BlogPostPage: React.FC = () => {
         return (
           <section key={index} className="journal-sources" aria-labelledby={`sources-${index}`}>
             <div>
-              <span>Source ledger</span>
+              <span>Documentation</span>
               <h2 id={`sources-${index}`}>Sources and further reading</h2>
-              <p>Primary documentation is preferred. Product features and prices can change; verify details before deciding.</p>
+              <p>Read the product documentation behind the comparison. Check the linked pages for current features and prices.</p>
             </div>
             <ol>
               {block.content.map((entry) => {
@@ -216,7 +219,7 @@ const BlogPostPage: React.FC = () => {
             </div>
             <div className="journal-cta__copy">
               <span>{getProductReleaseLabel(ctaProduct)}</span>
-              <h2>Meet {ctaProduct.name}</h2>
+              <h2>Explore {ctaProduct.name}</h2>
               <p>{block.content}</p>
             </div>
             {isAvailable ? (
@@ -243,7 +246,7 @@ const BlogPostPage: React.FC = () => {
         description={post.seoDescription || post.excerpt}
         ogType="article"
         ogImage={post.heroImageUrl || 'https://obsidianridgelabs.com/blog-og.png'}
-        ogImageAlt="Obsidian Ridge Labs Journal: evidence-led guides to private, on-device AI"
+        ogImageAlt="Obsidian Ridge Labs Journal: app comparisons and practical guides"
         keywords={post.tags.map((tag) => tag.replace('#', '').replaceAll('-', ' '))}
         article={{
           publishedTime: post.date.replace(/\./g, '-'),
@@ -258,7 +261,7 @@ const BlogPostPage: React.FC = () => {
         <div className="section-frame journal-hero__inner">
           <Link to="/journal" className="journal-back"><ArrowLeft size={16} aria-hidden="true" /> Journal index</Link>
           <div className="journal-hero__eyebrow">
-            <span>{isGrowthPost ? 'growth' : post.contentType}</span>
+            <span>{isGrowthPost ? 'Article' : contentLabels[post.contentType]}</span>
             {product && <Link to={`/apps/${product.id}`}>{product.name}</Link>}
             <span>{post.readTime.replace(' READ', '').toLowerCase()}</span>
           </div>
@@ -266,7 +269,7 @@ const BlogPostPage: React.FC = () => {
           <p className="journal-hero__dek">{post.excerpt}</p>
           <div className="journal-hero__meta">
             <span><Calendar size={16} aria-hidden="true" /> Published {formatDate(post.date)}</span>
-            {post.modified && <span><Clock size={16} aria-hidden="true" /> Reviewed {formatDate(post.modified)}</span>}
+            {post.modified && <span><Clock size={16} aria-hidden="true" /> Updated {formatDate(post.modified)}</span>}
             <span>{isGrowthPost ? 'Published with BabyLoveGrowth' : 'By Obsidian Ridge Labs Editorial'}</span>
           </div>
           {post.searchIntent && !isGrowthPost && (
@@ -295,7 +298,7 @@ const BlogPostPage: React.FC = () => {
           )}
         </aside>
 
-        <main>
+        <div className="journal-main">
           <article className="journal-prose">
             {post.keyTakeaways.length > 0 && (
               <section className="journal-takeaways" aria-labelledby="takeaways-heading">
@@ -312,7 +315,7 @@ const BlogPostPage: React.FC = () => {
             {!isGrowthPost && (post.contentType === 'comparison' || post.contentType === 'listicle') && (
               <aside className="journal-method">
                 <strong>How this guide was built</strong>
-                <p>We compared current official product pages, documentation, privacy policies, and pricing pages against the implementation facts available for our own product. This is an editorial comparison, not paid placement or a claim of independent hands-on testing. Numbering is for navigation, not a test score. Recheck linked sources because products change.</p>
+                <p>Obsidian Ridge Labs makes {product?.name || 'apps discussed in this guide'}. We compare documented features and workflows, with source links below. Our unreleased apps are identified as in development; the article does not report a hands-on test or measured product ranking.</p>
               </aside>
             )}
 
@@ -343,12 +346,12 @@ const BlogPostPage: React.FC = () => {
                 <p>
                   {isGrowthPost
                     ? 'This article was published through BabyLoveGrowth and synced onto the Obsidian Ridge Labs journal at build time.'
-                    : 'We write from product documentation, implementation evidence, and clearly labeled limitations. No rankings are purchased.'}
+                    : 'App comparisons and practical guides from the studio behind Echo Chamber and the Obsidian Ridge Labs collection.'}
                 </p>
               </div>
             </footer>
           </article>
-        </main>
+        </div>
 
         <aside className="journal-rail journal-rail--right">
           <section>
@@ -356,7 +359,7 @@ const BlogPostPage: React.FC = () => {
             <div className="journal-related">
               {relatedPosts.map((related) => (
                 <Link key={related.id} to={`/journal/${related.id}`}>
-                  <span>{related.contentType}</span>
+                  <span>{contentLabels[related.contentType]}</span>
                   <h2>{related.title}</h2>
                   <ArrowRight size={17} aria-hidden="true" />
                 </Link>
@@ -376,11 +379,11 @@ const BlogPostPage: React.FC = () => {
 
       <section className="section-frame journal-next" aria-labelledby="related-reading-heading">
         <div className="section-index"><span>Related reading</span><span>{relatedPosts.length} next steps</span></div>
-        <h2 id="related-reading-heading">Keep the question open.</h2>
+        <h2 id="related-reading-heading">Continue with a related guide.</h2>
         <div className="journal-next__grid">
           {relatedPosts.slice(0, 3).map((related, index) => (
             <Link key={related.id} to={`/journal/${related.id}`}>
-              <span>{String(index + 1).padStart(2, '0')} / {related.contentType}</span>
+              <span>{String(index + 1).padStart(2, '0')} / {contentLabels[related.contentType]}</span>
               <h3>{related.title}</h3>
               <p>{related.excerpt}</p>
               <span className="text-link">Read the guide <ArrowRight size={15} aria-hidden="true" /></span>

@@ -3,46 +3,46 @@ import type { BlogPost } from '../../types';
 export const coreBlogPosts: BlogPost[] = [
   {
     id: 'apple-ecosystem-privacy',
-    title: 'On-Device AI on iPhone: What Stays Local, What Still Connects, and How to Verify It',
-    seoTitle: 'On-Device AI on iPhone: A Privacy Verification Guide',
+    title: "On-Device AI on iPhone: What to Check Before You Use It",
+    seoTitle: "On-Device AI on iPhone: What to Check Before You Use It",
     date: '2026.03.22',
-    modified: '2026.07.11',
-    readTime: '11 MIN READ',
+    modified: "2026.09.28",
+    readTime: "5 MIN READ",
     category: 'ON-DEVICE AI GUIDE',
     tags: ['#ON-DEVICE-AI', '#IPHONE-PRIVACY', '#APPLE-INTELLIGENCE', '#LOCAL-FIRST'],
-    excerpt: 'A practical way to verify whether an iPhone AI app processes your data locally, which features still use a network, and what privacy questions to ask before installing it.',
-    seoDescription: 'Learn what on-device AI means on iPhone, which features may still connect, and seven practical checks for verifying an app’s privacy claims.',
+    excerpt: "Follow a recording, photo, or journal entry through an app. Learn what runs on your iPhone, what can still connect, and how to test the parts that matter.",
+    seoDescription: "Follow a recording, photo, or journal entry through an app. Learn what runs on your iPhone, what can still connect, and how to test the parts that matter.",
     contentType: 'guide',
     searchIntent: 'How can I tell whether an iPhone AI app is truly on-device and private?',
     keyTakeaways: [
-      '“On-device” should name a specific processing step, not imply that the entire app is permanently offline.',
-      'Local inference, local storage, optional iCloud, App Store verification, and user-initiated sharing are separate data paths.',
-      'The most credible privacy claim is one you can test through permissions, offline behavior, exports, and product-specific disclosures.',
+      "Ask about the feature you will use: where the recording, photo, or text is processed and where the result is stored.",
+      "Local AI and synced storage can coexist. Check iCloud, exports, and connected services separately.",
+      "Try a non-sensitive record, use the app offline after setup, and export the result before trusting it with a larger archive."
     ],
     relatedIds: ['offline-ai-revolution', 'otter-vs-echo', 'finance-app-red-flags'],
     blocks: [
       {
         type: 'answer',
-        title: 'The short answer',
-        content: 'An iPhone AI app is meaningfully on-device when it identifies the exact task that runs locally, such as transcription, summarization, OCR, search, or classification, and that task still works without sending the input to the developer’s server. That does not prove every feature is offline. You still need separate answers about storage, model downloads, purchases, iCloud, third-party services, exports, diagnostics, and support.',
+        title: "Follow one piece of data from input to result",
+        content: "An app can transcribe a recording or summarize an entry on the iPhone without sending that input to a remote model. It may still use iCloud, download models, verify purchases, or connect another service. To understand the claim, pick one feature you plan to use and check how it processes the input, stores the result, and handles a lost connection. This guide gives you seven practical checks.",
       },
       {
         type: 'paragraph',
-        content: '“Private AI” and “on-device AI” are useful terms only when they describe an inspectable data path. A logo, lock icon, or broad promise cannot tell you whether a recording is uploaded for speech recognition, whether a journal entry is sent elsewhere for a summary, or whether an optional sync service creates another copy. The right comparison begins with what the app does to one real piece of data from input to result.',
+        content: "Suppose you want to summarize a private recording. “On-device” is useful if it tells you where that recording is transcribed and where its words are summarized. It tells you less about whether the finished transcript syncs, what a support attachment includes, or where an export goes. Start with a piece of information you care about, then follow the steps you would actually use.",
       },
       {
         type: 'h2',
-        content: 'What on-device AI actually means',
+        content: "Which work can happen on the iPhone?",
       },
       {
         type: 'paragraph',
         content: 'Apple’s Foundation Models framework gives developers access to an on-device language model for tasks such as summarization, entity extraction, text understanding, refinement, and structured output. Apple also provides local frameworks for speech, Vision OCR, image analysis, Natural Language processing, and other focused work. When an app uses those capabilities directly on supported hardware, the private input can remain inside the device boundary for that named task.',
       },
       {
-        type: 'callout',
-        title: 'Important distinction',
-        variant: 'privacy',
-        content: 'An app using Apple’s on-device Foundation Models framework is not the same thing as every Apple Intelligence request on the system. Apple explains that some system-level Apple Intelligence requests may use Private Cloud Compute. A developer should document the behavior of the app feature itself instead of borrowing a platform-wide privacy claim.',
+        "type": "callout",
+        "title": "An app feature and a system feature can use different paths",
+        "content": "Apple’s Foundation Models framework gives an app access to an on-device model. Some system-level Apple Intelligence requests can use Private Cloud Compute. Check the feature you plan to use rather than assuming every Apple Intelligence request takes the same route.",
+        "variant": "note"
       },
       {
         type: 'h2',
@@ -67,7 +67,7 @@ export const coreBlogPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Seven checks you can perform before trusting the claim',
+        content: "Seven checks before moving your records in",
       },
       {
         type: 'list',
@@ -83,19 +83,19 @@ export const coreBlogPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Why Obsidian Ridge Labs focuses on Apple platforms',
+        content: "Why we build around Apple devices",
       },
       {
         type: 'paragraph',
-        content: 'A narrow platform strategy is an engineering constraint, not a claim that Apple makes every app private. Supporting one hardware and software family gives a small studio more time to test permission timing, local model availability, offline failure states, accessibility, exports, and optional connections. It also lets each product publish specific operating-system and hardware requirements rather than hiding behind a vague compatibility promise.',
+        content: "Apple provides the speech, image-recognition, and language tools that let us build focused workflows on the device. In Echo Chamber, for example, a recording can become a searchable transcript and useful notes without going to an Obsidian Ridge Labs AI server. That is a practical benefit for a conversation you need to revisit, particularly when it contains information you would not otherwise share with a software company.",
       },
       {
         type: 'paragraph',
-        content: 'The platform still does not choose the app’s business model, third-party SDKs, storage design, or support workflow. Those remain developer decisions. Our standard is therefore product-specific: name what stays local, name what connects, label unreleased behavior as provisional, and correct a claim when the implementation does not support it.',
+        content: "The other choices still need to be made app by app. Some products use private iCloud storage; some offer optional connected services; some keep their current records local. Hardware requirements differ too. Our product pages describe those details alongside what the app helps you do, so you can judge the whole workflow.",
       },
       {
         type: 'h2',
-        content: 'Questions people ask about private iPhone AI apps',
+        content: "Common questions about on-device AI",
       },
       {
         type: 'faq',
@@ -132,36 +132,36 @@ export const coreBlogPosts: BlogPost[] = [
   },
   {
     id: 'offline-ai-revolution',
-    title: 'Offline AI Apps in 2026: What Works Without Internet and What Still Connects',
-    seoTitle: 'Offline AI Apps in 2026: What Works Without Internet',
+    title: "What Offline AI Can Do After the Connection Drops",
+    seoTitle: "What Offline AI Can Do After the Connection Drops",
     date: '2026.03.05',
-    modified: '2026.07.11',
-    readTime: '10 MIN READ',
+    modified: "2026.09.28",
+    readTime: "6 MIN READ",
     category: 'OFFLINE AI EXPLAINER',
     tags: ['#OFFLINE-AI', '#LOCAL-AI', '#PRIVACY', '#APPLE-SILICON'],
-    excerpt: 'Offline AI can keep focused work available and reduce data movement, but model setup, purchases, optional sync, connected providers, and exports still require separate answers.',
-    seoDescription: 'See which AI workflows can run offline, what may still connect, and how local and cloud-first apps differ on privacy, reliability, and scale.',
+    excerpt: "Transcribe a recording, work through notes, or search saved records without a round trip to a remote model. Here is what to test, and what can still need a connection.",
+    seoDescription: "Transcribe recordings and work through notes without a remote model. Learn which tasks work offline, what to test, and which features still need a connection.",
     contentType: 'analysis',
     searchIntent: 'Which AI apps work without internet, and does offline AI mean none of my data ever leaves the device?',
     keyTakeaways: [
-      'Offline AI is strongest in focused workflows with bounded inputs and clear output checks.',
-      'A deterministic fallback can matter more than a larger model when reliability is the product requirement.',
-      '“Works offline” should be tested after setup and separated from optional services that legitimately connect.',
+      "Offline processing is useful when you need to keep working with private recordings or saved material without uploading it to an AI service.",
+      "Check the whole task, from opening the source to saving or exporting the result. A local model alone does not prove the whole app works offline.",
+      "Find out what happens when a model is unavailable. Hardware requirements and fallback behavior differ between apps."
     ],
     relatedIds: ['apple-ecosystem-privacy', 'best-offline-transcription-apps', 'mettle-vs-fitbod-alpha-progression-boostcamp-hevy'],
     blocks: [
       {
         type: 'answer',
-        title: 'What offline AI means in practice',
-        content: 'An offline AI app runs its core inference on the device after any required setup, so the main workflow can continue without Wi-Fi or cellular service. It may still connect for an initial model download, App Store purchase verification, optional iCloud, WeatherKit, bank data, links, or support. The useful question is not “Does the app ever connect?” but “Which exact step connects, why, and what remains usable when it cannot?”',
+        title: "Test the part of the work you want to keep doing",
+        content: "Offline AI runs a particular task on the device after setup. That can mean transcribing a recording, extracting text from a photo, or asking a question about saved material without waiting for a remote model. Model downloads, purchase checks, sync, weather, and linked services may still need the internet. The practical test is whether the work you care about continues when those connections are absent.",
       },
       {
         type: 'paragraph',
-        content: 'Local models have moved from novelty to a practical product architecture. Modern Apple hardware can transcribe speech, extract text from images, classify records, retrieve related writing, generate structured drafts, and summarize bounded context without a round trip to a general cloud model. The best offline products do not try to recreate every capability of a frontier chatbot. They choose a focused job where privacy, latency, and availability materially improve the experience.',
+        content: "You open a recording on a flight because you finally have time to turn it into notes. Or you need an item’s saved details in a room with poor reception. In those moments, it matters whether the app already has the tools and records it needs. Local processing can keep a focused job available and avoid sending the source to an AI service. It works best when the app is clear about the input it can handle and the result you can check.",
       },
       {
         type: 'h2',
-        content: 'Where offline AI is genuinely useful',
+        content: "Useful work that can stay on the device",
       },
       {
         type: 'list',
@@ -176,7 +176,7 @@ export const coreBlogPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Where local models trade breadth for a clearer boundary',
+        content: "Match the model to the task",
       },
       {
         type: 'paragraph',
@@ -197,15 +197,15 @@ export const coreBlogPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Why a deterministic fallback matters',
+        content: "What happens when the model is unavailable?",
       },
       {
         type: 'paragraph',
-        content: 'An app should not become useless because Apple Intelligence is unavailable, a generation is refused, or an older supported device lacks the preferred model. A deterministic fallback can use rules, calculations, Natural Language analysis, or manual controls to preserve the core outcome. In Mettle, for example, the deterministic engine owns every set, rep, load, and deload while the language model is limited to curated exercise selection and explanation. In Memora, a text-analysis path still produces drafts when a generation fails mid-session. There is a boundary to this principle, and it is worth stating: where the model is not a feature but the entire product, a reduced version is worse than an honest refusal. Most Obsidian Ridge Labs apps take that position and require Apple Intelligence, saying so plainly at launch rather than shipping a hollowed-out experience; Echo Chamber is the exception, since its transcription engine does not depend on it and stays open to every supported device.',
+        content: "A useful fallback keeps part of the job available when generation fails. Memora can continue on eligible hardware when its model is unavailable, retaining manual study and imports; source-to-card generation also has a basic fallback. Mettle’s training calculations use rules, but the current app still requires Apple Intelligence at launch. Those are different promises. Check both the device requirement and what remains available after a model failure, rather than assuming every local app handles it the same way.",
       },
       {
         type: 'h2',
-        content: 'Connections that can still be honest in an offline-first app',
+        content: "The connected features to check separately",
       },
       {
         type: 'list',
@@ -221,7 +221,7 @@ export const coreBlogPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'How to test an offline AI app in ten minutes',
+        content: "A ten-minute offline test",
       },
       {
         type: 'list',
@@ -242,7 +242,7 @@ export const coreBlogPosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Frequently asked questions about offline AI apps',
+        content: "Common questions about offline AI",
       },
       {
         type: 'faq',
@@ -277,7 +277,7 @@ export const coreBlogPosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: 'Explore how each Obsidian Ridge Labs product separates its local core from optional connections, provisional capabilities, and user-initiated exports.',
+        content: "Explore the Obsidian Ridge Labs collection by the work you want help with. Each product page explains its local features, device requirements, and connected options.",
         ctaAppId: 'echochamber',
       },
     ],

@@ -6,18 +6,18 @@ export const memoraKb: KnowledgeBase = {
   accent: "#6fa8ff",
   status: "ready",
   intro:
-    "Guides for turning notes, PDFs, and photos into flashcards, understanding FSRS without the jargon, and importing decks from Anki or Quizlet.",
+    "Learn to make flashcards from notes, PDFs, and photos, review them with FSRS, and import an existing deck.",
   categories: [
     {
       id: "getting-started",
       title: "Getting started",
-      description: "Your first deck, the four screens, and how the free tier is shaped.",
+      description: "Create your first deck, find the main screens, and check the free limits.",
       icon: "book",
     },
     {
       id: "generating",
       title: "Making cards",
-      description: "Notes, PDFs, photos, the review gate, cloze cards, and image occlusion.",
+      description: "Make cards from notes, PDFs, or photos, choose drafts to save, and use different card types.",
       icon: "sparkles",
     },
     {
@@ -29,13 +29,13 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "scheduling",
       title: "FSRS and scheduling",
-      description: "What spaced repetition is actually doing, and the settings that shape your queue.",
+      description: "How spaced repetition schedules cards and how to adjust your review queue.",
       icon: "calendar-clock",
     },
     {
       id: "importing",
       title: "Importing and sharing",
-      description: "Anki, Quizlet, CSV, deck sharing, and full library backups.",
+      description: "Import existing cards, share a deck, and export library content and images.",
       icon: "share",
     },
     {
@@ -47,13 +47,13 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "privacy",
       title: "Privacy and your data",
-      description: "Where decks live, what never leaves, and what a share actually contains.",
+      description: "Learn where decks are stored and what is included when you share or export them.",
       icon: "lock",
     },
     {
       id: "billing",
       title: "Plans and billing",
-      description: "The real free limits, what Plus unlocks, and restoring a purchase.",
+      description: "Check free limits, compare Plus features, and restore a purchase.",
       icon: "star",
     },
   ],
@@ -62,10 +62,10 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "welcome-to-memora",
       title: "Welcome to Memora",
-      description: "What Memora does, and the two things it refuses to compromise on.",
+      description: "An introduction to making cards, reviewing them, and finding your way around Memora.",
       category: "getting-started",
       keywords: ["welcome", "about", "flashcards", "study", "intro", "screens", "private"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -104,23 +104,23 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "your-first-deck",
       title: "Your first deck",
-      description: "From a paragraph of notes to a deck you can study, in about a minute.",
+      description: "Generate card drafts from your notes, review them, save a deck, and begin studying.",
       category: "getting-started",
       keywords: ["first", "deck", "start", "onboarding", "create", "tutorial"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Onboarding is not an explainer, it is the product. Paste a snippet of something you are learning, tap Make my flashcards, and watch real cards appear using the same engine the app uses everywhere else.",
+            "During setup, paste a short passage from your notes and tap Make my flashcards. Review the proposed cards against your notes, then save them as your first deck. You can edit cards after they have been saved.",
         },
         {
           type: "steps",
           items: [
-            { title: "Paste something real", description: "A paragraph of lecture notes, a definition list, anything you actually need to know. Real material makes the result obvious." },
-            { title: "Generate", description: "Cards appear as drafts. This is the moment that tells you whether Memora is worth your time." },
-            { title: "Save as My First Deck", description: "The finale offers to keep those cards, so you end setup with a seeded personal deck rather than an empty screen." },
-            { title: "Study it", description: "Rate a few cards. The four grades and the next-interval preview will make immediate sense once you have seen them once." },
+            { title: "Paste your notes", description: "Use a short paragraph or definition list. Keep the original notes available so you can check the cards." },
+            { title: "Generate", description: "Read the proposed questions and answers, and check that they match the material you pasted." },
+            { title: "Save as My First Deck", description: "Choose to save the generated cards as My First Deck. Open the saved deck if you need to edit a card." },
+            { title: "Study it", description: "Reveal each answer and choose Again, Hard, Good, or Easy based on your recall. The interval preview shows when each choice would bring the card back." },
           ],
         },
         {
@@ -128,7 +128,7 @@ export const memoraKb: KnowledgeBase = {
           variant: "tip",
           title: "Coming from another app?",
           content:
-            "Onboarding also offers switchers a one-tap path straight into the importer. Anki .apkg, Quizlet exports, and CSV all come in for free.",
+            "You can also open the importer during setup. Import is free; check the import guide for supported Anki, Quizlet, and CSV formats and their limits.",
         },
       ],
       related: ["generate-from-notes", "import-from-anki", "study-session"],
@@ -138,15 +138,15 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "generate-from-notes",
       title: "Making cards from notes, PDFs and photos",
-      description: "The three inputs, what each one needs, and where the limits actually are.",
+      description: "Prepare notes, a PDF, or a photo for generation and check the supported formats.",
       category: "generating",
       keywords: ["generate", "notes", "pdf", "photo", "ocr", "scan", "text", "import"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Memora generates cards from material you provide rather than from open-domain knowledge. That is a deliberate choice: transforming your text is exactly what a small on-device model does reliably, which makes it both useful and structurally hard to hallucinate.",
+            "The Notes, PDF, and Photo modes create draft cards from material you provide. Generation uses a bounded excerpt of up to 4,000 characters and can propose up to 12 cards at a time. Similar mode is different: it asks for new cards on a topic inferred from examples. Check any generated card before studying it.",
         },
         {
           type: "heading",
@@ -158,7 +158,7 @@ export const memoraKb: KnowledgeBase = {
           items: [
             "Typed or pasted notes. The most reliable input, because you control what goes in.",
             "PDFs with an embedded text layer, read with PDFKit.",
-            "Photos and scanned pages, read with on-device Vision OCR. A photograph of your own handwriting usually works well.",
+            "Photos and camera-scanned pages use on-device Vision OCR. Check the recognized text; unclear text or handwriting may not be read correctly.",
           ],
         },
         {
@@ -171,15 +171,15 @@ export const memoraKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Every proposed card is a draft. Nothing enters a deck until you approve it.",
+            "Drafts start selected. Review them, deselect the ones you do not want, then add the selected batch. You can edit the saved cards in the deck.",
         },
       ],
       related: ["the-review-gate", "apple-intelligence-requirement", "card-types"],
     },
     {
       id: "the-review-gate",
-      title: "Why every generated card is reviewed",
-      description: "The step that keeps AI generation from bypassing the person doing the learning.",
+      title: "Choosing which generated cards to keep",
+      description: "Review the proposed cards, choose which to add, then edit saved cards.",
       category: "generating",
       keywords: ["review", "draft", "approve", "edit", "discard", "gate", "quality"],
       updated: "2026-09-07",
@@ -187,7 +187,7 @@ export const memoraKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Generated cards arrive as drafts. You include, edit, or discard each one, and only what you approve enters the deck.",
+            "Generated cards arrive as selected drafts. Read the front and back, deselect unwanted cards, then add the selected batch. The review screen does not edit draft text; open a saved card in the deck to change it.",
         },
         {
           type: "paragraph",
@@ -199,7 +199,7 @@ export const memoraKb: KnowledgeBase = {
           variant: "tip",
           title: "Discard freely",
           content:
-            "A generation pass that yields four good cards out of eight is a success. Rejecting the weak half takes ten seconds and saves you months of reviewing something useless.",
+            "Keep the cards that match what you need to learn. Leave weak or irrelevant drafts unselected, and check important facts against your original material.",
         },
       ],
       related: ["generate-from-notes", "card-types", "study-session"],
@@ -245,15 +245,15 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "apple-intelligence-requirement",
       title: "Why Memora requires Apple Intelligence",
-      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
+      description: "Check device requirements and what to do when Apple Intelligence is unavailable.",
       category: "generating",
       keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Memora checks for Apple Intelligence when it launches. On-device AI is the product here rather than a garnish, so a half-working Memora would be worse than an honest explanation.",
+            "Memora requires an Apple Intelligence-capable iPhone with iOS 26. Unsupported hardware is blocked. On eligible hardware, the app can continue after an advisory while Apple Intelligence is off or its model is unavailable.",
         },
         {
           type: "heading",
@@ -263,7 +263,7 @@ export const memoraKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "iPhone 15 Pro or later, running iOS 26 or later, with Apple Intelligence turned on in Settings and the on-device model finished downloading.",
+            "An Apple Intelligence-compatible iPhone running the required iOS version, with Apple Intelligence enabled and its model ready. See the product page for the operating-system requirement.",
         },
         {
           type: "heading",
@@ -274,8 +274,8 @@ export const memoraKb: KnowledgeBase = {
           type: "list",
           items: [
             "Hardware that cannot run Apple Intelligence: a full-screen explanation instead of the app. This one is an honest dead end.",
-            "Apple Intelligence turned off: a screen with a direct path into iOS Settings, which clears itself when you come back.",
-            "The model still downloading: an explanation that resolves on its own the next time you open Memora.",
+            "Apple Intelligence off on eligible hardware: an advisory with a path to Settings and an option to continue.",
+            "The model downloading on eligible hardware: continue with manual cards, imports, and study while setup finishes.",
           ],
         },
         {
@@ -283,7 +283,7 @@ export const memoraKb: KnowledgeBase = {
           variant: "info",
           title: "Why the check happens at launch",
           content:
-            "There is no App Store setting that prevents installation on a device without Apple Intelligence, so the check has to run when the app does. That is why Memora can be downloaded and then tell you it cannot help.",
+            "Memora checks hardware and model readiness separately. Manual study and imported cards do not require a live model. Source-to-card generation has a deterministic fallback; Similar mode and Tutor need the model.",
         },
         {
           type: "heading",
@@ -293,7 +293,7 @@ export const memoraKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Manual cards and the full FSRS scheduler are free and never paywalled, and a local text-analysis path still covers a transient failure inside a session. But generating cards from your own material is the reason to choose Memora, so the app does not pretend to be itself without it.",
+            "Manual cards and FSRS study are free. On eligible hardware, source-to-card generation has a deterministic fallback when the local model is unavailable. Similar mode and Tutor require the model.",
         },
       ],
       related: ["generate-from-notes", "study-hints", "compare-free-and-plus"],
@@ -303,10 +303,10 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "study-session",
       title: "A study session, start to finish",
-      description: "Reveal, rate honestly, fix a card in place, undo a mistake, and reach the finish line.",
+      description: "Reveal and rate cards, edit a saved card, undo a rating, and review your session summary.",
       category: "studying",
       keywords: ["study", "session", "review", "grade", "again", "hard", "good", "easy", "undo"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -317,7 +317,7 @@ export const memoraKb: KnowledgeBase = {
           type: "steps",
           items: [
             { title: "Reveal", description: "Tap, or flick. The answer appears along with the next interval each grade would produce." },
-            { title: "Rate honestly", description: "Again, Hard, Good, or Easy. Rating everything Easy feels great and destroys the schedule." },
+            { title: "Rate honestly", description: "Choose Again, Hard, Good, or Easy to match how well you recalled the answer. Your rating affects when the card returns." },
             { title: "Fix things in place", description: "Spotted a typo? Edit the card without leaving the session. You can also pause a card you are not ready for." },
             { title: "Finish", description: "A completion summary shows cards reviewed, recall percentage, and time spent." },
           ],
@@ -368,10 +368,10 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "practice-ahead",
       title: "When the queue is empty",
-      description: "Practice ahead when nothing is due, without corrupting the schedule you have built.",
+      description: "Use Practice Ahead for an extra session when no cards are due for review.",
       category: "studying",
       keywords: ["practice ahead", "empty", "queue", "early", "no cards due", "reschedule"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -425,10 +425,10 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "how-fsrs-works",
       title: "What FSRS actually does",
-      description: "Spaced repetition in plain English, and why the interval changes so much.",
+      description: "How your recall ratings affect the date of the next review.",
       category: "scheduling",
       keywords: ["fsrs", "spaced repetition", "algorithm", "interval", "stability", "difficulty", "memory"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -472,10 +472,10 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "daily-limits",
       title: "New-card limits and taming a backlog",
-      description: "The one setting that decides whether tomorrow is manageable.",
+      description: "Set a daily new-card limit and work through cards waiting for review.",
       category: "scheduling",
       keywords: ["limit", "new cards", "backlog", "daily", "queue", "overwhelm", "settings"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -543,7 +543,7 @@ export const memoraKb: KnowledgeBase = {
         {
           type: "list",
           items: [
-            "Anki .apkg packages, with cloze markers converted and HTML cleaned up.",
+            "Compatible Anki .apkg text decks using legacy .anki2 or .anki21 collections. Media is not imported; newer .anki21b collections are not supported.",
             "Quizlet and Anki text exports.",
             "Any CSV or TSV from a spreadsheet.",
           ],
@@ -561,7 +561,7 @@ export const memoraKb: KnowledgeBase = {
           variant: "warning",
           title: "One Anki export format needs a checkbox",
           content:
-            "Anki has an export option that produces a package Memora cannot read. If your file is that format, Memora says so clearly and tells you which checkbox to change rather than failing silently.",
+            "If Memora rejects a newer Anki package, export it using Anki’s compatibility option. The importer accepts legacy .anki2 and .anki21 collections inside .apkg files, not .anki21b. Images and audio are not carried over.",
         },
         {
           type: "paragraph",
@@ -574,10 +574,10 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "share-a-deck",
       title: "Sharing a deck",
-      description: "What a shared deck contains, and what it deliberately leaves behind.",
+      description: "Check which card content is shared and which study records remain private.",
       category: "importing",
       keywords: ["share", "deck", "send", "classmate", "export", "qr", "memora file"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -597,7 +597,7 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "backup-library",
       title: "Backing up your whole library",
-      description: "One file with everything, including images, restorable by re-importing it.",
+      description: "Export deck content and images; review schedules and history are excluded.",
       category: "importing",
       keywords: ["backup", "export", "library", "restore", "memorabackup", "new phone", "files"],
       updated: "2026-09-07",
@@ -605,7 +605,7 @@ export const memoraKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Settings has Export All Decks, which writes a single .memorabackup file to Files with your images included. Re-importing it restores everything.",
+            "Settings has Export All Decks, which writes a .memorabackup file containing deck content and images. It does not include review history or FSRS scheduling. Re-imported cards start with a new study schedule.",
         },
         {
           type: "callout",
@@ -658,10 +658,10 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "where-decks-live",
       title: "Does my study material leave my iPhone?",
-      description: "The complete list of what does and does not go anywhere.",
+      description: "Learn how Memora stores and processes study material, and what sharing or export includes.",
       category: "privacy",
       keywords: ["privacy", "upload", "server", "account", "analytics", "icloud", "data"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -697,10 +697,10 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "compare-free-and-plus",
       title: "What is free and what Memora Plus adds",
-      description: "The real free limits and what Plus unlocks, as numbers rather than a vague comparison table.",
+      description: "Compare free allowances with Plus generation limits and study features.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "limit", "lifetime", "trial", "compare"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "heading",
@@ -746,10 +746,10 @@ export const memoraKb: KnowledgeBase = {
     {
       id: "restore-purchase",
       title: "Restoring a purchase",
-      description: "New phone, reinstall, or an entitlement that did not appear.",
+      description: "Restore access to a purchase after reinstalling or moving to a new phone.",
       category: "billing",
       keywords: ["restore", "purchase", "reinstall", "new phone", "missing", "receipt"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -761,7 +761,7 @@ export const memoraKb: KnowledgeBase = {
           items: [
             { title: "Check the Apple Account", description: "The device must be signed in with the account used for the purchase." },
             { title: "Open Settings in Memora", description: "Tap Restore Purchases." },
-            { title: "Wait a moment", description: "The App Store confirms the entitlement and Plus unlocks." },
+            { title: "Wait a moment", description: "The App Store checks your purchase and restores Plus access." },
           ],
         },
         {

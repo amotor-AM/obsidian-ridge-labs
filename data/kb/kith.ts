@@ -6,7 +6,7 @@ export const kithKb: KnowledgeBase = {
   accent: "#f07f78",
   status: "ready",
   intro:
-    "Guides for circles and cadences, reading the Warmth Ring, using the on-device helpers to actually send the message, and keeping private notes private.",
+    "Learn to set reminder cadences, save context about people, prepare a message, and manage your records.",
   categories: [
     {
       id: "getting-started",
@@ -62,10 +62,10 @@ export const kithKb: KnowledgeBase = {
     {
       id: "welcome-to-kith",
       title: "Welcome to Kith",
-      description: "What Kith is, and why it deliberately is not a CRM.",
+      description: "An introduction to people, saved context, reminders, and preparing to reach out.",
       category: "getting-started",
       keywords: ["welcome", "about", "personal crm", "friends", "family", "intro", "tabs"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -371,7 +371,7 @@ export const kithKb: KnowledgeBase = {
     {
       id: "draft-a-message",
       title: "Drafting a message",
-      description: "A warm message in your voice, tweakable in one tap, sent straight into Messages.",
+      description: "A draft based on saved context, with tone adjustments and a handoff to Messages.",
       category: "reaching-out",
       keywords: ["draft", "message", "write", "text", "tone", "shorter", "warmer", "messages"],
       updated: "2026-09-07",
@@ -470,14 +470,14 @@ export const kithKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Every AI feature in Kith runs on Apple's on-device model. Your relationship notes are never sent to Obsidian Ridge Labs or to any AI provider, because they never leave the phone.",
+            "Kith’s AI helpers run on your iPhone. Saved relationship context is not sent to a remote AI service. A message you choose to send or an exported file follows the destination you select.",
         },
         {
           type: "list",
           items: [
             "Today's Spark: a daily opener for whoever is most due.",
             "Brain dump to memory: turn a messy note into structured facts.",
-            "Draft a message: a warm message in your voice, adjustable in one tap.",
+            "Draft a message: proposed wording based on the saved context, with tone adjustments you can choose.",
             "Gift ideas: directions tied to what you know about someone.",
             "What to ask: specific, caring conversation starters.",
             "Where things stand: a brief recap of a relationship.",
@@ -496,10 +496,10 @@ export const kithKb: KnowledgeBase = {
     {
       id: "apple-intelligence-requirement",
       title: "Why Kith requires Apple Intelligence",
-      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
+      description: "Check device requirements and what to do when Apple Intelligence is unavailable.",
       category: "ai",
       keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -514,7 +514,7 @@ export const kithKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "iPhone 15 Pro or later, running iOS 26 or later, with Apple Intelligence turned on in Settings and the on-device model finished downloading.",
+            "An Apple Intelligence-compatible iPhone running the required iOS version, with Apple Intelligence enabled and its model ready. See the product page for the operating-system requirement.",
         },
         {
           type: "heading",
@@ -706,10 +706,10 @@ export const kithKb: KnowledgeBase = {
     {
       id: "compare-free-and-plus",
       title: "What is free and what Kith+ adds",
-      description: "The real limits, and why the daily Spark is on the free side of the line.",
+      description: "Compare free features, including the daily Spark, with Kith+ allowances.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "limit", "lifetime", "trial", "compare"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "heading",
@@ -750,10 +750,10 @@ export const kithKb: KnowledgeBase = {
     {
       id: "restore-purchase",
       title: "Restoring a purchase",
-      description: "New phone, reinstall, or an entitlement that did not appear.",
+      description: "Restore access to a purchase after reinstalling or moving to a new phone.",
       category: "billing",
       keywords: ["restore", "purchase", "reinstall", "new phone", "missing", "receipt"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -765,7 +765,7 @@ export const kithKb: KnowledgeBase = {
           items: [
             { title: "Check the Apple Account", description: "The device must be signed in with the account used for the purchase." },
             { title: "Open Settings in Kith", description: "Tap Restore Purchases." },
-            { title: "Wait a moment", description: "The App Store confirms the entitlement and Kith+ unlocks." },
+            { title: "Wait a moment", description: "The App Store checks your purchase and restores Kith+ access." },
           ],
         },
         {

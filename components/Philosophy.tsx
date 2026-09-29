@@ -1,78 +1,35 @@
 import React from 'react';
 import { ArrowDownRight } from 'lucide-react';
-import MotionReveal from './home/MotionReveal';
 
-const facts = [
-  ['Core AI', 'On your device'],
-  ['Core workflows', 'Work offline'],
-  ['Advertising profiles', 'None'],
-  ['Optional connections', 'Named first'],
-];
+const remotePath = ['Your recording', 'Upload', 'Remote processing', 'Download', 'Your transcript'];
 
 const Philosophy: React.FC = () => (
-  <section id="philosophy" className="premise-section" aria-labelledby="premise-title">
+  <section id="philosophy" className="home-premise" aria-labelledby="premise-title">
     <div className="section-frame">
-      <div className="section-index section-index--dark">
-        <span>01 / The problem</span>
-        <span>Where your data actually goes</span>
-      </div>
-
-      <div className="premise-section__heading">
-        <MotionReveal>
-          <p className="section-kicker section-kicker--dark">The old deal</p>
-          <h2 id="premise-title">
-            Follow one voice note <em>across the internet.</em>
-          </h2>
-        </MotionReveal>
-
-        <MotionReveal className="premise-section__intro" delay={0.08}>
-          <p>
-            Say one sentence into a typical AI app. Your words leave the room the second you
-            speak. They cross a few company networks, wait in a queue on someone else&apos;s
-            server, get logged, get copied, and become training material for a model that
-            answers to everybody and owes you nothing.
-          </p>
-          <a href="#architecture" className="text-link text-link--dark">
-            How our apps refuse the deal <ArrowDownRight size={18} aria-hidden="true" />
-          </a>
-        </MotionReveal>
-      </div>
-
-      <MotionReveal className="processing-paths" amount={0.2}>
-        <div className="processing-path processing-path--cloud">
-          <div className="processing-path__header">
-            <div><span>Every other app</span><strong>Your voice takes the long way around.</strong></div>
-            <small>Five stops</small>
-          </div>
-          <ol aria-label="How a cloud AI app handles your voice">
-            <li><span>01</span><div><strong>Your voice</strong><small>Recorded, then sent away the moment you finish speaking</small></div></li>
-            <li><span>02</span><div><strong>Their servers</strong><small>Processed on rented computers in another state</small></div></li>
-            <li><span>03</span><div><strong>Their logs</strong><small>Copied and retained under policies you will never read</small></div></li>
-            <li><span>04</span><div><strong>Their models</strong><small>Your words become training material for their product</small></div></li>
-            <li><span>05</span><div><strong>A transcript returns</strong><small>Delivered back after the room has already been left</small></div></li>
-          </ol>
+      <div className="section-index section-index--dark"><span>01 / The part you held back</span><span>Privacy is what makes it personal.</span></div>
+      <div className="home-premise__layout">
+        <h2 id="premise-title">What did<br />you <em>leave out?</em></h2>
+        <div className="home-premise__copy">
+          <p className="home-premise__lead">The name you deleted from the prompt. The journal entry you decided not to paste.</p>
+          <p>Before the AI has even answered, you have changed the question to suit the company listening.</p>
+          <p>That is <strong>The Trade</strong>: hand over your private life to get help with it.</p>
+          <p className="home-premise__conviction">You should not have to edit yourself for your software.</p>
+          <a href="#architecture" className="text-link text-link--dark">Run the Boundary Check <ArrowDownRight size={18} aria-hidden="true" /></a>
         </div>
-        <div className="processing-path processing-path--local">
-          <div className="processing-path__header">
-            <div><span>An Obsidian Ridge app</span><strong>Your voice stays in the room.</strong></div>
-            <small>Two stops</small>
-          </div>
-          <ol aria-label="How an Obsidian Ridge Labs app handles your voice">
-            <li><span>01</span><div><strong>Your voice</strong><small>Recorded on your iPhone</small></div></li>
-            <li><span>02</span><div><strong>Your device</strong><small>Transcribed by the chip already in your hand</small></div></li>
-          </ol>
-          <p className="processing-paths__caption">Same transcript. One of these keeps your voice.</p>
+      </div>
+      <figure className="home-paths">
+        <figcaption>Start with one sentence. Where does it go to become a transcript?</figcaption>
+        <div className="home-paths__remote">
+          <span>Cloud transcription</span>
+          <ol>{remotePath.map((step, index) => <li key={step}><small>{String(index + 1).padStart(2, '0')}</small>{step}</li>)}</ol>
         </div>
-      </MotionReveal>
-
-      <dl className="premise-facts">
-        {facts.map(([term, value], index) => (
-          <MotionReveal key={term} className="premise-fact" delay={index * 0.06}>
-            <dt>{term}</dt>
-            <dd>{value}</dd>
-          </MotionReveal>
-        ))}
-      </dl>
+        <div className="home-paths__local">
+          <span>Echo Chamber</span>
+          <ol><li><small>01</small>Your recording</li><li><small>02</small>Your transcript</li></ol>
+          <strong>Both on your device.</strong>
+        </div>
+        <p>Processing paths shown. Echo Chamber works on supported Apple hardware after model setup. Optional iCloud sync is a separate choice.</p>
+      </figure>
     </div>
   </section>
 );

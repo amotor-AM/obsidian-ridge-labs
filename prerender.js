@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { render, routes, products, blogPosts, knowledgeBases, collectionFaqs, echoFaqs, homeFaqs, philosophyFaqs, productFaqs } from './dist-server/entry-server.js';
+import { render, routes, products, blogPosts, knowledgeBases, collectionFaqs, echoFaqs, homeFaqs, philosophyFaqs, productFaqs, standardRefusals } from './dist-server/entry-server.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,6 +18,37 @@ if (!fs.existsSync(templatePath)) {
 }
 
 const template = fs.readFileSync(templatePath, 'utf8');
+const manifest = JSON.parse(fs.readFileSync(path.join(clientDist, '.vite/manifest.json'), 'utf8'));
+
+// Lazy route CSS must style the prerendered HTML before JavaScript hydrates it.
+// Without these links a direct visit briefly paints an unstyled product page.
+function routeStylesheets(route) {
+  const component = route === '/' ? 'Home'
+    : route === '/download' ? 'DownloadPage'
+    : route === '/philosophy' ? 'PhilosophyPage'
+    : route === '/apps/echochamber' ? 'EchoDetail'
+    : route.startsWith('/apps/') ? 'ProductDetail'
+    : route === '/journal' ? 'BlogList'
+    : route.startsWith('/journal/') ? 'BlogPost'
+    : route === '/help' ? 'help/HelpHome'
+    : route.startsWith('/help/') ? 'help/HelpArticle'
+    : route === '/privacy' ? 'PrivacyPolicy'
+    : route === '/terms' ? 'TermsOfService' : 'NotFound';
+  const entry = `components/${component}.tsx`;
+  if (!manifest[entry]) throw new Error(`Missing client manifest entry: ${entry}`);
+  const css = new Set();
+  const visited = new Set();
+  function collect(key) {
+    if (visited.has(key)) return;
+    visited.add(key);
+    const chunk = manifest[key];
+    for (const imported of chunk?.imports || []) collect(imported);
+    for (const file of chunk?.css || []) css.add(file);
+  }
+  collect(entry);
+  return [...css].filter(file => !template.includes(`href="/${file}"`))
+    .map(file => `<link rel="stylesheet" href="/${file}" />`).join('\n  ');
+}
 
 // Strip default SEO tags from template to avoid duplicates
 function stripDefaultMeta(html) {
@@ -75,7 +106,7 @@ for (const route of routes) {
 
   // Fallback to default meta if SEO component didn't write anything
   const title = context.title ? getDocumentTitle(context.title) : 'Obsidian Ridge Labs | Private AI Apps for Apple';
-  const description = context.description || 'Obsidian Ridge Labs builds privacy-first, offline AI apps for Apple devices.';
+  const description = context.description || 'Private AI apps for Apple devices, built by Obsidian Ridge Labs in Las Vegas, Nevada.';
   const canonicalUrl = context.canonical || `https://obsidianridgelabs.com${route}`;
   const robots = context.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
   if (route !== '/404') {
@@ -89,7 +120,7 @@ for (const route of routes) {
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
-  <link rel="alternate" type="application/rss+xml" title="The Obsidian Ridge Journal" href="https://obsidianridgelabs.com/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="The Obsidian Ridge Labs Journal" href="https://obsidianridgelabs.com/feed.xml" />
   <meta name="robots" content="${robots}" />
   <meta property="og:site_name" content="Obsidian Ridge Labs" />
   <meta property="og:locale" content="en_US" />
@@ -131,6 +162,8 @@ for (const route of routes) {
   if (headIndex !== -1) {
     html = html.slice(0, headIndex + 6) + headTags + html.slice(headIndex + 6);
   }
+
+  html = html.replace('</head>', `  ${routeStylesheets(route)}\n</head>`);
 
   // Inject body html
   html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
@@ -264,9 +297,9 @@ const feedItems = feedPosts.map((post) => `  <item>
 const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-  <title>The Obsidian Ridge Journal</title>
+  <title>The Obsidian Ridge Labs Journal</title>
   <link>${SITE_ORIGIN}/journal</link>
-  <description>Source-backed comparisons and practical guides to private, offline, and on-device AI apps.</description>
+  <description>On-device processing, cloud AI, and the decisions behind the Obsidian Ridge Labs collection.</description>
   <language>en-us</language>
   <lastBuildDate>${toRssDate(latestBlogDate)}</lastBuildDate>
 ${feedItems}
@@ -277,10 +310,10 @@ fs.writeFileSync(path.join(clientDist, 'feed.xml'), rssXml, 'utf8');
 
 const jsonFeed = {
   version: 'https://jsonfeed.org/version/1.1',
-  title: 'The Obsidian Ridge Journal',
+  title: 'The Obsidian Ridge Labs Journal',
   home_page_url: `${SITE_ORIGIN}/journal`,
   feed_url: `${SITE_ORIGIN}/feed.json`,
-  description: 'Source-backed comparisons and practical guides to private, offline, and on-device AI apps.',
+  description: 'On-device processing, cloud AI, and the decisions behind the Obsidian Ridge Labs collection.',
   language: 'en-US',
   authors: [{ name: 'Obsidian Ridge Labs', url: `${SITE_ORIGIN}/` }],
   items: feedPosts.map((post) => ({
@@ -299,11 +332,23 @@ console.log(`journal feeds generated: ${blogPosts.length} entries`);
 // Generate llms-full.txt
 console.log('Generating llms-full.txt...');
 
+const discoveryIntro = `Obsidian Ridge Labs is an independent software studio in Las Vegas, Nevada, building private AI apps for Apple devices. ${products.filter(product => product.releaseStatus === 'app-store').length} apps are on the App Store. ${products.filter(product => product.releaseStatus !== 'app-store').length} apps are in development. Each product page states its requirements and release status.`;
+const boundaryCheckText = philosophyFaqs
+  .map((faq, index) => `${index + 1}. **${faq.question}** ${faq.answer}`)
+  .join('\n\n');
+const airplaneModeText = `Turn on airplane mode. Whatever still works is yours.
+
+Try Echo Chamber on a supported iPhone or iPad. Install the app and finish any required model downloads while online. Turn on airplane mode and confirm Wi-Fi is off. Record a sentence, transcribe it, and search for a word you said.
+
+Finish model setup first and check your available recording allowance. Downloads, purchase checks, and iCloud sync need a connection; transcription runs locally.`;
+
 let llmsContent = `# Obsidian Ridge Labs: Full Content Directory
 
-> Boutique mobile app studio specializing in private, offline-first AI architecture.
+> Apps that mind their own business.
 
-This document contains the complete details of all products, the development philosophy, and all articles published by Obsidian Ridge Labs.
+${discoveryIntro}
+
+Product descriptions, release status, the standard, journal articles, and help guides follow.
 
 ---
 
@@ -342,16 +387,26 @@ for (const p of products) {
 
 llmsContent += `---
 
-## Philosophy
+## The Obsidian Ridge Labs standard
 
-Obsidian Ridge Labs operates on four product constraints:
+Privacy is what makes it personal. You cannot ask software to understand your life while editing out everything you cannot afford to share.
 
-1. **Data has gravity**. Core processing should happen where private data is created whenever the hardware can do the work.
-2. **The cloud must earn its place**. Core features should work locally, permissions should appear in context, and optional network connections should be narrow and user-controlled.
-3. **Offline should be excellent**. After required setup, important work should continue without the network.
-4. **Memory should be deliberate**. Retention and deletion should be understandable and under user control.
+We refuse The Trade. These are the decisions that follow.
 
-For supported features, app-bundled models and Apple frameworks perform core processing on the device. Product pages separately disclose optional connections such as model downloads, App Store verification, encrypted iCloud sync, Plaid bank sync, and user-initiated support.
+${standardRefusals.map((refusal, index) => `${index + 1}. **${refusal.title}** ${refusal.description}`).join('\n\n')}
+
+### The Boundary Check
+
+Before you trust any AI app with a recording, a receipt, or a page from your life, ask it these three questions. Start with ours.
+
+${boundaryCheckText}
+
+This website uses Google Analytics. It does not receive the content in our apps. See the [privacy model](${SITE_ORIGIN}/privacy) for website measurement and product-specific connections.
+
+### The airplane-mode test
+
+${airplaneModeText}
+
 
 ---
 
@@ -367,8 +422,8 @@ const appendFaqs = (title, url, faqs) => {
 };
 
 appendFaqs('Private AI and on-device processing', `${SITE_ORIGIN}/`, homeFaqs);
-appendFaqs('Local-first AI philosophy', `${SITE_ORIGIN}/philosophy`, philosophyFaqs);
-appendFaqs('App collection', `${SITE_ORIGIN}/download`, collectionFaqs);
+appendFaqs('The Obsidian Ridge Labs standard', `${SITE_ORIGIN}/philosophy`, philosophyFaqs);
+appendFaqs('The collection', `${SITE_ORIGIN}/download`, collectionFaqs);
 appendFaqs('Echo Chamber', `${SITE_ORIGIN}/apps/echochamber`, echoFaqs);
 for (const [productId, faqs] of Object.entries(productFaqs)) {
   const product = products.find((item) => item.id === productId);
@@ -492,12 +547,14 @@ for (const kb of knowledgeBases) {
 
 let llmsIndex = `# Obsidian Ridge Labs
 
-> Independent Apple software studio building private, offline-first AI apps whose core intelligence runs on-device.
+> Apps that mind their own business.
 
-- [Full content directory](${SITE_ORIGIN}/llms-full.txt): Complete product facts, conversational answers, articles, and help documentation.
-- [App collection](${SITE_ORIGIN}/download): Current availability, compatibility, pricing, and connection disclosures.
-- [Local-first philosophy](${SITE_ORIGIN}/philosophy): The principles behind on-device processing and offline-ready software.
-- [Privacy model](${SITE_ORIGIN}/privacy): Product-specific local processing and optional network connections.
+${discoveryIntro}
+
+- [Full content directory](${SITE_ORIGIN}/llms-full.txt): Product descriptions, release status, questions and answers, articles, and help guides.
+- [The collection](${SITE_ORIGIN}/download): Current availability, compatibility, pricing, and connection disclosures for all ten apps.
+- [The Obsidian Ridge Labs standard](${SITE_ORIGIN}/philosophy): The four refusals, the Boundary Check, and why the intelligence runs on-device.
+- [Privacy model](${SITE_ORIGIN}/privacy): Product-specific processing, storage defaults, and network connections.
 - [Help center](${SITE_ORIGIN}/help): Setup, privacy, troubleshooting, and feature guides.
 
 ## Products
@@ -509,6 +566,18 @@ for (const product of products) {
 }
 
 llmsIndex += `
+## The Boundary Check
+
+Before you trust any AI app with a recording, a receipt, or a page from your life, ask it these three questions. Start with ours.
+
+${boundaryCheckText}
+
+This website uses Google Analytics. It does not receive the content in our apps. See the [privacy model](${SITE_ORIGIN}/privacy) for website measurement and product-specific connections.
+
+## The airplane-mode test
+
+${airplaneModeText}
+
 ## Frequently asked
 
 `;

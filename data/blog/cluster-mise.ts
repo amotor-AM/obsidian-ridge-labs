@@ -3,46 +3,51 @@ import type { BlogPost } from '../../types';
 export const misePosts: BlogPost[] = [
   {
     id: 'mise-vs-paprika-pestle-mela-anylist',
-    title: 'Mise vs Paprika, Pestle, Mela, and AnyList: Recipe Managers Compared',
-    seoTitle: 'Mise vs Paprika, Pestle, Mela & AnyList (2026)',
+    title: "Mise vs Paprika, Pestle, Mela, and AnyList",
+    seoTitle: "Mise vs Paprika, Pestle, Mela, and AnyList",
     date: '2026.09.07',
-    modified: '2026.09.07',
-    readTime: '11 MIN READ',
+    modified: "2026.09.28",
+    readTime: "6 MIN READ",
     category: 'RECIPE APP COMPARISON',
     tags: ['#RECIPE-MANAGER', '#ON-DEVICE-AI', '#MEAL-PLANNING', '#GROCERY-LIST'],
-    excerpt: 'A source-backed comparison of recipe import, on-device AI, meal planning, grocery lists, cook mode, sync, and pricing model across Mise, Paprika, Pestle, Mela, and AnyList.',
-    seoDescription: 'Compare Mise, Paprika, Pestle, Mela, and AnyList for recipe import, on-device AI, meal planning, grocery lists, cook mode, sync, and pricing.',
+    excerpt: "Compare recipe apps from saved recipe to cooked dinner: import, choosing what to make, grocery lists, cooking steps, and help with a question at the stove.",
+    seoDescription: "Compare recipe apps from saved recipe to cooked dinner: import, choosing what to make, grocery lists, cooking steps, and help with a question at the stove.",
     contentType: 'comparison',
     appId: 'mise',
     searchIntent: 'Which recipe manager should I use for saving recipes from anywhere, planning a week, and cooking: Mise, Paprika, Pestle, Mela, or AnyList?',
     keyTakeaways: [
-      'Mise is the only design in this comparison that requires Apple Intelligence and answers real cooking questions on-device, grounded in your own recipe box, pantry, and dietary profile.',
-      'Mise remains pre-release, so it should be read as a product specification rather than as a tested replacement for a shipping app with years of production use.',
-      'The right choice depends less on feature counts than on four things: how you get recipes in, whether you need a conversational cooking assistant, how sync and sharing work, and whether you prefer a one-time purchase or a subscription.',
+      "Mise connects import, dinner selection, groceries, and cooking steps, with local assistance using selected recipe and pantry context.",
+      "Choose around the work you need: a lasting recipe archive, difficult imports, cooking help, or a list the household edits together.",
+      "Mise fetches recipe pages and images from their hosts. Parsing and cooking assistance run locally; optional Plus iCloud sync is off by default."
     ],
     relatedIds: ['best-private-recipe-manager-apps', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     blocks: [
       {
         type: 'answer',
-        title: 'The short answer',
-        content: 'Mise is the on-device assistant in this comparison: it imports from the share sheet, pasted text, or a photo, parses anything unstructured with Apple Foundation Models on the phone, and then answers real cooking questions grounded in your recipe box, pantry, and dietary profile. It is not yet released. Paprika is the long-established one-time-purchase manager with per-platform licences. Pestle is the on-device-import specialist with a lifetime option. Mela is the elegant one-time-purchase Apple-native manager with RSS and Reminders integration. AnyList is the shared household list app that happens to import recipes.',
+        title: "Choose what you need after saving the recipe",
+        content: "Mise is being built to help you use the recipes you save: choose dinner from the collection, combine ingredients into a grocery list, follow readable steps with timers, and ask a cooking question using selected recipe and pantry context. Paprika and Mela offer established archives, Pestle emphasizes flexible importing, and AnyList centers shared household lists. Mise remains in development and requires Apple Intelligence.",
       },
       {
-        type: 'callout',
-        title: 'Pre-release comparison boundary',
-        variant: 'warning',
-        content: 'Mise is in development, has no settled public price, and has not been through App Store review. Its rows below describe the current implementation and its documented limits, including the fact that it requires Apple Intelligence and will show an explanation screen rather than a degraded app on hardware that cannot run it. Competitor capabilities and prices were read from official and reputable secondary sources in September 2026 and change often, so recheck the linked pages before buying anything.',
+        "type": "callout",
+        "title": "Mise is in development",
+        "content": "Mise is not yet available and has no announced release date or final public price. It requires supported Apple Intelligence hardware. Competitor details below come from the linked sources checked in September 2026.",
+        "variant": "note"
       },
       {
         type: 'paragraph',
-        content: 'Recipe apps get compared on the wrong axis. Almost every one of them can store a recipe and show it to you in large type, which means the storage layer is not where the difference lives. The difference shows up in three places: the moment you try to save something the app was not designed to read, the moment you are standing at the stove and something has gone wrong, and the moment you realise your entire collection is only as portable as the export button.',
+        content: "The recipe is saved. Now you need to decide whether it works for tonight, buy what is missing, and keep track of the cooking. That sequence is where recipe apps start to feel different. An excellent archive may be enough; a shared grocery list or a little help with the method may matter more. Mise is being built to keep those decisions connected.",
       },
       {
         type: 'comparison',
         caption: 'Capability direction summarised from official product pages and reputable coverage, September 2026',
-        columns: ['Best suited to', 'Getting recipes in', 'Sync, sharing, and pricing model'],
+        columns: [
+          "App",
+          "Best suited to",
+          "Getting recipes in",
+          "Sync, sharing, and pricing model"
+        ],
         rows: [
-          { label: 'Mise · pre-release', cells: ['Cooks who want a conversational sous chef that knows their own kitchen and never uploads it.', 'Share sheet, paste-and-parse, photo OCR for cookbook pages and handwritten cards, and manual entry. Published recipe data is read directly from the page; anything messier is parsed by Apple Foundation Models on the device.', 'Local storage with optional private iCloud sync as a paid feature. No account and no backend. Planned free tier plus subscription with a lifetime option.'] },
+          { label: 'Mise · pre-release', cells: ['Cooks who want local cooking assistance using saved recipe and pantry context.', 'Share sheet, paste-and-parse, photo OCR for cookbook pages and handwritten cards, and manual entry. Published recipe data is read directly from the page; anything messier is parsed by Apple Foundation Models on the device.', 'Local storage with optional private iCloud sync as a paid feature. No account and no backend. Planned free tier plus subscription with a lifetime option.'] },
           { label: 'Paprika Recipe Manager 3', cells: ['People who want a mature, self-contained manager and dislike subscriptions.', 'A built-in browser that captures recipes from websites, plus manual entry and import.', 'Its own sync service across devices. Sold as a one-time purchase per platform, so iOS, macOS, and Windows are bought separately.'] },
           { label: 'Pestle', cells: ['Apple users who want strong import from awkward sources and a lifetime purchase option.', 'Import from websites and social sources, including on-device processing of captions to build a recipe.', 'Apple-native sync. Pro is sold as a subscription with a lifetime option alongside it.'] },
           { label: 'Mela', cells: ['People who want a beautiful, quiet, Apple-native manager with no subscription.', 'A built-in browser, document import, scanning, manual entry, and recipe RSS feeds.', 'iCloud sync across the developer’s apps. One-time purchase, priced separately for iOS and macOS.'] },
@@ -51,31 +56,31 @@ export const misePosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'Import is now table stakes. What happens after the import is not',
+        content: "From importing a recipe to making dinner",
       },
       {
         type: 'paragraph',
-        content: 'Every serious recipe manager can pull a recipe off a website, because most recipe sites publish machine-readable recipe data alongside the page you read. Mise reads that data directly when it is present, with no model involved, which is both faster and exact. Paprika and Mela both solve the same problem with an in-app browser. Pestle has gone further than most into the awkward cases, using on-device processing to build a recipe out of a social post caption.',
+        content: "Many recipe sites publish structured ingredients and steps alongside the page. Mise reads that data directly where available, with no model involved; you still need to check the quantities and method. Paprika and Mela offer in-app browsers for saving web recipes. Pestle also handles sources such as social captions with on-device processing. Try the recipe sites you actually use before judging an importer.",
       },
       {
         type: 'paragraph',
-        content: 'Where Mise differs is what it does with the collection afterwards. The sous chef sits at the top of the recipe list rather than being a feature buried in a menu, and it can see your saved recipes, your remembered pantry, and your dietary profile. Asking it what to do about a broken sauce, or what to cook from four leftovers, is a different kind of interaction from searching an archive. That capability is also the reason Mise gates itself on Apple Intelligence at launch instead of shipping a version of itself that cannot do the thing it exists to do.',
+        content: "Mise’s dinner picker ranks saved recipes, while the local cooking assistant answers questions using bounded context: saved recipe titles, pantry items, dietary notes, or part of the recipe you have open. You might ask about a substitution or a step you do not understand. The weekly plan can feed a consolidated grocery list, and cooking mode keeps steps readable with concurrent timers. Check ingredients and dietary suitability yourself; a model answer is not an allergy check.",
       },
       {
         type: 'h2',
-        content: 'The pricing question is really a question about who owns the risk',
+        content: "Match the payment model to the job",
       },
       {
         type: 'paragraph',
-        content: 'Paprika and Mela both use one-time purchases, and this category rewards them for it: a recipe collection is a decade-long archive, and people are reasonably reluctant to rent access to their own grandmother’s handwriting. The cost is per-platform licensing, so a person with an iPhone, an iPad, and a Mac may pay more than once.',
+        content: "Paprika and Mela use one-time purchases, which can suit a recipe collection you expect to keep for years. Licensing is per platform, so check the total for the devices you use. Also test export: the ability to take your collection elsewhere matters under either a purchase or subscription model.",
       },
       {
         type: 'paragraph',
-        content: 'Pestle answers the same objection differently, by keeping a lifetime tier alongside its subscription. Mise plans the same shape: a free tier with a recipe cap and a daily AI allowance, a subscription, and a lifetime option that removes both. AnyList is the outlier, because it is fundamentally a shared-household service, and continuous real-time sync between several people is the sort of thing a subscription genuinely pays for.',
+        content: "Pestle offers a lifetime tier alongside its subscription. Mise’s development build has free recipe and daily AI allowances, with paid options being prepared; the final public offer is not yet announced. AnyList centers a shared household service. Compare the recurring features you need, the export you can keep, and the current store offer rather than choosing by price structure alone.",
       },
       {
         type: 'h2',
-        content: 'Privacy in this category is quieter than in journaling or finance, and still worth reading',
+        content: "Separate local cooking help from connected import and sync",
       },
       {
         type: 'paragraph',
@@ -83,11 +88,11 @@ export const misePosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'Mise has no backend at all. Its only network requests are fetching a page you asked it to import, made directly to that site, and App Store purchase verification. That is an architectural claim rather than a policy one, which matters because architecture is harder to quietly change than a privacy page. Paprika and Mela both keep collections local with their own or Apple’s sync. Pestle emphasises on-device processing for its import. AnyList, by design, holds shared lists on a service so that two people in different supermarkets can see the same list update. None of these are wrong; they are different trades, and the useful question is which trade you are actually making.',
+        content: "Mise parses recipes and runs cooking assistance on-device. It fetches recipe pages and recipe images directly from their hosts, and optional Plus iCloud sync uses a private Apple database. Model setup and StoreKit can also need a connection. Paprika and Mela have their own storage and sync arrangements, while AnyList uses a service for shared lists. Compare the specific connections alongside the workflow you need.",
       },
       {
         type: 'h2',
-        content: 'How Mise differs from the available approaches',
+        content: "Choose the workflow you will use during the week",
       },
       {
         type: 'list',
@@ -102,9 +107,18 @@ export const misePosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'Can Mise replace Paprika?', answer: 'Not today, because Mise has not shipped. When it does, the honest framing is that they solve overlapping problems differently: Paprika is a mature subscription-free archive with its own sync service, while Mise is built around on-device parsing and a cooking assistant that reads your own collection. Paprika also runs on Windows and Android, which Mise does not.' },
-          { question: 'Why does Mise require Apple Intelligence when other recipe apps do not?', answer: 'Because the sous chef, pantry generation, and substitutions are the product rather than an extra. A version of Mise without on-device AI would be a slower recipe list, so it shows a full-screen explanation on unsupported hardware instead of silently degrading. Apps that treat AI as an add-on can reasonably run everywhere.' },
-          { question: 'Which of these is best for a shared household grocery list?', answer: 'AnyList, by a clear margin, because real-time shared lists across household members are its central design. Mise generates and consolidates a list from your plan and can share it as plain text, which is a different job from two people editing one list simultaneously in two different shops.' },
+          {
+            "question": "Can Mise replace Paprika?",
+            "answer": "Mise is not available yet. Its development focus is connecting import, dinner planning, groceries, cooking steps, and local assistance. Paprika is an established recipe archive with its own sync service and support for Windows and Android as well as Apple platforms."
+          },
+          {
+            "question": "Why does Mise require Apple Intelligence when other recipe apps do not?",
+            "answer": "The current app is built around local recipe processing and cooking assistance, so it requires supported Apple Intelligence hardware at launch. Other recipe managers can offer a useful archive without that requirement."
+          },
+          {
+            "question": "Which of these is best for a shared household grocery list?",
+            "answer": "AnyList makes shared household lists a central part of its service. Mise’s current build consolidates ingredients into a grocery list and can share it as text; that is a different workflow from several people editing the same list in real time."
+          },
           { question: 'Will my recipes be stuck in Mise?', answer: 'No. Every recipe can be exported as JSON from Settings, and individual recipes can be shared as image cards. Portability is worth checking in any recipe app you commit to, because a collection built over a decade is the thing you would actually miss.' },
         ],
       },
@@ -122,33 +136,33 @@ export const misePosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: 'See how Mise imports, plans, and cooks without a recipe server.',
+        content: "Explore Mise’s route from a saved recipe to dinner: choose from your collection, build the grocery list, cook with steps and timers, and ask for help using local recipe context.",
         ctaAppId: 'mise',
       },
     ],
   },
   {
     id: 'best-private-recipe-manager-apps',
-    title: '5 Recipe Manager Apps for Importing, Planning, and Cooking in 2026',
-    seoTitle: '5 Best Recipe Manager Apps for 2026',
+    title: "Five Recipe Apps for Saving, Planning, and Cooking",
+    seoTitle: "Five Recipe Apps for Saving, Planning, and Cooking",
     date: '2026.09.07',
-    modified: '2026.09.07',
-    readTime: '11 MIN READ',
+    modified: "2026.09.28",
+    readTime: "6 MIN READ",
     category: 'RECIPE APP GUIDE',
     tags: ['#RECIPE-APP', '#MEAL-PLANNING', '#COOK-MODE', '#PRIVATE-AI'],
-    excerpt: 'Five recipe managers matched to five real needs, from an on-device sous chef and subscription-free archives to the shared household list that actually gets used.',
-    seoDescription: 'Five recipe manager apps compared by import method, meal planning, grocery lists, cook mode, sync, privacy, and pricing model.',
+    excerpt: "Compare Mise, Paprika, Pestle, Mela, and AnyList by what gets in the way of dinner: scattered recipes, awkward imports, unanswered cooking questions, or shared shopping.",
+    seoDescription: "Compare Mise, Paprika, Pestle, Mela, and AnyList for recipe imports, meal planning, cooking help, grocery lists, and privacy.",
     contentType: 'listicle',
     appId: 'mise',
     searchIntent: 'What is the best recipe app for saving recipes from anywhere, planning meals, and building a grocery list?',
     keyTakeaways: [
-      'Choose by the job you actually have: an archive you will keep for a decade, a shared list two people edit, or a cooking assistant for when something goes wrong at the stove.',
-      'Mise leads this guide for on-device parsing and a sous chef grounded in your own recipe box, with a clear pre-release and Apple Intelligence boundary.',
-      'Check export before you commit. A recipe collection is a long-lived archive, and the export button is the only thing that makes it portable.',
+      "Mise connects saved recipes with dinner selection, a consolidated grocery list, cooking steps, and local assistance.",
+      "Choose a shared-list service if coordinating shopping is the main problem; choose an archive if saving and finding recipes already covers your needs.",
+      "Test an import and an export with a recipe you actually use. Check quantities, photos, steps, and what is included in the file."
     ],
     relatedIds: ['mise-vs-paprika-pestle-mela-anylist', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     listItems: [
-      { name: 'Mise · pre-release', description: 'The on-device option for parsing anything and asking a sous chef that knows your kitchen.' },
+      { name: 'Mise · pre-release', description: "Recipe import, dinner selection, groceries, and cooking help using local recipe context. In development." },
       { name: 'Paprika Recipe Manager 3', description: 'The mature, subscription-free archive with its own cross-platform sync.' },
       { name: 'Pestle', description: 'Strong import from awkward and social sources, with a lifetime purchase option.' },
       { name: 'Mela', description: 'An elegant Apple-native manager with recipe RSS and a one-time purchase.' },
@@ -157,34 +171,34 @@ export const misePosts: BlogPost[] = [
     blocks: [
       {
         type: 'answer',
-        title: 'The short answer',
-        content: 'If you want a cooking assistant that reads your own collection and never uploads it, Mise is the direction, with the caveat that it is unreleased and requires Apple Intelligence. If you want a subscription-free archive you will still own in ten years, Paprika or Mela. If your imports keep failing on social posts and photographed pages, Pestle. If the real friction in your house is that two people cannot see the same shopping list, AnyList solves your actual problem and none of the others do.',
+        title: "Find the gap between the recipe and dinner",
+        content: "Mise is being built for the work after import: pick from saved recipes, plan groceries, follow cooking steps, and ask a question using recipe or pantry context on the device. Paprika and Mela suit people seeking an established recipe archive; Pestle focuses on more kinds of import; AnyList is built around shared lists. Mise is not available yet, so the released options are the place to start if you need a recipe manager today.",
       },
       {
         type: 'paragraph',
-        content: 'Recipe apps are unusually easy to choose badly, because they all look the same in a screenshot. The failure shows up months later: the import that never works on the site you actually read, the meal planner nobody in the household opens, the subscription you resent paying for an archive you already built. So this guide is organised by the job rather than by feature count.',
+        content: "A good recipe app should fit the moment you reach for it. That may be saving a recipe from a browser, finding something to make with what you have, or checking the shopping list in a store. Use those moments to choose. A long feature list is less helpful than one workflow that fits how your household cooks.",
       },
       {
-        type: 'callout',
-        title: 'What we can and cannot claim about Mise',
-        variant: 'warning',
-        content: 'Mise is our own product and it is still in development. It has no settled price and has not been through App Store review. Its description below is the current implementation, including the fact that it requires Apple Intelligence and shows an explanation screen rather than a degraded app on hardware that cannot run it. Everything else here was read from official and reputable secondary sources in September 2026 and changes often.',
+        "type": "callout",
+        "title": "Mise is in development",
+        "content": "Mise is our app and is not yet available. The current build requires Apple Intelligence. The other products are described from the linked sources checked in September 2026; their current prices are on their product and store pages.",
+        "variant": "note"
       },
       {
         type: 'h2',
-        content: '01. Mise, for a sous chef that knows your kitchen',
+        content: "1. Mise: connect the saved recipe to tonight’s dinner",
       },
       {
         type: 'paragraph',
-        content: 'Mise imports through the share sheet, pasted text, a photograph of a cookbook page, or manual entry. When a site publishes machine-readable recipe data, Mise reads it directly with no model involved. When it does not, Apple Foundation Models parses it on the phone. The sous chef then sits at the top of the recipe list and can see your saved recipes, your remembered pantry, and your dietary profile, so it can answer what to do about a split sauce or write a recipe out of what is actually in the fridge.',
+        content: "Mise accepts recipe links, pasted text, a photo, or manual entry. It reads structured recipe data directly where available and uses local processing for unstructured material. Review the result, then use the saved collection to choose dinner. The cooking assistant can use recipe titles, pantry items, dietary notes, or a bounded portion of the open recipe when answering a question. It does not read an unlimited recipe archive or guarantee that a substitution is suitable for every diet.",
       },
       {
         type: 'paragraph',
-        content: 'The rest is conventional in the good sense: a weekly grid with four slots a day and a button that fills the week, a grocery list that consolidates duplicates and sorts by supermarket aisle, and a cook mode with several concurrent timers running in a Live Activity. The distinguishing constraint is architectural. Mise has no backend, so its only network requests are fetching a page you asked for and verifying a purchase with Apple. The cost of that design is the Apple Intelligence requirement, which is a real exclusion and not a footnote.',
+        content: "Mise’s weekly plan feeds a consolidated grocery list. Cooking mode keeps the screen awake, shows readable steps, and supports concurrent timers. Recipe import fetches pages and images from their hosts; optional Plus iCloud sync is off by default. The current development targets iPhone and iPad on iOS 26, with a Watch companion and Apple Intelligence required.",
       },
       {
         type: 'h2',
-        content: '02. Paprika, for an archive you will still own in ten years',
+        content: "2. Paprika: an established recipe archive",
       },
       {
         type: 'paragraph',
@@ -196,7 +210,7 @@ export const misePosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: '03. Pestle, for the imports that keep failing',
+        content: "3. Pestle: more ways to bring a recipe in",
       },
       {
         type: 'paragraph',
@@ -208,7 +222,7 @@ export const misePosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: '04. Mela, for people who want the app to be quiet and beautiful',
+        content: "4. Mela: a focused Apple recipe manager",
       },
       {
         type: 'paragraph',
@@ -220,7 +234,7 @@ export const misePosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: '05. AnyList, when the real problem is the shopping list',
+        content: "5. AnyList: coordinate the household shopping",
       },
       {
         type: 'paragraph',
@@ -232,7 +246,7 @@ export const misePosts: BlogPost[] = [
       },
       {
         type: 'h2',
-        content: 'How to choose without regretting it in six months',
+        content: "Try the whole route with one familiar recipe",
       },
       {
         type: 'list',
@@ -247,9 +261,15 @@ export const misePosts: BlogPost[] = [
       {
         type: 'faq',
         content: [
-          { question: 'Do I need an AI recipe app at all?', answer: 'No. If your imports work and you already know what to cook, a subscription-free archive like Paprika or Mela covers the job completely. On-device AI earns its place in two specific moments: importing something unstructured such as a photographed page, and answering a cooking question while your hands are busy.' },
+          {
+            "question": "Do I need an AI recipe app at all?",
+            "answer": "If saving, finding, and following recipes already covers your needs, an established archive may be enough. Mise’s local assistance is for questions that arise around the recipe, using selected recipe or pantry context. The app remains in development."
+          },
           { question: 'What happens to my recipes if an app shuts down?', answer: 'That depends entirely on export. This category has seen large services close, so the practical protection is an app that can hand you your collection in a portable format. Check that before you commit, not after.' },
-          { question: 'Why do some recipe apps import perfectly and others fail on the same page?', answer: 'Most recipe sites publish machine-readable recipe data alongside the page. An app that reads it gets a perfect import with no AI. When that data is missing or malformed, which is common on blogs and social posts, the app has to interpret the page instead, and that is where results diverge.' },
+          {
+            "question": "Why do some recipe apps import perfectly and others fail on the same page?",
+            "answer": "Many sites include structured recipe data, which an app can read directly. That data can still be incomplete or wrong. When it is missing or malformed, the app needs to interpret the page, and results vary. Check quantities and steps whichever import path is used."
+          },
           { question: 'Is a photographed cookbook page reliable?', answer: 'Reasonably, with care. Flatten the page, get even light, and fill the frame. Always check quantities before saving, because fractions and handwriting are exactly where text recognition struggles, and a misread measurement is the error that actually ruins dinner.' },
         ],
       },
@@ -266,7 +286,7 @@ export const misePosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: 'See how Mise keeps import, planning, and the sous chef on your device.',
+        content: "See how Mise connects recipes, dinner planning, groceries, and cooking help. Follow its development if saving the recipe is already easy but deciding and cooking still take the work.",
         ctaAppId: 'mise',
       },
     ],

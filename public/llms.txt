@@ -1,31 +1,35 @@
 # Obsidian Ridge Labs
 
-> Independent Apple software studio building private, offline-first AI apps whose core intelligence runs on-device.
+> Apps that mind their own business.
 
-- [Full content directory](https://obsidianridgelabs.com/llms-full.txt): Complete product facts, conversational answers, articles, and help documentation.
-- [App collection](https://obsidianridgelabs.com/download): Current availability, compatibility, pricing, and connection disclosures.
-- [Local-first philosophy](https://obsidianridgelabs.com/philosophy): The principles behind on-device processing and offline-ready software.
-- [Privacy model](https://obsidianridgelabs.com/privacy): Product-specific local processing and optional network connections.
-- [Help center](https://obsidianridgelabs.com/help): Setup, privacy, troubleshooting, and feature guides.
+Obsidian Ridge Labs is an independent software studio in Las Vegas, Nevada. Echo Chamber is available on the App Store. The collection also includes apps in development; each product page shows its current availability.
+
+- [Full content directory](https://obsidianridgelabs.com/llms-full.txt): Product descriptions, availability, FAQs, journal articles, and help guides.
+- [The collection](https://obsidianridgelabs.com/download): Find an app by its job, requirements, and release status.
+- [The Obsidian Ridge Labs standard](https://obsidianridgelabs.com/philosophy): The studio's principles and the Boundary Check.
+- [Privacy model](https://obsidianridgelabs.com/privacy): Processing, storage defaults, and connected services.
+- [Help center](https://obsidianridgelabs.com/help): Setup, features, and troubleshooting. Guides for unreleased apps are preview documentation.
 
 ## Products
 
-- [Echo Chamber](https://obsidianridgelabs.com/apps/echochamber): Available on the App Store. Private audio and video transcription with targeted speech enhancement, on-device Parakeet TDT, approximately 4.5% internal observed WER for the complete enhanced pipeline under tested conditions, Apple Intelligence with a bundled Bonsai 1.7B fallback, searchable recordings, AI notes, export, and a $79.99 Lifetime option.
-- [Vault](https://obsidianridgelabs.com/apps/vault): In development. Local-first spending intelligence with manual tracking and optional Plaid bank sync.
-- [Molehill](https://obsidianridgelabs.com/apps/molehill): In development. A gentle focus tool designed to turn an overwhelming task into one next step.
-- [Cove](https://obsidianridgelabs.com/apps/cove): In development. A private iPhone journal with local reflection, patterns, grounded recall, app lock, and export.
-- [Wove](https://obsidianridgelabs.com/apps/wove): In development. A private iPhone and iPad wardrobe with local garment capture, styling, wear history, capsules, and packing.
-- [Mettle](https://obsidianridgelabs.com/apps/mettle): In development. An explainable iPhone strength coach with deterministic prescriptions and an Apple Watch remote.
-- [Memora](https://obsidianridgelabs.com/apps/memora): In development. A private flashcard and FSRS study app for notes, text-layer PDFs, and selected photos.
-- [Trove](https://obsidianridgelabs.com/apps/trove): In development. A private home inventory for belongings, warranties, values, and insurance-ready records.
-- [Kith](https://obsidianridgelabs.com/apps/kith): In development. A private relationship manager with gentle reach-out cadences and on-device helpers.
+- [ECHO CHAMBER](https://obsidianridgelabs.com/apps/echochamber): Available on the App Store. Record or import a conversation, find a passage in its transcript, and make notes with processing on your device. Free to download with optional Pro; the current App Store and in-app purchase screen show the offer.
+- [METTLE](https://obsidianridgelabs.com/apps/mettle): In development. Logged sets guide the next reps and weight. Open “Why this?” to inspect the progression rule and evidence. iPhone, iOS 26.1, Apple Intelligence required; private iCloud storage is the default when available, with a local fallback.
+- [MEMORA](https://obsidianridgelabs.com/apps/memora): In development. Turn notes, photos, and PDFs with selectable text into draft flashcards. Choose which to add, edit saved cards, and study with FSRS. Local iPhone storage; content exports exclude review history and schedules.
+- [VAULT](https://obsidianridgelabs.com/apps/vault): In development. Check a purchase against recorded income, spending, and obligations. Manual entry and imports work without linking a bank. Optional connected banking and enrichment use Plaid and a relay. iOS 26 and Apple Intelligence required.
+- [MOLEHILL](https://obsidianridgelabs.com/apps/molehill): In development. Break down a task, then split a stuck step again. Editable brain dumps, one-step focus, and progress tracking run on iPhone. Pro adds Reminders and Calendar export.
+- [COVE](https://obsidianridgelabs.com/apps/cove): In development. Ask about past journal entries and return to the writing behind the answer. Reflection and search run on-device; private iCloud storage is used when available, with a local fallback.
+- [KITH](https://obsidianridgelabs.com/apps/kith): In development. Keep remembered details, prepare a message, and log a conversation when you return. You decide what to send. Local iPhone records and on-device assistance; no app-managed cloud sync in the current build.
+- [MISE](https://obsidianridgelabs.com/apps/mise): In development. Save recipes, plan meals, combine ingredients into a shopping list, and cook with readable steps and timers. Recipe pages and images are fetched directly; assistance runs locally. Optional Plus iCloud sync is off by default.
+- [TROVE](https://obsidianridgelabs.com/apps/trove): In development. Keep item photos, receipts, serial numbers, and warranties together. Free archives include available photos; Plus adds reports and optional iCloud record sync. Record sync is not a complete image backup.
+- [WOVE](https://obsidianridgelabs.com/apps/wove): In development. Find outfits in your own clothes and give the stylist personal constraints. Plus adds wear-derived personalization and capsules. Trip packing uses a generic checklist. WeatherKit and optional Plus iCloud records are separate connections.
 
-## Frequently asked
+## The Boundary Check
 
-- **What is on-device AI?** AI that runs a model on the phone, tablet, or computer in front of you instead of requiring a remote AI service for the core processing path.
-- **Can private AI work without uploading my data?** Yes. Supported apps can use packaged models or Apple frameworks so transcription, analysis, search, and summarization happen on the device.
-- **Does on-device mean an app never connects?** Not necessarily. Model downloads, purchase verification, optional iCloud or Plaid sync, and support can require a connection. Each product documents those moments.
-- **How can I verify an AI app is private?** Look for specific answers about inference, uploads, accounts, SDKs, optional sync, retention, deletion, and offline behavior.
+Before trusting an app with personal material, ask where processing happens, where records are stored, and what connects to the network. On-device AI does not by itself mean every record is confined to one device. Cloud sync, purchases, model setup, connected services, and chosen exports have separate paths.
+
+The product pages distinguish shipped availability from development previews. Current source features do not by themselves verify a public release. Echo Chamber's device compatibility, local models, allowances, and purchase options should be checked in its current App Store listing and installed app.
+
+This website uses Google Analytics; it does not receive the content in the apps. See the privacy model for website measurement.
 
 ## Contact
 

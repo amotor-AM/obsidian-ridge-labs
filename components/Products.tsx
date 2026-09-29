@@ -1,145 +1,59 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getProductReleaseLabel, products } from '../data/products';
-import MotionReveal from './home/MotionReveal';
-import { SpotlightCard } from './ui/spotlight-card';
-import { TextMarquee } from './ui/text-marquee';
+import { products } from '../data/products';
 
-const productOrder = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith', 'mise'];
-
-const homepageCopy: Record<string, { proposition: string; detail: string; platforms: string }> = {
-  echochamber: {
-    proposition: 'Transcribe anything you hear, on the device you heard it on.',
-    detail: 'Record live or import a file. Get a searchable transcript, notes, and summaries without a server ever hearing a word.',
-    platforms: 'iPhone · iPad · Mac',
-  },
-  vault: {
-    proposition: 'Your finances, understood on your phone.',
-    detail: 'Photograph receipts, plan spending, forecast cash flow. Every number computed on your device, with bank sync strictly optional.',
-    platforms: 'iPhone · iPad',
-  },
-  molehill: {
-    proposition: 'For the task too big to start.',
-    detail: 'Speak the swirl, get one small next step, and split it smaller when it still is. No streaks, no shame, no profile.',
-    platforms: 'iPhone',
-  },
-  cove: {
-    proposition: 'A journal that reflects with you, not about you.',
-    detail: 'Write, look back, notice patterns. Reflection happens on your device, from entries only you can read.',
-    platforms: 'iPhone · iPad · Watch',
-  },
-  wove: {
-    proposition: 'A stylist who has seen your whole closet and tells no one.',
-    detail: 'Photograph what you own once, then get weather-aware outfits, capsules, and packing lists composed on your phone.',
-    platforms: 'iPhone · iPad · Watch',
-  },
-  mettle: {
-    proposition: 'A strength coach that shows its work.',
-    detail: 'Every set, rep, and load comes with a stated reason. Deterministic programming, on-device explanations, your record on your device.',
-    platforms: 'iPhone · Apple Watch',
-  },
-  memora: {
-    proposition: 'Turn the notes you already have into the memory you want.',
-    detail: 'Flashcard drafts generated on your phone from your notes, PDFs, and photos. FSRS schedules the reviews.',
-    platforms: 'iPhone',
-  },
-  trove: {
-    proposition: 'The record of everything you own, ready before you need it.',
-    detail: 'Scan a room, log warranties and values, and walk into any claim with the evidence in hand.',
-    platforms: 'iPhone · iPad',
-  },
-  kith: {
-    proposition: 'Stay close to your people without a pipeline between you.',
-    detail: 'Remember the details that matter, nudge yourself to reach out, and draft messages on your phone, not on a server.',
-    platforms: 'iPhone',
-  },
-  mise: {
-    proposition: 'Every recipe you have ever saved, cooking with you.',
-    detail: 'Save from anywhere, plan the week, shop by aisle, and ask a sous chef that knows your kitchen.',
-    platforms: 'iPhone · iPad · Watch',
-  },
+const previews: Record<string, string> = {
+  vault: 'Know what you can spend before you spend it.',
+  molehill: 'Find a way into the task you keep putting off.',
+  cove: 'Write the version you would never send.',
+  wove: 'Get dressed from the clothes you already own.',
+  mettle: 'Know why that weight is on the bar.',
+  memora: 'Remember the notes you took the trouble to make.',
+  trove: 'Keep the receipt. Find it when it matters.',
+  kith: 'Remember the things they told you.',
+  mise: 'Make something out of all those saved recipes.',
 };
 
-const getStatus = (product: (typeof products)[number]) => {
-  const label = getProductReleaseLabel(product);
-  return label === 'Available on the App Store' ? 'Available now' : label;
-};
-
-const Products: React.FC = () => {
-  const orderedProducts = productOrder
-    .map((id) => products.find((product) => product.id === id))
-    .filter((product): product is (typeof products)[number] => Boolean(product));
-
-  return (
-    <section id="products" className="products-section" aria-labelledby="products-title">
-      <div className="section-frame">
-        <div className="section-index">
-          <span>02 / What we're building</span>
-          <span>{products.length} apps, each its own thing</span>
-        </div>
-
-          <div className="products-section__intro">
-          <MotionReveal>
-            <p className="section-kicker">The collection</p>
-            <h2 id="products-title">Ten apps. One for every part of<br /><em>life you&apos;d rather keep.</em></h2>
-          </MotionReveal>
-          <MotionReveal delay={0.08}>
-            <p>
-              A budget app and a journal do not share the same privacy problem, so each app
-              draws its own boundary and states it on its own page. What they all share: the
-              intelligence runs on your device, and nothing connects in secret.
-            </p>
-          </MotionReveal>
-        </div>
-
-        <div className="product-ledger" role="list">
-          {orderedProducts.map((product, index) => {
-            const copy = homepageCopy[product.id];
-            return (
-              <MotionReveal key={product.id} className="product-ledger__reveal" delay={index * 0.04} amount={0.18} role="listitem">
-                <SpotlightCard className="product-ledger__spot">
-                  <Link to={`/apps/${product.id}`} className="product-ledger__row">
-                    <div className="product-ledger__number">{String(index + 1).padStart(2, '0')}</div>
-                    <div className="product-ledger__name">
-                      <span>{product.category}</span>
-                      <h3>{product.name}</h3>
-                    </div>
-                    <div className="product-ledger__copy">
-                      <strong>{copy.proposition}</strong>
-                      <p>{copy.detail}</p>
-                    </div>
-                    <div className="product-ledger__meta">
-                      <span className={product.appStoreUrl ? 'is-live' : ''}>{getStatus(product)}</span>
-                      <small>{copy.platforms}</small>
-                    </div>
-                    <div className="product-ledger__arrow" aria-hidden="true">
-                      <ArrowUpRight size={24} />
-                    </div>
-                  </Link>
-                </SpotlightCard>
-              </MotionReveal>
-            );
-          })}
-        </div>
-
-        <TextMarquee
-          label="Obsidian Ridge Labs applications"
-          items={orderedProducts.map((product) => product.name)}
-        />
-
-        <MotionReveal className="product-ledger__foot">
-          <p>
-            Development status sits on every card. Each product page states exactly what is
-            built today, what connects, and what it costs.
-          </p>
-          <Link to="/download" className="text-link">
-            See what's available now <ArrowUpRight size={18} aria-hidden="true" />
-          </Link>
-        </MotionReveal>
+const Products: React.FC = () => (
+  <section id="products" className="home-collection" aria-labelledby="products-title">
+    <div className="section-frame">
+      <div className="section-index"><span>02 / The collection</span><span>Ten apps, ten boundaries, one standard</span></div>
+      <div className="home-collection__intro">
+        <h2 id="products-title">For the things<br /><em>you keep to yourself.</em></h2>
+        <p>A conversation worth keeping. A month of receipts. A person you meant to call. Each app starts with something that matters to you and keeps its intelligence close to it.</p>
       </div>
-    </section>
-  );
-};
+      <article className="home-echo">
+        <div className="home-echo__copy">
+          <p className="home-echo__status"><span className="status-dot" aria-hidden="true" /> On the App Store / Echo Chamber</p>
+          <h3>Be in the conversation.<br /><em>Keep the words.</em></h3>
+          <p>You were listening, not taking notes. Echo Chamber turns the recording into a transcript you can search, summarize, and return to. The work happens on your iPhone, iPad, or Mac.</p>
+          <p className="home-echo__principle">A useful transcript should not create a second audience.</p>
+          <div className="home-echo__actions">
+            <Link className="text-link" to="/apps/echochamber#boundary">Read Echo Chamber’s boundary <ArrowUpRight size={17} aria-hidden="true" /></Link>
+            <Link className="button button--primary" to="/apps/echochamber">Explore Echo Chamber <ArrowRight size={18} aria-hidden="true" /></Link>
+          </div>
+          <small>Free to download, with optional Pro. See the App Store for the current offer.</small>
+        </div>
+        <figure className="home-echo__image">
+          <picture><source srcSet="/images/echochamber/transcription-details-480.webp 480w, /images/echochamber/transcription-details-960.webp 960w" sizes="(max-width: 700px) 72vw, 340px" type="image/webp" /><img src="/images/echochamber/transcription-details-480.webp" alt="Echo Chamber transcript with playback controls and a transcript search field" loading="lazy" width="480" height="854" /></picture>
+          <figcaption>Your words. Back where you can find them.</figcaption>
+        </figure>
+      </article>
+      <div className="home-shelf__heading"><h3>Still on the workbench.</h3><p>Nine apps in development.</p></div>
+      <div className="home-shelf">
+        {products.filter(product => !product.appStoreUrl).map(product => {
+          const AppIcon = product.icon;
+          return <Link key={product.id} className="home-shelf__item" to={`/apps/${product.id}`}>
+            <div className="home-shelf__name"><AppIcon size={21} aria-hidden="true" /><h4>{product.name}</h4><ArrowUpRight size={18} aria-hidden="true" /></div>
+            <p>{previews[product.id]}</p>
+            <span>In development</span>
+          </Link>;
+        })}
+      </div>
+      <Link className="text-link home-shelf__more" to="/download">Explore the collection <ArrowUpRight size={18} aria-hidden="true" /></Link>
+    </div>
+  </section>
+);
 
 export default Products;

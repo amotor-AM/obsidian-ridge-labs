@@ -1,0 +1,3 @@
+/* Shared motion primitives; the retired homepage's layout is no longer shipped. */
+.vx-grain { position: fixed; inset: 0; width: 100%; height: 100%; opacity: .02; pointer-events: none; z-index: 90; transform: translateZ(0); contain: strict; mix-blend-mode: screen; }
+.vx-word { max-width: 100%; white-space: normal; overflow: visible; overflow-wrap: anywhere; }

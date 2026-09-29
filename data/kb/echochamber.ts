@@ -6,12 +6,12 @@ export const echochamberKb: KnowledgeBase = {
   accent: "#5cc8e6",
   status: "ready",
   intro:
-    "Welcome to Echo Chamber help. Whatever you are trying to capture, transcribe, or share, these guides walk you through it in plain, friendly steps.",
+    "Learn to record, import, search, and export with Echo Chamber, and manage models, storage, and purchases.",
   categories: [
     {
       id: "getting-started",
       title: "Getting started",
-      description: "Set up Echo Chamber and make your first recording in a couple of minutes.",
+      description: "Set up Echo Chamber, choose your model, and make your first recording.",
       icon: "sparkles",
     },
     {
@@ -35,7 +35,7 @@ export const echochamberKb: KnowledgeBase = {
     {
       id: "sync-devices",
       title: "Syncing & your devices",
-      description: "Use Echo Chamber across iPhone, iPad, Mac, and Apple Watch, with optional encrypted iCloud sync.",
+      description: "Device-specific guides and optional iCloud sync.",
       icon: "cloud",
     },
     {
@@ -70,7 +70,7 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Echo Chamber records the moments that matter, turns them into clean text in seconds, and helps you do something useful with that text, all on your iPhone, iPad, Mac, or Apple Watch.",
+            "Echo Chamber records conversations and turns them into searchable text, notes, and answers on supported Apple devices. Device requirements and features vary by platform.",
         },
         {
           type: "paragraph",
@@ -86,7 +86,7 @@ export const echochamberKb: KnowledgeBase = {
           type: "list",
           items: [
             "Record from the app, the Lock Screen, Control Center, Siri, or your Apple Watch.",
-            "Get a real-time transcript with speakers labeled automatically.",
+            "Get a live transcript on supported devices.",
             "Generate summaries, ask questions about a recording, and pull out action items.",
             "Search every transcript instantly, and organize with folders and favorites.",
             "Export to TXT, Markdown, PDF, or DOCX, and translate a transcript without an internet connection.",
@@ -97,7 +97,7 @@ export const echochamberKb: KnowledgeBase = {
           variant: "privacy",
           title: "Your recordings are yours",
           content:
-            "Echo Chamber has no servers of its own. Recording and transcription happen entirely on your device, and nothing is uploaded unless you choose to turn on iCloud sync, which stays inside your own iCloud account.",
+            "Echo Chamber processes recordings and transcripts on your device. Optional iCloud sync and files you choose to share or export are separate storage paths. Model setup and purchases can need a connection.",
         },
         {
           type: "paragraph",
@@ -109,10 +109,10 @@ export const echochamberKb: KnowledgeBase = {
     {
       id: "first-recording",
       title: "Make your first recording",
-      description: "Start, watch, and save your first transcript in under a minute.",
+      description: "Start a recording, follow the live transcript, and save the conversation.",
       category: "getting-started",
       keywords: ["first", "start recording", "begin", "new recording", "microphone", "permissions"],
-      updated: "2026-06-14",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -222,7 +222,7 @@ export const echochamberKb: KnowledgeBase = {
     {
       id: "recording-in-meetings",
       title: "Recording a meeting or lecture",
-      description: "Capture longer conversations cleanly, with speakers labeled automatically.",
+      description: "Prepare a recording you can return to after the conversation.",
       category: "recording",
       keywords: ["meeting", "lecture", "interview", "long recording", "speakers", "class", "consent"],
       updated: "2026-06-14",
@@ -249,7 +249,7 @@ export const echochamberKb: KnowledgeBase = {
             },
             {
               title: "Stop and review",
-              description: "When the meeting ends, tap Stop. Speakers are labeled automatically, and you can name them.",
+              description: "When the meeting ends, tap Stop. Review the transcript against the audio before using or sharing it.",
             },
           ],
         },
@@ -273,7 +273,7 @@ export const echochamberKb: KnowledgeBase = {
     {
       id: "transcription-speed-accuracy",
       title: "How transcription works, and how fast it is",
-      description: "Parakeet TDT turns speech into private, offline-ready text after targeted pre-transcription enhancement.",
+      description: "Speech recognition turns a recording into searchable text on your device.",
       category: "recording",
       keywords: ["accuracy", "word error rate", "speed", "real-time", "offline", "speech enhancement", "parakeet tdt"],
       updated: "2026-07-11",
@@ -281,12 +281,12 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Your words become text on your device with NVIDIA Parakeet TDT speech recognition, so the recording does not need to be uploaded to an Obsidian Ridge Labs server for transcription.",
+            "Echo Chamber transcribes speech on your device. The speech engine available to you depends on your hardware, operating system, language, and installed models.",
         },
         {
           type: "paragraph",
           content:
-            "Before Parakeet receives the audio, Echo Chamber applies a targeted, speech-focused filter designed for transcription. This is not generic normalization. The complete enhanced Echo Chamber pipeline has produced an internal observed word error rate of approximately 4.5% under tested conditions. Results vary with speakers, accents, acoustics, crosstalk, vocabulary, and source quality.",
+            "A clear recording gives the recognizer more to work with. Noise, distance from the microphone, accents, technical terms, and overlapping speech can all affect the transcript. Listen back to important passages before using them.",
         },
         {
           type: "paragraph",
@@ -296,8 +296,8 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "image",
           src: "/images/echochamber/TranscriptionDetailsScreen.png",
-          alt: "A finished transcript with labeled speakers and timestamps",
-          caption: "A finished transcript, with speakers labeled and words tied to timestamps.",
+          alt: "An Echo Chamber transcript with playback controls",
+          caption: "Return to the audio when a passage needs checking.",
         },
         {
           type: "callout",
@@ -377,61 +377,37 @@ export const echochamberKb: KnowledgeBase = {
       related: ["transcription-speed-accuracy", "improving-accuracy", "naming-speakers"],
     },
     {
-      id: "naming-speakers",
-      title: "Name the speakers in a recording",
-      description: "Echo Chamber labels who spoke, and you can give each voice a real name.",
-      category: "recording",
-      keywords: ["speakers", "diarization", "who said what", "rename", "speaker library", "contacts"],
-      updated: "2026-06-14",
-      blocks: [
-        {
-          type: "paragraph",
-          content:
-            "When more than one person speaks, Echo Chamber separates the voices and labels them automatically. Replacing a generic label with a real name makes the transcript far easier to read and share.",
-        },
-        {
-          type: "steps",
-          items: [
-            {
-              title: "Open a multi-speaker recording",
-              description: "You will see labels like Speaker 1 and Speaker 2 beside what each person said.",
-            },
-            {
-              title: "Tap a speaker label",
-              description: "Choose to rename that voice.",
-            },
-            {
-              title: "Type or pick a name",
-              description: "If you have allowed Contacts, Echo Chamber can suggest names to tap instead of typing.",
-            },
-            {
-              title: "It learns the voice",
-              description: "Names are saved to your speaker library, so the same person can be recognized in future recordings.",
-            },
-          ],
-        },
-        {
-          type: "callout",
-          variant: "privacy",
-          title: "Names are applied, not baked in",
-          content:
-            "Speaker names live in your on-device speaker library and are resolved when you view or export. Your stored transcript text is never permanently overwritten with a name, and nothing about speakers is sent anywhere.",
-        },
-        {
-          type: "faq",
-          items: [
-            {
-              q: "Will it remember a person across recordings?",
-              a: "Yes. Once you name a voice, Echo Chamber can recognize that speaker in later recordings and suggest the same name.",
-            },
-            {
-              q: "Do the names show up when I export?",
-              a: "Yes. The names you assign are applied to the exported file, so a shared transcript reads clearly.",
-            },
-          ],
-        },
+      "id": "naming-speakers",
+      "title": "Checking who said what",
+      "description": "Check speaker attribution against the original audio before quoting or sharing a conversation.",
+      "category": "recording",
+      "keywords": [
+        "speakers",
+        "labels",
+        "who said what"
       ],
-      related: ["recording-in-meetings", "export-formats", "edit-transcript"],
+      "updated": "2026-09-26",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": "Speaker tools differ by platform and app version. Do not assume every recording will contain automatic speaker labels or that a saved name will identify the same person in later recordings."
+        },
+        {
+          "type": "paragraph",
+          "content": "Play the passage back before attaching a name to it. If your version shows speaker controls, review the labels and correct them there. Otherwise, add the context you need when editing or exporting your notes."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "Keep the recording as your reference",
+          "content": "Overlapping voices and shared microphones make attribution harder. A speaker label is a transcription aid, not proof of who said something."
+        }
+      ],
+      "related": [
+        "recording-in-meetings",
+        "export-formats",
+        "edit-transcript"
+      ]
     },
     {
       id: "import-audio-video",
@@ -479,7 +455,7 @@ export const echochamberKb: KnowledgeBase = {
           variant: "tip",
           title: "Enhancement built for transcription",
           content:
-            "A recording with clear speech usually produces a cleaner transcript. Echo Chamber applies a targeted, speech-focused pre-transcription filter to prepare the signal for Parakeet TDT. It is not a generic normalization pass, which can erase details a recognizer needs.",
+            "A clear recording usually produces a cleaner transcript. Keep the microphone close enough to capture each voice, reduce background noise where possible, and review names and numbers against the audio.",
         },
       ],
       related: ["export-formats", "improving-accuracy", "transcription-speed-accuracy"],
@@ -497,7 +473,7 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "A summary turns a long transcript into something you can act on in seconds. Echo Chamber generates these on your device, so the content of your conversation never leaves it.",
+            "Echo Chamber can turn a transcript into a shorter note on your device. Read the note against the transcript before relying on it; generated summaries can omit or misread something that was said.",
         },
         {
           type: "heading",
@@ -543,14 +519,14 @@ export const echochamberKb: KnowledgeBase = {
           variant: "privacy",
           title: "Summaries run on your device",
           content:
-            "Summaries are generated on-device using Apple Intelligence on compatible devices, with bundled on-device Bonsai 1.7B as the local fallback on supported hardware without Apple Intelligence. Your transcript is not sent to an outside service.",
+            "Summaries run on your device with an available local AI model. Check the app model settings for the options supported by your hardware. Your transcript is not sent to an external AI service.",
         },
         {
           type: "callout",
           variant: "info",
           title: "Without Apple Intelligence",
           content:
-            "On compatible devices, Apple Intelligence handles transcript intelligence. Supported hardware without Apple Intelligence uses the bundled on-device Bonsai 1.7B fallback. Either path keeps the work on your device.",
+            "Transcript-tool availability depends on the installed app version, hardware, operating system, and local model setup. Check the model settings before using these tools offline.",
         },
       ],
       related: ["chat-with-transcript", "action-items", "free-vs-pro"],
@@ -768,7 +744,7 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "When a transcript is ready, you decide where it goes and in what shape. Echo Chamber exports to four formats, from portable plain text to a polished document.",
+            "When a transcript is ready, choose an export format from the menu. Available formats depend on the installed version and platform; use a short sample to check the layout before exporting an important recording.",
         },
         {
           type: "heading",
@@ -806,7 +782,7 @@ export const echochamberKb: KnowledgeBase = {
           variant: "tip",
           title: "Check the export menu",
           content:
-            "The export menu shows the formats available for the current app version and plan. Speaker names you assign are carried into the exported document.",
+            "The export menu shows the formats available in the current app version and plan. Open the exported file and check its text, timestamps, and any labels before sharing it.",
         },
       ],
       related: ["translate-transcript", "naming-speakers", "free-vs-pro"],
@@ -867,64 +843,38 @@ export const echochamberKb: KnowledgeBase = {
 
     /* ───────────────────────── Syncing & your devices ───────────────────────── */
     {
-      id: "icloud-sync",
-      title: "Turn on iCloud sync, and what it means",
-      description: "Sync recordings across your devices with end-to-end encrypted iCloud, off by default.",
-      category: "sync-devices",
-      keywords: ["icloud", "sync", "encryption", "backup", "across devices", "aes"],
-      updated: "2026-06-14",
-      blocks: [
-        {
-          type: "paragraph",
-          content:
-            "By default, your recordings live only on the device that made them. If you want them on all your devices, you can turn on iCloud sync, and it is built to keep your audio private.",
-        },
-        {
-          type: "steps",
-          items: [
-            {
-              title: "Open Settings",
-              description: "Find the sync section in the app's settings.",
-            },
-            {
-              title: "Turn on iCloud sync",
-              description: "Enable it to start keeping recordings consistent across your devices.",
-            },
-            {
-              title: "Let it catch up",
-              description: "Your recordings sync in the background. Newly recorded ones sync as you go.",
-            },
-          ],
-        },
-        {
-          type: "callout",
-          variant: "privacy",
-          title: "How sync protects your audio",
-          content:
-            "Audio is encrypted on your device with AES-256-GCM before it syncs. The encryption key lives in your iCloud Keychain, everything stays inside your own iCloud account, and the developer has no servers and cannot read it.",
-        },
-        {
-          type: "callout",
-          variant: "info",
-          title: "Sync is a Pro feature",
-          content:
-            "iCloud sync is off by default. Unlimited encrypted iCloud sync is part of Echo Chamber Pro.",
-        },
-        {
-          type: "faq",
-          items: [
-            {
-              q: "Can the developer see my synced recordings?",
-              a: "No. The audio is encrypted before it leaves your device and the key stays in your iCloud Keychain. It travels only within your own iCloud account.",
-            },
-            {
-              q: "What if I turn sync off?",
-              a: "Your recordings remain on the device they are already on. Turning sync off simply stops new changes from propagating between devices.",
-            },
-          ],
-        },
+      "id": "icloud-sync",
+      "title": "Using iCloud sync",
+      "description": "Understand optional iCloud sync, local processing, and the copies you keep or export to another destination.",
+      "category": "sync-devices",
+      "keywords": [
+        "icloud",
+        "sync",
+        "storage",
+        "devices"
       ],
-      related: ["what-stays-on-device", "free-vs-pro", "mac-meeting-detection"],
+      "updated": "2026-09-26",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": "Echo Chamber stores recordings and transcripts on your device by default. You can enable iCloud sync in the app settings when it is available for your plan. Sync uses your Apple account; it is separate from speech and AI processing on the device."
+        },
+        {
+          "type": "paragraph",
+          "content": "Before moving to another device, let sync finish and open the recordings you need there. Keep an export of important material before erasing a device or changing your storage setup."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "Sync is another copy",
+          "content": "Turning sync off is not the same as deleting content already stored in iCloud. Review the app settings and your iCloud storage before removing a copy. Exported or shared files are controlled by the destination you choose."
+        }
+      ],
+      "related": [
+        "what-stays-on-device",
+        "free-vs-pro",
+        "storage-management"
+      ]
     },
     {
       id: "mac-meeting-detection",
@@ -1038,65 +988,53 @@ export const echochamberKb: KnowledgeBase = {
 
     /* ───────────────────────── Privacy & security ───────────────────────── */
     {
-      id: "what-stays-on-device",
-      title: "Does my audio ever leave my device?",
-      description: "An honest, plain account of exactly what stays local and the only times the network is used.",
-      category: "privacy",
-      keywords: ["privacy", "audio", "upload", "on-device", "network", "tracking", "analytics", "permissions"],
-      updated: "2026-06-14",
-      blocks: [
-        {
-          type: "paragraph",
-          content:
-            "This is the question that matters most, so here is the straight answer. Recording, transcription, summaries, chat, search, and translation all happen on your device. The developer runs no servers for any of it.",
-        },
-        {
-          type: "callout",
-          variant: "privacy",
-          title: "The only times the network is used",
-          content:
-            "Two, and only two. First, a one-time download of the speech model so transcription can run offline afterward. Second, iCloud sync, but only if you turn it on, and even then your audio is encrypted and stays inside your own iCloud account.",
-        },
-        {
-          type: "heading",
-          level: 2,
-          content: "What Echo Chamber does not do",
-        },
-        {
-          type: "list",
-          items: [
-            "No account and no sign-in.",
-            "No analytics, no telemetry, and no tracking.",
-            "No ads and no advertising identifier.",
-            "No bot that joins your meetings.",
-            "No server owned by the developer that holds your recordings.",
-          ],
-        },
-        {
-          type: "heading",
-          level: 3,
-          content: "Permissions, and why they are asked",
-        },
-        {
-          type: "paragraph",
-          content:
-            "Permissions are requested only in context. Microphone and Speech Recognition are required so the app can hear you and transcribe on-device. Face ID, Notifications, Calendar, and Contacts are optional conveniences, and Screen Recording applies to Mac only. Declining the optional ones never limits recording or transcription.",
-        },
-        {
-          type: "faq",
-          items: [
-            {
-              q: "If I never enable iCloud sync, does any recording leave my device?",
-              a: "No. With sync off, your recordings stay on the device that made them. The only network use is the one-time speech model download.",
-            },
-            {
-              q: "Are summaries and chat sent somewhere?",
-              a: "No. They are generated on your device using Apple Intelligence on compatible devices, or bundled on-device Bonsai 1.7B on supported hardware without Apple Intelligence.",
-            },
-          ],
-        },
+      "id": "what-stays-on-device",
+      "title": "Where recordings are processed and stored",
+      "description": "Local processing, optional sync, and the files you choose to share.",
+      "category": "privacy",
+      "keywords": [
+        "privacy",
+        "audio",
+        "local processing",
+        "icloud",
+        "sharing"
       ],
-      related: ["icloud-sync", "app-lock", "free-vs-pro"],
+      "updated": "2026-09-26",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": "Echo Chamber records, transcribes, searches, and runs transcript AI on supported Apple devices. Recordings and transcripts are not uploaded to an external AI service for those tasks."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "content": "Storage is a separate choice"
+        },
+        {
+          "type": "paragraph",
+          "content": "The app stores recordings and transcripts locally by default. Optional iCloud sync creates a cloud-storage path through your Apple account. Files you share or export go to the destination you choose and take on its access and retention rules."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "content": "Connections and setup"
+        },
+        {
+          "type": "paragraph",
+          "content": "Model downloads, purchase verification, and cloud sync can need a connection. Links, support, and sharing also have their own destinations. Check the app settings for the model, plan, and sync options available in your version."
+        },
+        {
+          "type": "callout",
+          "variant": "privacy",
+          "title": "An app lock is an access control",
+          "content": "Locking the app helps control access on your device. It does not retract an exported file or delete an existing iCloud copy."
+        }
+      ],
+      "related": [
+        "icloud-sync",
+        "app-lock",
+        "free-vs-pro"
+      ]
     },
     {
       id: "app-lock",
@@ -1141,68 +1079,45 @@ export const echochamberKb: KnowledgeBase = {
 
     /* ───────────────────────── Plans & billing ───────────────────────── */
     {
-      id: "free-vs-pro",
-      title: "What is free and what Pro adds",
-      description: "A clear breakdown of the free app and Echo Chamber Pro monthly, yearly, and Lifetime purchase options.",
-      category: "billing",
-      keywords: ["pricing", "free", "pro", "subscription", "monthly", "yearly", "lifetime", "one-time purchase", "cost", "upgrade"],
-      updated: "2026-07-11",
-      blocks: [
-        {
-          type: "paragraph",
-          content:
-            "Echo Chamber is free to download and use. Echo Chamber Pro unlocks unlimited recording length, every AI feature, audio and video upload, batch enhancement, and priority support. Choose monthly or yearly access, or buy Lifetime once because a great app should not require another subscription.",
-        },
-        {
-          type: "heading",
-          level: 2,
-          content: "Start free",
-        },
-        {
-          type: "list",
-          items: [
-            "Record and transcribe locally within the current free recording-length allowance.",
-            "Full-text search, folders, and favorites.",
-            "Speaker labels and the core searchable recording library.",
-            "Export in the formats shown for the current plan.",
-          ],
-        },
-        {
-          type: "heading",
-          level: 2,
-          content: "Echo Chamber Pro adds",
-        },
-        {
-          type: "list",
-          items: [
-            "Unlimited recording length.",
-            "All AI features.",
-            "Audio and video file upload.",
-            "Batch enhancement and priority support.",
-          ],
-        },
-        {
-          type: "heading",
-          level: 3,
-          content: "Pro pricing",
-        },
-        {
-          type: "list",
-          items: [
-            "Monthly, 2.99 US dollars per month.",
-            "Yearly, 29.99 US dollars per year.",
-            "Lifetime, 79.99 US dollars one time.",
-          ],
-        },
-        {
-          type: "callout",
-          variant: "tip",
-          title: "Already paid on another device?",
-          content:
-            "If you have bought Pro before, you do not pay again. See Restore a purchase to bring it back.",
-        },
+      "id": "free-vs-pro",
+      "title": "Free download and Pro options",
+      "description": "Where to check your current allowance and purchase options.",
+      "category": "billing",
+      "keywords": [
+        "pricing",
+        "free",
+        "pro",
+        "subscription",
+        "lifetime",
+        "allowance"
       ],
-      related: ["restore-purchase", "icloud-sync", "ai-summaries"],
+      "updated": "2026-09-26",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": "Echo Chamber is free to download, with optional Pro purchases. The in-app plan screen shows the features and allowances for the version you have installed. Check it before relying on a particular recording duration, import allowance, or AI feature."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "content": "Choose a purchase option"
+        },
+        {
+          "type": "paragraph",
+          "content": "Compare the subscription and lifetime options shown in the App Store or in-app purchase screen. Apple displays your local price and the terms before you confirm."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "Already purchased Pro?",
+          "content": "Use Restore Purchases with the Apple Account that made the purchase. A restore checks your existing entitlement; it does not buy Pro again."
+        }
+      ],
+      "related": [
+        "restore-purchase",
+        "icloud-sync",
+        "ai-summaries"
+      ]
     },
     {
       id: "restore-purchase",
@@ -1266,13 +1181,13 @@ export const echochamberKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Parakeet TDT is highly capable, but no speech recognizer is flawless. Names, acronyms, crosstalk, accents, and background noise are common reasons a word comes out wrong. Echo Chamber applies a targeted, speech-focused filter before transcription, and the complete enhanced pipeline has produced an internal observed word error rate of approximately 4.5% under tested conditions. Your result can vary with the recording.",
+            "No speech recognizer is flawless. Names, acronyms, overlapping voices, accents, and background noise are common sources of mistakes. Listen back to uncertain passages and correct the transcript before using it as a quotation or record.",
         },
         {
           type: "list",
           items: [
             "Record closer to the speaker and away from noisy machines.",
-            "Use Echo Chamber's speech-focused enhancement to prepare the audio for transcription. It is deliberately different from generic normalization.",
+            "Check names, numbers, and technical terms against the original audio.",
             "Add specialized terms to Custom Vocabulary so they transcribe correctly.",
             "Edit any word inline, and the fix stays with the recording and its exports.",
             "For imported files, start with the clearest source audio you have.",
@@ -1329,51 +1244,43 @@ export const echochamberKb: KnowledgeBase = {
       related: ["recording-in-meetings", "offline-use", "storage-management"],
     },
     {
-      id: "offline-use",
-      title: "Using Echo Chamber offline",
-      description: "What works without internet, and the one thing that needs it first.",
-      category: "troubleshooting",
-      keywords: ["offline", "no internet", "airplane mode", "model download", "no signal"],
-      updated: "2026-06-14",
-      blocks: [
-        {
-          type: "paragraph",
-          content:
-            "Echo Chamber is designed to work on a plane, in a basement, or anywhere without a signal. The only thing that needs the internet is the one-time speech model download.",
-        },
-        {
-          type: "heading",
-          level: 2,
-          content: "Works fully offline",
-        },
-        {
-          type: "list",
-          items: [
-            "Recording from any source.",
-            "Transcription, once the model has downloaded.",
-            "Full-text search across your transcripts.",
-            "Editing, summaries, chat, and export.",
-            "Translation, once a language pair has downloaded.",
-          ],
-        },
-        {
-          type: "callout",
-          variant: "tip",
-          title: "Download before you go",
-          content:
-            "Make one recording while you are on Wi-Fi to trigger the model download. After that, transcription keeps working offline forever.",
-        },
-        {
-          type: "faq",
-          items: [
-            {
-              q: "Transcription is stuck while I am offline, why?",
-              a: "If the speech model has not finished downloading yet, transcription waits. Connect to the internet once to complete the download, then offline use works as expected.",
-            },
-          ],
-        },
+      "id": "offline-use",
+      "title": "Using Echo Chamber offline",
+      "description": "Prepare local models and check your allowance before disconnecting.",
+      "category": "troubleshooting",
+      "keywords": [
+        "offline",
+        "airplane mode",
+        "model download",
+        "allowance"
       ],
-      related: ["transcription-speed-accuracy", "translate-transcript", "what-stays-on-device"],
+      "updated": "2026-09-26",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": "Recording and speech recognition run on your device. Before going offline, finish the required model downloads and make a short test recording. AI notes and other transcript tools also need their local model to be ready."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Check that the speech model is installed.",
+            "Check the current recording and feature allowances in the app.",
+            "Make a recording, then turn on airplane mode and confirm Wi-Fi is off.",
+            "Open the transcript, search for a word, and test the tools you plan to use."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "Some services still need a connection",
+          "content": "Model downloads, purchases, purchase checks, and iCloud sync use the network. If the app asks to refresh an allowance, reconnect before starting the recording. Offline processing does not remove plan limits."
+        }
+      ],
+      "related": [
+        "transcription-speed-accuracy",
+        "translate-transcript",
+        "what-stays-on-device"
+      ]
     },
     {
       id: "storage-management",

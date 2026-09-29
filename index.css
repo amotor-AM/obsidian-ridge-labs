@@ -3,8 +3,8 @@
 @theme {
   --color-obsidian: #0b0d0c;
   --color-obsidian-light: #151916;
-  --color-neon: #a8c89a;
-  --color-neon-dim: rgba(168, 200, 154, 0.12);
+  --color-neon: #c7ff3e;
+  --color-neon-dim: rgba(199, 255, 62, 0.12);
   --color-text-primary: #f4f1e8;
   --color-text-secondary: #b9beb5;
   --color-alert: #ff5f57;
@@ -694,7 +694,7 @@ html[data-embed="1"] .help-shell { padding-top: 1.5rem; }
 .echo-boundary__note a { color: var(--white); border-bottom: 1px solid currentColor; }
 
 .echo-pricing { padding:clamp(100px,12vw,180px) 0; background:var(--ink); }
-.echo-pricing__layout { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(320px,.6fr); gap:10vw; align-items:center; }
+.echo-pricing__layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(380px,.82fr); gap:clamp(48px,6vw,110px); align-items:center; }
 .echo-pricing__layout > div:first-child h2 { max-width:850px; margin:0; font-size:clamp(4rem,7vw,7.4rem); font-weight:520; letter-spacing:-.075em; line-height:.88; }.echo-pricing__layout>div:first-child>p:last-child{max-width:600px;margin:35px 0 0;color:#92988a;font-size:16px;line-height:1.6}
 .echo-pricing__card { padding:30px; border:1px solid var(--line); background:#10120e; }
 .echo-pricing__card > div { display:flex; justify-content:space-between; font-family:var(--mono); font-size:8px; letter-spacing:.08em; text-transform:uppercase; }.echo-pricing__card>div small{color:#696f62}
@@ -1715,15 +1715,40 @@ img { display: block; height: auto; }
 .echo-boundary__column li { border-color: rgba(244,241,232,.16); font-size: 17px; }
 .echo-boundary__note { color: #dce2dc; font-size: 15px; }
 .echo-boundary__note a { color: var(--white); }
+.echo-pricing__layout > div:first-child h2 { max-width: 760px; font-size: clamp(3.2rem, 4.6vw, 6rem); }
 .echo-pricing__layout > div:first-child > p:last-child { color: var(--muted); font-size: 18px; }
+.echo-pricing__card {
+  /* The card lives in a narrow grid column, so the prices size themselves off the
+     card rather than off the viewport. Viewport clamps below are the fallback. */
+  container-type: inline-size;
+  container-name: pricing;
+}
 .echo-pricing__card > div:first-child { font-size: 13px; }
 .echo-pricing__card > div:first-child small { color: #aeb5ac; }
 .echo-pricing__options { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 36px 0 8px; background: var(--line); border: 1px solid var(--line); }
-.echo-pricing__options > div { display: flex; min-width: 0; padding: 22px; flex-direction: column; background: #11130f; }
+.echo-pricing__options > div { display: flex; min-width: 0; padding: clamp(16px, 1.4vw, 22px); flex-direction: column; background: #11130f; }
 .echo-pricing__options > div.is-lifetime { grid-column: 1 / -1; background: rgba(168,200,154,.1); }
 .echo-pricing__options span { color: #aeb5ac; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
-.echo-pricing__options strong { margin-top: 18px; color: var(--white); font-size: clamp(2.2rem, 3vw, 3.6rem); font-weight: 560; letter-spacing: -.05em; line-height: 1; }
+.echo-pricing__options strong {
+  margin-top: 18px;
+  color: var(--white);
+  font-size: clamp(1.7rem, 1.45vw + .9rem, 2.75rem);
+  font-size: clamp(1.7rem, 9cqi, 2.75rem);
+  font-weight: 560;
+  letter-spacing: -.045em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.echo-pricing__options > div.is-lifetime strong {
+  font-size: clamp(1.9rem, 1.7vw + 1rem, 3.2rem);
+  font-size: clamp(1.9rem, 11cqi, 3.2rem);
+}
 .echo-pricing__options small { margin-top: 8px; color: #aeb5ac; font-size: 13px; }
+
+@container pricing (max-width: 430px) {
+  .echo-pricing__options { grid-template-columns: 1fr; }
+  .echo-pricing__options > div.is-lifetime { grid-column: auto; }
+}
 .echo-pricing__card li { color: var(--muted); font-size: 14px; }
 .echo-faq summary { font-size: 18px; }
 .echo-faq summary > span { color: #a4aba2; font-size: 13px; }

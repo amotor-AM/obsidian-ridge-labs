@@ -6,7 +6,7 @@ export const troveKb: KnowledgeBase = {
   accent: "#d9a441",
   status: "ready",
   intro:
-    "Guides for cataloguing a home without photographing everything one item at a time, tracking warranties, and preparing an insurance claim privately.",
+    "Learn to capture belongings and receipts, track warranties, find item details, and export inventory records.",
   categories: [
     {
       id: "getting-started",
@@ -35,7 +35,7 @@ export const troveKb: KnowledgeBase = {
     {
       id: "asking",
       title: "Ask Trove",
-      description: "Questions about your own inventory, answered with real arithmetic.",
+      description: "Ask questions about saved belongings and use the inventory totals.",
       icon: "message-circle",
     },
     {
@@ -355,10 +355,10 @@ export const troveKb: KnowledgeBase = {
     {
       id: "coverage-gap",
       title: "The coverage gap check",
-      description: "Enter your policy limit and find out whether you are actually covered.",
+      description: "Compare recorded item values with a policy limit; the app does not determine coverage.",
       category: "protection",
       keywords: ["insurance", "coverage", "policy", "limit", "underinsured", "gap", "personal property"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -463,10 +463,10 @@ export const troveKb: KnowledgeBase = {
     {
       id: "apple-intelligence-requirement",
       title: "Why Trove requires Apple Intelligence",
-      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
+      description: "Check device requirements and what to do when Apple Intelligence is unavailable.",
       category: "asking",
       keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -567,7 +567,7 @@ export const troveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Trove is local-first. Turning on sync moves the catalogue into your own private iCloud database, which means your Apple account rather than an Obsidian Ridge Labs server. Both modes point at the same on-disk store, so switching does not lose anything.",
+            "Trove stores its catalog locally. Plus can enable private iCloud record sync through your Apple account. Photos and receipt images are separate local files; record sync is not a complete photo backup. Use the portable archive to keep an independent copy that includes available images.",
         },
         {
           type: "callout",
@@ -620,14 +620,14 @@ export const troveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Trove can write your whole library, photos included, to a single portable file. Keep it in Files, in iCloud Drive, or anywhere else you trust, and restore from it on a new device.",
+            "Trove can export a .trovearchive file containing the inventory graph and available local photos, including receipt images. Archive export and restore are free. Keep a copy in Files or another destination you choose, and check it before erasing the original library.",
         },
         {
           type: "callout",
           variant: "warning",
           title: "Local-first means you own the backup problem",
           content:
-            "Without iCloud sync there is no server copy to fall back on. If your inventory is the evidence for a future claim, make a backup and store it somewhere other than the phone it was made on.",
+            "Keep an archive somewhere other than the phone it was made on. Private iCloud record sync does not establish a second copy of the image files; the archive includes the local images that are still present at export.",
         },
         {
           type: "paragraph",
@@ -642,10 +642,10 @@ export const troveKb: KnowledgeBase = {
     {
       id: "compare-free-and-plus",
       title: "What is free and what Trove Plus adds",
-      description: "The real free limits and what Plus adds, stated as numbers rather than a marketing table.",
+      description: "Compare free inventory and backup features with Plus reports and other tools.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "limit", "lifetime", "trial", "compare"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "heading",
@@ -693,10 +693,10 @@ export const troveKb: KnowledgeBase = {
     {
       id: "restore-purchase",
       title: "Restoring a purchase",
-      description: "New phone, reinstall, or an entitlement that did not appear.",
+      description: "Restore access to a purchase after reinstalling or moving to a new phone.",
       category: "billing",
       keywords: ["restore", "purchase", "reinstall", "new phone", "missing", "receipt"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -708,7 +708,7 @@ export const troveKb: KnowledgeBase = {
           items: [
             { title: "Check the Apple Account", description: "The device must be signed in with the account used for the purchase." },
             { title: "Open Settings in Trove", description: "Tap Restore Purchases." },
-            { title: "Wait a moment", description: "The App Store confirms the entitlement and Plus unlocks." },
+            { title: "Wait a moment", description: "The App Store checks your purchase and restores Plus access." },
           ],
         },
         {
@@ -716,7 +716,7 @@ export const troveKb: KnowledgeBase = {
           variant: "info",
           title: "Your catalogue is separate",
           content:
-            "Restoring a purchase does not restore your items, because they were never on a server. Bring those back from your backup file, or turn on iCloud sync.",
+            "Restoring a purchase restores the paid entitlement, not the inventory. Use an archive to restore records and included photos. If you enabled iCloud record sync, check what is present on the new device before deleting the original.",
         },
       ],
       related: ["compare-free-and-plus", "backup-and-restore"],

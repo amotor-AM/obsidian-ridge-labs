@@ -1,119 +1,58 @@
-import React, { useRef, useState } from 'react';
-import { Archive, Database, ShieldCheck, WifiOff } from 'lucide-react';
-import { AnimatePresence, motion, useReducedMotion, useScroll } from 'framer-motion';
+import React from 'react';
 
-const PRINCIPLES = [
+export const STANDARD_REFUSALS = [
   {
-    icon: Database,
-    title: 'DATA HAS GRAVITY',
-    origin: 'Countermeasure 01',
-    description: 'Every transfer adds a network, processor, log, policy, and failure point. Obsidian Ridge Labs keeps core AI close to private data whenever supported Apple hardware can do the work.',
-    practice: 'Core path',
-    value: 'On-device',
+    title: 'Data has gravity.',
+    description: 'A recording carries the people in the room. It should not have to leave the room for software to understand it. We bring the model to the device that holds the recording.',
   },
   {
-    icon: ShieldCheck,
-    title: 'THE CLOUD MUST EARN ITS PLACE',
-    origin: 'Countermeasure 02',
-    description: 'A connection should exist only when it delivers a capability the device cannot provide well on its own. Core work stays local. Optional services are named before they are used.',
-    practice: 'Network access',
-    value: 'Purpose-bound',
+    title: 'The cloud must earn its place.',
+    description: 'A bank feed needs a bank connection. A transcript does not need an audience. Every connection needs a job, and you get to know what it carries before it happens.',
   },
   {
-    icon: WifiOff,
-    title: 'OFFLINE IS THE TEST',
-    origin: 'Offline default',
-    description: 'The network should add a specific capability, not control the core experience. After required setup, important work should continue without Wi-Fi or cellular service.',
-    practice: 'Core workflows',
-    value: 'Offline-ready',
+    title: 'Offline is the test.',
+    description: 'Losing reception should not mean losing the work. Once the required models are installed, the core tools must keep going.',
   },
   {
-    icon: Archive,
-    title: 'MEMORY BELONGS TO YOU',
-    origin: 'Deliberate memory',
-    description: 'Personal software should not keep more than it needs. Storage, export, retention, and deletion should be clear and controlled by the person who created the data.',
-    practice: 'Retention',
-    value: 'User-controlled',
+    title: 'Your data belongs to you.',
+    description: 'Your notes do not become ours because our software helped you write them. Keeping them, taking them elsewhere, or deleting them should never require our permission.',
   },
 ];
 
-const AxiomScroller: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start 75%', 'end 35%'],
-  });
-
-  return (
-    <section ref={sectionRef} id="principles" className="philosophy-principles" aria-labelledby="principles-title">
-      <div className="section-frame">
-        <div className="section-index">
-          <span>02 / Countermeasures</span>
-          <span>Four rules for private software</span>
-        </div>
-
-        <div className="philosophy-principles__intro">
-          <p className="section-kicker">The counter architecture</p>
-          <h2 id="principles-title">Four refusals.<br /><em>One private standard.</em></h2>
-          <p>These rules decide what belongs on the device, what may connect, and what the user must always control.</p>
-        </div>
-
-        <div className="countermeasure-sequence">
-          <aside className="countermeasure-rail" aria-hidden="true">
-            <div className="countermeasure-rail__number">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={activeIndex}
-                  initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reducedMotion ? undefined : { opacity: 0, y: -16 }}
-                  transition={{ duration: 0.35 }}
-                >
-                  {String(activeIndex + 1).padStart(2, '0')}
-                </motion.span>
-              </AnimatePresence>
-              <small>/ 04</small>
-            </div>
-            <div className="countermeasure-rail__ridge"><i /><i /><i /><i /></div>
-            <div className="countermeasure-rail__progress"><motion.i style={{ scaleY: reducedMotion ? 1 : scrollYProgress }} /></div>
-            <p>{PRINCIPLES[activeIndex].origin}</p>
-          </aside>
-
-          <div className="countermeasure-list">
-            {PRINCIPLES.map((principle, index) => {
-              const Icon = principle.icon;
-              return (
-                <motion.article
-                  key={principle.title}
-                  className={activeIndex === index ? 'is-active' : ''}
-                  onViewportEnter={() => setActiveIndex(index)}
-                  viewport={{ amount: 0.55 }}
-                  initial={false}
-                  whileInView={reducedMotion ? undefined : { y: [14, 0] }}
-                  transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
-                  aria-labelledby={`principle-${index + 1}`}
-                >
-                  <div className="countermeasure-list__meta">
-                    <span>{String(index + 1).padStart(2, '0')}</span>
-                    <span>{principle.origin}</span>
-                  </div>
-                  <Icon aria-hidden="true" />
-                  <h3 id={`principle-${index + 1}`}>{principle.title}</h3>
-                  <p>{principle.description}</p>
-                  <dl>
-                    <dt>{principle.practice}</dt>
-                    <dd>{principle.value}</dd>
-                  </dl>
-                </motion.article>
-              );
-            })}
-          </div>
-        </div>
+const AxiomScroller: React.FC = () => (
+  <section id="principles" className="standard-refusals" aria-labelledby="principles-title">
+    <div className="section-frame">
+      <div className="section-index">
+        <span>02 / Four refusals</span>
+        <span>The Obsidian Ridge Labs standard</span>
       </div>
-    </section>
-  );
-};
+
+      <h2 id="principles-title" className="standard-refusals__heading">Privacy is what makes it <em>personal.</em></h2>
+      <div className="standard-refusals__layout">
+        <div className="standard-refusals__intro">
+          <p>
+            You cannot ask software to understand your life while editing out everything you
+            cannot afford to share.
+          </p>
+          <p>
+            We refuse The Trade. These are the decisions that follow.
+          </p>
+        </div>
+
+        <ol className="standard-refusals__list">
+          {STANDARD_REFUSALS.map((refusal, index) => (
+            <li key={refusal.title}>
+              <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{refusal.title}</h3>
+                <p>{refusal.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+);
 
 export default AxiomScroller;

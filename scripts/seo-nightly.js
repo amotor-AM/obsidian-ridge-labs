@@ -2,55 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import { loadGscCredentials, getGscAccessToken, resolveGscProperty, canWrite, WRITE_SCOPE } from './gsc.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SITE_ORIGIN = 'https://obsidianridgelabs.com';
 const SITEMAP_URL = `${SITE_ORIGIN}/sitemap.xml`;
 const LOCAL_SITEMAP_PATH = path.resolve(__dirname, '../dist/sitemap.xml');
-
-// 1. Helper function for base64url encoding
-function base64url(str) {
-  return Buffer.from(str)
-    .toString('base64')
-    .replace(/=/g, '')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_');
-}
-
-// 2. Helper to fetch Google Search Console Access Token
-async function getGscAccessToken(clientEmail, privateKey) {
-  const normalizedKey = privateKey.replace(/\\n/g, '\n');
-  const header = base64url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }));
-  const now = Math.floor(Date.now() / 1000);
-  
-  const payload = base64url(JSON.stringify({
-    iss: clientEmail,
-    scope: 'https://www.googleapis.com/auth/webmasters',
-    aud: 'https://oauth2.googleapis.com/token',
-    exp: now + 3600,
-    iat: now
-  }));
-  
-  const sign = crypto.createSign('RSA-SHA256');
-  sign.update(`${header}.${payload}`);
-  const signature = base64url(sign.sign(normalizedKey));
-  
-  const jwt = `${header}.${payload}.${signature}`;
-  
-  const response = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`
-  });
-  
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Google OAuth failure: ${response.statusText} - ${errorText}`);
-  }
-  
-  const data = await response.json();
-  return data.access_token;
-}
 
 async function loadSitemap() {
   try {
@@ -133,38 +90,31 @@ async function runSeoNightly() {
   }
 
   // Google Search Console (GSC) Sitemap Submission
-  const gscEmail = process.env.GSC_CLIENT_EMAIL;
-  const gscKey = process.env.GSC_PRIVATE_KEY;
-  
-  if (gscEmail && gscKey) {
+  // Credentials come from GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY in CI or the local key file (scripts/gsc.js).
+  const credentials = loadGscCredentials();
+  if (credentials) {
     try {
       console.log('Authenticating with Google Search Console...');
-      const token = await getGscAccessToken(gscEmail, gscKey);
-      
-      const siteUrlEncoded = encodeURIComponent(`${SITE_ORIGIN}/`);
-      const feedPathEncoded = encodeURIComponent(SITEMAP_URL);
-      const gscApiUrl = `https://www.googleapis.com/webmasters/v3/sites/${siteUrlEncoded}/sitemaps/${feedPathEncoded}`;
-      
-      console.log(`Submitting sitemap to Google Search Console API...`);
-      const res = await fetch(gscApiUrl, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Length': '0'
-        }
-      });
-      
-      if (res.ok) {
-        console.log('Google Search Console Sitemap submission successful.');
+      const token = await getGscAccessToken(credentials, WRITE_SCOPE);
+      // The site is a domain property (sc-domain:obsidianridgelabs.com). Submitting to the URL-prefix
+      // form, as this used to, targets a property that does not exist and is always rejected.
+      const property = await resolveGscProperty(token);
+      if (!property) {
+        console.error(`Search Console: ${credentials.clientEmail} has no access to obsidianridgelabs.com.`);
+      } else if (!canWrite(property.permission)) {
+        console.log(`Search Console: ${property.siteUrl} is readable (${property.permission}) but a sitemap submission needs Full permission. Skipping; Google still reads the sitemap from robots.txt.`);
       } else {
-        const errText = await res.text();
-        console.error(`Google Search Console API failed: ${res.status} ${res.statusText} - ${errText}`);
+        const gscApiUrl = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(property.siteUrl)}/sitemaps/${encodeURIComponent(SITEMAP_URL)}`;
+        console.log(`Submitting sitemap to ${property.siteUrl}...`);
+        const res = await fetch(gscApiUrl, { method: 'PUT', headers: { Authorization: `Bearer ${token}`, 'Content-Length': '0' } });
+        if (res.ok) console.log('Google Search Console sitemap submission successful.');
+        else console.error(`Google Search Console API failed: ${res.status} ${res.statusText} - ${await res.text()}`);
       }
     } catch (err) {
       console.error('Failed to submit to Google Search Console:', err.message);
     }
   } else {
-    console.log('Google Search Console credentials not found in env (GSC_CLIENT_EMAIL, GSC_PRIVATE_KEY). Skipping GSC submission.');
+    console.log('Google Search Console credentials not found (GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY, GSC_KEY_FILE or ~/.config/gsc/). Skipping GSC submission.');
   }
 
   console.log('--- Nightly SEO Monitor Completed (no files changed) ---');

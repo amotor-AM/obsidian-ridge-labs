@@ -3,33 +3,67 @@
   "project": {
     "name": "obsidian-ridge-labs",
     "productType": "product-studio",
-    "stack": ["react", "tailwind-v4", "vite", "framer-motion"]
+    "stack": [
+      "react",
+      "tailwind-v4",
+      "vite",
+      "gsap",
+      "lenis",
+      "three"
+    ]
   },
   "sources": {
-    "tokens": ["index.css"],
-    "components": ["components"],
-    "assets": ["public/images"],
+    "tokens": [
+      "index.css",
+      "editorial.css",
+      "styles/motion.css",
+      "styles/void-system.css",
+      "styles/luminous-home.css",
+      "styles/luminous-products.css",
+      "styles/luminous-system.css"
+    ],
+    "components": [
+      "components"
+    ],
+    "assets": [
+      "public/images"
+    ],
     "instructions": []
   },
   "design": {
     "colorMode": "dark",
     "colors": {
-      "ink": "#0b0d0c",
-      "paper": "#f1eee6",
-      "acid": "#a8c89a",
-      "moss": "#35473d",
-      "white": "#f4f1e8"
+      "obsidian": "#050507",
+      "canvas": "#0d0d12",
+      "divider": "rgba(255,255,255,.09)",
+      "white": "#ffffff",
+      "body": "#aaaab6",
+      "signalGreen": "#c7ff3e",
+      "violet": "#ae9fff"
     },
     "typography": {
-      "sans": "Avenir Next / Helvetica Neue",
-      "serif": "Iowan Old Style",
-      "mono": "SFMono-Regular"
+      "heading": "Inter, self-hosted",
+      "body": "Inter, self-hosted",
+      "mono": "SFMono-Regular / Consolas"
     },
-    "spacing": { "section": "clamp(110px, 12vw, 180px)" },
-    "radius": { "default": "0", "button": "999px" },
-    "shadows": { "default": "none" },
-    "motion": { "ease": "cubic-bezier(0.22, 1, 0.36, 1)" },
-    "density": "editorial"
+    "spacing": {
+      "section": "clamp(110px, 12vw, 180px)"
+    },
+    "radius": {
+      "default": "18px",
+      "button": "9px",
+      "navigation": "20px"
+    },
+    "shadows": {
+      "default": "soft black depth, restrained lime and violet bloom, fine inset highlights"
+    },
+    "motion": {
+      "ease": "power4.out",
+      "scroll": "Lenis with GSAP ticker",
+      "entrance": "unmasked word rise; scoped spatial transforms on actual product screenshots",
+      "reducedMotion": "native scroll and static artwork"
+    },
+    "density": "product-led, precise, spacious"
   },
   "components": {
     "installed": [
@@ -39,31 +73,82 @@
       "ddoemonn/accordion",
       "7ovr/logo-cloud-3"
     ],
-    "preferredPrimitives": ["button", "text-link", "section-frame", "site-accordion", "spotlight-card", "magnetic"],
-    "patterns": ["ledger-rows", "paper-ink-alternation", "cut-stone-editorial"]
+    "preferredPrimitives": [
+      "button",
+      "text-link",
+      "section-frame",
+      "site-accordion",
+      "spotlight-card",
+      "magnetic"
+    ],
+    "patterns": [
+      "floating-glass-navigation",
+      "actual-product-screens",
+      "luminous-depth",
+      "interactive-hardware-boundary"
+    ]
   },
   "constraints": {
     "must": [
-      "Keep obsidian, paper, moss, and sage acid as the only brand colors",
-      "Use real product copy and release status",
-      "Preserve Apple-only private-AI positioning"
+      "Follow the user-supplied Raycast, Family, Chronicle, Linear, and Nothing references with original luminous product compositions.",
+      "Keep every product claim and release status grounded in product documentation.",
+      "Preserve the Philosophy opening copy and Silence the Cloud.",
+      "Keep copy in normal flow and responsive layouts readable at narrow widths and with reduced motion.",
+      "Pause continuous visual rendering offscreen and in hidden tabs.",
+      "Always name Echo Chamber and Obsidian Ridge Labs in full.",
+      "Follow the September 26 approved product evidence ledgers; source implementation is not release verification.",
+      "Give Mettle and Memora equivalent full-width art direction with top-aligned copy.",
+      "Avoid medical metaphors for Mettle and keep long headings at natural reading widths. Every app has equal directory visibility as releases expand."
     ],
     "avoid": [
-      "Particle heroes, galaxy backgrounds, neon lime, glassmorphism",
-      "Identical card grids, decorative glow orbs, Sparkles icons",
-      "Tailwind SaaS utility chrome on inner routes"
+      "Generic block entrance fades",
+      "Warm-paper surfaces and serif headlines",
+      "Invented product capabilities or shipping status",
+      "Unlabeled sample metrics",
+      "Repeated studio slogans on product pages",
+      "Decorative audio waveforms and invented product demonstrations"
     ]
   },
   "decisions": [
     {
-      "id": "cut-stone-editorial",
-      "summary": "Unify the site on a cut-stone editorial system: sage acid, hairline ledgers, 21st primitives adapted into project CSS rather than shadcn."
+      "id": "matte-void-trilogy",
+      "summary": "The explicit site-wide design brief supersedes the earlier editorial palette. Echo Chamber, Mettle, and Memora form the featured trilogy; the other seven product routes remain available. Memora retains its documented flashcard and spaced-repetition function with an archival visual treatment.",
+      "status": "rejected-by-user"
+    },
+    {
+      "id": "art-direction-studies",
+      "status": "superseded",
+      "summary": "Replaced by the user-supplied reference direction. Study source is archived and excluded from production build entries."
+    },
+    {
+      "id": "luminous-product-system",
+      "status": "implemented-and-browser-verified",
+      "summary": "User supplied Raycast, Family, Chronicle, Linear, and Nothing. Real app screenshots, glass surfaces, Signal Green, violet light, measured type, spatial product motion, and an interactive local hardware illustration now lead the site."
+    },
+    {
+      "id": "product-specific-stories-2026-09-26",
+      "status": "implemented-and-browser-verified",
+      "summary": "Founder approved the research proposal. Update Brand Doctrine first; replace repeated manifesto with distinct product workflows, direct released-app CTA, concise accurate boundaries, real screen previews and equally finished artwork. Preserve Philosophy opening. No public deployment or new tracking."
+    },
+    {
+      "id": "editorial-refinement-2026-09-28",
+      "status": "implemented",
+      "summary": "Full collection visibility and release-aware navigation; task-led copy across ten apps and22 journal entries; wider normal-flow headings; matched benefit anatomy; initial route CSS and rendered schema-content validation."
     }
   ],
   "evidence": [
-    { "fact": "project.stack:react", "source": "package.json" },
-    { "fact": "project.stack:tailwind-v4", "source": "package.json" },
-    { "fact": "project.stack:vite", "source": "package.json" }
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v4",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:vite",
+      "source": "package.json"
+    }
   ],
   "generatedAt": "2026-08-19T01:00:51.367Z"
 }

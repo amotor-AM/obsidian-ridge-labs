@@ -764,7 +764,7 @@ export const vaultKb: KnowledgeBase = {
           variant: "privacy",
           title: "Your finances never leave your phone",
           content:
-            "The coach runs on-device. It understands you using Apple's on-device Foundation Models on iOS 26 and later, an on-device sentence-embedding router otherwise, and a keyword fallback so it always responds. It never sends your transactions, balances, categories, or chat to a server, so it can even help when you are offline.",
+            "The coach runs on your device and uses your records to answer financial questions. Deterministic responses and calculations cover supported tasks; conversational AI requires Apple Intelligence and, after onboarding, a paid plan. The current development build requires iOS 26 and an available Apple Intelligence model.",
         },
         {
           type: "callout",
@@ -1010,7 +1010,7 @@ export const vaultKb: KnowledgeBase = {
           type: "list",
           ordered: true,
           items: [
-            "Bank sync, if you choose to link a bank. Then your transactions and balances sync through Plaid. This is opt-in and part of a paid plan.",
+            "Bank sync is an optional paid connection through Plaid and an Obsidian Ridge Labs relay. Some connected transactions may use Plaid enrichment for categorization; this path can carry merchant and amount information.",
             "Optional anonymous diagnostics, if you turn them on. These are event-name counts plus a hashed ID only, never your amounts, merchants, categories, chats, or balances. They are off by default.",
             "A one-time AI model download, if you choose to set up the optional Cedar model. The download is plain file requests with no account or financial data.",
           ],
@@ -1025,7 +1025,7 @@ export const vaultKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "In short: stay fully manual and nothing about your finances leaves your iPhone. Opt in to linking a bank and your transactions sync through Plaid. The choice is always yours.",
+            "Manual records and local calculations do not require linking a bank. If you choose bank sync, Plaid and an Obsidian Ridge Labs relay process the connected data. Paid enrichment can also send merchant and transaction details to Plaid. Diagnostics are separately optional and off by default.",
         },
       ],
       related: ["is-it-safe-to-link-my-bank", "turn-diagnostics-on-or-off", "export-your-data"],
@@ -1084,7 +1084,7 @@ export const vaultKb: KnowledgeBase = {
       id: "export-your-data",
       title: "Export your data (CSV)",
       description:
-        "Learn how the planned Vault export flow creates a portable CSV copy of your financial records for backup or analysis.",
+        "Export expenses as CSV or keep an encrypted backup for supported restore.",
       category: "privacy",
       keywords: ["export", "csv", "backup", "download data", "spreadsheet", "reports", "pdf"],
       updated: "2026-06-14",
@@ -1092,7 +1092,7 @@ export const vaultKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Vault believes your data belongs to you. You can export it to a CSV file whenever you like, to keep a backup or open it in a spreadsheet.",
+            "Export expenses as CSV for a spreadsheet, or use the passphrase-encrypted .vaultbackup format for supported backup and restore. CSV is an expense table, not a complete backup of the app.",
         },
         {
           type: "steps",
@@ -1103,7 +1103,7 @@ export const vaultKb: KnowledgeBase = {
             },
             {
               title: "Export to CSV",
-              description: "Choose to export. Vault creates a CSV file of your data.",
+              description: "Choose expense export. Vault creates a CSV with dates, amounts, categories, and notes.",
             },
             {
               title: "Save or share it",
@@ -1117,14 +1117,14 @@ export const vaultKb: KnowledgeBase = {
           variant: "tip",
           title: "Great before switching phones",
           content:
-            "Since Vault data is local to each device, exporting a CSV is a handy way to keep a copy when you move to a new iPhone.",
+            "Use the passphrase-encrypted backup format when moving supported records to another device. The CSV expense table does not preserve complete app state.",
         },
         {
           type: "callout",
           variant: "info",
           title: "Reports export too",
           content:
-            "Beyond a full data export, you can export reports and charts as PDF or CSV for sharing or record-keeping.",
+            "CSV is useful for a spreadsheet or expense analysis. Keep the encrypted backup and its passphrase if you need the supported restore path.",
         },
       ],
       related: ["move-to-a-new-phone", "does-my-data-leave-my-phone", "what-is-safe-to-spend"],
@@ -1256,7 +1256,7 @@ export const vaultKb: KnowledgeBase = {
           variant: "tip",
           title: "Keep a copy",
           content:
-            "Want a personal backup either way? Export your data to CSV from Settings at any time.",
+            "Before erasing records, use the encrypted backup option in Settings and keep its passphrase safe. CSV export is useful for expense analysis but does not replace the backup format.",
         },
         {
           type: "faq",

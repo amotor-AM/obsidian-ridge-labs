@@ -6,7 +6,7 @@ export const miseKb: KnowledgeBase = {
   accent: "#e0784f",
   status: "ready",
   intro:
-    "Guides for saving recipes from anywhere, asking the on-device sous chef real questions, planning a week, and cooking hands-free with live timers.",
+    "Guides for saving recipes, planning meals, making a grocery list, and cooking with readable steps and timers.",
   categories: [
     {
       id: "getting-started",
@@ -47,7 +47,7 @@ export const miseKb: KnowledgeBase = {
     {
       id: "privacy",
       title: "Privacy and your data",
-      description: "Where recipes live, the only network requests Mise makes, sync, and export.",
+      description: "Where recipes live, recipe-page and image requests, optional sync, and export.",
       icon: "lock",
     },
     {
@@ -341,7 +341,7 @@ export const miseKb: KnowledgeBase = {
     {
       id: "dietary-profile",
       title: "Your dietary profile",
-      description: "How you eat, set once, respected everywhere. Never paywalled.",
+      description: "Save dietary preferences for cooking assistance and recipe suggestions.",
       category: "sous-chef",
       keywords: ["diet", "allergy", "vegan", "gluten", "profile", "preferences", "restrictions"],
       updated: "2026-09-07",
@@ -349,14 +349,14 @@ export const miseKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Set your way of eating, any allergies, and your goals during onboarding or later in Settings. The sous chef, pantry generation, substitutions, and suggested dinners all respect it.",
+            "Save dietary preferences during onboarding or in Settings. They inform model prompts and the tags used to rank suggested dinners. The app does not verify every ingredient against an allergy or dietary restriction; check the recipe and substitutions before cooking.",
         },
         {
           type: "callout",
           variant: "info",
           title: "Free, deliberately",
           content:
-            "The dietary profile is never paywalled and syncs with everything else. Charging someone to tell an app about their coeliac disease would be an ugly business model.",
+            "The dietary profile is free. Optional Plus iCloud sync is a separate setting; cooking assistance uses the context available on your device.",
         },
         {
           type: "callout",
@@ -438,7 +438,7 @@ export const miseKb: KnowledgeBase = {
       title: "Cook mode",
       description: "Dark, large type, one step at a time, and the screen stays awake.",
       category: "cooking",
-      keywords: ["cook mode", "steps", "hands free", "screen", "awake", "dark", "swipe"],
+      keywords: ["cook mode", "steps", "screen", "awake", "dark", "swipe"],
       updated: "2026-09-07",
       blocks: [
         {
@@ -555,7 +555,7 @@ export const miseKb: KnowledgeBase = {
     {
       id: "where-recipes-live",
       title: "Where your recipes live",
-      description: "On your device, with optional private iCloud sync, and no backend at all.",
+      description: "Local records and assistance, direct recipe fetches, and optional Plus iCloud sync.",
       category: "privacy",
       keywords: ["privacy", "server", "account", "icloud", "sync", "analytics", "network"],
       updated: "2026-09-07",
@@ -568,22 +568,22 @@ export const miseKb: KnowledgeBase = {
         {
           type: "heading",
           level: 2,
-          content: "The only network requests",
+          content: "Connections used by Mise",
         },
         {
           type: "list",
           ordered: true,
           items: [
-            "Fetching a page you pasted or shared, made directly to that website.",
+            "Fetching a recipe page and its images directly from their hosts; the image host may differ from the page.",
             "App Store purchase verification.",
           ],
         },
         {
           type: "callout",
           variant: "privacy",
-          title: "There is no backend to leak",
+          title: "Recipe fetches and optional sync",
           content:
-            "Mise has no server infrastructure. That is not a policy we could quietly change; it is the architecture. Optional iCloud sync, when you enable it, uses your own private database under your Apple account.",
+            "Mise fetches recipe pages and recipe images directly from their hosts; an image can come from a different website. Recipe parsing and cooking assistance run locally. Optional Plus iCloud sync uses a private database under your Apple account and is off by default.",
         },
       ],
       related: ["icloud-sync", "export-your-recipes", "how-import-works"],
@@ -649,10 +649,10 @@ export const miseKb: KnowledgeBase = {
     {
       id: "compare-free-and-plus",
       title: "What is free and what Mise Plus adds",
-      description: "The real limits, and what is deliberately not behind them.",
+      description: "Compare the free recipe and assistance allowances with Mise Plus features.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "limit", "lifetime", "trial", "compare"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "heading",
@@ -695,10 +695,10 @@ export const miseKb: KnowledgeBase = {
     {
       id: "restore-purchase",
       title: "Restoring a purchase",
-      description: "New phone, reinstall, or an entitlement that did not appear.",
+      description: "Restore access to a purchase after reinstalling or moving to a new phone.",
       category: "billing",
       keywords: ["restore", "purchase", "reinstall", "new phone", "missing", "receipt"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -710,7 +710,7 @@ export const miseKb: KnowledgeBase = {
           items: [
             { title: "Check the Apple Account", description: "The device must be signed in with the account used for the purchase." },
             { title: "Open Settings in Mise", description: "Tap Restore Purchases." },
-            { title: "Wait a moment", description: "The App Store confirms the entitlement and Plus unlocks." },
+            { title: "Wait a moment", description: "The App Store checks your purchase and restores Plus access." },
           ],
         },
         {

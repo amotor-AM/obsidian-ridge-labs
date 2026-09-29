@@ -6,7 +6,7 @@ export const coveKb: KnowledgeBase = {
   accent: "#8b9cf6",
   status: "ready",
   intro:
-    "Guides for writing in Cove, understanding what the on-device reflection does and does not claim, and keeping your journal yours.",
+    "Learn to write entries, use on-device reflections, revisit your journal, and manage storage and exports.",
   categories: [
     {
       id: "getting-started",
@@ -62,10 +62,10 @@ export const coveKb: KnowledgeBase = {
     {
       id: "welcome-to-cove",
       title: "Welcome to Cove",
-      description: "What Cove is, what it refuses to be, and the idea underneath it.",
+      description: "An introduction to writing entries, using reflections, and finding past entries.",
       category: "getting-started",
       keywords: ["welcome", "about", "journal", "diary", "private", "intro", "screens"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -109,10 +109,10 @@ export const coveKb: KnowledgeBase = {
     {
       id: "your-first-entry",
       title: "Writing your first entry",
-      description: "From a blank page to your first reflection in a couple of minutes.",
+      description: "Write and save your first entry, then read its on-device reflection.",
       category: "getting-started",
       keywords: ["first entry", "start", "write", "prompt", "blank page", "tutorial"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -382,10 +382,10 @@ export const coveKb: KnowledgeBase = {
     {
       id: "apple-intelligence-requirement",
       title: "Why Cove requires Apple Intelligence",
-      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
+      description: "Check device requirements and what to do when Apple Intelligence is unavailable.",
       category: "reflection",
       keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -660,7 +660,7 @@ export const coveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Cove stores your journal in a local database and can sync it through your own private iCloud database. Private means your Apple account, not an Obsidian Ridge Labs server, and we cannot read it.",
+            "Cove uses a private iCloud database when available, with a local store as its fallback. That is the default storage path, not an in-app opt-in setting. Reflection and search run on your device; syncing journal records is a separate network path through your Apple account.",
         },
         {
           type: "heading",
@@ -696,10 +696,10 @@ export const coveKb: KnowledgeBase = {
     {
       id: "where-entries-live",
       title: "Does my journal ever leave my iPhone?",
-      description: "The honest data path, including the parts that are not absolute.",
+      description: "Learn how entries are processed, where they are stored, and what sharing includes.",
       category: "privacy",
       keywords: ["privacy", "data", "upload", "server", "account", "tracking", "analytics"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -714,7 +714,7 @@ export const coveKb: KnowledgeBase = {
         {
           type: "list",
           items: [
-            "If you turn on iCloud sync, your entries travel through your own private iCloud database under Apple's protections. That is a real network path, and it is yours.",
+            "When the private iCloud database is available, journal records can sync through your Apple account. Cove uses this storage path by default, with a local fallback.",
             "If you turn on Health sync, the moods you log are written into your Health database.",
             "App Store purchases are verified by Apple, which is how any paid app works.",
             "Anything you export leaves Cove's protection and inherits the privacy of wherever you put it.",
@@ -725,7 +725,7 @@ export const coveKb: KnowledgeBase = {
           variant: "privacy",
           title: "Why we list the exceptions",
           content:
-            "An app that claims nothing ever leaves your phone while quietly syncing to iCloud is lying by omission. Every path above is optional, visible in Settings, and yours to switch off.",
+            "Local processing and synced storage are different things. Cove’s privacy panel shows the active storage mode. Health sharing and Spotlight have their own controls; the app does not provide an iCloud opt-in switch.",
         },
       ],
       related: ["icloud-sync", "app-lock", "export-your-journal"],
@@ -769,10 +769,10 @@ export const coveKb: KnowledgeBase = {
     {
       id: "export-your-journal",
       title: "Export, import, and erase",
-      description: "Markdown, JSON, a full ZIP archive, a Day One importer, and a real delete.",
+      description: "Export Markdown, JSON, or a ZIP archive, import from Day One, and delete entries.",
       category: "privacy",
       keywords: ["export", "backup", "markdown", "json", "zip", "day one", "import", "delete", "erase"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -802,7 +802,7 @@ export const coveKb: KnowledgeBase = {
           variant: "warning",
           title: "Erase means erase",
           content:
-            "Settings includes a full in-app erase. It removes your entries from the device. If you have iCloud sync on, it removes them from your synced copy too, and there is no Obsidian Ridge Labs backup to restore from. Export first if you might want the archive.",
+            "Settings includes an in-app erase action. Synced records can also be affected, so export the journal before deleting if you may need a copy later. Deleting the app is not the same action as erasing records from a private iCloud database.",
         },
       ],
       related: ["where-entries-live", "icloud-sync", "app-lock"],

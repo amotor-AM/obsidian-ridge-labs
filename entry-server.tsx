@@ -6,7 +6,9 @@ import { setServerSEOContext } from './components/SEO';
 import { products } from './data/products';
 import { blogPosts } from './data/blog';
 import { knowledgeBases } from './data/kb';
-import { collectionFaqs, echoFaqs, homeFaqs, philosophyFaqs, productFaqs } from './data/faqs';
+import { collectionFaqs, echoFaqs, homeFaqs, productFaqs } from './data/faqs';
+import { BOUNDARY_CHECK as philosophyFaqs } from './components/PhilosophyPage';
+import { STANDARD_REFUSALS as standardRefusals } from './components/AxiomScroller';
 
 // Render function called by prerender.js
 export function render(url: string, context: any) {
@@ -34,4 +36,4 @@ export const routes = [
   ...knowledgeBases.flatMap(kb => kb.articles.map(a => `/help/${kb.appId}/${a.id}`)),
 ];
 
-export { products, blogPosts, knowledgeBases, collectionFaqs, echoFaqs, homeFaqs, philosophyFaqs, productFaqs };
+export { products, blogPosts, knowledgeBases, collectionFaqs, echoFaqs, homeFaqs, philosophyFaqs, productFaqs, standardRefusals };

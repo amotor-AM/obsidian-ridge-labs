@@ -1,0 +1,21 @@
+/* A complete, release-aware index. Each app gets the same useful amount of space. */
+.collection-directory { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 52px; list-style: none; margin: 30px 0 0; padding: 0; }
+.collection-directory > li { min-width: 0; border-top: 1px solid #ffffff17; }
+.collection-directory__link { display: grid; grid-template-columns: 42px minmax(0, 1fr) 18px; align-items: start; gap: 16px; padding: 25px 0; color: #f3f3f7; text-decoration: none; }
+.collection-directory__icon { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid #ffffff16; border-radius: 12px; background: linear-gradient(135deg, #26262e, #121218); }
+.collection-directory__copy { display: grid; gap: 6px; min-width: 0; }
+.collection-directory__copy strong { font-size: 17px; font-weight: 500; line-height: 1.4; letter-spacing: -.025em; }
+.collection-directory__copy > span { color: #a6a6b2; font-size: 13px; line-height: 1.7; }
+.collection-directory__copy small { color: #92929f; font-size: 11px; line-height: 1.5; }
+.collection-directory__copy small.is-available { color: #c6db9f; }
+.collection-directory__link > svg { margin-top: 5px; color: #8f8f9d; transition: transform 180ms ease, color 180ms ease; }
+.collection-directory__link:hover > svg { transform: translate(2px, -2px); color: #fff; }
+.collection-directory__link:hover strong { color: #d9edb9; }
+.collection-directory__link:focus-visible { outline: 2px solid #c7ff3e; outline-offset: 4px; border-radius: 5px; }
+.lp-collection__directory { padding-bottom: 92px; scroll-margin-top: 104px; }
+.lp-collection__directory h2, .lp-collection__spotlight h2 { color: #f5f5f8; font-size: clamp(27px, 3vw, 38px); letter-spacing: -.04em; line-height: 1.2; font-weight: 500; }
+.lp-collection__directory > p, .lp-collection__spotlight > p { max-width: 760px; margin-top: 16px; color: #a6a6b2; font-size: 15px; line-height: 1.75; }
+.lp-collection__spotlight { margin-bottom: 28px; }
+@media (max-width: 820px) { .collection-directory { column-gap: 30px; } }
+@media (max-width: 640px) { .collection-directory { grid-template-columns: minmax(0, 1fr); } .collection-directory__link { padding-block: 23px; } .lp-collection__directory { padding-bottom: 64px; } }
+@media (prefers-reduced-motion: reduce) { .collection-directory__link > svg { transition: none; } }

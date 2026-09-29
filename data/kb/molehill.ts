@@ -53,7 +53,7 @@ export const molehillKb: KnowledgeBase = {
     {
       id: "privacy",
       title: "Privacy & devices",
-      description: "Where your tasks live, what leaves your phone (nothing), and what about your iPad.",
+      description: "Task storage, sharing and export, and availability on other devices.",
       icon: "lock",
     },
   ],
@@ -62,10 +62,10 @@ export const molehillKb: KnowledgeBase = {
     {
       id: "welcome-to-molehill",
       title: "Welcome to Molehill",
-      description: "What Molehill is, who it is for, and the gentle idea behind it.",
+      description: "An introduction to task breakdown, editable steps, and one-step focus.",
       category: "getting-started",
       keywords: ["welcome", "about", "adhd", "overwhelm", "executive function", "intro", "screens"],
-      updated: "2026-06-14",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -82,7 +82,7 @@ export const molehillKb: KnowledgeBase = {
           variant: "tip",
           title: "There is nothing to keep up with",
           content:
-            "No streaks. No red badges. No guilt if you put it down for a week. Molehill is designed to be kind to ADHD and executive-function brains, which means it works with you, not against you.",
+            "Molehill helps you get back into a task by making the next step smaller. It also shows streaks and progress totals. If an action is still too big, open the split flow and ask for smaller steps.",
         },
         {
           type: "heading",
@@ -109,10 +109,10 @@ export const molehillKb: KnowledgeBase = {
     {
       id: "your-first-task",
       title: "Your first task breakdown",
-      description: "From a blank screen to your first small step in under a minute.",
+      description: "Add a task, review the suggested breakdown, and choose a step to begin.",
       category: "getting-started",
       keywords: ["first task", "get started", "break it down", "new task", "tutorial"],
-      updated: "2026-06-14",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -162,10 +162,10 @@ export const molehillKb: KnowledgeBase = {
     {
       id: "starting-when-its-hard",
       title: "Gentle ways to actually start",
-      description: "ADHD-friendly tricks for getting moving when your brain is stuck.",
+      description: "Ways to make the next action smaller when starting a task feels difficult.",
       category: "getting-started",
       keywords: ["adhd", "motivation", "stuck", "procrastination", "start", "task paralysis", "tips"],
-      updated: "2026-06-14",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -454,7 +454,7 @@ export const molehillKb: KnowledgeBase = {
       description: "Six warm themes, each with a matching app icon and widgets.",
       category: "getting-started",
       keywords: ["theme", "colour", "color", "app icon", "appearance", "dark mode", "customise"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -465,7 +465,7 @@ export const molehillKb: KnowledgeBase = {
           type: "steps",
           items: [
             { title: "Open Settings", description: "The fourth tab." },
-            { title: "Choose a theme", description: "Pick the one that feels calmest to look at. Low-stimulation design is not a style choice here; it is the point." },
+            { title: "Choose a theme", description: "Choose the colors you prefer. The theme also changes the app icon and widgets." },
             { title: "The icon follows", description: "The Home Screen icon and the widgets change to match. iOS may take a moment to redraw the icon." },
           ],
         },
@@ -790,10 +790,10 @@ export const molehillKb: KnowledgeBase = {
     {
       id: "apple-intelligence-requirement",
       title: "Why Molehill requires Apple Intelligence",
-      description: "The screen you may see at launch, what each state means, and why the answer is a gate rather than a lesser version.",
+      description: "Check device requirements and what to do when Apple Intelligence is unavailable.",
       category: "ai",
       keywords: ["apple intelligence", "requirement", "gate", "unsupported", "compatibility", "older iphone", "settings"],
-      updated: "2026-09-07",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -808,7 +808,7 @@ export const molehillKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "iPhone 15 Pro or later, running iOS 26 or later, with Apple Intelligence turned on in Settings and the on-device model finished downloading.",
+            "An Apple Intelligence-compatible iPhone running the required iOS version, with Apple Intelligence enabled and its model ready. See the product page for the operating-system requirement.",
         },
         {
           type: "heading",
@@ -848,10 +848,10 @@ export const molehillKb: KnowledgeBase = {
     {
       id: "free-vs-pro",
       title: "What is free and what Pro adds",
-      description: "Molehill is genuinely useful for free. Here is exactly where the line is.",
+      description: "Compare free task and AI allowances with the features included in Pro.",
       category: "billing",
       keywords: ["free", "pro", "pricing", "subscription", "lifetime", "upgrade", "cost"],
-      updated: "2026-06-14",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -1051,10 +1051,10 @@ export const molehillKb: KnowledgeBase = {
     {
       id: "will-it-sync",
       title: "Will Molehill sync to my iPad or Mac?",
-      description: "Not yet. An honest answer, plus the workaround that helps today.",
+      description: "Current device availability and ways to export steps to other Apple apps.",
       category: "privacy",
       keywords: ["sync", "ipad", "mac", "icloud", "multi-device", "apple watch", "requirements", "ios 26"],
-      updated: "2026-06-14",
+      updated: "2026-09-28",
       blocks: [
         {
           type: "paragraph",
@@ -1214,7 +1214,7 @@ export const molehillKb: KnowledgeBase = {
           type: "callout",
           variant: "tip",
           content:
-            "There is just one nudge, and it is kind. No streaks to protect, no escalating reminders. It is a friendly tap on the shoulder, nothing more. Turn it off any time.",
+            "The daily reminder is optional and can be turned off. Molehill also displays streaks and completion history inside the app.",
         },
         {
           type: "callout",

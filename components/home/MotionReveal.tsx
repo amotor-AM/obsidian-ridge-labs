@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
 
 interface MotionRevealProps {
   children: React.ReactNode;
@@ -9,31 +8,9 @@ interface MotionRevealProps {
   role?: string;
 }
 
-const MotionReveal: React.FC<MotionRevealProps> = ({
-  children,
-  className,
-  delay = 0,
-  amount = 0.2,
-  role,
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [enhanced, setEnhanced] = useState(false);
-  const inView = useInView(ref, { once: true, amount });
-
-  useEffect(() => setEnhanced(true), []);
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      role={role}
-      initial={false}
-      animate={!enhanced || inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-};
+// Layout wrapper retained for existing routes. The site shell owns text motion.
+const MotionReveal: React.FC<MotionRevealProps> = ({ children, className, role }) => (
+  <div className={className} role={role}>{children}</div>
+);
 
 export default MotionReveal;

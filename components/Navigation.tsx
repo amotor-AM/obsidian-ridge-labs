@@ -1,16 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useScroll } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { getProductReleaseLabel, products } from '../data/products';
-import { Magnetic } from './ui/magnetic';
+import { collection as orderedProducts, isReleased } from '../data/collection';
 
 const APP_MENU_CLOSE_DELAY_MS = 220;
-
 const productStatus = (product: (typeof products)[number]) => {
   const label = getProductReleaseLabel(product);
   return label === 'Available on the App Store' ? 'Available' : label;
 };
+
+const productName = (name: string) => name.toLowerCase().replace(/\b\w/g, letter => letter.toUpperCase());
+
+const Brand: React.FC = () => (
+  <>
+    <span className="site-wordmark__cut" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M15.5 4 8.5 20" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" /></svg></span>
+    <span className="site-wordmark__name">Obsidian Ridge Labs</span>
+  </>
+);
 
 const Navigation: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,8 +31,9 @@ const Navigation: React.FC = () => {
   const appsMenuRef = useRef<HTMLDivElement>(null);
   const appsCloseTimerRef = useRef<number | null>(null);
   const focusFirstAppRef = useRef(false);
+  const appsOpenedByHoverRef = useRef(false);
+  const appsPointerTypeRef = useRef<string | null>(null);
   const location = useLocation();
-  const { scrollYProgress } = useScroll();
 
   const cancelAppsClose = () => {
     if (appsCloseTimerRef.current === null) return;
@@ -36,6 +44,8 @@ const Navigation: React.FC = () => {
   const closeApps = (restoreFocus = false) => {
     cancelAppsClose();
     focusFirstAppRef.current = false;
+    appsOpenedByHoverRef.current = false;
+    appsPointerTypeRef.current = null;
     setAppsOpen(false);
 
     if (restoreFocus) {
@@ -49,6 +59,7 @@ const Navigation: React.FC = () => {
 
   const openApps = () => {
     cancelAppsClose();
+    if (!appsOpen) appsOpenedByHoverRef.current = true;
     setAppsOpen(true);
   };
 
@@ -57,6 +68,7 @@ const Navigation: React.FC = () => {
     appsCloseTimerRef.current = window.setTimeout(() => {
       appsCloseTimerRef.current = null;
       if (!appsContainerRef.current?.contains(document.activeElement)) {
+        appsOpenedByHoverRef.current = false;
         setAppsOpen(false);
       }
     }, APP_MENU_CLOSE_DELAY_MS);
@@ -72,6 +84,8 @@ const Navigation: React.FC = () => {
   useEffect(() => {
     cancelAppsClose();
     focusFirstAppRef.current = false;
+    appsOpenedByHoverRef.current = false;
+    appsPointerTypeRef.current = null;
     setMenuOpen(false);
     setAppsOpen(false);
   }, [location.pathname]);
@@ -111,6 +125,7 @@ const Navigation: React.FC = () => {
     if (!menuOpen) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    window.dispatchEvent(new CustomEvent('orl:menu', { detail: { open: true } }));
     closeButtonRef.current?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setMenuOpen(false);
@@ -134,6 +149,7 @@ const Navigation: React.FC = () => {
     window.addEventListener('keydown', onKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
+      window.dispatchEvent(new CustomEvent('orl:menu', { detail: { open: false } }));
       window.removeEventListener('keydown', onKeyDown);
       openButtonRef.current?.focus({ preventScroll: true });
     };
@@ -141,12 +157,10 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      <motion.div className="site-progress" style={{ scaleX: scrollYProgress }} aria-hidden="true" />
       <nav className={`site-nav site-chrome ${scrolled ? 'site-nav--scrolled' : ''}`} aria-label="Primary navigation">
         <div className="site-nav__inner">
           <Link to="/" className="site-wordmark" aria-label="Obsidian Ridge Labs home">
-            <span className="site-wordmark__name">OBSIDIAN<span aria-hidden="true">/</span>RIDGE</span>
-            <span className="site-wordmark__labs">LABS</span>
+            <Brand />
           </Link>
 
           <div className="site-nav__desktop">
@@ -163,19 +177,28 @@ const Navigation: React.FC = () => {
                 if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeApps();
               }}
             >
+              <Link to="/download" aria-current={location.pathname === '/download' ? 'page' : undefined}>
+                The collection
+              </Link>
               <button
                 ref={appsButtonRef}
                 id="desktop-apps-trigger"
                 type="button"
-                onClick={() => {
+                onPointerDown={(event) => { appsPointerTypeRef.current = event.pointerType; }}
+                onClick={(event) => {
                   cancelAppsClose();
                   focusFirstAppRef.current = false;
-                  setAppsOpen((open) => !open);
+                  // Entering with a mouse already opens the menu before this click.
+                  const confirmHover = event.detail > 0 && appsPointerTypeRef.current === 'mouse' && appsOpenedByHoverRef.current;
+                  appsOpenedByHoverRef.current = false;
+                  appsPointerTypeRef.current = null;
+                  setAppsOpen((open) => confirmHover || !open);
                 }}
                 onKeyDown={(event) => {
                   if (event.key !== 'ArrowDown') return;
                   event.preventDefault();
                   cancelAppsClose();
+                  appsOpenedByHoverRef.current = false;
                   if (appsOpen) {
                     appsMenuRef.current?.querySelector<HTMLAnchorElement>('a[href]')?.focus();
                   } else {
@@ -185,55 +208,52 @@ const Navigation: React.FC = () => {
                 }}
                 aria-expanded={appsOpen}
                 aria-controls="desktop-app-menu"
+                aria-label="Browse applications"
+                className="site-nav__apps-toggle"
               >
-                Apps <ChevronDown size={13} className={appsOpen ? 'rotate-180' : ''} />
+                <ChevronDown size={13} className={appsOpen ? 'rotate-180' : ''} aria-hidden="true" />
               </button>
               {appsOpen && (
-                <motion.div
+                <div
                     ref={appsMenuRef}
                     id="desktop-app-menu"
                     className="app-menu"
                     role="group"
                     aria-labelledby="desktop-apps-trigger"
+                    data-lenis-prevent
                     onPointerEnter={(event) => {
                       if (event.pointerType === 'mouse') cancelAppsClose();
                     }}
-                    initial={{ opacity: 0, scale: 0.985 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.16 }}
                   >
-                    <div className="app-menu__head"><span>The collection</span><span>Apple platforms</span></div>
-                    {products.map((product, index) => (
+                    <div className="app-menu__head"><span>The collection</span><span>Local by design.</span></div>
+                    {orderedProducts.map((product, index) => (
+                      <React.Fragment key={product.id}>
+                      {!isReleased(product) && (index === 0 || isReleased(orderedProducts[index - 1])) && <div className="app-menu__divider">In development</div>}
                       <Link
-                        key={product.id}
                         to={`/apps/${product.id}`}
                         onClick={() => closeApps()}
                         aria-current={location.pathname === `/apps/${product.id}` ? 'page' : undefined}
                       >
-                        <span>0{index + 1}</span>
-                        <div><strong>{product.name}</strong><small>{product.category}</small></div>
+                        <span className="app-menu__icon" aria-hidden="true"><product.icon size={17} strokeWidth={1.6} /></span>
+                        <div><strong>{productName(product.name)}</strong><small>{product.category}</small></div>
                         <i className={product.appStoreUrl ? 'is-live' : ''}>{productStatus(product)}</i>
                       </Link>
+                      </React.Fragment>
                     ))}
-                </motion.div>
+                </div>
               )}
             </div>
-            <Link to="/philosophy" aria-current={location.pathname === '/philosophy' ? 'page' : undefined}>Manifesto</Link>
+            <Link to="/philosophy" aria-current={location.pathname === '/philosophy' ? 'page' : undefined}>The standard</Link>
             <Link to="/journal" aria-current={location.pathname.startsWith('/journal') ? 'page' : undefined}>Journal</Link>
-            <Link to="/help" aria-current={location.pathname.startsWith('/help') ? 'page' : undefined}>Help</Link>
           </div>
 
           <div className="site-nav__actions">
-            <Magnetic intensity={0.16} range={70}>
-              <a
-                href="https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to="/download"
                 className="site-nav__cta"
               >
-                Get Echo Chamber <ArrowUpRight size={14} aria-hidden="true" />
-              </a>
-            </Magnetic>
+                Explore apps <ArrowUpRight size={14} aria-hidden="true" />
+              </Link>
             <button
               ref={openButtonRef}
               type="button"
@@ -249,41 +269,36 @@ const Navigation: React.FC = () => {
         </div>
       </nav>
 
-      <AnimatePresence>
         {menuOpen && (
-          <motion.div
+          <div
             ref={menuRef}
             id="mobile-menu"
             className="mobile-menu site-chrome"
-            initial={{ clipPath: 'inset(0 0 100% 0)' }}
-            animate={{ clipPath: 'inset(0 0 0% 0)' }}
-            exit={{ clipPath: 'inset(0 0 100% 0)' }}
-            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
             role="dialog"
             aria-modal="true"
             aria-label="Site menu"
+            data-lenis-prevent
           >
             <div className="mobile-menu__top">
               <Link to="/" className="site-wordmark" onClick={() => setMenuOpen(false)} aria-label="Obsidian Ridge Labs home">
-                <span className="site-wordmark__name">OBSIDIAN<span aria-hidden="true">/</span>RIDGE</span>
-                <span className="site-wordmark__labs">LABS</span>
+                <Brand />
               </Link>
               <button ref={closeButtonRef} type="button" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X /></button>
             </div>
 
             <div className="mobile-menu__body">
               <nav aria-label="Mobile navigation">
-                <Link to="/download"><span>01</span>Apps <ArrowRight /></Link>
-                <Link to="/philosophy"><span>02</span>Manifesto <ArrowRight /></Link>
-                <Link to="/journal"><span>03</span>Journal <ArrowRight /></Link>
-                <Link to="/help"><span>04</span>Help <ArrowRight /></Link>
+                <Link to="/download" onClick={() => setMenuOpen(false)}>The collection <ArrowRight aria-hidden="true" /></Link>
+                <Link to="/philosophy" onClick={() => setMenuOpen(false)}>The standard <ArrowRight aria-hidden="true" /></Link>
+                <Link to="/journal" onClick={() => setMenuOpen(false)}>Journal <ArrowRight aria-hidden="true" /></Link>
+                <Link to="/help" onClick={() => setMenuOpen(false)}>Help <ArrowRight aria-hidden="true" /></Link>
               </nav>
               <div className="mobile-menu__apps">
-                <p>Explore the apps</p>
-                {products.map((product) => (
-                  <Link key={product.id} to={`/apps/${product.id}`}>
-                    <span style={{ background: product.accent }} />
-                    {product.name}
+                <p>Our apps</p>
+                {orderedProducts.map((product) => (
+                  <Link key={product.id} to={`/apps/${product.id}`} onClick={() => setMenuOpen(false)}>
+                    <span aria-hidden="true"><product.icon size={16} strokeWidth={1.6} /></span>
+                    {productName(product.name)}
                     <small>{productStatus(product)}</small>
                   </Link>
                 ))}
@@ -291,12 +306,11 @@ const Navigation: React.FC = () => {
             </div>
 
             <div className="mobile-menu__footer">
-              <span>Private AI for Apple devices</span>
+              <span>Local by design</span>
               <a href="mailto:support@obsidianridgelabs.com">support@obsidianridgelabs.com</a>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </>
   );
 };
