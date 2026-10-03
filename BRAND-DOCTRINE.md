@@ -441,6 +441,7 @@ Do not invent testimonials, measured retention or strength gains, transcription 
 
 ### Material findings to preserve
 
+- As of October 3, 2026, Memora is available on the App Store at https://apps.apple.com/us/app/memora-study-flashcards/id6810065777, confirmed by the founder and the public listing. Echo Chamber and Memora are released; the other eight apps remain in development. Memora is free to download with optional Plus and requires iPhone with iOS 26 and an A17 Pro chip or later. Current features and local prices should follow its App Store listing and in-app offer.
 - Echo Chamber’s public v1.3 offer and newer source differ in quotas and model choices. Match the advertised release before specifying limits or models. Do not revive unsupported speaker or accuracy claims. The newer source includes automatic trusted-time requests.
 - Mettle’s prescription carries a progression rule and training evidence. Its production private-iCloud path is enabled by default; the app is currently pounds-only. Distinguish Pro from obsolete tier names and supported Watch behavior from a standalone trainer. CSV import detects supported columns and lets the user choose weight units; it does not expose arbitrary column mapping.
 - Memora selects drafts before batch addition; saved cards can be edited afterward. It has no draft editor or side-by-side source pane. Text-PDF generation is bounded; image-only PDF ingestion is not implemented. Content archives omit review schedules/history and compatible Anki imports omit media.

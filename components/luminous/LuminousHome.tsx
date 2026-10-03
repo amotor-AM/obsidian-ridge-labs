@@ -64,7 +64,7 @@ function FeaturedApps() {
     <section className="ls-feature ls-feature--memora" aria-labelledby="ls-memora-title">
       <div className="ls-feature-copy">
         <div className="ls-app-heading"><span className="ls-app-icon"><BookOpen size={24} strokeWidth={1.6} aria-hidden="true" /></span><span>Memora<small>Flashcards &amp; recall</small></span></div>
-        <span className="ls-release ls-release--development">{getProductReleaseLabel(memora)}</span>
+        <span className="ls-release"><span className="ls-dot" />{getProductReleaseLabel(memora)}</span>
         <h2 id="ls-memora-title">Turn your notes into flashcards.</h2>
         <p>Memora turns notes, photos, and PDFs with selectable text into draft flashcards. Keep the cards you want, and start studying the material you came to learn.</p>
         <div className="ls-feature-detail"><span className="ls-detail-number">REVIEWS THAT FOLLOW YOUR RECALL</span><h3>Let your recall guide the next review.</h3><p>Rate how well you remember each answer. Memora uses those ratings to schedule the card’s next review.</p></div>
@@ -85,7 +85,7 @@ export default function LuminousHome() {
     <section className="ls-hero" aria-labelledby="ls-hero-title">
       <div className="ls-hero-halo" aria-hidden="true" />
       <div className="ls-hero-copy ls-shell" data-no-split>
-        <Link className="ls-announcement" to="/apps/echochamber"><span className="ls-dot" /> Echo Chamber is here <ArrowRight size={13} aria-hidden="true" /></Link>
+        <Link className="ls-announcement" to="/apps/memora"><span className="ls-dot" /> Memora is now on the App Store <ArrowRight size={13} aria-hidden="true" /></Link>
         <h1 id="ls-hero-title">AI that knows you.<br /><span>Not one that watches you.</span></h1>
         <p>Apps for your conversations, plans, and everyday life. Built around the intelligence in your Apple devices.</p>
         <div className="ls-actions"><Link className="ls-button ls-button--primary" to="/apps/echochamber">Explore Echo Chamber <ArrowUpRight size={16} aria-hidden="true" /></Link><Link className="ls-button ls-button--glass" to="/download">Explore all apps <ArrowRight size={16} aria-hidden="true" /></Link></div>

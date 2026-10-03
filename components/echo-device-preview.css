@@ -1,0 +1,8 @@
+.echo-device-pair { position: relative; width: 100%; aspect-ratio: 1.16; isolation: isolate; }
+.echo-device-pair__mac { position: absolute; top: 13%; left: 0; width: 95%; padding: 3px; border: 1px solid #ffffff35; border-radius: 12px; background: #303039; box-shadow: 0 28px 44px #0008, 0 1px 0 #ffffff20 inset; }
+.echo-device-pair__mac img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.echo-device-pair__phone { position: absolute; width: 45%; bottom: 0; right: -3%; }
+.echo-device-pair__phone img { display: block; width: 100%; height: auto; filter: drop-shadow(0 18px 18px #000a); animation: echo-pair-arrive .35s ease both; }
+@keyframes echo-pair-arrive { from { opacity: .45; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+@media (max-width: 540px) { .echo-device-pair__mac { padding: 2px; border-radius: 9px; } .echo-device-pair__mac img { border-radius: 6px; } }
+@media (prefers-reduced-motion: reduce) { .echo-device-pair__phone img { animation: none; } }

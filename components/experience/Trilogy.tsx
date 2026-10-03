@@ -7,7 +7,7 @@ import { loadMotion } from './motion';
 const chapters = [
   { id: 'echochamber', name: 'Echo Chamber', kind: 'Voice → text', title: <>Say it.<br />Keep it.</>, body: 'The conversation ends. The useful part doesn’t have to. Record, transcribe, and return to the words that matter, without sending the recording away.', status: 'Available on the App Store', detail: 'iPhone · iPad · Mac', visual: EchoWave, accent: 'echo' },
   { id: 'mettle', name: 'Mettle', kind: 'Effort → evidence', title: <>Strength has<br />a history.</>, body: 'What you lifted. How it moved. What comes next. A strength coach built around your training record, with programming you can inspect and intelligence on your device.', status: 'In development', detail: 'Strength training', visual: MettleHUD, accent: 'mettle' },
-  { id: 'memora', name: 'Memora', kind: 'Study → recall', title: <>Learn it.<br />Keep it.</>, body: 'Turn what you’re studying into something you remember. Draft flashcards on your device, then meet each one again when it needs your attention.', status: 'In development', detail: 'Flashcards · Spaced repetition', visual: MemoryMatrix, accent: 'memora' },
+  { id: 'memora', name: 'Memora', kind: 'Study → recall', title: <>Learn it.<br />Keep it.</>, body: 'Turn what you’re studying into something you remember. Draft flashcards on your device, then meet each one again when it needs your attention.', status: 'Available on the App Store', detail: 'Flashcards · Spaced repetition', visual: MemoryMatrix, accent: 'memora' },
 ];
 
 export default function Trilogy() {

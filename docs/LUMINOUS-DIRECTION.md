@@ -10,7 +10,7 @@ The user's supplied references replace the rejected editorial studies: Raycast f
 - `LocalCore.tsx` uses SVG and CSS layers for an illustrative hardware boundary. Processor, Storage, and Connections controls describe the real privacy model. It is not a representation of a specific Apple chip.
 - `styles/luminous-home.css` owns the homepage. `styles/luminous-products.css` owns the collection and product heroes. `styles/luminous-system.css` updates shared chrome and legacy routes while excluding the new components.
 - The existing Lenis lifecycle, route-focus handling, unmasked word transitions, and static canvas grain are retained. Reduced motion disables decorative movement and smooth scrolling.
-- Actual screenshots remain the source of product UI. Echo Chamber ships; the other nine apps are in development. Memora retains its documented flashcard and FSRS study workflow.
+- Actual screenshots remain the source of product UI. Echo Chamber and Memora ship; the other eight apps are in development. Memora retains its documented flashcard and FSRS study workflow.
 
 ## Original artwork
 

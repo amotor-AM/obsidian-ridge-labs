@@ -45,7 +45,7 @@ Turn on airplane mode. Whatever still works is yours. Whatever dies was a rental
 | [Cove](https://obsidianridgelabs.com/apps/cove) | In development | A journal that reflects with you, not about you. Entries and reflection both stay on the device. |
 | [Wove](https://obsidianridgelabs.com/apps/wove) | In development | A stylist who has seen your whole closet and tells nobody. Outfits, capsules, and packing built on your phone. |
 | [Mettle](https://obsidianridgelabs.com/apps/mettle) | In development | A strength coach that shows its work. A deterministic engine owns every set, rep, and load. |
-| [Memora](https://obsidianridgelabs.com/apps/memora) | In development | The notes you already took, turned into what you actually remember. On-device drafts, FSRS scheduling. |
+| [Memora](https://obsidianridgelabs.com/apps/memora) | [App Store](https://apps.apple.com/us/app/memora-study-flashcards/id6810065777) | The notes you already took, turned into what you actually remember. On-device drafts, FSRS scheduling. |
 | [Trove](https://obsidianridgelabs.com/apps/trove) | In development | Proof of what you own, ready before you need it. Serials, warranties, values, and claim-ready records. |
 | [Kith](https://obsidianridgelabs.com/apps/kith) | In development | Stay close to people without a pipeline between you. |
 | [Mise](https://obsidianridgelabs.com/apps/mise) | In development | Every recipe you ever saved, finally cooking with you. No account, no recipe server. |

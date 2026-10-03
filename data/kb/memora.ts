@@ -700,7 +700,7 @@ export const memoraKb: KnowledgeBase = {
       description: "Compare free allowances with Plus generation limits and study features.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "limit", "lifetime", "trial", "compare"],
-      updated: "2026-09-28",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "heading",
@@ -738,7 +738,7 @@ export const memoraKb: KnowledgeBase = {
           variant: "info",
           title: "Pricing",
           content:
-            "Memora Plus is seven days free, then $3.99 per month, $24.99 per year, or $49.99 once for lifetime access. Prices in the app always come from the App Store rather than being hard-coded. Memora is still in development, so final pricing is confirmed at release.",
+            "Memora is free to download, with optional Memora Plus. The US App Store currently lists Plus at $3.99 per month, $24.99 per year, or $49.99 for lifetime access. Check the offer in the app for trial eligibility, included features, and your local price.",
         },
       ],
       related: ["restore-purchase", "apple-intelligence-requirement", "other-study-modes"],

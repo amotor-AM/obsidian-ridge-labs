@@ -102,14 +102,14 @@ export const productStories: Record<string, ProductStory> = {
       paid: ['Unlimited created decks, AI cards, and OCR pages', 'Test mode, deck tutor, and automatic image occlusion', 'Deeper statistics and an adjustable retention target'],
       note: 'Imported decks do not consume the three-created-deck allowance. Fallback text-analysis cards do not use the AI-card meter.',
     },
-    requirements: 'The current build targets iPhone on iOS 26 with Apple Intelligence-capable hardware. When Apple Intelligence is switched off or still downloading on a capable device, manual study and fallback text analysis remain available.',
+    requirements: 'Memora requires iPhone with iOS 26 and an A17 Pro chip or later. When Apple Intelligence is switched off or still downloading on a capable device, manual study and fallback text analysis remain available.',
     boundary: {
       processing: 'Apple Foundation Models generates cards on-device. Vision reads photos; PDF text extraction and FSRS scheduling also run locally. A text-analysis fallback is available.',
       storage: 'Decks are stored in a local database. The current build has no iCloud deck sync. Library backup files contain cards and available images, not the study schedule or review history.',
       connections: 'Required model setup and App Store purchases can use a connection. Import and export use the files and destinations you select; no Memora account is required.',
     },
     portability: { title: "Keep using the cards you have.", body: "Import compatible Anki text decks, Quizlet text exports, or CSV. Share a Memora deck or export the content of your library with its available images. Import and export do not require Plus.", note: 'Anki import supports legacy anki2/anki21 databases, not anki21b or Anki media. Restored decks start a fresh review schedule. CSV export is text-only.' },
-    seo: { title: "Memora: Flashcards from Your Own Notes", description: 'Memora is an iPhone study app in development. Select drafts from notes, photos, or text PDFs, then review your cards with FSRS.', keywords: ['Memora flashcards', 'FSRS study app', 'notes to flashcards', 'on-device flashcard generation'] },
+    seo: { title: "Memora: Flashcards from Your Own Notes", description: 'Memora is an iPhone study app available on the App Store. Select drafts from notes, photos, or text PDFs, then review your cards with FSRS.', keywords: ['Memora flashcards', 'FSRS study app', 'notes to flashcards', 'on-device flashcard generation'] },
   },
   molehill: {
     title: "Start with a smaller step.",

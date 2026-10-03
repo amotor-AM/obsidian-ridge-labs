@@ -190,13 +190,14 @@ export const products: Product[] = [
   },
   {
     id: 'memora', name: 'Memora', shortName: 'Memora', tagline: "Learn from the notes you already have.",
-    category: 'Flashcards & Study', releaseStatus: 'pre-release', accent: '#ae9fff', hasKnowledgeBase: true,
-    platforms: ['iOS'], minOS: 'iOS 26', price: 'Planned: Free · Plus $3.99/mo · $24.99/yr · $49.99 lifetime',
+    category: 'Flashcards & Study', releaseStatus: 'app-store', accent: '#ae9fff', hasKnowledgeBase: true,
+    appStoreUrl: 'https://apps.apple.com/us/app/memora-study-flashcards/id6810065777',
+    platforms: ['iOS'], minOS: 'iOS 26', price: 'Free to download · Optional Plus',
     description: "Make flashcards from your notes, photos, or PDFs with selectable text. Choose what to keep, then study with a schedule guided by your recall.",
-    fullDescription: 'Memora makes a first draft of flashcards from your notes, photos, scanned pages, and PDFs with selectable text. Choose the cards to keep, edit them in the deck, and rate what you remember as you study. FSRS uses those ratings to schedule the next review. Content stays local unless you choose to share or export. Memora is in development for iPhone with supported Apple Intelligence hardware.',
+    fullDescription: 'Memora makes a first draft of flashcards from your notes, photos, scanned pages, and PDFs with selectable text. Choose the cards to keep, edit them in the deck, and rate what you remember as you study. FSRS uses those ratings to schedule the next review. Content stays local unless you choose to share or export. Memora is available on the App Store for iPhone with iOS 26 and an A17 Pro chip or later.',
     icon: Brain, primaryColor: 'text-violet-300',
     specs: [
-      { label: 'Product stage', value: 'In development' }, { label: 'Platform', value: 'iPhone · iOS 26' },
+      { label: 'Availability', value: 'On the App Store' }, { label: 'Platform', value: 'iPhone · iOS 26' },
       { label: 'Scheduling', value: 'FSRS' }, { label: 'Storage', value: 'Local decks + history' },
     ],
     screenshots: [

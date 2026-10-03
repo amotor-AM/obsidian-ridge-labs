@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { products } from '../data/products';
+import { upcomingApps } from '../data/collection';
 
 const previews: Record<string, string> = {
   vault: 'Know what you can spend before you spend it.',
@@ -40,7 +41,7 @@ const Products: React.FC = () => (
           <figcaption>Your words. Back where you can find them.</figcaption>
         </figure>
       </article>
-      <div className="home-shelf__heading"><h3>Still on the workbench.</h3><p>Nine apps in development.</p></div>
+      <div className="home-shelf__heading"><h3>Still on the workbench.</h3><p>{upcomingApps.length} apps in development.</p></div>
       <div className="home-shelf">
         {products.filter(product => !product.appStoreUrl).map(product => {
           const AppIcon = product.icon;

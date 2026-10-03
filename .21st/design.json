@@ -59,7 +59,7 @@
     },
     "motion": {
       "ease": "power4.out",
-      "scroll": "Lenis with GSAP ticker",
+      "scroll": "Native scrolling on mobile and touch devices; Lenis with GSAP ticker on fine-pointer desktop only",
       "entrance": "unmasked word rise; scoped spatial transforms on actual product screenshots",
       "reducedMotion": "native scroll and static artwork"
     },
@@ -134,6 +134,11 @@
       "id": "editorial-refinement-2026-09-28",
       "status": "implemented",
       "summary": "Full collection visibility and release-aware navigation; task-led copy across ten apps and22 journal entries; wider normal-flow headings; matched benefit anatomy; initial route CSS and rendered schema-content validation."
+    },
+    {
+      "id": "mobile-navigation-and-memora-launch-2026-10-03",
+      "status": "implemented",
+      "summary": "Memora is released alongside Echo Chamber. Real Mac and iPhone captures appear together only in the Echo Chamber app-page hero; the homepage hero retains three mobile apps. Mobile uses native scrolling and an edge-to-edge feathered header that hides on downward scroll and returns on upward scroll. The wordmark places the slash between Obsidian and Ridge, and the footer baseline stays on one line."
     }
   ],
   "evidence": [

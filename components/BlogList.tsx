@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Clock, Layers3 } from 'lucide-react';
 import { blogPosts } from '../data/blog';
 import { products } from '../data/products';
+import { releasedApps, upcomingApps } from '../data/collection';
 import type { BlogContentType, BlogPost } from '../types';
 import '../styles/journal-refinement.css';
 import SEO, { buildBreadcrumbs, buildCollectionPage, ORGANIZATION_ID, SITE_URL } from './SEO';
@@ -239,7 +240,7 @@ const BlogList: React.FC = () => {
           <div className="journal-standards__grid">
             <h2 id="standards-heading">From the people building the apps.</h2>
             <div>
-              <p>Obsidian Ridge Labs makes the ten apps featured in these comparisons. Echo Chamber is on the App Store; the other nine are in development. We explain their intended fit alongside established alternatives and link to the documentation behind each comparison.</p>
+              <p>Obsidian Ridge Labs makes the ten apps featured in these comparisons. {new Intl.ListFormat('en', { style: 'long', type: 'conjunction' }).format(releasedApps.map(app => app.name))} {releasedApps.length === 1 ? 'is' : 'are'} on the App Store; {upcomingApps.length} apps are in development. We explain their intended fit alongside established alternatives and link to the documentation behind each comparison.</p>
               <Link to="/philosophy" className="text-link">Read the standard <ArrowRight size={15} aria-hidden="true" /></Link>
             </div>
           </div>

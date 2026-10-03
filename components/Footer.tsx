@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getProductReleaseLabel, products } from '../data/products';
 import { collection } from '../data/collection';
+import Brand from './Brand';
 
 const collectionMidpoint = Math.ceil(collection.length / 2);
 
@@ -19,8 +20,7 @@ const Footer: React.FC = () => (
       <div className="site-footer__top">
         <div>
           <Link to="/" className="site-wordmark" aria-label="Obsidian Ridge Labs home">
-            <span className="site-wordmark__cut" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M15.5 4 8.5 20" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" /></svg></span>
-            <span className="site-wordmark__name">Obsidian Ridge Labs</span>
+            <Brand />
           </Link>
           <p>Apps that mind their own business.</p>
           <a href="mailto:support@obsidianridgelabs.com" className="site-footer__contact">

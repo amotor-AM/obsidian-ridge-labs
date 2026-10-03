@@ -40,7 +40,7 @@
 .ec-hero-boundary a { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; color: #d6d6df; font-size: 12px; line-height: 1.6; text-decoration: none; }
 .ec-hero-boundary a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
 .ec-preview { max-width: 500px; width: 100%; justify-self: end; }
-.ec-preview-art { position: relative; isolation: isolate; width: 100%; aspect-ratio: 960 / 1615; }
+.ec-preview-art { position: relative; isolation: isolate; width: 100%; padding-top: 55px; padding-bottom: 30px; }
 .ec-glass-plane { position: absolute; z-index: -1; inset: 17% 3% 9%; transform: rotate(-6deg); border: 1px solid #ffffff22; border-radius: 34px; background: linear-gradient(155deg, #b9c0d319, #41464c03 47%, #858ca51a); box-shadow: 0 32px 80px #0008, 0 1px 0 #ffffff22 inset; }
 .ec-preview-image { display: block; width: 100%; height: auto; position: relative; filter: drop-shadow(0 24px 30px #0009); animation: ec-screen-arrive .35s ease-out both; }
 .ec-preview-label { position: absolute; bottom: 1px; left: 0; right: 0; color: #a6a6b2; font: 10px/1.6 var(--font-mono, monospace); letter-spacing: .04em; text-align: center; }

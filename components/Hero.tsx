@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { upcomingApps } from '../data/collection';
 
 const Hero: React.FC = () => (
   <header className="home-opening" aria-labelledby="home-heading">
@@ -33,7 +34,7 @@ const Hero: React.FC = () => (
       </div>
       <div className="home-opening__foot">
         <Link to="/apps/echochamber"><span className="status-dot" aria-hidden="true" /> Echo Chamber is on the App Store <ArrowUpRight size={16} aria-hidden="true" /></Link>
-        <span>Nine more apps in development</span>
+        <span>{upcomingApps.length} more apps in development</span>
       </div>
     </div>
   </header>

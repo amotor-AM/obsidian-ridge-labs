@@ -2,7 +2,7 @@
 
 > Apps that mind their own business.
 
-Obsidian Ridge Labs is an independent software studio in Las Vegas, Nevada. Echo Chamber is available on the App Store. The collection also includes apps in development; each product page shows its current availability.
+Obsidian Ridge Labs is an independent software studio in Las Vegas, Nevada. Echo Chamber and Memora are available on the App Store. The collection also includes apps in development; each product page shows its current availability.
 
 - [Full content directory](https://obsidianridgelabs.com/llms-full.txt): Product descriptions, availability, FAQs, journal articles, and help guides.
 - [The collection](https://obsidianridgelabs.com/download): Find an app by its job, requirements, and release status.
@@ -14,7 +14,7 @@ Obsidian Ridge Labs is an independent software studio in Las Vegas, Nevada. Echo
 
 - [ECHO CHAMBER](https://obsidianridgelabs.com/apps/echochamber): Available on the App Store. Record or import a conversation, find a passage in its transcript, and make notes with processing on your device. Free to download with optional Pro; the current App Store and in-app purchase screen show the offer.
 - [METTLE](https://obsidianridgelabs.com/apps/mettle): In development. Logged sets guide the next reps and weight. Open “Why this?” to inspect the progression rule and evidence. iPhone, iOS 26.1, Apple Intelligence required; private iCloud storage is the default when available, with a local fallback.
-- [MEMORA](https://obsidianridgelabs.com/apps/memora): In development. Turn notes, photos, and PDFs with selectable text into draft flashcards. Choose which to add, edit saved cards, and study with FSRS. Local iPhone storage; content exports exclude review history and schedules.
+- [MEMORA](https://obsidianridgelabs.com/apps/memora): Available on the [App Store](https://apps.apple.com/us/app/memora-study-flashcards/id6810065777). Turn notes, photos, and PDFs with selectable text into draft flashcards. Choose which to add, edit saved cards, and study with FSRS. Requires iPhone with iOS 26 and an A17 Pro chip or later. Local storage; content exports exclude review history and schedules.
 - [VAULT](https://obsidianridgelabs.com/apps/vault): In development. Check a purchase against recorded income, spending, and obligations. Manual entry and imports work without linking a bank. Optional connected banking and enrichment use Plaid and a relay. iOS 26 and Apple Intelligence required.
 - [MOLEHILL](https://obsidianridgelabs.com/apps/molehill): In development. Break down a task, then split a stuck step again. Editable brain dumps, one-step focus, and progress tracking run on iPhone. Pro adds Reminders and Calendar export.
 - [COVE](https://obsidianridgelabs.com/apps/cove): In development. Ask about past journal entries and return to the writing behind the answer. Reflection and search run on-device; private iCloud storage is used when available, with a local fallback.

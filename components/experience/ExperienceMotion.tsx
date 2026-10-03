@@ -4,7 +4,9 @@ import { loadMotion } from './motion';
 import { createArtworkMotion } from './artworkMotion';
 import 'lenis/dist/lenis.css';
 
-/** One clock for inertial scrolling and page choreography. Native touch scrolling is retained. */
+const DESKTOP_MOTION = '(min-width: 961px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
+
+/** Desktop choreography never takes ownership of native mobile scrolling. */
 export default function ExperienceMotion() {
   const { pathname } = useLocation();
 
@@ -12,15 +14,16 @@ export default function ExperienceMotion() {
     let disposed = false;
     let generation = 0;
     let cleanup = () => {};
-    const media = matchMedia('(prefers-reduced-motion: reduce)');
+    const media = matchMedia(DESKTOP_MOTION);
     const setup = async () => {
       const current = ++generation;
       cleanup();
       cleanup = () => {};
-      if (media.matches) return;
+      if (!media.matches) return;
       const [{ default: Lenis }, { gsap, ScrollTrigger }] = await Promise.all([import('lenis'), loadMotion()]);
-      if (disposed || current !== generation || media.matches) return;
-      const lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false, anchors: { offset: -88 }, autoToggle: true });
+      if (disposed || current !== generation || !media.matches) return;
+      const lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false, anchors: { offset: -88 } });
+      if (document.body.style.overflow === 'hidden') lenis.stop();
       const tick = (time: number) => lenis.raf(time * 1000);
       const reset = () => { lenis.resize(); lenis.scrollTo(window.scrollY, { immediate: true, force: true }); };
       const menu = (event: Event) => { if ((event as CustomEvent).detail.open) lenis.stop(); else lenis.start(); };
@@ -44,12 +47,11 @@ export default function ExperienceMotion() {
       await document.fonts.ready;
       if (disposed) return;
       const media = gsap.matchMedia();
-      media.add({ motion: '(prefers-reduced-motion: no-preference)', compact: '(max-width: 820px)' }, (context) => {
-        if (!context.conditions?.motion) return;
+      media.add(DESKTOP_MOTION, () => {
         let frame = 0;
         let needsRefresh = false;
         const records = new Map<Element, { split: any; animation: any }>();
-        const artwork = createArtworkMotion(gsap, Boolean(context.conditions.compact));
+        const artwork = createArtworkMotion(gsap, false);
         const scan = () => {
           // A committed marker inside Suspense prevents mutation of unhydrated route HTML.
           const main = document.getElementById('main-content');
@@ -70,7 +72,8 @@ export default function ExperienceMotion() {
             records.set(element, { split, animation });
             changed = true;
           });
-          if (changed || needsRefresh) ScrollTrigger.refresh();
+          // Defer measurement until scrolling ends; a forced refresh interrupts momentum.
+          if (changed || needsRefresh) ScrollTrigger.refresh(true);
           needsRefresh = false;
         };
         const scheduleScan = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(scan); };

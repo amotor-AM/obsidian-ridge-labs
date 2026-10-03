@@ -7,10 +7,10 @@ The user supplied Raycast, Family, Chronicle, Linear, and Nothing as explicit re
 - Near-black #050507, deep surfaces #0d0d12, text #ffffff / #aaaab6, Signal Green #c7ff3e, restrained violet light.
 - Inter headings and body. SFMono for small technical annotations. Headings use readable line boxes and responsive sizes, with no text masks.
 - Lead with real product screenshots, layered glass, precise borders, and hardware depth. Avoid generic decorative sculpture and invented HUD statistics.
-- Echo Chamber, Mettle, and Memora are current editorial spotlights. The full collection has equal directory entries and release-aware ordering; featured placement is not a permanent hierarchy. Echo Chamber currently ships; nine other apps remain in development. Memora is a flashcard and spaced-repetition app.
-- Shared floating navigation, controls, and footer connect every route. Preserve the Philosophy opening copy and Silence the Cloud.
+- Echo Chamber, Mettle, and Memora are current editorial spotlights. The full collection has equal directory entries and release-aware ordering; featured placement is not a permanent hierarchy. Echo Chamber and Memora currently ship; eight other apps remain in development. Memora is a flashcard and spaced-repetition app.
+- Shared navigation, controls, and footer connect every route. Desktop uses floating navigation; mobile uses an edge-to-edge feathered header with smooth directional hide and reveal, without a gap above it. Preserve the Philosophy opening copy and Silence the Cloud.
 - New ls-* homepage and lp-* product styles are isolated from legacy route rules.
-- Lenis and GSAP share a ticker. Decorative movement respects reduced motion. The hardware illustration responds to pointer movement without an idle render loop.
+- On fine-pointer desktop, Lenis and GSAP share a ticker. Mobile and touch devices use native scrolling without heading splitting or artwork scroll triggers. Decorative movement respects reduced motion. The hardware illustration responds to pointer movement without an idle render loop.
 - BRAND-DOCTRINE.md governs copy and product truth. All ten apps remain discoverable.
 - Desktop, tablet, and 320px/390px mobile layouts have been inspected in the live browser. Navigation, screen selectors, FAQ controls, caption clearance, and heading wrapping pass. Keep `npm run preview:local` running on port 4174; preview middleware resolves prerendered route HTML correctly on direct visits.
 

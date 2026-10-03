@@ -6,7 +6,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
     title: "Memora vs Anki, Quizlet, RemNote, and Knowt",
     seoTitle: "Memora vs Anki, Quizlet, RemNote, and Knowt",
     date: '2026.07.11',
-    modified: "2026.09.28",
+    modified: "2026.10.03",
     readTime: "7 MIN READ",
     category: 'FLASHCARD APP COMPARISON',
     tags: ['#AI-FLASHCARDS', '#FSRS', '#PRIVATE-STUDY', '#PDF-TO-FLASHCARDS'],
@@ -25,12 +25,12 @@ export const memoraTroveKithPosts: BlogPost[] = [
       {
         type: 'answer',
         title: "Choose the route from your material to regular review",
-        content: "Memora is being built for a focused iPhone routine: bring in notes, a photo, or a PDF with selectable text; review the proposed cards; add the ones you want; and return when FSRS schedules the next review. Anki offers extensive control, Quizlet shared sets and study activities, RemNote connected notes and cards, and Knowt broader source support. Memora’s appeal is keeping creation and study together on the phone without uploading the source for generation. It is still in development.",
+        content: "Memora offers a focused iPhone routine: bring in notes, a photo, or a PDF with selectable text; review the proposed cards; add the ones you want; and return when FSRS schedules the next review. Anki offers extensive control, Quizlet shared sets and study activities, RemNote connected notes and cards, and Knowt broader source support. Memora’s appeal is keeping creation and study together on the phone without uploading the source for generation. It is available on the App Store.",
       },
       {
         "type": "callout",
-        "title": "Memora is in development",
-        "content": "Memora is not available yet. Its description reflects the development build; competitor features and US prices below were checked against the linked documentation in July 2026.",
+        "title": "Memora is available on the App Store",
+        "content": "Memora is now available for iPhone. Its release status was updated in October 2026; competitor features and US prices below were checked against the linked documentation in July 2026.",
         "variant": "note"
       },
       {
@@ -47,7 +47,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
           "Scheduling and storage"
         ],
         rows: [
-          { label: 'Memora · pre-release', cells: ['Privacy-minded iPhone learners willing to review every generated draft.', 'Typed or pasted notes, PDFs with embedded text, and one selected photo with local Vision OCR. Foundation Models generates drafts on the device, and Memora requires Apple Intelligence-capable hardware; some features can continue while the model is unavailable.', 'FSRS with four recall grades and visible intervals, never paywalled. Current records use local SwiftData; no current iCloud-sync claim.'] },
+          { label: 'Memora', cells: ['Privacy-minded iPhone learners willing to review every generated draft.', 'Typed or pasted notes, PDFs with embedded text, and one selected photo with local Vision OCR. Foundation Models generates drafts on the device, and Memora requires Apple Intelligence-capable hardware; some features can continue while the model is unavailable.', 'FSRS with four recall grades and visible intervals, never paywalled. Current records use local SwiftData; no current iCloud-sync claim.'] },
           { label: 'AnkiMobile', cells: ['Desktop-linked scheduling, customization, large decks, and the Anki ecosystem.', 'Manual and import workflows. The official iOS listing describes AnkiMobile as a companion and says some note-type editing and image-occlusion creation require desktop.', 'FSRS and SM-2, optional AnkiWeb sync, offline media, and local import/export. Current US App Store price: $24.99 once.'] },
           { label: 'Quizlet', cells: ['Learners who want shared sets, several study modes, and a familiar classroom ecosystem.', 'Official AI tools accept pasted notes, PDFs, slides, Google Drive files, and mobile photos, then let the learner edit the generated set.', 'Adaptive Learn and practice modes rather than an advertised FSRS workflow. Account-based service with user-controlled set visibility.'] },
           { label: 'RemNote', cells: ['Learners who want connected notes, PDF annotation, flashcards, and a study system in one workspace.', 'Its Learn PDF feature creates summaries, AI flashcards, quizzes, and tutor interactions from PDFs.', 'Supports FSRS as an optional beta scheduler. Synced and local knowledge bases are available, with different backup and collaboration tradeoffs.'] },
@@ -97,7 +97,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       {
         type: 'list',
         content: [
-          'MEMORA: Designed for local iPhone generation, draft selection, FSRS, local study history, and useful fallback behavior. It remains pre-release.',
+          'MEMORA: Designed for local iPhone generation, draft selection, FSRS, local study history, and useful fallback behavior. It is available on the App Store.',
           'ANKIMOBILE TRADEOFF: Deep customization, large collections, optional sync, and desktop-assisted authoring come with a more complex desktop-linked workflow.',
           'QUIZLET TRADEOFF: Shared sets, classroom activities, and multi-device access use an account-based community and cloud processing model.',
           'REMNOTE TRADEOFF: Notes, PDF annotations, AI study tools, and flashcards can share one workspace, with separate synced-data and external AI boundaries.',
@@ -109,7 +109,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
         content: [
           {
             "question": "Can Memora replace AnkiMobile?",
-            "answer": "Memora is being built for a focused iPhone workflow from your source material to selected cards and FSRS review. Anki offers a larger desktop-linked ecosystem and deeper customization. Memora is not yet released, and its current Anki import is limited to compatible legacy text cards without media."
+            "answer": "Memora offers a focused iPhone workflow from your source material to selected cards and FSRS review. Anki offers a larger desktop-linked ecosystem and deeper customization. Memora is available on the App Store, and its Anki import is limited to compatible legacy text cards without media."
           },
           { question: 'Can Memora turn a scanned PDF into flashcards?', answer: 'Not as an entire scanned document in the current implementation. The PDF importer needs embedded text. A learner can select one image for local Vision OCR, but batch scanned-PDF OCR and an in-app document camera are not current claims.' },
           { question: 'Does RemNote have an offline or local option?', answer: 'Yes. RemNote documents local knowledge bases that stay off RemNote’s servers. The tradeoff is that the user becomes responsible for backups and loses server-backed multi-device access for that knowledge base. AI features have their own third-party processing disclosures.' },
@@ -119,6 +119,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       {
         type: 'sources',
         content: [
+          'Memora App Store listing|https://apps.apple.com/us/app/memora-study-flashcards/id6810065777',
           'Apple Foundation Models framework|https://developer.apple.com/documentation/FoundationModels',
           'Anki official website|https://apps.ankiweb.net/',
           'AnkiMobile App Store listing|https://apps.apple.com/us/app/ankimobile-flashcards/id373493387',
@@ -138,7 +139,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'cta',
-        content: "Explore Memora’s source-to-card workflow and FSRS review. It is being built for the material you need to learn, with generation and study kept on your iPhone.",
+        content: "Explore Memora’s source-to-card workflow and FSRS review. Download it from the App Store to turn your study material into a review routine on your iPhone.",
         ctaAppId: 'memora',
       },
     ],
@@ -148,7 +149,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
     title: "Five Flashcard Apps for Turning Notes into a Study Routine",
     seoTitle: "Five Flashcard Apps for Turning Notes into a Study Routine",
     date: '2026.07.11',
-    modified: "2026.09.28",
+    modified: "2026.10.03",
     readTime: "7 MIN READ",
     category: 'AI FLASHCARD LIST',
     tags: ['#AI-STUDY-APPS', '#FLASHCARD-GENERATOR', '#FSRS', '#OFFLINE-STUDY'],
@@ -164,7 +165,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
     ],
     relatedIds: ['memora-vs-anki-quizlet-remnote-knowt', 'apple-ecosystem-privacy', 'offline-ai-revolution'],
     listItems: [
-      { name: 'Memora · pre-release', description: "Local card generation, draft selection, and FSRS review for your own study material. In development." },
+      { name: 'Memora', description: "Local card generation, draft selection, and FSRS review for your own study material. Available on the App Store." },
       { name: 'AnkiMobile', description: 'A desktop-linked scheduling ecosystem with FSRS, large decks, and extensive control.' },
       { name: 'Quizlet', description: 'A large shared-set ecosystem with classroom familiarity and varied study activities.' },
       { name: 'RemNote', description: 'A connected workspace for notes, PDFs, linked knowledge, and flashcards.' },
@@ -174,12 +175,12 @@ export const memoraTroveKithPosts: BlogPost[] = [
       {
         type: 'answer',
         title: "The deck is only the beginning",
-        content: "Memora is being built to take your notes, photos, and text-based PDFs into a local flashcard routine on iPhone, with draft selection and FSRS scheduling. Anki gives you more control over a long-lived study system; Quizlet makes shared sets central; RemNote joins notes and cards; Knowt accepts a wider range of class and web material. Choose an app you can keep using after the first batch of cards is made.",
+        content: "Memora turns your notes, photos, and text-based PDFs into a local flashcard routine on iPhone, with draft selection and FSRS scheduling. Anki gives you more control over a long-lived study system; Quizlet makes shared sets central; RemNote joins notes and cards; Knowt accepts a wider range of class and web material. Choose an app you can keep using after the first batch of cards is made.",
       },
       {
         "type": "callout",
         "title": "About this selection",
-        "content": "This guide compares source support, card review, scheduling, and sharing. Memora is our app and remains in development. The linked competitor documentation and US prices were checked in July 2026.",
+        "content": "This guide compares source support, card review, scheduling, and sharing. Memora is our app and is available on the App Store. Its release status was updated in October 2026. The linked competitor documentation and US prices were checked in July 2026.",
         "variant": "note"
       },
       {
@@ -192,7 +193,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
           "Availability"
         ],
         rows: [
-          { label: 'Memora', cells: ['Local generation from bounded sources, draft selection before adding, FSRS, local history, and no current account or AI server.', 'Text-layer PDFs only, one selected photo at a time, Apple-Intelligence limits, no current iCloud sync, and no production track record.', 'In development for iPhone on iOS 26; pricing and release date are not settled.'] },
+          { label: 'Memora', cells: ['Local generation from bounded sources, draft selection before adding, FSRS, local history, and no current account or AI server.', 'Text-layer PDFs only, one selected photo at a time, Apple-Intelligence limits, no current iCloud sync, and a new release.', 'Available for iPhone on iOS 26 with an A17 Pro chip or later. Free to download, with optional Plus.'] },
           { label: 'AnkiMobile', cells: ['FSRS and SM-2, large decks, rich media, search, optional sync, and a mature desktop companion.', 'Steeper setup; the official iOS listing says some authoring and image-occlusion creation still require desktop.', 'Available on the US App Store for $24.99 once as checked July 11, 2026.'] },
           { label: 'Quizlet', cells: ['AI generation from notes, PDFs, slides, Drive, and mobile photos plus shared sets, Learn, tests, and games.', 'Its account-based community and service model is different from a local-only private archive.', 'Available with free access and paid annual tiers advertised from $35.99/year.'] },
           { label: 'RemNote', cells: ['PDF annotation, linked notes, AI cards and quizzes, and optional FSRS in one knowledge system.', 'More workspace complexity; AI and synced-data paths require reading its detailed privacy documentation.', 'Available; current annual plans advertise Free, $96 Pro, and $216 Pro with AI.'] },
@@ -209,7 +210,7 @@ export const memoraTroveKithPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: "Saved cards use FSRS to schedule the next review from your recall grades. Match, Listen, and manual image cards offer other ways to practice; Plus adds Test, Tutor, and automatic image-label detection. Compatible Anki imports bring in legacy text cards, without media or newer .anki21b collections. Exports include deck content and images but exclude scheduling and review history. Memora remains in development.",
+        content: "Saved cards use FSRS to schedule the next review from your recall grades. Match, Listen, and manual image cards offer other ways to practice; Plus adds Test, Tutor, and automatic image-label detection. Compatible Anki imports bring in legacy text cards, without media or newer .anki21b collections. Exports include deck content and images but exclude scheduling and review history. Memora is available on the App Store.",
       },
       {
         type: 'h2',
@@ -280,9 +281,9 @@ export const memoraTroveKithPosts: BlogPost[] = [
         content: [
           {
             "question": "Can Memora use the PDF I already have?",
-            "answer": "The current importer needs selectable text inside the PDF. It does not read a whole scanned PDF through OCR. You can select an individual photo for local text recognition, then review the proposed cards before adding them. Memora is still in development."
+            "answer": "The current importer needs selectable text inside the PDF. It does not read a whole scanned PDF through OCR. You can select an individual photo for local text recognition, then review the proposed cards before adding them. Memora is available on the App Store."
           },
-          { question: 'Which flashcard apps use FSRS?', answer: 'Anki and RemNote officially document FSRS support. Memora also implements FSRS in its current development build. Verify the default status and available settings in the version you actually use.' },
+          { question: 'Which flashcard apps use FSRS?', answer: 'Anki and RemNote officially document FSRS support. Memora also uses FSRS. Verify the default status and available settings in the version you actually use.' },
           { question: 'Should I let AI make all of my flashcards?', answer: 'AI can reduce setup, but generated cards should be reviewed against the source. The learner should correct false premises, vague questions, missing exceptions, and answers that are too broad before studying them.' },
           { question: 'Does offline storage automatically make study data safe?', answer: 'No. Local storage reduces one data-transfer path but still depends on device access, operating-system protections, backups, exports, and deletion. It is not a substitute for a security audit or a backup plan.' },
         ],
@@ -304,13 +305,14 @@ export const memoraTroveKithPosts: BlogPost[] = [
           'Knowt Chrome and AI source workflows|https://knowt.com/chrome-extension',
           'Knowt Privacy Policy|https://knowt.com/privacy',
           'Knowt Terms of Service|https://knowt.com/terms',
+          'Memora App Store listing|https://apps.apple.com/us/app/memora-study-flashcards/id6810065777',
           'Apple Foundation Models framework|https://developer.apple.com/documentation/FoundationModels',
           'Nature Reviews Psychology: spacing and retrieval practice|https://doi.org/10.1038/s44159-022-00089-1',
         ],
       },
       {
         type: 'cta',
-        content: "Explore Memora’s card creation and study modes. Follow its development if you want to go from your own notes to regular review without uploading the source to an AI service.",
+        content: "Explore Memora’s card creation and study modes. Download it from the App Store to go from your own notes to regular review without uploading the source to an AI service.",
         ctaAppId: 'memora',
       },
     ],

@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { getProductReleaseLabel, products } from '../data/products';
 import { collection as orderedProducts, isReleased } from '../data/collection';
+import Brand from './Brand';
 
 const APP_MENU_CLOSE_DELAY_MS = 220;
 const productStatus = (product: (typeof products)[number]) => {
@@ -12,17 +13,11 @@ const productStatus = (product: (typeof products)[number]) => {
 
 const productName = (name: string) => name.toLowerCase().replace(/\b\w/g, letter => letter.toUpperCase());
 
-const Brand: React.FC = () => (
-  <>
-    <span className="site-wordmark__cut" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M15.5 4 8.5 20" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" /></svg></span>
-    <span className="site-wordmark__name">Obsidian Ridge Labs</span>
-  </>
-);
-
 const Navigation: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [appsOpen, setAppsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const openButtonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -75,10 +70,28 @@ const Navigation: React.FC = () => {
   };
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let frame = 0;
+    let previousY = Math.max(0, window.scrollY);
+    let direction = 0;
+    let travel = 0;
+    const update = () => {
+      frame = 0;
+      // Clamp Safari's elastic overscroll so a bounce cannot hide the header.
+      const y = Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight));
+      const delta = y - previousY;
+      const nextDirection = Math.sign(delta);
+      if (nextDirection && nextDirection !== direction) travel = 0;
+      if (nextDirection) direction = nextDirection;
+      travel += Math.abs(delta);
+      previousY = y;
+      setScrolled(y > 24);
+      if (y < 96) setHidden(false);
+      else if (travel > 12) setHidden(direction > 0);
+    };
+    const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => { window.removeEventListener('scroll', onScroll); window.cancelAnimationFrame(frame); };
   }, []);
 
   useEffect(() => {
@@ -88,6 +101,7 @@ const Navigation: React.FC = () => {
     appsPointerTypeRef.current = null;
     setMenuOpen(false);
     setAppsOpen(false);
+    setHidden(false);
   }, [location.pathname]);
 
   useEffect(() => () => cancelAppsClose(), []);
@@ -126,7 +140,7 @@ const Navigation: React.FC = () => {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     window.dispatchEvent(new CustomEvent('orl:menu', { detail: { open: true } }));
-    closeButtonRef.current?.focus();
+    closeButtonRef.current?.focus({ preventScroll: true });
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setMenuOpen(false);
       if (event.key === 'Tab' && menuRef.current) {
@@ -157,7 +171,7 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      <nav className={`site-nav site-chrome ${scrolled ? 'site-nav--scrolled' : ''}`} aria-label="Primary navigation">
+      <nav className={`site-nav site-chrome ${scrolled ? 'site-nav--scrolled' : ''} ${hidden && !menuOpen ? 'site-nav--hidden' : ''}`} aria-label="Primary navigation">
         <div className="site-nav__inner">
           <Link to="/" className="site-wordmark" aria-label="Obsidian Ridge Labs home">
             <Brand />

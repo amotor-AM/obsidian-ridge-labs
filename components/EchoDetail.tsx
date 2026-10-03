@@ -6,6 +6,7 @@ import { echoFaqs } from '../data/faqs';
 import SEO, { buildBreadcrumbs, buildFAQSchema, buildSoftwareApp } from './SEO';
 import SiteFaq from './SiteFaq';
 import '../styles/echo-chamber.css';
+import EchoDevicePreview from './EchoDevicePreview';
 
 const appStoreUrl = 'https://apps.apple.com/us/app/echo-chamber-ai-transcription/id6761675060';
 const screens = [
@@ -72,17 +73,8 @@ const EchoDetail: React.FC = () => {
             <figure className="ec-preview" aria-label="Explore Echo Chamber app screens">
               <div className="ec-preview-art">
                 <div className="ec-glass-plane" aria-hidden="true" />
-                <img
-                  key={screen.file}
-                  className="ec-preview-image"
-                  src={`/images/echochamber/${screen.file}-960.webp`}
-                  srcSet={`/images/echochamber/${screen.file}-480.webp 480w, /images/echochamber/${screen.file}-960.webp 960w`}
-                  sizes="(max-width: 700px) 92vw, (max-width: 1000px) 460px, 42vw"
-                  alt={screen.alt}
-                  width="960" height="1707" decoding="async"
-                  {...{ fetchpriority: activeScreen === 0 ? 'high' : 'auto' }}
-                />
-                <span className="ec-preview-label">App preview · Example recording</span>
+                <EchoDevicePreview phoneFile={screen.file} phoneAlt={screen.alt} eager />
+                <span className="ec-preview-label">Mac + iPhone · Example recordings</span>
               </div>
               <div className="ec-screen-choices" role="group" aria-label="Choose an Echo Chamber preview">
                 {screens.map((item, index) => (

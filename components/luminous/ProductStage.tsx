@@ -120,7 +120,7 @@ export default function ProductStage() {
     <div className="ls-stage-captions">
       <div><Link to="/apps/mettle">Mettle <ArrowUpRight size={13} aria-hidden="true" /></Link><span>In development</span></div>
       <div><Link to="/apps/echochamber">Echo Chamber <ArrowUpRight size={13} aria-hidden="true" /></Link><span><i /> Available now</span></div>
-      <div><Link to="/apps/memora">Memora <ArrowUpRight size={13} aria-hidden="true" /></Link><span>In development</span></div>
+      <div><Link to="/apps/memora">Memora <ArrowUpRight size={13} aria-hidden="true" /></Link><span><i /> Available now</span></div>
     </div>
   </div>;
 }
