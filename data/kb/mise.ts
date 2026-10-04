@@ -652,7 +652,7 @@ export const miseKb: KnowledgeBase = {
       description: "Compare the free recipe and assistance allowances with Mise Plus features.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "limit", "lifetime", "trial", "compare"],
-      updated: "2026-09-28",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "heading",
@@ -687,7 +687,7 @@ export const miseKb: KnowledgeBase = {
           variant: "info",
           title: "Pricing",
           content:
-            "Mise Plus is $2.99 per month, $19.99 per year with a seven-day trial, or $39.99 once for lifetime access. Mise is still in development, so final pricing is confirmed at release.",
+            "Mise Plus is $2.99 per month, $19.99 per year with a seven-day trial, or $39.99 once for lifetime access. Apple shows your local price and the terms before you confirm.",
         },
       ],
       related: ["restore-purchase", "icloud-sync", "ask-mise"],

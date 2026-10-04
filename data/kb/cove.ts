@@ -619,32 +619,32 @@ export const coveKb: KnowledgeBase = {
             "The Lock Screen prompt widget is the single highest-leverage setup change. Seeing a question at a glance is what turns journaling from an intention into a habit.",
         },
       ],
-      related: ["apple-watch", "daily-reminder", "your-first-entry"],
+      related: ["ipad", "daily-reminder", "your-first-entry"],
     },
     {
-      id: "apple-watch",
-      title: "Cove on Apple Watch and iPad",
-      description: "Capture a thought or a mood from your wrist, and reread the journal as a spread on iPad.",
+      id: "ipad",
+      title: "Cove on iPad",
+      description: "Reread your journal as a two-page spread on iPad, and how quick capture works without a Watch app.",
       category: "devices",
-      keywords: ["watch", "apple watch", "ipad", "capture", "dictate", "wrist", "spread"],
-      updated: "2026-09-07",
+      keywords: ["ipad", "spread", "two-page", "landscape", "tablet", "devices"],
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
           content:
-            "The Apple Watch app is deliberately capture-only. Dictate a thought or log a mood from your wrist, and it queues to your iPhone. The understanding happens on the phone when the two devices sync.",
+            "Cove runs on iPhone and iPad. On iPad, the Journal opens as a two-page spread, which is a much better way to reread a stretch of writing than a phone-sized column.",
         },
         {
           type: "paragraph",
           content:
-            "On iPad, the Journal opens as a two-page spread, which is a much better way to reread a stretch of writing than a phone-sized column.",
+            "When iCloud is available, your entries sync between devices signed in to the same Apple Account through Cove's private iCloud database. The mode your device is actually using is named in Settings.",
         },
         {
           type: "callout",
           variant: "info",
-          title: "The watch is not a reader",
+          title: "Cove has no Apple Watch app",
           content:
-            "There is no browsing your journal on the wrist, by design. A small screen you glance at in public is the wrong place for a diary.",
+            "Cove is built for iPhone and iPad. To capture a thought quickly, use a Cove widget, the Control Center control, Siri, or the quick actions on the Cove icon.",
         },
       ],
       related: ["widgets-and-siri", "icloud-sync", "app-lock"],
@@ -655,7 +655,7 @@ export const coveKb: KnowledgeBase = {
       description: "Your own private database, with a local-only fallback, and Settings tells you which one opened.",
       category: "devices",
       keywords: ["icloud", "sync", "cloudkit", "backup", "devices", "private database"],
-      updated: "2026-09-07",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -686,10 +686,10 @@ export const coveKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Cove is still in development, so exact multi-device behaviour will be confirmed and documented before release. Export remains the backup you fully control either way.",
+            "Export remains the backup you fully control either way.",
         },
       ],
-      related: ["where-entries-live", "export-your-journal", "apple-watch"],
+      related: ["where-entries-live", "export-your-journal", "ipad"],
     },
 
     /* ── Privacy ──────────────────────────────────────────────────────── */
@@ -815,7 +815,7 @@ export const coveKb: KnowledgeBase = {
       description: "The line between the two, stated plainly, including the parts that stay free forever.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "lifetime", "trial", "compare"],
-      updated: "2026-09-07",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "heading",
@@ -853,7 +853,7 @@ export const coveKb: KnowledgeBase = {
           variant: "info",
           title: "Pricing",
           content:
-            "Cove Plus is $5.99 per month, $34.99 per year with a two-week free trial on annual, or $89.99 once for lifetime access. Cove is still in development, so final pricing is confirmed at release.",
+            "Cove Plus is $5.99 per month, $34.99 per year with a two-week free trial on annual, or $89.99 once for lifetime access. Apple shows your local price and the terms before you confirm.",
         },
       ],
       related: ["restore-purchase", "weekly-reflection", "ask-your-journal"],

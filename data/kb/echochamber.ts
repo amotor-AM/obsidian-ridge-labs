@@ -1081,7 +1081,7 @@ export const echochamberKb: KnowledgeBase = {
     {
       "id": "free-vs-pro",
       "title": "Free download and Pro options",
-      "description": "Where to check your current allowance and purchase options.",
+      "description": "What is free, what Pro adds, and your purchase options.",
       "category": "billing",
       "keywords": [
         "pricing",
@@ -1091,11 +1091,11 @@ export const echochamberKb: KnowledgeBase = {
         "lifetime",
         "allowance"
       ],
-      "updated": "2026-09-26",
+      "updated": "2026-10-03",
       "blocks": [
         {
           "type": "paragraph",
-          "content": "Echo Chamber is free to download, with optional Pro purchases. The in-app plan screen shows the features and allowances for the version you have installed. Check it before relying on a particular recording duration, import allowance, or AI feature."
+          "content": "Echo Chamber is free to download. Free includes 60 minutes of recording a month, plus three file or link imports, three AI notes, and three chat questions a month. Pro removes every monthly limit: recording, imports, AI notes, and chat. The in-app plan screen always shows the allowances for the version you have installed."
         },
         {
           "type": "heading",

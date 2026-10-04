@@ -71,37 +71,37 @@ export const vaultKb: KnowledgeBase = {
       id: "set-up-your-first-budget",
       title: "Set up your first budget",
       description:
-        "Tell Vault one monthly number and it builds your daily safe-to-spend for you.",
+        "Shape your month in Plan and add optional category limits inside your flexible pool.",
       category: "getting-started",
       keywords: ["budget", "setup", "monthly", "first budget", "limit", "alert", "spending plan"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
           content:
-            "A budget in Vault is refreshingly simple. You pick a monthly amount, and Vault spreads it across the days for you so you always know what is safe to spend right now.",
+            "Vault's Plan tab divides your month into expected income, fixed commitments, a flexible pool, and goals and reserves. Category budgets are optional guardrails inside the flexible pool, and your safe-to-spend number is paced from what is left.",
         },
         {
           type: "steps",
           items: [
             {
-              title: "Open Budgets",
-              description: "Tap the Budgets tab, then tap the plus button to create one.",
+              title: "Open Plan",
+              description: "Tap the Plan tab. This month shows your expected income, fixed commitments, flexible pool, and goals and reserves.",
             },
             {
-              title: "Choose what it covers",
+              title: "Choose how Vault plans",
               description:
-                "Make an overall monthly budget, or a budget for a single category like Groceries or Dining.",
+                "Under Planning method, pick the approach that fits you. Switching methods never deletes transactions, goals, or limits.",
             },
             {
-              title: "Set the amount",
+              title: "Add a category guardrail",
               description:
-                "Enter the monthly limit you are comfortable with. You can change it any time, so a rough number is fine to start.",
+                "Scroll to Category guardrails and tap Manage, then tap the plus button and choose Custom Budget or Use Template. Pick a category and a monthly limit. You can change it any time.",
             },
             {
               title: "Save",
               description:
-                "Vault immediately folds your budget into your safe-to-spend number on the Home screen.",
+                "Vault shows spent against each limit on the Plan tab and keeps your safe-to-spend number on Today up to date.",
             },
           ],
         },
@@ -110,7 +110,7 @@ export const vaultKb: KnowledgeBase = {
           variant: "tip",
           title: "A gentle heads-up, never a scolding",
           content:
-            "As you near about 80 percent of a budget, Vault gives you a quiet nudge so a limit never sneaks up on you. You can turn budget alerts on or off in Settings, along with the weekly digest and goal, paycheck, and coach reminders.",
+            "When a budget passes about 80 percent with days still left in the month, Vault gives you a quiet nudge. To turn budget alerts on or off, tap your profile picture on Today, then choose Notifications, data, and advanced settings, and look under Notifications.",
         },
         {
           type: "callout",
@@ -124,7 +124,7 @@ export const vaultKb: KnowledgeBase = {
           items: [
             {
               q: "Can I have more than one budget?",
-              a: "Yes. Keep an overall monthly budget and add category budgets for the areas you want to watch closely.",
+              a: "Yes. Add a budget for each category you want to watch closely. Your overall plan for the month lives on the Plan tab.",
             },
             {
               q: "What if I go over?",
@@ -142,7 +142,7 @@ export const vaultKb: KnowledgeBase = {
         "Keep your finances private with a Face ID lock that only you can open.",
       category: "getting-started",
       keywords: ["face id", "lock", "passcode", "privacy", "security", "biometric"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -154,11 +154,11 @@ export const vaultKb: KnowledgeBase = {
           items: [
             {
               title: "Open Settings",
-              description: "Go to the Settings tab inside Vault.",
+              description: "Tap your profile picture on Today, then choose Notifications, data, and advanced settings.",
             },
             {
               title: "Turn on app lock",
-              description: "Find Face ID lock and toggle it on.",
+              description: "Under Privacy, turn on the App Lock switch. Its label shows Face ID, Touch ID, or Passcode, whichever your device uses.",
             },
             {
               title: "Confirm with Face ID",
@@ -197,7 +197,7 @@ export const vaultKb: KnowledgeBase = {
         "See your daily number at a glance and add expenses hands-free.",
       category: "getting-started",
       keywords: ["widget", "lock screen", "siri", "shortcuts", "live activity", "spotlight", "watch"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -241,11 +241,12 @@ export const vaultKb: KnowledgeBase = {
         {
           type: "list",
           items: [
-            "Add an expense",
-            "Check your budget",
-            "View a spending summary",
-            "Log a goal contribution",
-            "Ask the coach a question",
+            "Add Expense",
+            "Check Budget",
+            "View Spending Summary",
+            "Add to Goal",
+            "Ask Coach",
+            "Can I Afford It?",
           ],
         },
         {
@@ -267,7 +268,7 @@ export const vaultKb: KnowledgeBase = {
         "Log spending by hand in seconds, fully on your device.",
       category: "tracking",
       keywords: ["add", "expense", "manual", "log", "spending", "entry"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -279,7 +280,7 @@ export const vaultKb: KnowledgeBase = {
           items: [
             {
               title: "Tap the plus button",
-              description: "From the Home screen, tap the plus button to start a new expense.",
+              description: "Tap the gold plus button in the tab bar to start a new expense.",
             },
             {
               title: "Enter the amount",
@@ -327,7 +328,7 @@ export const vaultKb: KnowledgeBase = {
         "Point your camera at a receipt and let Vault read the amount, merchant, and date.",
       category: "tracking",
       keywords: ["receipt", "scan", "camera", "ocr", "photo", "vision"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -340,7 +341,7 @@ export const vaultKb: KnowledgeBase = {
             {
               title: "Start a scan",
               description:
-                "Tap the plus button, then choose to scan a receipt. Vault asks for camera access the first time.",
+                "Press and hold the gold plus button in the tab bar to open Add Expense, then tap Scan a receipt. Vault asks for camera access the first time.",
             },
             {
               title: "Frame the receipt",
@@ -382,7 +383,7 @@ export const vaultKb: KnowledgeBase = {
         "Bring in a batch of transactions from a bank statement, with duplicates filtered out.",
       category: "tracking",
       keywords: ["import", "statement", "pdf", "csv", "bank statement", "duplicate", "upload"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -400,7 +401,7 @@ export const vaultKb: KnowledgeBase = {
             {
               title: "Start an import",
               description:
-                "In Vault, choose to import a statement and pick your file.",
+                "Press and hold the gold plus button and tap Import a bank statement. You can also open Notifications, data, and advanced settings from your profile picture and choose Import from PDF or Import from CSV under Data. Then pick your file.",
             },
             {
               title: "Review the transactions",
@@ -581,7 +582,7 @@ export const vaultKb: KnowledgeBase = {
         "Set a target, add contributions, and celebrate milestones along the way.",
       category: "goals",
       keywords: ["goal", "savings", "target", "contribution", "milestone", "save"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -593,7 +594,7 @@ export const vaultKb: KnowledgeBase = {
           items: [
             {
               title: "Open Goals",
-              description: "Go to the Goals area and tap the plus button.",
+              description: "Open the Plan tab, tap Goals under Plan structure, then tap Add goal.",
             },
             {
               title: "Name your goal and target",
@@ -636,7 +637,7 @@ export const vaultKb: KnowledgeBase = {
         "Add balances and interest to see your payoff timeline, and watch your net worth grow.",
       category: "goals",
       keywords: ["debt", "loan", "credit card", "interest", "payoff", "net worth", "assets", "liabilities"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -649,7 +650,7 @@ export const vaultKb: KnowledgeBase = {
             {
               title: "Add a debt",
               description:
-                "In the Debt area, add a debt with its name, current balance, and interest rate.",
+                "Open the Plan tab and tap Debt plan, then add a debt with its name, current balance, and interest rate.",
             },
             {
               title: "Review the timeline",
@@ -671,7 +672,7 @@ export const vaultKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Net worth is the big-picture view: everything you own minus everything you owe. Add assets like cash, savings, or a car's value, and your debts count as liabilities, so paying them down lifts your net worth automatically.",
+            "Net worth is the big-picture view: everything you own minus everything you owe. You find it on the Accounts tab under Financial position, next to your health score and liabilities. Add assets like cash, savings, or a car's value, and your debts count as liabilities, so paying them down lifts your net worth automatically.",
         },
         {
           type: "callout",
@@ -690,12 +691,12 @@ export const vaultKb: KnowledgeBase = {
         "See where your money is heading so there are no surprises at month's end.",
       category: "goals",
       keywords: ["forecast", "cash flow", "projection", "future", "month end", "predict"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
           content:
-            "The cash-flow forecast looks ahead. Based on your budget, known bills, and recent patterns, it projects where you are likely to land so you can plan with confidence.",
+            "The cash-flow forecast looks ahead. Open it from the Coach tab by asking something like \"will I make it to payday?\" and following the forecast action. Based on your budget, known bills, and recent patterns, it projects where you are likely to land so you can plan with confidence.",
         },
         {
           type: "heading",
@@ -736,7 +737,7 @@ export const vaultKb: KnowledgeBase = {
         "Ask money questions in plain language and get answers that never leave your iPhone.",
       category: "coach",
       keywords: ["coach", "ai", "ask", "questions", "afford", "on-device", "cedar", "offline"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -764,14 +765,14 @@ export const vaultKb: KnowledgeBase = {
           variant: "privacy",
           title: "Your finances never leave your phone",
           content:
-            "The coach runs on your device and uses your records to answer financial questions. Deterministic responses and calculations cover supported tasks; conversational AI requires Apple Intelligence and, after onboarding, a paid plan. The current development build requires iOS 26 and an available Apple Intelligence model.",
+            "The coach runs on your device and uses your records to answer financial questions. Built-in answers and calculations cover everyday questions on every plan. Open-ended conversation uses Apple Intelligence where your iPhone has it, or the optional Cedar model where it does not, and after setup it is part of Plus and higher. Vault requires iOS 26.",
         },
         {
           type: "callout",
           variant: "tip",
-          title: "Cedar: an optional richer model",
+          title: "Cedar: an on-device model for iPhones without Apple Intelligence",
           content:
-            "On Premium and higher, you can download an optional on-device model nicknamed Cedar for more detailed answers. Setting it up is a one-time download of model files using plain requests that contain no account details and none of your financial data. After that, Cedar runs entirely on-device.",
+            "If your iPhone does not have Apple Intelligence, Vault offers a one-time download of an on-device model nicknamed Cedar during coach setup. The download uses plain file requests that contain no account details and none of your financial data. After that, Cedar runs entirely on-device.",
         },
         {
           type: "faq",
@@ -798,7 +799,7 @@ export const vaultKb: KnowledgeBase = {
         "Link an account so your transactions and balances stay up to date automatically.",
       category: "bank-sync",
       keywords: ["connect", "link bank", "plaid", "account", "sync", "automatic", "setup bank"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -818,7 +819,7 @@ export const vaultKb: KnowledgeBase = {
             {
               title: "Start the connection",
               description:
-                "In Settings, choose to manage linked banks, then add a bank.",
+                "Tap your profile picture on Today, then choose Bank sync under Connections. Tap Connect your bank.",
             },
             {
               title: "Choose your bank in Plaid",
@@ -847,7 +848,7 @@ export const vaultKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Once linked, transactions and balances keep themselves current. You can also pull the latest any time with Sync Now.",
+            "Once linked, transactions and balances keep themselves current. You can also pull the latest any time with Sync now.",
         },
       ],
       related: ["is-it-safe-to-link-my-bank", "missing-bank-transaction", "compare-plans"],
@@ -918,10 +919,10 @@ export const vaultKb: KnowledgeBase = {
       id: "missing-bank-transaction",
       title: "A bank transaction is missing or out of date",
       description:
-        "Use Sync Now, understand automatic syncing, and re-connect a bank when needed.",
+        "Use Sync now, understand automatic syncing, and re-connect a bank when needed.",
       category: "bank-sync",
       keywords: ["missing transaction", "sync now", "not updating", "reconnect", "re-consent", "webhook", "out of date"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -932,9 +933,9 @@ export const vaultKb: KnowledgeBase = {
           type: "steps",
           items: [
             {
-              title: "Tap Sync Now",
+              title: "Tap Sync now",
               description:
-                "Open your linked bank and tap Sync Now to fetch the latest right away, rather than waiting for an automatic update.",
+                "Tap your profile picture on Today, open Bank sync under Connections, and tap Sync now to fetch the latest right away, rather than waiting for the automatic nightly sync.",
             },
             {
               title: "Give it a moment",
@@ -953,7 +954,7 @@ export const vaultKb: KnowledgeBase = {
           variant: "info",
           title: "How syncing works",
           content:
-            "Linked banks update automatically when your bank signals new activity, and you can always pull updates on demand with Sync Now.",
+            "Linked banks update automatically when your bank signals new activity, and you can always pull updates on demand with Sync now.",
         },
         {
           type: "callout",
@@ -1037,7 +1038,7 @@ export const vaultKb: KnowledgeBase = {
         "An optional, off-by-default way to help improve Vault that never includes your financial details.",
       category: "privacy",
       keywords: ["diagnostics", "anonymous", "telemetry", "usage data", "opt in", "opt out", "analytics"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -1055,11 +1056,11 @@ export const vaultKb: KnowledgeBase = {
           type: "steps",
           items: [
             {
-              title: "Open Settings",
-              description: "Go to the Settings tab, then the privacy section.",
+              title: "Open Privacy and usage data",
+              description: "Tap your profile picture on Today, then choose Privacy and usage data under AI & Privacy.",
             },
             {
-              title: "Find Anonymous Usage Data",
+              title: "Find Anonymous usage counts",
               description:
                 "This toggle ships turned off. Vault never collects diagnostics unless you turn it on.",
             },
@@ -1087,7 +1088,7 @@ export const vaultKb: KnowledgeBase = {
         "Export expenses as CSV or keep an encrypted backup for supported restore.",
       category: "privacy",
       keywords: ["export", "csv", "backup", "download data", "spreadsheet", "reports", "pdf"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -1099,11 +1100,11 @@ export const vaultKb: KnowledgeBase = {
           items: [
             {
               title: "Open Settings",
-              description: "Go to the Settings tab and find data export.",
+              description: "Tap your profile picture on Today, then choose Notifications, data, and advanced settings, then find the Data section.",
             },
             {
               title: "Export to CSV",
-              description: "Choose expense export. Vault creates a CSV with dates, amounts, categories, and notes.",
+              description: "Tap Export to CSV. Vault creates a CSV with dates, amounts, categories, and notes.",
             },
             {
               title: "Save or share it",
@@ -1195,20 +1196,20 @@ export const vaultKb: KnowledgeBase = {
         "See what each plan includes so you can pick the right fit.",
       category: "billing",
       keywords: ["plans", "pricing", "free", "plus", "premium", "premium plus", "compare", "tiers", "subscription"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
           content:
-            "Vault is genuinely useful for free, and paid plans simply add automatic bank syncing and a few extras. Here is how the tiers compare.",
+            "Vault is genuinely useful for free, and paid plans add automatic bank syncing and a few extras. All three paid plans are monthly subscriptions. Vault has no lifetime purchase, because every linked bank costs a monthly fee to keep connected. Here is how the tiers compare.",
         },
         {
           type: "list",
           items: [
-            "Free: manual entry, receipt scanning, statement import, budgets, goals, debt, net worth, forecast, and the on-device AI coach. No linked banks; everything stays on-device.",
-            "Plus, $2.99 per month: everything in Free, plus connect 1 bank through Plaid for automatic transactions.",
-            "Premium, $4.99 per month: everything in Plus, up to 3 linked banks, advanced insights, and the option to download the on-device Cedar AI model for richer coaching.",
-            "Premium Plus, $9.99 per month: everything in Premium, up to 10 linked banks, unlimited syncs, and Family Sharing.",
+            "Free: manual entry, receipt scanning, statement import, budgets, goals, debt tracking you enter yourself, net worth, forecast, and the coach's built-in answers. Open-ended coach chat is included during setup. No linked banks; everything stays on-device.",
+            "Plus, $2.99 per month: everything in Free, plus 1 linked bank with automatic background sync, and open-ended coach chat.",
+            "Premium, $4.99 per month: everything in Plus, up to 5 linked banks, smart categorization of bank transactions, debt tracking from up to 2 linked accounts, and Autopilot Safety Net.",
+            "Premium Plus, $9.99 per month: everything in Premium, up to 10 linked banks, and debt tracking from up to 5 linked accounts.",
           ],
         },
         {
@@ -1216,7 +1217,7 @@ export const vaultKb: KnowledgeBase = {
           variant: "info",
           title: "Manual is always free and on-device",
           content:
-            "You never need to pay to track money in Vault. Paid plans are only about optional bank syncing and the extras above.",
+            "You never need to pay to track money in Vault. Paid plans are only about optional bank syncing and the extras above. Subscriptions are charged through your Apple Account and renew monthly until you cancel.",
         },
       ],
       related: ["connect-a-bank", "downgrade-plan", "restore-purchases"],
@@ -1228,7 +1229,7 @@ export const vaultKb: KnowledgeBase = {
         "Bank sync stops, but everything already imported stays with you.",
       category: "billing",
       keywords: ["downgrade", "cancel", "subscription", "stop sync", "lose data", "expire"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -1256,7 +1257,7 @@ export const vaultKb: KnowledgeBase = {
           variant: "tip",
           title: "Keep a copy",
           content:
-            "Before erasing records, use the encrypted backup option in Settings and keep its passphrase safe. CSV export is useful for expense analysis but does not replace the backup format.",
+            "Before erasing records, use Encrypted Backup and Restore under Data in Settings and keep its passphrase safe. CSV export is useful for expense analysis but does not replace the backup format.",
         },
         {
           type: "faq",
@@ -1281,7 +1282,7 @@ export const vaultKb: KnowledgeBase = {
         "Get your subscription back after reinstalling or on another device.",
       category: "billing",
       keywords: ["restore", "purchases", "subscription", "reinstall", "missing", "apple account"],
-      updated: "2026-06-14",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -1297,13 +1298,13 @@ export const vaultKb: KnowledgeBase = {
                 "Make sure you are signed in with the same Apple Account you used to subscribe.",
             },
             {
-              title: "Open Settings in Vault",
-              description: "Go to the Settings tab and find restore purchases.",
+              title: "Open the Subscription screen",
+              description: "Tap your profile picture on Today, then choose Subscription. Restore Purchases is in the bar at the bottom of the screen.",
             },
             {
               title: "Restore",
               description:
-                "Tap restore. Vault checks with the App Store and re-enables your plan.",
+                "Tap Restore Purchases. Vault checks with the App Store and re-enables your plan.",
             },
           ],
         },

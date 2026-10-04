@@ -623,7 +623,7 @@ export const kithKb: KnowledgeBase = {
       description: "On your phone, in a local store, with no account and no server.",
       category: "privacy",
       keywords: ["privacy", "server", "account", "upload", "contacts", "analytics", "icloud"],
-      updated: "2026-09-07",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -645,7 +645,7 @@ export const kithKb: KnowledgeBase = {
           variant: "info",
           title: "About iCloud",
           content:
-            "The data model is built to be CloudKit-compatible, but the current build stores your Kith locally rather than syncing it. Kith is still in development, and any sync behaviour will be documented precisely before release rather than assumed.",
+            "Kith stores your people locally on your iPhone and does not sync them to other devices. Use Export my data in Settings if you want a copy you control.",
         },
       ],
       related: ["app-lock", "on-device-helpers", "welcome-to-kith"],
@@ -709,7 +709,7 @@ export const kithKb: KnowledgeBase = {
       description: "Compare free features, including the daily Spark, with Kith+ allowances.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "limit", "lifetime", "trial", "compare"],
-      updated: "2026-09-28",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "heading",
@@ -742,7 +742,7 @@ export const kithKb: KnowledgeBase = {
           variant: "info",
           title: "Pricing",
           content:
-            "Kith+ is $3.99 per month, $24.99 per year with a seven-day trial, or $49.99 once for lifetime access. Kith is still in development, so final pricing is confirmed at release.",
+            "Kith+ is $3.99 per month, $24.99 per year with a seven-day trial, or $49.99 once for lifetime access. Apple shows your local price and the terms before you confirm.",
         },
       ],
       related: ["restore-purchase", "today-and-spark", "on-device-helpers"],

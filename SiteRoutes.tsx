@@ -50,6 +50,7 @@ const SiteRoutes: React.FC<{ components: SiteRouteComponents }> = ({ components 
       <Route path="/philosophy" element={<PhilosophyPage />} />
       <Route path="/manifesto" element={<Navigate to="/philosophy" replace />} />
       <Route path="/standard" element={<Navigate to="/philosophy" replace />} />
+      <Route path="/help/cove/apple-watch" element={<Navigate to="/help/cove/ipad" replace />} />
       <Route path="/help" element={<HelpHome />} />
       <Route path="/help/:appId" element={<HelpArticle />} />
       <Route path="/help/:appId/:articleId" element={<HelpArticle />} />

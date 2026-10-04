@@ -613,7 +613,7 @@ export const woveKb: KnowledgeBase = {
       description: "Files on your device, a database of names and tags, and what sync actually covers.",
       category: "privacy",
       keywords: ["privacy", "photos", "storage", "icloud", "sync", "upload", "server", "files"],
-      updated: "2026-09-07",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -635,12 +635,12 @@ export const woveKb: KnowledgeBase = {
           variant: "warning",
           title: "Records sync, image files are a separate question",
           content:
-            "Turning on iCloud Sync in Settings mirrors your closet records through your own private iCloud database. The garment image files live outside that database, so do not assume every photo appears on a second device. Cross-device photo behaviour will be documented precisely before release.",
+            "Turning on iCloud Sync in Settings mirrors your closet records through your own private iCloud database. The garment image files live outside that database, so photos stay on the device where you added them.",
         },
         {
           type: "paragraph",
           content:
-            "Wove is still in development, and turning sync on or off applies the next time you launch the app.",
+            "Turning sync on or off applies the next time you launch the app.",
         },
       ],
       related: ["export-your-closet", "weather-and-location", "welcome-to-wove"],
@@ -681,7 +681,7 @@ export const woveKb: KnowledgeBase = {
       description: "The line between the two, with no caps on the part that matters.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "lifetime", "compare", "limits"],
-      updated: "2026-09-07",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "heading",
@@ -720,7 +720,7 @@ export const woveKb: KnowledgeBase = {
           variant: "info",
           title: "Pricing",
           content:
-            "Wove+ is $3.99 per month, $19.99 per year, or $24.99 once for lifetime access, as a single entitlement. Wove is still in development, so final pricing is confirmed at release.",
+            "Wove+ is $3.99 per month, $19.99 per year, or $24.99 once for lifetime access, as a single entitlement. Both subscriptions start with a seven-day free trial. Apple shows your local price and the terms before you confirm.",
         },
       ],
       related: ["restore-purchase", "shopping-advisor", "closet-gaps"],

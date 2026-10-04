@@ -609,7 +609,7 @@ export const mettleKb: KnowledgeBase = {
       description: "On your device, in your own private iCloud, and nowhere we can read it.",
       category: "privacy",
       keywords: ["privacy", "icloud", "sync", "account", "server", "analytics", "offline"],
-      updated: "2026-09-07",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "paragraph",
@@ -631,7 +631,7 @@ export const mettleKb: KnowledgeBase = {
         {
           type: "paragraph",
           content:
-            "Mettle is still in development, so exact multi-device sync behaviour will be confirmed and documented before release.",
+            "Export remains the backup you fully control either way.",
         },
       ],
       related: ["export-and-import", "health-integration", "coach-memory"],
@@ -681,7 +681,7 @@ export const mettleKb: KnowledgeBase = {
       description: "Compare the core training features with the additional tools included in Pro.",
       category: "billing",
       keywords: ["free", "pro", "price", "subscription", "lifetime", "trial", "compare"],
-      updated: "2026-09-28",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "heading",
@@ -720,7 +720,7 @@ export const mettleKb: KnowledgeBase = {
           variant: "info",
           title: "Pricing",
           content:
-            "Mettle Pro is $4.99 per month, $29.99 per year with a seven-day trial, or $79.99 once for lifetime access. Mettle is still in development, so final pricing is confirmed at release.",
+            "Mettle Pro is $4.99 per month, $29.99 per year with a seven-day trial, or $79.99 once for lifetime access. Apple shows your local price and the terms before you confirm.",
         },
       ],
       related: ["restore-purchase", "coach-memory", "welcome-to-mettle"],

@@ -645,7 +645,7 @@ export const troveKb: KnowledgeBase = {
       description: "Compare free inventory and backup features with Plus reports and other tools.",
       category: "billing",
       keywords: ["free", "plus", "price", "subscription", "limit", "lifetime", "trial", "compare"],
-      updated: "2026-09-28",
+      updated: "2026-10-03",
       blocks: [
         {
           type: "heading",
@@ -685,7 +685,7 @@ export const troveKb: KnowledgeBase = {
           variant: "info",
           title: "Pricing",
           content:
-            "Trove Plus is $2.99 per month, $19.99 per year, or $39.99 once for lifetime access, with a seven-day free trial. Trove is still in development, so final pricing is confirmed at release.",
+            "Trove Plus is $2.99 per month, $19.99 per year, or $39.99 once for lifetime access, with a seven-day free trial. Apple shows your local price and the terms before you confirm.",
         },
       ],
       related: ["restore-purchase", "claim-kit", "multiple-homes"],

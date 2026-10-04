@@ -50,6 +50,7 @@ export const products: Product[] = [
     id: 'vault', name: 'Vault', shortName: 'Vault', tagline: "Check the purchase before you make it.",
     category: 'Personal Finance', releaseStatus: 'pre-release', accent: '#c7ff3e',
     appStoreUrl: '', hasKnowledgeBase: true, platforms: ['iOS', 'iPadOS'], minOS: 'iOS 26',
+    price: 'Planned: Free · Plus $2.99/mo · Premium $4.99/mo · Premium Plus $9.99/mo',
     description: "See how a purchase affects your budget, bills, and goals. Bring in receipts and statements without having to connect a bank.",
     fullDescription: 'Vault puts a potential purchase beside your bills, goals, and recent spending. Review receipt scans or CSV and PDF statement imports, then use those records to plan ahead. Calculations and core coaching run on your device. You can keep a manual ledger or choose optional bank connections and enrichment through Plaid and a relay. Vault requires Apple Intelligence and is in development.',
     icon: LineChart, primaryColor: 'text-neon',
