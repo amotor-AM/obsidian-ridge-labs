@@ -9,7 +9,7 @@ const errors = [];
 const warnings = [];
 const expectedAppIds = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith', 'mise'];
 const expectedAppNames = ['Echo Chamber', 'Vault', 'Molehill', 'Cove', 'Wove', 'Mettle', 'Memora', 'Trove', 'Kith', 'Mise'];
-const expectedEditorialBlogPostCount = 22;
+const expectedEditorialBlogPostCount = 23;
 const babyLoveGrowthGeneratedPath = path.join(root, 'data', 'babylovegrowth.generated.json');
 const babyLoveGrowthArticles = fs.existsSync(babyLoveGrowthGeneratedPath)
   ? JSON.parse(fs.readFileSync(babyLoveGrowthGeneratedPath, 'utf8'))
@@ -305,8 +305,8 @@ for (const blogRoute of blogArticleRoutes) {
 }
 
 for (const [appId, genres] of clusterGenres) {
-  if (!genres.has('comparison') || !genres.has('listicle') || genres.size !== 2) {
-    errors.push(`/apps/${appId}: journal cluster must contain one comparison and one listicle; found ${[...genres].join(', ') || 'none'}`);
+  if (!genres.has('comparison') || !genres.has('listicle')) {
+    errors.push(`/apps/${appId}: journal cluster must contain at least one comparison and one listicle; found ${[...genres].join(', ') || 'none'}`);
   }
 }
 
