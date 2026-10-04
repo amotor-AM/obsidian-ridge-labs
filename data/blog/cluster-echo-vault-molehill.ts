@@ -893,4 +893,122 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    id: 'meeting-notetaker-liability',
+    title: "Your Meetings Shouldn't Live on Someone Else's Servers",
+    seoTitle: "Your Meetings Shouldn't Live on Someone Else's Servers",
+    date: '2026.10.03',
+    readTime: "5 MIN READ",
+    category: 'TRANSCRIPTION PRIVACY',
+    tags: ['#ECHO-CHAMBER', '#TRANSCRIPTION', '#PRIVACY', '#AI-NOTETAKERS'],
+    excerpt: "Four recent stories say the same thing about AI notetakers: the cloud part is the liability. Echo Chamber's answer is structural, your meetings never leave your device.",
+    seoDescription: "Four recent stories say the same thing about AI notetakers: the cloud part is the liability. Echo Chamber's answer is structural, your meetings never leave your device.",
+    contentType: 'guide',
+    appId: 'echochamber',
+    searchIntent: 'Are AI meeting notetakers a privacy risk, and is there a transcription app that keeps recordings entirely on-device?',
+    keyTakeaways: [
+      "Four recent stories, one pattern: wherever meeting audio lives in the cloud, it can be breached, subpoenaed, repurposed, or carried out the door.",
+      "The Sequoia Benefits suit shows the governance gap: notes in a personal AI account follow the employee, not the company.",
+      "Echo Chamber keeps the whole workflow on your Apple device, so there is no central copy to lose in the first place.",
+    ],
+    relatedIds: ['otter-vs-echo', 'best-offline-transcription-apps'],
+    blocks: [
+      {
+        type: 'answer',
+        title: "Your meetings should not live on someone else's servers",
+        content: "In the last two months, four stories have landed that all say the same thing about AI notetakers: the cloud part is becoming the liability. A benefits firm is suing over meeting notes that allegedly walked out the door with a departing employee. A federal court is letting wiretapping claims against a notetaker proceed. More than 180,000 meeting records were exposed by a backend flaw. And some 'AI' phone calls turned out to have humans on the line. The common thread is not one bad app. It is the architecture: wherever your audio lives, it can be breached, subpoenaed, repurposed, or carried out the door.",
+      },
+      {
+        type: 'h2',
+        content: "When the notes follow the employee",
+      },
+      {
+        type: 'paragraph',
+        content: "The freshest story is a governance story. On October 1, Sequoia Benefits filed suit in federal court in Colorado against a former broker and her new employer, Alliant. The complaint alleges she ran Granola AI on a personal account for roughly four months, capturing client meeting notes, and kept those notes after joining Alliant in July. Five claims, including federal and Colorado trade-secret misappropriation.",
+      },
+      {
+        type: 'paragraph',
+        content: "Read that slowly. The meeting notes lived in a personal cloud account, not a company system. When the employee left, the notes went with her, because nothing in the architecture stopped them. Every company that lets staff take notes in personal AI accounts is one resignation away from the same complaint.",
+      },
+      {
+        type: 'callout',
+        title: 'A note on framing',
+        variant: 'note',
+        content: "The defendants in the Sequoia case are the former employee and Alliant, not Granola's maker. This is a story about governance risk in cloud notetakers generally, not an attack on one app.",
+      },
+      {
+        type: 'h2',
+        content: "When the bot is a third-party eavesdropper",
+      },
+      {
+        type: 'paragraph',
+        content: "In August, a California federal court let wiretapping and biometric-privacy claims against Otter.ai proceed toward discovery. The court held that Otter's meeting bot is a third-party eavesdropper under California law, not an invited participant, because it independently collects, retains, and uses recordings for its own commercial purposes, including training its AI models. Statutory damages in play run up to $10,000 per violation under federal wiretapping law, with no proof of actual harm required.",
+      },
+      {
+        type: 'h2',
+        content: "When the backend is the breach",
+      },
+      {
+        type: 'paragraph',
+        content: "Also in August, Dark Reading found a vulnerability in tl;dv's backend that exposed more than 180,000 meeting records belonging to over 80,000 users. One authenticated user could read other customers' meetings. A later write-up put the pattern plainly: every centrally stored transcript is a record of everything said, including the parts nobody would have chosen to write down, and most notetakers store them centrally by default.",
+      },
+      {
+        type: 'h2',
+        content: "When 'AI-powered' means human eyes",
+      },
+      {
+        type: 'paragraph',
+        content: "In September, Reuters and 404 Media found that some of Meta's Muse assistant 'AI' phone calls were routed through human call-center contractors, undisclosed to the people on the calls. Meta acknowledged the miss and rolled it back. The label said AI. The reality included more human eyes on your data than the label admitted.",
+      },
+      {
+        type: 'h2',
+        content: "Consent dialogs are promises. Architecture is the guarantee.",
+      },
+      {
+        type: 'paragraph',
+        content: "Across all four stories, the failure was never that users failed to read a privacy policy. It was that the audio existed somewhere it could be breached, subpoenaed, repurposed for training, overheard by contractors, or carried out the door in a personal account. You cannot breach, subpoena, or walk out with a recording that was never uploaded.",
+      },
+      {
+        type: 'h2',
+        content: "Built so there is nothing to hand over",
+      },
+      {
+        type: 'paragraph',
+        content: "That is why Echo Chamber is built the way it is. Recording, transcription, AI notes and summaries, search, and export all run on your iPhone, iPad, or Mac, with Apple Intelligence where available and a bundled local model as the fallback where it isn't. Speech recognition runs on-device. The AI polish only ever touches punctuation, capitalization, and paragraphs, never your words. There is no meeting bot to join your calls. There is no account.",
+      },
+      {
+        type: 'paragraph',
+        content: "The only things that ever leave the device are a model download, an App Store purchase check, an encrypted copy to your own iCloud if you turn sync on, or a support request you choose to send. With sync off, your recordings stay on the device that made them.",
+      },
+      {
+        type: 'callout',
+        title: 'Put plainly',
+        variant: 'privacy',
+        content: "We could not hand over your meetings if we were asked to, because we never receive them. No central transcript store to breach. No training pipeline fed by your calls. No contractor queue your audio passes through.",
+      },
+      {
+        type: 'faq',
+        content: [
+          { question: 'Does Echo Chamber upload my recordings anywhere?', answer: 'No. Recording, transcription, notes, summaries, search, and export run on your device. The only exceptions are the ones you control: a speech-model download, an App Store purchase check, encrypted iCloud sync if you turn it on, or a support request you choose to send.' },
+          { question: 'What if my company needs to keep meeting records?', answer: 'Exports are yours to keep: TXT, Markdown, PDF, and DOCX. The difference is custody. With Echo Chamber, the recording lives with you until you decide to share it, instead of living in a vendor cloud from the moment it is made.' },
+          { question: 'Can I use it for calls I am not hosting?', answer: 'The Mac app can detect calls in Zoom, Teams, Google Meet, Slack, Discord, FaceTime, and Webex, capturing microphone and system audio with your permission. You are responsible for following the consent laws where you record, and for telling participants when you do.' },
+          { question: 'Is on-device transcription accurate enough?', answer: 'Accuracy depends on the audio: clear speech does well, while crosstalk, unfamiliar names, and room echo hurt every engine. Check names and numbers against the recording when precision matters.' },
+        ],
+      },
+      {
+        type: 'sources',
+        content: [
+          'Sequoia Benefits suit over Granola meeting notes|https://www.insurancebusinessmag.com/us/news/risk-compliance-legal/sequoia-sues-after-departing-broker-allegedly-used-ai-app-to-grab-client-data-592167.aspx',
+          'Granola lawsuit raises AI note-taking privacy concerns|https://www.computerworld.com/article/4206255/granola-lawsuit-raises-concerns-over-ai-note-taking-app-privacy.html',
+          'AI notetaker backend exposed meeting records|https://Www.Darkreading.com/application-security/ai-notetaker-spy-government-corporate-video-calls',
+          'Meta tested human callers behind Muse AI agent|https://www.vktr.com/ai-platforms/meta-tested-human-callers-behind-its-muse-ai-agent-without-disclosure/',
+        ],
+      },
+      {
+        type: 'cta',
+        content: "If a meeting is worth recording, it is worth keeping off someone else's servers. Echo Chamber is free to start, with 60 minutes of recording per month.",
+        ctaAppId: 'echochamber',
+      },
+    ],
+  },
 ];
