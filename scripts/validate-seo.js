@@ -9,7 +9,7 @@ const errors = [];
 const warnings = [];
 const expectedAppIds = ['echochamber', 'vault', 'molehill', 'cove', 'wove', 'mettle', 'memora', 'trove', 'kith', 'mise'];
 const expectedAppNames = ['Echo Chamber', 'Vault', 'Molehill', 'Cove', 'Wove', 'Mettle', 'Memora', 'Trove', 'Kith', 'Mise'];
-const expectedEditorialBlogPostCount = 23;
+const expectedEditorialBlogPostCount = 24;
 const babyLoveGrowthGeneratedPath = path.join(root, 'data', 'babylovegrowth.generated.json');
 const babyLoveGrowthArticles = fs.existsSync(babyLoveGrowthGeneratedPath)
   ? JSON.parse(fs.readFileSync(babyLoveGrowthGeneratedPath, 'utf8'))

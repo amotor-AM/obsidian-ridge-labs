@@ -154,7 +154,7 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       "MacWhisper, Aiko, and Voice Memos cover different local workflows. Otter belongs on the shortlist when sharing and meeting automation outweigh the need for local processing.",
       "Try one representative file before committing. Check the transcript, export format, supported device, and any optional remote AI settings."
     ],
-    relatedIds: ['otter-vs-echo', 'offline-ai-revolution', 'apple-ecosystem-privacy'],
+    relatedIds: ['otter-vs-echo', 'offline-ai-revolution', 'apple-ecosystem-privacy', 'stored-locally-vs-processed-on-device'],
     listItems: [
       { name: 'Echo Chamber', description: "Live and imported recordings become searchable transcripts, bookmarks, local notes, and answers you can use." },
       { name: 'MacWhisper', description: 'A deep Mac transcription workstation with local model choices, broad file support, batch tools, subtitles, automation, and optional cloud services.' },
@@ -183,6 +183,10 @@ export const echoVaultMolehillPosts: BlogPost[] = [
           { label: 'Voice Memos', cells: ['Built-in recording, live or later transcription, transcript search and copy on supported iPhones.', 'Language, device, and region availability apply; optional iCloud creates synced copies and advanced summaries require supported Apple Intelligence.'] },
           { label: 'Otter.ai', cells: ['Cloud meeting capture, imported files, speaker identification, AI chat, bots, workspaces, sharing, and integrations.', 'Audio is processed through cloud infrastructure; plan quotas and workspace permissions affect the practical boundary.'] },
         ],
+      },
+      {
+        type: 'paragraph',
+        content: "A note on a new arrival: Fireflies launched Talk, free unlimited voice dictation that stores completed dictations on your device. Its own announcement says audio is still sent to Fireflies' speech-to-text provider for processing. Stored locally is not the same as processed on-device, and the distinction is worth keeping in mind as dictation features multiply.",
       },
       {
         type: 'h2',
@@ -1007,6 +1011,125 @@ export const echoVaultMolehillPosts: BlogPost[] = [
       {
         type: 'cta',
         content: "If a meeting is worth recording, it is worth keeping off someone else's servers. Echo Chamber is free to start, with 60 minutes of recording per month.",
+        ctaAppId: 'echochamber',
+      },
+    ],
+  },
+  {
+    id: 'stored-locally-vs-processed-on-device',
+    title: "Stored Locally Is Not the Same as Processed On-Device",
+    seoTitle: "Stored Locally Is Not the Same as Processed On-Device",
+    date: '2026.10.08',
+    readTime: "3 MIN READ",
+    category: 'TRANSCRIPTION PRIVACY',
+    tags: ['#ECHO-CHAMBER', '#TRANSCRIPTION', '#PRIVACY', '#VOICE-DICTATION'],
+    excerpt: "Fireflies Talk stores dictations on your device, but still sends your audio to its speech-to-text provider. The distinction that matters: where your voice is processed, not just where the text rests.",
+    seoDescription: "Fireflies Talk stores dictations on your device but sends audio to its speech-to-text provider. Why where your voice is processed matters most.",
+    contentType: 'guide',
+    appId: 'echochamber',
+    searchIntent: 'Does Fireflies Talk process dictation audio on-device, and how is that different from Echo Chamber?',
+    keyTakeaways: [
+      "Fireflies Talk stores completed dictations locally, but its own announcement says audio is sent to Fireflies' speech-to-text provider for processing.",
+      "Stored locally answers where the finished text rests. Processed on-device answers whether your audio ever travels at all.",
+      "Echo Chamber transcribes on on-device models, works in airplane mode, and sends nothing to an external AI service for transcription.",
+    ],
+    relatedIds: ['meeting-notetaker-liability', 'best-offline-transcription-apps', 'otter-vs-echo'],
+    blocks: [
+      {
+        type: 'answer',
+        title: "Stored locally is not the same as processed on-device",
+        content: "Fireflies just launched Talk, free unlimited voice dictation for the workday. Their announcement says completed dictations are stored locally on your device, and neither Fireflies nor your workspace admin can view them. That is a real improvement, and credit where it is due. But the same announcement says that to convert speech into text, audio is sent to Fireflies' speech-to-text provider for processing. Your voice still leaves the device every time you dictate.",
+      },
+      {
+        type: 'h2',
+        content: "Two different questions",
+      },
+      {
+        type: 'paragraph',
+        content: "Stored locally answers where the finished text rests. Processed on-device answers whether your audio ever travels at all. Both matter, but they are not the same promise. When an app says your dictations are private because they are stored on your device, ask the second question: where was the audio turned into text?",
+      },
+      {
+        type: 'paragraph',
+        content: "This is the same fault line running through the meeting-notetaker stories: the architecture decides what is possible, and the privacy policy only describes what is promised. A policy can say audio is not stored after processing. Only the architecture can say the audio never left.",
+      },
+      {
+        type: 'h2',
+        content: "What Fireflies actually built",
+      },
+      {
+        type: 'paragraph',
+        content: "Talk is dictation inside the Fireflies desktop app for Mac and Windows, with iOS and Android planned. You hold a key, speak, and release, and clean text appears wherever your cursor is: email, Slack, docs, prompts. It supports more than 90 languages, formats a dictated email like an email and a Slack message like chat, and turns a spoken teammate name into an @mention. It is free and unlimited on every Fireflies plan, which undercuts standalone dictation apps that charge a monthly subscription for the same job.",
+      },
+      {
+        type: 'paragraph',
+        content: "On privacy, the company says completed dictations are stored locally and cannot be viewed by Fireflies or a workspace administrator, are not stored on its servers after processing, and are not used to train AI models. Its supplemental terms add detail worth reading: audio, transcribed text, and optional Screen Context are sent to Fireflies and its listed service providers for processing. Screen Context can be switched off. Fireflies also advises against dictating while viewing passwords, payment details, or protected health information.",
+      },
+      {
+        type: 'h2',
+        content: "Why the distinction matters",
+      },
+      {
+        type: 'paragraph',
+        content: "Audio in transit is audio that can be intercepted, logged, or mishandled by a third party, no matter how careful the storage policy is after the fact. Fireflies says dictations are not stored on its servers after processing and are not used to train models, and those are meaningful commitments. But the processing step still happens on someone else's infrastructure, under someone else's controls.",
+      },
+      {
+        type: 'paragraph',
+        content: "There is also a practical angle. A dictation feature that needs a connection stops working when the connection does. On-device processing keeps working in airplane mode, on hotel wifi, or anywhere you would rather not send your voice in the first place.",
+      },
+      {
+        type: 'h2',
+        content: "The on-device alternative",
+      },
+      {
+        type: 'paragraph',
+        content: "Echo Chamber was built on the second definition. Transcription runs on on-device models, it works in airplane mode, and nothing is sent to an external AI service for transcription. Recordings and transcripts stay on your iPhone, iPad, or Mac. There is no account, no ads, and no third-party analytics.",
+      },
+      {
+        type: 'paragraph',
+        content: "Speech recognition runs on the device, and the AI polish only ever touches punctuation, capitalization, and paragraphs, never your words. You can test the claim the same way you would test any privacy promise: turn on airplane mode after setup and dictate. If the words still appear, the processing is local.",
+      },
+      {
+        type: 'paragraph',
+        content: "It is free for 60 minutes of recording per month. Pro is $2.99/month, $29.99/year, or $79.99 lifetime.",
+      },
+      {
+        type: 'h2',
+        content: "Questions to ask any dictation app",
+      },
+      {
+        type: 'list',
+        content: [
+          "WHERE IS MY AUDIO TURNED INTO TEXT: On the device, or on a provider's servers?",
+          'WHAT ELSE TRAVELS WITH IT: Transcript text, screen context, account identifiers?',
+          'WHAT SURVIVES PROCESSING: Is anything retained, logged, or used for training?',
+          'DOES IT WORK OFFLINE: Dictate in airplane mode and see what happens.',
+        ],
+      },
+      {
+        type: 'callout',
+        title: 'Put plainly',
+        variant: 'privacy',
+        content: "Ask not only where your words are kept, but where your voice went to become words.",
+      },
+      {
+        type: 'faq',
+        content: [
+          { question: 'Does Fireflies Talk store my dictations in the cloud?', answer: 'According to its launch announcement, completed dictations are stored locally on your device and are not stored on Fireflies servers after processing. But audio is sent to its speech-to-text provider for processing, so the audio does travel.' },
+          { question: 'Is Echo Chamber really fully on-device?', answer: 'Transcription runs on on-device models. The only things that ever leave the device are a speech-model download, an App Store purchase check, an encrypted copy to your own iCloud if you turn sync on, or a support request you choose to send.' },
+          { question: 'Why does on-device matter if a company promises not to store my audio?', answer: 'A promise describes intent; architecture describes what is possible. Audio that never leaves the device cannot be intercepted in transit, mishandled by a provider, or reached through a request to a third party.' },
+          { question: 'How can I verify an on-device claim myself?', answer: 'Turn on airplane mode after setup and use the core feature. If transcription still works with no connection, the processing is local. Then check exports, sync settings, and the App Store privacy label separately.' },
+        ],
+      },
+      {
+        type: 'sources',
+        content: [
+          'Fireflies.ai launches Fireflies Talk, bringing free unlimited voice dictation to the workday|https://cxotoday.com/media-coverage/fireflies-ai-launches-fireflies-talk-bringing-free-unlimited-voice-dictation-to-the-workday/',
+          'Fireflies.ai launches Fireflies Talk for free, unlimited voice dictation|https://fossbytes.com/fireflies-ai-launches-fireflies-talk-for-free-unlimited-voice-dictation/',
+        ],
+      },
+      {
+        type: 'cta',
+        content: "If your dictations should never leave the device, Echo Chamber is free to start, with 60 minutes of recording per month.",
         ctaAppId: 'echochamber',
       },
     ],
