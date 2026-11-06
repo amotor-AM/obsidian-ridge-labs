@@ -1,7 +1,7 @@
 import {
   Archive, BookOpen, Boxes, Brain, CalendarClock, Camera, ChefHat,
   CloudSun, Dumbbell, FileCheck2, FileText, Gauge, Heart, LineChart,
-  ListChecks, MessageCircle, Mic, Receipt, ScanLine, Search, Shield,
+  ListChecks, MessageCircle, Mic, Receipt, Route, ScanLine, Search, Shield,
   Shirt, Sparkles, UsersRound, Watch,
 } from 'lucide-react';
 import type { Product, ProductFeature } from '../types';
@@ -300,6 +300,34 @@ export const products: Product[] = [
       feature('A usable copy of a saved recipe', 'Web data, local text parsing, and photo OCR help with entry. Review quantities and instructions before cooking.', ScanLine),
       feature('A question about this recipe', 'Local cooking help can use the open recipe’s ingredients and steps. Plus substitutions and suggested recipes still need your judgment.', ChefHat),
       feature('Keep your recipe box portable', 'Recipe JSON includes text and available photos and supports restore. It does not back up the entire pantry, meal plan, or grocery state.', Archive),
+    ],
+  },
+  {
+    id: 'mile', name: 'Mile', shortName: 'Mile', tagline: "Hand your accountant a log they can file from.",
+    category: 'Mileage & Tax Records', releaseStatus: 'pre-release', accent: '#ffa62e', hasKnowledgeBase: true,
+    platforms: ['iOS'], minOS: 'iOS 26', price: 'Free · Pro $9.99/mo · $99/yr',
+    description: "Record every drive on your iPhone, price it at the IRS rate for its date, and turn the year into a PDF for your accountant.",
+    fullDescription: 'Mile notices when you start driving and records the route, miles, and places without an account or a server. Each drive is priced at the IRS rate for its date. The Audit check lists what your log is missing, and the PDF tax log puts your totals beside their Schedule C and Form 4562 lines, then lists every deductible drive.',
+    icon: Route, primaryColor: 'text-amber-300',
+    specs: [
+      { label: 'Product stage', value: 'In development' }, { label: 'Platforms', value: 'iPhone' },
+      { label: 'Requirement', value: 'iOS 26' }, { label: 'Storage', value: 'On your iPhone' },
+    ],
+    screenshots: [
+      { file: 'taxlog', title: 'Ready for your preparer', caption: 'The Audit check and the PDF tax log, side by side on Reports.' },
+      { file: 'drive', title: 'Every route, priced', caption: 'One drive with its map, miles, category, and deduction at the IRS rate for its date.' },
+      { file: 'reports', title: 'The year at a glance', caption: 'Your mileage deduction with work, personal, and commute miles by month.' },
+    ],
+    workflow: [
+      { title: 'Drive', description: 'The motion sensor notices a drive and Mile turns on GPS until you park.' },
+      { title: 'Sort it', description: 'Mark the drive Work or Personal from the notification, the Lock Screen, a widget, or Siri.' },
+      { title: 'Fix what is missing', description: 'The Audit check lists drives without a purpose, a place, or a category, in one list.' },
+      { title: 'Send the report', description: 'Make the PDF tax log and send it to your accountant from your iPhone.' },
+    ],
+    features: [
+      feature('A report built for your preparer', 'Totals by category beside their Schedule C and Form 4562 lines, then every deductible drive with its purpose and IRS rate.', FileCheck2),
+      feature('Checked before tax time', 'The Audit check finds the drives that are missing what the IRS asks for, so you fix them in January, not in April.', ListChecks),
+      feature('No account and no Mile server', 'Your log stays on your iPhone. The privacy ledger in Settings shows what has left it.', Shield),
     ],
   },
 ];

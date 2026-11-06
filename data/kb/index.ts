@@ -9,6 +9,7 @@ import { memoraKb } from './memora';
 import { troveKb } from './trove';
 import { kithKb } from './kith';
 import { miseKb } from './mise';
+import { mileKb } from './mile';
 
 /**
  * Every knowledge base, keyed for lookup by app id. Ordered to match the app
@@ -25,6 +26,7 @@ export const knowledgeBases: KnowledgeBase[] = [
   troveKb,
   kithKb,
   miseKb,
+  mileKb,
 ];
 
 const byAppId: Record<string, KnowledgeBase> = Object.fromEntries(
@@ -52,4 +54,5 @@ export {
   troveKb,
   kithKb,
   miseKb,
+  mileKb,
 };

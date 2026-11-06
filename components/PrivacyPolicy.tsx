@@ -36,7 +36,7 @@ const PrivacyPolicy: React.FC = () => {
             website uses Google Analytics to measure aggregate traffic. A blanket privacy claim is
             not a boundary, so here is the specific version.
           </p>
-          <p className="text-gray-600 text-sm mt-8">Effective September 14, 2026</p>
+          <p className="text-gray-600 text-sm mt-8">Effective November 6, 2026</p>
         </header>
 
         <section aria-labelledby="privacy-at-a-glance" className="mb-16 md:mb-24">
@@ -185,6 +185,33 @@ const PrivacyPolicy: React.FC = () => {
                   default, not an in-app opt-in sync switch. Optional Health access uses Apple's
                   permission controls. Cove can index dates, summaries, and themes in Spotlight;
                   that setting can be disabled.
+                </p>
+              </div>
+
+              <div id="mile" className="border border-white/10 bg-white/[0.02] p-6 md:p-8 scroll-mt-28">
+                <h3 className="text-lg font-semibold text-white mb-3">Mile</h3>
+                <p className="mb-4">
+                  Mile does not collect your data. There is no account, no Mile server, no
+                  analytics, and no advertising. Your drives, routes, stops, place names, purposes,
+                  notes, saved places, vehicles, odometer readings, and settings stay on your iPhone.
+                </p>
+                <p className="mb-4">
+                  Location, set to Always, records drives while the app is closed, and GPS runs only
+                  while you drive. Motion &amp; Fitness tells driving from walking on your iPhone and
+                  finds drives from the last 7 days that Mile did not record. Notifications ask you
+                  to sort a drive after you park.
+                </p>
+                <p className="mb-4">
+                  Place names come from Apple Maps. Mile sends Apple the points where a drive starts,
+                  stops, and ends, which you can turn off in Settings. It also sends the text you type
+                  to search for a saved place's address and, when you add a drive Mile did not record,
+                  the points where you parked before and after it, to measure the route. Apple
+                  processes purchases. Mile has no other third-party code and sends nothing to us.
+                </p>
+                <p>
+                  Export a CSV, a PDF, or a full backup at any time. Delete all data in Settings
+                  removes your log, and so does deleting the app. Your own iCloud device backups may
+                  include Mile's data, depending on your settings.
                 </p>
               </div>
 

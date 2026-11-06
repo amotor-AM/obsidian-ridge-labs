@@ -14,12 +14,13 @@ const previews: Record<string, string> = {
   trove: 'Keep the receipt. Find it when it matters.',
   kith: 'Remember the things they told you.',
   mise: 'Make something out of all those saved recipes.',
+  mile: 'Hand your accountant a log they can file from.',
 };
 
 const Products: React.FC = () => (
   <section id="products" className="home-collection" aria-labelledby="products-title">
     <div className="section-frame">
-      <div className="section-index"><span>02 / The collection</span><span>Ten apps, ten boundaries, one standard</span></div>
+      <div className="section-index"><span>02 / The collection</span><span>Eleven apps, eleven boundaries, one standard</span></div>
       <div className="home-collection__intro">
         <h2 id="products-title">For the things<br /><em>you keep to yourself.</em></h2>
         <p>A conversation worth keeping. A month of receipts. A person you meant to call. Each app starts with something that matters to you and keeps its intelligence close to it.</p>

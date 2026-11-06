@@ -35,4 +35,5 @@ export const collectionJobs: Record<string, string> = {
   trove: 'Keep a record of your things and their receipts.',
   kith: 'Remember the people you want to keep up with.',
   mise: 'Save your recipes and plan what to cook.',
+  mile: 'Log your drives and hand your accountant a tax log.',
 };
