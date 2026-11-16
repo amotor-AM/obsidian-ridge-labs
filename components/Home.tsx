@@ -26,7 +26,7 @@ const Home: React.FC = () => {
   };
   return <>
     <SEO title="Personal AI Apps, Beautifully Private" description={collectionDescription} canonical={SITE_URL + '/'}
-      ogImage={SITE_URL + '/og-v2.png'} ogImageAlt="Obsidian Ridge Labs — apps for a life that belongs to you."
+      ogImage={SITE_URL + '/og-v2.png'} ogImageAlt="Obsidian Ridge Labs - apps for a life that belongs to you."
       keywords={['private AI apps', 'on-device AI for Apple', 'offline AI apps', 'local-first apps', 'iPhone AI apps']}
       jsonLd={[itemList, buildFAQSchema(homeFaqs, '/')]} />
     <WorldHome />
