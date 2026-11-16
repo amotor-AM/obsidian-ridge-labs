@@ -1,0 +1,95 @@
+/* Editorial support surfaces: a shared visual language for the journal and help hub */
+.kin-journal__hero{background:#f6d2ba}
+.kin-journal__hero h1 em{color:#aa628d}
+.kin-journal__body{background:#f3eee5;padding:5rem clamp(1.25rem,5vw,6rem) 7rem}
+.kin-journal__featured{display:grid;grid-template-columns:.92fr 1.08fr;min-height:480px;color:#262126!important;background:#d9c6ef;text-decoration:none;overflow:hidden}
+.kin-journal__featured-art{position:relative;min-height:430px;display:flex;justify-content:center;align-items:center;background:radial-gradient(circle at 50% 45%,#eac8eb 0%,#b89ce0 56%,#8564b1 100%);overflow:hidden}
+.kin-journal__featured-art>span{font-size:clamp(18rem,32vw,36rem);line-height:1;color:#f6d8b9;transform:rotate(-16deg);opacity:.88;transition:transform .6s ease}
+.kin-journal__featured:hover .kin-journal__featured-art>span{transform:rotate(24deg) scale(1.05)}
+.kin-journal__featured-art i{position:absolute;color:#37264e;font:italic clamp(2rem,4vw,4.8rem)/1.05 Georgia,serif;text-align:center;transform:rotate(-10deg)}
+.kin-journal__featured-copy{padding:clamp(2rem,5vw,5.5rem);display:flex;flex-direction:column;align-items:flex-start;gap:2rem}
+.kin-journal__featured-copy>span{font-size:.75rem;font-weight:800;letter-spacing:.12em}
+.kin-journal__featured-copy h2{font-size:clamp(2.5rem,4vw,5.5rem);line-height:1.02}
+.kin-journal__featured-copy p{max-width:27rem;font-size:1rem;color:#554759}
+.kin-journal__featured-copy>div{margin-top:auto;display:flex;gap:1.5rem;align-items:center;font-size:.75rem;font-weight:850;letter-spacing:.1em}
+.kin-journal__library,.kin-help-home__library{margin-top:7rem}
+.kin-journal__library-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:3rem}
+.kin-journal__library-head h2{font-size:clamp(3.5rem,6.5vw,7rem);margin-top:2rem}
+.kin-journal__library-head h2 em{color:#8f68b0}
+.kin-journal__library-head>p{max-width:17rem}
+.kin-journal__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.kin-journal__card{min-height:340px;background:#e7deda;padding:1.7rem;display:flex;flex-direction:column;gap:1.25rem;color:#282225!important;transition:transform .2s ease,background-color .2s ease}
+.kin-journal__card:nth-child(5n+2){background:#e3d6f1}
+.kin-journal__card:nth-child(5n+3){background:#f2d9bc}
+.kin-journal__card:nth-child(5n+4){background:#dce7cd}
+.kin-journal__card:nth-child(5n+5){background:#d8e5ec}
+.kin-journal__card:hover{transform:translateY(-5px)}
+.kin-journal__card-top,.kin-journal__card-bottom{display:flex;justify-content:space-between;gap:1rem;align-items:center;font-size:.67rem;font-weight:800;letter-spacing:.08em}
+.kin-journal__card h3{font-size:clamp(1.5rem,2.3vw,2.5rem);font-weight:850;letter-spacing:-.065em;line-height:1.07}
+.kin-journal__card p{font-size:.86rem;color:#615858;line-height:1.5}
+.kin-journal__card-bottom{margin-top:auto;padding-top:1rem;border-top:1px solid rgba(39,31,36,.15);color:#645a63}
+.kin-help-home__hero{background:#ded4f1}
+.kin-help-home__hero h1 em{color:#9d6db5}
+.kin-help-home__hero .kin-subhero__bottom>a{display:inline-flex;align-items:center;gap:.8rem;color:#282225;text-decoration:none;font-weight:850;font-size:.7rem;letter-spacing:.09em}
+.kin-help-home__library{margin:0;background:#f0ebe3;padding:7rem clamp(1.25rem,5vw,6rem)}
+.kin-help-home__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.kin-help-home__card{background:#e7dcce;min-height:390px;padding:1.5rem;color:#282225!important;display:flex;flex-direction:column;transition:transform .3s ease}
+.kin-help-home__card:nth-child(5n+2){background:#d9c9ee}
+.kin-help-home__card:nth-child(5n+3){background:#dfebc8}
+.kin-help-home__card:nth-child(5n+4){background:#f4d3bf}
+.kin-help-home__card:nth-child(5n+5){background:#d2e7ed}
+.kin-help-home__card:hover{transform:translateY(-5px)}
+.kin-help-home__card-head{display:flex;justify-content:space-between;gap:1rem;font-size:.7rem;font-weight:800;letter-spacing:.08em}
+.kin-help-home__icon{display:grid;place-items:center;width:6rem;height:6rem;border-radius:50%;background:rgba(255,255,255,.4);margin-top:3rem}
+.kin-help-home__card h3{font-size:clamp(2rem,3vw,3.4rem);font-weight:850;letter-spacing:-.07em;margin-top:1.5rem}
+.kin-help-home__card p{max-width:22rem;font-size:.86rem;line-height:1.45;margin-top:.65rem;color:#5b5350}
+.kin-help-home__guides{margin-top:auto;padding-top:1.7rem;display:flex;gap:.7rem;justify-content:space-between;font-size:.65rem;font-weight:800;letter-spacing:.08em}
+.kin-help-home__contact{background:#f7d4bb;padding:7rem 1.25rem;text-align:center}
+.kin-help-home__contact>span{font-size:.7rem;font-weight:800;letter-spacing:.15em}
+.kin-help-home__contact h2{font-size:clamp(3.8rem,8vw,9rem);margin:2rem 0}
+.kin-help-home__contact h2 em{color:#9e689e}
+.kin-help-home__contact p{max-width:28rem;margin:0 auto 2rem!important}
+.kin-site .legal-page,.kin-site .help-index,.kin-site .help-layout,.kin-site .help-page,.kin-site .journal-post-page{font-family:"Trebuchet MS","Avenir Next",Arial,sans-serif}
+@media(max-width:850px){.kin-journal__featured{grid-template-columns:1fr}.kin-journal__featured-art{min-height:400px}.kin-journal__grid,.kin-help-home__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.kin-journal__body{padding:3rem 1.25rem}.kin-journal__featured-art{min-height:280px}.kin-journal__featured-copy{padding:2.2rem}.kin-journal__library,.kin-help-home__library{margin-top:4rem}.kin-journal__library-head{display:block}.kin-journal__library-head>p{margin-top:1.5rem}.kin-journal__grid,.kin-help-home__grid{grid-template-columns:1fr}.kin-journal__card{min-height:290px}.kin-help-home__library{padding:5rem 1.25rem;margin:0}.kin-help-home__card{min-height:340px}}
+
+
+/* Long-form content and documentation keep their authored substance but adopt the new palette and typography. */
+.kin-site .journal-article{background:#f5efe6;color:#272127;font-family:"Trebuchet MS","Avenir Next",Arial,sans-serif}
+.kin-site .journal-hero{background:#e5d4ef;color:#292329;padding-block:clamp(4rem,7vw,8rem)}
+.kin-site .journal-hero h1{color:#292329;font-size:clamp(2.7rem,6vw,6.75rem);font-weight:850;letter-spacing:-.065em;line-height:1.03}
+.kin-site .journal-hero__dek{color:#5d4b62}
+.kin-site .journal-hero__eyebrow{color:#8d598c}
+.kin-site .journal-hero__meta,.kin-site .journal-back{color:#5c505f}
+.kin-site .journal-layout{background:#f5efe6;color:#292329}
+.kin-site .journal-main,.kin-site .journal-prose,.kin-site .journal-prose p,.kin-site .journal-prose li{color:#342f30}
+.kin-site .journal-prose h2,.kin-site .journal-prose h3{color:#292329;letter-spacing:-.045em}
+.kin-site .journal-query,.kin-site .journal-takeaways,.kin-site .journal-method,.kin-site .journal-answer,.kin-site .journal-quote{background:#e9e0f1;color:#342b40;border-color:#d4c4e5}
+.kin-site .journal-related,.kin-site .journal-next{background:#ebe3d9;color:#292329}
+.kin-site .journal-next a,.kin-site .journal-related a,.kin-site .journal-product-link{color:#292329}
+.kin-site .journal-rail a{color:#6b4d89}
+.kin-site .journal-cta{background:#d9c6ed;color:#282025}
+.kin-site .help-shell{background:#f5efe6;color:#292329}
+.kin-site .help-shell__rail{background:#eae1da;color:#292329;border-color:#d1c5bf}
+.kin-site .help-shell__content{background:#f6f0e9;color:#2b2727}
+.kin-site .help-article{color:#302c2d;background:transparent;max-width:850px}
+.kin-site .help-article h1{font-size:clamp(2.7rem,6vw,5.7rem);font-weight:850;letter-spacing:-.065em;line-height:1.05;color:#2a232c}
+.kin-site .help-article h2,.kin-site .help-article h3{color:#2a232c;letter-spacing:-.045em}
+.kin-site .help-article p,.kin-site .help-article li{color:#4b4547;line-height:1.65}
+.kin-site .help-article__lede{color:#655662;font-size:1.12rem}
+.kin-site .help-category,.kin-site .help-related,.kin-site .help-cta{background:#e9ddec;border-color:#d8c8e0;color:#2a2429}
+.kin-site .help-cta a.button,.kin-site .journal-cta a.button{background:#292329;color:white;border-color:#292329;border-radius:3rem}
+.kin-site .help-article a:not(.button){color:#7653a3}
+.kin-site .legal-page{background:#f5efe6!important;color:#30282c!important;padding:clamp(3rem,7vw,8rem) clamp(1.25rem,7vw,8rem)!important;max-width:none}
+.kin-site .legal-page>article,.kin-site .legal-page>div{max-width:1100px;margin-inline:auto}
+.kin-site .legal-page__header{background:#e4d6ef!important;color:#292329!important;padding:clamp(2rem,5vw,6rem)!important;margin-bottom:4rem}
+.kin-site .legal-page__header h1{font-size:clamp(3rem,6vw,7rem);font-weight:850;letter-spacing:-.065em;line-height:.99;color:#292329!important}
+.kin-site .legal-page__header h1 em{color:#976ba7}
+.kin-site .legal-page :where(p,li){color:#5c5357!important;line-height:1.72}
+.kin-site .legal-page :where(h2,h3,h4){color:#2b2629!important;letter-spacing:-.035em}
+.kin-site .legal-page :where(a){color:#825b9e!important}
+.kin-site .legal-page :where(.bg-\[\#080808\]){background:#eee3ee!important}
+.kin-site .legal-page :where(.bg-white\/5){background:#e8dcea!important}
+.kin-site .legal-page :where(.text-white){color:#292329!important}
+.kin-site .legal-page :where(.text-neon){color:#7c4c9c!important}
+.kin-site .legal-page :where(.border-white\/5,.border-white\/10){border-color:#d3c5d1!important}
