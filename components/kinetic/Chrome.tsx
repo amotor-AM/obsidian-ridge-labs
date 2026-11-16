@@ -49,6 +49,6 @@ export const KineticFooter: React.FC = () => (
       <nav aria-label="Apps"><h2>THE LITTLE WORLDS</h2>{collection.map(app => <Link to={'/apps/' + app.id} key={app.id}>{app.name}</Link>)}</nav>
       <nav aria-label="Studio"><h2>THE STUDIO</h2><Link to="/philosophy">What we believe</Link><Link to="/journal">Journal</Link><Link to="/help">Help center</Link><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link><a href="mailto:support@obsidianridgelabs.com">Contact</a></nav>
     </div>
-    <div className="kin-footer__bottom"><span>© {new Date().getFullYear()} OBSIDIAN RIDGE LABS</span><span>MADE WITH INTENTION IN Las Vegas, Nevada</span><span>INDEPENDENT BY DESIGN ✳</span></div>
+    <div className="kin-footer__bottom"><span>© {new Date().getFullYear()} Obsidian Ridge Labs</span><span>MADE WITH INTENTION IN Las Vegas, Nevada</span><span>INDEPENDENT BY DESIGN ✳</span></div>
   </footer>
 );
