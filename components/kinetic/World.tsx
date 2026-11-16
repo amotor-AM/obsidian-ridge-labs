@@ -7,6 +7,7 @@ import { productStories } from '../../data/product-stories';
 import type { Product } from '../../types';
 import type { FAQItem } from '../../data/faqs';
 import OrbitScene from './OrbitScene';
+import { homeFaqs } from '../../data/faqs';
 
 const colors = [
   '#d9c7ff', '#ffceaa', '#b5dbed', '#e4f2a7', '#ffc8d6', '#c1e9cf',
@@ -43,7 +44,7 @@ export const AppCard: React.FC<{ app: Product; index?: number; priority?: boolea
   return (
     <Link className="kin-app-card" to={'/apps/' + app.id}
       style={{ '--kin-tile': color } as React.CSSProperties}
-      aria-label={'Explore ' + app.name + ' — ' + (isLive(app) ? 'available now' : 'in development')}>
+      aria-label={'Explore ' + app.name + ' - ' + (isLive(app) ? 'available now' : 'in development')}>
       <div className="kin-app-card__head">
         <span className="kin-app-card__number">{cardNumbers[app.id]}</span>
         <span className="kin-app-card__category">{categories[app.id] || app.category}</span>
@@ -93,7 +94,7 @@ export const WorldHome: React.FC = () => {
     <div className="kin-page kin-home">
       <section className="kin-hero" aria-labelledby="hero-heading">
         <div className="kin-hero__grid" aria-hidden="true" />
-        <div className="kin-hero__topline"><Eyebrow>Independent software studio / Las Vegas, NV</Eyebrow><span>EST. 2024 — STILL HUMAN.</span></div>
+        <div className="kin-hero__topline"><Eyebrow>Independent software studio / Las Vegas, NV</Eyebrow><span>EST. 2024 - STILL HUMAN.</span></div>
         <div className="kin-hero__layout">
           <div className="kin-hero__copy">
             <p className="kin-kicker"><span className="kin-kicker__dot" /> 11 worlds. One point of view.</p>
@@ -107,7 +108,7 @@ export const WorldHome: React.FC = () => {
           <div className="kin-hero__visual">
             <div className="kin-hero__scene"><OrbitScene active={motionEnabled} /></div>
             <span className="kin-visual-mark kin-visual-mark--top">ON / DEVICE / INTELLIGENCE</span>
-            <span className="kin-visual-mark kin-visual-mark--bottom">FIG. 001 — THE INNER UNIVERSE</span>
+            <span className="kin-visual-mark kin-visual-mark--bottom">FIG. 001 - THE INNER UNIVERSE</span>
             <div className="kin-floating-card kin-floating-card--a" aria-hidden="true"><span>01 /</span><strong>Think freely.</strong><small>Nothing to prove.</small></div>
             <div className="kin-floating-card kin-floating-card--b" aria-hidden="true"><span>11 /</span><strong>Live fully.</strong><small>Everything to keep.</small></div>
             <button className="kin-motion-toggle" type="button" onClick={() => setMotionEnabled(v => !v)}
@@ -120,7 +121,7 @@ export const WorldHome: React.FC = () => {
       </section>
 
       <section className="kin-intro" aria-labelledby="intro-heading">
-        <div className="kin-intro__label"><Eyebrow>Small apps. Big feelings.</Eyebrow><span>01 — THE IDEA</span></div>
+        <div className="kin-intro__label"><Eyebrow>Small apps. Big feelings.</Eyebrow><span>01 - THE IDEA</span></div>
         <div><h2 id="intro-heading">TECHNOLOGY SHOULD FEEL LIKE <em>AN EXTENSION OF YOU.</em><span className="kin-star" aria-hidden="true">✳</span></h2>
           <div className="kin-intro__footer"><p>Not an audience. Not a data source. Just tools that make your day a little more yours.</p><span className="kin-scribble">a different kind of software company.</span></div>
         </div>
@@ -128,7 +129,7 @@ export const WorldHome: React.FC = () => {
 
       <section id="collection" className="kin-collection-section" aria-labelledby="collection-heading">
         <div className="kin-section-head">
-          <div><Eyebrow>The entire collection / 001—011</Eyebrow><h2 id="collection-heading">A UNIVERSE<br />OF <em>USEFUL.</em></h2></div>
+          <div><Eyebrow>The entire collection / 001-011</Eyebrow><h2 id="collection-heading">A UNIVERSE<br />OF <em>USEFUL.</em></h2></div>
           <div className="kin-section-head__side"><p>Eleven independent little worlds. Each one built around something real. None of them need to know the rest of your life.</p><Link to="/download" className="kin-round-link" aria-label="View the complete collection"><ArrowUpRight size={30} /></Link></div>
         </div>
         <CollectionGrid />
@@ -138,7 +139,7 @@ export const WorldHome: React.FC = () => {
       <section className="kin-feature" aria-labelledby="feature-heading">
         <div className="kin-feature__copy"><Eyebrow>Proof of possibility / Echo Chamber</Eyebrow>
           <h2 id="feature-heading">GOOD IDEAS<br />DESERVE TO<br /><em>STAY YOURS.</em></h2>
-          <p>Meet Echo Chamber. Capture conversations, find the moment that matters, and turn your own words into useful notes — with the intelligence running on your device.</p>
+          <p>Meet Echo Chamber. Capture conversations, find the moment that matters, and turn your own words into useful notes - with the intelligence running on your device.</p>
           <Link to="/apps/echochamber" className="kin-button kin-button--light">Discover Echo Chamber <MoveUpRight size={19} aria-hidden="true" /></Link>
           <div className="kin-feature__footer"><span>REAL APP. REAL UTILITY.</span><span>AVAILABLE ON THE APP STORE</span></div>
         </div>
@@ -158,7 +159,8 @@ export const WorldHome: React.FC = () => {
           <Link className="kin-button kin-button--outline" to="/philosophy">Read our philosophy <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
       </section>
 
-      <section className="kin-outro" aria-labelledby="outro-heading"><span>OBSIDIAN RIDGE LABS — INDEPENDENT BY DESIGN</span>
+      <section className="kin-faq-section"><div><Eyebrow>Questions, answered</Eyebrow><h2>THE GOOD<br />TO KNOW.</h2></div><div className="kin-faq-list">{homeFaqs.map((faq,i) => <details key={faq.question}><summary><span>{String(i+1).padStart(2,"0")}</span>{faq.question}<span className="kin-plus" aria-hidden="true">+</span></summary><p>{faq.answer}</p></details>)}</div></section>
+      <section className="kin-outro" aria-labelledby="outro-heading"><span>OBSIDIAN RIDGE LABS - INDEPENDENT BY DESIGN</span>
         <h2 id="outro-heading">MORE YOU.<br /><em>LESS CLOUD.</em></h2>
         <Link className="kin-button kin-button--dark" to="/download">Find your next favorite app <ArrowUpRight size={19} aria-hidden="true" /></Link>
       </section>
@@ -216,14 +218,14 @@ export const WorldProduct: React.FC<{ app: Product; faqs: FAQItem[] }> = ({ app,
         <article key={b.title}><span>✳ 0{i+1}</span><div><h3>{b.title}</h3><p>{b.body}</p></div></article>)}</div></section>
       <section id="requirements" className="kin-product__facts"><div><Eyebrow light>Transparency / 03</Eyebrow><h2>NO SMALL<br /><em>PRINT.</em></h2><p>Useful technology should tell you what it needs and where your information goes.</p></div>
         <div className="kin-product__fact-table">
-          <div><span>01 / STATUS</span><p>{isLive(app) ? 'Available on the App Store' : 'In development — not yet available to install'}</p></div>
+          <div><span>01 / STATUS</span><p>{isLive(app) ? 'Available on the App Store' : 'In development - not yet available to install'}</p></div>
           <div><span>02 / HARDWARE</span><p>{story?.requirements || (app.platforms?.join(', ') || 'Supported Apple devices') + (app.minOS ? ', ' + app.minOS : '')}</p></div>
           <div><span>03 / PROCESSING</span><p>{story?.boundary.processing || 'Core AI is designed to process on your device. See the app documentation for feature-specific requirements.'}</p></div>
           <div><span>04 / STORAGE</span><p>{story?.boundary.storage || app.fullDescription}</p></div>
           <div><span>05 / CONNECTIONS</span><p>{story?.boundary.connections || 'Some setup, purchases, and optional Apple services require a connection. Check the product documentation for details.'}</p></div>
         </div>
       </section>
-      {faqs.length > 0 && <section className="kin-faq-section"><div><Eyebrow>Still curious?</Eyebrow><h2>GOOD<br />QUESTIONS.</h2></div><div className="kin-faq-list">{faqs.slice(0,7).map((faq,i) =>
+      {faqs.length > 0 && <section className="kin-faq-section"><div><Eyebrow>Still curious?</Eyebrow><h2>GOOD<br />QUESTIONS.</h2></div><div className="kin-faq-list">{faqs.map((faq,i) =>
         <details key={faq.question}><summary><span>{String(i+1).padStart(2,'0')}</span>{faq.question}<span className="kin-plus" aria-hidden="true">+</span></summary><p>{faq.answer}</p></details>)}</div></section>}
       <section className="kin-product__next"><Eyebrow>The world is bigger</Eyebrow><h2>ONE OF ELEVEN.<br /><em>FIND YOUR NEXT.</em></h2><Link to="/download" className="kin-button kin-button--dark">See the entire collection <ArrowUpRight size={20} aria-hidden="true" /></Link></section>
     </div>
@@ -234,13 +236,13 @@ export const WorldPhilosophy: React.FC<{ questions: FAQItem[] }> = ({ questions 
   <div className="kin-page kin-philosophy">
     <header className="kin-subhero kin-philosophy__hero"><Eyebrow>The point of view / 001</Eyebrow><h1>YOUR DIGITAL<br />LIFE IS <em>YOURS.</em></h1><p>That should not be a radical idea. We build as though it is the most important one.</p><span className="kin-philosophy__badge">A SMALL MANIFESTO FOR A BIG, CONNECTED WORLD.</span></header>
     <section className="kin-philosophy__statement"><Eyebrow>Our refusal</Eyebrow><h2>WE DON'T BELIEVE YOUR MOST PERSONAL MOMENTS SHOULD BE THE PRICE OF INTELLIGENCE.</h2><p>We think useful software can be beautifully designed, technically ambitious, and respectful of the person using it. Core intelligence lives on supported Apple hardware, and each app explains its storage and connections.</p></section>
-    <section className="kin-philosophy__principles"><Eyebrow>Four ideas. No compromises.</Eyebrow>{[
-      ['01','DATA HAS GRAVITY.','Every network hop introduces another system and another set of rules. Keep core processing close.'],
-      ['02','THE CLOUD MUST EARN IT.','Connections should solve a real need — and be named, not hidden.'],
-      ['03','OFFLINE IS THE TEST.','Once required models are set up, the essential work should keep working without a connection.'],
-      ['04','MEMORY BELONGS TO YOU.','Your notes, recordings, and records should answer to you, with clear export and deletion paths.'],
+    <section className="kin-philosophy__principles" id="principles"><Eyebrow>Four ideas. No compromises.</Eyebrow>{[
+      ['01','Data has gravity.','Every network hop introduces another system and another set of rules. Keep core processing close.'],
+      ['02','The cloud must earn its place.','Connections should solve a real need - and be named, not hidden.'],
+      ['03','Offline is the test.','Once required models are set up, the essential work should keep working without a connection.'],
+      ['04','Your data belongs to you.','Your notes, recordings, and records should answer to you, with clear export and deletion paths.'],
     ].map(([n,t,d]) => <article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p></article>)}</section>
-    <section className="kin-philosophy__test"><Eyebrow light>The boundary check</Eyebrow><h2>THREE<br />SIMPLE<br /><em>QUESTIONS.</em></h2><div className="kin-philosophy__answers">{questions.map((q,i) =>
+    <section className="kin-philosophy__test" id="boundary-check"><Eyebrow light>The boundary check</Eyebrow><h2>THREE<br />SIMPLE<br /><em>QUESTIONS.</em></h2><div className="kin-philosophy__answers">{questions.map((q,i) =>
       <details key={q.question}><summary><span>0{i+1}</span>{q.question}<span aria-hidden="true">+</span></summary><p>{q.answer}</p></details>)}</div></section>
     <section className="kin-outro"><span>NOT AN AUDIENCE. NOT A DATASET.</span><h2>JUST YOUR<br /><em>LIFE, AMPLIFIED.</em></h2><Link className="kin-button kin-button--dark" to="/download">Explore the collection <ArrowUpRight size={19} /></Link></section>
   </div>
