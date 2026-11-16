@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { KineticNav, KineticFooter } from './components/kinetic/Chrome';
 import './styles/kinetic-world.css';
+import './styles/kinetic-editorial.css';
 
 const RouteReady: React.FC = () => {
   const { pathname } = useLocation();
