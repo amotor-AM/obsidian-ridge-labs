@@ -1,81 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import { knowledgeBases } from '../../data/kb';
 import { getProduct } from '../../data/products';
-import { collectionAvailability, upcomingApps } from '../../data/collection';
-import { Icon } from '../../lib/icons';
+import { collectionAvailability } from '../../data/collection';
 import SEO, { buildBreadcrumbs, buildCollectionPage } from '../SEO';
 
-const HelpHome: React.FC = () => {
-  const jsonLd = [
-    buildBreadcrumbs([
-      { name: 'Home', url: '/' },
-      { name: 'Help', url: '/help' },
-    ]),
-    buildCollectionPage('Help Center', 'Setup, privacy, and troubleshooting guides for every Obsidian Ridge Labs app.', '/help'),
-  ];
-
-  return (
-    <div className="help-index">
-      <SEO
-        title="Help Center"
-        description={`Set up your app, manage storage and sync, or troubleshoot a problem. ${collectionAvailability}.`}
-        canonical="https://obsidianridgelabs.com/help"
-        jsonLd={jsonLd}
-      />
-
-      <header className="help-index__hero">
-        <div className="section-frame">
-          <div className="section-index">
-            <span>Support</span>
-            <span>Setup · Storage · Troubleshooting</span>
-          </div>
-          <p className="section-kicker">Help Center</p>
-          <h1>How can we help?</h1>
-          <p>
-            Set up your app, find a missing recording, or check what happens when you turn on sync.
-            {upcomingApps.length > 0 && ` Preview guides for ${upcomingApps.length} ${upcomingApps.length === 1 ? 'app' : 'apps'} describe work in development.`}
-          </p>
-          <Link to="/philosophy#boundary-check" className="text-link">
-            Run the Boundary Check <Icon name="arrow-right" size={16} />
+const HelpHome: React.FC = () => (
+  <div className="kin-page kin-help-home">
+    <SEO title="Help Center"
+      description={'Set up your app, manage storage and sync, or troubleshoot a problem. '+collectionAvailability+'.'}
+      canonical="https://obsidianridgelabs.com/help"
+      jsonLd={[
+        buildBreadcrumbs([{name:'Home',url:'/'},{name:'Help',url:'/help'}]),
+        buildCollectionPage('Help Center','Setup, privacy and troubleshooting guides for Obsidian Ridge Labs apps.','/help')
+      ]}/>
+    <header className="kin-subhero kin-help-home__hero">
+      <span className="kin-eyebrow"><span className="kin-eyebrow__asterisk">✳</span>Help and support / Here for you</span>
+      <span className="kin-subhero__counter">ACTUAL ANSWERS. REAL HUMANS.</span>
+      <h1>A LITTLE<br /><em>HELP?</em></h1>
+      <div className="kin-subhero__bottom"><p>From your first tap to the finer details. Find guides for every app, explore privacy and setup, or get a little human help.</p><Link to="/philosophy#boundary-check">THE BOUNDARY CHECK <ArrowUpRight size={17} /></Link></div>
+    </header>
+    <section className="kin-help-home__library" aria-labelledby="help-library-heading">
+      <div className="kin-journal__library-head"><div><span className="kin-eyebrow"><span className="kin-eyebrow__asterisk">✳</span>Choose your app</span><h2 id="help-library-heading">WHERE SHOULD<br /><em>WE START?</em></h2></div><p>Every world has its own guidebook.</p></div>
+      <div className="kin-help-home__grid">
+        {knowledgeBases.map((kb,i)=>{const app=getProduct(kb.appId);const Icon=app?.icon;return (
+          <Link to={'/help/'+kb.appId} className="kin-help-home__card" key={kb.appId}>
+            <span className="kin-help-home__card-head"><span>{String(i+1).padStart(2,'0')} / GUIDEBOOK</span><ArrowUpRight size={20} aria-hidden="true" /></span>
+            <div className="kin-help-home__icon">{Icon&&<Icon size={45} strokeWidth={1.25} aria-hidden="true" />}</div>
+            <h3>{kb.appName}</h3><p>{kb.intro}</p>
+            <span className="kin-help-home__guides">{kb.articles.length} GUIDES <span>{app?.releaseStatus==='app-store'?'AVAILABLE':'IN DEVELOPMENT'}</span></span>
           </Link>
-        </div>
-      </header>
-
-      <div className="section-frame help-index__grid">
-        {knowledgeBases.map((kb) => {
-          const product = getProduct(kb.appId);
-          const AppIcon = product?.icon;
-          const inDevelopment = Boolean(product && ['pre-release', 'concept'].includes(product.releaseStatus));
-          return (
-            <Link key={kb.appId} to={`/help/${kb.appId}`} className="help-card">
-              <div className="help-card__icon" aria-hidden="true">
-                {AppIcon ? <AppIcon size={22} /> : <Icon name="help" size={22} />}
-              </div>
-              <div className="help-card__copy">
-                <span>{kb.articles.length} guides{inDevelopment ? ' · in development' : ''}</span>
-                <h2>{kb.appName}</h2>
-                <p>{product?.description || kb.intro}</p>
-              </div>
-              <small>Read the guides <Icon name="arrow-right" size={14} /></small>
-            </Link>
-          );
-        })}
+        )})}
       </div>
-
-      <div className="section-frame">
-        <div className="help-cta">
-          <div>
-            <strong>Still stuck?</strong>
-            <p>Tell us which app and device you use, and what happened. A person will reply.</p>
-          </div>
-          <a href="mailto:support@obsidianridgelabs.com" className="button button--primary">
-            <Icon name="mail" size={16} /> Email support
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-};
-
+    </section>
+    <section className="kin-help-home__contact"><span>PERSON TO PERSON</span><h2>STILL NEED<br /><em>A HAND?</em></h2>
+      <p>Tell us which app and device you're using, and what happened. A real person will reply.</p>
+      <a href="mailto:support@obsidianridgelabs.com" className="kin-button kin-button--dark">Email support <ArrowUpRight size={19} aria-hidden="true"/></a>
+    </section>
+  </div>
+);
 export default HelpHome;
